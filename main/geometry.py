@@ -79,15 +79,15 @@ class ReferenceBase:
 
         # Plot the reference frame vectors
         if frame:
-            origin = self.b_R
+            origin = self.b_R[0]
             ax.quiver(origin[0], origin[1], origin[2], 
-                    self.b_L[0], self.b_L[1], self.b_L[2], 
+                    self.b_L[0][0], self.b_L[0][1], self.b_L[0][2], 
                     color='r', length=1, normalize=True)
             ax.quiver(origin[0], origin[1], origin[2], 
-                    self.b_D[0], self.b_D[1], self.b_D[2], 
+                    self.b_D[0][0], self.b_D[0][1], self.b_D[0][2], 
                     color='g', length=1, normalize=True)
             ax.quiver(origin[0], origin[1], origin[2], 
-                    self.b_N[0], self.b_N[1], self.b_N[2], 
+                    self.b_N[0][0], self.b_N[0][1], self.b_N[0][2], 
                     color='b', length=1, normalize=True)
 
         ax.set_xlabel('X')
@@ -117,7 +117,7 @@ class NucleicFrames:
     loc = '/Users/thor/surfdrive/Scripts/notebooks/HNS-sequence/WorkingDir/nolinker/data/md/0_highaff/FI/drytrajs/'
     traj = md.load(loc+'dry_10.xtc',top=loc+'dry_10.pdb')
 
-    dna = Frames(traj)
+    dna = NucleicFrames(traj)
     params, names = dna.get_paramters()
     params.shape, names
 
@@ -147,7 +147,7 @@ class NucleicFrames:
         self.top = traj.topology
         self.res_A = self.get_residues(chain_index=0)
         self.res_B = self.get_residues(chain_index=1, reverse=True)
-        self.mean_reference_frames = {}
+        self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
         self.frames = self.get_reference_frames()
         self.analyse_frames()
 
