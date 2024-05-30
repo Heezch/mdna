@@ -1,0 +1,6 @@
+# ignore all .log files
+*.xtc
+*.h5
+
+./studies/1_protein-dna_filament/FilamentsDNA/HNS_fillament_scripts/data/    
+./studies/1_protein-dna_filament/FilamentsDNA/tests/data/

@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: pymdna
+Version: 0.1.0
+Summary: A Python package for DNA modeling and analysis.
+Author-email: Your Name <your.email@example.com>
+Project-URL: homepage, https://example.com
+Project-URL: repository, https://github.com/yourusername/pymdna
+Project-URL: documentation, https://pymdna.readthedocs.io
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+goal: import pymdna as mdna
+
+I have the following modules containg the following classes:
+
+spline.py
+    - SplineFrames, Twister
+
+utils.py
+    - RigidBody, Shapes
+
+geometry.py
+    - NucleicFrames, ReferenceBase 
+
+generators.py
+    - SequenceGenerator, StructureGenerator
+
+Note, 
+    NucleicFrames, ReferenceBase, TwistFrames depend on RigidBody
+    StructureGenerator depends on SequenceGenerator

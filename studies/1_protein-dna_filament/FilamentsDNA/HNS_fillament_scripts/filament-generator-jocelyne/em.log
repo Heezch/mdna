@@ -1,0 +1,391 @@
+Log file opened on Tue Oct 27 12:41:46 2015
+Host: vpn-staff-146-50-70-18.vpn.uva.nl  pid: 61341  nodeid: 0  nnodes:  1
+Gromacs version:    VERSION 4.6.1
+Precision:          single
+Memory model:       64 bit
+MPI library:        none
+OpenMP support:     disabled
+GPU support:        disabled
+invsqrt routine:    gmx_software_invsqrt(x)
+CPU acceleration:   AVX_256
+FFT library:        fftw-3.3.4-sse2
+Large file support: enabled
+RDTSCP usage:       enabled
+Built on:           Sun Jul 14 17:44:15 CEST 2013
+Built by:           vreede@vpn-152-143.vpn.uva.nl [CMAKE]
+Build OS/arch:      Darwin 12.4.0 x86_64
+Build CPU vendor:   GenuineIntel
+Build CPU brand:    Intel(R) Core(TM) i7-3540M CPU @ 3.00GHz
+Build CPU family:   6   Model: 58   Stepping: 9
+Build CPU features: aes apic avx clfsh cmov cx8 cx16 f16c htt lahf_lm mmx msr nonstop_tsc pcid pclmuldq pdcm popcnt pse rdrnd rdtscp sse2 sse3 sse4.1 sse4.2 ssse3 tdt x2apic
+C compiler:         /usr/bin/cc Clang Apple LLVM version 6.1.0 (clang-602.0.53) (based on LLVM 3.6.0svn)
+C compiler flags:   -mavx   -Wall -Wno-unused -Wunused-value -Wno-unknown-pragmas    -O3 -DNDEBUG
+
+
+                         :-)  G  R  O  M  A  C  S  (-:
+
+                 Good ROcking Metal Altar for Chronical Sinners
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                                :-)  mdrun  (-:
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and C. Kutzner and D. van der Spoel and E. Lindahl
+GROMACS 4: Algorithms for highly efficient, load-balanced, and scalable
+molecular simulation
+J. Chem. Theory Comput. 4 (2008) pp. 435-447
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+D. van der Spoel, E. Lindahl, B. Hess, G. Groenhof, A. E. Mark and H. J. C.
+Berendsen
+GROMACS: Fast, Flexible and Free
+J. Comp. Chem. 26 (2005) pp. 1701-1719
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+E. Lindahl and B. Hess and D. van der Spoel
+GROMACS 3.0: A package for molecular simulation and trajectory analysis
+J. Mol. Mod. 7 (2001) pp. 306-317
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+H. J. C. Berendsen, D. van der Spoel and R. van Drunen
+GROMACS: A message-passing parallel molecular dynamics implementation
+Comp. Phys. Comm. 91 (1995) pp. 43-56
+-------- -------- --- Thank You --- -------- --------
+
+Input Parameters:
+   integrator           = cg
+   nsteps               = 1000000
+   init-step            = 0
+   cutoff-scheme        = Group
+   ns_type              = Grid
+   nstlist              = 10
+   ndelta               = 2
+   nstcomm              = 100
+   comm-mode            = Linear
+   nstlog               = 250
+   nstxout              = 0
+   nstvout              = 0
+   nstfout              = 0
+   nstcalcenergy        = 100
+   nstenergy            = 250
+   nstxtcout            = 25
+   init-t               = 0
+   delta-t              = 0.001
+   xtcprec              = 1000
+   fourierspacing       = 0.12
+   nkx                  = 200
+   nky                  = 144
+   nkz                  = 96
+   pme-order            = 4
+   ewald-rtol           = 1e-05
+   ewald-geometry       = 0
+   epsilon-surface      = 0
+   optimize-fft         = FALSE
+   ePBC                 = xyz
+   bPeriodicMols        = FALSE
+   bContinuation        = FALSE
+   bShakeSOR            = FALSE
+   etc                  = No
+   bPrintNHChains       = FALSE
+   nsttcouple           = -1
+   epc                  = No
+   epctype              = Isotropic
+   nstpcouple           = -1
+   tau-p                = 1
+   ref-p (3x3):
+      ref-p[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   compress (3x3):
+      compress[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      compress[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      compress[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   refcoord-scaling     = No
+   posres-com (3):
+      posres-com[0]= 0.00000e+00
+      posres-com[1]= 0.00000e+00
+      posres-com[2]= 0.00000e+00
+   posres-comB (3):
+      posres-comB[0]= 0.00000e+00
+      posres-comB[1]= 0.00000e+00
+      posres-comB[2]= 0.00000e+00
+   verlet-buffer-drift  = 0.005
+   rlist                = 1.1
+   rlistlong            = 1.1
+   nstcalclr            = 0
+   rtpi                 = 0.05
+   coulombtype          = PME
+   coulomb-modifier     = None
+   rcoulomb-switch      = 0
+   rcoulomb             = 1.1
+   vdwtype              = Cut-off
+   vdw-modifier         = None
+   rvdw-switch          = 0
+   rvdw                 = 1.1
+   epsilon-r            = 1
+   epsilon-rf           = inf
+   tabext               = 1
+   implicit-solvent     = No
+   gb-algorithm         = Still
+   gb-epsilon-solvent   = 80
+   nstgbradii           = 1
+   rgbradii             = 1
+   gb-saltconc          = 0
+   gb-obc-alpha         = 1
+   gb-obc-beta          = 0.8
+   gb-obc-gamma         = 4.85
+   gb-dielectric-offset = 0.009
+   sa-algorithm         = Ace-approximation
+   sa-surface-tension   = 2.05016
+   DispCorr             = No
+   bSimTemp             = FALSE
+   free-energy          = no
+   nwall                = 0
+   wall-type            = 9-3
+   wall-atomtype[0]     = -1
+   wall-atomtype[1]     = -1
+   wall-density[0]      = 0
+   wall-density[1]      = 0
+   wall-ewald-zfac      = 3
+   pull                 = no
+   rotation             = FALSE
+   disre                = No
+   disre-weighting      = Conservative
+   disre-mixed          = FALSE
+   dr-fc                = 1000
+   dr-tau               = 0
+   nstdisreout          = 100
+   orires-fc            = 0
+   orires-tau           = 0
+   nstorireout          = 100
+   dihre-fc             = 0
+   em-stepsize          = 0.01
+   em-tol               = 10000
+   niter                = 20
+   fc-stepsize          = 0
+   nstcgsteep           = 100
+   nbfgscorr            = 10
+   ConstAlg             = Lincs
+   shake-tol            = 0.0001
+   lincs-order          = 4
+   lincs-warnangle      = 30
+   lincs-iter           = 1
+   bd-fric              = 0
+   ld-seed              = 1993
+   cos-accel            = 0
+   deform (3x3):
+      deform[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   adress               = FALSE
+   userint1             = 0
+   userint2             = 0
+   userint3             = 0
+   userint4             = 0
+   userreal1            = 0
+   userreal2            = 0
+   userreal3            = 0
+   userreal4            = 0
+grpopts:
+   nrdf:       32892
+   ref-t:           0
+   tau-t:           0
+anneal:          No
+ann-npoints:           0
+   acc:	           0           0           0
+   nfreeze:           N           N           N
+   energygrp-flags[  0]: 0
+   efield-x:
+      n = 0
+   efield-xt:
+      n = 0
+   efield-y:
+      n = 0
+   efield-yt:
+      n = 0
+   efield-z:
+      n = 0
+   efield-zt:
+      n = 0
+   bQMMM                = FALSE
+   QMconstraints        = 0
+   QMMMscheme           = 0
+   scalefactor          = 1
+qm-opts:
+   ngQM                 = 0
+
+Detecting CPU-specific acceleration.
+Present hardware specification:
+Vendor: GenuineIntel
+Brand:  Intel(R) Core(TM) i7-3540M CPU @ 3.00GHz
+Family:  6  Model: 58  Stepping:  9
+Features: aes apic avx clfsh cmov cx8 cx16 f16c htt lahf_lm mmx msr nonstop_tsc pcid pclmuldq pdcm popcnt pse rdrnd rdtscp sse2 sse3 sse4.1 sse4.2 ssse3 tdt x2apic
+Acceleration most likely to fit this hardware: AVX_256
+Acceleration selected at GROMACS compile time: AVX_256
+
+Table routines are used for coulomb: FALSE
+Table routines are used for vdw:     FALSE
+Will do PME sum in reciprocal space.
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+U. Essmann, L. Perera, M. L. Berkowitz, T. Darden, H. Lee and L. G. Pedersen 
+A smooth particle mesh Ewald method
+J. Chem. Phys. 103 (1995) pp. 8577-8592
+-------- -------- --- Thank You --- -------- --------
+
+Will do ordinary reciprocal space Ewald sum.
+Using a Gaussian width (1/beta) of 0.352179 nm for Ewald
+Cut-off's:   NS: 1.1   Coulomb: 1.1   LJ: 1.1
+System total charge: -10.000
+Generated table with 1050 data points for Ewald.
+Tabscale = 500 points/nm
+Generated table with 1050 data points for LJ6.
+Tabscale = 500 points/nm
+Generated table with 1050 data points for LJ12.
+Tabscale = 500 points/nm
+Generated table with 1050 data points for 1-4 COUL.
+Tabscale = 500 points/nm
+Generated table with 1050 data points for 1-4 LJ6.
+Tabscale = 500 points/nm
+Generated table with 1050 data points for 1-4 LJ12.
+Tabscale = 500 points/nm
+Potential shift: LJ r^-12: 0.000 r^-6 0.000, Ewald 0.000e+00
+Initialized non-bonded Ewald correction tables, spacing: 6.92e-04 size: 3036
+
+Removing pbc first time
+Initiating Polak-Ribiere Conjugate Gradients
+Max number of connections per atom is 105
+Total number of connections is 355650
+Max number of graph edges per atom is 4
+Total number of graph edges is 22010
+Started Polak-Ribiere Conjugate Gradients on node 0 Tue Oct 27 12:41:46 2015
+
+Polak-Ribiere Conjugate Gradients:
+   Tolerance (Fmax)   =  1.00000e+04
+   Number of steps    =      1000000
+
+Grid: 21 x 15 x 10 cells
+           Step           Time         Lambda
+              0        0.00000        0.00000
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    8.09213e+03    2.16891e+04    2.91127e+04    1.89211e+03    1.70805e+04
+     Coulomb-14        LJ (SR)   Coulomb (SR)   Coul. recip.      Potential
+    1.04240e+05    7.76035e+13   -5.16334e+04   -1.48228e+05    7.76035e+13
+ Pressure (bar)
+    0.00000e+00
+
+   F-max             =  3.79540e+16 on atom 1493
+   F-Norm            =  5.12588e+14
+
+           Step           Time         Lambda
+              0        0.00000        0.00000
+
+   Energies (kJ/mol)
+           Bond          Angle    Proper Dih.  Improper Dih.          LJ-14
+    8.11162e+03    2.17008e+04    2.91126e+04    1.89496e+03    1.70808e+04
+     Coulomb-14        LJ (SR)   Coulomb (SR)   Coul. recip.      Potential
+    1.04238e+05    3.31840e+11   -5.07449e+04   -1.48227e+05    3.31840e+11
+ Pressure (bar)
+    0.00000e+00
+
+
+Energy minimization has stopped, but the forces havenot converged to the
+requested precision Fmax < 10000 (whichmay not be possible for your system).
+It stoppedbecause the algorithm tried to make a new step whose sizewas too
+small, or there was no change in the energy sincelast step. Either way, we
+regard the minimization asconverged to within the available machine
+precision,given your starting configuration and EM parameters.
+
+Double precision normally gives you higher accuracy, butthis is often not
+needed for preparing to run moleculardynamics.
+
+Polak-Ribiere Conjugate Gradients converged to machine precision in 0 steps,
+but did not reach the requested Fmax < 10000.
+Potential Energy  =  3.3183957e+11
+Maximum force     =  1.0221447e+14 on atom 2191
+Norm of force     =  1.3804635e+12
+
+Performed 1 energy evaluations in total.
+
+	M E G A - F L O P S   A C C O U N T I N G
+
+ NB=Group-cutoff nonbonded kernels    NxN=N-by-N cluster Verlet kernels
+ RF=Reaction-Field  VdW=Van der Waals  QSTab=quadratic-spline table
+ W3=SPC/TIP3p  W4=TIP4p (single or pairs)
+ V&F=Potential and force  V=Potential only  F=Force only
+
+ Computing:                               M-Number         M-Flops  % Flops
+-----------------------------------------------------------------------------
+ NB Elec. [V&F]                          11.216192          11.216     0.5
+ NB VdW & Elec. [V&F]                   271.813858         271.814    11.4
+ 1,4 nonbonded interactions               0.057640           5.188     0.2
+ Calc Weights                             0.065790           2.368     0.1
+ Spread Q Bspline                         1.403520           2.807     0.1
+ Gather F Bspline                         1.403520           8.421     0.4
+ 3D-FFT                                 236.652984        1893.224    79.5
+ Solve PME                                0.057600           3.686     0.2
+ NS-Pairs                                 7.570776         158.986     6.7
+ Reset In Box                             0.021930           0.066     0.0
+ Shift-X                                  0.021930           0.132     0.0
+ CG-CoM                                   0.021930           0.066     0.0
+ Bonds                                    0.022010           1.299     0.1
+ Angles                                   0.039930           6.708     0.3
+ Propers                                  0.061390          14.058     0.6
+ Impropers                                0.003990           0.830     0.0
+ Virial                                   0.022020           0.396     0.0
+-----------------------------------------------------------------------------
+ Total                                                    2381.265   100.0
+-----------------------------------------------------------------------------
+
+
+     R E A L   C Y C L E   A N D   T I M E   A C C O U N T I N G
+
+ Computing:         Nodes   Th.     Count  Wall t (s)     G-Cycles       %
+-----------------------------------------------------------------------------
+ Neighbor search        1    1          2       0.047        0.280    14.5
+ Force                  1    1          2       0.027        0.164     8.5
+ PME mesh               1    1          2       0.078        0.464    24.1
+ Rest                   1                       0.171        1.021    52.9
+-----------------------------------------------------------------------------
+ Total                  1                       0.322        1.929   100.0
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+ PME spread/gather      1    1          4       0.011        0.065     3.4
+ PME 3D-FFT             1    1          4       0.045        0.269    14.0
+ PME solve              1    1          2       0.022        0.130     6.8
+-----------------------------------------------------------------------------
+
+               Core t (s)   Wall t (s)        (%)
+       Time:        0.313        0.322       97.2
+               (steps/hour)
+Performance:            0.0
+Finished mdrun on node 0 Tue Oct 27 12:41:47 2015

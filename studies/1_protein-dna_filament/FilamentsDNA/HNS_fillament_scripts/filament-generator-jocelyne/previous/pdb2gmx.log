@@ -1,0 +1,245 @@
+                         :-)  G  R  O  M  A  C  S  (-:
+
+                   GROningen MAchine for Chemical Simulation
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                               :-)  pdb2gmx  (-:
+
+Option     Filename  Type         Description
+------------------------------------------------------------
+  -f H-NS-assembly_3.pdb  Input        Structure file: gro g96 pdb tpr etc.
+  -o       conf.gro  Output       Structure file: gro g96 pdb etc.
+  -p      topol.top  Output       Topology file
+  -i      posre.itp  Output       Include file for topology
+  -n      clean.ndx  Output, Opt. Index file
+  -q      clean.pdb  Output, Opt. Structure file: gro g96 pdb etc.
+
+Option       Type   Value   Description
+------------------------------------------------------
+-[no]h       bool   no      Print help info and quit
+-[no]version bool   no      Print version info and quit
+-nice        int    0       Set the nicelevel
+-chainsep    enum   id_or_ter  Condition in PDB files when a new chain should
+                            be started (adding termini): id_or_ter,
+                            id_and_ter, ter, id or interactive
+-merge       enum   no      Merge multiple chains into a single
+                            [moleculetype]: no, all or interactive
+-ff          string select  Force field, interactive by default. Use -h for
+                            information.
+-water       enum   select  Water model to use: select, none, spc, spce,
+                            tip3p, tip4p or tip5p
+-[no]inter   bool   no      Set the next 8 options to interactive
+-[no]ss      bool   no      Interactive SS bridge selection
+-[no]ter     bool   no      Interactive termini selection, instead of charged
+                            (default)
+-[no]lys     bool   no      Interactive lysine selection, instead of charged
+-[no]arg     bool   no      Interactive arginine selection, instead of charged
+-[no]asp     bool   no      Interactive aspartic acid selection, instead of
+                            charged
+-[no]glu     bool   no      Interactive glutamic acid selection, instead of
+                            charged
+-[no]gln     bool   no      Interactive glutamine selection, instead of
+                            neutral
+-[no]his     bool   no      Interactive histidine selection, instead of
+                            checking H-bonds
+-angle       real   135     Minimum hydrogen-donor-acceptor angle for a
+                            H-bond (degrees)
+-dist        real   0.3     Maximum donor-acceptor distance for a H-bond (nm)
+-[no]una     bool   no      Select aromatic rings with united CH atoms on
+                            phenylalanine, tryptophane and tyrosine
+-[no]ignh    bool   no      Ignore hydrogen atoms that are in the coordinate
+                            file
+-[no]missing bool   no      Continue when atoms are missing, dangerous
+-[no]v       bool   no      Be slightly more verbose in messages
+-posrefc     real   1000    Force constant for position restraints
+-vsite       enum   none    Convert atoms to virtual sites: none, hydrogens
+                            or aromatics
+-[no]heavyh  bool   no      Make hydrogen atoms heavy
+-[no]deuterate bool no      Change the mass of hydrogens to 2 amu
+-[no]chargegrp bool yes     Use charge groups in the .rtp file
+-[no]cmap    bool   yes     Use cmap torsions (if enabled in the .rtp file)
+-[no]renum   bool   no      Renumber the residues consecutively in the output
+-[no]rtpres  bool   no      Use .rtp entry names as residue names
+
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/watermodels.dat
+ 1: TIP3P     TIP 3-point, recommended
+ 2: TIP4P     TIP 4-point
+ 3: TIP4P-Ew  TIP 4-point optimized with Ewald
+ 4: SPC       simple point charge
+ 5: SPC/E     extended simple point charge
+ 6: None
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.r2b
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.r2b
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.r2b
+All occupancies are one
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/atomtypes.atp
+Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1Atomtype 1
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.rtp
+Residue 1Residue 2Residue 3Residue 4Residue 5Residue 6Residue 7Residue 8Residue 9Residue 10Residue 11Residue 12Residue 13Residue 14Residue 15Residue 16Residue 17Residue 18Residue 19Residue 20Residue 21Residue 22Residue 23Residue 24Residue 25Residue 26Residue 27Residue 28Residue 29Residue 30Residue 31Residue 32Residue 33Residue 34Residue 35Residue 36Residue 37Residue 38Residue 39Residue 40Residue 41Residue 42Residue 43Residue 44Residue 45Residue 46Residue 47Residue 48Residue 49Residue 50Residue 51Residue 52Residue 53Residue 54Residue 55Residue 56Residue 57Residue 58Residue 59Residue 60Residue 61Residue 62Residue 63Residue 64Residue 65Residue 66Residue 67Residue 68Residue 69Residue 70Residue 71Residue 72Residue 73Residue 74Residue 75Residue 76Residue 77Residue 78Residue 79Residue 80Residue 81Residue 82Residue 83Residue 84Residue 85Residue 86Residue 87Residue 88Residue 89Residue 90Residue 91Residue 92Residue 93
+Sorting it all out...
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.rtp
+Residue 94Residue 95Residue 96Residue 97Residue 98Residue 99Residue 100Residue 101Residue 102Residue 103Residue 104Residue 105Residue 106Residue 107Residue 108Residue 109
+Sorting it all out...
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.rtp
+Residue 110Residue 111Residue 112Residue 113Residue 114Residue 115Residue 116Residue 117Residue 118Residue 119Residue 120Residue 121Residue 122Residue 123Residue 124Residue 125
+Sorting it all out...
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.hdb
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.hdb
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.hdb
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.n.tdb
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.c.tdb
+8 out of 8 lines of specbond.dat converted successfully
+Special Atom Distance matrix:
+                   MET64   MET79
+                   SD184   SD405
+   MET79   SD405   1.302
+  MET123  SD1089   1.737   2.472
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.arn
+Making bonds...
+Warning: Long Bond (470-472 = 0.273535 nm)
+Number of bonds was 1331, now 1330
+Generating angles, dihedrals and pairs...
+Before cleaning: 3492 pairs
+Before cleaning: 3648 dihedrals
+Keeping all generated dihedrals
+Making cmap torsions...There are 3648 dihedrals,  245 impropers, 2413 angles
+          3477 pairs,     1330 bonds and     0 virtual sites
+Total mass 9334.754 a.m.u.
+Total charge 4.000 e
+Writing topology
+8 out of 8 lines of specbond.dat converted successfully
+Special Atom Distance matrix:
+                   MET79
+                   SD215
+  MET123   SD899   2.414
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.arn
+Making bonds...
+Number of bonds was 1140, now 1139
+Generating angles, dihedrals and pairs...
+Before cleaning: 2995 pairs
+Before cleaning: 3149 dihedrals
+Keeping all generated dihedrals
+Making cmap torsions...There are 3149 dihedrals,  206 impropers, 2071 angles
+          2983 pairs,     1139 bonds and     0 virtual sites
+Total mass 7998.158 a.m.u.
+Total charge 2.000 e
+Writing topology
+8 out of 8 lines of specbond.dat converted successfully
+Special Atom Distance matrix:
+                   MET64   MET79
+                   SD184   SD405
+   MET79   SD405   1.554
+  MET123  SD1089   2.374   2.463
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/aminoacids.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/dna.arn
+Opening force field file /sw/share/gromacs/top/amber99sb-ildn.ff/rna.arn
+Making bonds...
+Warning: Long Bond (470-472 = 0.549838 nm)
+Number of bonds was 1331, now 1330
+Generating angles, dihedrals and pairs...
+Before cleaning: 3492 pairs
+Before cleaning: 3648 dihedrals
+Keeping all generated dihedrals
+Making cmap torsions...There are 3648 dihedrals,  245 impropers, 2413 angles
+          3477 pairs,     1330 bonds and     0 virtual sites
+Total mass 9334.754 a.m.u.
+Total charge 4.000 e
+Writing topology
+Now there are 3776 atoms and 239 residues
+Total mass in system 26667.666 a.m.u.
+Total charge in system 10.000 e
+
+Writing coordinate file...
+
+Select the Force Field:
+From '/sw/share/gromacs/top':
+ 1: AMBER03 protein, nucleic AMBER94 (Duan et al., J. Comp. Chem. 24, 1999-2012, 2003)
+ 2: AMBER94 force field (Cornell et al., JACS 117, 5179-5197, 1995)
+ 3: AMBER96 protein, nucleic AMBER94 (Kollman et al., Acc. Chem. Res. 29, 461-469, 1996)
+ 4: AMBER99 protein, nucleic AMBER94 (Wang et al., J. Comp. Chem. 21, 1049-1074, 2000)
+ 5: AMBER99SB protein, nucleic AMBER94 (Hornak et al., Proteins 65, 712-725, 2006)
+ 6: AMBER99SB-ILDN protein, nucleic AMBER94 (Lindorff-Larsen et al., Proteins 78, 1950-58, 2010)
+ 7: AMBERGS force field (Garcia & Sanbonmatsu, PNAS 99, 2782-2787, 2002)
+ 8: CHARMM27 all-atom force field (with CMAP) - version 2.0
+ 9: GROMOS96 43a1 force field
+10: GROMOS96 43a2 force field (improved alkane dihedrals)
+11: GROMOS96 45a3 force field (Schuler JCC 2001 22 1205)
+12: GROMOS96 53a5 force field (JCC 2004 vol 25 pag 1656)
+13: GROMOS96 53a6 force field (JCC 2004 vol 25 pag 1656)
+14: OPLS-AA/L all-atom force field (2001 aminoacid dihedrals)
+15: [DEPRECATED] Encad all-atom force field, using full solvent charges
+16: [DEPRECATED] Encad all-atom force field, using scaled-down vacuum charges
+17: [DEPRECATED] Gromacs force field (see manual)
+18: [DEPRECATED] Gromacs force field with hydrogens for NMR
+
+Using the Amber99sb-ildn force field in directory amber99sb-ildn.ff
+
+
+Select the Water Model:
+Reading H-NS-assembly_3.pdb...
+Read 3770 atoms
+Analyzing pdb file
+Splitting chemical chains based on TER records or chain id changing.
+There are 3 chains and 0 blocks of water and 137 residues with 3770 atoms
+
+  chain  #res #atoms
+  1 'A'    83   1320  
+  2 'B'    73   1130  
+  3 'C'    83   1320  
+
+Reading residue database... (amber99sb-ildn)
+Processing chain 1 'A' (1320 atoms, 83 residues)
+Identified residue THR55 as a starting terminus.
+Identified residue GLN137 as a ending terminus.
+Checking for duplicate atoms....
+Generating any missing hydrogen atoms and/or adding termini.
+Now there are 83 residues with 1322 atoms
+Chain time...
+Processing chain 2 'B' (1130 atoms, 73 residues)
+Identified residue LEU65 as a starting terminus.
+Identified residue GLN137 as a ending terminus.
+Checking for duplicate atoms....
+Generating any missing hydrogen atoms and/or adding termini.
+Now there are 73 residues with 1132 atoms
+Chain time...
+Processing chain 3 'C' (1320 atoms, 83 residues)
+Identified residue THR55 as a starting terminus.
+Identified residue GLN137 as a ending terminus.
+Checking for duplicate atoms....
+Generating any missing hydrogen atoms and/or adding termini.
+Now there are 83 residues with 1322 atoms
+Chain time...
+Including chain 1 in system: 1322 atoms 83 residues
+Including chain 2 in system: 1132 atoms 73 residues
+Including chain 3 in system: 1322 atoms 83 residues
+		--------- PLEASE NOTE ------------
+You have successfully generated a topology from: H-NS-assembly_3.pdb.
+The Amber99sb-ildn force field and the tip3p water model are used.
+		--------- ETON ESAELP ------------
+
+gcq#193: "Your Country Needs YOU" (U.S. Army)
+

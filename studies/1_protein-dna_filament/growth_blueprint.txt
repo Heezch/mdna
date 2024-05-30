@@ -1,0 +1,96 @@
+s2_pairs = [['s2','h3'],['h3','s1'],['s2','l2'],['l2','dbd']]
+
+s2 -- s2 
+
+
+s2 -- s2 - h3 
+
+
+s2 -- s2 - h3 - s1 -- s1
+
+      l2
+      |
+s2 -- s2 - h3 - s1 -- s1
+
+
+
+      l2 - dbd
+      |
+s2 -- s2 - h3 - s1 -- s1
+
+---------------
+
+s1_pairs = [['s1','h3'],['h3','s2'],['s2','l2'],['l2','dbd']]
+
+
+      l2 - dbd
+      |
+s2 -- s2 - h3 - s1 -- s1 - h3 
+
+
+      l2 - dbd
+      |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2
+
+
+      l2 - dbd                  l2
+      |                         |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2
+
+
+
+      l2 - dbd           dbd - l2
+      |                         |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2
+
+
+---------------
+
+s2_pairs = [['s2','h3'],['h3','s1'],['s2','l2'],['l2','dbd']]
+
+
+      l2 - dbd           dbd - l2
+      |                         |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 
+
+
+      l2 - dbd           dbd - l2
+      |                         |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1
+
+
+      l2 - dbd           dbd - l2     l2
+      |                         |     |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1
+
+
+
+      l2 - dbd           dbd - l2     l2 - dbd
+      |                         |     |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1
+
+---------------
+
+s1_pairs = [['s1','h3'],['h3','s2'],['s2','l2'],['l2','dbd']]
+
+
+      l2 - dbd           dbd - l2     l2 - dbd
+      |                         |     |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1 - h3
+
+  
+      l2 - dbd           dbd - l2     l2 - dbd
+      |                         |     |
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2
+
+
+
+      l2 - dbd           dbd - l2     l2 - dbd                  l2
+      |                         |     |                         |     
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2
+
+
+
+      l2 - dbd            dbd - l2    l2 - dbd           dbd - l2
+      |                         |     |                         |     
+s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2 - h3 - s1 -- s1 - h3 - s2 -- s2

@@ -1,0 +1,5 @@
+# ignore all files
+*.xtc
+*.h5
+/Users/thor/surfdrive/Projects/pymdna/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
+/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
