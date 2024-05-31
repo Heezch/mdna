@@ -224,8 +224,6 @@ class SplineFrames:
         self.v = np.arange(0, 1 + dt, dt)
         self.curve = np.array(splev(self.v, self.tck)).T
         self.der1 = np.array(splev(self.v, self.tck, der=1)).T
-        #self.der2 = np.array(splev(self.v, self.tck, der=2)).T
-
         if self.verbose:
             print("Calculating arc length")
         # Calculate the arc length of the spline
@@ -295,7 +293,6 @@ class SplineFrames:
         rotation_matrix = np.eye(3) + kmat + kmat.dot(kmat) * ((1 - c) / (s ** 2))
         return rotation_matrix
 
-
     def _compute_initial_frame(self):
         # Compute the initial frame based on the first derivative and up_vector
         T = self.derivatives[0] / np.linalg.norm(self.derivatives[0])
@@ -307,37 +304,21 @@ class SplineFrames:
         #print('det initial frame',np.linalg.det(np.array([T,N,B])))
         self.frames.append((self.positions[0], N, B, T))
         #self.frames.append((self.positions[0], T, N, B))
-   
-
-    def _slide_frames_(self):
-        # Iterate through each position along the curve, starting from the second position
-        for i in range(1, len(self.positions)):
-            # Get the last tangent vector (T) from the previously computed frames
-            T_prev = self.frames[-1][1]  
-            # Compute the new tangent vector (T') analytically as the normalized first derivative of the curve at the current position
-            T = self.derivatives[i] / np.linalg.norm(self.derivatives[i])
-            
-            # Compute the axis of rotation as the normalized cross product of T and T', indicating the direction to rotate N to N'
-            axis = np.cross(T_prev, T)
-            # Check if the axis is significant to avoid division by zero and unnecessary rotation calculations
-            if np.linalg.norm(axis) > 1e-6:
-                axis = axis / np.linalg.norm(axis)  # Normalize the axis to ensure it has unit length
-                # Compute the angle of rotation by the arccos of the dot product of T and T', clipped to [-1, 1] to avoid numerical issues
-                angle = np.arccos(np.clip(np.dot(T_prev, T), -1.0, 1.0))
-                # Rotate the normal vector (N) using the computed axis and angle to find the new normal vector (N')
-                N = RigidBody.rotate_vector(self.frames[-1][2], axis, angle)
-            else:
-                # If the axis of rotation is negligible, use the previous normal vector (N) without rotation
-                N = self.frames[-1][2]
-                
-            # Compute the binormal vector (B') as the cross product of T' and N', completing the coordinate frame
-            B = np.cross(T, N)
-            # Append the new coordinate frame (position, T', N', B') to the frames list for later use
-            #print('det slide:',i,np.linalg.det(np.array([T,N,B])))
-            self.frames.append((self.positions[i], T, N, B)) # original
-            #self.frames.append((self.positions[i], N, B, T)) # original
     
     def _slide_frames(self):
+        """
+        Compute the coordinate frames along the curve by sliding the frame from the previous position to the current position.
+
+        This method iterates through each position along the curve and computes the coordinate frame (position, T', N', B') at each position.
+        The tangent vector (T') is computed as the normalized first derivative of the curve at the current position.
+        The normal vector (N') is computed by rotating the previous normal vector (N) using the computed axis and angle.
+        The binormal vector (B') is computed as the cross product of T' and N'.
+        The computed coordinate frames are stored in the `frames` list for later use.
+
+        Returns:
+            None
+        """
+
         # Iterate through each position along the curve, starting from the second position
         for i in range(1, len(self.positions)):
             # Get the last tangent vector (T) from the previously computed frames
@@ -386,57 +367,15 @@ class SplineFrames:
         # # Swap the T and B vectors to match the expected order for the DNA generation
         # self.frames[:, [1, 3]] = self.frames[:, [3, 1]] 
 
-    def _compute_frames_old(self):
-        """
-        Computes the frames along the spline.
 
-        Returns:
-            self: Returns the instance of the class.
-        """
-        self.frames = []
+    def twist_frames(self, modified_ranges=[], plot=False):
+        self.twister = Twister(frames=self.frames, bp_per_turn=self.bp_per_turn, modified_ranges=modified_ranges, plot=plot, circular=self.closed)
+        # This can be a separate call if you don't want to twist immediately upon calling twist_frames
+        self.twister.compute_and_plot_twists()
+        if self.closed:
+            adj = self.twister.adjustment_factor
+            print(f"Structure is requested to be circular:\n Excess twist per base to make ends meet: {adj-(360/self.bp_per_turn):.2f} degrees")
 
-        # Compute frames for the rest of the points
-        for derivative,position in zip(self.derivatives, self.positions):
-            forward = derivative / np.linalg.norm(derivative)
-            up = self.up_vector - forward * np.dot(forward, self.up_vector)
-            if np.linalg.norm(up) < 1e-6:
-                if abs(forward[2]) < 0.9:
-                    up = np.array([0, 0, 1])
-                else:
-                    up = np.array([1, 0, 0])
-
-            up = up / np.linalg.norm(up)
-            right = np.cross(forward, up)
-            self.frames.append((position, right, up, forward))
-
-
-        if self.initial_frame is not None:
-
-            # If an initial frame is provided, use it to transform the frames 
-            # to align the first fram with the initial frame and then transform the rest of the frames accordingly
-            # use the tangent up vector as the direction in which the initial frame is aligned
-            initial_position, _, _, initial_forward = self.initial_frame
-
-            # Compute rotation matrix to align the first frame's forward vector with the initial frame's forward vector
-            first_frame_position, _, _, first_frame_forward = self.frames[0]
-            rot_matrix = self.rotation_matrix_from_vectors(first_frame_forward, initial_forward)
-
-            # Compute translation
-            translation = initial_position - first_frame_position
-
-            # Apply rotation and translation to all frames
-            transformed_frames = [
-                (np.dot(rot_matrix, position) + translation,
-                 np.dot(rot_matrix, right),
-                 np.dot(rot_matrix, up),
-                 np.dot(rot_matrix, forward))
-                for position, right, up, forward in self.frames]
-
-            # Be carful only the frames are now updated, not the control points, positions, derivatives, etc.
-            self.frames = np.array(transformed_frames)
-
-        self.frames = np.array(self.frames)
-        return self
 
     def plot_frames(self, fig=False, equal_bounds=False, equal=True, spline=False,control_points=False):
         """
@@ -515,15 +454,6 @@ class SplineFrames:
                 print(f"Warning: Up Vectors may have flipped. Frame {i+1} to Frame {i+2}. Angle Deviation: {angle_deviation:.2f} degrees")
 
         return None
-    
-    def twist_frames(self, modified_ranges=[], plot=False):
-        self.twister = Twister(frames=self.frames, bp_per_turn=self.bp_per_turn, modified_ranges=modified_ranges, plot=plot, circular=self.closed)
-        # This can be a separate call if you don't want to twist immediately upon calling twist_frames
-        self.twister.compute_and_plot_twists()
-        if self.closed:
-            adj = self.twister.adjustment_factor
-            print(f"Structure is requested to be circular:\n Excess twist per base to make ends meet: {adj-(360/self.bp_per_turn):.2f} degrees")
-
         
 class Twister:
     

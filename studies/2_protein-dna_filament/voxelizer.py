@@ -145,197 +145,7 @@ class Voxelizer:
         # Calculate the Euclidean distance between points 'a' and 'b'
         return np.sqrt(sum((np.array(a) - np.array(b)) ** 2))
 
-
     def astar(self, start, goal):
-        """A* algorithm implementation"""
-        array = self.binary_voxel_array  # Get the voxel array
-        neighbors = [(0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0), (0, 0, 1), (0, 0, -1)]
-
-        close_set = set()  # Set to store explored nodes
-        came_from = {}     # Dictionary to store the path for each node
-        gscore = {start: 0}  # Dictionary to store the cost to reach each node from the start
-        fscore = {start: self.heuristic(start, goal)}  # Dictionary to store the total estimated cost for each node
-        oheap = []  # Priority queue to store nodes to be explored
-
-        heappush(oheap, (fscore[start], start))  # Add the start node to the priority queue
-        
-        while oheap:
-
-            current = heappop(oheap)[1]  # Get the node with the lowest estimated cost from the priority queue
-
-            if current == goal:
-                # Reconstruct the path from the goal node to the start node
-                data = []
-                while current in came_from:
-                    data.append(current)
-                    current = came_from[current]
-                return data[::-1]
-
-            close_set.add(current)  # Mark the current node as explored
-            for i, j, k in neighbors:
-                neighbor = current[0] + i, current[1] + j, current[2] + k  # Calculate the coordinates of the neighbor node
-                
-                # Calculate the tentative cost to reach the neighbor node from the current node
-                tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
-                
-                if 0 <= neighbor[0] < array.shape[0]:
-                    if 0 <= neighbor[1] < array.shape[1]:
-                        if 0 <= neighbor[2] < array.shape[2]:
-                            if array[neighbor[0]][neighbor[1]][neighbor[2]] == True:
-                                continue
-                        else:
-                            # Skip neighbors outside of the array bounds in the z direction
-                            continue
-                    else:
-                        # Skip neighbors outside of the array bounds in the y direction
-                        continue
-                else:
-                    # Skip neighbors outside of the array bounds in the x direction
-                    continue
-                    
-                if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, 0):
-                    # Skip this neighbor if it has already been explored or if the tentative cost is higher
-                    continue
-                    
-                if  tentative_g_score < gscore.get(neighbor, 0) or neighbor not in [i[1]for i in oheap]:
-                    # Update the path and cost information for the neighbor node
-                    came_from[neighbor] = current
-                    gscore[neighbor] = tentative_g_score
-                    fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
-                    heappush(oheap, (fscore[neighbor], neighbor))  # Add the neighbor to the priority queue
-        print('No path found to the goal node')         
-        return False  # Return False if no path is found
-
-    def astar___(self, start, goal):
-        radius = self.radius
-        """A* algorithm implementation with safety radius around obstacles."""
-        array = self.binary_voxel_array
-        neighbors = [(i, j, k) for i in range(-radius, radius+1) for j in range(-radius, radius+1) for k in range(-radius, radius+1) if i != 0 or j != 0 or k != 0]
-
-        close_set = set()
-        came_from = {}
-        gscore = {start: 0}
-        fscore = {start: self.heuristic(start, goal)}
-        oheap = []
-
-        heappush(oheap, (fscore[start], start))
-        
-        while oheap:
-            current = heappop(oheap)[1]
-
-            if current == goal:
-                data = []
-                while current in came_from:
-                    data.append(current)
-                    current = came_from[current]
-                return data[::-1]  # Reverse to get path from start to goal
-
-            close_set.add(current)
-            for i, j, k in neighbors:
-                neighbor = current[0] + i, current[1] + j, current[2] + k
-                
-                if not self.is_within_bounds(neighbor, array.shape):
-                    continue  # Skip if neighbor is out of bounds
-                
-                if self.is_obstacle(neighbor, array, radius):
-                    continue  # Skip if neighbor is within the safety radius of an obstacle
-                
-                tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
-                if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, float('inf')):
-                    continue
-                
-                if tentative_g_score < gscore.get(neighbor, float('inf')) or neighbor not in [i[1]for i in oheap]:
-                    came_from[neighbor] = current
-                    gscore[neighbor] = tentative_g_score
-                    fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
-                    heappush(oheap, (fscore[neighbor], neighbor))
-        return False
-    
-    def astar__(self, start, goal, radius=1):
-        """A* algorithm with a safety radius and adjusted goal handling."""
-        array = self.binary_voxel_array
-        neighbors = [(i, j, k) for i in range(-radius, radius+1) for j in range(-radius, radius+1) for k in range(-radius, radius+1) if i != 0 or j != 0 or k != 0]
-
-        if self.is_obstacle(goal, array, radius):
-            goal = self.find_nearest_valid_goal(goal, array, radius)
-            if goal is None:
-                print("No valid goal found within a safe distance.")
-                return False
-
-        close_set = set()
-        came_from = {}
-        gscore = {start: 0}
-        fscore = {start: self.heuristic(start, goal)}
-        oheap = []
-
-        heappush(oheap, (fscore[start], start))
-        
-        while oheap:
-            current = heappop(oheap)[1]
-
-            if self.is_goal_within_radius(current, goal, radius):
-                data = []
-                while current in came_from:
-                    data.append(current)
-                    current = came_from[current]
-                return data[::-1]
-
-            close_set.add(current)
-            for i, j, k in neighbors:
-                neighbor = current[0] + i, current[1] + j, current[2] + k
-                if not self.is_within_bounds(neighbor, array.shape) or self.is_obstacle(neighbor, array, radius):
-                    continue
-                
-                tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
-                if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, float('inf')):
-                    continue
-                
-                if tentative_g_score < gscore.get(neighbor, float('inf')) or neighbor not in [i[1]for i in oheap]:
-                    came_from[neighbor] = current
-                    gscore[neighbor] = tentative_g_score
-                    fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
-                    heappush(oheap, (fscore[neighbor], neighbor))
-        return False
-
-    def find_nearest_valid_goal(self, goal, array, radius):
-        """Find the nearest valid goal that isn't within the safety radius of obstacles."""
-        from queue import SimpleQueue
-        queue = SimpleQueue()
-        queue.put(goal)
-        visited = set([goal])
-
-        while not queue.empty():
-            current = queue.get()
-            if not self.is_obstacle(current, array, radius):
-                return current
-            for dx, dy, dz in [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]:
-                neighbor = (current[0] + dx, current[1] + dy, current[2] + dz)
-                if neighbor not in visited and self.is_within_bounds(neighbor, array.shape):
-                    visited.add(neighbor)
-                    queue.put(neighbor)
-        return None
-
-    def is_goal_within_radius(self, current, goal, radius):
-        """Check if the current position is within the radius of the goal."""
-        return abs(current[0] - goal[0]) <= radius and abs(current[1] - goal[1]) <= radius and abs(current[2] - goal[2]) <= radius
-
-    def is_within_bounds(self, pos, shape):
-        x, y, z = pos
-        return 0 <= x < shape[0] and 0 <= y < shape[1] and 0 <= z < shape[2]
-
-    def is_obstacle(self, pos, array, radius):
-        """Check if position is within the radius of an obstacle."""
-        x, y, z = pos
-        for i in range(-radius, radius + 1):
-            for j in range(-radius, radius + 1):
-                for k in range(-radius, radius + 1):
-                    nx, ny, nz = x + i, y + j, z + k
-                    if 0 <= nx < array.shape[0] and 0 <= ny < array.shape[1] and 0 <= nz < array.shape[2]:
-                        if array[nx][ny][nz]:
-                            return True
-        return False
-
-    def astar_old(self, start, goal):
         """A* algorithm implementation"""
         array = self.binary_voxel_array  # Get the voxel array
         neighbors = [(0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0), (0, 0, 1), (0, 0, -1)]
@@ -395,47 +205,6 @@ class Voxelizer:
         print('No path found to the goal node')         
         return False  # Return False if no path is found
 
-    def find_path___(self, ordered=True, radius=1):
-        """Finds the path between the control points in the voxel grid
-           either in order or using the traveling salesman problem (TSP)
-           which could be adjusted to account for that the DNA cannot cross itself but should also avoid itself;
-           this could be done by adding a penalty to the cost function of the A* algorithm based on the existing path
-           or temporarily add a value of 1 at the excisting path to the voxel array for the duration of the A* algorithm """
-        # Radius is in voxels
-        self.radius = radius
-        if ordered:
-            # Existing logic for ordered path
-            path = []
-            for i in range(len(self.control_points)-1):
-                start = self.control_points[i]
-                goal = self.control_points[i+1]
-                path.extend(self.astar(tuple(start), tuple(goal)))
-            return path
-        else:
-            # Logic for TSP with unique paths
-            shortest_path = []
-            shortest_distance = float('inf')
-
-            for permutation in itertools.permutations(self.control_points[1:]):
-                current_path = []
-                current_distance = 0
-                is_valid_path = True
-                previous_point = self.control_points[0]
-
-                for point in permutation:
-                    segment = self.astar(tuple(previous_point), tuple(point))
-                    if self.is_segment_repeated(current_path, segment):
-                        is_valid_path = False
-                        break
-                    current_path.extend(segment)
-                    current_distance += self.calculate_segment_distance(segment)
-                    previous_point = point
-
-                if is_valid_path and current_distance < shortest_distance:
-                    shortest_distance = current_distance
-                    shortest_path = current_path
-
-            return shortest_path
 
     def find_path(self, ordered=True, radius=1):
 
@@ -481,6 +250,7 @@ class Voxelizer:
                     shortest_path = current_path
 
             return shortest_path
+
             
     def is_segment_repeated(self, current_path, segment):
         """Check if a segment is repeated in the current path"""
@@ -575,6 +345,194 @@ class Voxelizer:
 
 
 
+    # def astar(self, start, goal):
+    #     """A* algorithm implementation"""
+    #     array = self.binary_voxel_array  # Get the voxel array
+    #     neighbors = [(0, 1, 0), (0, -1, 0), (1, 0, 0), (-1, 0, 0), (0, 0, 1), (0, 0, -1)]
+
+    #     close_set = set()  # Set to store explored nodes
+    #     came_from = {}     # Dictionary to store the path for each node
+    #     gscore = {start: 0}  # Dictionary to store the cost to reach each node from the start
+    #     fscore = {start: self.heuristic(start, goal)}  # Dictionary to store the total estimated cost for each node
+    #     oheap = []  # Priority queue to store nodes to be explored
+
+    #     heappush(oheap, (fscore[start], start))  # Add the start node to the priority queue
+        
+    #     while oheap:
+
+    #         current = heappop(oheap)[1]  # Get the node with the lowest estimated cost from the priority queue
+
+    #         if current == goal:
+    #             # Reconstruct the path from the goal node to the start node
+    #             data = []
+    #             while current in came_from:
+    #                 data.append(current)
+    #                 current = came_from[current]
+    #             return data[::-1]
+
+    #         close_set.add(current)  # Mark the current node as explored
+    #         for i, j, k in neighbors:
+    #             neighbor = current[0] + i, current[1] + j, current[2] + k  # Calculate the coordinates of the neighbor node
+                
+    #             # Calculate the tentative cost to reach the neighbor node from the current node
+    #             tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
+                
+    #             if 0 <= neighbor[0] < array.shape[0]:
+    #                 if 0 <= neighbor[1] < array.shape[1]:
+    #                     if 0 <= neighbor[2] < array.shape[2]:
+    #                         if array[neighbor[0]][neighbor[1]][neighbor[2]] == True:
+    #                             continue
+    #                     else:
+    #                         # Skip neighbors outside of the array bounds in the z direction
+    #                         continue
+    #                 else:
+    #                     # Skip neighbors outside of the array bounds in the y direction
+    #                     continue
+    #             else:
+    #                 # Skip neighbors outside of the array bounds in the x direction
+    #                 continue
+                    
+    #             if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, 0):
+    #                 # Skip this neighbor if it has already been explored or if the tentative cost is higher
+    #                 continue
+                    
+    #             if  tentative_g_score < gscore.get(neighbor, 0) or neighbor not in [i[1]for i in oheap]:
+    #                 # Update the path and cost information for the neighbor node
+    #                 came_from[neighbor] = current
+    #                 gscore[neighbor] = tentative_g_score
+    #                 fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
+    #                 heappush(oheap, (fscore[neighbor], neighbor))  # Add the neighbor to the priority queue
+    #     print('No path found to the goal node')         
+    #     return False  # Return False if no path is found
+
+    # def astar___(self, start, goal):
+    #     radius = self.radius
+    #     """A* algorithm implementation with safety radius around obstacles."""
+    #     array = self.binary_voxel_array
+    #     neighbors = [(i, j, k) for i in range(-radius, radius+1) for j in range(-radius, radius+1) for k in range(-radius, radius+1) if i != 0 or j != 0 or k != 0]
+
+    #     close_set = set()
+    #     came_from = {}
+    #     gscore = {start: 0}
+    #     fscore = {start: self.heuristic(start, goal)}
+    #     oheap = []
+
+    #     heappush(oheap, (fscore[start], start))
+        
+    #     while oheap:
+    #         current = heappop(oheap)[1]
+
+    #         if current == goal:
+    #             data = []
+    #             while current in came_from:
+    #                 data.append(current)
+    #                 current = came_from[current]
+    #             return data[::-1]  # Reverse to get path from start to goal
+
+    #         close_set.add(current)
+    #         for i, j, k in neighbors:
+    #             neighbor = current[0] + i, current[1] + j, current[2] + k
+                
+    #             if not self.is_within_bounds(neighbor, array.shape):
+    #                 continue  # Skip if neighbor is out of bounds
+                
+    #             if self.is_obstacle(neighbor, array, radius):
+    #                 continue  # Skip if neighbor is within the safety radius of an obstacle
+                
+    #             tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
+    #             if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, float('inf')):
+    #                 continue
+                
+    #             if tentative_g_score < gscore.get(neighbor, float('inf')) or neighbor not in [i[1]for i in oheap]:
+    #                 came_from[neighbor] = current
+    #                 gscore[neighbor] = tentative_g_score
+    #                 fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
+    #                 heappush(oheap, (fscore[neighbor], neighbor))
+    #     return False
+    
+    # def astar__(self, start, goal, radius=1):
+    #     """A* algorithm with a safety radius and adjusted goal handling."""
+    #     array = self.binary_voxel_array
+    #     neighbors = [(i, j, k) for i in range(-radius, radius+1) for j in range(-radius, radius+1) for k in range(-radius, radius+1) if i != 0 or j != 0 or k != 0]
+
+    #     if self.is_obstacle(goal, array, radius):
+    #         goal = self.find_nearest_valid_goal(goal, array, radius)
+    #         if goal is None:
+    #             print("No valid goal found within a safe distance.")
+    #             return False
+
+    #     close_set = set()
+    #     came_from = {}
+    #     gscore = {start: 0}
+    #     fscore = {start: self.heuristic(start, goal)}
+    #     oheap = []
+
+    #     heappush(oheap, (fscore[start], start))
+        
+    #     while oheap:
+    #         current = heappop(oheap)[1]
+
+    #         if self.is_goal_within_radius(current, goal, radius):
+    #             data = []
+    #             while current in came_from:
+    #                 data.append(current)
+    #                 current = came_from[current]
+    #             return data[::-1]
+
+    #         close_set.add(current)
+    #         for i, j, k in neighbors:
+    #             neighbor = current[0] + i, current[1] + j, current[2] + k
+    #             if not self.is_within_bounds(neighbor, array.shape) or self.is_obstacle(neighbor, array, radius):
+    #                 continue
+                
+    #             tentative_g_score = gscore[current] + self.heuristic(current, neighbor)
+    #             if neighbor in close_set and tentative_g_score >= gscore.get(neighbor, float('inf')):
+    #                 continue
+                
+    #             if tentative_g_score < gscore.get(neighbor, float('inf')) or neighbor not in [i[1]for i in oheap]:
+    #                 came_from[neighbor] = current
+    #                 gscore[neighbor] = tentative_g_score
+    #                 fscore[neighbor] = tentative_g_score + self.heuristic(neighbor, goal)
+    #                 heappush(oheap, (fscore[neighbor], neighbor))
+    #     return False
+
+    # def find_nearest_valid_goal(self, goal, array, radius):
+    #     """Find the nearest valid goal that isn't within the safety radius of obstacles."""
+    #     from queue import SimpleQueue
+    #     queue = SimpleQueue()
+    #     queue.put(goal)
+    #     visited = set([goal])
+
+    #     while not queue.empty():
+    #         current = queue.get()
+    #         if not self.is_obstacle(current, array, radius):
+    #             return current
+    #         for dx, dy, dz in [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]:
+    #             neighbor = (current[0] + dx, current[1] + dy, current[2] + dz)
+    #             if neighbor not in visited and self.is_within_bounds(neighbor, array.shape):
+    #                 visited.add(neighbor)
+    #                 queue.put(neighbor)
+    #     return None
+
+    # def is_goal_within_radius(self, current, goal, radius):
+    #     """Check if the current position is within the radius of the goal."""
+    #     return abs(current[0] - goal[0]) <= radius and abs(current[1] - goal[1]) <= radius and abs(current[2] - goal[2]) <= radius
+
+    # def is_within_bounds(self, pos, shape):
+    #     x, y, z = pos
+    #     return 0 <= x < shape[0] and 0 <= y < shape[1] and 0 <= z < shape[2]
+
+    # def is_obstacle(self, pos, array, radius):
+    #     """Check if position is within the radius of an obstacle."""
+    #     x, y, z = pos
+    #     for i in range(-radius, radius + 1):
+    #         for j in range(-radius, radius + 1):
+    #             for k in range(-radius, radius + 1):
+    #                 nx, ny, nz = x + i, y + j, z + k
+    #                 if 0 <= nx < array.shape[0] and 0 <= ny < array.shape[1] and 0 <= nz < array.shape[2]:
+    #                     if array[nx][ny][nz]:
+    #                         return True
+    #     return False
 
 
 

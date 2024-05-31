@@ -374,8 +374,8 @@ class TorsionAnalysis:
             ax[_][0].legend()
             ax[_][0].set_ylabel(f'Step {_}')
 
-        ax[_][0].set_xlabel('$\epsilon - \zeta$')
-        ax[_][1].set_xlabel('$\epsilon - \zeta$')
+        #ax[_][0].set_xlabel('$\epsilon - \zeta$')
+        #ax[_][1].set_xlabel('$\epsilon - \zeta$')
         ax[_][1].set_xticks([-90,0,90])
         ax[_][0].set_xlim(-181,181)
         ax[0][0].set_title('High Affinity')

@@ -119,7 +119,7 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         traj = md.load_hdf5(f'./{sequence}'+'.h5')
         return traj
     
-def plot_parameters(parameters, names, fig=None, ax=None, mean=True, std=True,figsize=[9,3.5], save=False):
+def plot_parameters(parameters, names, fig=None, ax=None, mean=True, std=True,figsize=[10,3.5], save=False):
 
     import matplotlib.pyplot as plt
     if fig is None and ax is None:

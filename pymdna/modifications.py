@@ -19,7 +19,7 @@ class Methylate:
     methylator = mdna.Methylate(pdb, methylations=[0])
     methylated_traj = methylator.get_traj()
     """
-    def __init__(self, traj, methylations=None, CpG=True, leading_strand=None):
+    def __init__(self, traj, methylations=None, CpG=False, leading_strand=None):
         self.traj = copy.deepcopy(traj)
         if CpG and leading_strand is not None :
             print('Methylate all C in CpG context, superseeds methylations list.')
@@ -27,7 +27,7 @@ class Methylate:
             print('Methtylating:',self.baselist)
         elif CpG and leading_strand is None:
              print("Please provide chainid of `leading_strand` as argument.")
-        elif methylations is not None:
+        elif len(methylations) is not None:
             self.baselist = methylations # List of resids that need to be methylated (so far only C and G)
         else:
             ValueError("Please provide either a list of resids to methylate or set CpG to True with chainid of `leading_strand` as argument.")
