@@ -4,6 +4,7 @@ from .geometry import ReferenceBase, NucleicFrames
 from .generators import SequenceGenerator, StructureGenerator
 from .modifications import Mutate, Hoogsteen, Methylate
 from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
+from .build import Build
 
 import numpy as np
 
