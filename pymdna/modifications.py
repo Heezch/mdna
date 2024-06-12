@@ -59,8 +59,6 @@ class Methylate:
         sequence = ''.join([res.name[1] for res in self.traj.top.chain(leading_strand)._residues])
         return [i for i in range(len(sequence) - 1) if sequence[i:i+2] == 'CG']
 
-
-
     def get_atoms(self, residue, code):
         # Get the atoms to add the methyl group to
         atom_a, atom_b  = None, None
@@ -107,7 +105,7 @@ class Methylate:
     
 
 class Hoogsteen:
-
+    # should still update for all the other bases (non-canonical)
     def __init__(self, traj, fliplist, deg=180,verbose=False):
         self.traj = copy.deepcopy(traj)
         self.verbose = verbose
@@ -145,12 +143,12 @@ class Hoogsteen:
 
     def get_base_indices(self, traj, resid=0):
 
-        # Define the atoms that belong to the nucleotide
-        base_atoms = { 'C2','C4','C5','C6','C7','C8','C5M',
-                       'N1','N2','N3','N4','N6','N7','N9',
-                       'O2','O4','O6',
-                       'H1','H2','H3','H5','H6','H8',
-                       'H21','H22','H41','H42','H61','H62','H71','H72','H73'}
+        # # Define the atoms that belong to the nucleotide
+        # base_atoms = { 'C2','C4','C5','C6','C7','C8','C5M',
+        #                'N1','N2','N3','N4','N6','N7','N9',
+        #                'O2','O4','O6',
+        #                'H1','H2','H3','H5','H6','H8',
+        #                'H21','H22','H41','H42','H61','H62','H71','H72','H73'}
             
             # 'N9', 'N7', 'C8', 'C5', 'C4', 'N3', 'C2', 'N1', 
             #         'C6', 'C7','O6', 'N2', 'N6', 'O2', 'N4', 'O4', 'C5M',
@@ -163,7 +161,8 @@ class Hoogsteen:
         subtraj = traj.atom_slice(indices)
 
         # Select the atoms that belong to the nucleotide
-        sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
+        #sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
+        sub_indices = [atom.index for atom in subtraj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
         # Return the indices of the atoms that belong to the nucleotide
         return sub_indices + offset
     
@@ -212,8 +211,9 @@ class Mutate:
     def mutate(self):
 
         # Define the base pair map and the complementary mutant map
-        base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C'}
-
+        #base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C'}
+        base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        
         if self.complementary:
             # Update dict with the complementary mutations
             self.mutations = self.make_complementary_mutations(self.traj, self.mutations, base_pair_map)
@@ -221,7 +221,7 @@ class Mutate:
         # Apply the mutations
         self.mutant_traj = self.apply_mutations(self.traj, self.mutations, base_pair_map)
 
-    def get_base_indices(self, traj, resid=0):
+    def get_base_indices(self, base_traj, resid=0):
 
         # Define the atoms that belong to the nucleotide
         #     base_atoms = { 'C2','C4','C5','C6','C7','C8','C5M',
@@ -241,14 +241,15 @@ class Mutate:
                        'O2','N3','C4','C6','C14','C13','N5','C11','S12','C7','C8','C9','C10'} # TC1
 
         # Select atoms that belong to the specified residue
-        indices = traj.top.select(f'resid {resid}')
+        indices = base_traj.top.select(f'resid {resid}')
         offset = indices[0]  # Save the initial index of the residue
     
         # Create a subtrajectory containing only the specified residue
-        subtraj = traj.atom_slice(indices)
+        subtraj = base_traj.atom_slice(indices)
         
         # Select the atoms that belong to the nucleotide
-        sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
+        #sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
+        sub_indices = [atom.index for atom in subtraj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
         # Return the indices of the atoms that belong to the nucleotide
         return sub_indices + offset
 
@@ -269,20 +270,48 @@ class Mutate:
             mutations[comp_base.index] = comp_mutant
             
         return mutations
+    
+    def _find_bonds_to_delete(self, traj, target_indices):
+        pre_bonds = traj.top._bonds
+        atoms = np.array(traj.top._atoms)[target_indices]
+        bond_indices_to_delete = [] 
+        for atom in atoms:
+            for _,bond in enumerate(pre_bonds):
+                if atom in bond:
+                    bond_indices_to_delete.append(_)
+        #print('bond indices to delete', set(bond_indices_to_delete))
+        return list(set(bond_indices_to_delete))
+    
+    def _find_bonds_to_keep(self, traj, mutant_indices):
+        pre_bonds = list(traj.top.bonds)
+        bonds_to_keep= []
+        atoms = np.array(traj.top._atoms)[mutant_indices]
+        for atom in atoms:
+            for _,bond in enumerate(pre_bonds):
+                if atom in bond:
+                    bonds_to_keep.append(bond)
+        return bonds_to_keep
+
 
     def update_mutant_topology(self, traj, target_indices, mutant_indices, base, resid, mutation_traj):
+
         # Store pre-deletion atom names and indices for comparison
         pre_atoms = [(atom.name, atom.index) for atom in traj.top._residues[resid]._atoms]
 
+        # Delete bonds that are no longer valid after the mutation
+        bonds_to_delete = self._find_bonds_to_delete(traj, target_indices)
+        for idx in bonds_to_delete:
+            traj.top._bonds.pop(idx)
+
         # Delete target atoms from the topology
         self._delete_target_atoms(traj, target_indices)
-        
+   
         # Store post-deletion atom names and indices for offset calculation
         post_atoms = [(atom.name, atom.index) for atom in traj.top._residues[resid]._atoms]
 
         # Determine the insertion offset by comparing pre and post deletion atom names and indices
         offset, insert_id = self._find_insertion_offset(pre_atoms, post_atoms)
-        #print(offset, insert_id)
+
         # Insert new atoms into the topology at calculated positions
         self._insert_new_atoms(traj, resid, mutant_indices, mutation_traj, offset, insert_id+1)
 
@@ -377,11 +406,18 @@ class Mutate:
         # This comes now directly from sequence generator.py, either move this to somewhere else such that it is accessible everywhere
         #reference_bases = {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/pymdna/pymdna/atomic/NDB96_{base}.pdb') for base in base_pair_map.keys()}
         #reference_bases = {base: md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in base_pair_map.keys()}
-        reference_bases = {base: md.load_pdb(get_data_file_path(f'./atomic/BDNA_{base}.pdb')) for base in base_pair_map.keys()}
+        reference_bases = {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in base_pair_map.keys()}
         reference_frames = {letter: ReferenceBase(t) for letter,t in reference_bases.items()}
+        # for letter, base in reference_bases.items():
+    
+        #     print(letter,base, base.top, base.top._residues)
+        #     ref = ReferenceBase(base)
+        #     # vectors = get_base_vectors(base)
+        #     # print(np.round(vectors),2)
 
         # For each residue that needs to be mutated
         for resid,base in mutations.items():
+            # print(traj.top, traj.top._residues)
             self.current_resid = resid
             # Get the mutant trajectory object
             mutation_traj = reference_bases[base] 
@@ -399,6 +435,7 @@ class Mutate:
             # Get the transformation for the local reference frames from the mutant to the target
             mutant_reference = reference_frames[base]
             target_reference = traj.atom_slice(traj.top.select(f'resid {resid}'))
+            # print(resid, target_reference.top,  target_reference.top._residues)
             rot, trans = self.get_base_transformation(mutant_reference, target_reference)
            
             # Transform the mutant atoms to the local reference frame of the target

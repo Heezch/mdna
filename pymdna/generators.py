@@ -27,7 +27,8 @@ class SequenceGenerator:
         """
 
     def __init__(self, sequence=None, circular=False):
-        self.base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C','H':'T'}
+        #self.base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C','H':'T'}
+        self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
         self.sequence = sequence
         self.circular = circular
         self.reference_bases = self._load_reference_bases()
@@ -42,7 +43,7 @@ class SequenceGenerator:
         # print(isolated_nodes)
         # # somhow Thymine phospho-oxyo's are not connected to anything
 
-        return  {base: md.load_pdb(get_data_file_path(f'atomic/BDNA_{base}.pdb')) for base in self.base_pair_map.keys()}
+        return  {base: md.load_hdf5(get_data_file_path(f'atomic/bases/BDNA_{base}.h5')) for base in self.base_pair_map.keys()}
 
         #return {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/pymdna/pymdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
         #return {base: md.load_pdb(f'../pymdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}

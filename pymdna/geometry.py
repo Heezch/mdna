@@ -4,11 +4,25 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from .utils import RigidBody, get_data_file_path
 
+NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
+                    'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
+                    'G': ['N9', 'C8', 'N7', 'C5', 'C6', 'O6', 'N1', 'C2', 'N2', 'N3', 'C4'],
+                    'C': ['N1', 'C2', 'O2', 'N3', 'C4', 'N4', 'C5', 'C6'],
+                    'U': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C6'],
+                    'D': ['N1','C2','O2','N3','C4','C6','C14','C13','N5','C11','S12','C7','C8','C9','C10'],
+                    'E': ['N9', 'C8', 'N7', 'C5', 'C6', 'N1', 'C2', 'N2', 'N3', 'C4'],
+                    'L': ['C1','N1','S1','C2','C3','C4','C5','C6','C7', 'C8','C9','C10'],
+                    'M': ['C1','C2','C3','C4','C5','C6','C20','C21','C22','C23','O37','C38'],
+                    'B': ['N1', 'C2', 'N2', 'N3', 'C4', 'N5', 'C6', 'O6', 'C7', 'C8', 'N9'],
+                    'S': ['N', 'C1', 'C2', 'O2', 'N3', 'C4', 'N4', 'C5', 'C6', 'ON1', 'ON2'],
+                    'Z': ['C1', 'C2', 'C4', 'C6', 'C7', 'N2', 'N3', 'N5', 'O4'],
+                    'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
+
 class ReferenceBase:
 
     def __init__(self, traj):
         self.traj = traj
-        # Determine base type (purine/pyrimidine)
+        # Determine base type (purine/pyrimidine/other)
         self.base_type = self.get_base_type()
         # Define the Tsukuba convention parameters
         self.tau_1, self.tau_2, self.d = np.radians(141.478), -np.radians(54.418), 0.4702     
@@ -21,25 +35,37 @@ class ReferenceBase:
     def _select_atom_by_name(self, name):
         # Select an atom by name returns shape (n_frames, 1, [x,y,z])
         return np.squeeze(self.traj.xyz[:,[self.traj.topology.select(f'name {name}')[0]],:],axis=1)
-
+        
     def get_base_type(self):
-        # Identify whether base is a purine or pyrimidine based on presence of N1/N9
-        for atom in self.traj.topology.atoms:
-            if atom.name == "N1":
-                return "pyrimidine"
-            elif atom.name == "N9":
-                return "purine"
+        # Extracts all non-hydrogen atoms from the trajectory topology
+        atoms = {atom.name for atom in self.traj.topology.atoms if atom.element.symbol != 'H'}
+    
+        # Check each base in the dictionary to see if all its atoms are present in the extracted atoms set
+        for base, base_atoms in NUCLEOBASE_DICT.items():
+            if all(atom in atoms for atom in base_atoms):
+                return base
+        # If no base matches, raise an error
         raise ValueError("Cannot determine the base type from the PDB file.")
-
+    
     def get_coordinates(self):
+
         # Get the coordinates of key atoms based on the base type
         C1_coords = self._select_atom_by_name('"C1\'"')
-        if self.base_type == "pyrimidine":
+        if self.base_type in ['C','T','U','D']:# "pyrimidine"
             N_coords = self._select_atom_by_name("N1")
             C_coords = self._select_atom_by_name("C2")
-        elif self.base_type == "purine":
+        elif self.base_type in ['A','G','E','B','P']:# "purine":
             N_coords = self._select_atom_by_name("N9")
-            C_coords = self._select_atom_by_name("C4") # changed this for HS testing from C4 to C5
+            C_coords = self._select_atom_by_name("C4") 
+        elif self.base_type in ['S','Z']: # Hachi pyrimidine analogues
+            N_coords = self._select_atom_by_name("C1")
+            C_coords = self._select_atom_by_name("C2")
+        elif self.base_type in ['L']: # UBPs hydrophobic
+            N_coords = self._select_atom_by_name("N1")
+            C_coords = self._select_atom_by_name("C5")
+        elif self.base_type in ['M']: # UBPs hydrophilic
+            N_coords = self._select_atom_by_name("C1")
+            C_coords = self._select_atom_by_name("C6")
         return C1_coords, N_coords, C_coords
     
     
@@ -169,8 +195,10 @@ class NucleicFrames:
 
     def load_reference_bases(self):
         """Load reference bases from local files."""
+        # Not used at the moment??
         bases = ['C', 'G', 'T', 'A']
-        return {f'D{base}': md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in bases}
+        #return {f'D{base}': md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in bases}
+        return {f'D{base}': md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
 
     def get_base_vectors(self, res):
         """Compute base vectors from reference base."""

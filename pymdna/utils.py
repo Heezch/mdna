@@ -2,8 +2,26 @@
 import numpy as np
 import os
 
+NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
+                    'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
+                    'G': ['N9', 'C8', 'N7', 'C5', 'C6', 'O6', 'N1', 'C2', 'N2', 'N3', 'C4'],
+                    'C': ['N1', 'C2', 'O2', 'N3', 'C4', 'N4', 'C5', 'C6'],
+                    'C\'': ['N1', 'C2', 'O2', 'N3', 'C4', 'N4', 'C5', 'C6','C5M'],
+                    'U': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C6'],
+                    'D': ['N1','C2','O2','N3','C4','C6','C14','C13','N5','C11','S12','C7','C8','C9','C10'],
+                    'E': ['N9', 'C8', 'N7', 'C5', 'C6', 'N1', 'C2', 'N2', 'N3', 'C4'],
+                    'L': ['C1','N1','S1','C2','C3','C4','C5','C6','C7', 'C8','C9','C10'],
+                    'M': ['C1','C2','C3','C4','C5','C6','C20','C21','C22','C23','O37','C38'],
+                    'B': ['N1', 'C2', 'N2', 'N3', 'C4', 'N5', 'C6', 'O6', 'C7', 'C8', 'N9'],
+                    'S': ['N', 'C1', 'C2', 'O2', 'N3', 'C4', 'N4', 'C5', 'C6', 'ON1', 'ON2'],
+                    'Z': ['C1', 'C2', 'C4', 'C6', 'C7', 'N2', 'N3', 'N5', 'O4'],
+                    'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
+
+BP_MAP = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        
 DEF_EULER_CLOSE_TO_ONE = 0.9999999
 DEF_EULER_CLOSE_TO_MINUS_ONE = -0.9999999
+
 
 class RigidBody:
 
@@ -63,7 +81,7 @@ class RigidBody:
                         th = b - np.dot(b, a3) * a3
                         th = th / np.linalg.norm(th) * np.pi
                         omegavec[i] = th
-
+                        
         return omegavec
     
     @staticmethod
@@ -376,6 +394,10 @@ class Shapes:
 # Some helper functions for DNA analysis
     
 
+def get_base_indices(traj):
+    """Returns the indices of the atoms that are part of the nucleobases and not the backbone."""
+    return [atom.index for atom in traj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
+
 def get_sequence_letters(traj):
     """List with nucleobase letter codes of first strand"""
     bases = ['DA','DT','DG','DC','DD','DP','DCM','DGM']  # ideally we add an indicator for methylated bases
@@ -399,12 +421,33 @@ def get_base_pair_dict(traj):
     return {i:j for i,j in zip(a,reversed(b))}
 
 def get_data_file_path(relative_path):
+    """Returns the absolute path of a file in the data directory"""
     base_path = os.path.dirname(__file__)  # Gets the directory where the script is located
     return os.path.join(base_path, relative_path)
 
 def get_mutations(ref,mutant):
+    """Returns a dictionary with the mutated base pairs"""
     mutations = {}
     for idx,(r,m) in enumerate(zip(ref,mutant)):
         if r != m:
             mutations[idx] = m
     return mutations
+
+def get_base_type(traj):
+    """Returns the nucleobase type of a residue in the trajectory"""
+    # Extracts all non-hydrogen atoms from the trajectory topology
+    atoms = {atom.name for atom in traj.topology.atoms if atom.element.symbol != 'H'}
+    
+    # Check each base in the dictionary to see if all its atoms are present in the extracted atoms set
+    for base, base_atoms in NUCLEOBASE_DICT.items():
+        if all(atom in atoms for atom in base_atoms):
+            return base
+    # If no base matches, raise an error
+    raise ValueError("Cannot determine the base type from the PDB file.")
+
+
+def get_sequence_letters(traj, leading_chain=0):
+    """List with nucleobase letter codes of first strand by default"""
+    sequence = [get_base_type(traj.atom_slice([at.index for at in res.atoms])) for res in traj.top.chain(leading_chain)._residues]
+    return sequence
+    
