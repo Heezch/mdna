@@ -28,7 +28,7 @@ class RigidBody:
     @staticmethod
     def extract_omega_values(R):
         """
-        Extracts Euler angle (omega) values from a rotati on matrix, applying
+        Extracts Euler angle (omega) values from a rotation matrix, applying
         vectorized operations and handling edge cases only as necessary.
 
         Args:
@@ -85,7 +85,7 @@ class RigidBody:
         return omegavec
     
     @staticmethod
-    def get_rotation_matrix(omega):
+    def get_rotation_matrix_old(omega):
         """
         Returns the rotation matrix corresponding to the Euler vector (omega).
 
@@ -126,7 +126,6 @@ class RigidBody:
 
         return rotation_matrix
     
-
 
     @staticmethod
     def get_rotation_matrix(omega):

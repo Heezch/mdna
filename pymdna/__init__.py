@@ -1,6 +1,6 @@
 from .utils import  *
 from .spline import SplineFrames, Twister
-from .geometry import ReferenceBase, NucleicFrames
+from .geometry import ReferenceBase, NucleicFrames, NucleicFrames_quaternion
 from .generators import SequenceGenerator, StructureGenerator
 from .modifications import Mutate, Hoogsteen, Methylate
 from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
