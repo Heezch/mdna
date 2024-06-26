@@ -826,6 +826,8 @@ class NucleicFrames_quaternion:
         return translations, quaternions
 
 
+
+
     def compute_parameters_(self,translations_A, quaternions_A, translations_B, quaternions_B, t=0.5):
         """Compute the rigid body parameters between two frames."""
         
@@ -949,6 +951,71 @@ class NucleicFrames_quaternion:
         q0[mask] = -q0[mask]
         return qt.slerp(q0, q1, tau=0.5)
     
+        # public void set(Quat4d q1) {
+    #     double test = q1.x*q1.y + q1.z*q1.w;
+    #     if (test > 0.499) { // singularity at north pole
+    #         heading = 2 * atan2(q1.x,q1.w);
+    #         attitude = Math.PI/2;
+    #         bank = 0;
+    #         return;
+    #     }
+    #     if (test < -0.499) { // singularity at south pole
+    #         heading = -2 * atan2(q1.x,q1.w);
+    #         attitude = - Math.PI/2;
+    #         bank = 0;
+    #         return;
+    #     }
+    #     double sqx = q1.x*q1.x;
+    #     double sqy = q1.y*q1.y;
+    #     double sqz = q1.z*q1.z;
+    #     heading = atan2(2*q1.y*q1.w-2*q1.x*q1.z , 1 - 2*sqy - 2*sqz);
+    #     attitude = asin(2*test);
+    #     bank = atan2(2*q1.x*q1.w-2*q1.y*q1.z , 1 - 2*sqx - 2*sqz)
+
+    def compute_euler(self,q):
+        test = q.x*q.y + q.z*q.w
+        north_mask = test > 0.499 # singularity at north pole
+        south_mask = test < -0.499 # singularity at south pole
+        mask_else = ~(north_mask | south_mask)
+
+        heading = np.zeros_like(test)
+        attitude = np.zeros_like(test)
+        bank = np.zeros_like(test)
+
+        heading[mask_else] = np.arctan2(2*q.y[mask_else]*q.w[mask_else]-2*q.x[mask_else]*q.z[mask_else] , 1 - 2*q.y[mask_else]**2 - 2*q.z[mask_else]**2)
+        attitude[mask_else] = np.arcsin(2*test[mask_else])
+        bank[mask_else] = np.arctan2(2*q.x[mask_else]*q.w[mask_else]-2*q.y[mask_else]*q.z[mask_else] , 1 - 2*q.x[mask_else]**2 - 2*q.z[mask_else]**2)
+
+        heading[north_mask] = 2 * np.arctan2(q.x[north_mask],q.w[north_mask])
+        attitude[north_mask] = np.pi/2
+        bank[north_mask] = 0
+
+        heading[south_mask] = -2 * np.arctan2(q.x[south_mask],q.w[south_mask])
+        attitude[south_mask] = -np.pi/2
+        bank[south_mask] = 0
+
+        return np.vstack((bank,heading,attitude)).swapaxes(0,1)
+
+
+            #       # Condition for pitch = pi/2
+            # mask_pi_2 = pitch == np.pi/2
+            # yaw[mask_pi_2] = -np.arctan2(A.x[mask_pi_2],A.w[mask_pi_2])
+            # roll[mask_pi_2] = 0.0
+
+            # # Condition for pitch = -pi/2
+            # mask_neg_pi_2 = pitch == -np.pi/2
+            # yaw[mask_neg_pi_2] = np.arctan2(A.x[mask_neg_pi_2],A.w[mask_neg_pi_2])
+            # roll[mask_neg_pi_2] = 0.0
+
+            # # Default condition (where neither pi/2 nor -pi/2 conditions are met)
+            # mask_else = ~(mask_pi_2 | mask_neg_pi_2)
+            # yaw[mask_else] = np.arctan2(2.0*(A.y[mask_else]*A.z[mask_else] + A.w[mask_else]*A.x[mask_else]),
+            #                             A.w[mask_else]**2 - A.x[mask_else]**2 - A.y[mask_else]**2 + A.z[mask_else]**2)
+            # roll[mask_else] = np.arctan2(2.0*(A.x[mask_else]*A.y[mask_else] + A.w[mask_else]*A.z[mask_else]),
+            #                             A.w[mask_else]**2 + A.x[mask_else]**2 - A.y[mask_else]**2 - A.z[mask_else]**2)
+
+            # rotational_parameters = np.vstack((yaw, pitch, roll)).swapaxes(0,1)
+
 
     def compute_parameters(self,translations_A, quaternions_A, translations_B, quaternions_B, t=0.5):
         """Compute the rigid body parameters between two frames."""
@@ -956,7 +1023,7 @@ class NucleicFrames_quaternion:
         
         dot_products = (quaternions_A.w*quaternions_B.w) + (quaternions_A.x*quaternions_B.x) + (quaternions_A.y*quaternions_B.y) + (quaternions_A.z*quaternions_B.z)
         mask = dot_products < 0
-        # quaternions_A[mask] = -quaternions_A[mask]
+        #quaternions_A[mask] = -quaternions_A[mask]
 
         # Get the relative rotation matrix
         A = quaternions_B.inverse * quaternions_A
@@ -1022,7 +1089,7 @@ class NucleicFrames_quaternion:
                                         A.w[mask_else]**2 + A.x[mask_else]**2 - A.y[mask_else]**2 - A.z[mask_else]**2)
 
             rotational_parameters = np.vstack((yaw, pitch, roll)).swapaxes(0,1)
-
+            rotational_parameters = self.compute_euler(A)   
             # heading = np.arctan2(2*A.y*A.w-2*A.x*A.z , 1 - 2*A.y**2 - 2*A.z**2)
             # attitude = np.arcsin(2*A.x*A.y + 2*A.z*A.w)
             # bank = np.arctan2(2*A.x*A.w-2*A.y*A.z , 1 - 2*A.x**2 - 2*A.z**2)
