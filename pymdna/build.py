@@ -39,7 +39,7 @@ class Build:
         dna = StructureGenerator(self.dna_a.spline,sequence=sequence)
         return dna 
 
-    def connect(self):
+    def connect(self,nbp=None):
 
         if not self.dna_b:
             raise ValueError("No second DNA sequence provided for connection.")

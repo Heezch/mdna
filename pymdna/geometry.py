@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import quaternionic as qt
 from .utils import RigidBody, get_data_file_path, get_sequence_letters
+from numba import jit 
 
 NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
                     'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
@@ -1016,6 +1017,43 @@ class NucleicFrames_quaternion:
 
             # rotational_parameters = np.vstack((yaw, pitch, roll)).swapaxes(0,1)
 
+    def compute_axis_angle(self,quaternion):
+        # Get the axis of rotation and the angle of rotation
+        angle = 2 * np.arccos(quaternion.w)
+        norms = np.linalg.norm(quaternion.vector, axis=-1, keepdims=True) #+ epsilon
+        axis = quaternion.vector / norms
+
+
+        # Compute dot products between consecutive frames, skipping the first frame.
+        # axis[:-1] is from 0 to n-2, axis[1:] is from 1 to n-1, hence pairs consecutive frames.
+        dot_products = np.einsum('ij,ij->i', axis[:-1], axis[1:])
+
+        # Evaluate the conditions.
+        # Check where the dot product is less than zero and angle of current frame is greater than pi/2.
+        condition = (dot_products < 0.0) & (angle[1:] > np.pi / 2)
+
+        # Update axis where condition is True.
+        axis[1:][condition] = -axis[1:][condition]
+
+        # Update angles where condition is True.
+        angle[1:][condition] = 2 * np.pi - angle[1:][condition]
+        return axis * angle[..., np.newaxis]
+
+
+    def compute_axis_angle(self,quaternion):
+        # Get the axis of rotation and the angle of rotation
+        angle = 2 * np.arccos(quaternion.w)
+        norms = np.linalg.norm(quaternion.vector, axis=-1, keepdims=True) #+ epsilon
+        axis = np.copy(quaternion.vector) / norms
+
+        for _,v in enumerate(axis):
+            if _ == 0:
+                continue
+            if (np.dot(axis[_-1],v) < 0.0) and (angle[_] > np.pi/2):
+                axis[_] = -v
+                angle[_] = 2*np.pi - angle[_]
+        
+        return axis * angle[..., np.newaxis]
 
     def compute_parameters(self,translations_A, quaternions_A, translations_B, quaternions_B, t=0.5):
         """Compute the rigid body parameters between two frames."""
@@ -1023,7 +1061,7 @@ class NucleicFrames_quaternion:
         
         dot_products = (quaternions_A.w*quaternions_B.w) + (quaternions_A.x*quaternions_B.x) + (quaternions_A.y*quaternions_B.y) + (quaternions_A.z*quaternions_B.z)
         mask = dot_products < 0
-        #quaternions_A[mask] = -quaternions_A[mask]
+        quaternions_A[mask] = -quaternions_A[mask]
 
         # Get the relative rotation matrix
         A = quaternions_B.inverse * quaternions_A
@@ -1062,33 +1100,33 @@ class NucleicFrames_quaternion:
             # See link above for more details on how to mitigate this problem.
             # Maybe also have another look at: https://amu.hal.science/hal-03848730/document
             # Title: Quaternion to Euler angles conversion: a direct, general and computationally efficient method from 2022
-            pitch = np.arcsin(2.0*(A.w*A.y - A.x*A.z))
+            # pitch = np.arcsin(2.0*(A.w*A.y - A.x*A.z))
  
-            # yaw = np.arctan2(2.0*(A.y*A.z + A.w*A.x), A.w*A.w - A.x*A.x - A.y*A.y + A.z*A.z)
-            # roll = np.arctan2(2.0*(A.x*A.y + A.w*A.z), A.w*A.w + A.x*A.x - A.y*A.y - A.z*A.z)
-            # 
-            # # Initialize yaw and roll with default values that will apply when no specific condition is met
-            yaw = np.zeros_like(pitch)
-            roll = np.zeros_like(pitch)
+            # # yaw = np.arctan2(2.0*(A.y*A.z + A.w*A.x), A.w*A.w - A.x*A.x - A.y*A.y + A.z*A.z)
+            # # roll = np.arctan2(2.0*(A.x*A.y + A.w*A.z), A.w*A.w + A.x*A.x - A.y*A.y - A.z*A.z)
+            # # 
+            # # # Initialize yaw and roll with default values that will apply when no specific condition is met
+            # yaw = np.zeros_like(pitch)
+            # roll = np.zeros_like(pitch)
 
-            # Condition for pitch = pi/2
-            mask_pi_2 = pitch == np.pi/2
-            yaw[mask_pi_2] = -np.arctan2(A.x[mask_pi_2],A.w[mask_pi_2])
-            roll[mask_pi_2] = 0.0
+            # # Condition for pitch = pi/2
+            # mask_pi_2 = pitch == np.pi/2
+            # yaw[mask_pi_2] = -np.arctan2(A.x[mask_pi_2],A.w[mask_pi_2])
+            # roll[mask_pi_2] = 0.0
 
-            # Condition for pitch = -pi/2
-            mask_neg_pi_2 = pitch == -np.pi/2
-            yaw[mask_neg_pi_2] = np.arctan2(A.x[mask_neg_pi_2],A.w[mask_neg_pi_2])
-            roll[mask_neg_pi_2] = 0.0
+            # # Condition for pitch = -pi/2
+            # mask_neg_pi_2 = pitch == -np.pi/2
+            # yaw[mask_neg_pi_2] = np.arctan2(A.x[mask_neg_pi_2],A.w[mask_neg_pi_2])
+            # roll[mask_neg_pi_2] = 0.0
 
-            # Default condition (where neither pi/2 nor -pi/2 conditions are met)
-            mask_else = ~(mask_pi_2 | mask_neg_pi_2)
-            yaw[mask_else] = np.arctan2(2.0*(A.y[mask_else]*A.z[mask_else] + A.w[mask_else]*A.x[mask_else]),
-                                        A.w[mask_else]**2 - A.x[mask_else]**2 - A.y[mask_else]**2 + A.z[mask_else]**2)
-            roll[mask_else] = np.arctan2(2.0*(A.x[mask_else]*A.y[mask_else] + A.w[mask_else]*A.z[mask_else]),
-                                        A.w[mask_else]**2 + A.x[mask_else]**2 - A.y[mask_else]**2 - A.z[mask_else]**2)
+            # # Default condition (where neither pi/2 nor -pi/2 conditions are met)
+            # mask_else = ~(mask_pi_2 | mask_neg_pi_2)
+            # yaw[mask_else] = np.arctan2(2.0*(A.y[mask_else]*A.z[mask_else] + A.w[mask_else]*A.x[mask_else]),
+            #                             A.w[mask_else]**2 - A.x[mask_else]**2 - A.y[mask_else]**2 + A.z[mask_else]**2)
+            # roll[mask_else] = np.arctan2(2.0*(A.x[mask_else]*A.y[mask_else] + A.w[mask_else]*A.z[mask_else]),
+            #                             A.w[mask_else]**2 + A.x[mask_else]**2 - A.y[mask_else]**2 - A.z[mask_else]**2)
 
-            rotational_parameters = np.vstack((yaw, pitch, roll)).swapaxes(0,1)
+            # rotational_parameters = np.vstack((yaw, pitch, roll)).swapaxes(0,1)
             rotational_parameters = self.compute_euler(A)   
             # heading = np.arctan2(2*A.y*A.w-2*A.x*A.z , 1 - 2*A.y**2 - 2*A.z**2)
             # attitude = np.arcsin(2*A.x*A.y + 2*A.z*A.w)
@@ -1116,7 +1154,8 @@ class NucleicFrames_quaternion:
         elif self.angle:
             # Get axis angle representation of the relative rotation matrix
             # Each vector represents the axis of the rotation, with norm equal to the angle of the rotation in radians.
-            rotational_parameters = A.to_axis_angle # unfortunately this results in angle wraps.
+            #rotational_parameters = A.to_axis_angle # unfortunately this results in angle wraps.
+            rotational_parameters = self.compute_axis_angle(A)
 
         # Stack the translational and rotational parameters and convert the latter to degrees
         rigid_parameters = np.hstack((translational_parameters, np.rad2deg(rotational_parameters)))
