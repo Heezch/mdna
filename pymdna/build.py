@@ -6,6 +6,7 @@ from .spline import SplineFrames
 from .generators import StructureGenerator
 from .geometry import NucleicFrames
 import pmcpy.run.equilibrate as em
+import copy
 
 class Build:
 
@@ -22,7 +23,7 @@ class Build:
 
     def equilibrate(self, sequence=None, closed=False, endpoints_fixed=False, fixed=[]):
 
-        # make a random sequence for the new spline
+        # make a random seque`nce for the new spline
         if sequence is None:
             sequence = self.dna_a.sequence
 
@@ -39,7 +40,76 @@ class Build:
         dna = StructureGenerator(self.dna_a.spline,sequence=sequence)
         return dna 
 
-    def connect(self,nbp=None):
+    def connect(self,nbp=None, control_points=None,index=0):
+
+        if not self.dna_b:
+            raise ValueError("No second DNA sequence provided for connection.")
+        
+        # get the start and end of the connection
+        self.get_start_and_end()
+
+        # compute the rotation difference between the two frames (aka difference in twist per base pair)
+        rotation_difference = self.get_twist_difference(self.start, self.end)
+
+        if nbp is None:
+            # find optimal number of base pairs for the given range
+            optimal_bps = self.find_optimal_bps(np.array([self.start[0], self.end[0]]), 
+                                                bp_per_turn=10.5, 
+                                                rise=0.34, 
+                                                bp_range=self.bp_range, 
+                                                rotation_difference=rotation_difference, 
+                                                tolerance=self.tolerance, 
+                                                plot=False
+                                                )
+            
+            # get the optimal number of base pairs (smallest amount of base pairs that satisfies the tolerance)
+            number_of_bp = optimal_bps[index]['optimal_bp']
+        else:
+            number_of_bp = nbp
+        
+        # interpolate control points for spline C
+        if control_points is None:
+            control_points_C = self.interplotate_points(self.start[0], self.end[0], number_of_bp)
+            distance = np.linalg.norm(self.start-self.end)
+            self.control_points_C = control_points_C    
+            spline_C = SplineFrames(control_points_C,frame_spacing=distance/len(control_points_C))
+        else:
+            control_points_C = control_points
+            self.control_points_C = control_points_C   
+            spline_C = SplineFrames(control_points_C,frame_spacing=0.34, initial_frame=self.start)
+
+    
+        # combine splines A B and C and remember the fixed nodes/frames of A and B
+        # exclude first and last frame of A and B
+        spline_C.frames = np.concatenate([self.frames_a[:-1],spline_C.frames,self.frames_b[1:]])
+        self.spline_C_raw = copy.deepcopy(spline_C)
+        # fix first and last 45 indices of total length of 257 frames
+        fixed = list(range(self.frames_a.shape[0]-self.margin))+list(range(spline_C.frames.shape[0]-self.frames_b.shape[0]+self.margin,spline_C.frames.shape[0]))
+        print('f',fixed)
+        print('c',spline_C.frames.shape[0])
+        print('a',self.frames_a.shape[0])
+        print('b',self.frames_b.shape[0])
+
+        # make a random sequence for the new spline
+        sequence = self.make_sequence(spline_C.frames.shape[0])
+
+        # minimize the new spline with the fixed frames of A and B
+        self.out = self.minimize_spline(spline_C, 
+                                        sequence=sequence, 
+                                        closed=False, 
+                                        endpoints_fixed=False, 
+                                        fixed=fixed, 
+                                        exvol_rad=0
+                                        )
+
+        # create a trajectory from the new spline containing both the old and new parts
+        dna_c = StructureGenerator(spline_C)
+
+        # get the trajectory of the new spline
+        self.traj = dna_c.get_traj()
+    
+
+    def connect__(self,nbp=None):
 
         if not self.dna_b:
             raise ValueError("No second DNA sequence provided for connection.")
@@ -62,7 +132,6 @@ class Build:
         
         # get the optimal number of base pairs (smallest amount of base pairs that satisfies the tolerance)
         number_of_bp = optimal_bps[0]['optimal_bp']
-        
         # interpolate control points for spline C
         control_points_C = self.interplotate_points(self.start[0], self.end[0], number_of_bp)
         distance = np.linalg.norm(self.start-self.end)
@@ -92,8 +161,19 @@ class Build:
 
         # get the trajectory of the new spline
         self.traj = dna_c.get_traj()
-    
-    def extend(self, nbp=None, fixed_endpoint=None):
+
+    def extend(self, forward=True, nbp=None, fixed_endpoint=None):
+        """Extend the DNA sequence in the specified direction using the five_end or three_end as reference.
+        
+        Args:
+        forward: Extend the DNA sequence in the forward direction. If False, extend in the backward direction.
+        nbp: Number of base pairs to extend the DNA sequence.
+        fixed_endpoint: Fixed endpoint for extending the DNA sequence. This should be a orgin with a reference frame, shape (4,3).
+
+        Returns:
+        None
+        """
+
         # extend the DNA sequence in the specified direction using the five_end or three_end as reference
         # CAREFUL ONLY WORKS NOW IN THE 3' DIRECTION!!!!
 
@@ -101,9 +181,15 @@ class Build:
             raise ValueError("Either a fixed endpoint or a length must be specified for extension.")
 
         # get the target frame for extension
-        start = self.get_start()
-        # get normal vector of the start frame as the direction of extension
-        direction = start[-1]
+        # and normal vector of the start frame as the direction of extension
+        if forward:
+            start = self.get_start()
+            direction = start[-1]
+        else:
+            start = self.get_end()
+            # Flip the direction of the end frame to extend in the backward direction
+            direction = -start[-1]
+
         # get the length of the extension
         length = nbp * 0.34 
 
@@ -111,16 +197,27 @@ class Build:
         target_frame = start[0] + direction * length
     
         # interpolate control points for the new spline
-        control_points = self.interplotate_points(start[0], target_frame, nbp)
+        if forward:
+            control_points = self.interplotate_points(start[0], target_frame, nbp)
+        else:
+            control_points = self.interplotate_points(target_frame, start[0], nbp)
 
         # create a new spline with the interpolated control points
         spline = SplineFrames(control_points, frame_spacing=0.34)
 
-        # fix the strand A except the margin at the end
-        fixed = list(range(self.frames_a.shape[0]-self.margin))
+        if forward:
+            # fix the strand A except the margin at the end
+            fixed = list(range(self.frames_a.shape[0]-self.margin))
+        else:
+            # fix the strand A but shift the fixed indices to the end
+            fixed = list(range(self.frames_a.shape[0]))
+            fixed = [i + nbp for i in fixed][self.margin:]
         
         # combine splines A and the new extension spline 
-        spline.frames = np.concatenate([self.frames_a[:-1],spline.frames])
+        if forward:
+            spline.frames = np.concatenate([self.frames_a[:-1],spline.frames])
+        else:
+            spline.frames = np.concatenate([spline.frames,self.frames_a[1:]])
 
         # make a random sequence for the new spline
         sequence = self.make_sequence(spline.frames.shape[0])
@@ -147,8 +244,17 @@ class Build:
         else:
             raise ValueError("No starting frame found for DNA sequence A.")
 
+    def get_end(self):
+        if self.five_end == 'A':
+            return self.frames_a[0]
+        elif self.three_end == 'A':
+            return self.frames_a[-1]
+        else:
+            raise ValueError("No ending frame found for DNA sequence A.")
+
     def get_start_and_end(self):
         if self.five_end == 'A':
+            # Normally this should be -1 and 0 respectively
             self.start = self.frames_a[-1]
             self.end = self.frames_b[0]
         else:
@@ -175,7 +281,7 @@ class Build:
         spline.frames[:,0,:] = out['positions'] # set the origins of the frames
         spline.frames[:,1:,:] = out['triads'].transpose((0, 2, 1))# set the triads of the frames as row vectors
         
-    def minimize_spline(self,spline, fixed=[], closed=False, sequence=None, endpoints_fixed=False, exvol_rad=0):
+    def minimize_spline(self,spline, fixed=[], closed=False, sequence=None, endpoints_fixed=False, exvol_rad=None):
         # get the positions and triads of the base pair frames
         pos, triads = self.get_pos_and_triads(spline)
 

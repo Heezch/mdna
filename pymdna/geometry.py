@@ -145,191 +145,6 @@ class ReferenceBase:
 
         ax.axis('equal')
 
-class NucleicFrames_row:
-
-    """
-    Example Usage:
-    
-    loc = '/Users/thor/surfdrive/Scripts/notebooks/HNS-sequence/WorkingDir/nolinker/data/md/0_highaff/FI/drytrajs/'
-    traj = md.load(loc+'dry_10.xtc',top=loc+'dry_10.pdb')
-
-    dna = NucleicFrames(traj)
-    params, names = dna.get_paramters()
-    params.shape, names
-
-    # Confidence intervals 
-    from scipy.stats import t
-
-    fig, ax = plt.subplots(2,6,figsize=(12,4))
-    fig.tight_layout()
-    ax = ax.flatten()
-    M = np.mean(params, axis=0)
-    S = np.std(params, axis=0)
-    n = params.shape[0]
-    ci = t.ppf(0.975, df=n-1) * S / np.sqrt(n)
-    x = np.arange(0, params.shape[1])
-    for _, i in enumerate(M.T):
-        if _ >= 6:
-            c1, c2 = 'red','coral'
-        else:
-            c1, c2 = 'blue','cornflowerblue'
-        ax[_].plot(i[::-1], '-o',color=c1)
-        ax[_].fill_between(x, (i-ci[_])[::-1], (i+ci[_])[::-1], color=c2, alpha=0.2)
-        ax[_].set_title(names[_])
-    """
-
-    def __init__(self, traj, chainids=[0,1],frames_only=False):
-        self.traj = traj
-        self.top = traj.topology
-        self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
-        self.res_B = self.get_residues(chain_index=chainids[1], reverse=True)
-        self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
-        self.frames = self.get_reference_frames()
-        self.analyse_frames()
-
-    def get_residues(self, chain_index, reverse=False):
-        """Get residues from specified chain."""
-        if chain_index >= len(self.top._chains):
-            raise IndexError("Chain index out of range.")
-        chain = self.top._chains[chain_index]
-        residues = chain._residues
-        return list(reversed(residues)) if reverse else residues
-
-    def load_reference_bases(self):
-        """Load reference bases from local files."""
-        # Not used at the moment??
-        bases = ['C', 'G', 'T', 'A']
-        #return {f'D{base}': md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in bases}
-        return {f'D{base}': md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
-
-    def get_base_vectors(self, res):
-        """Compute base vectors from reference base."""
-        ref_base = ReferenceBase(res)
-        return np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
-    
-    def get_reference_frames(self):
-        """Get reference frames for each residue."""
-        reference_frames = {} # Dictionary to store the base vectors for each residue
-        for res in self.res_A + self.res_B:
-            res_traj = self.traj.atom_slice([at.index for at in res.atoms])
-            base_vectors = self.get_base_vectors(res_traj)
-            reference_frames[res] = base_vectors # Store the base vectors for the residue index (with shape (4, n_frames, 3))
-        return reference_frames
-
-    def reshape_input(self,input_A,input_B,is_step=False):
-        # Store original shape
-        original_shape = input_A.shape
-
-        # Flatten frames to compute rotation matrices for each time step simultaneously
-        input_A_ = input_A.reshape(-1,original_shape[-2],original_shape[-1])  # shape (n, 4, 3)
-        input_B_ = input_B.reshape(-1,original_shape[-2],original_shape[-1])  # shape (n, 4, 3)
-
-        # Extract the triads without origin (rotation matrices)
-        rotation_A = input_A_[:,1:]  # shape (n, 3, 3)
-        rotation_B = input_B_[:,1:]  # shape (n, 3, 3)
-
-        if not is_step:
-            # flip (connecting the backbones) and the (baseplane normals).
-            # so the second and third vector b_L, b_N
-            rotation_B[:,[1,2]] *= -1
-     
-        # Extract origins of triads
-        origin_A = input_A_[:,0]  # shape (n, 3)
-        origin_B = input_B_[:,0]  # shape (n, 3)
-
-        return rotation_A, rotation_B, origin_A, origin_B, original_shape
-
-    def compute_rotation_matrices(self,rotation_A, rotation_B):
-        # Compute rotation matrices
-        rotation_matrix_AB = rotation_B.transpose(0,2,1) @ rotation_A  # returns shape (n, 3, 3)
-        rotation_matrix_BA = rotation_B @ rotation_A.transpose(0,2,1)  # returns shape (n, 3, 3)
-        return rotation_matrix_AB, rotation_matrix_BA
-    
-    def get_rotation_angles(self,rotation_matrix_AB, rotation_matrix_BA):
-        # Get rotation angles based on rotation matrices
-        return RigidBody.extract_omega_values(rotation_matrix_AB), RigidBody.extract_omega_values(rotation_matrix_BA)
-
-    def get_mid_frame(self,rotation_angle_BA, rotation_A, origin_A, origin_B):
-        # Compute halfway rotation matrix and triad (mid frame)
-        halfway_rotation_matrix = RigidBody.get_rotation_matrix(rotation_angle_BA * 0.5)
-        mid_frame_rotation = halfway_rotation_matrix @ rotation_A
-        mid_frame_origin = 0.5 * (origin_A + origin_B)
-
-        return mid_frame_rotation, mid_frame_origin
-
-    def compute_params(self,mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, original_shape, is_step=False):
-
-        # Compute rotation matrix based on mid frame and translational vector based off mid frame
-        rotation_mid_frame = np.sum(rotation_angle_AB[:, None] * mid_frame_rotation, axis=2)
-        translational_vector_mid_frame = np.einsum('ijk,ik->ij', (origin_B - origin_A)[:, None] * mid_frame_rotation, np.ones((mid_frame_rotation.shape[0], 3)))
-        
-        # Fix direction of magnitudes and convert to degrees (if taking the negative of halfway_rotation_matrix, then it doesn't need to be multiplied by -1, but that screws with the orientation of the mean reference mid frame)
-        #sign = 1 #if is_step else -1  # for the base pair paramters 
-        sign = 1
-        # concatenate the translational and rotational vectors and multiply by 10 to convert to angstroms and degrees
-        params = sign*np.concatenate((translational_vector_mid_frame*10, np.rad2deg(rotation_mid_frame)), axis=1)
-        return params.reshape(original_shape[0], original_shape[1], 6).swapaxes(0, 1)
-
-    def calculate_parameters(self,frames_A, frames_B, is_step=False):
-
-        # Reshape frames
-        rotation_A, rotation_B, origin_A, origin_B, original_shape = self.reshape_input(frames_A,frames_B, is_step=is_step)
-
-        # Compute rotation matrices
-        rotation_matrix_AB, rotation_matrix_BA = self.compute_rotation_matrices(rotation_A, rotation_B)
-
-        # Get rotation angles based on rotation matrices
-        rotation_angle_AB, rotation_angle_BA = self.get_rotation_angles(rotation_matrix_AB, rotation_matrix_BA)
-
-        # Compute halfway rotation matrix and triad (mid frame)
-        mid_frame_rotation, mid_frame_origin = self.get_mid_frame(rotation_angle_BA, rotation_A, origin_A, origin_B)
-
-        # Collect mean reference frames from mid frames of each base pair
-        mean_reference_frames = np.hstack((mid_frame_origin[:, np.newaxis, :],mid_frame_rotation)).reshape(original_shape)
-
-        # Compute parameters
-        params = self.compute_params(mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, original_shape, is_step=is_step)
-
-        if is_step:
-            # Creating an array of zeros with shape (10000, 1, 6)
-            extra_column = np.zeros((params.shape[0], 1, 6))
-
-            # Concatenating the existing array and the extra column along the second axis
-            params = np.concatenate((extra_column,params), axis=1)
-
-        return  params, mean_reference_frames if not is_step else params
-
-    def analyse_frames(self):
-        """Analyze the trajectory and compute parameters."""
-
-        # Get base reference frames for each residue
-        frames_A = np.array([self.frames[res] for res in self.res_A])
-        frames_B = np.array([self.frames[res] for res in self.res_B])
-
-        # Compute parameters between each base pair and mean reference frames
-        self.bp_params, self.mean_reference_frames = self.calculate_parameters(frames_A, frames_B)
-        
-        # Extract mean reference frames for each neighboring base pair
-        B1_triads = self.mean_reference_frames[:-1] # select all but the last frame
-        B2_triads = self.mean_reference_frames[1:] # select all but the first frame
-
-        # Compute parameters between each base pair and mean reference frames
-        self.step_params = self.calculate_parameters(B1_triads, B2_triads, is_step=True)[0]
-
-    def get_parameters(self,step=False,base=False):
-        """Return the computed parameters of shape (n_frames, n_base_pairs, n_parameters)"""
-        step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
-        base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
-
-        if step and not base:
-            return self.step_params, step_parameter_names
-        elif base and not step:
-            return self.bp_params, base_parameter_names
-        elif not step and not base:
-            return np.dstack((self.bp_params, self.step_params)), base_parameter_names + step_parameter_names
-        
-
-
 class NucleicFrames:
 
     """
@@ -402,6 +217,18 @@ class NucleicFrames:
         return reference_frames
 
     def reshape_input(self,input_A,input_B,is_step=False):
+        """This function reshapes the input to the correct format for the calculations. 
+        And splits the input into rotation matrices and origins for the calculations.
+        
+        Returns:
+        --------
+        rotation_A/rotation_B : ndarray
+            The rotation matrices of shape (n, 3, 3) for the first triad.
+        origin_A/origin_B : ndarray
+            The origins of shape (n, 3) for the first triad.
+        original_shape : tuple
+            The original shape of the input."""
+
         # Store original shape
         original_shape = input_A.shape
 
@@ -424,63 +251,90 @@ class NucleicFrames:
 
         return rotation_A, rotation_B, origin_A, origin_B, original_shape
 
-    def compute_rotation_matrices(self,rotation_A, rotation_B):
-        # Compute rotation matrices
-        rotation_matrix_AB = rotation_B.transpose(0,2,1) @ rotation_A  # returns shape (n, 3, 3)
-        rotation_matrix_BA = rotation_B @ rotation_A.transpose(0,2,1)  # returns shape (n, 3, 3)
-        return rotation_matrix_AB, rotation_matrix_BA
-    
-    def get_rotation_angles(self,rotation_matrix_AB, rotation_matrix_BA):
-        # Get rotation angles based on rotation matrices
-        return RigidBody.extract_omega_values(rotation_matrix_AB), RigidBody.extract_omega_values(rotation_matrix_BA)
 
-    def get_mid_frame(self,rotation_angle_BA, rotation_A, origin_A, origin_B):
-        # Compute halfway rotation matrix and triad (mid frame)
-        halfway_rotation_matrix = RigidBody.get_rotation_matrix(rotation_angle_BA * 0.5)
-        mid_frame_rotation = halfway_rotation_matrix @ rotation_A
-        mid_frame_origin = 0.5 * (origin_A + origin_B)
+    def compute_parameters(self, rotation_A, rotation_B, origin_A, origin_B)
+        """Calculate the parameters between each base pair and mean reference frames.
+        See chapter 2: Kinematics of rigid base and rigid base pair models of DNA
+        Of Thesis: "A DNA Coarse-Grain Rigid Base Model and Parameter Estimation from Molecular Dynamics Simulations" by Daiva Petkevičiūtė
 
-        return mid_frame_rotation, mid_frame_origin
+        Rotations contain rotation matrices of shape (n, 3, 3) and origins contain the origins of shape (n, 3).
 
-    def compute_params(self,mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, original_shape, is_step=False):
-
-        # Compute rotation matrix based on mid frame and translational vector based off mid frame
-        if not is_step:
-            rotation_mid_frame = np.sum(-rotation_angle_AB[:, None] * mid_frame_rotation, axis=2)
-        else:
-            rotation_mid_frame = np.sum(rotation_angle_AB[:, None] * mid_frame_rotation, axis=2)
-
-        if not is_step:
-            translational_vector_mid_frame = np.einsum('ijk,ik->ij', (origin_A - origin_B)[:, None] * mid_frame_rotation, np.ones((mid_frame_rotation.shape[0], 3)))
-        else:
-            translational_vector_mid_frame = np.einsum('ijk,ik->ij', (origin_B - origin_A)[:, None] * mid_frame_rotation, np.ones((mid_frame_rotation.shape[0], 3)))
+        Returns:
+        --------
+        rigid_parameters : ndarray
+            The parameters of shape (n, 12) representing the relative translation and rotation between each base pair.
+        trans_mid : ndarray
+            The mean translational vector of shape (n, 3) between the triads.
+        rotation_mid : ndarray
+            The mean rotation matrix of shape (n, 3, 3) between the triads.
+        """
         
-        # Fix direction of magnitudes and convert to degrees (if taking the negative of halfway_rotation_matrix, then it doesn't need to be multiplied by -1, but that screws with the orientation of the mean reference mid frame)
-        #sign = 1 #if is_step else -1  # for the base pair paramters 
-        sign = 1
-        # concatenate the translational and rotational vectors and multiply by 10 to convert to angstroms and degrees
-        params = sign*np.concatenate((translational_vector_mid_frame*10, np.rad2deg(rotation_mid_frame)), axis=1)
-        return params.reshape(original_shape[0], original_shape[1], 6).swapaxes(0, 1)
+        # Linear interpolation of translations
+        trans_mid = 0.5 * (origin_A + origin_B)
+    
+        # Relative translation
+        trans_AB = origin_A - origin_B
+
+        # Get relative rotation matrix of base pair
+        rotation_BA = rotation_B.transpose(0,2,1) @ rotation_A  # returns shape (n, 3, 3)
+
+        # Get rotation angles based on  rotation matrices
+        rotation_angle_BA = RigidBody.extract_omega_values(rotation_BA)
+
+        # Compute halfway rotation matrix and triad (mid frame)
+        rotation_halfway = RigidBody.get_rotation_matrix(rotation_angle_BA * 0.5)
+
+        # Get rotation matrix of base pair (aka mean rotation frame)
+        rotation_mid = rotation_B @ rotation_halfway 
+        
+        # Get transaltional coordinate vector and convert to angstroms
+        translational_parameters = np.einsum('ijk,ik->ij',rotation_mid.transpose(0,2,1), trans_AB) * 10
+
+        # Get rotational parameters and convert to degrees
+        rotational_parameters = np.rad2deg(np.einsum('ijk,ik->ij', rotation_BA.transpose(0,2,1), rotation_angle_BA))
+                
+        # Merge translational and rotational parameters
+        rigid_parameters = np.hstack((translational_parameters, rotational_parameters))
+
+        # Return the parameters and the mean reference frame
+        return rigid_parameters, trans_mid, rotation_mid
+
 
     def calculate_parameters(self,frames_A, frames_B, is_step=False):
+        """Calculate the parameters between each base pair and mean reference frames.
+        
+        Assumes frames are of shape (n_frames, n_residues, 4, 3) where the last two dimensions are the base triads.
+        The base triads consist of an origin (first index) and three vectors (latter 3 indices) representing the base frame.
+        With the order of the vectors being: b_R, b_L, b_D, b_N.
+        
+        Note the vectors are stored rowwise in the base triads, and not the usual column representation of the rotation matrices.
+        
+        
+        Returns:
+        --------
+        params : ndarray
+            The parameters of shape (n_frames, n_residues, 6) representing the relative translation and rotation between each base pair.
+        mean_reference_frames : ndarray
+            The mean reference frames of shape (n_frames, n_residues, 4, 3) representing the mean reference frame of each base pair."""
 
         # Reshape frames
         rotation_A, rotation_B, origin_A, origin_B, original_shape = self.reshape_input(frames_A,frames_B, is_step=is_step)
 
-        # Compute rotation matrices
-        rotation_matrix_AB, rotation_matrix_BA = self.compute_rotation_matrices(rotation_A, rotation_B)
+        # Compute parameters
+        if not is_step:
+            # Flip from row to column representation of the rotation matrices
+            rotation_A = rotation_A.transpose(0,2,1)
+            rotation_B = rotation_B.transpose(0,2,1)
+            params, mean_origin, mean_rotation = self.compute_parameters(rotation_A, rotation_B, origin_A, origin_B)
+        else:
+            # Switch the input of the B and A triads to get the correct parameters
+            params, mean_origin, mean_rotation = self.compute_parameters(rotation_B, rotation_A, origin_B, origin_A)
 
-        # Get rotation angles based on rotation matrices
-        rotation_angle_AB, rotation_angle_BA = self.get_rotation_angles(rotation_matrix_AB, rotation_matrix_BA)
-
-        # Compute halfway rotation matrix and triad (mid frame)
-        mid_frame_rotation, mid_frame_origin = self.get_mid_frame(rotation_angle_BA, rotation_A, origin_A, origin_B)
+        # Reshape the parameters to the original shape
+        params = params.reshape(original_shape[0], original_shape[1], 6).swapaxes(0, 1)
 
         # Collect mean reference frames from mid frames of each base pair
-        mean_reference_frames = np.hstack((mid_frame_origin[:, np.newaxis, :],mid_frame_rotation)).reshape(original_shape)
-
-        # Compute parameters
-        params = self.compute_params(mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, original_shape, is_step=is_step)
+        mean_reference_frames = np.hstack((mean_origin[:, np.newaxis, :],mean_rotation)).reshape(original_shape)
 
         if is_step:
             # Creating an array of zeros with shape (10000, 1, 6)
@@ -489,7 +343,9 @@ class NucleicFrames:
             # Concatenating the existing array and the extra column along the second axis
             params = np.concatenate((extra_column,params), axis=1)
 
+        # Return the parameters and the mean reference frames
         return  params, mean_reference_frames if not is_step else params
+
 
     def analyse_frames(self):
         """Analyze the trajectory and compute parameters."""
@@ -520,214 +376,7 @@ class NucleicFrames:
         elif not step and not base:
             return np.dstack((self.bp_params, self.step_params)), base_parameter_names + step_parameter_names
         
-
-import copy
-
-class NucleicFrames_column:
-
-    """
-    Example Usage:
-    
-    loc = '/Users/thor/surfdrive/Scripts/notebooks/HNS-sequence/WorkingDir/nolinker/data/md/0_highaff/FI/drytrajs/'
-    traj = md.load(loc+'dry_10.xtc',top=loc+'dry_10.pdb')
-
-    dna = NucleicFrames(traj)
-    params, names = dna.get_paramters()
-    params.shape, names
-
-    # Confidence intervals 
-    from scipy.stats import t
-
-    fig, ax = plt.subplots(2,6,figsize=(12,4))
-    fig.tight_layout()
-    ax = ax.flatten()
-    M = np.mean(params, axis=0)
-    S = np.std(params, axis=0)
-    n = params.shape[0]
-    ci = t.ppf(0.975, df=n-1) * S / np.sqrt(n)
-    x = np.arange(0, params.shape[1])
-    for _, i in enumerate(M.T):
-        if _ >= 6:
-            c1, c2 = 'red','coral'
-        else:
-            c1, c2 = 'blue','cornflowerblue'
-        ax[_].plot(i[::-1], '-o',color=c1)
-        ax[_].fill_between(x, (i-ci[_])[::-1], (i+ci[_])[::-1], color=c2, alpha=0.2)
-        ax[_].set_title(names[_])
-    """
-
-    def __init__(self, traj, chainids=[0,1],frames_only=False):
-        self.traj = traj
-        self.top = traj.topology
-        self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
-        self.res_B = self.get_residues(chain_index=chainids[1], reverse=True)
-        self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
-        self.frames = self.get_reference_frames()
-        self.analyse_frames()
-        self.angles = []
-
-    def get_residues(self, chain_index, reverse=False):
-        """Get residues from specified chain."""
-        if chain_index >= len(self.top._chains):
-            raise IndexError("Chain index out of range.")
-        chain = self.top._chains[chain_index]
-        residues = chain._residues
-        return list(reversed(residues)) if reverse else residues
-
-    def load_reference_bases(self):
-        """Load reference bases from local files."""
-        # Not used at the moment??
-        bases = ['C', 'G', 'T', 'A']
-        #return {f'D{base}': md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in bases}
-        return {f'D{base}': md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
-
-    def get_base_vectors(self, res):
-        """Compute base vectors from reference base."""
-        ref_base = ReferenceBase(res)
-        return np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
-    
-    def get_reference_frames(self):
-        """Get reference frames for each residue."""
-        reference_frames = {} # Dictionary to store the base vectors for each residue
-        for res in self.res_A + self.res_B:
-            res_traj = self.traj.atom_slice([at.index for at in res.atoms])
-            base_vectors = self.get_base_vectors(res_traj)
-            reference_frames[res] = base_vectors # Store the base vectors for the residue index (with shape (4, n_frames, 3))
-        return reference_frames
-
-    def reshape_input(self,input_A,input_B,is_step=False):
-        # Store original shape
-        original_shape = input_A.shape
-
-        # Flatten frames to compute rotation matrices for each time step simultaneously
-        input_A_ = input_A.reshape(-1,original_shape[-2],original_shape[-1])  # shape (n, 4, 3)
-        input_B_ = input_B.reshape(-1,original_shape[-2],original_shape[-1])  # shape (n, 4, 3)
-
-        # Extract origins of triads
-        origin_A = input_A_[:,0]  # shape (n, 3)
-        origin_B = input_B_[:,0]  # shape (n, 3)
-
-        # Extract the triads without origin (rotation matrices) and switch rows with columns
-        rotation_A = input_A_[:,1:].transpose(0, 2, 1)  # shape (n, 3, 3) 
-        rotation_B = input_B_[:,1:].transpose(0, 2, 1)  # shape (n, 3, 3) 
-
-        if not is_step:
-            # flip (connecting the backbones) and the (baseplane normals).
-            # so the second and third column vector b_L, b_N
-            rotation_B[:, :, [1,2]] *= -1
-            #rotation_B[:, [1, 2]] *= -1
-
-        return rotation_A, rotation_B, origin_A, origin_B, original_shape
-
-    def compute_rotation_matrices(self,rotation_A, rotation_B):
-        # Compute rotation matrices
-        rotation_matrix_BA = rotation_B.transpose(0,2,1) @ rotation_A  # returns shape (n, 3, 3) # 2.15
-        rotation_matrix_AB = rotation_A.transpose(0,2,1) @ rotation_B # 2.21 
-        return rotation_matrix_AB, rotation_matrix_BA # 2.15 corresponds to Da_bar.T Da = La # 2.15 average orientation of the two base frames
-    
-    def get_rotation_angles(self,rotation_matrix_AB, rotation_matrix_BA):
-        # Get rotation angles based on rotation matrices
-        return RigidBody.extract_omega_values(rotation_matrix_AB), RigidBody.extract_omega_values(rotation_matrix_BA)
-
-    def get_mid_frame(self,rotation_angle, rotation_A, rotation_B, origin_A, origin_B, is_step=False):
-        # Compute halfway rotation matrix and triad (mid frame)
-        halfway_rotation_matrix = RigidBody.get_rotation_matrix(rotation_angle * 0.5)
-        #mid_frame_rotation = halfway_rotation_matrix @ rotation_A
-        if not is_step:
-            mid_frame_rotation = rotation_B @ halfway_rotation_matrix  # 2.14  
-        else:
-            mid_frame_rotation = rotation_A @ halfway_rotation_matrix #  2.24 
-     
-        mid_frame_origin = 0.5 * (origin_A + origin_B) # 2.19 
-
-        return mid_frame_rotation, mid_frame_origin
-
-    def compute_params(self,mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, rotation_angle_BA, original_shape, is_step=False):
-
-        print(rotation_angle_BA.shape, mid_frame_rotation.shape)
-        # Compute rotation matrix based on mid frame and translational vector based off mid frame
-        #rotation_mid_frame = np.sum(rotation_angle_BA[:, None] * mid_frame_rotation, axis=2)
-        if not is_step:
-            rotation_mid_frame = np.einsum('ijk,ik->ij', mid_frame_rotation, rotation_angle_BA)
-        else:
-            rotation_mid_frame = np.einsum('ijk,ik->ij', mid_frame_rotation, rotation_angle_AB)
-
-        # # Calculate the difference vector r^a - r'^a
-        # vector_difference = origin_A - origin_B  # Shape: (n_samples, 3)
-        print(origin_A.shape, origin_B.shape, mid_frame_rotation.shape)
-        # Apply the transpose of the rotation matrix to the difference vector
-        # translational_vector_mid_frame = np.einsum('ijk,ik->ij', (origin_B - origin_A)[:, None] * mid_frame_rotation, np.ones((mid_frame_rotation.shape[0], 3)))
-        diff = origin_A - origin_B 
-        translational_vector_mid_frame = np.einsum('ijk,ik->ij', mid_frame_rotation.transpose(0, 2, 1), diff) # 2.18
-        # Fix direction of magnitudes and convert to degrees (if taking the negative of halfway_rotation_matrix, then it doesn't need to be multiplied by -1, but that screws with the orientation of the mean reference mid frame)
-        #sign = 1 #if is_step else -1  # for the base pair paramters 
-        sign = 1
-        # concatenate the translational and rotational vectors and multiply by 10 to convert to angstroms and degrees
-        params = sign*np.concatenate((translational_vector_mid_frame*10, np.rad2deg(rotation_mid_frame)), axis=1)
-        return params.reshape(original_shape[0], original_shape[1], 6).swapaxes(0, 1)
-
-    def calculate_parameters(self,frames_A, frames_B, is_step=False):
-
-        # Reshape frames
-        rotation_A, rotation_B, origin_A, origin_B, original_shape = self.reshape_input(frames_A,frames_B, is_step=is_step)
-
-        # Compute rotation matrices
-        rotation_matrix_AB, rotation_matrix_BA = self.compute_rotation_matrices(rotation_A, rotation_B)
-
-        # Get rotation angles based on rotation matrices
-        rotation_angle_AB, rotation_angle_BA = self.get_rotation_angles(rotation_matrix_AB, rotation_matrix_BA)
-
-        # Compute halfway rotation matrix and triad (mid frame)
-        if not is_step:
-            mid_frame_rotation, mid_frame_origin = self.get_mid_frame(rotation_angle_BA, rotation_A, rotation_B, origin_A, origin_B, is_step=is_step)   
-        else:
-            mid_frame_rotation, mid_frame_origin = self.get_mid_frame(rotation_angle_AB, rotation_A, rotation_B, origin_A, origin_B, is_step=is_step)
-     
-        # Collect mean reference frames from mid frames of each base pair
-        mean_reference_frames = np.hstack((mid_frame_origin[:, np.newaxis, :],mid_frame_rotation)).reshape(original_shape)
-
-        # Compute parameters
-        params = self.compute_params(mid_frame_rotation, origin_A, origin_B, rotation_angle_AB, rotation_angle_BA, original_shape, is_step=is_step)
-
-        if is_step:
-            # Creating an array of zeros with shape (10000, 1, 6)
-            extra_column = np.zeros((params.shape[0], 1, 6))
-
-            # Concatenating the existing array and the extra column along the second axis
-            params = np.concatenate((extra_column,params), axis=1)
-
-        return  params, mean_reference_frames if not is_step else params
-
-    def analyse_frames(self):
-        """Analyze the trajectory and compute parameters."""
-        import copy
-        # Get base reference frames for each residue
-        frames_A = copy.deepcopy(np.array([self.frames[res] for res in self.res_A]))
-        frames_B = copy.deepcopy(np.array([self.frames[res] for res in self.res_B]))
-
-        # Compute parameters between each base pair and mean reference frames
-        self.bp_params, self.mean_reference_frames = self.calculate_parameters(frames_A, frames_B)
         
-        # Extract mean reference frames for each neighboring base pair
-        B1_triads = self.mean_reference_frames[:-1] # select all but the last frame
-        B2_triads = self.mean_reference_frames[1:] # select all but the first frame
-
-        # Compute parameters between each base pair and mean reference frames
-        self.step_params = self.calculate_parameters(B1_triads, B2_triads, is_step=True)[0]
-
-    def get_parameters(self,step=False,base=False):
-        """Return the computed parameters of shape (n_frames, n_base_pairs, n_parameters)"""
-        step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
-        base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
-
-        if step and not base:
-            return self.step_params, step_parameter_names
-        elif base and not step:
-            return self.bp_params, base_parameter_names
-        elif not step and not base:
-            return np.dstack((self.bp_params, self.step_params)), base_parameter_names + step_parameter_names
-        
-
 
 class NucleicFrames_quaternion:
 
@@ -1065,7 +714,8 @@ class NucleicFrames_quaternion:
 
         # Get the relative rotation matrix
         A = quaternions_B.inverse * quaternions_A
-        
+        # A (1, 3, 3)
+        print('A',A.to_rotation_matrix.shape)     
         #A = quaternions_B.inverse*quaternions_A
         #A = self.compute_relative_rotation(quaternions_A, quaternions_B, mask)
 
@@ -1079,6 +729,8 @@ class NucleicFrames_quaternion:
     
         # Convert quaternion to rotation matrix
         rotation_mid = quat_mid.to_rotation_matrix  
+        # rot_mid (1, 3, 3) (1, 3) (1, 4)
+        print('rot_mid',rotation_mid.shape, translations_A.shape, quat_mid.shape)
 
         # Compute the relative translation
         translation = translations_A - translations_B

@@ -76,9 +76,15 @@ Refs:
 
 class SplineFrames:
     
-    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[]):
+    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],nbp=None,dLk=None):
         """
         Initializes the SplineFrames class.
+
+        Spline gets initialized based on the control points, degree, and closed properties.
+        The spline is evaluated and the frames are positione along the spline based on the frame spacing.
+        
+        In the subsequent stage the frames are tested for continouity / minimal torsion.
+        Then frames are twisted based on the bp_per_turn property or requested delta linking number.
 
         Args:
             control_points (numpy.ndarray): Control points defining the path.
@@ -88,11 +94,14 @@ class SplineFrames:
         """
         self.control_points = control_points
         self.n = num_points
+        self.twist = twist
         self.degree = degree
         self.closed = closed
         self.up_vector = np.array(up_vector)
         self.frame_spacing = frame_spacing
         self.bp_per_turn = bp_per_turn
+        self.nbp = nbp
+        self.dLk = dLk
         self.frame_tolerance = frame_tolerance
         self.initial_frame = initial_frame  # Added variable for the initial frame if we need to align the first frame with a given frame
         self.tck = None
@@ -107,7 +116,12 @@ class SplineFrames:
         self._evaluate_spline()
         self.distribute_points()
         self.test_frames()
-        if twist:
+        
+        if self.nbp is not None:
+            print(f"""\nStart rescaling spline based on requested number of base pairs.\n\tThis requires recomputation of the control points to match the desired number of base pairs.""")
+            self._scale_to_nbp()
+
+        if self.twist:
             self.twist_frames(modified_ranges=modified_ranges)
 
     def update_initial_frame(self, initial_frame):
@@ -135,9 +149,12 @@ class SplineFrames:
             self: Returns the instance of the class.
         """
         self.control_points = control_points
+        self.frames = []
         self._initialize_spline()
         self._evaluate_spline()
-        return self
+        self.distribute_points()
+        self.test_frames()
+        # return self
 
     def update_spline_degree(self, degree):
         """
@@ -369,15 +386,37 @@ class SplineFrames:
 
 
     def twist_frames(self, modified_ranges=[], plot=False):
-        self.twister = Twister(frames=self.frames, bp_per_turn=self.bp_per_turn, modified_ranges=modified_ranges, plot=plot, circular=self.closed)
+        self.twister = Twister(frames=self.frames, bp_per_turn=self.bp_per_turn, modified_ranges=modified_ranges, plot=plot, circular=self.closed,dLk=self.dLk)
         # This can be a separate call if you don't want to twist immediately upon calling twist_frames
-        self.twister.compute_and_plot_twists()
+        #self.twister._compute_and_plot_twists()
+     
+    def _scale_to_nbp(self):
+        """Recompute control points to scale the spline to match the number of base pairs"""
+
+        # Set the target number of base pairs, current number of base pairs, and total length of the spline
         if self.closed:
-            adj = self.twister.adjustment_factor
-            print(f"Structure is requested to be circular:\n Excess twist per base to make ends meet: {adj-(360/self.bp_per_turn):.2f} degrees")
+            target_bp = self.nbp
+        else:
+            target_bp = self.nbp - 1
+        current_nbp = self.frames.shape[0]
+        total_length = self.arc_length[-1] 
 
+        # Compute the ratio to scale the spline to match the target number of base pairs
+        ratio = target_bp*self.frame_spacing/total_length
+        new_control_points = self.control_points * ratio
 
-    def plot_frames(self, fig=False, equal_bounds=False, equal=True, spline=False,control_points=False):
+        # Update the control points and reinitialize the spline
+        self.update_control_points(new_control_points)  
+        
+        # Check if the number of base pairs matches the target
+        if self.frames.shape[0] == self.nbp:
+            print(f"\tSpline scaled to match the target number of base pairs: {self.nbp}\n")
+        else:
+            print(f"\tError: Spline could not be scaled to match the target number of base pairs: {target_bp}")
+            print("\tNew number of base pairs:", self.frames.shape[0])
+        
+
+    def plot_frames(self, fig=False, equal_bounds=False, equal=True, spline=False,control_points=False, triads=True, transparent=False,legend=False):
         """
         Plots the frames along the spline.
 
@@ -388,11 +427,12 @@ class SplineFrames:
         """
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
-        for frame in self.frames:
-            position, right, up, forward = frame
-            ax.quiver(*position, *right, length=0.2, color='g')
-            ax.quiver(*position, *up, length=0.2, color='b')
-            ax.quiver(*position, *forward, length=0.2, color='r')
+        if triads:
+            for frame in self.frames:
+                position, right, up, forward = frame
+                ax.quiver(*position, *right, length=0.2, color='g')
+                ax.quiver(*position, *up, length=0.2, color='b')
+                ax.quiver(*position, *forward, length=0.2, color='r')
         
         _ = self.tck[0]  # Spline parameters for plotting
         u = np.linspace(0, 1, 100)
@@ -417,8 +457,16 @@ class SplineFrames:
         ax.set_zlabel('Z')
 
         if spline or control_points:
-            ax.legend()
-  
+            if not legend:
+                ax.legend()
+    
+      
+        
+        if transparent:
+            fig.patch.set_alpha(0)
+            ax.patch.set_alpha(0)
+            ax.grid(False)
+
         if fig:
             return fig, ax 
         else:
@@ -455,9 +503,10 @@ class SplineFrames:
 
         return None
         
+
 class Twister:
-    
-    def __init__(self, frames, bp_per_turn=10.5, modified_ranges=[], circular=False, plot=False):
+
+    def __init__(self, frames, bp_per_turn=10.5, modified_ranges=[], circular=False, plot=False, dLk=None):
         """
         Initialize the TwistFrames class.
 
@@ -477,24 +526,76 @@ class Twister:
         self.bp_per_turn = bp_per_turn
         self.modified_ranges = modified_ranges
         self.plot = plot
-        self.twists = []
-        self.accumulated_twists = []
-   
-    def calculate_twist_angle(self, bp_index, standard_twist_angle_degrees):
-        """
-        Calculate the twist angle for a given base pair index.
+        self.dLk = dLk
+
+        # Base twist angle
+        self.twist_angle = 360 / bp_per_turn
+        self.n_bp = self.frames.shape[0]
+
+        # Initialize the twist angles and accumulated twists
+        self.twists = np.full(self.n_bp, self.twist_angle)
+        self.accumulated_twists = np.cumsum(self.twists) - self.twist_angle  # Starting from zero
+
+        # Adjust for circular DNA to match a total twist that is a multiple of 360
+        if self.circular:
+            self.adjust_for_circular() 
+
+        # Optionally adjust to match a specific linking number
+        if self.dLk is not None:
+            self.adjust_to_dLk()
+  
+        # Adjust the twist angles based on modified ranges
+        for start, end, twist in modified_ranges:
+            self.twists[start:end] = twist
+            self.accumulated_twists = np.cumsum(self.twists) - self.twist_angle
+
+        # Apply the rotations
+        self.apply_rotations()
+
+        if self.plot:
+            self.plot_twist_data()
+
+    def adjust_for_circular(self):
+        """Adjust the twist angles to ensure the total twist is a multiple of 360."""
+        # If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360
+        # Currently this is done by slightly increasing the twist angle for each base pair
+
+        total_twist = np.sum(self.twists)
+        needed_twist = np.ceil(total_twist / 360) * 360
+        adjustment = (needed_twist - total_twist) / self.n_bp
+
+        self.twist_angle = self.twist_angle + adjustment
+        self.twists += adjustment # Add the adjustment to each base pair
+        self.accumulated_twists = np.cumsum(self.twists) - self.twist_angle 
         
-        Args:
-            bp_index (int): The base pair index.
-            standard_twist_angle_degrees (float): Standard B-DNA twist angle in degrees.
-            
-        Returns:
-            float: The twist angle for the given base pair index.
-        """
-        for start, end, twist in self.modified_ranges:
-            if start <= bp_index < end:
-                return twist
-        return standard_twist_angle_degrees
+        print(f"Structure is requested to be circular:\n\tExcess twist per base to make ends meet: { self.twist_angle-(360/self.bp_per_turn):.2f} degrees\n\tNew twist angle per base pair:",np.round(self.twist_angle,2),'\n')    
+
+    
+    def adjust_to_dLk(self):
+        """Adjust the twist angles to match the given Delta linking number. Not sure how to round the twist number to the nearest integer... or at all, really."""
+        print(f"Adjusting twist angles to match the given Delta linking number: {self.dLk}")
+
+        current_twist_number = sum(self.twists)/360
+        old_twist_angle = sum(self.twists) / self.frames.shape[0]
+        print(f"\tCurrent twist number: {current_twist_number:.2f}")
+
+        # Compute the new twist number based on the given Delta linking number        
+        new_twist_number = current_twist_number + self.dLk
+    
+        # Set the new twist angle per base pair
+        self.twist_angle = new_twist_number * 360 / self.n_bp
+
+        # Change the twist angles to match the new twist
+        self.twists = np.full(self.n_bp, self.twist_angle)
+        self.accumulated_twists = np.cumsum(self.twists) - self.twist_angle
+        
+        print(f"\tOld twist angle per base pair: {old_twist_angle:.2f} degrees")
+        print(f"\tAdjusted twist angle per base pair: {self.twist_angle:.2f} degrees\n")
+
+    def apply_rotations(self):
+        """Apply the computed rotations to the DNA frames."""
+        for i in range(self.n_bp):
+            self.frames[i, 1:] = self.rotate_basis(self.frames[i, 1:], self.accumulated_twists[i])
 
     def rotate_basis(self, frame, twist_angle_degrees):
         """
@@ -541,34 +642,252 @@ class Twister:
         ax[1].plot(np.array(accumulated_twists))
         ax[1].set_xlabel('Base pair steps')
         ax[1].set_ylabel('Accumulated twist angle (degrees)')
+    
 
-    def compute_and_plot_twists(self):
+
+
+
+class Twister_old:
+    
+    def __init__(self, frames, bp_per_turn=10.5, modified_ranges=[], circular=False, plot=False, dLk=None):
+        """
+        Initialize the TwistFrames class.
+
+        If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360
+        Currently this is done by slightly increasing the twist angle for each base pair
+        The adjustment factor is stored in self.adjustment_factor
+
+        Args:
+            spline: The spline object with frames to be twisted.
+            bp_per_turn (float, optional): Number of base pairs per turn. Default is 10.5.
+            modified_ranges (list, optional): List of tuples containing the start and end indices 
+                                              of the modified ranges and the twist angle.
+            plot (bool, optional): Whether to plot the twist data.
+        """
+        self.circular = circular
+        self.frames = frames
+        self._frames = np.copy(frames)
+        self.bp_per_turn = bp_per_turn
+        self.modified_ranges = modified_ranges
+        self.plot = plot
+        self.dLk = dLk
+        if self.dLk is not None:
+            print(f"Adjusting twist angles to match the given Delta linking number: {self.dLk}")
+        # self.twists = []
+        # self.accumulated_twists = []
+   
+    def get_twist_angles(self, bp_index):
+        """
+        Set the twist angle for a given base pair index.
+        Uses self.twist_angle (float): Standard B-DNA twist angle in degrees (or adjusted depending on dLk/closed).
+        
+        Args:
+            bp_index (int): The base pair index.
+            
+        Returns:
+            float: The twist angle for the given base pair index.
+        """
+        # Check if the base pair index falls within a modified range 
+        for start, end, twist in self.modified_ranges:
+            # Set the custom twist angle if the base pair index falls within the modified range
+            if start <= bp_index < end:
+                return twist
+        # Else return the standard twist angle
+        return self.twist_angle
+
+    def rotate_basis(self, frame, twist_angle_degrees):
+        """
+        Rotate the basis vectors.
+        
+        Args:
+            frame (np.ndarray): DNA frame of shape (1, 4, 3).
+            twist_angle_degrees (float): The angle to twist in degrees.
+            
+        Returns:
+            tuple: Rotated basis vectors.
+        """
+        N, B, T = frame[0], frame[1], frame[2] 
+        twist_angle_radians = np.deg2rad(twist_angle_degrees)
+        # twist_angle_radians = 0
+        #print(N,B, twist_angle_degrees)
+        #print('pre twist det:',np.linalg.det(np.array([N,B,T])))
+        # R = RigidBody.euler2rotmat(T*twist_angle_degrees)
+        # B_rotated = np.dot(R,B)
+        # N_rotated = np.dot(R,N)
+
+        B_rotated = RigidBody.rotate_vector(B, T, twist_angle_radians)
+        N_rotated = RigidBody.rotate_vector(N, T, twist_angle_radians)
+        #print(N_rotated,B_rotated)
+        # Directly modify the input frame
+        frame[0] = N_rotated 
+        frame[1] = B_rotated
+        #print('twist det:',np.linalg.det(np.array([N_rotated,B_rotated,T])))
+        return frame
+
+    def plot_twist_data(self, twists, accumulated_twists):
+        """
+        Plot the twist data.
+        
+        Args:
+            twists (list): List of twist angles.
+            accumulated_twists (list): List of accumulated twist angles.
+        """
+        _, ax = plt.subplots(1, 2, figsize=(6, 3))
+        _.tight_layout()
+        ax[0].plot(np.array(twists))
+        ax[0].set_xlabel('Base pair steps')
+        ax[0].set_ylabel('Twist angle (degrees)')
+        ax[1].plot(np.array(accumulated_twists))
+        ax[1].set_xlabel('Base pair steps')
+        ax[1].set_ylabel('Accumulated twist angle (degrees)')
+    
+
+    def adjust_to_dLk(self):
+        """Adjust the twist angles to match the given Delta linking number."""
+        current_twist_number = sum(self.twists)/360
+        print(f"\tCurrent twist number: {current_twist_number:.2f}")
+        old_twist_angle = sum(self.twists) / self.frames.shape[0]
+        new_twist_number = np.floor(current_twist_number) + self.dLk
+        #print(current_twist_number, new_twist_number, self.dLk)
+
+        # Change the twist angles to match the new twist
+        new_twist_angle = new_twist_number * 360 / self.frames.shape[0]
+        #print(old_twist_angle, new_twist_angle)
+        print(f"\tOld twist angle per base pair: {old_twist_angle:.2f} degrees")
+        print(f"\tAdjusted twist angle per base pair: {new_twist_angle:.2f} degrees\n")
+        return new_twist_angle
+
+    def _compute_and_plot_twists(self):
         """
         Compute twists for the DNA frames based on the given twist angle and optionally plot the data.
+
+        This function is currently a bit confusing as it does two things:
+        1. Compute the twist angles and accumulated twists for each base pair
+        2. Adjust the twist angles to match the given Delta linking number (if provided)
+
+        The latter requires recomputing the twist angles based on the adjusted twist angle and accumulated twists.
+        Maybe there is a more elegant way to separate these two functionalities.
+        However, the current implementation seems to work for the intended purpose.
+        Also the adjusted dLk requires the twist angles to be computed first, so it's a bit intertwined.
         """
+
+        # Get number of base pairs and initialize twist angl
         n_bp = self.frames.shape[0]
-        standard_twist_angle_degrees = 360 / self.bp_per_turn
-        total_twist = sum(self.calculate_twist_angle(bp, standard_twist_angle_degrees) for bp in range(n_bp))
+        self.twist_angle = 360 / self.bp_per_turn
+        total_twist = sum(self.get_twist_angles(bp) for bp in range(n_bp))
 
         # Adjust the twist angles for circular DNA
         if self.circular:
             # If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360
             # Currently this is done by slightly increasing the twist angle for each base pair
             total_twist = ((total_twist // 360) + 1) * 360
-            adjustment_factor = total_twist / n_bp
-            self.adjustment_factor = adjustment_factor
-        else:
-            adjustment_factor = standard_twist_angle_degrees
+            self.twist_angle = total_twist / n_bp
 
+        # Collect the twist angles and accumulated twists for each base pair
         for bp_idx in range(n_bp):
-            twist_angle_degrees = self.calculate_twist_angle(bp_idx, adjustment_factor)
-            accumulated_twist = sum(self.calculate_twist_angle(bp, adjustment_factor) for bp in range(bp_idx))
-            
-            # Adjusting only the basis vectors (indexing from 1 onwards)
-            self.frames[bp_idx, 1:] = self.rotate_basis(self.frames[bp_idx, 1:], accumulated_twist)
-            
+            # Recompute the twist angles based on the adjusted twist angle
+            twist_angle_degrees = self.get_twist_angles(bp_idx)
+            accumulated_twist = sum(self.get_twist_angles(bp) for bp in range(bp_idx))
+            # Store the twist angles and accumulated twists
             self.twists.append(twist_angle_degrees)
             self.accumulated_twists.append(accumulated_twist)
 
+        # Check if the twist angles need to be adjusted to match the given Delta linking number
+        if self.dLk is not None:
+            self.twist_angle = self.adjust_to_dLk()
+            # Flush old twist data
+            self.twists=[]
+            self.accumulated_twists=[]  
+            
+        # Adjusting the basis vectors (indexing from 1 onwards)
+        for bp_idx in range(n_bp):
+            
+            # If dLk is not None, adjust the twist angles to match the given Delta linking number
+            if self.dLk is not None:
+                # Recompute the twist angles based on the adjusted twist angle
+                twist_angle_degrees = self.get_twist_angles(bp_idx)
+                accumulated_twist = sum(self.get_twist_angles(bp) for bp in range(bp_idx))
+                # Store the twist angles and accumulated twists
+                self.twists.append(twist_angle_degrees)
+                self.accumulated_twists.append(accumulated_twist)
+
+            # Adjusting only the basis vectors (indexing from 1 onwards)
+            self.frames[bp_idx, 1:] = self.rotate_basis(self.frames[bp_idx, 1:], self.accumulated_twists[bp_idx])
+            
         if self.plot:
             self.plot_twist_data(self.twists, self.accumulated_twists)
+
+
+    def set_twist_angles(self):
+        # Initialize the twist angles and accumulated twists
+        self.twists = np.full(n_bp, self.twist_angle)
+        self.accumulated_twists = np.cumsum(self.twists)  
+
+
+    def _compute_and_plot_twists(self):
+        """
+        Compute twists for the DNA frames based on the given twist angle and optionally plot the data.
+
+        This function is currently a bit confusing as it does two things:
+        1. Compute the twist angles and accumulated twists for each base pair
+        2. Adjust the twist angles to match the given Delta linking number (if provided)
+
+        The latter requires recomputing the twist angles based on the adjusted twist angle and accumulated twists.
+        Maybe there is a more elegant way to separate these two functionalities.
+        However, the current implementation seems to work for the intended purpose.
+        Also the adjusted dLk requires the twist angles to be computed first, so it's a bit intertwined.
+        """
+
+        # Get number of base pairs and initialize twist angl
+        n_bp = self.frames.shape[0]
+        self.twist_angle = 360 / self.bp_per_turn
+        total_twist = sum(self.get_twist_angles(bp) for bp in range(n_bp))
+        self.set_twist_angles() 
+  
+
+        # Adjust the twist angles for circular DNA
+        if self.circular:
+            # If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360
+            # Currently this is done by slightly increasing the twist angle for each base pair
+            total_twist = ((total_twist // 360) + 1) * 360
+            self.twist_angle = total_twist / n_bp
+            # Update the twist angles and accumulated twists
+            self.set_twist_angles()
+
+
+        # Collect the twist angles and accumulated twists for each base pair
+        for bp_idx in range(n_bp):
+            # Recompute the twist angles based on the adjusted twist angle
+            twist_angle_degrees = self.get_twist_angles(bp_idx)
+            accumulated_twist = sum(self.get_twist_angles(bp) for bp in range(bp_idx))
+            # Store the twist angles and accumulated twists
+            self.twists.append(twist_angle_degrees)
+            self.accumulated_twists.append(accumulated_twist)
+
+        # Check if the twist angles need to be adjusted to match the given Delta linking number
+        if self.dLk is not None:
+            self.twist_angle = self.adjust_to_dLk()
+            # Flush old twist data
+            self.twists=[]
+            self.accumulated_twists=[]  
+
+
+            
+        # Adjusting the basis vectors (indexing from 1 onwards)
+        for bp_idx in range(n_bp):
+            
+            # If dLk is not None, adjust the twist angles to match the given Delta linking number
+            if self.dLk is not None:
+                # Recompute the twist angles based on the adjusted twist angle
+                twist_angle_degrees = self.get_twist_angles(bp_idx)
+                accumulated_twist = sum(self.get_twist_angles(bp) for bp in range(bp_idx))
+                # Store the twist angles and accumulated twists
+                self.twists.append(twist_angle_degrees)
+                self.accumulated_twists.append(accumulated_twist)
+
+            # Adjusting only the basis vectors (indexing from 1 onwards)
+            self.frames[bp_idx, 1:] = self.rotate_basis(self.frames[bp_idx, 1:], self.accumulated_twists[bp_idx])
+            
+        if self.plot:
+            self.plot_twist_data(self.twists, self.accumulated_twists)
+

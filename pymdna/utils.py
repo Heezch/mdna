@@ -272,7 +272,7 @@ class Shapes:
         return cls(parametric_function, t_values).points
 
     @classmethod
-    def trefoil(cls, radius=1, num_turns=3,t_values=None,num_points=100):
+    def trefoil(cls, radius=1, num_turns=1,t_values=None,num_points=100):
         if t_values is None:
             t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
         x_values = np.sin(t_values) + 2 * np.sin(2 * t_values)

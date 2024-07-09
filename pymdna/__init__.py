@@ -8,7 +8,89 @@ from .build import Build
 
 import numpy as np
 
-def check_input(sequence=None, n_bp=None):
+def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
+    """Load DNA representation from:
+        - mean reference frames/spline frames
+        - or trajectory
+    Args:
+        frames: reference frames
+        traj: trajectory
+        chainids: chain ids"""
+
+    if traj is not None and frames is None:
+        # check if chaind ids correspond to nucleic acids
+        sequence = get_sequence_letters(traj,leading_chain=chainids[0])
+        n_bp = len(sequence)
+
+    elif frames is not None and sequence is not None and traj is None:
+        # check shape of frames
+        if frames.shape[1] != len(sequence):
+            raise ValueError('Number of base pairs in the sequence and frames do not match')
+        n_bp = frames.shape[1]
+
+    elif frames is not None and sequence is None:
+        raise ValueError('Provide a sequence along with reference frames.')
+    elif traj is not None and frames is not None:
+        raise ValueError('Provide either a trajectory or reference frames, not both')
+    elif traj is None and frames is None:
+        raise ValueError('Provide either a trajectory or reference frames')
+
+    return Nucleic(sequence=sequence, n_bp=n_bp, traj=traj, frames=frames, chainids=chainids)
+
+
+
+class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
+
+        def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None):
+            """Initialize the DNA structure
+            Args:
+                sequence: DNA sequence
+                n_bp: number of base pairs
+                traj: trajectory
+                frames: reference frames
+                chainids: chain ids"""
+
+            self.sequence, self.n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+            self.traj = traj
+            self.frames = frames
+            self.chainids = chainids
+
+
+        def frames_to_traj(self):
+            """Convert reference frames to trajectory"""
+            if not hasattr(self, 'frames'):
+                raise ValueError('Load reference frames first')
+            self.traj = StructureGenerator(frames=self.frames, sequence=self.sequence).get_traj()
+
+        def get_traj(self):
+            """Get the trajectory"""
+            if not hasattr(self, 'traj'):
+                self.frames_to_traj()
+            return self.traj
+        
+        # def compute_rigid_parameters(self):
+        #     if not hasattr(self, 'traj'):
+        #         raise ValueError('Load or generate a trajectory first')
+        #     self.rigid = NucleicFrames(self.traj, self.chainids)
+        
+        def get_frames(self):
+            """Get the reference frames of the DNA structure belonging to the base steps:
+            Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
+            where n_frames is the number of frames, n_bp is the number of base pairs, 
+            and 4 corresponds to the origin and the 3 vectors of the reference frame"""
+
+            if not hasattr(self, 'rigid'):
+                self.get_rigid_parameters()
+            return self.rigid.mean_reference_frames
+
+        def compute_torsions(self):
+            pass
+        def compute_grooves(self):
+            pass
+
+
+
+def _check_input(sequence=None, n_bp=None):
 
     if sequence is None and n_bp is not None:
         sequence = ''.join(np.random.choice(list('ACGT'), n_bp))
@@ -36,9 +118,16 @@ def check_input(sequence=None, n_bp=None):
 
 def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, output='GROMACS'):
     """Sequence to MDtraj object with option to save as pdb file 
-        adhering to the AMBER force field format"""
+        adhering to the AMBER force field format
+        Args:
+            sequence: DNA sequence
+            filename: name of the pdb file
+            save: save the pdb file
+            output: GROMACS or AMBER
+        Returns:
+            mdtraj trajectory"""
 
-    sequence, _ = check_input(sequence=sequence)
+    sequence, _ = _check_input(sequence=sequence)
 
     # Linear strand of control points 
     point = Shapes.line((len(sequence)-1)*0.34)
@@ -60,9 +149,16 @@ def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, outpu
 
     return traj
 
-
 def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False):
-
+    """Simulate DNA sequence using OpenMM
+        Args:
+            sequence: DNA sequence
+            time: simulation time
+            time_unit: time unit
+            temperature: temperature
+            solvated: solvate DNA
+        Returns:
+            mdtraj trajectory"""
     try:
         import openmm as mm
         import openmm.app as app
@@ -121,6 +217,18 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         return traj
     
 def plot_parameters(parameters, names, fig=None, ax=None, mean=True, std=True,figsize=[10,3.5], save=False):
+    """Plot the rigid base parameters of the DNA structure
+    Args:
+        parameters: rigid base parameters
+        names: parameter names
+        fig: figure
+        ax: axis
+        mean: plot mean
+        std: plot standard deviation
+        figsize: figure size
+        save: save figure
+    Returns:
+        figure, axis"""
 
     import matplotlib.pyplot as plt
     if fig is None and ax is None:
