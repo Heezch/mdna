@@ -252,7 +252,7 @@ class NucleicFrames:
         return rotation_A, rotation_B, origin_A, origin_B, original_shape
 
 
-    def compute_parameters(self, rotation_A, rotation_B, origin_A, origin_B)
+    def compute_parameters(self, rotation_A, rotation_B, origin_A, origin_B):
         """Calculate the parameters between each base pair and mean reference frames.
         See chapter 2: Kinematics of rigid base and rigid base pair models of DNA
         Of Thesis: "A DNA Coarse-Grain Rigid Base Model and Parameter Estimation from Molecular Dynamics Simulations" by Daiva Petkevičiūtė

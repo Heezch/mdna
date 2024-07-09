@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.interpolate import splprep, splev
-from scipy.integrate import cumtrapz
+from scipy.integrate import cumulative_trapezoid
 import matplotlib.pyplot as plt
 from .utils import RigidBody 
 
@@ -247,7 +247,7 @@ class SplineFrames:
         arc_diffs = np.diff(self.curve, axis=0)
         
         arc = np.sqrt((arc_diffs**2).sum(axis=1))
-        self.arc_length = np.hstack([0, cumtrapz(arc)])
+        self.arc_length = np.hstack([0, cumulative_trapezoid(arc)])
         return self
 
     def distribute_points(self):
