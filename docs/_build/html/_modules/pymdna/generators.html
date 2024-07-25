@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pymdna.generators &#8212; mdna 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pymdna.generators</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">.geometry</span> <span class="kn">import</span> <span class="n">NucleicFrames</span> 
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">get_data_file_path</span>
+
+<div class="viewcode-block" id="SequenceGenerator">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.SequenceGenerator">[docs]</a>
+<span class="k">class</span> <span class="nc">SequenceGenerator</span><span class="p">:</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a mdtraj DNA trajectory and topology based on a provided sequence.</span>
+<span class="sd">    </span>
+<span class="sd">        # Some sanity checks to see if topology is properly created</span>
+<span class="sd">        selection = DNA.top.select(&#39;(resname DG and chainid 1) and element type N&#39;)</span>
+<span class="sd">        sliced = DNA.atom_slice(selection)</span>
+<span class="sd">        import nglview as nv</span>
+<span class="sd">        view = nv.show_mdtraj(sliced)</span>
+<span class="sd">        view</span>
+<span class="sd">        </span>
+<span class="sd">        # Generate DNA trajectory and topology with dummy coordinates (aka everything based on standard bases)</span>
+<span class="sd">        dna_generator = DNAGenerator(sequence=&#39;GCAATATATTGC&#39;, circular=False)</span>
+<span class="sd">        dna = dna_generator.DNA</span>
+
+<span class="sd">        sense_residues = dna.top._chains[0]._residues</span>
+<span class="sd">        anti_residues = dna.top._chains[1]._residues</span>
+
+<span class="sd">        print(&#39;sense&#39;,sense_residues)</span>
+<span class="sd">        print(&#39;anti &#39;, anti_residues)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1">#self.base_pair_map = {&#39;A&#39;: &#39;T&#39;, &#39;T&#39;: &#39;A&#39;, &#39;C&#39;: &#39;G&#39;, &#39;G&#39;: &#39;C&#39;,&#39;P&#39;:&#39;T&#39;,&#39;D&#39;:&#39;C&#39;,&#39;H&#39;:&#39;T&#39;}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_pair_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">:</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;U&#39;</span><span class="p">:</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="s1">&#39;T&#39;</span><span class="p">,</span><span class="s1">&#39;L&#39;</span><span class="p">:</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="s1">&#39;L&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;Z&#39;</span><span class="p">:</span><span class="s1">&#39;P&#39;</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="s1">&#39;Z&#39;</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circular</span> <span class="o">=</span> <span class="n">circular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reference_bases</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_reference_bases</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_DNA</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_load_reference_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads reference bases from PDB files.&quot;&quot;&quot;</span>
+        <span class="c1"># import networkx as nx</span>
+        <span class="c1"># G = DNA.top.to_bondgraph()</span>
+        <span class="c1"># # check which nodes are not connected to any other node</span>
+        <span class="c1"># isolated_nodes = list(nx.isolates(G))</span>
+        <span class="c1"># print(isolated_nodes)</span>
+        <span class="c1"># # somhow Thymine phospho-oxyo&#39;s are not connected to anything</span>
+
+        <span class="k">return</span>  <span class="p">{</span><span class="n">base</span><span class="p">:</span> <span class="n">md</span><span class="o">.</span><span class="n">load_hdf5</span><span class="p">(</span><span class="n">get_data_file_path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;atomic/bases/BDNA_</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s1">.h5&#39;</span><span class="p">))</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_pair_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+
+        <span class="c1">#return {base: md.load_pdb(f&#39;/Users/thor/surfdrive/Projects/pymdna/pymdna/atomic/BDNA_{base}.pdb&#39;) for base in self.base_pair_map.keys()}</span>
+        <span class="c1">#return {base: md.load_pdb(f&#39;../pymdna/atomic/BDNA_{base}.pdb&#39;) for base in self.base_pair_map.keys()}</span>
+    
+    <span class="k">def</span> <span class="nf">_make_DNA</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a DNA topology and trajectory based on the sequence.&quot;&quot;&quot;</span>
+        <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_trajectory</span><span class="p">()</span>
+        <span class="n">topology</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_topology</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">md</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">topology</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_create_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">translation</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a DNA trajectory based on the sequence.&quot;&quot;&quot;</span>
+        <span class="n">trajectory_coords</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Sense chain coordinates are added first starting from index 0 to N-1 sequence length</span>
+        <span class="n">trajectory_coords</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_chain_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">translation</span><span class="p">))</span>
+
+        <span class="c1"># Antisense chain coordinates are added next, coordinates are flipped, starting from N sequence length to N*2-1</span>
+        <span class="c1"># Here the first base, N, is the complement of first base in the sense strand, this might not be ideal (have to check what is done in the literature)</span>
+        <span class="n">antisense_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_pair_map</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">]</span>
+        <span class="n">trajectory_coords</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_chain_coordinates</span><span class="p">(</span><span class="n">antisense_sequence</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">translation</span><span class="p">,</span> <span class="n">antisense</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">trajectory_coords</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_create_topology</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a DNA topology based on the sequence.&quot;&quot;&quot;</span>
+        <span class="n">topology</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Topology</span><span class="p">()</span>
+        <span class="n">sense_chain</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">add_chain</span><span class="p">()</span>
+        <span class="n">antisense_chain</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">add_chain</span><span class="p">()</span>
+
+        <span class="c1"># Sense chain residues</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_chain_to_topology</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">sense_chain</span><span class="p">)</span>
+
+        <span class="c1"># Antisense chain residues</span>
+        <span class="n">antisense_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_pair_map</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_chain_to_topology</span><span class="p">(</span><span class="n">antisense_sequence</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">topology</span><span class="p">,</span> <span class="n">antisense_chain</span><span class="p">)</span>
+
+        <span class="c1"># Create standard bonds between atoms</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">create_standard_bonds</span><span class="p">()</span>
+
+        <span class="c1"># Connect adjacent residues</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_chain</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">sense_chain</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_chain</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">antisense_chain</span><span class="p">)</span>
+
+        <span class="c1"># Make the DNA circular if specified</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+            <span class="n">residues_sense</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sense_chain</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
+            <span class="n">residues_antisense</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">antisense_chain</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connect_residues</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">residues_sense</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">residues_sense</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connect_residues</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">residues_antisense</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">residues_antisense</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            
+        <span class="k">return</span> <span class="n">topology</span>
+
+    <span class="k">def</span> <span class="nf">_add_chain_to_topology</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">chain</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a chain and its residues to the given topology.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">base</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_residue_to_topology</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span> <span class="n">resSeq</span><span class="o">=</span><span class="n">_</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_residue_to_topology</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span><span class="n">resSeq</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a residue and its atoms to the given topology.&quot;&quot;&quot;</span>
+        <span class="n">residue</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">add_residue</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;D&#39;</span> <span class="o">+</span> <span class="n">base</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="n">chain</span><span class="p">,</span> <span class="n">resSeq</span><span class="o">=</span><span class="n">resSeq</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_copy_atoms_from_reference</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">residue</span><span class="p">,</span> <span class="n">topology</span><span class="p">)</span>
+   
+    <span class="k">def</span> <span class="nf">_copy_atoms_from_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">residue</span><span class="p">,</span> <span class="n">topology</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Copies atoms from the reference base to the topology.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_bases</span><span class="p">[</span><span class="n">base</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">atoms</span><span class="p">:</span>
+            <span class="n">topology</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="p">,</span> <span class="n">residue</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_connect_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">chain</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect adjacent residues of a given chain.&quot;&quot;&quot;</span>
+        <span class="n">residues</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">residues</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connect_residues</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">residues</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">residues</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_connect_residues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topology</span><span class="p">,</span> <span class="n">residue1</span><span class="p">,</span> <span class="n">residue2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connects two residues in the topology by adding a phosphodiester bond.&quot;&quot;&quot;</span>
+        <span class="n">topology</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">residue1</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="s2">&quot;O3&#39;&quot;</span><span class="p">),</span> <span class="n">residue2</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="SequenceGenerator.get_basepair">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.SequenceGenerator.get_basepair">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_basepair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get base pair trajectory based on complementary base.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_bases</span><span class="p">[</span><span class="n">base</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_bases</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_pair_map</span><span class="p">[</span><span class="n">base</span><span class="p">]]</span></div>
+
+    
+    <span class="k">def</span> <span class="nf">_rotation_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the rotation matrix associated with counterclockwise rotation about</span>
+<span class="sd">        the given axis by theta radians.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="n">axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="n">axis</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">,</span> <span class="n">cc</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">*</span> <span class="n">d</span>
+        <span class="n">bc</span><span class="p">,</span> <span class="n">ad</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">ab</span><span class="p">,</span> <span class="n">bd</span><span class="p">,</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">d</span><span class="p">,</span> <span class="n">c</span> <span class="o">*</span> <span class="n">d</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">aa</span> <span class="o">+</span> <span class="n">bb</span> <span class="o">-</span> <span class="n">cc</span> <span class="o">-</span> <span class="n">dd</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">bc</span> <span class="o">+</span> <span class="n">ad</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">bd</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)],</span>
+                        <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">bc</span> <span class="o">-</span> <span class="n">ad</span><span class="p">),</span> <span class="n">aa</span> <span class="o">+</span> <span class="n">cc</span> <span class="o">-</span> <span class="n">bb</span> <span class="o">-</span> <span class="n">dd</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">cd</span> <span class="o">+</span> <span class="n">ab</span><span class="p">)],</span>
+                        <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">bd</span> <span class="o">+</span> <span class="n">ac</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">cd</span> <span class="o">-</span> <span class="n">ab</span><span class="p">),</span> <span class="n">aa</span> <span class="o">+</span> <span class="n">dd</span> <span class="o">-</span> <span class="n">bb</span> <span class="o">-</span> <span class="n">cc</span><span class="p">]])</span>
+    
+    <span class="k">def</span> <span class="nf">_get_chain_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">translation</span><span class="p">,</span> <span class="n">antisense</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds (dummy) coordinates of residues to chains.&quot;&quot;&quot;</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+            <span class="n">base_coords</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference_bases</span><span class="p">[</span><span class="n">base</span><span class="p">]</span><span class="o">.</span><span class="n">xyz</span> <span class="o">+</span> <span class="n">translation</span><span class="p">)</span> <span class="c1">#* -1</span>
+            <span class="k">if</span> <span class="n">antisense</span><span class="p">:</span>
+                <span class="c1">#base_coords = -base_coords # Flip coordinates</span>
+                <span class="n">axis</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Rotate about x-axis</span>
+                <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># Rotate by 180 degrees</span>
+                <span class="c1"># Compute the rotation matrix</span>
+                <span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rotation_matrix</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+                <span class="c1"># Rotate base pair A (assuming you have it in a variable `base_pair_A`)</span>
+                <span class="n">base_coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">base_coords</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1">#* -1 </span>
+
+            <span class="n">coords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base_coords</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">coords</span></div>
+
+    
+<div class="viewcode-block" id="StructureGenerator">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator">[docs]</a>
+<span class="k">class</span> <span class="nc">StructureGenerator</span><span class="p">:</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provides tools for generating and modifying DNA structures.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    - circular (bool): Indicates whether the DNA is circular or not.</span>
+<span class="sd">    - sequence (str): The DNA sequence. If not provided, a random sequence is generated.</span>
+<span class="sd">    - spline (object): An object that defines the spline frames for the DNA.</span>
+<span class="sd">    - dna (object): Represents the DNA structure based on the provided sequence.</span>
+<span class="sd">    - traj (object): Represents the DNA trajectory and topology.</span>
+<span class="sd">    - length (int): Number of base pairs in the DNA.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">    - initialize(): Initializes the DNA trajectory and topology.</span>
+<span class="sd">    - update_basepair_coordinates(old, new, basepairs, idx): Updates the coordinates of a base pair in the DNA trajectory.</span>
+<span class="sd">    - apply_spline(): Transforms spline frames to coordinates in an mdtraj trajectory.</span>
+<span class="sd">    - generate_letter_sequence(at_fraction=0.5): Generates a DNA sequence based on AT content fraction.</span>
+<span class="sd">    - get_basepair_xyz(basepairs, idx): Fetches the xyz coordinates of a base pair.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    - The &#39;initialize&#39; method must be called before any other method to ensure the class attributes are set up correctly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">spline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">frames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">circular</span> <span class="o">=</span> <span class="n">circular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span> <span class="c1"># Should deal with the fact if the sequence length does not match the spline length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spline</span> <span class="o">=</span> <span class="n">spline</span>
+        <span class="k">if</span> <span class="n">spline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">spline</span><span class="o">.</span><span class="n">frames</span>
+        <span class="k">elif</span> <span class="n">spline</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">frames</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+        <span class="k">elif</span> <span class="n">spline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">frames</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Both spline and frames are provided, using frames&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either spline or frames must be provided&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># numer of base pairs </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_spline</span><span class="p">()</span>
+
+<div class="viewcode-block" id="StructureGenerator.initialize">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.initialize">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the DNA trajectory and topology.&quot;&quot;&quot;</span>
+    
+        <span class="c1"># Generate DNA sequence</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Fraction of AT content</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_letter_sequence</span><span class="p">(</span><span class="n">at_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+
+        <span class="c1"># Generate DNA trajectory and topology with dummy coordinates (aka everything based on standard bases)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dna</span> <span class="o">=</span> <span class="n">SequenceGenerator</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dna</span><span class="o">.</span><span class="n">traj</span></div>
+
+
+<div class="viewcode-block" id="StructureGenerator.apply_spline">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.apply_spline">[docs]</a>
+    <span class="k">def</span> <span class="nf">apply_spline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Transforms spline frames to coordinates in mdtraj trajectory.&quot;&quot;&quot;</span>
+        
+        <span class="c1"># Generate mean reference frames based on dna trajectory (probably generates errors due to overlapping dna bases when computing the base pair parameters, so need to turn that off)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">NucleicFrames</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">)</span>
+
+        <span class="c1"># Get base pair topology of strands</span>
+        <span class="n">sense</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">_chains</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_residues</span>
+        <span class="n">anti</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">_chains</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_residues</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">basepairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sense</span><span class="p">,</span> <span class="n">anti</span><span class="p">)))</span>
+
+        <span class="c1"># Set the new coordinates</span>
+        <span class="n">current_frames</span> <span class="o">=</span>  <span class="n">_</span><span class="o">.</span><span class="n">mean_reference_frames</span> <span class="c1"># has shape (n_basepairs, 1, 4, 3) base pairs, time, frames</span>
+        <span class="n">new_frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="c1">#spline.frames # has shape (n_basepairs, 4, 3) base pairs, frames</span>
+
+        <span class="c1"># Loop over base pairs and apply the transformation to the base pair coordinates</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,(</span><span class="n">old</span><span class="p">,</span><span class="n">new</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">current_frames</span><span class="p">,</span> <span class="n">new_frames</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_basepair_coordinates</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">basepairs</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span></div>
+
+        <span class="c1">#return dna</span>
+            
+<div class="viewcode-block" id="StructureGenerator.update_basepair_coordinates">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.update_basepair_coordinates">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_basepair_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">basepairs</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the coordinates of a base pair in the DNA trajectory.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Get the origin of the old and new frames</span>
+        <span class="n">old_origin</span> <span class="o">=</span> <span class="n">old</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_origin</span> <span class="o">=</span> <span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Get basis of the old and new frames</span>
+        <span class="n">old_basis</span> <span class="o">=</span> <span class="n">old</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">new_basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="c1"># maybe need to flip the basis vectors here to get the right orientation</span>
+
+        <span class="c1"># Get the rotation and translation</span>
+        <span class="n">rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">old_basis</span><span class="p">,</span><span class="n">new_basis</span><span class="p">)</span>
+        <span class="c1"># rot = np.dot(new_basis,old_basis.T) &lt;-- this is the same as above</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="n">new_origin</span> <span class="o">-</span> <span class="n">old_origin</span>
+
+        <span class="c1"># First collect xyz coordinates of the base pairs</span>
+        <span class="n">xyz</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_basepair_xyz</span><span class="p">(</span><span class="n">basepairs</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
+
+        <span class="c1"># Apply the rotation and translation</span>
+        <span class="n">new_xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span><span class="n">rot</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span>
+
+        <span class="c1"># Set the new coordinates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="p">[:,</span><span class="n">indices</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">new_xyz</span></div>
+
+        <span class="c1"># return dna</span>
+
+<div class="viewcode-block" id="StructureGenerator.generate_letter_sequence">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.generate_letter_sequence">[docs]</a>
+    <span class="k">def</span> <span class="nf">generate_letter_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">at_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+        <span class="c1"># Ensure at_fraction is within valid bounds</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">at_fraction</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;at_fraction must be between 0 and 1 inclusive&quot;</span><span class="p">)</span>
+        <span class="c1"># Calculate the number of &#39;A&#39; and &#39;T&#39; bases based on the given fraction</span>
+        <span class="n">bases</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">*</span> <span class="n">at_fraction</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">*</span> <span class="n">at_fraction</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">bases</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="StructureGenerator.get_basepair_xyz">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.get_basepair_xyz">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_basepair_xyz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">basepairs</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get xyz coordinates of a base pair.&quot;&quot;&quot;</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">at</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">basepairs</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atoms</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">at</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">basepairs</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">atoms</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">xyz</span><span class="p">[:,</span><span class="n">indices</span><span class="p">,:],</span> <span class="n">indices</span></div>
+
+
+<div class="viewcode-block" id="StructureGenerator.get_traj">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.generators.StructureGenerator.get_traj">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_traj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">phosphor_termini</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;name P OP1 OP2 and resid 0 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">n_residues</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">all_atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">([</span><span class="n">at</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">all_atoms</span> <span class="k">if</span> <span class="n">at</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phosphor_termini</span><span class="p">])</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mdna</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pymdna</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../pymdna.html">pymdna</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Thor van Heesch.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -184,7 +184,7 @@ class NucleicFrames:
         self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
         self.res_B = self.get_residues(chain_index=chainids[1], reverse=True)
         self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
-        self.frames = self.get_reference_frames()
+        self.base_frames = self.get_base_reference_frames()
         self.analyse_frames()
 
     def get_residues(self, chain_index, reverse=False):
@@ -207,7 +207,7 @@ class NucleicFrames:
         ref_base = ReferenceBase(res)
         return np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
     
-    def get_reference_frames(self):
+    def get_base_reference_frames(self):
         """Get reference frames for each residue."""
         reference_frames = {} # Dictionary to store the base vectors for each residue
         for res in self.res_A + self.res_B:
@@ -315,7 +315,7 @@ class NucleicFrames:
         params : ndarray
             The parameters of shape (n_frames, n_residues, 6) representing the relative translation and rotation between each base pair.
         mean_reference_frames : ndarray
-            The mean reference frames of shape (n_frames, n_residues, 4, 3) representing the mean reference frame of each base pair."""
+            The mean reference frames of shape (n_bp, n_frames, 4, 3) representing the mean reference frame of each base pair."""
 
         # Reshape frames
         rotation_A, rotation_B, origin_A, origin_B, original_shape = self.reshape_input(frames_A,frames_B, is_step=is_step)
@@ -351,8 +351,8 @@ class NucleicFrames:
         """Analyze the trajectory and compute parameters."""
 
         # Get base reference frames for each residue
-        frames_A = np.array([self.frames[res] for res in self.res_A])
-        frames_B = np.array([self.frames[res] for res in self.res_B])
+        frames_A = np.array([self.base_frames[res] for res in self.res_A])
+        frames_B = np.array([self.base_frames[res] for res in self.res_B])
 
         # Compute parameters between each base pair and mean reference frames
         self.bp_params, self.mean_reference_frames = self.calculate_parameters(frames_A, frames_B)
@@ -364,17 +364,86 @@ class NucleicFrames:
         # Compute parameters between each base pair and mean reference frames
         self.step_params = self.calculate_parameters(B1_triads, B2_triads, is_step=True)[0]
 
+        # Store mean reference frame / aka base pair triads as frames and transpose rotation matrices back to row wise
+        self.frames = self.mean_reference_frames
+        self.frames[:, :, 1:, :] = np.transpose(self.frames[:, :, 1:, :], axes=(0, 1, 3, 2))
+        self._clean_parameters()
+
+    def _clean_parameters(self):
+        self.step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
+        self.base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
+        self.names = self.base_parameter_names + self.step_parameter_names
+        self.parameters = np.dstack((self.bp_params, self.step_params))
+
     def get_parameters(self,step=False,base=False):
         """Return the computed parameters of shape (n_frames, n_base_pairs, n_parameters)"""
-        step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
-        base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
-
         if step and not base:
-            return self.step_params, step_parameter_names
+            return self.step_params, self.step_parameter_names
         elif base and not step:
-            return self.bp_params, base_parameter_names
+            return self.bp_params, self.base_parameter_names
         elif not step and not base:
-            return np.dstack((self.bp_params, self.step_params)), base_parameter_names + step_parameter_names
+            return self.parameters, self.names
+        
+    def get_parameter(self,name='twist'):
+        """Get the parameter of the DNA structure
+        Args:
+            name: str
+                parameter name
+        Returns:
+            parameter: ndarray
+                parameter in shape (n_frames, n_base_pairs)"""
+
+        if name not in self.names:
+            raise ValueError(f"Parameter {name} not found.")
+        return self.parameters[:,:,self.names.index(name)]
+    
+
+    def plot_parameters(self, fig=None, ax=None, mean=True, std=True,figsize=[10,3.5], save=False,step=True,base=True,base_color='cornflowerblue',step_color='coral'):
+        """Plot the rigid base parameters of the DNA structure
+        Args:
+            fig: figure
+            ax: axis
+            mean: plot mean
+            std: plot standard deviation
+            figsize: figure size
+            save: save figure
+        Returns:
+            figure, axis"""
+
+        import matplotlib.pyplot as plt
+
+        cols = step + base
+
+        if fig is None and ax is None:
+            fig,ax = plt.subplots(cols,6, figsize=[12,2*cols])
+            ax = ax.flatten()
+        if step and not base:
+            names = self.step_parameter_names
+        elif base and not step:
+            names = self.base_parameter_names
+        elif base and step:
+            names = self.names
+
+        for _,name in enumerate(names):
+            if name in self.step_parameter_names:
+                color = step_color
+            else:
+                color = base_color
+            para = self.get_parameter(name)
+            mean = np.mean(para, axis=0)
+            std = np.std(para, axis=0)
+            x = range(len(mean))
+            #ax[_].errorbar(x,mean, yerr=std, fmt='-', color=color)
+            ax[_].fill_between(x, mean-std, mean+std, color=color, alpha=0.2)
+            ax[_].plot(mean, color=color,lw=1)    
+            ax[_].scatter(x=x,y=mean,color=color,s=10)
+            ax[_].set_title(name)
+
+        fig.tight_layout()
+        if save:
+            fig.savefig('parameters.png')
+        return fig, ax 
+
         
         
 
@@ -714,24 +783,20 @@ class NucleicFrames_quaternion:
 
         # Get the relative rotation matrix
         A = quaternions_B.inverse * quaternions_A
-        # A (1, 3, 3)
-        print('A',A.to_rotation_matrix.shape)     
+       
         #A = quaternions_B.inverse*quaternions_A
         #A = self.compute_relative_rotation(quaternions_A, quaternions_B, mask)
 
         # Slerp (spherical linear interpolation) for quaternion
         # Note that output slerp(q1, q2, 1) may be different from q2. (slerp(q1, q2, 0) is always equal to q1.)
         quat_mid = qt.slerp(quaternions_A, quaternions_B, tau=t)
-        #quat_mid = self.compute_midframe(quaternions_A, quaternions_B, mask)  
-
+    
         # Linear interpolation of translations
         trans_mid = (1 - t) * translations_A + t * translations_B
     
         # Convert quaternion to rotation matrix
         rotation_mid = quat_mid.to_rotation_matrix  
-        # rot_mid (1, 3, 3) (1, 3) (1, 4)
-        print('rot_mid',rotation_mid.shape, translations_A.shape, quat_mid.shape)
-
+  
         # Compute the relative translation
         translation = translations_A - translations_B
 

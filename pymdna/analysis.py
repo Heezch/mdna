@@ -255,7 +255,8 @@ class TorsionAnalysis:
     plt.plot(B_state)
     """
 
-    def __init__(self, traj,degrees=True):
+    def __init__(self, traj,degrees=True, chain=0):
+        self.chain = chain
         self.dna = self.load_trajectory_and_slice_dna(traj)
         self.epsilon, self.zeta = self.compute_BI_BII(degrees=degrees)
         self.B_state = self.get_B_state(self.epsilon - self.zeta)
@@ -317,8 +318,12 @@ class TorsionAnalysis:
         print(len(epsi_0), len(epsi_1), len(zeta_0), len(zeta_1))
 
         # From here only the antisense strand is used
-        e_torsion_indices = self.convert_torsion_indices_to_atom_indices(epsi_1)
-        z_torsion_indices = self.convert_torsion_indices_to_atom_indices(zeta_1)
+        if self.chain == 1:
+            e_torsion_indices = self.convert_torsion_indices_to_atom_indices(epsi_1)
+            z_torsion_indices = self.convert_torsion_indices_to_atom_indices(zeta_1)
+        else:
+            e_torsion_indices = self.convert_torsion_indices_to_atom_indices(epsi_0)
+            z_torsion_indices = self.convert_torsion_indices_to_atom_indices(zeta_0)
 
         epsi = md.compute_dihedrals(self.dna, e_torsion_indices)
         zeta = md.compute_dihedrals(self.dna, z_torsion_indices)
@@ -374,8 +379,6 @@ class TorsionAnalysis:
             ax[_][0].legend()
             ax[_][0].set_ylabel(f'Step {_}')
 
-        #ax[_][0].set_xlabel('$\epsilon - \zeta$')
-        #ax[_][1].set_xlabel('$\epsilon - \zeta$')
         ax[_][1].set_xticks([-90,0,90])
         ax[_][0].set_xlim(-181,181)
         ax[0][0].set_title('High Affinity')

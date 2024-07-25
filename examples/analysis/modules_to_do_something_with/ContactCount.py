@@ -29,11 +29,12 @@ class ContactCount:
     contacts = ContactCount(traj,protein_donors,minor_acceptors,d0=0.25,r0=0.4,nn=2,mm=4)
     """
     
-    def __init__(self, traj, protein_queue, dna_haystack, d0=0.25,r0=0.4,nn=2,mm=4):
+    def __init__(self, traj, protein_queue, dna_haystack, d0=0.25,r0=0.4,nn=2,mm=4, key='resSeq', distance_cutoff=None):
         # store trajectory and topology information
         self.traj = traj
         self.top = traj.topology
         self.atom_names = [at for at in map(str, self.top.atoms)]
+        self.key = key # key to search protein queue (can either be 'resSeq' or 'index')
         self.protein_queue = protein_queue
         self.dna_haystack = dna_haystack
         

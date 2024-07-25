@@ -397,11 +397,11 @@ def get_base_indices(traj):
     """Returns the indices of the atoms that are part of the nucleobases and not the backbone."""
     return [atom.index for atom in traj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
 
-def get_sequence_letters(traj):
-    """List with nucleobase letter codes of first strand"""
-    bases = ['DA','DT','DG','DC','DD','DP','DCM','DGM']  # ideally we add an indicator for methylated bases
-    sequence = [b[1] for res in traj.topology._residues for b in bases if b == str(res.name)]
-    return sequence[:int(len(sequence)/2)]
+# def get_sequence_letters(traj):
+#     """List with nucleobase letter codes of first strand"""
+#     bases = ['DA','DT','DG','DC','DD','DP','DCM','DGM']  # ideally we add an indicator for methylated bases
+#     sequence = [b[1] for res in traj.topology._residues for b in bases if b == str(res.name)]
+#     return sequence[:int(len(sequence)/2)]
 
 def get_base_pair_letters(traj):
     """Letter code of base pairs as list, e.g., ['A-T', ...]"""

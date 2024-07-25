@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pymdna.spline &#8212; mdna 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pymdna.spline</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">splprep</span><span class="p">,</span> <span class="n">splev</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">cumulative_trapezoid</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">RigidBody</span> 
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This script contains the class `SplineFrames` which is used to generate and manipulate a 3D spline path based on </span>
+<span class="sd">input control points. This class provides a set of methods to initialize the spline, evaluate the spline at </span>
+<span class="sd">multiple points, distribute points along the spline, compute frames (basis vectors) along the path, plot frames, </span>
+<span class="sd">and test the correctness of the frames. The control points, spline degree, closed path option, and the up vector </span>
+<span class="sd">are all configurable. The implementation of the class is based on the Bishop Frame method.</span>
+
+
+<span class="sd">The Bishop Frame method is a technique used in computer graphics and robotics for generating a smooth frame of reference along a 3D curve or path. </span>
+<span class="sd">It&#39;s often used in situations where an object must follow a path smoothly, such as camera paths in computer graphics or the path of a robot&#39;s arm.</span>
+
+<span class="sd">The method generates an orthogonal frame of reference (i.e., a coordinate system consisting of three mutually perpendicular vectors) along the curve. </span>
+<span class="sd">This frame of reference is typically made up of:</span>
+
+<span class="sd">    A tangent vector (usually denoted as T), which is tangent to the curve and points in the direction of the curve.</span>
+<span class="sd">    A normal vector (usually denoted as N), which is perpendicular to the tangent vector.</span>
+<span class="sd">    A binormal vector (usually denoted as B), which is perpendicular to both the tangent and normal vectors.</span>
+
+<span class="sd">The Bishop Frame method differs from other methods, such as the Frenet-Serret Frame, in that it does not assume the curve is torsion-free, </span>
+<span class="sd">and thus provides a smoother frame along the curve. </span>
+
+<span class="sd">Implementation in the context of the SplineFrames class:</span>
+<span class="sd">In the _compute_frames method, frames (consisting of a position, right, up, and forward vectors) are computed for each point along the spline. </span>
+<span class="sd">The &#39;forward&#39; vector is essentially the tangent vector (T) at that point, calculated from the derivative of the spline. </span>
+<span class="sd">The &#39;up&#39; vector is derived by removing any component of the up vector (initialized as [0,0,1]) that lies along the forward direction </span>
+<span class="sd">(ensuring it&#39;s orthogonal to the tangent), and normalizing it. The &#39;right&#39; vector is calculated as the cross product of the forward and up vectors.</span>
+<span class="sd">The &#39;up&#39; vector here, unlike in the Frenet-Serret method, is influenced by a user-specified &#39;up&#39; direction, </span>
+<span class="sd">not just the curvature of the path. This makes the frame less likely to flip or twist sharply when the path changes direction, </span>
+<span class="sd">a characteristic feature of the Bishop frame method. The distribute_points method ensures that frames are generated at regular intervals along the curve </span>
+<span class="sd">(based on the arc length), which further aids in creating a smooth progression of frames.</span>
+<span class="sd">Note, in this implementation, the &#39;forward&#39; vector is synonymous with the tangent, the &#39;right&#39; vector with the binormal, and the &#39;up&#39; vector with the normal.</span>
+
+
+<span class="sd">Example usage:</span>
+<span class="sd">control_points = np.array([[0, 0, 0], [1, 1, 1], [2, -1, 2], [3, 0, 1], [4, 2, 1]])*1.5</span>
+<span class="sd">d = 0.34</span>
+
+<span class="sd">Spline = SplineFrames(</span>
+<span class="sd">    control_points=control_points, </span>
+<span class="sd">    frame_spacing=d,</span>
+<span class="sd">    degree=3, </span>
+<span class="sd">    closed=False</span>
+<span class="sd">)</span>
+<span class="sd">Spline.plot_frames()</span>
+
+<span class="sd">Background:</span>
+
+<span class="sd">The problem in computer graphics to generate coordinate frames along a spline with minimal torsion. </span>
+<span class="sd">The traditional method using Frenet Frames is problematic at inflection points where the second derivative is zero, leading to undefined normal and binormal vectors and causing unwanted inversions.</span>
+<span class="sd">This can partially be metigated by defining a world-up vector, but this still leads to unwanted twisting at inflection points and other points where the curve is not smooth.</span>
+<span class="sd">The solution proposed involves using an initial coordinate frame at the beginning of the curve and propagating it along the spline incrementally, avoiding dependence on an up-axis. </span>
+<span class="sd">This technique avoids issues at inflection points and with curves that could induce torsion, by computing the next frame based on the previous frame and the first derivative of the curve.</span>
+
+<span class="sd">Given the previous coordinate frame T, N, B, one can compute the next coordinate frame T&#39; N&#39; and B&#39; as follows:</span>
+
+<span class="sd">   - Compute T&#39; analytically, by evaluating the first derivative of the curve</span>
+<span class="sd">   - Compute the axis of rotation from T to T&#39; by taking the cross product of T and T&#39;, and then normalizing</span>
+<span class="sd">   - Compute the angle of rotation by computing the angle between T and T&#39;</span>
+<span class="sd">   - Rotate N using the axis and angle computed above to find N&#39;</span>
+<span class="sd">   - Compute the cross product of T&#39; and N&#39; to find B&#39;</span>
+
+<span class="sd">I think I used another way to mitigate this problem by updating the world vector... </span>
+
+<span class="sd">Refs:</span>
+<span class="sd">- Calculation of Reference Frames along a Space Curve (51K) in Graphics Gems, Academic Press, 1990 in Graphics Gems, Academic Press, 1990 in Graphics Gems, Academic Press, 1990</span>
+<span class="sd">- Computing Coordinate Frames on a Spline with Minimal Torsion, James Bird, https://jbrd.github.io/2011/06/19/computing-coordinate-frames-on-a-spline-with-minimal-torsion.html</span>
+<span class="sd">- Two moving coordinate frames for sweeping along a 3D trajectory, Computer Aided Geometric Design 3 (1986) 217-229 217 North-Holland</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SplineFrames">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames">[docs]</a>
+<span class="k">class</span> <span class="nc">SplineFrames</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">control_points</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">up_vector</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="n">frame_spacing</span><span class="o">=</span><span class="mf">0.34</span><span class="p">,</span> <span class="n">twist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bp_per_turn</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">frame_tolerance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_points</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">initial_frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modified_ranges</span><span class="o">=</span><span class="p">[],</span><span class="n">nbp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">dLk</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the SplineFrames class.</span>
+
+<span class="sd">        Spline gets initialized based on the control points, degree, and closed properties.</span>
+<span class="sd">        The spline is evaluated and the frames are positione along the spline based on the frame spacing.</span>
+<span class="sd">        </span>
+<span class="sd">        In the subsequent stage the frames are tested for continouity / minimal torsion.</span>
+<span class="sd">        Then frames are twisted based on the bp_per_turn property or requested delta linking number.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            control_points (numpy.ndarray): Control points defining the path.</span>
+<span class="sd">            degree (int, optional): Degree of the spline. Defaults to 3.</span>
+<span class="sd">            closed (bool, optional): Indicates if the path is closed. Defaults to False.</span>
+<span class="sd">            up_vector (list or numpy.ndarray, optional): Up vector for frame computation. Defaults to [0, 0, 1].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_points</span> <span class="o">=</span> <span class="n">control_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">num_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="n">twist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="n">degree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="n">closed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">up_vector</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame_spacing</span> <span class="o">=</span> <span class="n">frame_spacing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span> <span class="o">=</span> <span class="n">bp_per_turn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nbp</span> <span class="o">=</span> <span class="n">nbp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="o">=</span> <span class="n">dLk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame_tolerance</span> <span class="o">=</span> <span class="n">frame_tolerance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_frame</span> <span class="o">=</span> <span class="n">initial_frame</span>  <span class="c1"># Added variable for the initial frame if we need to align the first frame with a given frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tck</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">der1</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">der2</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point_indices</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distribute_points</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_frames</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2">Start rescaling spline based on requested number of base pairs.</span><span class="se">\n\t</span><span class="s2">This requires recomputation of the control points to match the desired number of base pairs.&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scale_to_nbp</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twist_frames</span><span class="p">(</span><span class="n">modified_ranges</span><span class="o">=</span><span class="n">modified_ranges</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SplineFrames.update_initial_frame">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.update_initial_frame">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_initial_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_frame</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the initial frame.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            initial_frame (tuple): Tuple containing the position, right, up, and forward vectors of the frame.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_frame</span> <span class="o">=</span> <span class="n">initial_frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_frames</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SplineFrames.update_control_points">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.update_control_points">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_control_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">control_points</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the control points defining the path.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            control_points (numpy.ndarray): Control points defining the path.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_points</span> <span class="o">=</span> <span class="n">control_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distribute_points</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_frames</span><span class="p">()</span></div>
+
+        <span class="c1"># return self</span>
+
+<div class="viewcode-block" id="SplineFrames.update_spline_degree">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.update_spline_degree">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_spline_degree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the degree of the spline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            degree (int): Degree of the spline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="n">degree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_spline</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SplineFrames.update_closed">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.update_closed">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_closed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">closed</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the closed property indicating if the path is closed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            closed (bool): Indicates if the path is closed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">closed</span> <span class="o">=</span> <span class="n">closed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_spline</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_spline</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SplineFrames.update_up_vector">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.update_up_vector">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_up_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">up_vector</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the up vector used for frame computation. Not used at the moment</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            up_vector (list or numpy.ndarray): Up vector for frame computation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">up_vector</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_frames</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_initialize_spline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the spline with the control points.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initializing spline&quot;</span><span class="p">)</span>
+        <span class="n">control_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_points</span>
+        <span class="c1"># if self.closed:</span>
+        <span class="c1">#     control_points = np.vstack((self.control_points, self.control_points[0]))</span>
+
+        <span class="c1">#     # Calculate tangent vectors at the first and last control points</span>
+        <span class="c1">#     t_first = self.control_points[1] - self.control_points[0]</span>
+        <span class="c1">#     t_last = self.control_points[-1] - self.control_points[-2]</span>
+
+        <span class="c1">#     # Adjust the control points to ensure consistent tangent directions</span>
+        <span class="c1">#     if np.dot(t_first, t_last) &lt; 0:</span>
+        <span class="c1">#         control_points[-1] = control_points[-1] * -1</span>
+
+        <span class="n">tck</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">splprep</span><span class="p">(</span><span class="n">control_points</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span><span class="c1">#, per=self.closed)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tck</span> <span class="o">=</span> <span class="n">tck</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_evaluate_spline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluates the spline curve and its derivatives.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n (int, optional): Number of points to sample on the spline. Defaults to 1000.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: Returns the instance of the class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Evaluating spline&quot;</span><span class="p">)</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splev</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tck</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">der1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splev</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tck</span><span class="p">,</span> <span class="n">der</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculating arc length&quot;</span><span class="p">)</span>
+        <span class="c1"># Calculate the arc length of the spline</span>
+        <span class="n">arc_diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">arc_diffs</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span><span class="n">arc</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="SplineFrames.distribute_points">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.distribute_points">[docs]</a>
+    <span class="k">def</span> <span class="nf">distribute_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        D,</span>
+<span class="sd">        and evaluate the derivatives at these points. Adjusts the spacing to match the first and last points of the spline.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            d (float): Desired distance between points.</span>
+<span class="sd">            derivative_order (int): The order of the derivative to compute.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            equidistant_points: Equidistant points along the spline.</span>
+<span class="sd">            derivatives: Derivatives at the equidistant points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Calculate the new segment length within the specified tolerance</span>
+        <span class="n">adjusted_arc_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_spacing</span>  <span class="c1"># Subtract the first and last segments</span>
+        <span class="n">num_segments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">adjusted_arc_length</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_spacing</span><span class="p">)</span>
+        <span class="n">new_segment_length</span> <span class="o">=</span> <span class="n">adjusted_arc_length</span> <span class="o">/</span> <span class="n">num_segments</span>
+        
+        <span class="c1"># If the new segment length is within the tolerance, proceed with the distribution</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">new_segment_length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_spacing</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_tolerance</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">segment_lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">new_segment_length</span><span class="p">,</span> <span class="n">adjusted_arc_length</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_segments</span><span class="p">))</span>
+
+            <span class="c1"># Including the first and last points (and not the last segment if closed topology)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">segment_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span><span class="p">)]))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">t_values</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+    
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Evenly distributing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_values</span><span class="p">)</span><span class="si">}</span><span class="s2"> points along the spline and computing derivatives.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Evaluate the spline and its derivatives at the reparametrized t values</span>
+            <span class="n">equidistant_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splev</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t_values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tck</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+            <span class="c1"># Use difference vectors of equidistant points to calculate the derivatives</span>
+            <span class="n">derivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">equidistant_points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="c1">#print(derivatives.shape,equidistant_points.shape)</span>
+            <span class="c1"># Add the last derivative to the end</span>
+            <span class="n">derivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">derivatives</span><span class="p">,</span> <span class="n">derivatives</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="c1"># Last point some numerical error that inverts the direction of the last point? Need to do more testing...</span>
+            <span class="c1">#derivatives = np.array(splev(self.t_values, self.tck, der=1)).T</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot find a suitable segment length within the tolerance of </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_tolerance</span><span class="si">}</span><span class="s2"> nm rise.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Store or return the results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">equidistant_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">derivatives</span> <span class="o">=</span> <span class="n">derivatives</span>
+        <span class="c1"># Assuming self._compute_frames() updates self with the new frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_frames</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SplineFrames.rotation_matrix_from_vectors">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.rotation_matrix_from_vectors">[docs]</a>
+    <span class="k">def</span> <span class="nf">rotation_matrix_from_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Find the rotation matrix that aligns vec1 to vec2 &quot;&quot;&quot;</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">vec1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">vec2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">kmat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]])</span>
+        <span class="n">rotation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">kmat</span> <span class="o">+</span> <span class="n">kmat</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">kmat</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">rotation_matrix</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_compute_initial_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Compute the initial frame based on the first derivative and up_vector</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">derivatives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">derivatives</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span> <span class="c1"># Fallback if T and up_vector are parallel</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.9</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        <span class="c1">#print(&#39;det initial frame&#39;,np.linalg.det(np.array([T,N,B])))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+        <span class="c1">#self.frames.append((self.positions[0], T, N, B))</span>
+    
+    <span class="k">def</span> <span class="nf">_slide_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the coordinate frames along the curve by sliding the frame from the previous position to the current position.</span>
+
+<span class="sd">        This method iterates through each position along the curve and computes the coordinate frame (position, T&#39;, N&#39;, B&#39;) at each position.</span>
+<span class="sd">        The tangent vector (T&#39;) is computed as the normalized first derivative of the curve at the current position.</span>
+<span class="sd">        The normal vector (N&#39;) is computed by rotating the previous normal vector (N) using the computed axis and angle.</span>
+<span class="sd">        The binormal vector (B&#39;) is computed as the cross product of T&#39; and N&#39;.</span>
+<span class="sd">        The computed coordinate frames are stored in the `frames` list for later use.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Iterate through each position along the curve, starting from the second position</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">)):</span>
+            <span class="c1"># Get the last tangent vector (T) from the previously computed frames</span>
+            <span class="n">T_prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>  
+            <span class="c1"># Compute the new tangent vector (T&#39;) analytically as the normalized first derivative of the curve at the current position</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">derivatives</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">derivatives</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            
+            <span class="c1"># Compute the axis of rotation as the normalized cross product of T and T&#39;, indicating the direction to rotate N to N&#39;</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">T_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+            <span class="c1"># Check if the axis is significant to avoid division by zero and unnecessary rotation calculations</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+                <span class="n">axis</span> <span class="o">=</span> <span class="n">axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>  <span class="c1"># Normalize the axis to ensure it has unit length</span>
+                <span class="c1"># Compute the angle of rotation by the arccos of the dot product of T and T&#39;, clipped to [-1, 1] to avoid numerical issues</span>
+                <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">T_prev</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+                <span class="c1"># Rotate the normal vector (N) using the computed axis and angle to find the new normal vector (N&#39;)</span>
+                <span class="n">N</span> <span class="o">=</span> <span class="n">RigidBody</span><span class="o">.</span><span class="n">rotate_vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If the axis of rotation is negligible, use the previous normal vector (N) without rotation</span>
+                <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                
+            <span class="c1"># Compute the binormal vector (B&#39;) as the cross product of T&#39; and N&#39;, completing the coordinate frame</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+            <span class="c1"># Append the new coordinate frame (position, T&#39;, N&#39;, B&#39;) to the frames list for later use</span>
+            <span class="c1"># print(&#39;det slide:&#39;,i,np.linalg.det(np.array([T,N,B])))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">N</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span> <span class="c1"># original</span>
+
+
+    <span class="k">def</span> <span class="nf">_compute_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the coordinate frames on a spline with minimal torsion.</span>
+<span class="sd">        Source: https://jbrd.github.io/2011/06/19/computing-coordinate-frames-on-a-spline-with-minimal-torsion.html</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Directly use the provided custom initial frame</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_frame</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Compute the initial frame based on the first derivative and up_vector</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_initial_frame</span><span class="p">()</span>
+        
+        <span class="c1"># Compute frames for the rest of the points along the path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slide_frames</span><span class="p">()</span>
+        
+        <span class="c1"># Convert the list of frames to a NumPy array for efficient storage and manipulation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span>
+        <span class="c1"># # Swap the T and B vectors to match the expected order for the DNA generation</span>
+        <span class="c1"># self.frames[:, [1, 3]] = self.frames[:, [3, 1]] </span>
+
+
+<div class="viewcode-block" id="SplineFrames.twist_frames">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.twist_frames">[docs]</a>
+    <span class="k">def</span> <span class="nf">twist_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modified_ranges</span><span class="o">=</span><span class="p">[],</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twister</span> <span class="o">=</span> <span class="n">Twister</span><span class="p">(</span><span class="n">frames</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">,</span> <span class="n">bp_per_turn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span><span class="p">,</span> <span class="n">modified_ranges</span><span class="o">=</span><span class="n">modified_ranges</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plot</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">closed</span><span class="p">,</span><span class="n">dLk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dLk</span><span class="p">)</span></div>
+
+        <span class="c1"># This can be a separate call if you don&#39;t want to twist immediately upon calling twist_frames</span>
+        <span class="c1">#self.twister._compute_and_plot_twists()</span>
+     
+    <span class="k">def</span> <span class="nf">_scale_to_nbp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recompute control points to scale the spline to match the number of base pairs&quot;&quot;&quot;</span>
+
+        <span class="c1"># Set the target number of base pairs, current number of base pairs, and total length of the spline</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+            <span class="n">target_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbp</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">current_nbp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">total_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_length</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+
+        <span class="c1"># Compute the ratio to scale the spline to match the target number of base pairs</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">target_bp</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_spacing</span><span class="o">/</span><span class="n">total_length</span>
+        <span class="n">new_control_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_points</span> <span class="o">*</span> <span class="n">ratio</span>
+
+        <span class="c1"># Update the control points and reinitialize the spline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_control_points</span><span class="p">(</span><span class="n">new_control_points</span><span class="p">)</span>  
+        
+        <span class="c1"># Check if the number of base pairs matches the target</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbp</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Spline scaled to match the target number of base pairs: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nbp</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Error: Spline could not be scaled to match the target number of base pairs: </span><span class="si">{</span><span class="n">target_bp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">New number of base pairs:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        
+
+<div class="viewcode-block" id="SplineFrames.plot_frames">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.plot_frames">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">equal_bounds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">spline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">control_points</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">triads</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots the frames along the spline.</span>
+
+<span class="sd">        Note: This method needs to be called after the frames are computed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">triads</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
+                <span class="n">position</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">up</span><span class="p">,</span> <span class="n">forward</span> <span class="o">=</span> <span class="n">frame</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">position</span><span class="p">,</span> <span class="o">*</span><span class="n">right</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">position</span><span class="p">,</span> <span class="o">*</span><span class="n">up</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">position</span><span class="p">,</span> <span class="o">*</span><span class="n">forward</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        
+        <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tck</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Spline parameters for plotting</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">spline_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">splev</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tck</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">if</span> <span class="n">spline</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">spline_points</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Spline&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">equal_bounds</span><span class="p">:</span>
+            <span class="c1"># Compute bounds</span>
+            <span class="n">all_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">spline_points</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">]])</span>
+            <span class="n">max_bound</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">all_points</span><span class="p">))</span>
+            
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">max_bound</span><span class="p">,</span> <span class="n">max_bound</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">max_bound</span><span class="p">,</span> <span class="n">max_bound</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">([</span><span class="o">-</span><span class="n">max_bound</span><span class="p">,</span> <span class="n">max_bound</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">control_points</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">control_points</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Control Points&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">equal</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">spline</span> <span class="ow">or</span> <span class="n">control_points</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">legend</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    
+      
+        
+        <span class="k">if</span> <span class="n">transparent</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fig</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span> </div>
+
+
+<div class="viewcode-block" id="SplineFrames.test_frames">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.SplineFrames.test_frames">[docs]</a>
+    <span class="k">def</span> <span class="nf">test_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests the computed frames for correctness.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            frames (list): List of frames to test.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">frame1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">frame2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">right1</span><span class="p">,</span> <span class="n">up1</span> <span class="o">=</span> <span class="n">frame1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">right2</span><span class="p">,</span> <span class="n">up2</span> <span class="o">=</span> <span class="n">frame2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+            <span class="c1"># Check if right vectors have flipped</span>
+            <span class="n">right_dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">right_dot_product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">angle_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">right1</span><span class="p">,</span> <span class="n">right2</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: Right Vectors may have flipped. Frame </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> to Frame </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="si">}</span><span class="s2">. Angle Deviation: </span><span class="si">{</span><span class="n">angle_deviation</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check if up vectors have flipped</span>
+            <span class="n">up_dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">up1</span><span class="p">,</span> <span class="n">up2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">up_dot_product</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">angle_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">up1</span><span class="p">,</span> <span class="n">up2</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: Up Vectors may have flipped. Frame </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> to Frame </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="si">}</span><span class="s2">. Angle Deviation: </span><span class="si">{</span><span class="n">angle_deviation</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
+</div>
+
+        
+
+<div class="viewcode-block" id="Twister">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister">[docs]</a>
+<span class="k">class</span> <span class="nc">Twister</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">bp_per_turn</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">modified_ranges</span><span class="o">=</span><span class="p">[],</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dLk</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the TwistFrames class.</span>
+
+<span class="sd">        If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360</span>
+<span class="sd">        Currently this is done by slightly increasing the twist angle for each base pair</span>
+<span class="sd">        The adjustment factor is stored in self.adjustment_factor</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spline: The spline object with frames to be twisted.</span>
+<span class="sd">            bp_per_turn (float, optional): Number of base pairs per turn. Default is 10.5.</span>
+<span class="sd">            modified_ranges (list, optional): List of tuples containing the start and end indices </span>
+<span class="sd">                                              of the modified ranges and the twist angle.</span>
+<span class="sd">            plot (bool, optional): Whether to plot the twist data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circular</span> <span class="o">=</span> <span class="n">circular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span> <span class="o">=</span> <span class="n">bp_per_turn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modified_ranges</span> <span class="o">=</span> <span class="n">modified_ranges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="n">plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="o">=</span> <span class="n">dLk</span>
+
+        <span class="c1"># Base twist angle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">bp_per_turn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Initialize the twist angles and accumulated twists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span>  <span class="c1"># Starting from zero</span>
+
+        <span class="c1"># Adjust for circular DNA to match a total twist that is a multiple of 360</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adjust_for_circular</span><span class="p">()</span> 
+
+        <span class="c1"># Optionally adjust to match a specific linking number</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adjust_to_dLk</span><span class="p">()</span>
+  
+        <span class="c1"># Adjust the twist angles based on modified ranges</span>
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">twist</span> <span class="ow">in</span> <span class="n">modified_ranges</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">twist</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span>
+
+        <span class="c1"># Apply the rotations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_rotations</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_twist_data</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Twister.adjust_for_circular">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister.adjust_for_circular">[docs]</a>
+    <span class="k">def</span> <span class="nf">adjust_for_circular</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjust the twist angles to ensure the total twist is a multiple of 360.&quot;&quot;&quot;</span>
+        <span class="c1"># If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360</span>
+        <span class="c1"># Currently this is done by slightly increasing the twist angle for each base pair</span>
+
+        <span class="n">total_twist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span>
+        <span class="n">needed_twist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">total_twist</span> <span class="o">/</span> <span class="mi">360</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span>
+        <span class="n">adjustment</span> <span class="o">=</span> <span class="p">(</span><span class="n">needed_twist</span> <span class="o">-</span> <span class="n">total_twist</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">+</span> <span class="n">adjustment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twists</span> <span class="o">+=</span> <span class="n">adjustment</span> <span class="c1"># Add the adjustment to each base pair</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> 
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Structure is requested to be circular:</span><span class="se">\n\t</span><span class="s2">Excess twist per base to make ends meet: </span><span class="si">{</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="o">-</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees</span><span class="se">\n\t</span><span class="s2">New twist angle per base pair:&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    </div>
+
+
+    
+<div class="viewcode-block" id="Twister.adjust_to_dLk">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister.adjust_to_dLk">[docs]</a>
+    <span class="k">def</span> <span class="nf">adjust_to_dLk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjust the twist angles to match the given Delta linking number. Not sure how to round the twist number to the nearest integer... or at all, really.&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adjusting twist angles to match the given Delta linking number: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dLk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">current_twist_number</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span><span class="o">/</span><span class="mi">360</span>
+        <span class="n">old_twist_angle</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Current twist number: </span><span class="si">{</span><span class="n">current_twist_number</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Compute the new twist number based on the given Delta linking number        </span>
+        <span class="n">new_twist_number</span> <span class="o">=</span> <span class="n">current_twist_number</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span>
+    
+        <span class="c1"># Set the new twist angle per base pair</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="n">new_twist_number</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span>
+
+        <span class="c1"># Change the twist angles to match the new twist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Old twist angle per base pair: </span><span class="si">{</span><span class="n">old_twist_angle</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Adjusted twist angle per base pair: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Twister.apply_rotations">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister.apply_rotations">[docs]</a>
+    <span class="k">def</span> <span class="nf">apply_rotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the computed rotations to the DNA frames.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotate_basis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Twister.rotate_basis">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister.rotate_basis">[docs]</a>
+    <span class="k">def</span> <span class="nf">rotate_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">twist_angle_degrees</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rotate the basis vectors.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            frame (np.ndarray): DNA frame of shape (1, 4, 3).</span>
+<span class="sd">            twist_angle_degrees (float): The angle to twist in degrees.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: Rotated basis vectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">frame</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">frame</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> 
+        <span class="n">twist_angle_radians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+        <span class="c1"># twist_angle_radians = 0</span>
+        <span class="c1">#print(N,B, twist_angle_degrees)</span>
+        <span class="c1">#print(&#39;pre twist det:&#39;,np.linalg.det(np.array([N,B,T])))</span>
+        <span class="c1"># R = RigidBody.euler2rotmat(T*twist_angle_degrees)</span>
+        <span class="c1"># B_rotated = np.dot(R,B)</span>
+        <span class="c1"># N_rotated = np.dot(R,N)</span>
+
+        <span class="n">B_rotated</span> <span class="o">=</span> <span class="n">RigidBody</span><span class="o">.</span><span class="n">rotate_vector</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">twist_angle_radians</span><span class="p">)</span>
+        <span class="n">N_rotated</span> <span class="o">=</span> <span class="n">RigidBody</span><span class="o">.</span><span class="n">rotate_vector</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">twist_angle_radians</span><span class="p">)</span>
+        <span class="c1">#print(N_rotated,B_rotated)</span>
+        <span class="c1"># Directly modify the input frame</span>
+        <span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_rotated</span> 
+        <span class="n">frame</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B_rotated</span>
+        <span class="c1">#print(&#39;twist det:&#39;,np.linalg.det(np.array([N_rotated,B_rotated,T])))</span>
+        <span class="k">return</span> <span class="n">frame</span></div>
+
+
+<div class="viewcode-block" id="Twister.plot_twist_data">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister.plot_twist_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_twist_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">twists</span><span class="p">,</span> <span class="n">accumulated_twists</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the twist data.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            twists (list): List of twist angles.</span>
+<span class="sd">            accumulated_twists (list): List of accumulated twist angles.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">_</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twists</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Base pair steps&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Twist angle (degrees)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accumulated_twists</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Base pair steps&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accumulated twist angle (degrees)&#39;</span><span class="p">)</span></div>
+</div>
+
+    
+
+
+
+
+<div class="viewcode-block" id="Twister_old">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old">[docs]</a>
+<span class="k">class</span> <span class="nc">Twister_old</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">bp_per_turn</span><span class="o">=</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">modified_ranges</span><span class="o">=</span><span class="p">[],</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dLk</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the TwistFrames class.</span>
+
+<span class="sd">        If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360</span>
+<span class="sd">        Currently this is done by slightly increasing the twist angle for each base pair</span>
+<span class="sd">        The adjustment factor is stored in self.adjustment_factor</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spline: The spline object with frames to be twisted.</span>
+<span class="sd">            bp_per_turn (float, optional): Number of base pairs per turn. Default is 10.5.</span>
+<span class="sd">            modified_ranges (list, optional): List of tuples containing the start and end indices </span>
+<span class="sd">                                              of the modified ranges and the twist angle.</span>
+<span class="sd">            plot (bool, optional): Whether to plot the twist data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circular</span> <span class="o">=</span> <span class="n">circular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span> <span class="o">=</span> <span class="n">bp_per_turn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modified_ranges</span> <span class="o">=</span> <span class="n">modified_ranges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="n">plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="o">=</span> <span class="n">dLk</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adjusting twist angles to match the given Delta linking number: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dLk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># self.twists = []</span>
+        <span class="c1"># self.accumulated_twists = []</span>
+   
+<div class="viewcode-block" id="Twister_old.get_twist_angles">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old.get_twist_angles">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_twist_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bp_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the twist angle for a given base pair index.</span>
+<span class="sd">        Uses self.twist_angle (float): Standard B-DNA twist angle in degrees (or adjusted depending on dLk/closed).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            bp_index (int): The base pair index.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The twist angle for the given base pair index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if the base pair index falls within a modified range </span>
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">twist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modified_ranges</span><span class="p">:</span>
+            <span class="c1"># Set the custom twist angle if the base pair index falls within the modified range</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">bp_index</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">twist</span>
+        <span class="c1"># Else return the standard twist angle</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span></div>
+
+
+<div class="viewcode-block" id="Twister_old.rotate_basis">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old.rotate_basis">[docs]</a>
+    <span class="k">def</span> <span class="nf">rotate_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">twist_angle_degrees</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rotate the basis vectors.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            frame (np.ndarray): DNA frame of shape (1, 4, 3).</span>
+<span class="sd">            twist_angle_degrees (float): The angle to twist in degrees.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple: Rotated basis vectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">frame</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">frame</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> 
+        <span class="n">twist_angle_radians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+        <span class="c1"># twist_angle_radians = 0</span>
+        <span class="c1">#print(N,B, twist_angle_degrees)</span>
+        <span class="c1">#print(&#39;pre twist det:&#39;,np.linalg.det(np.array([N,B,T])))</span>
+        <span class="c1"># R = RigidBody.euler2rotmat(T*twist_angle_degrees)</span>
+        <span class="c1"># B_rotated = np.dot(R,B)</span>
+        <span class="c1"># N_rotated = np.dot(R,N)</span>
+
+        <span class="n">B_rotated</span> <span class="o">=</span> <span class="n">RigidBody</span><span class="o">.</span><span class="n">rotate_vector</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">twist_angle_radians</span><span class="p">)</span>
+        <span class="n">N_rotated</span> <span class="o">=</span> <span class="n">RigidBody</span><span class="o">.</span><span class="n">rotate_vector</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">twist_angle_radians</span><span class="p">)</span>
+        <span class="c1">#print(N_rotated,B_rotated)</span>
+        <span class="c1"># Directly modify the input frame</span>
+        <span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_rotated</span> 
+        <span class="n">frame</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B_rotated</span>
+        <span class="c1">#print(&#39;twist det:&#39;,np.linalg.det(np.array([N_rotated,B_rotated,T])))</span>
+        <span class="k">return</span> <span class="n">frame</span></div>
+
+
+<div class="viewcode-block" id="Twister_old.plot_twist_data">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old.plot_twist_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_twist_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">twists</span><span class="p">,</span> <span class="n">accumulated_twists</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the twist data.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            twists (list): List of twist angles.</span>
+<span class="sd">            accumulated_twists (list): List of accumulated twist angles.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">_</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">twists</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Base pair steps&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Twist angle (degrees)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">accumulated_twists</span><span class="p">))</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Base pair steps&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accumulated twist angle (degrees)&#39;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="Twister_old.adjust_to_dLk">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old.adjust_to_dLk">[docs]</a>
+    <span class="k">def</span> <span class="nf">adjust_to_dLk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adjust the twist angles to match the given Delta linking number.&quot;&quot;&quot;</span>
+        <span class="n">current_twist_number</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span><span class="o">/</span><span class="mi">360</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Current twist number: </span><span class="si">{</span><span class="n">current_twist_number</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">old_twist_angle</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_twist_number</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">current_twist_number</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span>
+        <span class="c1">#print(current_twist_number, new_twist_number, self.dLk)</span>
+
+        <span class="c1"># Change the twist angles to match the new twist</span>
+        <span class="n">new_twist_angle</span> <span class="o">=</span> <span class="n">new_twist_number</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#print(old_twist_angle, new_twist_angle)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Old twist angle per base pair: </span><span class="si">{</span><span class="n">old_twist_angle</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Adjusted twist angle per base pair: </span><span class="si">{</span><span class="n">new_twist_angle</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> degrees</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_twist_angle</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_compute_and_plot_twists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute twists for the DNA frames based on the given twist angle and optionally plot the data.</span>
+
+<span class="sd">        This function is currently a bit confusing as it does two things:</span>
+<span class="sd">        1. Compute the twist angles and accumulated twists for each base pair</span>
+<span class="sd">        2. Adjust the twist angles to match the given Delta linking number (if provided)</span>
+
+<span class="sd">        The latter requires recomputing the twist angles based on the adjusted twist angle and accumulated twists.</span>
+<span class="sd">        Maybe there is a more elegant way to separate these two functionalities.</span>
+<span class="sd">        However, the current implementation seems to work for the intended purpose.</span>
+<span class="sd">        Also the adjusted dLk requires the twist angles to be computed first, so it&#39;s a bit intertwined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get number of base pairs and initialize twist angl</span>
+        <span class="n">n_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span>
+        <span class="n">total_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">))</span>
+
+        <span class="c1"># Adjust the twist angles for circular DNA</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+            <span class="c1"># If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360</span>
+            <span class="c1"># Currently this is done by slightly increasing the twist angle for each base pair</span>
+            <span class="n">total_twist</span> <span class="o">=</span> <span class="p">((</span><span class="n">total_twist</span> <span class="o">//</span> <span class="mi">360</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="n">total_twist</span> <span class="o">/</span> <span class="n">n_bp</span>
+
+        <span class="c1"># Collect the twist angles and accumulated twists for each base pair</span>
+        <span class="k">for</span> <span class="n">bp_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">):</span>
+            <span class="c1"># Recompute the twist angles based on the adjusted twist angle</span>
+            <span class="n">twist_angle_degrees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">)</span>
+            <span class="n">accumulated_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">))</span>
+            <span class="c1"># Store the twist angles and accumulated twists</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accumulated_twist</span><span class="p">)</span>
+
+        <span class="c1"># Check if the twist angles need to be adjusted to match the given Delta linking number</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust_to_dLk</span><span class="p">()</span>
+            <span class="c1"># Flush old twist data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">=</span><span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">=</span><span class="p">[]</span>  
+            
+        <span class="c1"># Adjusting the basis vectors (indexing from 1 onwards)</span>
+        <span class="k">for</span> <span class="n">bp_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">):</span>
+            
+            <span class="c1"># If dLk is not None, adjust the twist angles to match the given Delta linking number</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Recompute the twist angles based on the adjusted twist angle</span>
+                <span class="n">twist_angle_degrees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">)</span>
+                <span class="n">accumulated_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">))</span>
+                <span class="c1"># Store the twist angles and accumulated twists</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accumulated_twist</span><span class="p">)</span>
+
+            <span class="c1"># Adjusting only the basis vectors (indexing from 1 onwards)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotate_basis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">])</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_twist_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Twister_old.set_twist_angles">
+<a class="viewcode-back" href="../../pymdna.html#pymdna.spline.Twister_old.set_twist_angles">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_twist_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Initialize the twist angles and accumulated twists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_bp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">)</span>  </div>
+
+
+
+    <span class="k">def</span> <span class="nf">_compute_and_plot_twists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute twists for the DNA frames based on the given twist angle and optionally plot the data.</span>
+
+<span class="sd">        This function is currently a bit confusing as it does two things:</span>
+<span class="sd">        1. Compute the twist angles and accumulated twists for each base pair</span>
+<span class="sd">        2. Adjust the twist angles to match the given Delta linking number (if provided)</span>
+
+<span class="sd">        The latter requires recomputing the twist angles based on the adjusted twist angle and accumulated twists.</span>
+<span class="sd">        Maybe there is a more elegant way to separate these two functionalities.</span>
+<span class="sd">        However, the current implementation seems to work for the intended purpose.</span>
+<span class="sd">        Also the adjusted dLk requires the twist angles to be computed first, so it&#39;s a bit intertwined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get number of base pairs and initialize twist angl</span>
+        <span class="n">n_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bp_per_turn</span>
+        <span class="n">total_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_twist_angles</span><span class="p">()</span> 
+  
+
+        <span class="c1"># Adjust the twist angles for circular DNA</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+            <span class="c1"># If circular DNA, adjust the twist angles to ensure the total twist is a multiple of 360</span>
+            <span class="c1"># Currently this is done by slightly increasing the twist angle for each base pair</span>
+            <span class="n">total_twist</span> <span class="o">=</span> <span class="p">((</span><span class="n">total_twist</span> <span class="o">//</span> <span class="mi">360</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="n">total_twist</span> <span class="o">/</span> <span class="n">n_bp</span>
+            <span class="c1"># Update the twist angles and accumulated twists</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_twist_angles</span><span class="p">()</span>
+
+
+        <span class="c1"># Collect the twist angles and accumulated twists for each base pair</span>
+        <span class="k">for</span> <span class="n">bp_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">):</span>
+            <span class="c1"># Recompute the twist angles based on the adjusted twist angle</span>
+            <span class="n">twist_angle_degrees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">)</span>
+            <span class="n">accumulated_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">))</span>
+            <span class="c1"># Store the twist angles and accumulated twists</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accumulated_twist</span><span class="p">)</span>
+
+        <span class="c1"># Check if the twist angles need to be adjusted to match the given Delta linking number</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twist_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adjust_to_dLk</span><span class="p">()</span>
+            <span class="c1"># Flush old twist data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">=</span><span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">=</span><span class="p">[]</span>  
+
+
+            
+        <span class="c1"># Adjusting the basis vectors (indexing from 1 onwards)</span>
+        <span class="k">for</span> <span class="n">bp_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bp</span><span class="p">):</span>
+            
+            <span class="c1"># If dLk is not None, adjust the twist angles to match the given Delta linking number</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dLk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Recompute the twist angles based on the adjusted twist angle</span>
+                <span class="n">twist_angle_degrees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">)</span>
+                <span class="n">accumulated_twist</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_twist_angles</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span> <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bp_idx</span><span class="p">))</span>
+                <span class="c1"># Store the twist angles and accumulated twists</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">twist_angle_degrees</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accumulated_twist</span><span class="p">)</span>
+
+            <span class="c1"># Adjusting only the basis vectors (indexing from 1 onwards)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotate_basis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="p">[</span><span class="n">bp_idx</span><span class="p">])</span>
+            
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_twist_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">twists</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">accumulated_twists</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">mdna</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pymdna</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../pymdna.html">pymdna</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Thor van Heesch.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

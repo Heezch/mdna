@@ -5,136 +5,126 @@ from .generators import SequenceGenerator, StructureGenerator
 from .modifications import Mutate, Hoogsteen, Methylate
 from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
 from .build import Build
+import matplotlib.pyplot as plt
 
 import numpy as np
 
-def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
-    """Load DNA representation from:
-        - mean reference frames/spline frames
-        - or trajectory
-    Args:
-        frames: reference frames
-        traj: trajectory
-        chainids: chain ids"""
-
-    if traj is not None and frames is None:
-        # check if chaind ids correspond to nucleic acids
-        sequence = get_sequence_letters(traj,leading_chain=chainids[0])
-        n_bp = len(sequence)
-
-    elif frames is not None and sequence is not None and traj is None:
-        # check shape of frames
-        if frames.shape[1] != len(sequence):
-            raise ValueError('Number of base pairs in the sequence and frames do not match')
-        n_bp = frames.shape[1]
-
-    elif frames is not None and sequence is None:
-        raise ValueError('Provide a sequence along with reference frames.')
-    elif traj is not None and frames is not None:
-        raise ValueError('Provide either a trajectory or reference frames, not both')
-    elif traj is None and frames is None:
-        raise ValueError('Provide either a trajectory or reference frames')
-
-    return Nucleic(sequence=sequence, n_bp=n_bp, traj=traj, frames=frames, chainids=chainids)
-
-
-
-class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
-
-        def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None):
-            """Initialize the DNA structure
-            Args:
-                sequence: DNA sequence
-                n_bp: number of base pairs
-                traj: trajectory
-                frames: reference frames
-                chainids: chain ids"""
-
-            self.sequence, self.n_bp = _check_input(sequence=sequence, n_bp=n_bp)
-            self.traj = traj
-            self.frames = frames
-            self.chainids = chainids
-
-
-        def frames_to_traj(self):
-            """Convert reference frames to trajectory"""
-            if not hasattr(self, 'frames'):
-                raise ValueError('Load reference frames first')
-            self.traj = StructureGenerator(frames=self.frames, sequence=self.sequence).get_traj()
-
-        def get_traj(self):
-            """Get the trajectory"""
-            if not hasattr(self, 'traj'):
-                self.frames_to_traj()
-            return self.traj
-        
-        # def compute_rigid_parameters(self):
-        #     if not hasattr(self, 'traj'):
-        #         raise ValueError('Load or generate a trajectory first')
-        #     self.rigid = NucleicFrames(self.traj, self.chainids)
-        
-        def get_frames(self):
-            """Get the reference frames of the DNA structure belonging to the base steps:
-            Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
-            where n_frames is the number of frames, n_bp is the number of base pairs, 
-            and 4 corresponds to the origin and the 3 vectors of the reference frame"""
-
-            if not hasattr(self, 'rigid'):
-                self.get_rigid_parameters()
-            return self.rigid.mean_reference_frames
-
-        def compute_torsions(self):
-            pass
-        def compute_grooves(self):
-            pass
-
-
 
 def _check_input(sequence=None, n_bp=None):
+    """Check the input sequence and number of base pairs"""
 
     if sequence is None and n_bp is not None:
         sequence = ''.join(np.random.choice(list('ACGT'), n_bp))
-        print('Random sequence:', sequence)
+        print('Random sequence:', sequence,'\n')
 
     elif sequence is not None and n_bp is None:
         n_bp = len(sequence)
-        print('Sequence:', sequence)
-        print('Number of base pairs:', n_bp)
 
     elif sequence is None and n_bp is None:
         sequence = 'CGCGAATTCGCG'
         n_bp = len(sequence)
         print('Default sequence:', sequence)
-        print('Number of base pairs:', n_bp)
+        print('Number of base pairs:', n_bp,'\n')
 
     elif sequence is not None and n_bp is not None:
         if n_bp != len(sequence):
-            raise ValueError('Sequence length and n_bp do not match')
-        print('Sequence:', sequence)
-        print('Number of base pairs:', n_bp)
-        
+            raise ValueError('Sequence length and n_bp do not match','\n')
     return sequence, n_bp
 
 
-def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, output='GROMACS'):
-    """Sequence to MDtraj object with option to save as pdb file 
-        adhering to the AMBER force field format
-        Args:
-            sequence: DNA sequence
-            filename: name of the pdb file
-            save: save the pdb file
-            output: GROMACS or AMBER
-        Returns:
-            mdtraj trajectory"""
+def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
+    """Load DNA representation from:
+        - base step mean reference frames/spline frames
+        - or MDtraj trajectory
+    Args:
+        frames: np.array 
+            base step mean reference frames of shape (n_bp, n_timesteps, 4, 3)
+            or (n_bp, 4, 3)
+        traj: object
+            mdtraj trajectory
+        sequence: str
+            DNA sequence corresponding to the frames
+        chainids: list
+            chain ids of the DNA structure
+    Returns:
+        Nucleic object
+    Raises:
+        ValueError: If the input arguments are not consistent or missing required information.
+    """
+    if traj is not None:
+        if frames is not None:
+            raise ValueError('Provide either a trajectory or reference frames, not both')
+        # Extract sequence from the trajectory
+        sequence = get_sequence_letters(traj, leading_chain=chainids[0])
+        n_bp = len(sequence)
+        frames = None  # Nucleic class will handle extraction from traj
 
-    sequence, _ = _check_input(sequence=sequence)
+    elif frames is not None:
+        if frames.ndim == 3:
+            # Case (n_bp, 4, 3)
+            frames = np.expand_dims(frames, axis=1)
+        if frames.ndim != 4:
+            raise ValueError('Frames should be of shape (n_bp, n_timesteps, 4, 3) or (n_bp, 4, 3)')
+        n_bp = frames.shape[0]
+        if sequence is not None:
+            if len(sequence) != n_bp:
+                raise ValueError('Number of base pairs in the sequence and frames do not match')  
+            else:
+                sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)      
+    else:
+        raise ValueError('Provide either a trajectory or reference frames')
+        
+    return Nucleic(sequence=sequence, n_bp=n_bp, traj=traj, frames=frames, chainids=chainids)
+
+
+def compute_rigid_parameters(traj, chainids=[0,1]):
+    """Compute the rigid base parameters of the DNA structure
+    Args:
+        traj: trajectory
+        chainids: chain ids
+    Returns:
+        rigid base object"""
+
+    return NucleicFrames(traj, chainids)
+
+
+def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None):
+    """_summary_
+
+    Parameters
+    ----------
+    sequence : str, optional
+        DNA sequence code, by default 'CGCGAATTCGCG'
+    filename : str, optional
+        filename for pdb output, by default 'my_dna'
+    save : bool, optional
+        boolean to save pdb or not, by default True
+    output : str, optional
+        Type of pdb DNA format, by default 'GROMACS'
+    shape : ndarray, optional
+        control_points of shape (n,3) with n > 3 that is used for spline interpolation to determine DNA shape, by default None which is a straight line
+    n_bp : _type_, optional
+        Number of base pairs to scale shape with, by default None then sequence is used to determine n_bp
+    circular : bool, optional
+        Key that tells if structure is circular/closed, by default False
+    dLk : int, optional
+        Change in twist in terms of Linking number of DNA structure to output, by default None (neutral twist base on bp_per_turn = 10.5)
+
+    Returns
+    -------
+    MDtraj object
+        returns MDtraj trajectory object of DNA structure (containing only a single frame)
+    """
+
+    sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
 
     # Linear strand of control points 
-    point = Shapes.line((len(sequence)-1)*0.34)
-    # Convert the control points to a spline
-    spline = SplineFrames(point)
+    if shape is None:
+        shape = Shapes.line(length=1)
+        # Convert the control points to a spline
+    spline = SplineFrames(control_points=shape, nbp=n_bp,closed=circular,dLk=dLk)
     # Generate the DNA structure
-    generator = StructureGenerator(sequence=sequence,spline=spline)
+    generator = StructureGenerator(sequence=sequence,spline=spline, circular=circular)
 
     # Edit the DNA structure to make it compatible with the AMBER force field
     traj = generator.traj
@@ -149,7 +139,7 @@ def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, outpu
 
     return traj
 
-def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False):
+def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False,  filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None):
     """Simulate DNA sequence using OpenMM
         Args:
             sequence: DNA sequence
@@ -170,11 +160,10 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         openmm_available = False
         print("Openmm is not installed. You shall not pass.")
 
-    pdb = sequence_to_pdb(sequence=sequence)
+    pdb = sequence_to_pdb(sequence=sequence, filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None)
     
     if not openmm_available:
         print('But here is your DNA structure')
-        pdb = sequence_to_pdb(sequence=sequence)
         return pdb
     else:
         if time_unit == 'picoseconds':
@@ -215,43 +204,199 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         print('Saved trajectory as:', f'./{sequence}'+'.h5')
         traj = md.load_hdf5(f'./{sequence}'+'.h5')
         return traj
-    
-def plot_parameters(parameters, names, fig=None, ax=None, mean=True, std=True,figsize=[10,3.5], save=False):
-    """Plot the rigid base parameters of the DNA structure
-    Args:
-        parameters: rigid base parameters
-        names: parameter names
-        fig: figure
-        ax: axis
-        mean: plot mean
-        std: plot standard deviation
-        figsize: figure size
-        save: save figure
-    Returns:
-        figure, axis"""
 
-    import matplotlib.pyplot as plt
-    if fig is None and ax is None:
-        fig,ax = plt.subplots(2,6, figsize=figsize)
-    
-    ax = ax.flatten()
-    for _,name in enumerate(names):
-        if _ > 5:
-            color = 'coral'
-        else:
-            color = 'cornflowerblue'
 
-        para = parameters[:,:,names.index(name)]
-        mean = np.mean(para, axis=0)
-        std = np.std(para, axis=0)
-        x = range(len(mean))
-        #ax[_].errorbar(x,mean, yerr=std, fmt='-', color=color)
-        ax[_].fill_between(x, mean-std, mean+std, color=color, alpha=0.2)
-        ax[_].plot(mean, color=color,lw=1)    
-        ax[_].scatter(x=x,y=mean,color=color,s=10)
-        ax[_].set_title(name)
+class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
+        
+        """Contains mdna DNA structure with reference frames and trajectory"""
 
-    fig.tight_layout()
-    if save:
-        fig.savefig('parameters.png')
-    return fig, ax 
+        def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None):
+            """Initialize the DNA structure
+            Args:
+                sequence: DNA sequence
+                n_bp: number of base pairs
+                traj: trajectory
+                frames: reference frames
+                chainids: chain ids"""
+
+            self.sequence, self.n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+            self.traj = traj
+            self.frames = frames
+            self.chainids = chainids
+            self.circular = self._is_circular()
+            self.rigid = None # Container for rigid base parameters class output
+
+        def describe(self):
+            """Print the DNA structure information"""
+            print(f'{"Circular " if self.circular else ""}DNA structure with {self.n_bp} base pairs')
+            print('Sequence:', ''.join(self.sequence))
+            if self.traj is not None:
+                print('Trajectory:',self.traj)
+            else:
+                print('Trajectory not loaded')
+            if self.frames is not None:
+                print('Frames: ', self.frames.shape)
+            else:
+                print('Frames not loaded')
+                
+        def frames_to_traj(self, frame=-1):
+            """Convert reference frames to trajectory"""
+            if self.frames is None:
+                raise ValueError('Load reference frames first')
+            self.traj = StructureGenerator(frames=self.frames[:,frame,:,:], sequence=self.sequence, circular=self.circular).get_traj()
+        
+        def traj_to_frames(self):
+            """Convert trajectory to reference frames"""
+            if self.traj is None:
+                raise ValueError('Load trajectory first')
+            self.rigid = NucleicFrames(self.traj, self.chainids)
+            self.frames =self.rigid.frames
+        
+        def get_frames(self):
+            """Get the reference frames of the DNA structure belonging to the base steps:
+            Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
+            where n_frames is the number of frames, n_bp is the number of base pairs, 
+            and 4 corresponds to the origin and the 3 vectors of the reference frame"""
+            if self.frames is None:
+                self.traj_to_frames()
+            return self.frames
+        
+        def get_traj(self):
+            """Get the trajectory"""
+            if self.traj is None:
+                self.frames_to_traj()
+            return self.traj
+        
+        def get_rigid_parameters(self):
+            """Get the rigid base parameters class object of the DNA structure"""
+            if self.rigid is None and self.traj is not None:
+                self.rigid = NucleicFrames(self.traj, self.chainids)
+                return self.rigid
+            elif self.rigid is None and self.traj is None:
+                self.frames_to_traj()
+                self.rigid = NucleicFrames(self.traj, self.chainids)
+                return self.rigid
+            else:
+                return self.rigid
+        
+        def _is_circular(self, frame=0):
+            """Detect if the DNA structure is circular for a given chain and frame
+
+            Parameters
+            ----------
+            chainid : int, optional
+                ID of the chain to check, by default 0
+            frame : int, optional
+                Frame index to check, by default 0
+
+            Returns
+            -------
+            bool
+                True if the DNA is circular, False otherwise
+            """
+            if self.frames is None:
+                self.traj_to_frames()
+                
+            start = self.frames[0,frame,0]
+            end = self.frames[-1,frame,0]
+            
+            distance = np.linalg.norm(start - end)
+            return distance < 0.4 # 0.34 nm is the distance between base pairs
+        
+
+        # REBUILDING DNA STRUCTURE
+        
+        # def equilibrate(self,frame=0):
+        #     """Equilibrate the DNA structure"""
+        #     pass
+
+
+        # PLOTTING DNA STRUCTURE
+        
+        def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2,color='k'):
+            """Plot the DNA structure of a chain"""
+            phosphor  = traj.top.select(f'name P and chainid {chainid}')
+            ax.plot(traj.xyz[frame,phosphor,0],traj.xyz[frame,phosphor,1],traj.xyz[frame,phosphor,2],'-o',c=color,markersize=markersize*1.2,lw=lw)
+
+
+        def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2, color='k'):
+            """Plot the DNA structure of a chain"""
+            phosphor = traj.top.select(f'name P and chainid {chainid}')
+            x = traj.xyz[frame, phosphor, 0]
+            y = traj.xyz[frame, phosphor, 1]
+            z = traj.xyz[frame, phosphor, 2]
+            
+            ax.plot(x, y, z, '-o', c=color, markersize=markersize*1.2, lw=lw)
+            
+            if self.circular:
+                # Connect the last point to the first point
+                ax.plot([x[-1], x[0]], [y[-1], y[0]], [z[-1], z[0]], '-o', c=color, markersize=markersize*1.2, lw=lw)
+
+        def _plot_helical_axis(self, ax, frame, lw=1):
+            helical_axis = self.frames[:,frame,0]
+            ax.plot(helical_axis[:,0],helical_axis[:,1],helical_axis[:,2],':',c='k',lw=lw*0.7)
+            if self.circular:
+                ax.plot([helical_axis[-1,0],helical_axis[0,0]],[helical_axis[-1,1],helical_axis[0,1]],[helical_axis[-1,2],helical_axis[0,2]],':',c='k',lw=lw*0.7)
+
+        def draw(self, ax=None, fig=None, save=False, frame=0, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey'):
+            """Draw 3D representation of the DNA structure with optial helical axis, backbone, lead, anti, and triads
+
+            Parameters
+            ----------
+            ax : object, optional
+                matplotlib axis, by default None
+            fig : object, optional
+                figure axis, by default None
+            save : bool, optional
+                save image with name png, by default False
+            frame : int, optional
+                index of trajectory to visualize, by default 0
+            markersize : int, optional
+                width of backbone plot, by default 2
+            helical_axis : bool, optional
+                central axis passing through frame orgins, by default True
+            backbone : bool, optional
+                'o-' line plot through phosphor atoms, by default True
+            lead : bool, optional
+                plot leading strand, by default False
+            anti : bool, optional
+                plot anti sense opposing leading strand, by default False
+            triads : bool, optional
+                plot triads in order of  b_L (blue), b_N (green), b_T (red), by default False
+            length : float, optional
+                length of triad vectors, by default 0.23
+            """
+
+            # TODO: handle circular DNA and when trajetory is not loaded make frames uniform 
+            # in shape (time/n_frames, n_bp, 4, 3)
+
+            if self.traj is None:
+                self.frames_to_traj()
+            elif self.frames is None:
+                self.traj_to_frames()
+                    
+            if fig is None and ax is None:
+                fig = plt.figure()#figsize=(4,4))
+                ax = fig.add_subplot(111, projection='3d')
+
+            if backbone:
+                lead = True
+                anti = True
+            if lead:
+                self._plot_chain(ax, self.traj, 0, frame=frame, markersize=markersize, lw=lw, color=color_lead)
+            if anti:
+                self._plot_chain(ax, self.traj, 1, frame=frame, markersize=markersize, lw=lw, color=color_anti)
+            if helical_axis:
+                self._plot_helical_axis(ax, frame=frame, lw=lw)
+            if triads:
+                for triad in self.frames:
+                    triad = triad[frame]
+                    ax.scatter(triad[0,0],triad[0,1],triad[0,2],c='k',s=markersize*1.2)
+                    ax.quiver(triad[0,0],triad[0,1],triad[0,2],triad[1,0],triad[1,1],triad[1,2],color='b',length=length)
+                    ax.quiver(triad[0,0],triad[0,1],triad[0,2],triad[2,0],triad[2,1],triad[2,2],color='g',length=length)
+                    ax.quiver(triad[0,0],triad[0,1],triad[0,2],triad[3,0],triad[3,1],triad[3,2],color='r',length=length)
+            
+            ax.axis('equal')
+            ax.axis('off')
+            if save:
+                fig.savefig('dna.png', dpi=300,bbox_inches='tight')
