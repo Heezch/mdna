@@ -9,6 +9,12 @@ import pmcpy.run.equilibrate as em
 from pmcpy.run.run import Run
 import copy
 
+class Minimize:
+
+    def __init__(self, )
+
+
+
 class Build:
 
     def __init__(self, dna_a, dna_b=None, five_end='A', three_end='B', margin=1):
@@ -23,7 +29,49 @@ class Build:
         self.tolerance = np.abs((360 / 10.4) - (360 / 10.6))
 
     def _initialize_pmcpy(self):
-  
+
+         # make a random seque`nce for the new spline
+        if sequence is None:
+            sequence = self.dna_a.sequence
+        spline = self.dna_a.spline
+
+        pos, triads = self.get_pos_and_triads(spline)
+        mc = Run(triads=triads,positions=pos,sequence=sequence,closed=closed,endpoints_fixed=endpoints_fixed,fixed=fixed,temp=300,exvol_rad=exvol_rad)
+        return  mc, spline
+
+
+    def _get_positions_and_triads(self, out):
+        positions =out['confs'][:,:,:3,3] # get the last positions
+        triads = out['confs'][:,:,:3,:3]
+        out['triads'] = triads[-1]
+        out['positions'] = positions[-1]
+
+        return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
+
+    def minimize(self, simple=True):
+
+        minimizer = self._initialize_pmcpy()    
+        if simple:
+            out = minimizer.equilibrate_simple(equilibrate_writhe=False)
+        else:
+            out = minimizer.equilibrate()
+
+        positions, triads = self._get_positions_and_triads(out)
+
+        self.update_spline(spline, out)
+
+    def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
+        """Run the Monte Carlo simulation."""
+
+        mc = self._initialize_pmcpy()
+        out = mc.run(cycles=cycles, dump_every=dump_every, start_id=start_id)
+
+        positions, triads = self._get_positions_and_triads(out)
+
+
+
+
+
         #pmc = Run(triads=triads,positions=positions,sequence=None,closed=False,endpoints_fixed=False,fixed=[],temp=300,exvol_rad=1)
         
         # use .run(cycles: int, dump_every: int = 0, start_id: int = 0) 
@@ -61,8 +109,15 @@ class Build:
                                         num_below_max = 3)
         #self.update_spline(spline, out)
 
-        #dna = StructureGenerator(self.dna_a.spline,sequence=sequence)
-        return out
+        positions =out['confs'][-1,:,:3,3] # get the last positions
+        triads = out['confs'][-1,:,:3,:3] # get the last triads 
+        traids = triads.transpose((0, 2, 1)) # transpose the triad to flip the rows and columns vectors
+        out['triads'] = triads
+        out['positions'] = positions
+        self.out = out
+        self.update_spline(spline, out)
+        dna = StructureGenerator(self.dna_a.spline,sequence=sequence)
+        return dna
 
 
 
@@ -80,7 +135,6 @@ class Build:
                                         fixed=fixed, 
                                         exvol_rad=exvol_rad
                                         )
-        
 
         dna = StructureGenerator(self.dna_a.spline,sequence=sequence)
         return dna 
@@ -95,6 +149,10 @@ class Build:
         spline.frames[:,1:,:] = out['triads'].transpose((0, 2, 1))# set the triads of the frames as row vectors
         
     def minimize_spline(self,spline, fixed=[], closed=False, sequence=None, endpoints_fixed=False, exvol_rad=0):
+
+        """ Minimize the spline using the fixed frames of A and B.
+        Note does not work with excluded volumes yet"""
+
         # get the positions and triads of the base pair frames
         pos, triads = self.get_pos_and_triads(spline)
 
@@ -104,9 +162,19 @@ class Build:
 
 
         # start with temperature annealing at 100000K
-        out  = em.equilibrate(triads,pos,sequence=sequence,closed=closed,endpoints_fixed=endpoints_fixed,fixed=fixed,temp=100000,num_cycles=100,exvol_rad=exvol_rad)
-        # then do a final equilibration at 300K
+        out  = em.equilibrate(triads,pos,sequence=sequence,closed=closed,endpoints_fixed=endpoints_fixed,fixed=fixed,temp=100000,num_cycles=100,exvol_rad=0)
+        positions =out['confs'][-1,:,:3,3] # get the last positions
+        triads = out['confs'][-1,:,:3,:3] # get the last triads 
+        traids = triads.transpose((0, 2, 1)) # transpose the triad to flip the rows and columns vectors
+        out['triads'] = triads
+        out['positions'] = positions
+
         out = em.equilibrate(out['triads'],out['positions'],sequence=sequence,closed=closed,endpoints_fixed=endpoints_fixed,fixed=fixed,temp=300,exvol_rad=exvol_rad)
+        positions =out['confs'][-1,:,:3,3] # get the last positions
+        triads = out['confs'][-1,:,:3,:3] # get the last triads 
+        traids = triads.transpose((0, 2, 1)) # transpose the triad to flip the rows and columns vectors
+        out['triads'] = triads
+        out['positions'] = positions
         #pmc = Run(out_hot['triads'],out_hot['positions'],sequence=sequence,closed=closed,endpoints_fixed=endpoints_fixed,fixed=fixed,temp=300,exvol_rad=exvol_rad)
         #out = pmc.equilibrate()
         # update the spline with the new positions and triads

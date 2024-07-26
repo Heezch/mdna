@@ -76,7 +76,7 @@ Refs:
 
 class SplineFrames:
     
-    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],nbp=None,dLk=None):
+    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],n_bp=None,dLk=None):
         """
         Initializes the SplineFrames class.
 
@@ -100,7 +100,7 @@ class SplineFrames:
         self.up_vector = np.array(up_vector)
         self.frame_spacing = frame_spacing
         self.bp_per_turn = bp_per_turn
-        self.nbp = nbp
+        self.n_bp = n_bp
         self.dLk = dLk
         self.frame_tolerance = frame_tolerance
         self.initial_frame = initial_frame  # Added variable for the initial frame if we need to align the first frame with a given frame
@@ -117,7 +117,7 @@ class SplineFrames:
         self.distribute_points()
         self.test_frames()
         
-        if self.nbp is not None:
+        if self.n_bp is not None:
             print(f"""\nStart rescaling spline based on requested number of base pairs.\n\tThis requires recomputation of the control points to match the desired number of base pairs.""")
             self._scale_to_nbp()
 
@@ -395,10 +395,10 @@ class SplineFrames:
 
         # Set the target number of base pairs, current number of base pairs, and total length of the spline
         if self.closed:
-            target_bp = self.nbp
+            target_bp = self.n_bp
         else:
-            target_bp = self.nbp - 1
-        current_nbp = self.frames.shape[0]
+            target_bp = self.n_bp - 1
+        current_n_bp = self.frames.shape[0]
         total_length = self.arc_length[-1] 
 
         # Compute the ratio to scale the spline to match the target number of base pairs
@@ -409,8 +409,8 @@ class SplineFrames:
         self.update_control_points(new_control_points)  
         
         # Check if the number of base pairs matches the target
-        if self.frames.shape[0] == self.nbp:
-            print(f"\tSpline scaled to match the target number of base pairs: {self.nbp}\n")
+        if self.frames.shape[0] == self.n_bp:
+            print(f"\tSpline scaled to match the target number of base pairs: {self.n_bp}\n")
         else:
             print(f"\tError: Spline could not be scaled to match the target number of base pairs: {target_bp}")
             print("\tNew number of base pairs:", self.frames.shape[0])

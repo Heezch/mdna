@@ -6,7 +6,7 @@ from .modifications import Mutate, Hoogsteen, Methylate
 from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
 from .build import Build
 import matplotlib.pyplot as plt
-
+from typing import Any, Callable, Dict, List, Tuple
 import numpy as np
 
 
@@ -51,30 +51,26 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
     Raises:
         ValueError: If the input arguments are not consistent or missing required information.
     """
-    if traj is not None:
-        if frames is not None:
-            raise ValueError('Provide either a trajectory or reference frames, not both')
-        # Extract sequence from the trajectory
-        sequence = get_sequence_letters(traj, leading_chain=chainids[0])
-        n_bp = len(sequence)
-        frames = None  # Nucleic class will handle extraction from traj
+    return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids)
 
-    elif frames is not None:
-        if frames.ndim == 3:
-            # Case (n_bp, 4, 3)
-            frames = np.expand_dims(frames, axis=1)
-        if frames.ndim != 4:
-            raise ValueError('Frames should be of shape (n_bp, n_timesteps, 4, 3) or (n_bp, 4, 3)')
-        n_bp = frames.shape[0]
-        if sequence is not None:
-            if len(sequence) != n_bp:
-                raise ValueError('Number of base pairs in the sequence and frames do not match')  
-            else:
-                sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)      
-    else:
-        raise ValueError('Provide either a trajectory or reference frames')
-        
-    return Nucleic(sequence=sequence, n_bp=n_bp, traj=traj, frames=frames, chainids=chainids)
+def make(control_points: np.ndarray, sequence: str = None,closed: bool = False, n_bp : int = None, dLk : int = None):
+    """Generate DNA structure from sequence and control points
+    Args:
+        sequence: DNA sequence
+        control_points: control points of shape (n,3) with n > 3
+        closed: is the DNA structure circular
+        n_bp: number of base pairs to scale shape with
+        dLk: Change in twist in terms of Linking number of DNA structure to output
+    Returns:
+        Nucleic object"""
+
+
+    sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+    spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=closed, dLk=dLk)
+    generator = StructureGenerator(sequence=sequence, spline=spline, circular=closed)
+    frames = generator.frames
+
+    return Nucleic(sequence=sequence, n_bp=n_bp, frames=frames, chainids=[0,1])
 
 
 def compute_rigid_parameters(traj, chainids=[0,1]):
@@ -122,7 +118,7 @@ def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, outpu
     if shape is None:
         shape = Shapes.line(length=1)
         # Convert the control points to a spline
-    spline = SplineFrames(control_points=shape, nbp=n_bp,closed=circular,dLk=dLk)
+    spline = SplineFrames(control_points=shape, n_bp=n_bp,closed=circular,dLk=dLk)
     # Generate the DNA structure
     generator = StructureGenerator(sequence=sequence,spline=spline, circular=circular)
 
@@ -206,7 +202,15 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         return traj
 
 
-class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
+
+
+
+# class Minimize:
+#     def 
+#NucleicFrames, Mutate, Hoogsteen, Methylate, Build, Minimize):
+
+
+class Nucleic():
         
         """Contains mdna DNA structure with reference frames and trajectory"""
 
@@ -219,7 +223,32 @@ class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
                 frames: reference frames
                 chainids: chain ids"""
 
-            self.sequence, self.n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+
+            if traj is not None:
+                if frames is not None:
+                    raise ValueError('Provide either a trajectory or reference frames, not both')
+                # Extract sequence from the trajectory
+                sequence = get_sequence_letters(traj, leading_chain=chainids[0])
+                n_bp = len(sequence)
+                frames = None  # Nucleic class will handle extraction from traj
+
+            elif frames is not None:
+                if frames.ndim == 3:
+                    # Case (n_bp, 4, 3)
+                    frames = np.expand_dims(frames, axis=1)
+                if frames.ndim != 4:
+                    raise ValueError('Frames should be of shape (n_bp, n_timesteps, 4, 3) or (n_bp, 4, 3)')
+                n_bp = frames.shape[0]
+                if sequence is not None:
+                    if len(sequence) != n_bp:
+                        raise ValueError('Number of base pairs in the sequence and frames do not match')  
+                    else:
+                        sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)      
+            else:
+                raise ValueError('Provide either a trajectory or reference frames')
+
+
+            self.sequence, self.n_bp = sequence, n_bp
             self.traj = traj
             self.frames = frames
             self.chainids = chainids
@@ -312,12 +341,7 @@ class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
 
 
         # PLOTTING DNA STRUCTURE
-        
-        def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2,color='k'):
-            """Plot the DNA structure of a chain"""
-            phosphor  = traj.top.select(f'name P and chainid {chainid}')
-            ax.plot(traj.xyz[frame,phosphor,0],traj.xyz[frame,phosphor,1],traj.xyz[frame,phosphor,2],'-o',c=color,markersize=markersize*1.2,lw=lw)
-
+    
 
         def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2, color='k'):
             """Plot the DNA structure of a chain"""
@@ -338,7 +362,7 @@ class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
             if self.circular:
                 ax.plot([helical_axis[-1,0],helical_axis[0,0]],[helical_axis[-1,1],helical_axis[0,1]],[helical_axis[-1,2],helical_axis[0,2]],':',c='k',lw=lw*0.7)
 
-        def draw(self, ax=None, fig=None, save=False, frame=0, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey'):
+        def draw(self, ax=None, fig=None, save=False, frame=-1, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey'):
             """Draw 3D representation of the DNA structure with optial helical axis, backbone, lead, anti, and triads
 
             Parameters
@@ -400,3 +424,136 @@ class Nucleic(NucleicFrames, Mutate, Hoogsteen, Methylate, Build):
             ax.axis('off')
             if save:
                 fig.savefig('dna.png', dpi=300,bbox_inches='tight')
+
+        def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
+            """
+            Minimize the DNA structure.
+
+            Args:
+                frame (int): The trajectory frame to minimize. Defaults to -1.
+                simple (bool): Whether to use simple equilibration. Defaults to False.
+                equilibrate_writhe (bool): Whether to equilibrate writhe. Defaults to False. Only works for simple equilibration.
+                endpoints_fixed (bool): Whether the endpoints are fixed. Defaults to True.
+                fixed (list): List of fixed base pairs. Defaults to an empty list.
+                exvol_rad (float): Excluded volume radius. Defaults to 2.0.
+                temperature (int): Temperature for equilibration. Defaults to 300.
+                dump_every (int): Frequency of dumping frames. Defaults to 1.
+
+            Additional keyword arguments can be provided and will be passed to the minimizer.
+
+            Notes:
+
+                For the simple equilibation, we rely on checking whether the considered quantity starts to fluctuate around a fixed value. 
+                This options is compatible with With the argument equilibrate_writhe, which you can specify that writhe should also be considered for equilibration. 
+                
+                The other option is to use the full equilibration, which is based on the actual energy of the system.
+                We assume the energy to converge exponentially to the equilibrated value.
+                This works fairly well for most examples I checked but is not entirely robust. 
+                Considering autocorrelation has some issues when there are relaxations at different timescales.
+                Also, I wasn't able to use something consistent to equilibrate writhe, since that involves a barrier crossing. 
+                It is really non-trivial to set a criterion for whether or not a globally stable value is reached. 
+
+
+            Example:
+                nuc = load(traj)
+                nuc.minimize(simple=True, temperature=310, exvol_rad=2.5)
+            """
+            minimizer = Minimizer(self)
+            minimizer.minimize(frame=frame, exvol_rad=exvol_rad, temperature=temperature, simple=simple, equilibrate_writhe=equilibrate_writhe, endpoints_fixed=endpoints_fixed, fixed=fixed, dump_every=dump_every)    
+            #self.frames = minimizer.frames
+            self.frames_to_traj()
+
+
+
+class Minimizer:
+        
+        def __init__(self, nucleic):
+            # Dynamically set attributes from the nucleic instance
+            self.__dict__.update(nucleic.__dict__)
+
+            # Check if the required import is available
+            if not self.check_import():
+                raise ImportError("Run class from pmcpy.run.run is not available.")
+
+        def check_import(self):
+            try:
+                from pmcpy.run.run import Run
+                self.Run = Run  # Store the imported class in the instance
+                return True
+            except ImportError as e:
+                print(f"ImportError: {e}")
+                return False
+
+        def _initialize_mc_engine(self):
+            """Initialize the Monte Carlo engine"""
+    
+            
+            pos = self.frames[:,self.frame,0,:]
+            triads = self.frames[:,self.frame,1:,:].transpose(0,2,1) # flip row vectors to column vectors
+
+            mc = self.Run(triads=triads,positions=pos,
+                            sequence=self.sequence,
+                            closed=self.circular,
+                            endpoints_fixed=self.endpoints_fixed,
+                            fixed=self.fixed,
+                            temp=self.temperature,
+                            exvol_rad=self.exvol_rad)
+            return  mc
+
+            
+        def update_frames(self, out):
+ 
+            # update the spline with new positions and triads
+            self.frames[:,self.frame,0,:] = out['positions'] # set the origins of the frames
+            self.frames[:,self.frame,1:,:] = out['triads'].transpose(0,2,1) # set the triads of the frames as row vectors
+            
+
+        def _get_positions_and_triads(self, out):
+            """Get the positions and triads from the output"""
+
+            # get the positions and triads of the simulation
+            positions = out['confs'][:,:,:3,3] 
+            triads = out['confs'][:,:,:3,:3]
+
+            # get the last frames of the simulation
+            out['triads'] = triads[-1]
+            out['positions'] = positions[-1]
+
+            return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
+
+
+        def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
+
+            # Set the parameters
+            self.endpoints_fixed = endpoints_fixed
+            self.fixed = fixed
+            self.exvol_rad = exvol_rad
+            self.temperature = temperature
+            self.frame = frame
+
+            print('Minimize the DNA structure:\nsimple equilibration =', simple, 'equilibrate writhe =', equilibrate_writhe, 'excluded volume radius =', exvol_rad, 'temperature =', temperature)
+            minimizer = self._initialize_mc_engine()    
+            
+            # Run the Monte Carlo simulation
+            if simple:
+                out = minimizer.equilibrate_simple(equilibrate_writhe=equilibrate_writhe,dump_every=dump_every)
+            else:
+                if equilibrate_writhe:
+                    raise ValueError("Equilibration of writhe is only supported for simple equilibration.")
+                out = minimizer.equilibrate(dump_every=dump_every,plot_equi=True)
+
+            positions, triads = self._get_positions_and_triads(out)
+
+            self.update_frames(out)
+        
+
+        # def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
+        #     """Run the Monte Carlo simulation."""
+
+        #     mc = self._initialize_pmcpy()
+        #     out = mc.run(cycles=cycles, dump_every=dump_every, start_id=start_id)
+
+        #     positions, triads = self._get_positions_and_triads(out)
+
+
+
