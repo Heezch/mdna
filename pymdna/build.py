@@ -9,9 +9,9 @@ import pmcpy.run.equilibrate as em
 from pmcpy.run.run import Run
 import copy
 
-class Minimize:
+# class Minimize:
 
-    def __init__(self, )
+#     def __init__(self, )
 
 
 
