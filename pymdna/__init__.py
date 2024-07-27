@@ -8,7 +8,7 @@ from .build import Build
 import matplotlib.pyplot as plt
 from typing import Any, Callable, Dict, List, Tuple
 import numpy as np
-
+import mdtraj as md
 
 def _check_input(sequence=None, n_bp=None):
     """Check the input sequence and number of base pairs"""
@@ -48,23 +48,30 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
             chain ids of the DNA structure
     Returns:
         Nucleic object
-    Raises:
-        ValueError: If the input arguments are not consistent or missing required information.
     """
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids)
 
-def make(control_points: np.ndarray, sequence: str = None,closed: bool = False, n_bp : int = None, dLk : int = None):
+def make(sequence: str = None, control_points: np.ndarray = None, closed: bool = False, n_bp : int = None, dLk : int = None):
     """Generate DNA structure from sequence and control points
     Args:
-        sequence: DNA sequence
-        control_points: control points of shape (n,3) with n > 3
-        closed: is the DNA structure circular
-        n_bp: number of base pairs to scale shape with
-        dLk: Change in twist in terms of Linking number of DNA structure to output
+        sequence: (optional) DNA sequence
+        control_points: (optional) control points of shape (n,3) with n > 3, default is a straight line, see mdna.Shapes for more geometries
+        closed: (default False) is the DNA structure circular
+        n_bp: (optinal) number of base pairs to scale shape with
+        dLk: (optinal) Change in twist in terms of Linking number of DNA structure to output
     Returns:
         Nucleic object"""
 
-
+    # Check if control points are provided otherwise generate a straight line
+    if control_points is not None:
+        if  len(control_points) < 4:
+            raise ValueError('Control points should contain at least 4 points [x,y,z]')
+        elif len(control_points) > 4 and n_bp is None:
+            n_bp = len(control_points) # Number of base pairs
+    else:
+        # Linear strand of control points
+        control_points = Shapes.line(length=1)
+    
     sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
     spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=closed, dLk=dLk)
     generator = StructureGenerator(sequence=sequence, spline=spline, circular=closed)
@@ -203,14 +210,7 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
 
 
 
-
-
-# class Minimize:
-#     def 
-#NucleicFrames, Mutate, Hoogsteen, Methylate, Build, Minimize):
-
-
-class Nucleic():
+class Nucleic:
         
         """Contains mdna DNA structure with reference frames and trajectory"""
 
@@ -223,7 +223,7 @@ class Nucleic():
                 frames: reference frames
                 chainids: chain ids"""
 
-
+            # Check for trajectory
             if traj is not None:
                 if frames is not None:
                     raise ValueError('Provide either a trajectory or reference frames, not both')
@@ -232,6 +232,7 @@ class Nucleic():
                 n_bp = len(sequence)
                 frames = None  # Nucleic class will handle extraction from traj
 
+            # Check for reference frames
             elif frames is not None:
                 if frames.ndim == 3:
                     # Case (n_bp, 4, 3)
@@ -247,13 +248,13 @@ class Nucleic():
             else:
                 raise ValueError('Provide either a trajectory or reference frames')
 
-
             self.sequence, self.n_bp = sequence, n_bp
             self.traj = traj
             self.frames = frames
             self.chainids = chainids
             self.circular = self._is_circular()
             self.rigid = None # Container for rigid base parameters class output
+            self.minimizer = None # Container for minimizer class output
 
         def describe(self):
             """Print the DNA structure information"""
@@ -268,13 +269,13 @@ class Nucleic():
             else:
                 print('Frames not loaded')
                 
-        def frames_to_traj(self, frame=-1):
+        def _frames_to_traj(self, frame=-1):
             """Convert reference frames to trajectory"""
             if self.frames is None:
                 raise ValueError('Load reference frames first')
             self.traj = StructureGenerator(frames=self.frames[:,frame,:,:], sequence=self.sequence, circular=self.circular).get_traj()
         
-        def traj_to_frames(self):
+        def _traj_to_frames(self):
             """Convert trajectory to reference frames"""
             if self.traj is None:
                 raise ValueError('Load trajectory first')
@@ -285,24 +286,32 @@ class Nucleic():
             """Get the reference frames of the DNA structure belonging to the base steps:
             Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
             where n_frames is the number of frames, n_bp is the number of base pairs, 
-            and 4 corresponds to the origin and the 3 vectors of the reference frame"""
+            and 4 corresponds to the origin and the 3 vectors of the reference frame
+            
+            Returns:
+                np.ndarray: reference frames of the DNA structure"""
+
             if self.frames is None:
-                self.traj_to_frames()
+                self._traj_to_frames()
             return self.frames
         
         def get_traj(self):
-            """Get the trajectory"""
+            """Get the trajectory of the current state of the DNA structure
+            Returns:
+                MDtraj object"""
             if self.traj is None:
-                self.frames_to_traj()
+                self._frames_to_traj()
             return self.traj
         
         def get_rigid_parameters(self):
-            """Get the rigid base parameters class object of the DNA structure"""
+            """Get the rigid base parameters class object of the DNA structure
+            Returns:
+                NucleicFrames object"""
             if self.rigid is None and self.traj is not None:
                 self.rigid = NucleicFrames(self.traj, self.chainids)
                 return self.rigid
             elif self.rigid is None and self.traj is None:
-                self.frames_to_traj()
+                self._frames_to_traj()
                 self.rigid = NucleicFrames(self.traj, self.chainids)
                 return self.rigid
             else:
@@ -324,24 +333,14 @@ class Nucleic():
                 True if the DNA is circular, False otherwise
             """
             if self.frames is None:
-                self.traj_to_frames()
+                self._traj_to_frames()
                 
             start = self.frames[0,frame,0]
             end = self.frames[-1,frame,0]
-            
             distance = np.linalg.norm(start - end)
-            return distance < 0.4 # 0.34 nm is the distance between base pairs
-        
 
-        # REBUILDING DNA STRUCTURE
-        
-        # def equilibrate(self,frame=0):
-        #     """Equilibrate the DNA structure"""
-        #     pass
-
-
-        # PLOTTING DNA STRUCTURE
-    
+            # 0.34 nm is roughly the distance between base pairs and 20 is the minimum number of base pairs for circular DNA
+            return distance < 0.5 and self.frames.shape[0] > 20 
 
         def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2, color='k'):
             """Plot the DNA structure of a chain"""
@@ -389,15 +388,20 @@ class Nucleic():
                 plot triads in order of  b_L (blue), b_N (green), b_T (red), by default False
             length : float, optional
                 length of triad vectors, by default 0.23
+            Returns
+            -------
+            object (optional)
+                matplotlib figure
+
             """
 
             # TODO: handle circular DNA and when trajetory is not loaded make frames uniform 
             # in shape (time/n_frames, n_bp, 4, 3)
 
             if self.traj is None:
-                self.frames_to_traj()
+                self._frames_to_traj()
             elif self.frames is None:
-                self.traj_to_frames()
+                self._traj_to_frames()
                     
             if fig is None and ax is None:
                 fig = plt.figure()#figsize=(4,4))
@@ -458,102 +462,154 @@ class Nucleic():
                 nuc = load(traj)
                 nuc.minimize(simple=True, temperature=310, exvol_rad=2.5)
             """
-            minimizer = Minimizer(self)
-            minimizer.minimize(frame=frame, exvol_rad=exvol_rad, temperature=temperature, simple=simple, equilibrate_writhe=equilibrate_writhe, endpoints_fixed=endpoints_fixed, fixed=fixed, dump_every=dump_every)    
-            #self.frames = minimizer.frames
-            self.frames_to_traj()
+            self.minimizer = Minimizer(self)
+            self.minimizer.minimize(frame=frame, exvol_rad=exvol_rad, temperature=temperature, simple=simple, equilibrate_writhe=equilibrate_writhe, endpoints_fixed=endpoints_fixed, fixed=fixed, dump_every=dump_every)    
+            # Update the reference frames
+            self._frames_to_traj()
+        def get_MC_traj(self):
+            """Get the MC sampling energy minimization trajectory of the new spline."""
+            if self.minimizer is None:
+                raise ValueError('Run minimization first')
+            return self.minimizer.get_MC_traj()
 
+        def extend(self):
+            """Extend the DNA structure"""
+            pass
 
 
 class Minimizer:
+    """Minimize the DNA structure using Monte Carlo simulations with pmcpy"""
+
+    def __init__(self, nucleic):
+        # Dynamically set attributes from the nucleic instance
+        self.__dict__.update(nucleic.__dict__)
+
+        # Check if the required import is available
+        if not self._check_import():
+            raise ImportError("Run class from pmcpy.run.run is not available.")
+
+    def _check_import(self):
+        """Check if the required import is available"""
+        try:
+            from pmcpy.run.run import Run
+            self.Run = Run  # Store the imported class in the instance
+            return True
+        except ImportError as e:
+            print(f"ImportError: {e}")
+            return False
+
+    def _initialize_mc_engine(self):
+        """Initialize the Monte Carlo engine"""
+        # Get the positions and triads of the current frame
+        pos = self.frames[:,self.frame,0,:]
+        triads = self.frames[:,self.frame,1:,:].transpose(0,2,1) # flip row vectors to column vectors
+
+        # Initialize the Monte Carlo engine
+        mc = self.Run(triads=triads,positions=pos,
+                        sequence=self.sequence,
+                        closed=self.circular,
+                        endpoints_fixed=self.endpoints_fixed,
+                        fixed=self.fixed,
+                        temp=self.temperature,
+                        exvol_rad=self.exvol_rad)
+        return  mc
+
+    def _update_frames(self):
+        """Update the reference frames with the new positions and triads"""
+        # update the spline with new positions and triads
+        self.frames[:,self.frame,0,:] = self.out['positions'] # set the origins of the frames
+        self.frames[:,self.frame,1:,:] = self.out['triads'].transpose(0,2,1) # set the triads of the frames as row vectors
         
-        def __init__(self, nucleic):
-            # Dynamically set attributes from the nucleic instance
-            self.__dict__.update(nucleic.__dict__)
+    def _get_positions_and_triads(self):
+        """Get the positions and triads from the output"""
+        # get the positions and triads of the simulation
+        positions = self.out['confs'][:,:,:3,3] 
+        triads = self.out['confs'][:,:,:3,:3]
 
-            # Check if the required import is available
-            if not self.check_import():
-                raise ImportError("Run class from pmcpy.run.run is not available.")
+        # get the last frames of the simulation
+        self.out['triads'] = triads[-1]
+        self.out['positions'] = positions[-1]
+        return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
 
-        def check_import(self):
-            try:
-                from pmcpy.run.run import Run
-                self.Run = Run  # Store the imported class in the instance
-                return True
-            except ImportError as e:
-                print(f"ImportError: {e}")
-                return False
+    def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
+        """Minimize the DNA structure."""
+        # Set the parameters
+        self.endpoints_fixed = endpoints_fixed
+        self.fixed = fixed
+        self.exvol_rad = exvol_rad
+        self.temperature = temperature
+        self.frame = frame
+        print('Minimize the DNA structure:\nsimple equilibration =', simple, '\nequilibrate writhe =', equilibrate_writhe, '\nexcluded volume radius =', exvol_rad, '\ntemperature =', temperature)
+        minimizer = self._initialize_mc_engine()    
 
-        def _initialize_mc_engine(self):
-            """Initialize the Monte Carlo engine"""
-    
-            
-            pos = self.frames[:,self.frame,0,:]
-            triads = self.frames[:,self.frame,1:,:].transpose(0,2,1) # flip row vectors to column vectors
+        # Run the Monte Carlo simulation
+        if equilibrate_writhe:
+            self.out = minimizer.equilibrate_simple(equilibrate_writhe=equilibrate_writhe,dump_every=dump_every)
+        elif not simple and equilibrate_writhe:
+            raise ValueError("Minimization of writhe is only supported for simple equilibration.")
+        else:
+            self.out = minimizer.equilibrate(dump_every=dump_every,plot_equi=True)
 
-            mc = self.Run(triads=triads,positions=pos,
-                            sequence=self.sequence,
-                            closed=self.circular,
-                            endpoints_fixed=self.endpoints_fixed,
-                            fixed=self.fixed,
-                            temp=self.temperature,
-                            exvol_rad=self.exvol_rad)
-            return  mc
+        # Update the reference frames
+        positions, triads = self._get_positions_and_triads()
+        self._update_frames()
 
-            
-        def update_frames(self, out):
- 
-            # update the spline with new positions and triads
-            self.frames[:,self.frame,0,:] = out['positions'] # set the origins of the frames
-            self.frames[:,self.frame,1:,:] = out['triads'].transpose(0,2,1) # set the triads of the frames as row vectors
-            
-
-        def _get_positions_and_triads(self, out):
-            """Get the positions and triads from the output"""
-
-            # get the positions and triads of the simulation
-            positions = out['confs'][:,:,:3,3] 
-            triads = out['confs'][:,:,:3,:3]
-
-            # get the last frames of the simulation
-            out['triads'] = triads[-1]
-            out['positions'] = positions[-1]
-
-            return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
-
-
-        def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
-
-            # Set the parameters
-            self.endpoints_fixed = endpoints_fixed
-            self.fixed = fixed
-            self.exvol_rad = exvol_rad
-            self.temperature = temperature
-            self.frame = frame
-
-            print('Minimize the DNA structure:\nsimple equilibration =', simple, 'equilibrate writhe =', equilibrate_writhe, 'excluded volume radius =', exvol_rad, 'temperature =', temperature)
-            minimizer = self._initialize_mc_engine()    
-            
-            # Run the Monte Carlo simulation
-            if simple:
-                out = minimizer.equilibrate_simple(equilibrate_writhe=equilibrate_writhe,dump_every=dump_every)
-            else:
-                if equilibrate_writhe:
-                    raise ValueError("Equilibration of writhe is only supported for simple equilibration.")
-                out = minimizer.equilibrate(dump_every=dump_every,plot_equi=True)
-
-            positions, triads = self._get_positions_and_triads(out)
-
-            self.update_frames(out)
+    def get_MC_traj(self):
+        """Get the MC sampling energy minimization trajectory of the new spline."""
+        # Get the xyz coordinates of the new spline
+        xyz = self.out['confs'][:, :, :3, 3]
         
+        # Get the triads and calculate the major vector positions
+        triads = self.out['confs'][:, :, :3, :3].transpose(0, 1, 3, 2)
+        major_vector = triads[:, :, 0, :]
+        major_positions = xyz + major_vector*1.1  # Scale the major vector by 1.1
+        
+        # Concatenate the original xyz and the major_positions
+        all_positions = np.concatenate((xyz, major_positions), axis=1)
 
-        # def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
-        #     """Run the Monte Carlo simulation."""
+        # Create a topology for the new spline
+        topology = md.Topology()
+        # Add a chain to the topology
+        chain = topology.add_chain()
+        # Add argon atoms to the topology
+        num_atoms = xyz.shape[1]
+        for i in range(num_atoms):
+            residue = topology.add_residue(name='Ar', chain=chain)
+            topology.add_atom('Ar', element=md.element.argon, residue=residue)
 
-        #     mc = self._initialize_pmcpy()
-        #     out = mc.run(cycles=cycles, dump_every=dump_every, start_id=start_id)
+        # Add dummy atoms to the topology
+        for i in range(num_atoms):
+            residue = topology.add_residue(name='DUM', chain=chain)
+            topology.add_atom('DUM', element=md.element.helium, residue=residue)  # Using helium as a placeholder element
 
-        #     positions, triads = self._get_positions_and_triads(out)
+        # Add bonds to the topology
+        for i in range(num_atoms - 1):
+            topology.add_bond(topology.atom(i), topology.atom(i + 1))
+
+        # Add bonds between each atom and its corresponding dummy atom
+        for i in range(num_atoms):
+            topology.add_bond(topology.atom(i), topology.atom(num_atoms + i))
+
+        if self.circular:
+            # Add a bond between the first and last atom
+            topology.add_bond(topology.atom(0), topology.atom(num_atoms - 1))
+            
+        # Create a trajectory from the all_positions coordinates and the topology
+        traj = md.Trajectory(all_positions, topology=topology)
+        
+        return traj
+
+
+    # def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
+    #     """Run the Monte Carlo simulation."""
+
+    #     mc = self._initialize_pmcpy()
+    #     out = mc.run(cycles=cycles, dump_every=dump_every, start_id=start_id)
+
+    #     positions, triads = self._get_positions_and_triads(out)
 
 
 
+def connect(traj1, traj2, Nucleic1, Nucleic2, shape=None, n_bp=None, sequence=None, dLk=None):
+    """Connect two DNA structures"""
+    pass
