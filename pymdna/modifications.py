@@ -29,6 +29,7 @@ class Methylate:
              print("Please provide chainid of `leading_strand` as argument.")
         elif len(methylations) is not None:
             self.baselist = methylations # List of resids that need to be methylated (so far only C and G)
+        
         else:
             ValueError("Please provide either a list of resids to methylate or set CpG to True with chainid of `leading_strand` as argument.")
         self.apply_methylation()
@@ -105,6 +106,7 @@ class Methylate:
     
 
 class Hoogsteen:
+    """ Hoogsteen base pair flip"""
     # should still update for all the other bases (non-canonical)
     def __init__(self, traj, fliplist, deg=180,verbose=False):
         self.traj = copy.deepcopy(traj)
@@ -198,6 +200,7 @@ class Hoogsteen:
     def get_traj(self):
         return self.traj
 
+
 class Mutate:
 
     def __init__(self, traj, mutations, complementary=True):
@@ -217,9 +220,17 @@ class Mutate:
         if self.complementary:
             # Update dict with the complementary mutations
             self.mutations = self.make_complementary_mutations(self.traj, self.mutations, base_pair_map)
+        # else:
+        #     # Do not update the mutations with the complementary mutations
+        #     pass
+
+        # TODO should also take into account the shift in atom indices due to atoms that are not deleted so that the new atoms are inserted at the correct position
 
         # Apply the mutations
         self.mutant_traj = self.apply_mutations(self.traj, self.mutations, base_pair_map)
+        # Make sure indexing is also continious after mutation
+        # Aka fix atom_indices are not monotonically increasing
+
 
     def get_base_indices(self, base_traj, resid=0):
 
