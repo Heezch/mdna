@@ -511,7 +511,7 @@ class Nucleic:
 
             # TODO check if valid letters in muations dictionary
 
-            mutant = Mutate(self.traj[frame], mutations,complementary=True)
+            mutant = Mutate(self.traj[frame], mutations,complementary=complementary)
             self.traj = mutant.get_traj()
             # update sequence
             self.sequence = ''.join(get_sequence_letters(self.traj, leading_chain=self.chainids[0]))
@@ -592,7 +592,6 @@ class Nucleic:
 
 
 
-
 def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1, minimize : bool = True, exvol_rad : float = 0.0, temperature : int = 300):
     """Connect two DNA structures by creating a new DNA structure with a connecting DNA strand. 
     The 3' end of the first DNA structure is connected to the 5' end of the second DNA structure.
@@ -641,7 +640,6 @@ def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leade
 
     return connector.connected_nuc
     
-
 
 class Connect:
     def __init__(self, Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1):
@@ -1009,28 +1007,3 @@ class Minimizer:
     def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
         """Run the Monte Carlo simulation"""
         raise NotImplementedError("This method is not implemented yet.")
-
-
-# class  Connect:
-#     def __init__(self, traj1, traj2, Nucleic1, Nucleic2, shape=None, n_bp=None, sequence=None, dLk=None, margin=5):
-#         self.traj1 = traj1
-#         self.traj2 = traj2
-#         self.Nucleic1 = Nucleic1
-#         self.Nucleic2 = Nucleic2
-#         self.shape = shape
-#         self.n_bp = n_bp
-#         self.sequence = sequence
-#         self.dLk = dLk
-#         self.margin = margin
-
-#         self.connect()
-    
-#     def connect(self):
-#         pass
-
-
-
-# def connect(traj1, traj2, Nucleic1, Nucleic2, shape=None, n_bp=None, sequence=None, dLk=None, margin=5, minimize=True):
-#     """Connect two DNA structures"""
-#     pass
-    

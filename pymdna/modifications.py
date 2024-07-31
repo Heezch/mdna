@@ -216,16 +216,11 @@ class Mutate:
         # Define the base pair map and the complementary mutant map
         #base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C'}
         base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
-        
         if self.complementary:
             # Update dict with the complementary mutations
             self.mutations = self.make_complementary_mutations(self.traj, self.mutations, base_pair_map)
-        # else:
-        #     # Do not update the mutations with the complementary mutations
-        #     pass
-
+    
         # TODO should also take into account the shift in atom indices due to atoms that are not deleted so that the new atoms are inserted at the correct position
-
         # Apply the mutations
         self.mutant_traj = self.apply_mutations(self.traj, self.mutations, base_pair_map)
         # Make sure indexing is also continious after mutation
@@ -259,7 +254,6 @@ class Mutate:
         subtraj = base_traj.atom_slice(indices)
         
         # Select the atoms that belong to the nucleotide
-        #sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
         sub_indices = [atom.index for atom in subtraj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
         # Return the indices of the atoms that belong to the nucleotide
         return sub_indices + offset
@@ -324,7 +318,7 @@ class Mutate:
         offset, insert_id = self._find_insertion_offset(pre_atoms, post_atoms)
 
         # Insert new atoms into the topology at calculated positions
-        self._insert_new_atoms(traj, resid, mutant_indices, mutation_traj, offset, insert_id+1)
+        self._insert_new_atoms(traj, resid, mutant_indices, mutation_traj, offset, insert_id)
 
         # Update the residue name to reflect the mutation
         traj.top._residues[resid].name = f'D{base}'
@@ -369,12 +363,12 @@ class Mutate:
         is at the end of the topology.
         """
 
-        #print('empty',traj.top.residue(resid)._atoms)
-        #print('empty',[at.index for at in traj.top.residue(resid)._atoms])
-        for idx, mutant_index in enumerate(mutant_indices):
+        print('empty',traj.top.residue(resid)._atoms)
+        print('empty',[at.index for at in traj.top.residue(resid)._atoms])
+        for idx, mutant_index in enumerate(mutant_indices, 1):
             atom = mutation_traj.top.atom(mutant_index)
 
-            #print('target',offset+idx,atom)
+            print('target',offset+idx,atom)
             # Edge case: If the offset is the last atom in the topology, insert new atoms at the end
             if offset + idx >= traj.top.n_atoms:
                 print('Edgecase: inserting at or beyond the last atom in the topology', offset, traj.top.n_atoms)
@@ -382,11 +376,15 @@ class Mutate:
                                     index=traj.top.n_atoms + idx, rindex=insert_id + idx)
             else:
                 # Regular case: insert new atoms at the calculated offset
+                # rindex: the desired position for this atom within the residue
+                # index: the desired position for this atom within the topology, Existing atoms with indices >= index will be pushed back.
+                print('idx, offset+idx, insert_id+idx')
+                print(idx, offset+idx, insert_id+idx)
                 traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
                                     index=offset + idx, rindex=insert_id + idx)
 
-            #print('ins',idx+offset, traj.top.residue(resid)._atoms)
-            #print('ins',idx+offset,[at.index for at in traj.top.residue(resid)._atoms])
+            print('ins',idx+offset, traj.top.residue(resid)._atoms)
+            print('ins',idx+offset,[at.index for at in traj.top.residue(resid)._atoms])
 
 
     def get_base_transformation(self, mutant_reference,target_reference):
@@ -414,21 +412,14 @@ class Mutate:
         # Make a copy of the original trajectory
         traj = copy.deepcopy(traj)
         
-        # This comes now directly from sequence generator.py, either move this to somewhere else such that it is accessible everywhere
-        #reference_bases = {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/pymdna/pymdna/atomic/NDB96_{base}.pdb') for base in base_pair_map.keys()}
         #reference_bases = {base: md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in base_pair_map.keys()}
         reference_bases = {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in base_pair_map.keys()}
         reference_frames = {letter: ReferenceBase(t) for letter,t in reference_bases.items()}
-        # for letter, base in reference_bases.items():
-    
-        #     print(letter,base, base.top, base.top._residues)
-        #     ref = ReferenceBase(base)
-        #     # vectors = get_base_vectors(base)
-        #     # print(np.round(vectors),2)
 
         # For each residue that needs to be mutated
         for resid,base in mutations.items():
-            # print(traj.top, traj.top._residues)
+            print('resid',resid,base)
+            #print(traj.top, traj.top._residues)
             self.current_resid = resid
             # Get the mutant trajectory object
             mutation_traj = reference_bases[base] 
@@ -437,6 +428,9 @@ class Mutate:
             mutant_indices = self.get_base_indices(mutation_traj, resid=0)
             target_indices = self.get_base_indices(traj, resid=resid)
 
+            print('n_mutant',len(mutant_indices))
+            print('n_target',len(target_indices))
+            print('diff', len(mutant_indices) - len(target_indices))
             #sub_m = mutation_traj.atom_slice(mutant_indices)
             #sub_w = traj.atom_slice(target_indices)
 
@@ -466,6 +460,13 @@ class Mutate:
             # Concatenate the new xyz with the original xyz
             xyz = np.concatenate([xyz1, new_xyz, xyz2], axis=1)
             traj.xyz = xyz
+
+        # Check if the atom indices are monotonically increasing
+        print('n_atoms',traj.top.n_atoms)
+        print('xyz', traj.xyz.shape)
+        ats = [at.index for at in traj.top.atoms]
+        print('atdiff', np.diff(ats))
+
 
         # Return the mutated trajectory
         return traj
