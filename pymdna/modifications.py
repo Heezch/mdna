@@ -96,8 +96,8 @@ class Methylate:
             name = 'C6M' # Nor this one hahaha
 
         # Insert atom 
-        self.traj.top.insert_atom(name=name, element=elem.carbon, residue=residue, index=index, rindex=index, serial=None)
-        
+        offset = residue._atoms[0].index # Get the index of the first atom in the residue
+        self.traj.top.insert_atom(name=name, element=elem.carbon, residue=residue, index=index, rindex=index-offset, serial=None)
         # stack the two xyz arrays together with the new_pos in between
         self.traj.xyz = np.concatenate([xyz1, new_pos[:,None,:], xyz2], axis=1)
 
@@ -202,7 +202,8 @@ class Hoogsteen:
 
 
 class Mutate:
-
+    """ Class to mutate a DNA structure
+    """
     def __init__(self, traj, mutations, complementary=True):
     
         self.traj = traj

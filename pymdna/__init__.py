@@ -435,7 +435,7 @@ class Nucleic:
             if save:
                 fig.savefig('dna.png', dpi=300,bbox_inches='tight')
 
-        def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
+        def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 20):
             """
             Minimize the DNA structure.
 
@@ -447,7 +447,7 @@ class Nucleic:
                 fixed (list): List of fixed base pairs. Defaults to an empty list.
                 exvol_rad (float): Excluded volume radius. Defaults to 2.0.
                 temperature (int): Temperature for equilibration. Defaults to 300.
-                dump_every (int): Frequency of dumping frames. Defaults to 1.
+                dump_every (int): Frequency of dumping frames. Defaults to 20.
 
             Additional keyword arguments can be provided and will be passed to the minimizer.
 
@@ -485,10 +485,10 @@ class Nucleic:
 
 
             # Make this more comprehensive:
-            Options for nucleobases are A, T, G, C
-            Hachimoji: A, T, G, C, P, Z, S, B
-            Fluorescent: A, T, G, C, F
-            Hydrophobic pairs: A, T, G, C, I, O
+            Options for nucleobases are A, T, G, C, U
+            Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana]
+            Fluorescent: 2AP (E), triC (D)
+            Hydrophobic pairs: d5SICS (L), dNaM (M)
             # Mutation (non-canonical//fluorescent base analogue)
             # P = 2AP (2-aminopurine)  https://doi.org/10.1002/anie.201001312 (2kv0)
             # D = tricyclic cytosin base analogue (1tuq)
@@ -590,6 +590,31 @@ class Nucleic:
             """Inverse the direction of the DNA structure so from 5' to 3' to 3' to 5'"""
             raise NotImplementedError('Not implemented yet')
 
+        def get_linking_number(self, frame : int = -1):
+            """Get the linking number of the DNA structure based on Gauss's linking number theorem.
+
+            Parameters
+            ----------
+            frame : int, optional
+                Time frame of trajectory, by default -1
+
+            Returns
+            -------
+            np.ndarray
+                Numpy array containing the linking number, writhe, and twist corresponding to the time frame
+            """
+
+            from pmcpy import pylk
+
+            if self.frames is None:
+                    self._traj_to_frames()
+            frames = self.frames[:,frame,:,:]
+            positions = frames[:,0]
+            triads = frames[:,1:].transpose(0,2,1) # Flip row vectors to columns
+
+            writhe = pylk.writhe(positions)
+            lk = pylk.triads2link(positions, triads)
+            return np.array([lk, writhe, lk - writhe])
 
 
 def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1, minimize : bool = True, exvol_rad : float = 0.0, temperature : int = 300):
@@ -936,7 +961,7 @@ class Minimizer:
         self.out['positions'] = positions[-1]
         return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
 
-    def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 1):
+    def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 20):
         """Minimize the DNA structure."""
         # Set the parameters
         self.endpoints_fixed = endpoints_fixed
@@ -1004,6 +1029,6 @@ class Minimizer:
         
         return traj
 
-    def run(self, cycles: int, dump_every: int = 0, start_id: int = 0) -> np.ndarray:
+    def run(self, cycles: int, dump_every: int = 20, start_id: int = 0) -> np.ndarray:
         """Run the Monte Carlo simulation"""
         raise NotImplementedError("This method is not implemented yet.")
