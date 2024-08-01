@@ -34,7 +34,7 @@ def _check_input(sequence=None, n_bp=None):
     return sequence, n_bp
 
 
-def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
+def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None):
     """Load DNA representation from:
         - base step mean reference frames/spline frames
         - or MDtraj trajectory
@@ -48,16 +48,19 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1]):
             DNA sequence corresponding to the frames
         chainids: list
             chain ids of the DNA structure
+        circular: bool
+            is the DNA structure circular, optional
     Returns:
         Nucleic object
     """
-    return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids)
+    return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
-def make(sequence: str = None, control_points: np.ndarray = None, closed: bool = False, n_bp : int = None, dLk : int = None):
+def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None):
     """Generate DNA structure from sequence and control points
     Args:
         sequence: (optional) DNA sequence
         control_points: (optional) control points of shape (n,3) with n > 3, default is a straight line, see mdna.Shapes for more geometries
+        circular: (default False) is the DNA structure circular, optinional
         closed: (default False) is the DNA structure circular
         n_bp: (optinal) number of base pairs to scale shape with
         dLk: (optinal) Change in twist in terms of Linking number of DNA structure to output
@@ -70,16 +73,19 @@ def make(sequence: str = None, control_points: np.ndarray = None, closed: bool =
             raise ValueError('Control points should contain at least 4 points [x,y,z]')
         elif len(control_points) > 4 and n_bp is None:
             n_bp = len(control_points) # Number of base pairs
+    elif control_points is None and circular:
+        control_points = Shapes.circle(radius=1)
+        closed = True
     else:
         # Linear strand of control points
         control_points = Shapes.line(length=1)
     
     sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
     spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=closed, dLk=dLk)
-    generator = StructureGenerator(sequence=sequence, spline=spline, circular=closed)
-    frames = generator.frames
+    #generator = StructureGenerator(sequence=sequence, spline=spline, circular=closed)
+    #frames = generator.frames
 
-    return Nucleic(sequence=sequence, n_bp=n_bp, frames=frames, chainids=[0,1])
+    return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0,1],circular=circular)
 
 def compute_rigid_parameters(traj, chainids=[0,1]):
     """Compute the rigid base parameters of the DNA structure
@@ -218,7 +224,7 @@ class Nucleic:
         
         """Contains mdna DNA structure with reference frames and trajectory"""
 
-        def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None):
+        def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None, circular=None):
             """Initialize the DNA structure
             Args:
                 sequence: DNA sequence
@@ -256,7 +262,7 @@ class Nucleic:
             self.traj = traj
             self.frames = frames
             self.chainids = chainids
-            self.circular = self._is_circular()
+            self.circular = self._is_circular() if circular is None else circular 
             self.rigid = None # Container for rigid base parameters class output
             self.minimizer = None # Container for minimizer class output
 
@@ -279,7 +285,9 @@ class Nucleic:
             """Convert reference frames to trajectory"""
             if self.frames is None:
                 raise ValueError('Load reference frames first')
-            self.traj = StructureGenerator(frames=self.frames[:,frame,:,:], sequence=self.sequence, circular=self.circular).get_traj()
+            self.traj = None
+            generator = StructureGenerator(frames=self.frames[:,frame,:,:], sequence=self.sequence, circular=self.circular)
+            self.traj = generator.get_traj()
         
         def _traj_to_frames(self):
             """Convert trajectory to reference frames"""
@@ -307,6 +315,9 @@ class Nucleic:
                 MDtraj object"""
             if self.traj is None:
                 self._frames_to_traj()
+
+            if self.traj.n_atoms > 99999:
+                print('Warning: Trajectory contains more than 99999 atoms, consider saving as .h5')
             return self.traj
         
         def get_rigid_parameters(self):
@@ -346,7 +357,7 @@ class Nucleic:
             distance = np.linalg.norm(start - end)
 
             # 0.34 nm is roughly the distance between base pairs and 20 is the minimum number of base pairs for circular DNA
-            return distance < 0.5 and self.frames.shape[0] > 20 
+            return distance < 1 and self.frames.shape[0] > 20 
 
         def _plot_chain(self, ax, traj, chainid, frame, lw=1, markersize=2, color='k'):
             """Plot the DNA structure of a chain"""
@@ -435,7 +446,7 @@ class Nucleic:
             if save:
                 fig.savefig('dna.png', dpi=300,bbox_inches='tight')
 
-        def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 20):
+        def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = False, fixed : List[int] = [], dump_every : int = 20):
             """
             Minimize the DNA structure.
 
@@ -443,7 +454,7 @@ class Nucleic:
                 frame (int): The trajectory frame to minimize. Defaults to -1.
                 simple (bool): Whether to use simple equilibration. Defaults to False.
                 equilibrate_writhe (bool): Whether to equilibrate writhe. Defaults to False. Only works for simple equilibration.
-                endpoints_fixed (bool): Whether the endpoints are fixed. Defaults to True.
+                endpoints_fixed (bool): Whether the endpoints are fixed. Defaults to False.
                 fixed (list): List of fixed base pairs. Defaults to an empty list.
                 exvol_rad (float): Excluded volume radius. Defaults to 2.0.
                 temperature (int): Temperature for equilibration. Defaults to 300.
@@ -462,6 +473,11 @@ class Nucleic:
                 Considering autocorrelation has some issues when there are relaxations at different timescales.
                 Also, I wasn't able to use something consistent to equilibrate writhe, since that involves a barrier crossing. 
                 It is really non-trivial to set a criterion for whether or not a globally stable value is reached. 
+
+            Notes II:
+                When starting from a circular configuration, the minimizer will not work properly. 
+                The excluded volume interactions require the EV beads to have no overlap. And somehow with initial structures larger than 470 bp the EV beads overlap..
+                However, one can do one round of minimization with a radius of 0.0 and then do the minimization with the desired radius.    
 
 
             Example:
@@ -561,7 +577,7 @@ class Nucleic:
 
             if self.circular:
                 raise ValueError('Cannot extend circular DNA structure')
-            if not n_bp and not fixed_endpoint:
+            if not n_bp and not fixed_endpoints:
                 raise ValueError("Either a fixed endpoint or a length must be specified for extension.")    
             if self.traj is None:
                 self._frames_to_traj()
@@ -665,7 +681,6 @@ def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leade
 
     return connector.connected_nuc
     
-
 class Connect:
     def __init__(self, Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1):
         
@@ -835,9 +850,7 @@ class Connect:
         else:
             print("No optimal number of base pairs found within the specified tolerance.")
         return results
-
-
-            
+           
 class Extend:
     """Extend the DNA sequence in the specified direction using the five_end or three_end as reference."""
 
@@ -933,7 +946,7 @@ class Minimizer:
         # Get the positions and triads of the current frame
         pos = self.frames[:,self.frame,0,:]
         triads = self.frames[:,self.frame,1:,:].transpose(0,2,1) # flip row vectors to column vectors
-
+        print('Circular:',self.circular)
         # Initialize the Monte Carlo engine
         mc = self.Run(triads=triads,positions=pos,
                         sequence=self.sequence,
