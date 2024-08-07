@@ -450,3 +450,25 @@ def get_sequence_letters(traj, leading_chain=0):
     sequence = [get_base_type(traj.atom_slice([at.index for at in res.atoms])) for res in traj.top.chain(leading_chain)._residues]
     return sequence
     
+
+
+def _check_input(sequence=None, n_bp=None):
+    """Check the input sequence and number of base pairs"""
+
+    if sequence is None and n_bp is not None:
+        sequence = ''.join(np.random.choice(list('ACGT'), n_bp))
+        print('Random sequence:', sequence,'\n')
+
+    elif sequence is not None and n_bp is None:
+        n_bp = len(sequence)
+
+    elif sequence is None and n_bp is None:
+        sequence = 'CGCGAATTCGCG'
+        n_bp = len(sequence)
+        print('Default sequence:', sequence)
+        print('Number of base pairs:', n_bp,'\n')
+
+    elif sequence is not None and n_bp is not None:
+        if n_bp != len(sequence):
+            raise ValueError('Sequence length and n_bp do not match','\n')
+    return sequence, n_bp
