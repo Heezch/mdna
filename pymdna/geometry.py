@@ -21,8 +21,14 @@ NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 
                     'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
 
 class ReferenceBase:
-
+    """_summary_
+    """
     def __init__(self, traj):
+        """_summary_
+
+        Args:
+            traj (_type_): _description_
+        """
         self.traj = traj
         # Determine base type (purine/pyrimidine/other)
         self.base_type = self.get_base_type()
@@ -35,10 +41,26 @@ class ReferenceBase:
         # self.basis = np.array([self.b_D.T, self.b_L.T, self.b_N])
     
     def _select_atom_by_name(self, name):
+        """_summary_
+
+        Args:
+            name (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         # Select an atom by name returns shape (n_frames, 1, [x,y,z])
         return np.squeeze(self.traj.xyz[:,[self.traj.topology.select(f'name {name}')[0]],:],axis=1)
         
     def get_base_type(self):
+        """_summary_
+
+        Raises:
+            ValueError: _description_
+
+        Returns:
+            _type_: _description_
+        """
         # Extracts all non-hydrogen atoms from the trajectory topology
         atoms = {atom.name for atom in self.traj.topology.atoms if atom.element.symbol != 'H'}
     
@@ -50,7 +72,11 @@ class ReferenceBase:
         raise ValueError("Cannot determine the base type from the PDB file.")
     
     def get_coordinates(self):
+        """_summary_
 
+        Returns:
+            _type_: _description_
+        """
         # Get the coordinates of key atoms based on the base type
         C1_coords = self._select_atom_by_name('"C1\'"')
         if self.base_type in ['C','T','U','D']:# "pyrimidine"
@@ -72,6 +98,11 @@ class ReferenceBase:
     
     
     def calculate_base_frame(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
 
         # Calculate normal vector using cross product of vectors formed by key atoms
         #  The coords have the shape (n,1,3)
@@ -99,7 +130,14 @@ class ReferenceBase:
         #return np.array([b_R, -b_D, -b_L, -b_N])
 
     def plot_baseframe(self,atoms=True, frame=True, ax=None,length=1):
+        """_summary_
 
+        Args:
+            atoms (bool, optional): _description_. Defaults to True.
+            frame (bool, optional): _description_. Defaults to True.
+            ax (_type_, optional): _description_. Defaults to None.
+            length (int, optional): _description_. Defaults to 1.
+        """
         if ax is None:
             fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
@@ -146,9 +184,7 @@ class ReferenceBase:
         ax.axis('equal')
 
 class NucleicFrames:
-
-    """
-    Example Usage:
+    """Class to compute the rigid base parameters of a DNA structure.
     
     loc = '/Users/thor/surfdrive/Scripts/notebooks/HNS-sequence/WorkingDir/nolinker/data/md/0_highaff/FI/drytrajs/'
     traj = md.load(loc+'dry_10.xtc',top=loc+'dry_10.pdb')
@@ -179,6 +215,13 @@ class NucleicFrames:
     """
 
     def __init__(self, traj, chainids=[0,1],frames_only=False):
+        """_summary_
+
+        Args:
+            traj (_type_): _description_
+            chainids (list, optional): _description_. Defaults to [0,1].
+            frames_only (bool, optional): _description_. Defaults to False.
+        """
         self.traj = traj
         self.top = traj.topology
         self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
@@ -217,6 +260,7 @@ class NucleicFrames:
         return reference_frames
 
     def reshape_input(self,input_A,input_B,is_step=False):
+
         """This function reshapes the input to the correct format for the calculations. 
         And splits the input into rotation matrices and origins for the calculations.
         
@@ -370,6 +414,7 @@ class NucleicFrames:
         self._clean_parameters()
 
     def _clean_parameters(self):
+        """Clean the parameters by removing the first and last frame."""
         self.step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
         self.base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
         self.names = self.base_parameter_names + self.step_parameter_names

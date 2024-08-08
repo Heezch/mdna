@@ -1,15 +1,21 @@
 from .nucleic import (
-    Nucleic,
-    load,
-    make,
-    connect,
-    compute_rigid_parameters,
-    compute_curvature,
-    compute_linking_number,
-    compute_groove_width,
-    sequence_to_pdb,
-    sequence_to_md
-)
+        load,
+        make,
+        connect,
+        compute_rigid_parameters,
+        compute_curvature,
+        compute_linking_number,
+        compute_groove_width,
+        sequence_to_pdb,
+        sequence_to_md
+    )
+
+from . import _version
+
+
+__all__ = ["load", "make", "connect", "compute_rigid_parameters", "compute_curvature", "compute_linking_number", "compute_groove_width", "sequence_to_pdb", "sequence_to_md"]
+
+__version__ = "0.00"
 
 
 # import numpy as np

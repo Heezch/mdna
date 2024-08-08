@@ -7,51 +7,60 @@ from .utils import Shapes, get_sequence_letters, _check_input
 from .spline import SplineFrames, Twister
 from .geometry import ReferenceBase, NucleicFrames, NucleicFrames_quaternion
 from .generators import SequenceGenerator, StructureGenerator
-from .modifications import Mutate, Hoogsteen, Methylate
+from .modify import Mutate, Hoogsteen, Methylate
 from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
 from .build import Minimizer, Extender, Connector
 
 
-
 def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None):
-    """Load DNA representation from:
-        - base step mean reference frames/spline frames
-        - or MDtraj trajectory
+    """Load DNA representation from either base step mean reference frames/spline frames or an MDtraj trajectory.
+
     Args:
-        frames: np.array 
-            base step mean reference frames of shape (n_bp, n_timesteps, 4, 3)
-            or (n_bp, 4, 3)
-        traj: object
-            mdtraj trajectory
-        sequence: str
-            DNA sequence corresponding to the frames
-        chainids: list
-            chain ids of the DNA structure
-        circular: bool
-            is the DNA structure circular, optional
+        traj (object, optional): MDtraj trajectory containing the DNA structure. If provided, the frames and sequence arguments are ignored. (default: None)
+        frames (np.array, optional): Base step mean reference frames of shape (n_bp, n_timesteps, 4, 3) or (n_bp, 4, 3). If provided, the traj and sequence arguments are ignored. (default: None)
+        sequence (str, optional): DNA sequence. If provided, the traj and frames arguments are ignored. (default: None)
+        chainids (list, optional): Chain IDs of the DNA structure. (default: [0,1])
+        circular (bool, optional): Flag indicating if the DNA structure is circular/closed. If not provided, it will be determined based on the input data. (default: None)
+
     Returns:
-        Nucleic object
+        Nucleic (object): DNA structure object.
+
+    Notes:
+        - If traj is provided, the frames and sequence arguments are ignored.
+        - If frames is provided, the traj and sequence arguments are ignored.
+        - If sequence is provided, the traj and frames arguments are ignored.
+        - If circular is not provided, it will be determined based on the input data.
     """
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
 def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None):
-    """Generate DNA structure from sequence and control points
-    Args:
-        sequence: (optional) DNA sequence
-        control_points: (optional) control points of shape (n,3) with n > 3, default is a straight line, see mdna.Shapes for more geometries
-        circular: (default False) is the DNA structure circular, optinional
-        closed: (default False) is the DNA structure circular
-        n_bp: (optinal) number of base pairs to scale shape with
-        dLk: (optinal) Change in twist in terms of Linking number of DNA structure to output
-    Returns:
-        Nucleic object"""
+    """Generate a DNA structure from a given DNA sequence and control points.
 
-    # Check if control points are provided otherwise generate a straight line
+    Args:
+        sequence (str, optional): DNA sequence code. If not provided, the default sequence 'CGCGAATTCGCG' will be used. (default: None)
+        control_points (ndarray, optional): Control points of the DNA structure. Should be a numpy array of shape (n, 3) where n is the number of control points. If not provided, a straight line will be used as the default control points. (default: None)
+        circular (bool, optional): Flag indicating if the DNA structure is circular/closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. (default: False)
+        closed (bool, optional): Flag indicating if the DNA structure is closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. This argument is deprecated and will be removed in a future version. Please use the 'circular' argument instead. (default: False)
+        n_bp (int, optional): Number of base pairs to scale the shape with. If not provided, the number of base pairs will be determined based on the length of the control points or the sequence. (default: None)
+        dLk (int, optional): Change in twist in terms of Linking number of the DNA structure. If not provided, a neutral twist based on bp_per_turn = 10.5 will be used. (default: None)
+
+    Returns:
+        Nucleic (object): DNA structure object.
+
+    Notes:
+        - If control_points are provided, the sequence argument is ignored.
+        - If sequence is provided, the control_points argument is ignored.
+        - If circular is True, the DNA structure will be closed.
+        - If circular is False, the DNA structure will be open.
+        - The closed argument is deprecated and will be removed in a future version. Please use the 'circular' argument instead.
+    """
+
+    # Check if control points are provided, otherwise generate a straight line
     if control_points is not None:
-        if  len(control_points) < 4:
-            raise ValueError('Control points should contain at least 4 points [x,y,z]')
+        if len(control_points) < 4:
+            raise ValueError('Control points should contain at least 4 points [x, y, z]')
         elif len(control_points) > 4 and n_bp is None:
-            n_bp = len(control_points) # Number of base pairs
+            n_bp = len(control_points)  # Number of base pairs
     elif control_points is None and circular:
         control_points = Shapes.circle(radius=1)
         closed = True
@@ -60,51 +69,48 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
         control_points = Shapes.line(length=1)
     
     sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
-    spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=closed, dLk=dLk)
-    #generator = StructureGenerator(sequence=sequence, spline=spline, circular=closed)
-    #frames = generator.frames
+    spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
 
-    return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0,1],circular=circular)
+    return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0, 1], circular=circular)
 
-def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1, minimize : bool = True, exvol_rad : float = 0.0, temperature : int = 300):
+def connect(Nucleic0, Nucleic1, sequence: str = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300):
+    """Connect two DNA structures by creating a new DNA structure with a connecting DNA strand.
 
-    """Connect two DNA structures by creating a new DNA structure with a connecting DNA strand. 
     The 3' end of the first DNA structure is connected to the 5' end of the second DNA structure.
-    To connect the two strands we interpolate a straight line between the two ends,
-    and distribute the optiminal number of base pairs that result in a neutral twist.
+    To connect the two strands, a straight line is interpolated between the two ends,
+    and the optimal number of base pairs is distributed to achieve a neutral twist.
 
     Note:
-    The minimization does not use excluded volume interactions by default. 
-    This is because the excluded volume interactions require the EV beads to have no overlap. 
-    However, how the initial configuration is generated, the EV beads are likely have overlap.
-
-    If one desires the resulting Nucleic object can be minimized once more with the excluded volume interactions.
+    The minimization does not use excluded volume interactions by default.
+    This is because the excluded volume interactions require the EV beads to have no overlap.
+    However, in the initial configuration, the EV beads are likely to have overlap.
+    If desired, the resulting Nucleic object can be further minimized with the excluded volume interactions.
 
     Args:
-        Nucleic0: Nucleic object
-            First DNA structure to connect
-        Nucleic1: Nucleic object
-            Second DNA structure to connect
-        sequence: str, optional
-            DNA sequence of the connecting DNA strand, by default None
-        n_bp: int, optional
-            Number of base pairs of the connecting DNA strand, by default None
-        leader: int, optional
-            The leader of the DNA structure to connect, by default 0
-        frame: int, optional
-            The time frame to connect, by default -1
-        margin: int, optional
-            Number of base pairs to fix at the end, by default 1
-        minimize : bool, optional
-            Whether to minimize the new DNA structure, by default True
+        Nucleic0 (Nucleic): First DNA structure to connect.
+        Nucleic1 (Nucleic): Second DNA structure to connect.
+        sequence (str, optional): DNA sequence of the connecting DNA strand. Default is None.
+        n_bp (int, optional): Number of base pairs of the connecting DNA strand. Default is None.
+        leader (int, optional): The leader of the DNA structure to connect. Default is 0.
+        frame (int, optional): The time frame to connect. Default is -1.
+        margin (int, optional): Number of base pairs to fix at the end. Default is 1.
+        minimize (bool, optional): Whether to minimize the new DNA structure. Default is True.
+        exvol_rad (float, optional): Radius for excluded volume interactions during minimization. Default is 0.0.
+        temperature (int, optional): Temperature for minimization. Default is 300.
 
     Returns:
-        Nucleic object: DNA structure with the two DNA structures connected
-    """
+        Nucleic: DNA structure with the two DNA structures connected.
 
+    Raises:
+        ValueError: If either of the DNA structures is circular.
+
+    Example:
+        # Connect two DNA structures
+        connected_dna = connect(Nucleic0, Nucleic1, sequence='ATCG', n_bp=4, leader=0, frame=-1, margin=2, minimize=True, exvol_rad=0.5, temperature=310)
+    """
     if Nucleic0.circular or Nucleic1.circular:
         raise ValueError('Cannot connect circular DNA structures')
-    
+
     if sequence is not None and n_bp is None:
         n_bp = len(sequence)
 
@@ -112,17 +118,32 @@ def connect(Nucleic0, Nucleic1, sequence : str = None, n_bp : int =  None, leade
     connector = Connector(Nucleic0, Nucleic1, sequence=sequence, n_bp=n_bp, leader=leader, frame=frame, margin=margin)
     if minimize:
         connector.connected_nuc.minimize(exvol_rad=exvol_rad, temperature=temperature, fixed=connector.fixed)
-
     return connector.connected_nuc
 
 def compute_rigid_parameters(traj, chainids=[0,1]):
-    """Compute the rigid base parameters of the DNA structure
-    Args:
-        traj: trajectory
-        chainids: chain ids
-    Returns:
-        rigid base object"""
+    """Compute the rigid base parameters of the DNA structure.
 
+    Args:
+        traj (object): MDtraj trajectory containing the DNA structure.
+        chainids (list, optional): List of chain IDs of the DNA structure. Default is [0, 1].
+
+    Returns:
+        NucleicFrames: Object representing the rigid base parameters of the DNA structure.
+
+    Raises:
+        ValueError: If the traj argument is not provided.
+
+    Notes:
+        - The traj argument must be provided.
+        - The chainids argument is optional and defaults to [0, 1].
+        - The returned NucleicFrames object contains information about the rigid base parameters of the DNA structure, such as the positions and orientations of the base steps.
+
+    Example:
+        # Compute the rigid base parameters of a DNA structure
+        traj = md.load('dna.pdb')
+        rigid_params = compute_rigid_parameters(traj, chainids=[0, 1])"""
+    if traj is None:
+        raise ValueError("The traj argument must be provided.")
     return NucleicFrames(traj, chainids)
 
 def compute_curvature(traj, chainids=[0,1]):
@@ -137,44 +158,52 @@ def compute_groove_width(traj, chainids=[0,1]):
     """Compute the groove width of the DNA structure"""
     raise NotImplementedError
 
-def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None):
-    """_summary_
+def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', save: bool = True, output: str = 'GROMACS', shape: np.ndarray = None, n_bp: int = None, circular: bool = False, dLk: int = None) -> md.Trajectory:
+    """Generate a DNA structure from a DNA sequence code.
 
-    Parameters
-    ----------
-    sequence : str, optional
-        DNA sequence code, by default 'CGCGAATTCGCG'
-    filename : str, optional
-        filename for pdb output, by default 'my_dna'
-    save : bool, optional
-        boolean to save pdb or not, by default True
-    output : str, optional
-        Type of pdb DNA format, by default 'GROMACS'
-    shape : ndarray, optional
-        control_points of shape (n,3) with n > 3 that is used for spline interpolation to determine DNA shape, by default None which is a straight line
-    n_bp : _type_, optional
-        Number of base pairs to scale shape with, by default None then sequence is used to determine n_bp
-    circular : bool, optional
-        Key that tells if structure is circular/closed, by default False
-    dLk : int, optional
-        Change in twist in terms of Linking number of DNA structure to output, by default None (neutral twist base on bp_per_turn = 10.5)
+    Args:
+        sequence (str, optional): The DNA sequence code. Default is 'CGCGAATTCGCG'.
+        filename (str, optional): The filename for the pdb output. Default is 'my_dna'.
+        save (bool, optional): Whether to save the pdb file. Default is True.
+        output (str, optional): The type of pdb DNA format. Default is 'GROMACS'.
+        shape (np.ndarray, optional): Control points of shape (n,3) with n > 3 that is used for spline interpolation to determine DNA shape. Default is None, which is a straight line.
+        n_bp (int, optional): Number of base pairs to scale shape with. Default is None, then the sequence is used to determine n_bp.
+        circular (bool, optional): Indicates if the structure is circular/closed. Default is False.
+        dLk (int, optional): Change in twist in terms of Linking number of DNA structure to output. Default is None, which corresponds to a neutral twist based on bp_per_turn = 10.5.
 
-    Returns
-    -------
-    MDtraj object
-        returns MDtraj trajectory object of DNA structure (containing only a single frame)
+    Returns:
+        md.Trajectory: An MDtraj trajectory object of the DNA structure (containing only a single frame).
+
+    Raises:
+        ValueError: If the sequence is not provided.
+
+    Notes:
+        - The sequence argument must be provided.
+        - The returned MDtraj object contains the DNA structure generated from the sequence and control points.
+        - If the output is set to 'GROMACS', the DNA structure is edited to make it compatible with the AMBER force field.
+        - The pdb file is saved in the current directory with the specified filename.
+
+    Example:
+        # Generate a DNA structure from a sequence
+        traj = sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, output='GROMACS', shape=None, n_bp=None, circular=False, dLk=None)
     """
 
-    # TODO update with make function
+    # Check if the sequence is provided
+    if sequence is None:
+        raise ValueError("The sequence argument must be provided.")
+
+    # TODO: Update with make function
     sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
 
-    # Linear strand of control points 
+    # Linear strand of control points
     if shape is None:
         shape = Shapes.line(length=1)
-        # Convert the control points to a spline
-    spline = SplineFrames(control_points=shape, n_bp=n_bp,closed=circular,dLk=dLk)
+
+    # Convert the control points to a spline
+    spline = SplineFrames(control_points=shape, n_bp=n_bp, closed=circular, dLk=dLk)
+
     # Generate the DNA structure
-    generator = StructureGenerator(sequence=sequence,spline=spline, circular=circular)
+    generator = StructureGenerator(sequence=sequence, spline=spline, circular=circular)
 
     # Edit the DNA structure to make it compatible with the AMBER force field
     traj = generator.traj
@@ -183,22 +212,45 @@ def sequence_to_pdb(sequence='CGCGAATTCGCG', filename='my_dna', save=True, outpu
         all_atoms = traj.top.select('all')
         traj = traj.atom_slice([at for at in all_atoms if at not in phosphor_termini])
 
-    # Save the DNA structure as pdb file
+    # Save the DNA structure as a pdb file
     if save:
         traj.save(f'./{filename}.pdb')
 
     return traj
 
 def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False,  filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None):
-    """Simulate DNA sequence using OpenMM
+    """Simulate DNA sequence using OpenMM.
+
         Args:
-            sequence: DNA sequence
-            time: simulation time
-            time_unit: time unit
-            temperature: temperature
-            solvated: solvate DNA
+            sequence (str): DNA sequence code.
+            time (int): Simulation time.
+            time_unit (str): Time unit (picoseconds or nanoseconds).
+            temperature (int): Temperature in Kelvin.
+            solvated (bool): Solvate DNA with water and ions.
+            filename (str): Filename for pdb output.
+            save (bool): Save the trajectory.
+            output (str): Output format for the trajectory (GROMACS or HDF5).
+            shape (str): Shape of the DNA structure (linear or circular).
+            n_bp (int): Number of base pairs in the DNA structure.
+            circular (bool): Flag indicating if the DNA structure is circular.
+            dLk (int): Change in linking number of the DNA structure.
+
         Returns:
-            mdtraj trajectory"""
+            MDTraj (object): MDtraj trajectory object of DNA structure.
+
+        Notes:
+            - This function uses the OpenMM library to simulate the behavior of a DNA sequence.
+            - The simulation can be performed for a specified time period at a given temperature.
+            - The DNA structure can be solvated with water and ions.
+            - The trajectory of the simulation can be saved in either GROMACS or HDF5 format.
+            - The shape of the DNA structure can be specified as linear or circular.
+            - The number of base pairs in the DNA structure can be provided.
+            - The change in linking number of the DNA structure can be specified.
+
+        Example:
+            # Simulate a linear DNA structure for 100 picoseconds at 300 K
+            trajectory = sequence_to_md(sequence='ATCG', time=100, time_unit='picoseconds', temperature=300, shape='linear')
+        """
 
     # TODO update with make function
     try:
@@ -263,14 +315,37 @@ class Nucleic:
     """Contains mdna DNA structure with reference frames and trajectory"""
 
     def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None, circular=None):
-        """Initialize the DNA structure
-        Args:
-            sequence: DNA sequence
-            n_bp: number of base pairs
-            traj: trajectory
-            frames: reference frames
-            chainids: chain ids"""
+            """Initializes the DNA structure.
 
+            Args:
+                sequence (str): The DNA sequence, e.g. 'CGCGAATTCGCG'.
+                n_bp (int): The number of base pairs. Default is None.
+                traj (object): The MDTraj trajectory. Default is None.
+                frames (np.ndarray): The reference frames of the DNA structure. Default is None.
+                chainids (list): The chain IDs. Default is None.
+                circular (bool): A flag that indicates if the structure is circular/closed. Default is None.
+
+            Raises:
+                ValueError: If both traj and frames are provided.
+                ValueError: If frames have an invalid shape.
+                ValueError: If the number of base pairs in the sequence and frames do not match.
+                ValueError: If neither traj nor frames are provided.
+
+            Notes:
+                - If traj is provided, sequence and n_bp will be extracted from the trajectory.
+                - If frames is provided, n_bp will be determined from the shape of frames.
+                - If sequence is provided, it will be checked against the number of base pairs.
+
+            Attributes:
+                sequence (str): The DNA sequence.
+                n_bp (int): The number of base pairs.
+                traj (object): The MDTraj trajectory.
+                frames (np.ndarray): The reference frames of the DNA structure.
+                chainids (list): The chain IDs.
+                circular (bool): A flag that indicates if the structure is circular/closed.
+                rigid (None): A container for rigid base parameters class output.
+                minimizer (None): A container for minimizer class output.
+            """
         # Check for trajectory
         if traj is not None:
             if frames is not None:
@@ -341,8 +416,8 @@ class Nucleic:
         and 4 corresponds to the origin and the 3 vectors of the reference frame
         
         Returns:
-            np.ndarray: reference frames of the DNA structure"""
-
+            frames (np.ndarray): reference frames of the DNA structure"""
+        
         if self.frames is None:
             self._traj_to_frames()
         return self.frames
@@ -360,6 +435,7 @@ class Nucleic:
     
     def get_rigid_parameters(self):
         """Get the rigid base parameters class object of the DNA structure
+
         Returns:
             NucleicFrames object"""
         if self.rigid is None and self.traj is not None:
@@ -417,40 +493,36 @@ class Nucleic:
             ax.plot([helical_axis[-1,0],helical_axis[0,0]],[helical_axis[-1,1],helical_axis[0,1]],[helical_axis[-1,2],helical_axis[0,2]],':',c='k',lw=lw*0.7)
 
     def draw(self, ax=None, fig=None, save=False, frame=-1, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey'):
-        """Draw 3D representation of the DNA structure with optial helical axis, backbone, lead, anti, and triads
+        """Draws a 3D representation of the DNA structure with optional helical axis, backbone, lead, anti, and triads.
 
-        Parameters
-        ----------
-        ax : object, optional
-            matplotlib axis, by default None
-        fig : object, optional
-            figure axis, by default None
-        save : bool, optional
-            save image with name png, by default False
-        frame : int, optional
-            index of trajectory to visualize, by default 0
-        markersize : int, optional
-            width of backbone plot, by default 2
-        helical_axis : bool, optional
-            central axis passing through frame orgins, by default True
-        backbone : bool, optional
-            'o-' line plot through phosphor atoms, by default True
-        lead : bool, optional
-            plot leading strand, by default False
-        anti : bool, optional
-            plot anti sense opposing leading strand, by default False
-        triads : bool, optional
-            plot triads in order of  b_L (blue), b_N (green), b_T (red), by default False
-        length : float, optional
-            length of triad vectors, by default 0.23
-        Returns
-        -------
-        object (optional)
-            matplotlib figure
+        Args:
+            ax (object, optional): Matplotlib axis. Default is None.
+            fig (object, optional): Figure axis. Default is None.
+            save (bool, optional): Save image as png. Default is False.
+            frame (int, optional): Index of trajectory to visualize. Default is -1.
+            markersize (int, optional): Width of backbone plot. Default is 2.
+            lw (int, optional): Line width of plots. Default is 1.
+            helical_axis (bool, optional): Plot central axis passing through frame origins. Default is True.
+            backbone (bool, optional): Plot backbone as 'o-' line plot through phosphor atoms. Default is True.
+            lead (bool, optional): Plot leading strand. Default is False.
+            anti (bool, optional): Plot anti-sense opposing leading strand. Default is False.
+            triads (bool, optional): Plot triads in order of b_L (blue), b_N (green), b_T (red). Default is False.
+            length (float, optional): Length of triad vectors. Default is 0.23.
+            color_lead (str, optional): Color of the leading strand. Default is 'k'.
+            color_anti (str, optional): Color of the anti strand. Default is 'darkgrey'.
 
+        Notes:
+            - The function draws a 3D representation of the DNA structure using matplotlib.
+            - The DNA structure can include a helical axis, backbone, lead strand, anti-sense strand, and triads.
+            - The function requires either the trajectory or reference frames to be loaded before calling.
+
+        Example:
+            nuc = Nucleic()
+            nuc.load_traj('trajectory.dcd')
+            nuc.draw(ax=plt.gca(), save=True, frame=10, markersize=3, lw=2, helical_axis=True, backbone=True, lead=True, anti=True, triads=True, length=0.2, color_lead='r', color_anti='b')
         """
 
-        # TODO: handle circular DNA and when trajetory is not loaded make frames uniform 
+        # TODO: handle circular DNA and when trajectory is not loaded make frames uniform 
         # in shape (time/n_frames, n_bp, 4, 3)
 
         if self.traj is None:
@@ -459,7 +531,7 @@ class Nucleic:
             self._traj_to_frames()
                 
         if fig is None and ax is None:
-            fig = plt.figure()#figsize=(4,4))
+            fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
 
         if backbone:
@@ -527,82 +599,138 @@ class Nucleic:
             raise ValueError('Run minimization first')
         return self.minimizer.get_MC_traj()
 
-    def mutate(self, mutations: dict = None, complementary : bool = True, frame : int = -1):
-        """Mutate the DNA trajectory, updates the topology and coordinates of the DNA structure
+    def mutate(self, mutations: dict = None, complementary: bool = True, frame: int = -1):
+        """Mutate the DNA trajectory, updating the topology and coordinates of the DNA structure.
 
-        Options for nucleobases are:
-            Canoncial bases: A, T, G, C, U
-            Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana],  DOI: 10.1126/science.aat0971
-            Fluorescent: 2-aminopurine 2AP (E), triC (D), https://doi.org/10.1002/anie.201001312 (2kv0) tricyclic cytosin base analogue (1tuq)
-            Hydrophobic pairs: d5SICS (L), dNaM (M)
+        Args:
+            mutations (dict, optional): A dictionary containing the mutation information. The keys represent the indices of the base pairs to be mutated, and the values represent the new nucleobases. For example, `mutations = {0: 'A', 1: 'T', 2: 'G'}` will mutate the first three base pairs to A, T, and G, respectively. Defaults to None.
+            complementary (bool, optional): Whether to mutate the complementary strand. Defaults to True.
+            frame (int, optional): The frame to mutate. Defaults to -1.
 
-            Parameters
-        ----------
-        mutation : dict
-            Dictionary containing the mutation information. E.g. `mutations = {0: 'A', 1: 'T', 2: 'G'}` will mutate the first three base pairs to A, T, and G, respectively.
-        complementary : bool, optional
-            Whether to mutate the complementary strand, by default True
-        frame : int, optional
-            The frame to mutate, by default -1 (aka the last frame)
+        Raises:
+            ValueError: If no mutation dictionary is provided.
+
+        Notes:
+            - Valid nucleobases for mutations include:
+                - Canonical bases: A, T, G, C, U
+                - Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana] (DOI: 10.1126/science.aat0971)
+                - Fluorescent: 2-aminopurine 2AP (E), triC (D) (DOI: 10.1002/anie.201001312), tricyclic cytosine base analogue (1tuq)
+                - Hydrophobic pairs: d5SICS (L), dNaM (M)
+
+        Returns:
+            None: The method updates the `traj` attribute and the `sequence` attribute of the DNA object.
+
+        Examples:
+            # Create a DNA object
+            dna = DNA()
+
+            # Mutate the DNA trajectory
+            mutations = {0: 'A', 1: 'T', 2: 'G'}
+            dna.mutate(mutations=mutations, complementary=True, frame=-1)
         """
-
         if self.traj is None:
             self._frames_to_traj()
         if mutations is None:
             raise ValueError('Provide a mutation dictionary')
 
-        # TODO check if valid letters in muations dictionary
+        # TODO: Check if valid letters in mutations dictionary
 
-        mutant = Mutate(self.traj[frame], mutations,complementary=complementary)
+        mutant = Mutate(self.traj[frame], mutations, complementary=complementary)
         self.traj = mutant.get_traj()
-        # update sequence
+        # Update sequence
         self.sequence = ''.join(get_sequence_letters(self.traj, leading_chain=self.chainids[0]))
 
-    def flip(self, fliplist: list = [], deg : int = 180, frame : int = -1):
-        """Flip the nucleobases of the DNA structure"""
-        
-        if self.traj is None:
-            self._frames_to_traj()
-        if len(fliplist) == 0:
-            raise ValueError('Provide a fliplist')
 
-        flipper = Hoogsteen(self.traj, fliplist=fliplist,deg=deg,verbose=True)
-        self.traj = flipper.get_traj()
+    def flip(self, fliplist: list = [], deg: int = 180, frame: int = -1):
+            """Flips the nucleobases of the DNA structure.
 
-    def methylate(self, methylations: list = [],  CpG : bool = False, leading_strand : int = 0, frame : int = -1):
-        """Methylate the nucleobases of the DNA structure"""
+            Args:
+                fliplist (list): A list of base pairs to flip. Defaults to an empty list.
+                deg (int): The degrees to flip. Defaults to 180.
+                frame (int): The frame to flip. Defaults to -1.
 
-        if self.traj is None:
-            self._frames_to_traj()
-        if len(methylations) == 0:
-            raise ValueError('Provide a methylation list')
+            Raises:
+                ValueError: If no fliplist is provided.
 
-        methylator = Methylate(self.traj, methylations=methylations,CpG=CpG,leading_strand=leading_strand)
-        self.traj = methylator.get_traj()
+            Notes:
+                This method flips the nucleobases of the DNA structure. It uses the Hoogsteen algorithm to perform the flipping.
+                The `fliplist` parameter specifies the base pairs to flip. If no `fliplist` is provided, a `ValueError` is raised.
+                The `deg` parameter specifies the degrees to flip. By default, it is set to 180 degrees.
+                The `frame` parameter specifies the frame to flip. By default, it is set to -1.
+
+            Example:
+                >>> dna = Nucleic()
+                >>> dna.flip(fliplist=[(1, 2), (3, 4)], deg=90, frame=0)
+
+            """
+            
+            if self.traj is None:
+                self._frames_to_traj()
+            if len(fliplist) == 0:
+                raise ValueError('Provide a fliplist')
+
+            flipper = Hoogsteen(self.traj, fliplist=fliplist, deg=deg, verbose=True)
+            self.traj = flipper.get_traj()
+
+    def methylate(self, methylations: list = [], CpG: bool = False, leading_strand: int = 0, frame: int = -1):
+            """Methylate the nucleobases of the DNA structure.
+
+            Args:
+                methylations (list): List of base pairs to methylate. Defaults to [].
+                CpG (bool): Whether to methylate CpG sites. Defaults to False.
+                leading_strand (int): The leading strand to methylate. Defaults to 0.
+                frame (int): The frame to methylate. Defaults to -1.
+
+            Raises:
+                ValueError: If the DNA structure is not loaded.
+                ValueError: If the methylations list is empty.
+
+            Notes:
+                - If the DNA structure is not loaded, a ValueError will be raised.
+                - If the methylations list is empty, a ValueError will be raised.
+
+            Example:
+                >>> nuc = Nucleic()
+                >>> nuc.methylate(methylations=[1, 3, 5], CpG=True, leading_strand=1, frame=0)
+            """
+            if self.traj is None:
+                raise ValueError('DNA structure is not loaded')
+            if len(methylations) == 0:
+                raise ValueError('Provide a non-empty methylations list')
+
+            methylator = Methylate(self.traj, methylations=methylations, CpG=CpG, leading_strand=leading_strand)
+            self.traj = methylator.get_traj()
     
-    def extend(self, n_bp: int, sequence: str = None,fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin : int = 1, minimize : bool = True):  
-        """Extend the DNA sequence in the specified direction using the five_end or three_end as reference.
+    def extend(self, n_bp: int, sequence: str = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True):  
+        """Extend the DNA structure in the specified direction.
 
-        Parameters
-        ----------
-        n_bp : int
-            Number of base pairs to extend the DNA sequence
-        sequence : str, optional
-            DNA sequence to extend the DNA structure, by default None
-        fixed_endpoints : bool, optional
-            Fixed endpoint for extending the DNA sequence, by default False
-        forward : bool, optional
-            Extend the DNA sequence in the forward direction. If False, extend in the backward direction, by default True
-        frame : int, optional
-            The time frame to extend, by default -1
-        shape : np.ndarray, optional
-            control_points of shape (n,3) with n > 3, by default None
-        margin : int, optional
-            Number of base pairs to fix at the end/start, by default 1
+        Args:
+            n_bp (int): Number of base pairs to extend the DNA structure.
+            sequence (str, optional): DNA sequence to extend the DNA structure. If not provided, the sequence will be generated randomly. Defaults to None.
+            fixed_endpoints (bool, optional): Whether to fix the endpoints of the DNA structure during extension. Defaults to False.
+            forward (bool, optional): Whether to extend the DNA structure in the forward direction. If False, the DNA structure will be extended in the backward direction. Defaults to True.
+            frame (int, optional): The time frame to extend. Defaults to -1.
+            shape (np.ndarray, optional): Control points of the shape to be used for extension. The shape should be a numpy array of shape (n, 3), where n is greater than 3. Defaults to None.
+            margin (int, optional): Number of base pairs to fix at the end/start of the DNA structure during extension. Defaults to 1.
+            minimize (bool, optional): Whether to minimize the new DNA structure after extension. Defaults to True.
+
+        Raises:
+            ValueError: If the DNA structure is circular and cannot be extended.
+            ValueError: If neither a fixed endpoint nor a length is specified for extension.
+            ValueError: If the input sequence is invalid or the number of base pairs is invalid.
+
+        Notes:
+            - If the DNA structure is circular, it cannot be extended.
+            - If neither a fixed endpoint nor a length is specified for extension, a ValueError will be raised.
+            - If the input sequence is provided, it will be used to extend the DNA structure. Otherwise, the sequence will be generated randomly.
+            - If the shape is not provided, a straight line shape will be used for extension.
+            - If the DNA structure is not in the form of frames, it will be converted to frames before extension.
+            - If minimize is set to True, the new DNA structure will be minimized after extension.
+
+        Example:
+            >>> nuc = Nucleic()
+            >>> nuc.extend(n_bp=10, sequence='ATCG', fixed_endpoints=True, forward=True, frame=-1, shape=None, margin=2, minimize=True)
         """
-
-        # TODO: add target frame to extend to
-
         if self.circular:
             raise ValueError('Cannot extend circular DNA structure')
         if not n_bp and not fixed_endpoints:
@@ -637,15 +765,11 @@ class Nucleic:
     def get_linking_number(self, frame : int = -1):
         """Get the linking number of the DNA structure based on Gauss's linking number theorem.
 
-        Parameters
-        ----------
-        frame : int, optional
-            Time frame of trajectory, by default -1
+        Args:
+            frame (int, optional): Time frame of trajectory, by default -1
 
-        Returns
-        -------
-        np.ndarray
-            Numpy array containing the linking number, writhe, and twist corresponding to the time frame
+        Returns:
+            linking_number (np.ndarray): Numpy array containing the linking number, writhe, and twist corresponding to the time frame
         """
 
         from pmcpy import pylk

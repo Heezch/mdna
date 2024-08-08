@@ -1,0 +1,24 @@
+# mkdocs.yml
+site_name: Software module for DNA structure analysis and generation
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+  - search
+
+nav:
+  - MDNA Docs: index.md
+  - tutorials.md
+  - explanation.md
+  - How-To Guides: how-to-guides.md
+  - Modules: 
+      - Build: modules-build.md
+      - Modify: modules-modify.md
+       - Analyse: modules-analyse.md
+  - Code Reference: 
+      - Nucleic: nucleic-reference.md
+      - Shapes: shapes-reference.md
+      - Geometry: geometry-reference.md
+
