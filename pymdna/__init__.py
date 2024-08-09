@@ -10,9 +10,6 @@ from .nucleic import (
         sequence_to_md
     )
 
-from . import _version
-
-
 __all__ = ["load", "make", "connect", "compute_rigid_parameters", "compute_curvature", "compute_linking_number", "compute_groove_width", "sequence_to_pdb", "sequence_to_md"]
 
 __version__ = "0.00"

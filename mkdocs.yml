@@ -3,20 +3,50 @@ site_name: Software module for DNA structure analysis and generation
 
 theme:
   name: "material"
+  features:
+    - content.code.copy
+
 
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+          python: 
+            options:
+              show_source: true
+              show_root_heading: true
   - search
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+
+
 
 nav:
   - MDNA Docs: index.md
-  - tutorials.md
+  - Tutorials:
+      - Overiew: tutorials.md
+      - Introduction: tutorials-introduction.md
+
   - explanation.md
   - How-To Guides: how-to-guides.md
   - Modules: 
       - Build: modules-build.md
       - Modify: modules-modify.md
-       - Analyse: modules-analyse.md
+      - Analyse: modules-analyse.md
   - Code Reference: 
       - Nucleic: nucleic-reference.md
       - Shapes: shapes-reference.md

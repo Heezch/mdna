@@ -1,0 +1,2531 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Reference - Software module for DNA structure analysis and generation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Software module for DNA structure analysis and generation" class="md-header__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Software module for DNA structure analysis and generation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Software module for DNA structure analysis and generation" class="md-nav__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Software module for DNA structure analysis and generation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MDNA Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Explanation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-guides/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To Guides
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules-build/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules-modify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules-analyse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Analyse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nucleic-reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nucleic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shapes-reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shapes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geometry-reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.make" class="md-nav__link">
+    <span class="md-ellipsis">
+      make
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="make">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extend
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.extend" class="md-nav__link">
+    <span class="md-ellipsis">
+      extend
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="extend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      connect
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.connect--connect-two-dna-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect two DNA structures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.mutate" class="md-nav__link">
+    <span class="md-ellipsis">
+      mutate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.mutate--create-a-dna-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a DNA object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.mutate--mutate-the-dna-trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutate the DNA trajectory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.methylate" class="md-nav__link">
+    <span class="md-ellipsis">
+      methylate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.Nucleic.flip" class="md-nav__link">
+    <span class="md-ellipsis">
+      flip
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analyse-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyse Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyse Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rigid-base-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rigid Base Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.compute_rigid_parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      compute_rigid_parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.compute_rigid_parameters--compute-the-rigid-base-parameters-of-a-dna-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute the rigid base parameters of a DNA structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compute the rigid base parameters of a DNA structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linking-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linking Number
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.compute_linking_number" class="md-nav__link">
+    <span class="md-ellipsis">
+      compute_linking_number
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="compute_linking_number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curvature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curvature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.compute_curvature" class="md-nav__link">
+    <span class="md-ellipsis">
+      compute_curvature
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="compute_curvature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#groove-widths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Groove Widths
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pymdna.nucleic.compute_groove_width" class="md-nav__link">
+    <span class="md-ellipsis">
+      compute_groove_width
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
+<h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h2>
+<h3 id="make">Make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.make"></a>
+    <div class="doc doc-contents first">
+
+      <p>Generate a DNA structure from a given DNA sequence and control points.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>sequence</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DNA sequence code. If not provided, the default sequence 'CGCGAATTCGCG' will be used. (default: None)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>control_points</code></td>
+            <td>
+                  <code>ndarray</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Control points of the DNA structure. Should be a numpy array of shape (n, 3) where n is the number of control points. If not provided, a straight line will be used as the default control points. (default: None)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>circular</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Flag indicating if the DNA structure is circular/closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. (default: False)</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>closed</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Flag indicating if the DNA structure is closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. This argument is deprecated and will be removed in a future version. Please use the 'circular' argument instead. (default: False)</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>n_bp</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs to scale the shape with. If not provided, the number of base pairs will be determined based on the length of the control points or the sequence. (default: None)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>dLk</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Change in twist in terms of Linking number of the DNA structure. If not provided, a neutral twist based on bp_per_turn = 10.5 will be used. (default: None)</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>Nucleic</code></td>            <td>
+                  <code>object</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DNA structure object.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <ul>
+<li>If control_points are provided, the sequence argument is ignored.</li>
+<li>If sequence is provided, the control_points argument is ignored.</li>
+<li>If circular is True, the DNA structure will be closed.</li>
+<li>If circular is False, the DNA structure will be open.</li>
+<li>The closed argument is deprecated and will be removed in a future version. Please use the 'circular' argument instead.</li>
+</ul>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">sequence</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">control_points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">circular</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">n_bp</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dLk</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a DNA structure from a given DNA sequence and control points.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sequence (str, optional): DNA sequence code. If not provided, the default sequence &#39;CGCGAATTCGCG&#39; will be used. (default: None)</span>
+<span class="sd">        control_points (ndarray, optional): Control points of the DNA structure. Should be a numpy array of shape (n, 3) where n is the number of control points. If not provided, a straight line will be used as the default control points. (default: None)</span>
+<span class="sd">        circular (bool, optional): Flag indicating if the DNA structure is circular/closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. (default: False)</span>
+<span class="sd">        closed (bool, optional): Flag indicating if the DNA structure is closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. This argument is deprecated and will be removed in a future version. Please use the &#39;circular&#39; argument instead. (default: False)</span>
+<span class="sd">        n_bp (int, optional): Number of base pairs to scale the shape with. If not provided, the number of base pairs will be determined based on the length of the control points or the sequence. (default: None)</span>
+<span class="sd">        dLk (int, optional): Change in twist in terms of Linking number of the DNA structure. If not provided, a neutral twist based on bp_per_turn = 10.5 will be used. (default: None)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Nucleic (object): DNA structure object.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - If control_points are provided, the sequence argument is ignored.</span>
+<span class="sd">        - If sequence is provided, the control_points argument is ignored.</span>
+<span class="sd">        - If circular is True, the DNA structure will be closed.</span>
+<span class="sd">        - If circular is False, the DNA structure will be open.</span>
+<span class="sd">        - The closed argument is deprecated and will be removed in a future version. Please use the &#39;circular&#39; argument instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Check if control points are provided, otherwise generate a straight line</span>
+    <span class="k">if</span> <span class="n">control_points</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">control_points</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Control points should contain at least 4 points [x, y, z]&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">control_points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">n_bp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_bp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">control_points</span><span class="p">)</span>  <span class="c1"># Number of base pairs</span>
+    <span class="k">elif</span> <span class="n">control_points</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">circular</span><span class="p">:</span>
+        <span class="n">control_points</span> <span class="o">=</span> <span class="n">Shapes</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">closed</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Linear strand of control points</span>
+        <span class="n">control_points</span> <span class="o">=</span> <span class="n">Shapes</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span> <span class="o">=</span> <span class="n">_check_input</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">)</span>
+    <span class="n">spline</span> <span class="o">=</span> <span class="n">SplineFrames</span><span class="p">(</span><span class="n">control_points</span><span class="o">=</span><span class="n">control_points</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="n">circular</span><span class="p">,</span> <span class="n">dLk</span><span class="o">=</span><span class="n">dLk</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Nucleic</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="n">spline</span><span class="o">.</span><span class="n">frames</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">circular</span><span class="o">=</span><span class="n">circular</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h3 id="extend">Extend<a class="headerlink" href="#extend" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.Nucleic.extend"></a>
+    <div class="doc doc-contents first">
+
+      <p>Extend the DNA structure in the specified direction.
+    The method updates the attributes of the DNA object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>n_bp</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs to extend the DNA structure.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>sequence</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DNA sequence to extend the DNA structure. If not provided, the sequence will be generated randomly. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>fixed_endpoints</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to fix the endpoints of the DNA structure during extension. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>forward</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to extend the DNA structure in the forward direction. If False, the DNA structure will be extended in the backward direction. Defaults to True.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>frame</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The time frame to extend. Defaults to -1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>-1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>shape</code></td>
+            <td>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Control points of the shape to be used for extension. The shape should be a numpy array of shape (n, 3), where n is greater than 3. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>margin</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs to fix at the end/start of the DNA structure during extension. Defaults to 1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>minimize</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to minimize the new DNA structure after extension. Defaults to True.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the DNA structure is circular and cannot be extended.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If neither a fixed endpoint nor a length is specified for extension.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the input sequence is invalid or the number of base pairs is invalid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <ul>
+<li>If the DNA structure is circular, it cannot be extended.</li>
+<li>If neither a fixed endpoint nor a length is specified for extension, a ValueError will be raised.</li>
+<li>If the input sequence is provided, it will be used to extend the DNA structure. Otherwise, the sequence will be generated randomly.</li>
+<li>If the shape is not provided, a straight line shape will be used for extension.</li>
+<li>If the DNA structure is not in the form of frames, it will be converted to frames before extension.</li>
+<li>If minimize is set to True, the new DNA structure will be minimized after extension.</li>
+</ul>
+</details>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>nuc = Nucleic()
+nuc.extend(n_bp=10, sequence='ATCG', fixed_endpoints=True, forward=True, frame=-1, shape=None, margin=2, minimize=True)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">708</span>
+<span class="normal">709</span>
+<span class="normal">710</span>
+<span class="normal">711</span>
+<span class="normal">712</span>
+<span class="normal">713</span>
+<span class="normal">714</span>
+<span class="normal">715</span>
+<span class="normal">716</span>
+<span class="normal">717</span>
+<span class="normal">718</span>
+<span class="normal">719</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span>
+<span class="normal">738</span>
+<span class="normal">739</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span>
+<span class="normal">747</span>
+<span class="normal">748</span>
+<span class="normal">749</span>
+<span class="normal">750</span>
+<span class="normal">751</span>
+<span class="normal">752</span>
+<span class="normal">753</span>
+<span class="normal">754</span>
+<span class="normal">755</span>
+<span class="normal">756</span>
+<span class="normal">757</span>
+<span class="normal">758</span>
+<span class="normal">759</span>
+<span class="normal">760</span>
+<span class="normal">761</span>
+<span class="normal">762</span>
+<span class="normal">763</span>
+<span class="normal">764</span>
+<span class="normal">765</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">extend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bp</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sequence</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fixed_endpoints</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">forward</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">margin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">minimize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>  
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend the DNA structure in the specified direction.</span>
+<span class="sd">        The method updates the attributes of the DNA object.</span>
+
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_bp (int): Number of base pairs to extend the DNA structure.</span>
+<span class="sd">        sequence (str, optional): DNA sequence to extend the DNA structure. If not provided, the sequence will be generated randomly. Defaults to None.</span>
+<span class="sd">        fixed_endpoints (bool, optional): Whether to fix the endpoints of the DNA structure during extension. Defaults to False.</span>
+<span class="sd">        forward (bool, optional): Whether to extend the DNA structure in the forward direction. If False, the DNA structure will be extended in the backward direction. Defaults to True.</span>
+<span class="sd">        frame (int, optional): The time frame to extend. Defaults to -1.</span>
+<span class="sd">        shape (np.ndarray, optional): Control points of the shape to be used for extension. The shape should be a numpy array of shape (n, 3), where n is greater than 3. Defaults to None.</span>
+<span class="sd">        margin (int, optional): Number of base pairs to fix at the end/start of the DNA structure during extension. Defaults to 1.</span>
+<span class="sd">        minimize (bool, optional): Whether to minimize the new DNA structure after extension. Defaults to True.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the DNA structure is circular and cannot be extended.</span>
+<span class="sd">        ValueError: If neither a fixed endpoint nor a length is specified for extension.</span>
+<span class="sd">        ValueError: If the input sequence is invalid or the number of base pairs is invalid.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - If the DNA structure is circular, it cannot be extended.</span>
+<span class="sd">        - If neither a fixed endpoint nor a length is specified for extension, a ValueError will be raised.</span>
+<span class="sd">        - If the input sequence is provided, it will be used to extend the DNA structure. Otherwise, the sequence will be generated randomly.</span>
+<span class="sd">        - If the shape is not provided, a straight line shape will be used for extension.</span>
+<span class="sd">        - If the DNA structure is not in the form of frames, it will be converted to frames before extension.</span>
+<span class="sd">        - If minimize is set to True, the new DNA structure will be minimized after extension.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; nuc = Nucleic()</span>
+<span class="sd">        &gt;&gt;&gt; nuc.extend(n_bp=10, sequence=&#39;ATCG&#39;, fixed_endpoints=True, forward=True, frame=-1, shape=None, margin=2, minimize=True)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot extend circular DNA structure&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">n_bp</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fixed_endpoints</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a fixed endpoint or a length must be specified for extension.&quot;</span><span class="p">)</span>    
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames_to_traj</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">Shapes</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_traj_to_frames</span><span class="p">()</span>
+
+    <span class="c1"># Check the input sequence and number of base pairs</span>
+    <span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span> <span class="o">=</span> <span class="n">_check_input</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">)</span>
+
+    <span class="n">extender</span> <span class="o">=</span> <span class="n">Extender</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span> <span class="n">fixed_endpoints</span><span class="o">=</span><span class="n">fixed_endpoints</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="n">forward</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">)</span>
+    <span class="c1"># Also update, n_bp, sequence, frames etc</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span> <span class="o">=</span> <span class="n">extender</span><span class="o">.</span><span class="n">nuc</span>
+
+    <span class="k">if</span> <span class="n">minimize</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">fixed</span><span class="o">=</span><span class="n">extender</span><span class="o">.</span><span class="n">fixed</span><span class="p">,</span> <span class="n">endpoints_fixed</span><span class="o">=</span><span class="n">fixed_endpoints</span><span class="p">)</span>
+
+    <span class="c1"># Update attributes</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span><span class="o">.</span><span class="n">sequence</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span><span class="o">.</span><span class="n">get_frames</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">n_bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuc</span><span class="o">.</span><span class="n">n_bp</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h3 id="connect">Connect<a class="headerlink" href="#connect" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.connect"></a>
+    <div class="doc doc-contents first">
+
+      <p>Connect two DNA structures by creating a new DNA structure with a connecting DNA strand.</p>
+<p>The 3' end of the first DNA structure is connected to the 5' end of the second DNA structure.
+To connect the two strands, a straight line is interpolated between the two ends,
+and the optimal number of base pairs is distributed to achieve a neutral twist.</p>
+<p>Note:
+The minimization does not use excluded volume interactions by default.
+This is because the excluded volume interactions require the EV beads to have no overlap.
+However, in the initial configuration, the EV beads are likely to have overlap.
+If desired, the resulting Nucleic object can be further minimized with the excluded volume interactions.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>Nucleic0</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="pymdna.nucleic.Nucleic" href="../reference/#pymdna.nucleic.Nucleic">Nucleic</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>First DNA structure to connect.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>Nucleic1</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="pymdna.nucleic.Nucleic" href="../reference/#pymdna.nucleic.Nucleic">Nucleic</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Second DNA structure to connect.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>sequence</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DNA sequence of the connecting DNA strand. Default is None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>n_bp</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs of the connecting DNA strand. Default is None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>leader</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The leader of the DNA structure to connect. Default is 0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>frame</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The time frame to connect. Default is -1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>-1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>margin</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs to fix at the end. Default is 1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>minimize</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to minimize the new DNA structure. Default is True.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>exvol_rad</code></td>
+            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Radius for excluded volume interactions during minimization. Default is 0.0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>temperature</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Temperature for minimization. Default is 300.</p>
+              </div>
+            </td>
+            <td>
+                  <code>300</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>Nucleic</code></td>            <td>
+                  <code>object</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DNA structure with the two DNA structures connected.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If either of the DNA structures is circular.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h2 id="pymdna.nucleic.connect--connect-two-dna-structures">Connect two DNA structures<a class="headerlink" href="#pymdna.nucleic.connect--connect-two-dna-structures" title="Permanent link">&para;</a></h2>
+<p>connected_dna = connect(Nucleic0, Nucleic1, sequence='ATCG', n_bp=4, leader=0, frame=-1, margin=2, minimize=True, exvol_rad=0.5, temperature=310)</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">Nucleic0</span><span class="p">,</span> <span class="n">Nucleic1</span><span class="p">,</span> <span class="n">sequence</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_bp</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">leader</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">margin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">minimize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">exvol_rad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">temperature</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect two DNA structures by creating a new DNA structure with a connecting DNA strand.</span>
+
+<span class="sd">    The 3&#39; end of the first DNA structure is connected to the 5&#39; end of the second DNA structure.</span>
+<span class="sd">    To connect the two strands, a straight line is interpolated between the two ends,</span>
+<span class="sd">    and the optimal number of base pairs is distributed to achieve a neutral twist.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">    The minimization does not use excluded volume interactions by default.</span>
+<span class="sd">    This is because the excluded volume interactions require the EV beads to have no overlap.</span>
+<span class="sd">    However, in the initial configuration, the EV beads are likely to have overlap.</span>
+<span class="sd">    If desired, the resulting Nucleic object can be further minimized with the excluded volume interactions.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        Nucleic0 (Nucleic): First DNA structure to connect.</span>
+<span class="sd">        Nucleic1 (Nucleic): Second DNA structure to connect.</span>
+<span class="sd">        sequence (str, optional): DNA sequence of the connecting DNA strand. Default is None.</span>
+<span class="sd">        n_bp (int, optional): Number of base pairs of the connecting DNA strand. Default is None.</span>
+<span class="sd">        leader (int, optional): The leader of the DNA structure to connect. Default is 0.</span>
+<span class="sd">        frame (int, optional): The time frame to connect. Default is -1.</span>
+<span class="sd">        margin (int, optional): Number of base pairs to fix at the end. Default is 1.</span>
+<span class="sd">        minimize (bool, optional): Whether to minimize the new DNA structure. Default is True.</span>
+<span class="sd">        exvol_rad (float, optional): Radius for excluded volume interactions during minimization. Default is 0.0.</span>
+<span class="sd">        temperature (int, optional): Temperature for minimization. Default is 300.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Nucleic (object): DNA structure with the two DNA structures connected.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If either of the DNA structures is circular.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        # Connect two DNA structures</span>
+<span class="sd">        connected_dna = connect(Nucleic0, Nucleic1, sequence=&#39;ATCG&#39;, n_bp=4, leader=0, frame=-1, margin=2, minimize=True, exvol_rad=0.5, temperature=310)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">Nucleic0</span><span class="o">.</span><span class="n">circular</span> <span class="ow">or</span> <span class="n">Nucleic1</span><span class="o">.</span><span class="n">circular</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot connect circular DNA structures&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">n_bp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">n_bp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+    <span class="c1"># Connect the two DNA structures</span>
+    <span class="n">connector</span> <span class="o">=</span> <span class="n">Connector</span><span class="p">(</span><span class="n">Nucleic0</span><span class="p">,</span> <span class="n">Nucleic1</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="n">n_bp</span><span class="p">,</span> <span class="n">leader</span><span class="o">=</span><span class="n">leader</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">minimize</span><span class="p">:</span>
+        <span class="n">connector</span><span class="o">.</span><span class="n">connected_nuc</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">exvol_rad</span><span class="o">=</span><span class="n">exvol_rad</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">connector</span><span class="o">.</span><span class="n">fixed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">connector</span><span class="o">.</span><span class="n">connected_nuc</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h2 id="modify">Modify<a class="headerlink" href="#modify" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.Nucleic.mutate"></a>
+    <div class="doc doc-contents first">
+
+      <p>Mutate the DNA trajectory, updating the topology and coordinates of the DNA structure.
+The method updates the <code>traj</code> attribute and the <code>sequence</code> attribute of the DNA object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>mutations</code></td>
+            <td>
+                  <code>dict</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary containing the mutation information. The keys represent the indices of the base pairs to be mutated, and the values represent the new nucleobases. For example, <code>mutations = {0: 'A', 1: 'T', 2: 'G'}</code> will mutate the first three base pairs to A, T, and G, respectively. Defaults to None.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>complementary</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to mutate the complementary strand. Defaults to True.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>frame</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The frame to mutate. Defaults to -1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>-1</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If no mutation dictionary is provided.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <ul>
+<li>Valid nucleobases for mutations include:<ul>
+<li>Canonical bases: A, T, G, C, U</li>
+<li>Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana] (DOI: 10.1126/science.aat0971)</li>
+<li>Fluorescent: 2-aminopurine 2AP (E), triC (D) (DOI: 10.1002/anie.201001312), tricyclic cytosine base analogue (1tuq)</li>
+<li>Hydrophobic pairs: d5SICS (L), dNaM (M)</li>
+</ul>
+</li>
+</ul>
+</details>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <h2 id="pymdna.nucleic.Nucleic.mutate--create-a-dna-object">Create a DNA object<a class="headerlink" href="#pymdna.nucleic.Nucleic.mutate--create-a-dna-object" title="Permanent link">&para;</a></h2>
+<p>dna = DNA()</p>
+<h2 id="pymdna.nucleic.Nucleic.mutate--mutate-the-dna-trajectory">Mutate the DNA trajectory<a class="headerlink" href="#pymdna.nucleic.Nucleic.mutate--mutate-the-dna-trajectory" title="Permanent link">&para;</a></h2>
+<p>mutations = {0: 'A', 1: 'T', 2: 'G'}
+dna.mutate(mutations=mutations, complementary=True, frame=-1)</p>
+
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span>
+<span class="normal">611</span>
+<span class="normal">612</span>
+<span class="normal">613</span>
+<span class="normal">614</span>
+<span class="normal">615</span>
+<span class="normal">616</span>
+<span class="normal">617</span>
+<span class="normal">618</span>
+<span class="normal">619</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span>
+<span class="normal">637</span>
+<span class="normal">638</span>
+<span class="normal">639</span>
+<span class="normal">640</span>
+<span class="normal">641</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mutations</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">complementary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mutate the DNA trajectory, updating the topology and coordinates of the DNA structure.</span>
+<span class="sd">    The method updates the `traj` attribute and the `sequence` attribute of the DNA object.</span>
+
+
+<span class="sd">    Args:</span>
+<span class="sd">        mutations (dict, optional): A dictionary containing the mutation information. The keys represent the indices of the base pairs to be mutated, and the values represent the new nucleobases. For example, `mutations = {0: &#39;A&#39;, 1: &#39;T&#39;, 2: &#39;G&#39;}` will mutate the first three base pairs to A, T, and G, respectively. Defaults to None.</span>
+<span class="sd">        complementary (bool, optional): Whether to mutate the complementary strand. Defaults to True.</span>
+<span class="sd">        frame (int, optional): The frame to mutate. Defaults to -1.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If no mutation dictionary is provided.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Valid nucleobases for mutations include:</span>
+<span class="sd">            - Canonical bases: A, T, G, C, U</span>
+<span class="sd">            - Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana] (DOI: 10.1126/science.aat0971)</span>
+<span class="sd">            - Fluorescent: 2-aminopurine 2AP (E), triC (D) (DOI: 10.1002/anie.201001312), tricyclic cytosine base analogue (1tuq)</span>
+<span class="sd">            - Hydrophobic pairs: d5SICS (L), dNaM (M)</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        # Create a DNA object</span>
+<span class="sd">        dna = DNA()</span>
+
+<span class="sd">        # Mutate the DNA trajectory</span>
+<span class="sd">        mutations = {0: &#39;A&#39;, 1: &#39;T&#39;, 2: &#39;G&#39;}</span>
+<span class="sd">        dna.mutate(mutations=mutations, complementary=True, frame=-1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frames_to_traj</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">mutations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Provide a mutation dictionary&#39;</span><span class="p">)</span>
+
+    <span class="c1"># TODO: Check if valid letters in mutations dictionary</span>
+
+    <span class="n">mutant</span> <span class="o">=</span> <span class="n">Mutate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">[</span><span class="n">frame</span><span class="p">],</span> <span class="n">mutations</span><span class="p">,</span> <span class="n">complementary</span><span class="o">=</span><span class="n">complementary</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="n">mutant</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
+    <span class="c1"># Update sequence</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_sequence_letters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">,</span> <span class="n">leading_chain</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chainids</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.Nucleic.methylate"></a>
+    <div class="doc doc-contents first">
+
+      <p>Methylate the nucleobases of the DNA structure.
+The method updates the <code>traj</code> attribute of the DNA object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>methylations</code></td>
+            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of base pairs to methylate. Defaults to [].</p>
+              </div>
+            </td>
+            <td>
+                  <code>[]</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>CpG</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to methylate CpG sites. Defaults to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>leading_strand</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The leading strand to methylate. Defaults to 0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>frame</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The frame to methylate. Defaults to -1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>-1</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the DNA structure is not loaded.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the methylations list is empty.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <ul>
+<li>If the DNA structure is not loaded, a ValueError will be raised.</li>
+<li>If the methylations list is empty, a ValueError will be raised.</li>
+</ul>
+</details>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>nuc = Nucleic()
+nuc.methylate(methylations=[1, 3, 5], CpG=True, leading_strand=1, frame=0)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">677</span>
+<span class="normal">678</span>
+<span class="normal">679</span>
+<span class="normal">680</span>
+<span class="normal">681</span>
+<span class="normal">682</span>
+<span class="normal">683</span>
+<span class="normal">684</span>
+<span class="normal">685</span>
+<span class="normal">686</span>
+<span class="normal">687</span>
+<span class="normal">688</span>
+<span class="normal">689</span>
+<span class="normal">690</span>
+<span class="normal">691</span>
+<span class="normal">692</span>
+<span class="normal">693</span>
+<span class="normal">694</span>
+<span class="normal">695</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span>
+<span class="normal">702</span>
+<span class="normal">703</span>
+<span class="normal">704</span>
+<span class="normal">705</span>
+<span class="normal">706</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">methylate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methylations</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">CpG</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">leading_strand</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Methylate the nucleobases of the DNA structure.</span>
+<span class="sd">        The method updates the `traj` attribute of the DNA object.</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            methylations (list): List of base pairs to methylate. Defaults to [].</span>
+<span class="sd">            CpG (bool): Whether to methylate CpG sites. Defaults to False.</span>
+<span class="sd">            leading_strand (int): The leading strand to methylate. Defaults to 0.</span>
+<span class="sd">            frame (int): The frame to methylate. Defaults to -1.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the DNA structure is not loaded.</span>
+<span class="sd">            ValueError: If the methylations list is empty.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            - If the DNA structure is not loaded, a ValueError will be raised.</span>
+<span class="sd">            - If the methylations list is empty, a ValueError will be raised.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; nuc = Nucleic()</span>
+<span class="sd">            &gt;&gt;&gt; nuc.methylate(methylations=[1, 3, 5], CpG=True, leading_strand=1, frame=0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;DNA structure is not loaded&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">methylations</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Provide a non-empty methylations list&#39;</span><span class="p">)</span>
+
+        <span class="n">methylator</span> <span class="o">=</span> <span class="n">Methylate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">,</span> <span class="n">methylations</span><span class="o">=</span><span class="n">methylations</span><span class="p">,</span> <span class="n">CpG</span><span class="o">=</span><span class="n">CpG</span><span class="p">,</span> <span class="n">leading_strand</span><span class="o">=</span><span class="n">leading_strand</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="n">methylator</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.Nucleic.flip"></a>
+    <div class="doc doc-contents first">
+
+      <p>Flips the nucleobases of the DNA structure.
+The method updates the <code>traj</code> attribute of the DNA object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>fliplist</code></td>
+            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A list of base pairs to flip. Defaults to an empty list.</p>
+              </div>
+            </td>
+            <td>
+                  <code>[]</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>deg</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The degrees to flip. Defaults to 180.</p>
+              </div>
+            </td>
+            <td>
+                  <code>180</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>frame</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The frame to flip. Defaults to -1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>-1</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If no fliplist is provided.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <p>This method flips the nucleobases of the DNA structure. It uses the Hoogsteen algorithm to perform the flipping.
+The <code>fliplist</code> parameter specifies the base pairs to flip. If no <code>fliplist</code> is provided, a <code>ValueError</code> is raised.
+The <code>deg</code> parameter specifies the degrees to flip. By default, it is set to 180 degrees.
+The <code>frame</code> parameter specifies the frame to flip. By default, it is set to -1.</p>
+</details>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>dna = Nucleic()
+dna.flip(fliplist=[(1, 2), (3, 4)], deg=90, frame=0)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">644</span>
+<span class="normal">645</span>
+<span class="normal">646</span>
+<span class="normal">647</span>
+<span class="normal">648</span>
+<span class="normal">649</span>
+<span class="normal">650</span>
+<span class="normal">651</span>
+<span class="normal">652</span>
+<span class="normal">653</span>
+<span class="normal">654</span>
+<span class="normal">655</span>
+<span class="normal">656</span>
+<span class="normal">657</span>
+<span class="normal">658</span>
+<span class="normal">659</span>
+<span class="normal">660</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fliplist</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">deg</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">180</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flips the nucleobases of the DNA structure.</span>
+<span class="sd">        The method updates the `traj` attribute of the DNA object.</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            fliplist (list): A list of base pairs to flip. Defaults to an empty list.</span>
+<span class="sd">            deg (int): The degrees to flip. Defaults to 180.</span>
+<span class="sd">            frame (int): The frame to flip. Defaults to -1.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If no fliplist is provided.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            This method flips the nucleobases of the DNA structure. It uses the Hoogsteen algorithm to perform the flipping.</span>
+<span class="sd">            The `fliplist` parameter specifies the base pairs to flip. If no `fliplist` is provided, a `ValueError` is raised.</span>
+<span class="sd">            The `deg` parameter specifies the degrees to flip. By default, it is set to 180 degrees.</span>
+<span class="sd">            The `frame` parameter specifies the frame to flip. By default, it is set to -1.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; dna = Nucleic()</span>
+<span class="sd">            &gt;&gt;&gt; dna.flip(fliplist=[(1, 2), (3, 4)], deg=90, frame=0)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_frames_to_traj</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fliplist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Provide a fliplist&#39;</span><span class="p">)</span>
+
+        <span class="n">flipper</span> <span class="o">=</span> <span class="n">Hoogsteen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">,</span> <span class="n">fliplist</span><span class="o">=</span><span class="n">fliplist</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="n">flipper</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h2 id="analyse-modules">Analyse Modules<a class="headerlink" href="#analyse-modules" title="Permanent link">&para;</a></h2>
+<h3 id="rigid-base-parameters">Rigid Base Parameters<a class="headerlink" href="#rigid-base-parameters" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.compute_rigid_parameters"></a>
+    <div class="doc doc-contents first">
+
+      <p>Compute the rigid base parameters of the DNA structure.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>traj</code></td>
+            <td>
+                  <code>object</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>MDtraj trajectory containing the DNA structure.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>chainids</code></td>
+            <td>
+                  <code>list</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of chain IDs of the DNA structure. Default is [0, 1].</p>
+              </div>
+            </td>
+            <td>
+                  <code>[0, 1]</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>NucleicFrames</code></td>            <td>
+                  <code>object</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Object representing the rigid base parameters of the DNA structure.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the traj argument is not provided.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <ul>
+<li>The traj argument must be provided.</li>
+<li>The chainids argument is optional and defaults to [0, 1].</li>
+<li>The returned NucleicFrames object contains information about the rigid base parameters of the DNA structure, such as the positions and orientations of the base steps.</li>
+</ul>
+</details>
+
+<details class="example" open>
+  <summary>Example</summary>
+  <h2 id="pymdna.nucleic.compute_rigid_parameters--compute-the-rigid-base-parameters-of-a-dna-structure">Compute the rigid base parameters of a DNA structure<a class="headerlink" href="#pymdna.nucleic.compute_rigid_parameters--compute-the-rigid-base-parameters-of-a-dna-structure" title="Permanent link">&para;</a></h2>
+<p>traj = md.load('dna.pdb')
+rigid_params = compute_rigid_parameters(traj, chainids=[0, 1])</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_rigid_parameters</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the rigid base parameters of the DNA structure.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        traj (object): MDtraj trajectory containing the DNA structure.</span>
+<span class="sd">        chainids (list, optional): List of chain IDs of the DNA structure. Default is [0, 1].</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        NucleicFrames (object): Object representing the rigid base parameters of the DNA structure.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the traj argument is not provided.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - The traj argument must be provided.</span>
+<span class="sd">        - The chainids argument is optional and defaults to [0, 1].</span>
+<span class="sd">        - The returned NucleicFrames object contains information about the rigid base parameters of the DNA structure, such as the positions and orientations of the base steps.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        # Compute the rigid base parameters of a DNA structure</span>
+<span class="sd">        traj = md.load(&#39;dna.pdb&#39;)</span>
+<span class="sd">        rigid_params = compute_rigid_parameters(traj, chainids=[0, 1])&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The traj argument must be provided.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">NucleicFrames</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h3 id="linking-number">Linking Number<a class="headerlink" href="#linking-number" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.compute_linking_number"></a>
+    <div class="doc doc-contents first">
+
+      <p>Compute the linking number of the DNA structure</p>
+
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_linking_number</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the linking number of the DNA structure&quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h3 id="curvature">Curvature<a class="headerlink" href="#curvature" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.compute_curvature"></a>
+    <div class="doc doc-contents first">
+
+      <p>Compute the curvature of the DNA structure</p>
+
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_curvature</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the curvature of the DNA structure&quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h3 id="groove-widths">Groove Widths<a class="headerlink" href="#groove-widths" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="pymdna.nucleic.compute_groove_width"></a>
+    <div class="doc doc-contents first">
+
+      <p>Compute the groove width of the DNA structure</p>
+
+            <details class="quote">
+              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_groove_width</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the groove width of the DNA structure&quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
