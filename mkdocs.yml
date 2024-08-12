@@ -38,17 +38,28 @@ markdown_extensions:
 nav:
   - MDNA Docs: index.md
   - Tutorials:
-      - Overiew: tutorials.md
-      - Introduction: tutorials-introduction.md
+      - Overiew: tutorials-introduction.md
+      - Quickstart: tutorials-quickstart.md
+      - Build: tutorials-build.md
+      - Modify: tutorials-modify.md
+      - Analyse: tutorials-analyse.md
+   
 
-  - explanation.md
+  - Explanation: explanation.md
   - How-To Guides: how-to-guides.md
   - Modules: 
+      - Core: modules-core.md
       - Build: modules-build.md
       - Modify: modules-modify.md
       - Analyse: modules-analyse.md
-  - Code Reference: 
-      - Nucleic: nucleic-reference.md
-      - Shapes: shapes-reference.md
-      - Geometry: geometry-reference.md
+  - API Reference: 
+      - Overview: code-reference.md  
+      - Classes:
+        - Nucleic: nucleic-reference.md
+        - Shapes: shapes-reference.md
+        - Geometry: geometry-reference.md
+    
+          # - Nucleic: nucleic-reference.md
+          # - Shapes: shapes-reference.md
+          # - Geometry: geometry-reference.md
 

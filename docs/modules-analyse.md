@@ -21,6 +21,3 @@
         - compute_linking_number
         - compute_curvature
         - compute_groove_width
-
-    show_root_heading: false
-    show_source: true

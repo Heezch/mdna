@@ -1,4 +1,4 @@
-This part of the project documentation focuses on an
+<!-- This part of the project documentation focuses on an
 **understanding-oriented** approach. You'll get a
 chance to read about the background of the project,
 as well as reasoning about how it was implemented.
@@ -12,4 +12,19 @@ as well as reasoning about how it was implemented.
     to work with it
 - Help the reader make connections
 - Avoid writing instructions or technical descriptions
-    here
+    here -->
+## Background and Context
+
+MDNA was developed to address a critical need in molecular dynamics (MD) simulations, particularly for generating and analyzing DNA structures and DNA-protein complexes. Unlike proteins, which have abundant experimental data for structure generation, DNA often requires construction from scratch, especially when dealing with non-canonical bases or specific structural motifs like Hoogsteen base pairs. MDNA bridges this gap by providing a versatile and accurate tool that simplifies the generation of complex DNA structures and enhances the precision of MD simulations.
+
+## Motivation for Creation
+
+The creation of MDNA was driven by the limitations of existing tools that either lacked flexibility or required specialized knowledge to use effectively. These tools often struggled with complex DNA configurations or integrating into broader research workflows. MDNA was designed as an all-in-one solution that consolidates key functionalities into a cohesive Python ecosystem, making DNA structure generation and analysis more accessible and efficient.
+
+## Working with MDNA
+
+MDNA offers robust capabilities for generating and analyzing DNA structures. Researchers can create DNA models by specifying sequences, topologies, or custom shapes, and manipulate configurations to study specific structural motifs. Seamless integration with tools like MDTraj and OpenMM ensures a streamlined workflow from structure generation to MD simulations.
+
+## Connecting the Dots
+
+MDNA enables researchers to explore the dynamic behavior of DNA and its interactions by providing tools to analyze rigid base parameters, linking numbers, and more. This comprehensive approach helps bridge the gap between DNA's static structure and its dynamic functions, making MDNA an invaluable resource for structural biology, genomics, and beyond.

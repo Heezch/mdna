@@ -1,39 +1,44 @@
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## MDNA: software module for DNA simulations
 
 
 This site contains the project documentation for the
-`calculator` project that is a toy module used in the
-Real Python tutorial
+`mdna` project that is python toolkit for the structure generation and analysis of DNA simulations.
+<!-- 
 [Build Your Python Project Documentation With MkDocs](
-    https://realpython.com/python-project-documentation-with-mkdocs/).
-Its aim is to give you a framework to build your
+    https://realpython.com/python-project-documentation-with-mkdocs/). -->
+
+<!-- Its aim is to give you a framework to build your
 project documentation using Python, MkDocs,
-mkdocstrings, and the Material for MkDocs theme.
+mkdocstrings, and the Material for MkDocs theme. -->
+
+Find more information at [Github](https://github.com/Heezch/pymdna) 
 
 ## Table Of Contents
 
-The documentation follows the best practice for
+<!-- The documentation follows the best practice for
 project documentation as described by Daniele Procida
 in the [Diátaxis documentation framework](https://diataxis.fr/)
-and consists of four separate parts:
+and consists of four separate parts: -->
 
-1. [Tutorials](tutorials.md)
-2. [How-To Guides](how-to-guides.md)
-3. [Reference](reference.md)
-4. [Explanation](explanation.md)
+1. [Quick Start](tutorials-quickstart.md)
+2. [Tutorials](tutorials.md)
+3. [Explanation](explanation.md)
+4. [How-To Guides](how-to-guides.md)
+5. [Modules](modules.md)
+6. [API reference](code-reference.md)
 
 Quickly find what you're looking for depending on
 your use case by looking at the different pages.
 
+<!-- ## Project Overview
 
-## Project Overview
+::: pymdna -->
 
-::: pymdna
+
+## Citation
+
+Link to the [publication](https://www.overleaf.com/project/65ca818c540b7b9562001187)
+
 
 ## Acknowledgements
 

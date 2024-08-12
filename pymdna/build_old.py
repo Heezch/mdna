@@ -9,12 +9,6 @@ import pmcpy.run.equilibrate as em
 from pmcpy.run.run import Run
 import copy
 
-# class Minimize:
-
-#     def __init__(self, )
-
-
-
 class Build:
 
     def __init__(self, dna_a, dna_b=None, five_end='A', three_end='B', margin=1):

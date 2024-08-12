@@ -3,9 +3,11 @@ import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation as R
 import mdtraj as md
 from .spline import SplineFrames
+from .nucleic import Nucleic
+from .utils import _check_input
 from pmcpy.run.run import Run
 import copy
-
+from typing import List
 
 
 class Minimizer:

@@ -13,7 +13,7 @@ from .build import Minimizer, Extender, Connector
 
 
 
-def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None):
+def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, filename_or_filenames=None, top=None, stride=None):
     """Load DNA representation from either base step mean reference frames/spline frames or an MDtraj trajectory.
 
     Args:
@@ -22,9 +22,16 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None):
         sequence (str, optional): DNA sequence. If provided, the traj and frames arguments are ignored. (default: None)
         chainids (list, optional): Chain IDs of the DNA structure. (default: [0,1])
         circular (bool, optional): Flag indicating if the DNA structure is circular/closed. If not provided, it will be determined based on the input data. (default: None)
+        filename_or_filenames (str, optional): The filename or filenames of the trajectory. If provided, the traj and frames arguments are ignored. (default: None)
+        top (str, optional): The topology file of the trajectory. (default: None)
+        stride (int, optional): The stride of the trajectory. (default: None)
 
     Returns:
         Nucleic (object): DNA structure object.
+
+    Notes:
+        - The `traj` argument is prioritized over frames and sequence.
+        - If the `filename_or_filenames` argument is provided, the other arguments are ignored, except for the `top` and `stride` arguments and `chainids`.
 
     Example:
         Load a DNA structure from a trajectory
@@ -33,6 +40,12 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None):
         dna = mdna.load(traj=traj, chainids=[0, 1])
         ```
     """
+    # Load the trajectory directly using MDtraj from a file
+    if filename_or_filenames is not None and top is None:
+        traj = md.load(filename_or_filenames=filename_or_filenames, stride=stride)
+    elif filename_or_filenames is not None and top is not None:
+        traj = md.load(filename_or_filenames=filename_or_filenames, top=top, stride=stride)
+
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
 def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None):
@@ -447,7 +460,7 @@ class Nucleic:
         else:
             return self.rigid
     
-    def is_circular(self, frame=0):
+    def _is_circular(self, frame=0):
         """Detects if the DNA structure is circular for a given chain and frame.
 
         Args:
