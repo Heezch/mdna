@@ -29,7 +29,6 @@ class Methylate:
              print("Please provide chainid of `leading_strand` as argument.")
         elif len(methylations) is not None:
             self.baselist = methylations # List of resids that need to be methylated (so far only C and G)
-        
         else:
             ValueError("Please provide either a list of resids to methylate or set CpG to True with chainid of `leading_strand` as argument.")
         self.apply_methylation()
@@ -53,7 +52,7 @@ class Methylate:
                 self.add_methyl(a, b, residue, code) # Add the methyl group to the residue 
                 self.traj.top.residue(resid).name = f'D{code}M' # Update the residue name to reflect the mutation
             else:
-                continue
+                print(f"Residue {residue} with methylations index {resid} could not be methylated.")
 
 
     def find_CpGs(self,leading_strand=0):
@@ -364,12 +363,12 @@ class Mutate:
         is at the end of the topology.
         """
 
-        print('empty',traj.top.residue(resid)._atoms)
-        print('empty',[at.index for at in traj.top.residue(resid)._atoms])
+        #print('empty',traj.top.residue(resid)._atoms)
+        #print('empty',[at.index for at in traj.top.residue(resid)._atoms])
         for idx, mutant_index in enumerate(mutant_indices, 1):
             atom = mutation_traj.top.atom(mutant_index)
 
-            print('target',offset+idx,atom)
+            #print('target',offset+idx,atom)
             # Edge case: If the offset is the last atom in the topology, insert new atoms at the end
             if offset + idx >= traj.top.n_atoms:
                 print('Edgecase: inserting at or beyond the last atom in the topology', offset, traj.top.n_atoms)
@@ -379,13 +378,13 @@ class Mutate:
                 # Regular case: insert new atoms at the calculated offset
                 # rindex: the desired position for this atom within the residue
                 # index: the desired position for this atom within the topology, Existing atoms with indices >= index will be pushed back.
-                print('idx, offset+idx, insert_id+idx')
-                print(idx, offset+idx, insert_id+idx)
+                #print('idx, offset+idx, insert_id+idx')
+                #print(idx, offset+idx, insert_id+idx)
                 traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
                                     index=offset + idx, rindex=insert_id + idx)
 
-            print('ins',idx+offset, traj.top.residue(resid)._atoms)
-            print('ins',idx+offset,[at.index for at in traj.top.residue(resid)._atoms])
+            #print('ins',idx+offset, traj.top.residue(resid)._atoms)
+            #print('ins',idx+offset,[at.index for at in traj.top.residue(resid)._atoms])
 
 
     def get_base_transformation(self, mutant_reference,target_reference):
@@ -419,7 +418,7 @@ class Mutate:
 
         # For each residue that needs to be mutated
         for resid,base in mutations.items():
-            print('resid',resid,base)
+            #print('resid',resid,base)
             #print(traj.top, traj.top._residues)
             self.current_resid = resid
             # Get the mutant trajectory object
@@ -429,9 +428,9 @@ class Mutate:
             mutant_indices = self.get_base_indices(mutation_traj, resid=0)
             target_indices = self.get_base_indices(traj, resid=resid)
 
-            print('n_mutant',len(mutant_indices))
-            print('n_target',len(target_indices))
-            print('diff', len(mutant_indices) - len(target_indices))
+            #print('n_mutant',len(mutant_indices))
+            #print('n_target',len(target_indices))
+            #print('diff', len(mutant_indices) - len(target_indices))
             #sub_m = mutation_traj.atom_slice(mutant_indices)
             #sub_w = traj.atom_slice(target_indices)
 
@@ -463,10 +462,10 @@ class Mutate:
             traj.xyz = xyz
 
         # Check if the atom indices are monotonically increasing
-        print('n_atoms',traj.top.n_atoms)
-        print('xyz', traj.xyz.shape)
+        #print('n_atoms',traj.top.n_atoms)
+        #print('xyz', traj.xyz.shape)
         ats = [at.index for at in traj.top.atoms]
-        print('atdiff', np.diff(ats))
+        #print('atdiff', np.diff(ats))
 
 
         # Return the mutated trajectory

@@ -1,6 +1,7 @@
 
 import numpy as np
 import os
+from typing import Union, List
 
 NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
                     'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
@@ -596,23 +597,54 @@ def get_sequence_letters(traj, leading_chain=0):
     
 
 
-def _check_input(sequence=None, n_bp=None):
-    """Check the input sequence and number of base pairs"""
+def _check_input(sequence: Union[str, List[str]] = None, n_bp: int = None) -> (str, int):
+    """Check the input sequence and number of base pairs, returning a string sequence and an integer n_bp."""
 
     if sequence is None and n_bp is not None:
         sequence = ''.join(np.random.choice(list('ACGT'), n_bp))
-        print('Random sequence:', sequence,'\n')
-
+        print('Random sequence:', sequence, '\n')
     elif sequence is not None and n_bp is None:
+        if isinstance(sequence, list):
+            sequence = ''.join(sequence)
         n_bp = len(sequence)
-
     elif sequence is None and n_bp is None:
         sequence = 'CGCGAATTCGCG'
         n_bp = len(sequence)
         print('Default sequence:', sequence)
-        print('Number of base pairs:', n_bp,'\n')
-
+        print('Number of base pairs:', n_bp, '\n')
     elif sequence is not None and n_bp is not None:
+        if isinstance(sequence, list):
+            sequence = ''.join(sequence)
         if n_bp != len(sequence):
-            raise ValueError('Sequence length and n_bp do not match','\n')
+            raise ValueError('Sequence length and n_bp do not match', '\n')
+
     return sequence, n_bp
+
+# from typing import Union, List
+# import numpy as np
+
+# def _check_input(sequence: Union[str, List[str]] = None, n_bp: int = None) -> (List[str], int):
+#     """Check the input sequence and number of base pairs, returning a list of characters and an integer n_bp."""
+
+#     if sequence is None and n_bp is not None:
+#         sequence = list(np.random.choice(list('ACGT'), n_bp))
+#         print('Random sequence:', ''.join(sequence), '\n')
+
+#     elif sequence is not None and n_bp is None:
+#         if isinstance(sequence, str):
+#             sequence = list(sequence)
+#         n_bp = len(sequence)
+
+#     elif sequence is None and n_bp is None:
+#         sequence = list('CGCGAATTCGCG')
+#         n_bp = len(sequence)
+#         print('Default sequence:', ''.join(sequence))
+#         print('Number of base pairs:', n_bp, '\n')
+
+#     elif sequence is not None and n_bp is not None:
+#         if isinstance(sequence, str):
+#             sequence = list(sequence)
+#         if n_bp != len(sequence):
+#             raise ValueError('Sequence length and n_bp do not match', '\n')
+
+#     return sequence, n_bp

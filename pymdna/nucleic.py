@@ -1,19 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import List
+from typing import List, Union
 import mdtraj as md
+from scipy.spatial.transform import Rotation as R
 
 from .utils import Shapes, get_sequence_letters, _check_input
 from .spline import SplineFrames, Twister
-from .geometry import ReferenceBase, NucleicFrames, NucleicFrames_quaternion
+from .geometry import ReferenceBase, NucleicFrames
 from .generators import SequenceGenerator, StructureGenerator
 from .modify import Mutate, Hoogsteen, Methylate
-from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
-from .build import Minimizer, Extender, Connector
+# from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
+from .minimizer import Minimizer
+# from .build import Extender, Connector
 
 
 
-def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, filename_or_filenames=None, top=None, stride=None):
+def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, filename=None, top=None, stride=None):
     """Load DNA representation from either base step mean reference frames/spline frames or an MDtraj trajectory.
 
     Args:
@@ -22,7 +24,7 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
         sequence (str, optional): DNA sequence. If provided, the traj and frames arguments are ignored. (default: None)
         chainids (list, optional): Chain IDs of the DNA structure. (default: [0,1])
         circular (bool, optional): Flag indicating if the DNA structure is circular/closed. If not provided, it will be determined based on the input data. (default: None)
-        filename_or_filenames (str, optional): The filename or filenames of the trajectory. If provided, the traj and frames arguments are ignored. (default: None)
+        filename (str, optional): The filename or filenames of the trajectory. If provided, the traj and frames arguments are ignored. (default: None)
         top (str, optional): The topology file of the trajectory. (default: None)
         stride (int, optional): The stride of the trajectory. (default: None)
 
@@ -41,10 +43,10 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
         ```
     """
     # Load the trajectory directly using MDtraj from a file
-    if filename_or_filenames is not None and top is None:
-        traj = md.load(filename_or_filenames=filename_or_filenames, stride=stride)
-    elif filename_or_filenames is not None and top is not None:
-        traj = md.load(filename_or_filenames=filename_or_filenames, top=top, stride=stride)
+    if filename is not None and top is None:
+        traj = md.load(filename_or_filenames=filename, stride=stride)
+    elif filename is not None and top is not None:
+        traj = md.load(filename_or_filenames=filename, top=top, stride=stride)
 
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
@@ -73,7 +75,7 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
     if control_points is not None:
         if len(control_points) < 4:
             raise ValueError('Control points should contain at least 4 points [x, y, z]')
-        elif len(control_points) > 4 and n_bp is None:
+        elif len(control_points) > 4 and n_bp is None and sequence is None:
             n_bp = len(control_points)  # Number of base pairs
     elif control_points is None and circular:
         control_points = Shapes.circle(radius=1)
@@ -87,7 +89,7 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
 
     return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0, 1], circular=circular)
 
-def connect(Nucleic0, Nucleic1, sequence: str = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300):
+def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300):
     """Connect two DNA structures by creating a new DNA structure with a connecting DNA strand.
 
     The 3' end of the first DNA structure is connected to the 5' end of the second DNA structure.
@@ -97,7 +99,7 @@ def connect(Nucleic0, Nucleic1, sequence: str = None, n_bp: int = None, leader: 
     Args:
         Nucleic0 (Nucleic): First DNA structure to connect.
         Nucleic1 (Nucleic): Second DNA structure to connect.
-        sequence (str, optional): DNA sequence of the connecting DNA strand. Default is None.
+        sequence (str or List, optional): DNA sequence of the connecting DNA strand. Default is None.
         n_bp (int, optional): Number of base pairs of the connecting DNA strand. Default is None.
         leader (int, optional): The leader of the DNA structure to connect. Default is 0.
         frame (int, optional): The time frame to connect. Default is -1.
@@ -124,9 +126,9 @@ def connect(Nucleic0, Nucleic1, sequence: str = None, n_bp: int = None, leader: 
     if Nucleic0.circular or Nucleic1.circular:
         raise ValueError('Cannot connect circular DNA structures')
 
-    if sequence is not None and n_bp is None:
-        n_bp = len(sequence)
-
+    if (sequence is not None and n_bp is None) or (sequence is None and n_bp is not None) or (sequence is not None and n_bp is not None):
+        sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+   
     # Connect the two DNA structures
     connector = Connector(Nucleic0, Nucleic1, sequence=sequence, n_bp=n_bp, leader=leader, frame=frame, margin=margin)
     if minimize:
@@ -563,7 +565,7 @@ class Nucleic:
         if save:
             fig.savefig('dna.png', dpi=300,bbox_inches='tight')
 
-    def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = False, fixed : List[int] = [], dump_every : int = 20):
+    def minimize(self, frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = False, fixed : List[int] = [], dump_every : int = 5, plot : bool = False):
         """
         Minimize the DNA structure. This method updates the  of the DNA structure.
 
@@ -575,7 +577,8 @@ class Nucleic:
             fixed (list): List of fixed base pairs. Defaults to an empty list.
             exvol_rad (float): Excluded volume radius. Defaults to 2.0.
             temperature (int): Temperature for equilibration. Defaults to 300.
-            dump_every (int): Frequency of dumping frames. Defaults to 20.
+            dump_every (int): Frequency of dumping frames. Defaults to 5.
+            plot (bool): Whether to plot the energy. Defaults to False.
 
         Additional keyword arguments can be provided and will be passed to the minimizer.
 
@@ -709,27 +712,28 @@ class Nucleic:
                 ```
             """
             if self.traj is None:
-                raise ValueError('DNA structure is not loaded')
-            if len(methylations) == 0:
+                self._frames_to_traj()
+            if len(methylations) == 0 and not CpG:
                 raise ValueError('Provide a non-empty methylations list')
 
             methylator = Methylate(self.traj, methylations=methylations, CpG=CpG, leading_strand=leading_strand)
             self.traj = methylator.get_traj()
     
-    def extend(self, n_bp: int, sequence: str = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True):  
+    def extend(self, n_bp: int = None, sequence: Union[str|List] = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True, plot : bool = False):  
         """Extend the DNA structure in the specified direction.
             The method updates the attributes of the DNA object.
 
 
         Args:
-            n_bp (int): Number of base pairs to extend the DNA structure.
-            sequence (str, optional): DNA sequence to extend the DNA structure. If not provided, the sequence will be generated randomly. Defaults to None.
+            n_bp (int): Number of base pairs to extend the DNA structure. Defaults to None.
+            sequence (str or List, optional): DNA sequence to extend the DNA structure. If not provided, the sequence will be generated randomly. Defaults to None.
             fixed_endpoints (bool, optional): Whether to fix the endpoints of the DNA structure during extension. Defaults to False.
             forward (bool, optional): Whether to extend the DNA structure in the forward direction. If False, the DNA structure will be extended in the backward direction. Defaults to True.
             frame (int, optional): The time frame to extend. Defaults to -1.
             shape (np.ndarray, optional): Control points of the shape to be used for extension. The shape should be a numpy array of shape (n, 3), where n is greater than 3. Defaults to None.
             margin (int, optional): Number of base pairs to fix at the end/start of the DNA structure during extension. Defaults to 1.
             minimize (bool, optional): Whether to minimize the new DNA structure after extension. Defaults to True.
+            plot (bool, optional): Whether to plot the Energy during minmization. Defaults to False.
 
         Raises:
             ValueError: If the DNA structure is circular and cannot be extended.
@@ -747,9 +751,7 @@ class Nucleic:
             ```
         """
         if self.circular:
-            raise ValueError('Cannot extend circular DNA structure')
-        if not n_bp and not fixed_endpoints:
-            raise ValueError("Either a fixed endpoint or a length must be specified for extension.")    
+            raise ValueError('Cannot extend circular DNA structure')  
         if self.traj is None:
             self._frames_to_traj()
         if shape is None:
@@ -765,7 +767,7 @@ class Nucleic:
         self.nuc = extender.nuc
 
         if minimize:
-            self.nuc.minimize(fixed=extender.fixed, endpoints_fixed=fixed_endpoints)
+            self.nuc.minimize(fixed=extender.fixed, endpoints_fixed=fixed_endpoints, plot=plot)
 
         # Update attributes
         self.sequence = self.nuc.sequence
@@ -802,6 +804,266 @@ class Nucleic:
         writhe = pylk.writhe(positions)
         lk = pylk.triads2link(positions, triads)
         return np.array([lk, writhe, lk - writhe])
+    
+    def save_pdb(self, filename : str = None, frame : int = -1):
+        """Save the DNA structure as a pdb file.
+
+        Args:
+            filename (str, optional): Filename to save the pdb file. Defaults to None.
+            frame (int, optional): If the trajectory has multiple frames, specify the frame to save. Defaults to -1.
+        """
+
+        # check if traj
+        if self.traj is None:
+            self._frames_to_traj()
+        if filename is None:
+            filename = 'my_mdna'
+        self.traj[frame].save(f'{filename}.pdb')
 
 
+
+
+class Extender:
+    """Extend the DNA sequence in the specified direction using the five_end or three_end as reference."""
+
+    def __init__(self, nucleic, n_bp: int, sequence: Union[str | List] = None, fixed_endpoints: bool = False, frame : int = -1, forward: bool = True, shape: np.ndarray = None, margin : int = 1):
+        """Initialize the DNA sequence extender"""
+        self.__dict__.update(nucleic.__dict__)
+
+        # Check the input sequence and number of base pairs
+        self._n_bp = n_bp # Number of base pairs to extend the DNA sequence
+        self._sequence = sequence # DNA sequence to extend the DNA structure
+        self._frames = self.frames[:,frame,:,:] # Reference frames of the DNA structure
+        # Add other parameters to the instance
+        self.fixed_endpoints = fixed_endpoints
+        self.forward = forward
+        self.shape = shape
+        self.frame = frame
+        self.margin = margin
+
+        # Get direction of extension
+        self.start, self.direction = self.get_start()
+
+        # Compute lengtht of the extension and target position
+        length = self._n_bp * 0.34 # Length of a base pair in nm
+        target_position = self.start + length * self.direction
+
+         # Interpolate control points for the new spline
+        if self.forward:
+            control_points = self.interplotate_points(self.start, target_position, self._n_bp)
+        else:
+            control_points = self.interplotate_points(target_position, self.start, self._n_bp)
+
+        # Create a new spline with the interpolated control points
+        spline = SplineFrames(control_points, frame_spacing=0.34)
+
+        if self.forward:
+            # fix the strand A except the margin at the end
+            fixed = list(range(self._frames.shape[0]-self.margin))
+        else:
+            # fix the strand A but shift the fixed indices to the end
+            fixed = list(range(self.frames.shape[0]))
+            fixed = [i + self._n_bp for i in fixed][self.margin:]
+        self.fixed = fixed
+
+        # Update the sequence
+        if self.forward:
+            new_sequence = self.sequence + self._sequence
+        else:
+            new_sequence = self._sequence + self.sequence
+        
+        # Combine splines A and the new extension spline 
+        if forward:
+            spline.frames = np.concatenate([self._frames[:-1],spline.frames])
+        else:
+            spline.frames = np.concatenate([spline.frames,self._frames[1:]])
+
+        self.nuc = Nucleic(sequence=new_sequence, frames=spline.frames)
+     
+
+    def get_start(self):           
+        if self.forward:
+            return self._frames[-1][0], self._frames[-1][-1]
+        else:
+            # Reverse the direction of the normal base plane vector of the start last frame
+            return self._frames[0][0], -self._frames[0][-1]
+
+    def interplotate_points(self,start, end, n):
+        return np.array([start + (end-start)*i/n for i in range(n+1)])
+
+
+
+class Connector:
+    def __init__(self, Nucleic0, Nucleic1, sequence : Union[str | List] = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1):
+        
+        # Store the two Nucleic objects
+        self.Nucleic0 = Nucleic0
+        self.Nucleic1 = Nucleic1
+ 
+        # Might be possible sequence and n_bp are not falid
+        self.sequence = sequence
+        self.n_bp = n_bp
+        self.frame = frame
+        self.leader = leader
+        self.margin = margin
+        self.twist_tolerance = np.abs((360 / 10.4) - (360 / 10.6))
+
+        # Get the frames of the two nucleic acids
+        self.frames0 = Nucleic0.frames[:,self.frame,:,:]
+        self.frames1 = Nucleic1.frames[:,self.frame,:,:]
+
+        # Connect the two nucleic acids and store the new nucleic acid
+        self.connected_nuc = self.connect()
+
+    def connect(self, index=0):
+        """Connect two nucleic acids by creating a new nucleic acid with a connecting DNA strand."""
+        # Get the start and end points of the two nucleic acids (assuming the leader is 0 and we connect the end of A to start of B)
+        self.start, self.end = self._get_start_and_end()
+        rotation_difference = self._get_twist_difference()
+
+        # Find optimal number of base pairs to match rotational difference between start and end
+        if self.n_bp is None and self.sequence is None:
+            optimal_bps = self._find_optimal_bps(np.array([self.start[0], self.end[0]]), 
+                                                bp_per_turn=10.5, 
+                                                rise=0.34, 
+                                                bp_range=1000, 
+                                                rotation_difference=rotation_difference, 
+                                                tolerance=self.twist_tolerance, 
+                                                plot=False
+                                                )
             
+            # get the optimal number of base pairs (smallest amount of base pairs that satisfies the tolerance)
+            self.n_bp = optimal_bps[index]['optimal_bp']
+            print(f'Optimal number of base pairs: {self.n_bp}')
+ 
+        # Guess the shape of the spline C by interpolating the start and end points
+        # Note, we add to extra base pairs to account for the double count of the start and end points of the original strands
+        control_points_C = self._interplotate_points(self.start[0], self.end[0], self.n_bp+2)# if opti else self.n_bp)
+        distance = np.linalg.norm(self.start-self.end)
+
+        # Create frames object with the sequence and shape of spline C while squishing the correct number of BPs in the spline
+        spline_C = SplineFrames(control_points=control_points_C, frame_spacing=distance/len(control_points_C),n_bp=self.n_bp+2)
+     
+        # exclude first and last frame of C because they are already in spline A and B
+        frames_C = np.concatenate([self.frames0,spline_C.frames[1:-1],self.frames1])
+  
+        # remember the fixed nodes/frames of A and B
+        fixed_0 = list(range(self.frames0.shape[0]-self.margin))
+        fixed_1 = list(range(frames_C.shape[0]-self.frames1.shape[0]+self.margin,frames_C.shape[0]))
+        self.fixed = fixed_0 + fixed_1
+    
+        # Check if the sequence and number of base pairs are valid of the new connecting DNA
+        self.sequence, self.n_bp = _check_input(sequence=self.sequence, n_bp=spline_C.frames.shape[0]-2)
+    
+        new_sequence = self.Nucleic0.sequence + self.sequence + self.Nucleic1.sequence
+        self.n_bp = len(self.sequence)
+
+        # Create a new Nucleic object with the new sequence and frames
+        return Nucleic(sequence=new_sequence, frames=frames_C)
+
+        
+    def _get_start_and_end(self):
+        """Get the start and end points of the two nucleic acids."""
+        if self.leader == 0:
+            start = self.Nucleic0.frames[-1, self.frame,:,:]
+            end = self.Nucleic1.frames[0, self.frame,:,:]
+        else:
+            start = self.Nucleic1.frames[0, self.frame,:,:]
+            end = self.Nucleic0.frames[-1, self.frame,:,:]
+
+        return start, end
+
+    def _compute_euler_angles(self, frame_A, frame_B):
+        """Compute the Euler angles between two frames."""
+        # Compute the rotation matrix R that transforms frame A to frame B
+        rotation_matrix = np.dot(frame_B.T, frame_A)
+        
+        # Create a rotation object from the rotation matrix
+        rotation = R.from_matrix(rotation_matrix)
+        
+        # Convert the rotation to Euler angles (ZYX convention)
+        euler_angles = rotation.as_euler('zyx', degrees=True)
+        
+        # Return the Euler angles: yaw (Z), pitch (Y), and roll (X)
+        return euler_angles
+
+    def _get_twist_difference(self):
+        """Calculates the twist difference between two frames."""
+        b1 = self.start[1:]/np.linalg.norm(self.start[1:])
+        b2 = self.end[1:]/np.linalg.norm(self.end[1:])
+
+        euler_angles = self._compute_euler_angles(b1, b2)
+        return euler_angles[-1]
+
+    def _interplotate_points(self,start, end, n):
+        """Interpolates n points between start and end."""
+        return np.array([start + (end-start)*i/n for i in range(n+1)])
+
+    def _find_minima(self, lst):
+        """Finds the indices of local minima in a list."""
+        return [i for i in range(1, len(lst) - 1) if lst[i - 1] > lst[i] and lst[i + 1] > lst[i]]
+
+    def _compute_left_over(self, bp_range, min_bp, bp_per_turn, rotation_difference):
+        """Computes the left-over rotational difference for a range of base pairs."""
+        cumul_twist = np.arange(min_bp, min_bp + bp_range) * 360 / bp_per_turn
+        return cumul_twist % 360 - rotation_difference
+
+    def _compute_twist_diff_per_bp(self, optimal_bp, left_over, min_bp):
+        """Calculates the twist difference per base pair for an optimal base pair number."""
+        total_twist_diff = left_over[optimal_bp - min_bp]
+        return total_twist_diff / optimal_bp
+
+    def _check_within_tolerance(self, twist_diff_per_bp, tolerance):
+        """Checks if the twist difference per base pair is within the specified tolerance."""
+        return np.abs(twist_diff_per_bp) < tolerance
+
+    def _plot_leftover(self, min_bp,left_over):
+        """Plotting the left-over rotational differences"""
+        plt.plot(np.arange(min_bp, min_bp + len(left_over)), np.abs(left_over))
+        plt.xlabel('Number of Base Pairs')
+        plt.ylabel('Absolute Left Over')
+        plt.show()
+
+    def _find_optimal_bps(self, positions, bp_per_turn, rise, bp_range, rotation_difference, tolerance, plot=False):
+        """Finds optimal base pairs that satisfy the given tolerance.
+
+        Args:
+        positions: The positions of base pairs.
+        bp_per_turn: Base pairs per turn.
+        rise: Component of arc length.
+        bp_range: Range of base pairs to consider.
+        rotation_difference: The target rotation difference.
+        tolerance: The tolerance for accepting an optimal base pair number.
+        plot: If True, plots the left-over rotational differences.
+
+        Returns:
+        A list of dictionaries containing optimal base pair numbers and their twist differences per base pair.
+        """
+        min_arc = np.linalg.norm(positions[0] - positions[-1])
+        min_bp = int(np.ceil(min_arc / rise))
+        left_over = self._compute_left_over(bp_range, min_bp, bp_per_turn, rotation_difference)
+        
+        if plot:
+            self._plot_leftover(min_bp,left_over)
+
+        minima = self._find_minima(np.abs(left_over))
+        results = []
+
+        for min_val in minima:
+            optimal_bp = min_bp + min_val
+            twist_diff_per_bp = self._compute_twist_diff_per_bp(optimal_bp, left_over, min_bp)
+            if self._check_within_tolerance(twist_diff_per_bp, tolerance):
+                results.append({
+                    'optimal_bp': optimal_bp ,
+                    'twist_diff_per_bp': np.round(twist_diff_per_bp, 3)
+                })
+        if len(results) > 0:
+            for result in results[:1]:
+                print(f'Optimal BP: {result["optimal_bp"]}, Twist Difference per BP: {result["twist_diff_per_bp"]} degrees')
+        else:
+            print("No optimal number of base pairs found within the specified tolerance.")
+        return results
+           
+
+
+

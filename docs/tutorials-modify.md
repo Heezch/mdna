@@ -1,72 +1,124 @@
-# Getting Started with MDNA
 
-Welcome to the MDNA toolkit! This section will guide you through the basics of using MDNA to create and analyze DNA structures. By the end of this guide, you'll have written your first lines of code, generated a DNA structure, and performed basic analysis—all with just a few simple steps.
+# Tutorial: Generating and Analyzing DNA Structures with mdna
 
-## Step 1: Installation
+This tutorial will guide you through the process of generating DNA structures, analyzing them, and performing various modifications using the mdna module. We'll cover how to modify DNA Structures:
 
-Before you can start using MDNA, you need to install it. MDNA is a Python library, so you can install it using pip. Open your terminal and run the following command:
-
-```bash
-pip install mdna
-```
-
-or dircetly clone the github repository
-```bash
-git clone --recurse-submodules -j8 git@github.com:heezch/pymdna.git
-```
-
-Once the installation is complete, you’re ready to start coding.
+- Mutations
+- Methylation
+- Hoogsteen flips
 
 
-
-## Step 2: Generating a DNA Structure
-
-Let's dive right in by creating a simple DNA structure. We’ll use MDNA to generate a double-stranded DNA with a custom sequence.
-
+### Example: Make the DNA structure directly from a sequence
 ```python
+
 import pymdna as mdna
+import mdtraj as md
 
-# Generate a DNA structure from a given sequence
-dna = mdna.make(sequence="ATCGATCGGT")
+sequence = "ATGCATGC"
+dna = mdna.load(sequence=sequence)
+```
 
-# View basic information about the DNA structure
+## Modifying DNA Structures
+
+The mdna module offers various functions to modify DNA structures, such as mutating bases, methylating sites, and performing Hoogsteen flips. Below are examples of how to perform these modifications.
+
+
+You can mutate specific bases in the DNA sequence. In the following example, the first base is mutated to a G, and the last base is mutated to a C.
+
+```python
+# Here we make a DNA with the following sequence
+dna = mdna.make(sequence='AGCGATATAGA')
+
+# Let's save the original structure
+traj = dna.get_traj()
+traj.save_pdb('dna_original.pdb')
+
+# Modify the DNA sequence
+# Mutate the first base to a G and the last base to a C
+dna.mutate({0: 'G', dna.n_bp : 'C'}, complementary=False)
+
+# Get information about the DNA and see the mutated sequence
 dna.describe()
-
-# or quick draw the structure
-dna.draw()
 ```
 
 
-## Step 3: Minimizing the Structure
-
-Next, we’ll optimize the structure to ensure it's physically realistic. This is done through energy minimization.
+Methylation can be applied to specific positions or all CpG sites. Below are examples of both approaches.
 
 ```python
-# Minimize the energy of the DNA structure
-dna.minimize()
+# Methylate the 5th position, which is T (this will fail and is caught by the function)
+dna.methylate(methylations=[5])
+
+# Methylate all CpG sites
+dna.methylate(CpG=True)
 ```
 
-Note that by using the `minimize()` method the traj instance is updated internally. 
-
-
-## Step 4: Analyzing the Structure
-
-Now that we have a minimized DNA structure, let's perform some basic analysis. We’ll calculate the rigid base parameters, which describe the relative positions of the base pairs.
-
+You can perform a Hoogsteen flip on any base pair. In the example below, the 5th base pair is flipped by 180 degrees.
 
 ```python
-# Compute rigid base parameters
-rigid_params = dna.get_rigid_parameters()
-
-# Output the results
-print("Rigid base parameters calculated:", rigid_params.shape)
+# Flip the 5th base pair with a 180-degree rotation
+dna.flip(fliplist=[5], deg=180)
 ```
 
-This step gives you a deeper understanding of the DNA’s structural dynamics. The parameters calculated here are essential for more advanced studies, but don’t worry—just getting this far is a great start!
+### Saving the Modified Structure
+
+After making modifications, you can save the modified DNA structure to a file.
+
+```python
+# Get trajectory of the modified DNA or save it as a pdb file
+traj_mod = dna.get_traj()
+traj_mod.save_pdb('dna_modified.pdb')
+```
+
+This concludes the tutorial on generating, analyzing, and modifying DNA structures using the mdna module. In the next tutorial, we will explore advanced visualization techniques for DNA structures.
 
 
-## Conclusion: You've Done It!
 
-Congratulations! You've just created, minimized, analyzed, and visualized a DNA structure using the MDNA toolkit. With these basic steps, you're well on your way to exploring the full capabilities of MDNA. Remember, the key to mastering this toolkit is practice—try modifying the sequence, creating circular DNA, or analyzing different properties to see what happens.
+# Modifying DNA Structures with Non-Canonical Nucleobases
 
-Now that you’ve gotten started, you can dive deeper into more advanced features of MDNA. But for now, take a moment to appreciate what you've achieved. You've not only learned how to use a powerful scientific tool, but you've also taken your first steps into the world of molecular dynamics and DNA analysis.
+The `mdna` module not only allows you to work with canonical DNA bases—adenine (A), thymine (T), guanine (G), and cytosine (C)—but also supports a variety of non-canonical and synthetic nucleobases. This functionality is especially powerful for researchers interested in exploring DNA sequences beyond the natural genetic code.
+
+### Complementary Base Pairing Map
+
+The complementary map includes both canonical and non-canonical bases, providing flexibility in designing sequences:
+
+```python
+complementary_map = {
+    'A':'T', 'T':'A', 'G':'C', 'C':'G',
+    'U':'A', 'D':'G', 'E':'T', 'L':'M',
+    'M':'L', 'B':'S', 'S':'B', 'Z':'P',
+    'P':'Z'
+}
+```
+
+### Overview of Non-Canonical Bases
+1. Uracil (U):
+    Represents RNA incorporation into DNA, pairing with adenine (A).
+
+3. tC (D):
+    A tricyclic cytosine analogue, another fluorescent base known for its unique photophysical properties, pairs with guanine (G)~\cite{wilhelmsson2003photophysical}.
+
+2. 2-Aminopurine (E):
+    A fluorescent base analogue of adenine, used in studies requiring stable fluorescence, pairs with thymine (T)~\cite{ward1969fluorescence}.
+
+
+4. Hydrophobic Base Pair (L and M):
+    The hydrophobic pair, d5SICS (L) and dNaM (M), are examples of unnatural base pairs that maintain stability without hydrogen bonding, expanding the range of base pairing~\cite{malyshev2014semi}.
+
+5. Hachimoji Bases (B-S and P-Z):
+    These bases belong to the Hachimoji DNA system, which introduces four synthetic nucleotides that form orthogonal pairs: B pairs with S, and P pairs with Z. This system adds a new dimension of complexity to DNA structure and function~\cite{hoshika2019hachimoji}.
+
+### Mutation and Customization
+
+The `mutate()` function in mdna allows you to introduce these non-canonical bases into your DNA sequences. This capability enables the design of complex sequences for specific applications, such as studies involving fluorescence, hydrophobic interactions, or synthetic genetic systems.
+Example of Non-Canonical Mutation
+
+```python
+# Load a DNA sequence with canonical bases
+dna = mdna.make(sequence='AGCGATATAGA')
+
+# Mutate the first base to a non-canonical base 'L' and the last base to 'P'
+dna.mutate({0: 'L', dna.n_bp: 'P'}, complementary=False)
+
+# Describe the modified DNA structure to confirm changes
+dna.describe()
+```

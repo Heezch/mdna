@@ -1,72 +1,117 @@
-# Getting Started with MDNA
 
-Welcome to the MDNA toolkit! This section will guide you through the basics of using MDNA to create and analyze DNA structures. By the end of this guide, you'll have written your first lines of code, generated a DNA structure, and performed basic analysis—all with just a few simple steps.
+## Advanced DNA Structure Generation and Manipulation with mdna
 
-## Step 1: Installation
+In this section, we'll explore more advanced functionalities of the `mdna` module, focusing on generating various DNA structures, modifying their topological properties, and using custom shapes. These tools allow you to create complex DNA configurations for detailed structural analysis.
 
-Before you can start using MDNA, you need to install it. MDNA is a Python library, so you can install it using pip. Open your terminal and run the following command:
+### 1. Basic DNA Creation
 
-```bash
-pip install mdna
-```
-
-or dircetly clone the github repository
-```bash
-git clone --recurse-submodules -j8 git@github.com:heezch/pymdna.git
-```
-
-Once the installation is complete, you’re ready to start coding.
-
-
-
-## Step 2: Generating a DNA Structure
-
-Let's dive right in by creating a simple DNA structure. We’ll use MDNA to generate a double-stranded DNA with a custom sequence.
+You can create a DNA structure with no initial sequence, which will output a placeholder sequence ('DDD').
 
 ```python
-import pymdna as mdna
+# Build DNA with nothing, will output DDD sequence
+dna = mdna.make()
+dna.describe()
+```
 
-# Generate a DNA structure from a given sequence
-dna = mdna.make(sequence="ATCGATCGGT")
+Alternatively, you can provide a specific sequence or define the number of base pairs (n_bp) to generate a random sequence.
 
-# View basic information about the DNA structure
+```python
+# Or provide a sequence
+dna = mdna.make(sequence='GCGCGCGCGC')
 dna.describe()
 
-# or quick draw the structure
+# Or provide a number of basepairs, resulting in a random sequence
+dna = mdna.make(n_bp=10)
+dna.describe()
+```
+
+### 2. Circular DNA and Topology Manipulation
+
+The `mdna` module allows the creation of circular DNA (minicircles) and the manipulation of their topological properties, such as the linking number (Lk).
+
+```python
+# Or make a minicircle DNA in circular form
+dna = mdna.make(n_bp=200, circular=True)
+print('Lk, Wr, Tw', dna.get_linking_number())
+dna.draw()
+
+# Lets also minimize the DNA configuration
+dna.minimize()
+
+# See the final configuration
+dna.draw()
+
+# or save it to a file
+dna.save('minimized_nbp_200_closed.pdb')
+```
+
+You can also change the linking number by under- or overwinding the DNA using the `dLk` parameter.
+
+```python
+# Also change the linking number by under or overwinding the DNA using the dLk parameter
+dna = mdna.make(n_bp=200, circular=True, dLk=8)
+dna.describe()
+dna.get_linking_number()
+
+# Minimize the DNA configuration, note to equilibrate the writhe use equilibrate_writhe=True, otherwise the Lk will not be conserved
+dna.minimize(equilibrate_writhe=True)
+dna.get_linking_number()
+```
+
+### 3. Using Custom Shapes
+
+You can create DNA structures that follow custom shapes using the `Shape` class. For instance, you can generate DNA in the shape of a helix or define a completely custom path using control points.
+
+```python
+# We can also use custom shapes using the Shape class
+control_points = mdna.Shapes.helix(height=3, pitch=5, radius=7, num_turns=4)
+dna = mdna.make(n_bp=300, control_points=control_points)
+dna.draw()
+
+# Or use the control points to define a custom shape
+control_points = np.array([[0,0,0],[30,10,-10],[50,10,20],[3,4,30]])
+dna = mdna.make(n_bp=100, control_points=control_points, sequence=['A']*100)
+dna.draw()
+dna.describe()
+dna.sequence
+```
+
+### 4. Extending DNA
+
+The `extend` function allows you to add additional bases to an existing DNA structure, either in the forward or reverse direction.
+
+```python
+# We can also extend our DNA 
+dna.extend(sequence=['G']*120)
+
+# Or extend it in the opposite direction
+dna.extend(sequence=['C']*120, forward=False)
 dna.draw()
 ```
 
+### 5. Connecting DNA Strands
 
-## Step 3: Minimizing the Structure
-
-Next, we’ll optimize the structure to ensure it's physically realistic. This is done through energy minimization.
-
-```python
-# Minimize the energy of the DNA structure
-dna.minimize()
-```
-
-Note that by using the `minimize()` method the traj instance is updated internally. 
-
-
-## Step 4: Analyzing the Structure
-
-Now that we have a minimized DNA structure, let's perform some basic analysis. We’ll calculate the rigid base parameters, which describe the relative positions of the base pairs.
-
+You can generate two separate strands of DNA and connect them to form a continuous double helix. The `connect` function optimizes the connection to minimize the twist between the strands.
 
 ```python
-# Compute rigid base parameters
-rigid_params = dna.get_rigid_parameters()
+# Lets generate two strands of DNA and displace the second one away from the first one
+dna0 = mdna.make(sequence='AAAAAAAAA', control_points=mdna.Shapes.line(1))
+dna1 = mdna.make(sequence='GGGGGGGGG', control_points=mdna.Shapes.line(1) + np.array([4,0,-5]))
 
-# Output the results
-print("Rigid base parameters calculated:", rigid_params.shape)
+# Now we can connect the two strands, the function will find the optimal number of basepairs to connect the two strands to minimize the twist 
+dna2 = mdna.connect(dna0, dna1)
+dna2.draw()
+dna2.describe()
 ```
 
-This step gives you a deeper understanding of the DNA’s structural dynamics. The parameters calculated here are essential for more advanced studies, but don’t worry—just getting this far is a great start!
+### 6. Visualization
 
+For advanced visualization, you can use `nglview` to visualize the Monte Carlo minimized configuration of the DNA structure.
 
-## Conclusion: You've Done It!
+```python
+# visualize using nglview MC minimization
+view = nv.show_mdtraj(dna2.get_MC_traj())
+view
+```
 
-Congratulations! You've just created, minimized, analyzed, and visualized a DNA structure using the MDNA toolkit. With these basic steps, you're well on your way to exploring the full capabilities of MDNA. Remember, the key to mastering this toolkit is practice—try modifying the sequence, creating circular DNA, or analyzing different properties to see what happens.
-
-Now that you’ve gotten started, you can dive deeper into more advanced features of MDNA. But for now, take a moment to appreciate what you've achieved. You've not only learned how to use a powerful scientific tool, but you've also taken your first steps into the world of molecular dynamics and DNA analysis.
+This concludes the advanced tutorial on generating, manipulating, and visualizing DNA structures with the `mdna` module. These examples illustrate the flexibility and power of the module in creating detailed and customized DNA configurations for a wide range of research applications.
