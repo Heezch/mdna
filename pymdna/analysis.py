@@ -343,57 +343,57 @@ class TorsionAnalysis:
         state[diff > 0] = 1  # BII
         return np.round(np.sum(state,axis=0)/state.shape[0],2)
     
-    def place_holder(self):
-        def get_B_state(diff):
-            state = np.zeros_like(diff)
-            state[diff < 0] = 0  # BI
-            state[diff > 0] = 1  # BII
-            return np.round(np.sum(state,axis=0)/state.shape[0],2)
+    # def place_holder(self):
+    #     def get_B_state(diff):
+    #         state = np.zeros_like(diff)
+    #         state[diff < 0] = 0  # BI
+    #         state[diff > 0] = 1  # BII
+    #         return np.round(np.sum(state,axis=0)/state.shape[0],2)
 
-        from matplotlib.lines import Line2D
+    #     from matplotlib.lines import Line2D
 
-        fig,ax = plt.subplots(ncols=2,nrows=epsi_t_haff.T.shape[0],figsize=(6,12),sharex=True,sharey=True)
+    #     fig,ax = plt.subplots(ncols=2,nrows=epsi_t_haff.T.shape[0],figsize=(6,12),sharex=True,sharey=True)
 
-        for _,(e,z)in enumerate(zip(epsi_t_haff.T,zeta_t_haff.T)):
-            d = e-z
-            sns.kdeplot(d,ax=ax[_][0],fill=True,color='navy',label=get_B_state(d))
+    #     for _,(e,z)in enumerate(zip(epsi_t_haff.T,zeta_t_haff.T)):
+    #         d = e-z
+    #         sns.kdeplot(d,ax=ax[_][0],fill=True,color='navy',label=get_B_state(d))
 
-        for _,(e,z)in enumerate(zip(epsi_d_haff.T,zeta_d_haff.T)):
-            d = e-z
-            sns.kdeplot(d,ax=ax[_][0],fill=True,color='cornflowerblue',label=get_B_state(d))
+    #     for _,(e,z)in enumerate(zip(epsi_d_haff.T,zeta_d_haff.T)):
+    #         d = e-z
+    #         sns.kdeplot(d,ax=ax[_][0],fill=True,color='cornflowerblue',label=get_B_state(d))
 
-        for _,(e,z)in enumerate(zip(epsi_t_gca.T,zeta_t_gca.T)):
-            d = e-z
-            sns.kdeplot(d,ax=ax[_][1],fill=True,color='darkred',label=get_B_state(d))
+    #     for _,(e,z)in enumerate(zip(epsi_t_gca.T,zeta_t_gca.T)):
+    #         d = e-z
+    #         sns.kdeplot(d,ax=ax[_][1],fill=True,color='darkred',label=get_B_state(d))
 
-        for _,(e,z)in enumerate(zip(epsi_d_gca.T,zeta_d_gca.T)):
-            d = e-z
-            sns.kdeplot(d,ax=ax[_][1],fill=True,color='coral',label=get_B_state(d))
+    #     for _,(e,z)in enumerate(zip(epsi_d_gca.T,zeta_d_gca.T)):
+    #         d = e-z
+    #         sns.kdeplot(d,ax=ax[_][1],fill=True,color='coral',label=get_B_state(d))
 
-            ax[_][0].axvline(0,color='gray',ls=':')
-            ax[_][1].axvline(0,color='gray',ls=':')
+    #         ax[_][0].axvline(0,color='gray',ls=':')
+    #         ax[_][1].axvline(0,color='gray',ls=':')
 
-        for _ in range(epsi_t_haff.T.shape[0]):
-            ax[_][1].legend()
-            ax[_][0].legend()
-            ax[_][0].set_ylabel(f'Step {_}')
+    #     for _ in range(epsi_t_haff.T.shape[0]):
+    #         ax[_][1].legend()
+    #         ax[_][0].legend()
+    #         ax[_][0].set_ylabel(f'Step {_}')
 
-        ax[_][1].set_xticks([-90,0,90])
-        ax[_][0].set_xlim(-181,181)
-        ax[0][0].set_title('High Affinity')
-        ax[0][1].set_title('GC-analogue')
+    #     ax[_][1].set_xticks([-90,0,90])
+    #     ax[_][0].set_xlim(-181,181)
+    #     ax[0][0].set_title('High Affinity')
+    #     ax[0][1].set_title('GC-analogue')
 
-        # Define custom legend
-        legend_elements = [Line2D([0], [0], color='cornflowerblue', lw=2, label='DNA-haff'),
-                        Line2D([0], [0], color='coral', lw=2, label='DNA-gca'),
-                        Line2D([0], [0], color='navy', lw=2, label='FI-haff'),
-                        Line2D([0], [0], color='darkred', lw=2, label='FI-gca')]
+    #     # Define custom legend
+    #     legend_elements = [Line2D([0], [0], color='cornflowerblue', lw=2, label='DNA-haff'),
+    #                     Line2D([0], [0], color='coral', lw=2, label='DNA-gca'),
+    #                     Line2D([0], [0], color='navy', lw=2, label='FI-haff'),
+    #                     Line2D([0], [0], color='darkred', lw=2, label='FI-gca')]
 
 
-        # Add the custom legend to the figure (NOT the subplot)
-        fig.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 0.89),title='BII fraction')
-        fig.suptitle('Denstities of Anti Strand')
-        fig.savefig('Anti_BII_densities.png',dpi=300,bbox_inches='tight')
+    #     # Add the custom legend to the figure (NOT the subplot)
+    #     fig.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 0.89),title='BII fraction')
+    #     fig.suptitle('Denstities of Anti Strand')
+    #     fig.savefig('Anti_BII_densities.png',dpi=300,bbox_inches='tight')
 
 class ContactCount:
 

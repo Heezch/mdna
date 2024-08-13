@@ -72,24 +72,32 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
     """
 
     # Check if control points are provided, otherwise generate a straight line
+    skip = False
     if control_points is not None:
         if len(control_points) < 4:
             raise ValueError('Control points should contain at least 4 points [x, y, z]')
         elif len(control_points) > 4 and n_bp is None and sequence is None:
-            n_bp = len(control_points)  # Number of base pairs
+            skip = True
     elif control_points is None and circular:
         control_points = Shapes.circle(radius=1)
         closed = True
     else:
         # Linear strand of control points
         control_points = Shapes.line(length=1)
-    
-    sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
-    spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
 
+    if not skip:
+        sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
+        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
+    else:
+        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
+        sequence, n_bp = _check_input(sequence=sequence, n_bp=spline.n_bp)
+     
+
+    
+    
     return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0, 1], circular=circular)
 
-def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300):
+def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300, control_points : np.ndarray = None, index : int = 0):  
     """Connect two DNA structures by creating a new DNA structure with a connecting DNA strand.
 
     The 3' end of the first DNA structure is connected to the 5' end of the second DNA structure.
@@ -130,7 +138,7 @@ def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = No
         sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
    
     # Connect the two DNA structures
-    connector = Connector(Nucleic0, Nucleic1, sequence=sequence, n_bp=n_bp, leader=leader, frame=frame, margin=margin)
+    connector = Connector(Nucleic0, Nucleic1, sequence=sequence, n_bp=n_bp, leader=leader, frame=frame, margin=margin, control_points=control_points, index=index)
     if minimize:
         connector.connected_nuc.minimize(exvol_rad=exvol_rad, temperature=temperature, fixed=connector.fixed)
     return connector.connected_nuc
@@ -328,7 +336,7 @@ class Nucleic:
         
     """Contains mdna DNA structure with reference frames and trajectory"""
 
-    def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=None, circular=None):
+    def __init__(self, sequence=None, n_bp=None, traj=None, frames=None, chainids=[0,1], circular=None):
             """Initializes the DNA structure.
 
             Args:
@@ -336,7 +344,7 @@ class Nucleic:
                 n_bp (int): The number of base pairs. Default is None.
                 traj (object): The MDTraj trajectory. Default is None.
                 frames (np.ndarray): The reference frames of the DNA structure. Default is None.
-                chainids (list): The chain IDs. Default is None.
+                chainids (list): The chain IDs. Default is [0,1].
                 circular (bool): A flag that indicates if the structure is circular/closed. Default is None.
 
             Raises:
@@ -367,6 +375,7 @@ class Nucleic:
                 # Extract sequence from the trajectory
                 sequence = get_sequence_letters(traj, leading_chain=chainids[0])
                 n_bp = len(sequence)
+                sequence = ''.join(sequence)
                 frames = None  # Nucleic class will handle extraction from traj
 
             # Check for reference frames
@@ -539,13 +548,13 @@ class Nucleic:
             # Connect the last point to the first point
             ax.plot([x[-1], x[0]], [y[-1], y[0]], [z[-1], z[0]], '-o', c=color, markersize=markersize*1.2, lw=lw)
 
-    def _plot_helical_axis(self, ax, frame, lw=1):
+    def _plot_helical_axis(self, ax, frame, lw=1, color='k'):
         helical_axis = self.frames[:,frame,0]
-        ax.plot(helical_axis[:,0],helical_axis[:,1],helical_axis[:,2],':',c='k',lw=lw*0.7)
+        ax.plot(helical_axis[:,0],helical_axis[:,1],helical_axis[:,2],':',c=color,lw=lw*0.7)
         if self.circular:
             ax.plot([helical_axis[-1,0],helical_axis[0,0]],[helical_axis[-1,1],helical_axis[0,1]],[helical_axis[-1,2],helical_axis[0,2]],':',c='k',lw=lw*0.7)
 
-    def draw(self, ax=None, fig=None, save=False, frame=-1, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey'):
+    def draw(self, ax=None, fig=None, save=False, frame=-1, markersize=2, lw=1, helical_axis=True, backbone=True, lead=False, anti=False, triads=False, length=0.23,color_lead='k',color_anti='darkgrey',color_axis='k'):
         """Draws a 3D representation of the DNA structure with optional helical axis, backbone, lead, anti, and triads.
 
         Args:
@@ -563,6 +572,7 @@ class Nucleic:
             length (float, optional): Length of triad vectors. Default is 0.23.
             color_lead (str, optional): Color of the leading strand. Default is 'k'.
             color_anti (str, optional): Color of the anti strand. Default is 'darkgrey'.
+            color_axis (str, optional): Color of the helical axis. Default is 'k'.
 
         Notes:
             - The function draws a 3D representation of the DNA structure using matplotlib.
@@ -592,11 +602,11 @@ class Nucleic:
             lead = True
             anti = True
         if lead:
-            self._plot_chain(ax, self.traj, 0, frame=frame, markersize=markersize, lw=lw, color=color_lead)
+            self._plot_chain(ax, self.traj, self.chainids[0], frame=frame, markersize=markersize, lw=lw, color=color_lead)
         if anti:
-            self._plot_chain(ax, self.traj, 1, frame=frame, markersize=markersize, lw=lw, color=color_anti)
+            self._plot_chain(ax, self.traj, self.chainids[1], frame=frame, markersize=markersize, lw=lw, color=color_anti)
         if helical_axis:
-            self._plot_helical_axis(ax, frame=frame, lw=lw)
+            self._plot_helical_axis(ax, frame=frame, lw=lw, color=color_axis)
         if triads:
             for triad in self.frames:
                 triad = triad[frame]
@@ -764,7 +774,7 @@ class Nucleic:
             methylator = Methylate(self.traj, methylations=methylations, CpG=CpG, leading_strand=leading_strand)
             self.traj = methylator.get_traj()
     
-    def extend(self, n_bp: int = None, sequence: Union[str|List] = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True, plot : bool = False):  
+    def extend(self, n_bp: int = None, sequence: Union[str|List] = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True, plot : bool = False, exvol_rad : float = 2.0, temperature : int = 300):  
         """Extend the DNA structure in the specified direction.
             The method updates the attributes of the DNA object.
 
@@ -779,6 +789,8 @@ class Nucleic:
             margin (int, optional): Number of base pairs to fix at the end/start of the DNA structure during extension. Defaults to 1.
             minimize (bool, optional): Whether to minimize the new DNA structure after extension. Defaults to True.
             plot (bool, optional): Whether to plot the Energy during minmization. Defaults to False.
+            exvol_rad (float, optional): Excluded volume radius. Defaults to 2.0.
+            temperature (int, optional): Temperature for equilibration. Defaults
 
         Raises:
             ValueError: If the DNA structure is circular and cannot be extended.
@@ -812,7 +824,7 @@ class Nucleic:
         self.nuc = extender.nuc
 
         if minimize:
-            self.nuc.minimize(fixed=extender.fixed, endpoints_fixed=fixed_endpoints, plot=plot)
+            self.nuc.minimize(fixed=extender.fixed, endpoints_fixed=fixed_endpoints, plot=plot, exvol_rad=exvol_rad, temperature=temperature)
 
         # Update attributes
         self.sequence = self.nuc.sequence
@@ -939,7 +951,7 @@ class Extender:
 
 
 class Connector:
-    def __init__(self, Nucleic0, Nucleic1, sequence : Union[str | List] = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1):
+    def __init__(self, Nucleic0, Nucleic1, sequence : Union[str | List] = None, n_bp : int =  None, leader: int = 0, frame : int = -1, margin : int = 1, control_points : np.ndarray = None, index : int = 0):   
         
         # Store the two Nucleic objects
         self.Nucleic0 = Nucleic0
@@ -958,9 +970,9 @@ class Connector:
         self.frames1 = Nucleic1.frames[:,self.frame,:,:]
 
         # Connect the two nucleic acids and store the new nucleic acid
-        self.connected_nuc = self.connect()
+        self.connected_nuc = self.connect(index=index, control_points=control_points)
 
-    def connect(self, index=0):
+    def connect(self, index=0, control_points=None):
         """Connect two nucleic acids by creating a new nucleic acid with a connecting DNA strand."""
         # Get the start and end points of the two nucleic acids (assuming the leader is 0 and we connect the end of A to start of B)
         self.start, self.end = self._get_start_and_end()
@@ -980,15 +992,19 @@ class Connector:
             # get the optimal number of base pairs (smallest amount of base pairs that satisfies the tolerance)
             self.n_bp = optimal_bps[index]['optimal_bp']
             print(f'Optimal number of base pairs: {self.n_bp}')
- 
-        # Guess the shape of the spline C by interpolating the start and end points
-        # Note, we add to extra base pairs to account for the double count of the start and end points of the original strands
-        control_points_C = self._interplotate_points(self.start[0], self.end[0], self.n_bp+2)# if opti else self.n_bp)
-        distance = np.linalg.norm(self.start-self.end)
+    
 
-        # Create frames object with the sequence and shape of spline C while squishing the correct number of BPs in the spline
-        spline_C = SplineFrames(control_points=control_points_C, frame_spacing=distance/len(control_points_C),n_bp=self.n_bp+2)
-     
+                # interpolate control points for spline C
+        if control_points is None:
+            # Guess the shape of the spline C by interpolating the start and end points
+            # Note, we add to extra base pairs to account for the double count of the start and end points of the original strands
+            control_points_C = self._interplotate_points(self.start[0], self.end[0], self.n_bp+2)# if opti else self.n_bp)
+            distance = np.linalg.norm(self.start-self.end)
+            # Create frames object with the sequence and shape of spline C while squishing the correct number of BPs in the spline
+            spline_C = SplineFrames(control_points=control_points_C, frame_spacing=distance/len(control_points_C),n_bp=self.n_bp+2)
+        else:
+            spline_C = SplineFrames(control_points=control_points,frame_spacing=0.34, initial_frame=self.start)
+
         # exclude first and last frame of C because they are already in spline A and B
         frames_C = np.concatenate([self.frames0,spline_C.frames[1:-1],self.frames1])
   

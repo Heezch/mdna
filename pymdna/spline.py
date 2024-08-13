@@ -120,6 +120,8 @@ class SplineFrames:
         if self.n_bp is not None:
             print(f"""\nStart rescaling spline based on requested number of base pairs.\n\tThis requires recomputation of the control points to match the desired number of base pairs.""")
             self._scale_to_nbp()
+        else:
+            self.n_bp = self.frames.shape[0]
 
         if self.twist:
             self.twist_frames(modified_ranges=modified_ranges)
