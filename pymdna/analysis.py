@@ -245,7 +245,6 @@ class GrooveAnalysis:
 
         return groove_depths_base_pair_level, groove_depths_half_way
 
-
 class TorsionAnalysis:
     """
     torsions = mdna.TorsionAnalysis(traj)
@@ -395,7 +394,6 @@ class TorsionAnalysis:
         fig.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.15, 0.89),title='BII fraction')
         fig.suptitle('Denstities of Anti Strand')
         fig.savefig('Anti_BII_densities.png',dpi=300,bbox_inches='tight')
-
 
 class ContactCount:
 

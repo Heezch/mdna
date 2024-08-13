@@ -7,13 +7,13 @@ In this section, we will analyze the DNA structure using rigid base parameters, 
 
 Rigid base parameters are crucial for understanding DNA's mechanical properties. They describe the geometry of each base pair and the relative orientation between consecutive base pairs. These parameters are divided into two main categories:
 
-1. **Base Pair Parameters**:
-   - **Shear, Stretch, Stagger**: Describe the displacement of one base relative to the other within a base pair.
-   - **Buckle, Propeller, Opening**: Describe the angular deformation within a base pair.
+#### **Base Pair Parameters**:
+   - *Shear, Stretch, Stagger*: Describe the displacement of one base relative to the other within a base pair.
+   - *Buckle, Propeller, Opening*: Describe the angular deformation within a base pair.
 
-2. **Base Pair Step Parameters**:
-   - **Shift, Slide, Rise**: Describe the relative displacement between two consecutive base pairs.
-   - **Tilt, Roll, Twist**: Describe the angular relationship between two consecutive base pairs.
+#### **Base Pair Step Parameters**:
+   - *Shift, Slide, Rise*: Describe the relative displacement between two consecutive base pairs.
+   - *Tilt, Roll, Twist*: Describe the angular relationship between two consecutive base pairs.
 
 ### Example: Analyzing DNA with Rigid Base Parameters
 

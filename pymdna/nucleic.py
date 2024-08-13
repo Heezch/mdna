@@ -392,6 +392,7 @@ class Nucleic:
             self.circular = self._is_circular() if circular is None else circular 
             self.rigid = None # Container for rigid base parameters class output
             self.minimizer = None # Container for minimizer class output
+            self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
 
     def describe(self):
         """Print the DNA structure information"""
@@ -447,8 +448,8 @@ class Nucleic:
             print('Warning: Trajectory contains more than 99999 atoms, consider saving as .h5')
         return self.traj
     
-    def get_rigid_parameters(self):
-        """Get the rigid base parameters class object of the DNA structure
+    def get_rigid_object(self):
+        """Get the rigid base class object of the DNA structure
 
         Returns:
             NucleicFrames (object): Object representing the rigid base parameters of the DNA structure."""
@@ -461,6 +462,50 @@ class Nucleic:
             return self.rigid
         else:
             return self.rigid
+        
+    def get_parameters(self, step : bool = False, base : bool = False):
+        """By default retuns all the parameters of the DNA structure.
+        Use arguments to get a specific parameter group of the DNA structure.
+
+        Args:
+            step (bool, optional): Returns only the step parameters of consequative bases. Defaults to False.
+            base (bool, optional): Returns onlt the base pair parameters of opposing bases. Defaults to False.
+
+        Returns:
+            (parameters, names) (tuple) : Returns the names of the computed parameters of shape (n_frames, n_base_pairs, n_parameters)"""
+
+        if self.rigid is None:
+            self.get_rigid_object()
+        return self.rigid.get_parameters(step=step, base=base)
+    
+    def get_parameter(self, parameter_name : str):
+        """Get a specific parameter from the rigid base parameters class object of the DNA structure
+            
+        Args:
+            parameter_name (str): The name of the parameter to retrieve.
+
+        Notes:
+            The following parameters can be retrieved:
+            - shift, slide, rise, tilt, roll, twist, shear, stretch, stagger, buckle, propeller, opening
+
+        Returns:
+            np.ndarray: The parameter values of the DNA structure."""
+        if self.rigid is None:
+            self.get_rigid_object()
+        return self.rigid.get_parameter(parameter_name)
+    
+    def get_base_frames(self):
+        """Get the base reference frames of the DNA structure
+        
+        Returns:
+            dict: A dictionary containing the base reference frames of the DNA structure. 
+              The keys are residue topologies of the MDTraj object (traj.top.residues) and the values are the reference frames in shape (n_frames, 4, 3), 
+              where the rows represent the origin, b_D, b_L, and b_N vectors."""
+
+        if self.rigid is None:
+            self.get_rigid_object()
+        return self.rigid.get_base_reference_frames()
+
     
     def _is_circular(self, frame=0):
         """Detects if the DNA structure is circular for a given chain and frame.

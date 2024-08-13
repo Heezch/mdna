@@ -214,13 +214,12 @@ class NucleicFrames:
         ax[_].set_title(names[_])
     """
 
-    def __init__(self, traj, chainids=[0,1],frames_only=False):
-        """_summary_
+    def __init__(self, traj, chainids=[0,1]):
+        """Initialize the NucleicFrames object.
 
         Args:
-            traj (_type_): _description_
-            chainids (list, optional): _description_. Defaults to [0,1].
-            frames_only (bool, optional): _description_. Defaults to False.
+            traj (object): MDtraj trajectory object.
+            chainids (list, optional): Chainids of sense- and anti-sense strands. Defaults to [0,1].
         """
         self.traj = traj
         self.top = traj.topology
@@ -260,18 +259,21 @@ class NucleicFrames:
         return reference_frames
 
     def reshape_input(self,input_A,input_B,is_step=False):
-
-        """This function reshapes the input to the correct format for the calculations. 
-        And splits the input into rotation matrices and origins for the calculations.
+        
+        """Reshape the input to the correct format for the calculations.
+        
+        Args:
+        input_A (ndarray): Input array for the first triad.
+        input_B (ndarray): Input array for the second triad.
+        is_step (bool, optional): Flag indicating if the input is a single step or a trajectory. Defaults to False.
         
         Returns:
-        --------
-        rotation_A/rotation_B : ndarray
-            The rotation matrices of shape (n, 3, 3) for the first triad.
-        origin_A/origin_B : ndarray
-            The origins of shape (n, 3) for the first triad.
-        original_shape : tuple
-            The original shape of the input."""
+        rotation_A (ndarray): Rotation matrices of shape (n, 3, 3) for the first triad.
+        rotation_B (ndarray): Rotation matrices of shape (n, 3, 3) for the second triad.
+        origin_A (ndarray): Origins of shape (n, 3) for the first triad.
+        origin_B (ndarray): Origins of shape (n, 3) for the second triad.
+        original_shape (tuple): The original shape of the input.
+        """
 
         # Store original shape
         original_shape = input_A.shape
@@ -298,19 +300,17 @@ class NucleicFrames:
 
     def compute_parameters(self, rotation_A, rotation_B, origin_A, origin_B):
         """Calculate the parameters between each base pair and mean reference frames.
-        See chapter 2: Kinematics of rigid base and rigid base pair models of DNA
-        Of Thesis: "A DNA Coarse-Grain Rigid Base Model and Parameter Estimation from Molecular Dynamics Simulations" by Daiva Petkevičiūtė
 
-        Rotations contain rotation matrices of shape (n, 3, 3) and origins contain the origins of shape (n, 3).
+        Args:
+            rotation_A (ndarray): Rotation matrices of shape (n, 3, 3) for the first triad.
+            rotation_B (ndarray): Rotation matrices of shape (n, 3, 3) for the second triad.
+            origin_A (ndarray): Origins of shape (n, 3) for the first triad.
+            origin_B (ndarray): Origins of shape (n, 3) for the second triad.
 
         Returns:
-        --------
-        rigid_parameters : ndarray
-            The parameters of shape (n, 12) representing the relative translation and rotation between each base pair.
-        trans_mid : ndarray
-            The mean translational vector of shape (n, 3) between the triads.
-        rotation_mid : ndarray
-            The mean rotation matrix of shape (n, 3, 3) between the triads.
+            rigid_parameters (ndarray): The parameters of shape (n, 12) representing the relative translation and rotation between each base pair.
+            trans_mid (ndarray): The mean translational vector of shape (n, 3) between the triads.
+            rotation_mid (ndarray): The mean rotation matrix of shape (n, 3, 3) between the triads.
         """
         
         # Linear interpolation of translations
@@ -346,21 +346,24 @@ class NucleicFrames:
 
     def calculate_parameters(self,frames_A, frames_B, is_step=False):
         """Calculate the parameters between each base pair and mean reference frames.
-        
+
         Assumes frames are of shape (n_frames, n_residues, 4, 3) where the last two dimensions are the base triads.
         The base triads consist of an origin (first index) and three vectors (latter 3 indices) representing the base frame.
         With the order of the vectors being: b_R, b_L, b_D, b_N.
-        
-        Note the vectors are stored rowwise in the base triads, and not the usual column representation of the rotation matrices.
-        
-        
-        Returns:
-        --------
-        params : ndarray
-            The parameters of shape (n_frames, n_residues, 6) representing the relative translation and rotation between each base pair.
-        mean_reference_frames : ndarray
-            The mean reference frames of shape (n_bp, n_frames, 4, 3) representing the mean reference frame of each base pair."""
 
+        Args:
+            frames_A (ndarray): Frames of shape (n_frames, n_residues, 4, 3) representing the base triads for chain A.
+            frames_B (ndarray): Frames of shape (n_frames, n_residues, 4, 3) representing the base triads for chain B.
+            is_step (bool, optional): Flag indicating if the input is a single step or a trajectory. Defaults to False.
+
+        Notes:
+            Note the vectors are stored rowwise in the base triads, and not the usual column representation of the rotation matrices.
+
+        Returns:
+            params (ndarray): The parameters of shape (n_frames, n_residues, 6) representing the relative translation and rotation between each base pair.
+            mean_reference_frames (ndarray): The mean reference frames of shape (n_bp, n_frames, 4, 3) representing the mean reference frame of each base pair.
+        """
+                
         # Reshape frames
         rotation_A, rotation_B, origin_A, origin_B, original_shape = self.reshape_input(frames_A,frames_B, is_step=is_step)
 
@@ -430,13 +433,14 @@ class NucleicFrames:
             return self.parameters, self.names
         
     def get_parameter(self,name='twist'):
-        """Get the parameter of the DNA structure
+        """Get the parameter of the DNA structure, choose frome the following:
+        - shift, slide, rise, tilt, roll, twist, shear, stretch, stagger, buckle, propeller, opening
+
         Args:
-            name: str
-                parameter name
+            name (str): parameter name
+
         Returns:
-            parameter: ndarray
-                parameter in shape (n_frames, n_base_pairs)"""
+            parameter(ndarray) : parameter in shape (n_frames, n_base_pairs)"""
 
         if name not in self.names:
             raise ValueError(f"Parameter {name} not found.")

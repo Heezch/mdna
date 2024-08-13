@@ -596,8 +596,7 @@ def get_sequence_letters(traj, leading_chain=0):
     return sequence
     
 
-
-def _check_input(sequence: Union[str, List[str]] = None, n_bp: int = None) -> (str, int):
+def _check_input(sequence: Union[str, List[str]] = None, n_bp: int = None):
     """Check the input sequence and number of base pairs, returning a string sequence and an integer n_bp."""
 
     if sequence is None and n_bp is not None:
