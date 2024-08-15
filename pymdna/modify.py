@@ -203,14 +203,15 @@ class Hoogsteen:
 class Mutate:
     """ Class to mutate a DNA structure
     """
-    def __init__(self, traj, mutations, complementary=True):
+    def __init__(self, traj, mutations, complementary=True, verbose=False):
     
         self.traj = traj
         self.complementary = complementary
+        self.verbose = verbose
         self.mutations = mutations
         self.current_resid = 0
         self.mutate()
-
+        
     def mutate(self):
 
         # Define the base pair map and the complementary mutant map
@@ -366,12 +367,15 @@ class Mutate:
         #print('empty',traj.top.residue(resid)._atoms)
         #print('empty',[at.index for at in traj.top.residue(resid)._atoms])
         for idx, mutant_index in enumerate(mutant_indices, 1):
+            if self.verbose:
+                print('Processing residue',resid, 'atom',idx, 'index',mutant_index)
             atom = mutation_traj.top.atom(mutant_index)
 
             #print('target',offset+idx,atom)
             # Edge case: If the offset is the last atom in the topology, insert new atoms at the end
             if offset + idx >= traj.top.n_atoms:
-                print('Edgecase: inserting at or beyond the last atom in the topology', offset, traj.top.n_atoms)
+                if self.verbose:
+                    print('Edgecase: inserting at or beyond the last atom in the topology', offset, traj.top.n_atoms)
                 traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
                                     index=traj.top.n_atoms + idx, rindex=insert_id + idx)
             else:
@@ -380,6 +384,8 @@ class Mutate:
                 # index: the desired position for this atom within the topology, Existing atoms with indices >= index will be pushed back.
                 #print('idx, offset+idx, insert_id+idx')
                 #print(idx, offset+idx, insert_id+idx)
+                if self.verbose:
+                    print('Inserting atom at index', offset + idx, 'rindex', insert_id + idx)
                 traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
                                     index=offset + idx, rindex=insert_id + idx)
 

@@ -15,6 +15,8 @@ plugins:
               show_source: true
               show_root_heading: true
   - search
+  - mkdocs-jupyter
+
 
 markdown_extensions:
   - admonition
@@ -46,7 +48,17 @@ nav:
    
 
   - Explanation: explanation.md
-  - How-To Guides: how-to-guides.md
+  -  Jupyter Notebooks: 
+      - Basic Notebooks:
+          - Structure Generation: notebooks/0_structure_tutorial.ipynb
+          - Draw DNA Structures: notebooks/1_visualization_tutorial.ipynb
+          - Modify DNA Structures: notebooks/2_modification_tutorial.ipynb
+          - Analyse DNA Structures: notebooks/3_analysis_tutorial.ipynb
+      - Advanced Notebooks:
+          - DNA Along H-NS Filament: notebooks/4_filament_tutorial.ipynb
+          - Add Linker DNA to Nucleosome: notebooks/5_extension_tutorial.ipynb
+          - Add DNA Loop to bridging protein: notebooks/6_connection_tutorial.ipynb
+          - How to add base to Sequence Library: notebooks/7_sequence_library.ipynb
   - Modules: 
       - Core: modules-core.md
       - Build: modules-build.md

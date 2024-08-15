@@ -9,9 +9,10 @@ from .nucleic import (
         sequence_to_pdb,
         sequence_to_md
     )
-from .utils import Shapes
+from .utils import Shapes, get_mutations
+from .geometry import ReferenceBase
 
-__all__ = ["load", "make", "connect", "compute_rigid_parameters", "compute_curvature", "compute_linking_number", "compute_groove_width", "sequence_to_pdb", "sequence_to_md", "Shapes"]
+__all__ = ["load", "make", "connect", "compute_rigid_parameters", "compute_curvature", "compute_linking_number", "compute_groove_width", "sequence_to_pdb", "sequence_to_md", "Shapes", "ReferenceBase", "get_mutations"]
 
 __version__ = "0.00"
 

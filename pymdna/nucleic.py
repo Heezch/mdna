@@ -9,9 +9,7 @@ from .spline import SplineFrames, Twister
 from .geometry import ReferenceBase, NucleicFrames
 from .generators import SequenceGenerator, StructureGenerator
 from .modify import Mutate, Hoogsteen, Methylate
-# from .analysis import GrooveAnalysis, TorsionAnalysis, ContactCount
 from .minimizer import Minimizer
-# from .build import Extender, Connector
 
 
 
@@ -182,7 +180,7 @@ def compute_groove_width(traj, chainids=[0,1]):
     """Compute the groove width of the DNA structure"""
     raise NotImplementedError
 
-def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', save: bool = True, output: str = 'GROMACS', shape: np.ndarray = None, n_bp: int = None, circular: bool = False, dLk: int = None) -> md.Trajectory:
+def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', save: bool = True, output: str = 'GROMACS', shape: np.ndarray = None, n_bp: int = None, circular: bool = False, dLk: int = None, save_location : str = './') -> md.Trajectory:
     """Generate a DNA structure from a DNA sequence code.
 
     Args:
@@ -194,6 +192,7 @@ def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', sa
         n_bp (int, optional): Number of base pairs to scale shape with. Default is None, then the sequence is used to determine n_bp.
         circular (bool, optional): Indicates if the structure is circular/closed. Default is False.
         dLk (int, optional): Change in twist in terms of Linking number of DNA structure to output. Default is None, which corresponds to a neutral twist based on bp_per_turn = 10.5.
+        save_location (str, optional): Location to save the trajectory. Default is './'.
 
     Returns:
         md.Trajectory: An MDtraj trajectory object of the DNA structure (containing only a single frame).
@@ -237,11 +236,11 @@ def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', sa
 
     # Save the DNA structure as a pdb file
     if save:
-        traj.save(f'./{filename}.pdb')
+        traj.save(f'{save_location}{filename}.pdb')
 
     return traj
 
-def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False,  filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None):
+def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=310, solvated=False,  filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None,save_location='./'):
     """Simulate DNA sequence using OpenMM.
 
         Args:
@@ -257,6 +256,7 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
             n_bp (int): Number of base pairs in the DNA structure.
             circular (bool): Flag indicating if the DNA structure is circular.
             dLk (int): Change in linking number of the DNA structure.
+            save_location (str): Location to save the trajectory.
 
         Returns:
             MDTraj (object): MDtraj trajectory object of DNA structure.
@@ -285,8 +285,10 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
     except ImportError:
         openmm_available = False
         print("Openmm is not installed. You shall not pass.")
+    if filename is None:
+        filename = sequence
 
-    pdb = sequence_to_pdb(sequence=sequence, filename='my_dna', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None)
+    pdb = sequence_to_pdb(sequence=sequence, filename=f'{save_location}{filename}', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None)
     
     if not openmm_available:
         print('But here is your DNA structure')
@@ -317,8 +319,8 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
 
         simulation = app.Simulation(modeller.topology, system, integrator)
         simulation.context.setPositions(modeller.positions)
-        simulation.reporters.append(HDF5Reporter(f'./{sequence}'+'.h5', 100))
-        simulation.reporters.append(app.StateDataReporter(f'./output_{sequence}.csv', 100, step=True, potentialEnergy=True, temperature=True,speed=True))
+        simulation.reporters.append(HDF5Reporter(f'{save_location}{filename}'+'.h5', 100))
+        simulation.reporters.append(app.StateDataReporter(f'{save_location}/output_{filename}.csv', 100, step=True, potentialEnergy=True, temperature=True,speed=True))
         
         print('Minimize energy')
         simulation.minimizeEnergy()
@@ -327,8 +329,8 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         simulation.step(steps)
         simulation.reporters[0].close()
         print('Simulation completed')
-        print('Saved trajectory as:', f'./{sequence}'+'.h5')
-        traj = md.load_hdf5(f'./{sequence}'+'.h5')
+        print('Saved trajectory as:', f'{save_location}{filename}'+'.h5')
+        traj = md.load_hdf5(f'{save_location}{filename}'+'.h5')
         return traj
 
 
@@ -667,7 +669,7 @@ class Nucleic:
             raise ValueError('Run minimization first')
         return self.minimizer.get_MC_traj()
 
-    def mutate(self, mutations: dict = None, complementary: bool = True, frame: int = -1):
+    def mutate(self, mutations: dict = None, complementary: bool = True, frame: int = -1, verbose: bool = False):
         """Mutate the DNA trajectory, updating the topology and coordinates of the DNA structure.
         The method updates the `traj` attribute and the `sequence` attribute of the DNA object.
 
@@ -676,6 +678,7 @@ class Nucleic:
             mutations (dict, optional): A dictionary containing the mutation information. The keys represent the indices of the base pairs to be mutated, and the values represent the new nucleobases. For example, `mutations = {0: 'A', 1: 'T', 2: 'G'}` will mutate the first three base pairs to A, T, and G, respectively. Defaults to None.
             complementary (bool, optional): Whether to mutate the complementary strand. Defaults to True.
             frame (int, optional): The frame to mutate. Defaults to -1.
+            verbose (bool, optional): Whether to print the mutated sequence. Defaults to False.
 
         Raises:
             ValueError: If no mutation dictionary is provided.
@@ -702,7 +705,7 @@ class Nucleic:
 
         # TODO: Check if valid letters in mutations dictionary
 
-        mutant = Mutate(self.traj[frame], mutations, complementary=complementary)
+        mutant = Mutate(self.traj[frame], mutations, complementary=complementary, verbose=verbose)
         self.traj = mutant.get_traj()
         # Update sequence
         self.sequence = ''.join(get_sequence_letters(self.traj, leading_chain=self.chainids[0]))
