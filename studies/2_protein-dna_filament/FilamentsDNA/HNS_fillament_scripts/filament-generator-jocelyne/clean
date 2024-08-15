@@ -1,1 +1,0 @@
-rm *# *itp *ndx *pdb *gro em* *log topol.top mdout.mdp >& /dev/null
