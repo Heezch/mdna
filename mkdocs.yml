@@ -5,7 +5,27 @@ theme:
   name: "material"
   features:
     - content.code.copy
+  logo: assets/logo.png
 
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      primary: red
+      accent: light-blue
+      toggle:
+        icon: material/eye
+        name: Switch to dark mode
+   
+    # Palette toggle for dark mode
+    - scheme: slate
+      accent: pink
+      toggle:
+        icon: material/eye-outline
+        name: Switch to light mode
+
+
+
+repo_url: https://github.com/heezch/pymdna
 
 plugins:
   - mkdocstrings:
@@ -15,8 +35,8 @@ plugins:
               show_source: true
               show_root_heading: true
   - search
-  - mkdocs-jupyter
-
+  - mkdocs-jupyter:
+        include_source: True
 
 markdown_extensions:
   - admonition
@@ -39,16 +59,17 @@ markdown_extensions:
 
 nav:
   - MDNA Docs: index.md
-  - Tutorials:
-      - Overiew: tutorials-introduction.md
-      - Quickstart: tutorials-quickstart.md
-      - Build: tutorials-build.md
-      - Modify: tutorials-modify.md
-      - Analyse: tutorials-analyse.md
+  - Tutorials: 
+      - Overiew: index-tutorials.md
+      - Quickstart: tutorials/tutorials-quickstart.md
+      - Build: tutorials/tutorials-build.md
+      - Modify: tutorials/tutorials-modify.md
+      - Analyse: tutorials/tutorials-analyse.md
    
 
-  - Explanation: explanation.md
+  - Explanation: explanation/explanation.md
   -  Jupyter Notebooks: 
+      - Overview: index-notebooks.md
       - Basic Notebooks:
           - Structure Generation: notebooks/0_structure_tutorial.ipynb
           - Draw DNA Structures: notebooks/1_visualization_tutorial.ipynb
@@ -60,18 +81,15 @@ nav:
           - Add DNA Loop to bridging protein: notebooks/6_connection_tutorial.ipynb
           - How to add base to Sequence Library: notebooks/7_sequence_library.ipynb
   - Modules: 
-      - Core: modules-core.md
-      - Build: modules-build.md
-      - Modify: modules-modify.md
-      - Analyse: modules-analyse.md
+      - Overview: index-modules.md
+      - Core: modules/modules-core.md
+      - Build: modules/modules-build.md
+      - Modify: modules/modules-modify.md
+      - Analyse: modules/modules-analyse.md
   - API Reference: 
-      - Overview: code-reference.md  
+      - Overview: index-api.md
       - Classes:
-        - Nucleic: nucleic-reference.md
-        - Shapes: shapes-reference.md
-        - Geometry: geometry-reference.md
+        - Nucleic: api/nucleic-reference.md
+        - Shapes: api/shapes-reference.md
+        - Geometry: api/geometry-reference.md
     
-          # - Nucleic: nucleic-reference.md
-          # - Shapes: shapes-reference.md
-          # - Geometry: geometry-reference.md
-

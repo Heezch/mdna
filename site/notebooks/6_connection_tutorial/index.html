@@ -26,6 +26,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -55,7 +58,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,8 +92,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Software module for DNA structure analysis and generation" class="md-header__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -106,6 +115,32 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="pink"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0Z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -150,6 +185,18 @@
 </div>
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/heezch/pymdna" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -177,12 +224,23 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Software module for DNA structure analysis and generation" class="md-nav__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     Software module for DNA structure analysis and generation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/heezch/pymdna" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -248,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials-introduction/" class="md-nav__link">
+      <a href="../../index-tutorials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -269,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials-quickstart/" class="md-nav__link">
+      <a href="../../tutorials/tutorials-quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -290,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials-build/" class="md-nav__link">
+      <a href="../../tutorials/tutorials-build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -311,7 +369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials-modify/" class="md-nav__link">
+      <a href="../../tutorials/tutorials-modify/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -332,7 +390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials-analyse/" class="md-nav__link">
+      <a href="../../tutorials/tutorials-analyse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -360,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../explanation/" class="md-nav__link">
+      <a href="../../explanation/explanation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -416,6 +474,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../index-notebooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -424,10 +503,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -438,8 +517,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             Basic Notebooks
           </label>
@@ -553,10 +632,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -567,8 +646,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced Notebooks
           </label>
@@ -800,7 +879,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules-core/" class="md-nav__link">
+      <a href="../../index-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/modules-core/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -821,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules-build/" class="md-nav__link">
+      <a href="../../modules/modules-build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -842,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules-modify/" class="md-nav__link">
+      <a href="../../modules/modules-modify/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -863,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules-analyse/" class="md-nav__link">
+      <a href="../../modules/modules-analyse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -926,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code-reference/" class="md-nav__link">
+      <a href="../../index-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -982,7 +1082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../nucleic-reference/" class="md-nav__link">
+      <a href="../../api/nucleic-reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1003,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shapes-reference/" class="md-nav__link">
+      <a href="../../api/shapes-reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1024,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../geometry-reference/" class="md-nav__link">
+      <a href="../../api/geometry-reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,6 +1237,9 @@
               <article class="md-content__inner md-typeset">
                 
                   
+
+  
+  
 
 
 <script>
