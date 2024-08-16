@@ -1,0 +1,9 @@
+# Include all Python source files
+recursive-include mdna *.py
+
+# Include any additional files or directories
+include README.md
+include LICENSE.txt
+recursive-include data *
+
+include ./atomic

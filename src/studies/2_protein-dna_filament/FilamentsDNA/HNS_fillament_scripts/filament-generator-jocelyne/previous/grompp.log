@@ -1,0 +1,87 @@
+                         :-)  G  R  O  M  A  C  S  (-:
+
+               Giant Rising Ordinary Mutants for A Clerical Setup
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                                :-)  grompp  (-:
+
+Option     Filename  Type         Description
+------------------------------------------------------------
+  -f         em.mdp  Input        grompp input file with MD parameters
+ -po      mdout.mdp  Output       grompp input file with MD parameters
+  -c       conf.gro  Input        Structure file: gro g96 pdb tpr etc.
+  -r       conf.gro  Input, Opt.  Structure file: gro g96 pdb tpr etc.
+ -rb       conf.gro  Input, Opt.  Structure file: gro g96 pdb tpr etc.
+  -n      index.ndx  Input, Opt.  Index file
+  -p      topol.top  Input        Topology file
+ -pp  processed.top  Output, Opt. Topology file
+  -o         em.tpr  Output       Run input file: tpr tpb tpa
+  -t       traj.trr  Input, Opt.  Full precision trajectory: trr trj cpt
+  -e       ener.edr  Input, Opt.  Energy file
+-ref     rotref.trr  In/Out, Opt. Full precision trajectory: trr trj cpt
+
+Option       Type   Value   Description
+------------------------------------------------------
+-[no]h       bool   no      Print help info and quit
+-[no]version bool   no      Print version info and quit
+-nice        int    0       Set the nicelevel
+-[no]v       bool   no      Be loud and noisy
+-time        real   -1      Take frame at or first after this time.
+-[no]rmvsbds bool   yes     Remove constant bonded interactions with virtual
+                            sites
+-maxwarn     int    0       Number of allowed warnings during input
+                            processing. Not for normal use and may generate
+                            unstable systems
+-[no]zero    bool   no      Set parameters for bonded interactions without
+                            defaults to zero instead of generating an error
+-[no]renum   bool   yes     Renumber atomtypes and minimize number of
+                            atomtypes
+
+Generated 2211 of the 2211 non-bonded parameter combinations
+Generating 1-4 interactions: fudge = 0.5
+Generated 2211 of the 2211 1-4 parameter combinations
+Excluding 3 bonded neighbours molecule type 'Protein_chain_A'
+Excluding 3 bonded neighbours molecule type 'Protein_chain_B'
+Excluding 3 bonded neighbours molecule type 'Protein_chain_C'
+
+NOTE 1 [file topol.top, line 47]:
+  System has non-zero total charge: 10.000000
+  Total charge should normally be an integer. See
+  http://www.gromacs.org/Documentation/Floating_Point_Arithmetic
+  for discussion on how close it should be to an integer.
+  
+
+
+Number of degrees of freedom in T-Coupling group rest is 11325.00
+Estimate for the relative computational load of the PME mesh part: 0.20
+
+There was 1 note
+
+gcq#193: "Your Country Needs YOU" (U.S. Army)
+
+Analysing residue names:
+There are:   239    Protein residues
+Analysing Protein...
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 56x36x40, spacing 0.115 0.112 0.110
+This run will generate roughly 737 Mb of data

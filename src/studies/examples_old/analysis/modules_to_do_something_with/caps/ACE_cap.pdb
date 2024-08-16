@@ -1,0 +1,19 @@
+MODEL        0
+ATOM     11  C   ACE A   0      -6.960  -3.489   2.600  1.00  0.00           C  
+ATOM     42  O   ACE A   0      -6.509  -4.590   2.896  1.00  0.00           O  
+ATOM     38  CH3 ACE A   0      -8.433  -3.186   2.631  1.00  0.00           C  
+ATOM     39  H   ACE A   0      -8.707  -2.844   3.633  1.00  0.00           H  
+ATOM     40  H   ACE A   0      -8.995  -4.091   2.386  1.00  0.00           H  
+ATOM     41  H   ACE A   0      -8.691  -2.414   1.900  1.00  0.00           H  
+ATOM      1  N   ALA A   1      -6.179  -2.418   2.255  1.00  0.00           N  
+ATOM      2  CA  ALA A   1      -4.724  -2.485   2.245  1.00  0.00           C  
+ATOM      3  C   ALA A   1      -4.180  -1.049   2.330  1.00  0.00           C  
+ATOM      4  O   ALA A   1      -4.852  -0.071   2.003  1.00  0.00           O  
+TER       5      ALA A   1
+ENDMDL
+CONECT    1    3    6    2    7
+CONECT    2    1
+CONECT    3    1
+CONECT    6    1
+CONECT    7    1
+END

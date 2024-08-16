@@ -1,0 +1,94 @@
+                         :-)  G  R  O  M  A  C  S  (-:
+
+                Gravel Rubs Often Many Awfully Cauterized Sores
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                               :-)  make_ndx  (-:
+
+Option     Filename  Type         Description
+------------------------------------------------------------
+  -f helix3/helix37.pdb  Input, Opt!  Structure file: gro g96 pdb tpr etc.
+  -n      index.ndx  Input, Opt., Mult. Index file
+  -o        fit.ndx  Output       Index file
+
+Option       Type   Value   Description
+------------------------------------------------------
+-[no]h       bool   no      Print help info and quit
+-[no]version bool   no      Print version info and quit
+-nice        int    0       Set the nicelevel
+-natoms      int    0       set number of atoms (default: read from
+                            coordinate or index file)
+
+
+Reading structure file
+
+Back Off! I just backed up fit.ndx to ./#fit.ndx.1#
+
+gcq#327: "You Fill Me With Inertia" (The Long Blondes)
+
+Going to read 0 old index file(s)
+Analysing residue names:
+There are:    43    Protein residues
+Analysing Protein...
+
+  0 System              :   714 atoms
+  1 Protein             :   714 atoms
+  2 Protein-H           :   359 atoms
+  3 C-alpha             :    43 atoms
+  4 Backbone            :   129 atoms
+  5 MainChain           :   172 atoms
+  6 MainChain+Cb        :   215 atoms
+  7 MainChain+H         :   215 atoms
+  8 SideChain           :   499 atoms
+  9 SideChain-H         :   187 atoms
+
+ nr : group       !   'name' nr name   'splitch' nr    Enter: list groups
+ 'a': atom        &   'del' nr         'splitres' nr   'l': list residues
+ 't': atom type   |   'keep' nr        'splitat' nr    'h': help
+ 'r': residue         'res' nr         'chain' char
+ "name": group        'case': case sensitive           'q': save and quit
+ 'ri': residue index
+
+> 
+Removed group 4 'Backbone'
+Removed group 5 'MainChain'
+Removed group 6 'MainChain+Cb'
+Removed group 7 'MainChain+H'
+Removed group 8 'SideChain'
+Removed group 9 'SideChain-H'
+Removed group 0 'System'
+Removed group 1 'Protein'
+Removed group 2 'Protein-H'
+
+> 
+Copied index group 0 'C-alpha'
+Found 0 atoms with chain identifier Y
+Found 190 atoms with res.nr. in range 55-64
+Merged two groups with AND: 43 190 -> 10
+
+  1 C-alpha_&_r_55-64   :    10 atoms
+
+> 
+Removed group 0 'C-alpha'
+
+> 

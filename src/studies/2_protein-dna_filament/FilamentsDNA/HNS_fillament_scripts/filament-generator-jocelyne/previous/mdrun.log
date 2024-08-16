@@ -1,0 +1,268 @@
+                         :-)  G  R  O  M  A  C  S  (-:
+
+               Giant Rising Ordinary Mutants for A Clerical Setup
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                                :-)  mdrun  (-:
+
+Option     Filename  Type         Description
+------------------------------------------------------------
+  -s         em.tpr  Input        Run input file: tpr tpb tpa
+  -o         em.trr  Output       Full precision trajectory: trr trj cpt
+  -x         em.xtc  Output, Opt. Compressed trajectory (portable xdr format)
+-cpi         em.cpt  Input, Opt.  Checkpoint file
+-cpo         em.cpt  Output, Opt. Checkpoint file
+  -c         em.gro  Output       Structure file: gro g96 pdb etc.
+  -e         em.edr  Output       Energy file
+  -g         em.log  Output       Log file
+-dhdl        em.xvg  Output, Opt. xvgr/xmgr file
+-field       em.xvg  Output, Opt. xvgr/xmgr file
+-table       em.xvg  Input, Opt.  xvgr/xmgr file
+-tabletf     em.xvg  Input, Opt.  xvgr/xmgr file
+-tablep      em.xvg  Input, Opt.  xvgr/xmgr file
+-tableb      em.xvg  Input, Opt.  xvgr/xmgr file
+-rerun       em.xtc  Input, Opt.  Trajectory: xtc trr trj gro g96 pdb cpt
+-tpi         em.xvg  Output, Opt. xvgr/xmgr file
+-tpid        em.xvg  Output, Opt. xvgr/xmgr file
+ -ei         em.edi  Input, Opt.  ED sampling input
+ -eo         em.xvg  Output, Opt. xvgr/xmgr file
+  -j         em.gct  Input, Opt.  General coupling stuff
+ -jo         em.gct  Output, Opt. General coupling stuff
+-ffout       em.xvg  Output, Opt. xvgr/xmgr file
+-devout      em.xvg  Output, Opt. xvgr/xmgr file
+-runav       em.xvg  Output, Opt. xvgr/xmgr file
+ -px         em.xvg  Output, Opt. xvgr/xmgr file
+ -pf         em.xvg  Output, Opt. xvgr/xmgr file
+ -ro         em.xvg  Output, Opt. xvgr/xmgr file
+ -ra         em.log  Output, Opt. Log file
+ -rs         em.log  Output, Opt. Log file
+ -rt         em.log  Output, Opt. Log file
+-mtx         em.mtx  Output, Opt. Hessian matrix
+ -dn         em.ndx  Output, Opt. Index file
+-multidir        em  Input, Opt., Mult. Run directory
+-membed      em.dat  Input, Opt.  Generic data file
+ -mp         em.top  Input, Opt.  Topology file
+ -mn         em.ndx  Input, Opt.  Index file
+
+Option       Type   Value   Description
+------------------------------------------------------
+-[no]h       bool   no      Print help info and quit
+-[no]version bool   no      Print version info and quit
+-nice        int    0       Set the nicelevel
+-deffnm      string em      Set the default filename for all file options
+-xvg         enum   xmgrace  xvg plot formatting: xmgrace, xmgr or none
+-[no]pd      bool   no      Use particle decompostion
+-dd          vector 0 0 0   Domain decomposition grid, 0 is optimize
+-ddorder     enum   interleave  DD node order: interleave, pp_pme or cartesian
+-npme        int    -1      Number of separate nodes to be used for PME, -1
+                            is guess
+-nt          int    0       Total number of threads to start (0 is guess)
+-ntmpi       int    0       Number of thread-MPI threads to start (0 is guess)
+-ntomp       int    0       Number of OpenMP threads per MPI process/thread
+                            to start (0 is guess)
+-ntomp_pme   int    0       Number of OpenMP threads per MPI process/thread
+                            to start (0 is -ntomp)
+-pin         enum   auto    Fix threads (or processes) to specific cores:
+                            auto, on or off
+-pinoffset   int    0       The starting logical core number for pinning to
+                            cores; used to avoid pinning threads from
+                            different mdrun instances to the same core
+-pinstride   int    0       Pinning distance in logical cores for threads,
+                            use 0 to minimize the number of threads per
+                            physical core
+-gpu_id      string         List of GPU id's to use
+-[no]ddcheck bool   yes     Check for all bonded interactions with DD
+-rdd         real   0       The maximum distance for bonded interactions with
+                            DD (nm), 0 is determine from initial coordinates
+-rcon        real   0       Maximum distance for P-LINCS (nm), 0 is estimate
+-dlb         enum   auto    Dynamic load balancing (with DD): auto, no or yes
+-dds         real   0.8     Minimum allowed dlb scaling of the DD cell size
+-gcom        int    -1      Global communication frequency
+-nb          enum   auto    Calculate non-bonded interactions on: auto, cpu,
+                            gpu or gpu_cpu
+-[no]tunepme bool   yes     Optimize PME load between PP/PME nodes or GPU/CPU
+-[no]testverlet bool   no      Test the Verlet non-bonded scheme
+-[no]v       bool   yes     Be loud and noisy
+-[no]compact bool   yes     Write a compact log file
+-[no]seppot  bool   no      Write separate V and dVdl terms for each
+                            interaction type and node to the log file(s)
+-pforce      real   -1      Print all forces larger than this (kJ/mol nm)
+-[no]reprod  bool   no      Try to avoid optimizations that affect binary
+                            reproducibility
+-cpt         real   15      Checkpoint interval (minutes)
+-[no]cpnum   bool   no      Keep and number checkpoint files
+-[no]append  bool   yes     Append to previous output files when continuing
+                            from checkpoint instead of adding the simulation
+                            part number to all file names
+-nsteps      int    -2      Run this number of steps, overrides .mdp file
+                            option
+-maxh        real   -1      Terminate after 0.99 times this time (hours)
+-multi       int    0       Do multiple simulations in parallel
+-replex      int    0       Attempt replica exchange periodically with this
+                            period (steps)
+-nex         int    0       Number of random exchanges to carry out each
+                            exchange interval (N^3 is one suggestion).  -nex
+                            zero or not specified gives neighbor replica
+                            exchange.
+-reseed      int    -1      Seed for replica exchange, -1 is generate a seed
+-[no]ionize  bool   no      Do a simulation including the effect of an X-Ray
+                            bombardment on your system
+
+Reading file em.tpr, VERSION 4.6.1 (single precision)
+Using 4 MPI threads
+
+Polak-Ribiere Conjugate Gradients:
+   Tolerance (Fmax)   =  1.00000e+04
+   Number of steps    =      1000000
+   F-max             =  1.05207e+18 on atom 2017
+   F-Norm            =  2.58266e+16
+
+Step 0, Epot=1.147352e+14, Fnorm=6.615e+14, Fmax=2.419e+16 (atom 212)
+Step 1, Epot=9.953288e+13, Fnorm=5.389e+14, Fmax=1.887e+16 (atom 212)
+Step 2, Epot=8.617621e+13, Fnorm=4.393e+14, Fmax=1.471e+16 (atom 212)
+Step 3, Epot=7.164867e+13, Fnorm=3.383e+14, Fmax=1.067e+16 (atom 212)
+Step 4, Epot=5.855909e+13, Fnorm=2.545e+14, Fmax=7.547e+15 (atom 212)
+Step 5, Epot=4.683581e+13, Fnorm=1.852e+14, Fmax=5.143e+15 (atom 212)
+Step 6, Epot=3.708670e+13, Fnorm=1.327e+14, Fmax=3.448e+15 (atom 212)
+Step 7, Epot=2.908708e+13, Fnorm=9.382e+13, Fmax=2.269e+15 (atom 212)
+Step 8, Epot=2.266278e+13, Fnorm=6.617e+13, Fmax=1.480e+15 (atom 212)
+Step 9, Epot=1.749341e+13, Fnorm=4.659e+13, Fmax=9.567e+14 (atom 212)
+Step 10, Epot=1.335330e+13, Fnorm=3.276e+13, Fmax=6.163e+14 (atom 212)
+Step 11, Epot=1.005357e+13, Fnorm=2.290e+13, Fmax=3.959e+14 (atom 212)
+Step 12, Epot=7.465656e+12, Fnorm=1.587e+13, Fmax=2.543e+14 (atom 212)
+Step 13, Epot=5.475061e+12, Fnorm=1.089e+13, Fmax=1.633e+14 (atom 212)
+Step 14, Epot=3.976980e+12, Fnorm=7.390e+12, Fmax=1.048e+14 (atom 212)
+Step 15, Epot=2.870136e+12, Fnorm=4.974e+12, Fmax=6.727e+13 (atom 1344)
+Step 16, Epot=2.065246e+12, Fnorm=3.324e+12, Fmax=4.315e+13 (atom 212)
+Step 17, Epot=1.486945e+12, Fnorm=2.210e+12, Fmax=2.767e+13 (atom 212)
+Step 18, Epot=1.074981e+12, Fnorm=1.465e+12, Fmax=1.773e+13 (atom 212)
+Step 19, Epot=7.826563e+11, Fnorm=9.700e+11, Fmax=1.136e+13 (atom 212)
+Step 20, Epot=5.749928e+11, Fnorm=6.437e+11, Fmax=7.284e+12 (atom 214)
+Step 21, Epot=4.264866e+11, Fnorm=4.290e+11, Fmax=4.668e+12 (atom 214)
+Step 22, Epot=3.191486e+11, Fnorm=2.877e+11, Fmax=2.987e+12 (atom 214)
+Step 23, Epot=2.404207e+11, Fnorm=1.945e+11, Fmax=1.909e+12 (atom 214)
+Step 24, Epot=1.817649e+11, Fnorm=1.324e+11, Fmax=1.220e+12 (atom 214)
+Step 25, Epot=1.374456e+11, Fnorm=9.071e+10, Fmax=7.789e+11 (atom 214)
+Step 26, Epot=1.036818e+11, Fnorm=6.227e+10, Fmax=4.976e+11 (atom 214)
+Step 27, Epot=7.793508e+10, Fnorm=4.270e+10, Fmax=3.182e+11 (atom 214)
+Step 28, Epot=5.840937e+10, Fnorm=2.918e+10, Fmax=2.061e+11 (atom 1229)
+Step 29, Epot=4.370147e+10, Fnorm=1.989e+10, Fmax=1.375e+11 (atom 1229)
+Step 30, Epot=3.265385e+10, Fnorm=1.355e+10, Fmax=9.266e+10 (atom 1229)
+Step 31, Epot=2.434642e+10, Fnorm=9.237e+09, Fmax=6.296e+10 (atom 1229)
+Step 32, Epot=1.811107e+10, Fnorm=6.281e+09, Fmax=4.315e+10 (atom 3339)
+Step 33, Epot=1.346181e+10, Fnorm=4.257e+09, Fmax=2.936e+10 (atom 3339)
+Step 34, Epot=1.001551e+10, Fnorm=2.880e+09, Fmax=1.957e+10 (atom 3339)
+Step 35, Epot=7.461387e+09, Fnorm=1.953e+09, Fmax=1.306e+10 (atom 32)
+Step 36, Epot=5.554099e+09, Fnorm=1.329e+09, Fmax=9.548e+09 (atom 32)
+Step 37, Epot=4.117653e+09, Fnorm=9.079e+08, Fmax=7.150e+09 (atom 32)
+Step 38, Epot=3.031884e+09, Fnorm=6.203e+08, Fmax=5.257e+09 (atom 32)
+Step 39, Epot=2.213540e+09, Fnorm=4.225e+08, Fmax=3.707e+09 (atom 32)
+Step 40, Epot=1.602024e+09, Fnorm=2.864e+08, Fmax=2.465e+09 (atom 32)
+Step 41, Epot=1.149818e+09, Fnorm=1.931e+08, Fmax=1.611e+09 (atom 3073)
+Step 42, Epot=8.193148e+08, Fnorm=1.294e+08, Fmax=9.883e+08 (atom 3073)
+Step 43, Epot=5.807788e+08, Fnorm=8.620e+07, Fmax=6.953e+08 (atom 3073)
+Step 44, Epot=4.105558e+08, Fnorm=5.723e+07, Fmax=4.492e+08 (atom 3076)
+Step 45, Epot=2.899559e+08, Fnorm=3.795e+07, Fmax=3.535e+08 (atom 3073)
+Step 46, Epot=2.047035e+08, Fnorm=2.539e+07, Fmax=3.224e+08 (atom 3076)
+Step 47, Epot=1.439238e+08, Fnorm=1.686e+07, Fmax=2.524e+08 (atom 3073)
+Step 48, Epot=9.968284e+07, Fnorm=1.064e+07, Fmax=1.485e+08 (atom 30)
+Step 49, Epot=7.080779e+07, Fnorm=6.733e+06, Fmax=4.833e+07 (atom 30)
+Step 50, Epot=5.126873e+07, Fnorm=4.465e+06, Fmax=2.179e+07 (atom 692)
+Step 51, Epot=3.785298e+07, Fnorm=3.048e+06, Fmax=2.099e+07 (atom 30)
+Step 52, Epot=2.767540e+07, Fnorm=2.081e+06, Fmax=2.352e+07 (atom 3076)
+Step 53, Epot=2.055964e+07, Fnorm=1.889e+06, Fmax=5.961e+07 (atom 30)
+Step 54, Epot=1.792954e+07, Fnorm=1.151e+06, Fmax=8.168e+06 (atom 3076)
+Step 55, Epot=1.504279e+07, Fnorm=9.044e+05, Fmax=4.618e+06 (atom 30)
+Step 56, Epot=1.234275e+07, Fnorm=6.955e+05, Fmax=4.539e+06 (atom 24)
+Step 57, Epot=9.831833e+06, Fnorm=5.294e+05, Fmax=6.332e+06 (atom 3070)
+Step 58, Epot=7.801528e+06, Fnorm=6.513e+05, Fmax=2.240e+07 (atom 30)
+Step 59, Epot=7.415700e+06, Fnorm=4.343e+05, Fmax=9.720e+06 (atom 30)
+Step 60, Epot=6.681722e+06, Fnorm=4.981e+05, Fmax=1.702e+07 (atom 30)
+Step 61, Epot=5.452811e+06, Fnorm=2.354e+05, Fmax=2.088e+06 (atom 3076)
+Step 62, Epot=4.945964e+06, Fnorm=2.027e+05, Fmax=1.266e+06 (atom 3076)
+Step 63, Epot=4.300732e+06, Fnorm=1.657e+05, Fmax=1.050e+06 (atom 3076)
+Step 64, Epot=3.656330e+06, Fnorm=1.304e+05, Fmax=7.668e+05 (atom 3076)
+Step 65, Epot=3.036978e+06, Fnorm=9.808e+04, Fmax=6.449e+05 (atom 3076)
+Step 66, Epot=2.499142e+06, Fnorm=7.257e+04, Fmax=7.837e+05 (atom 30)
+Step 67, Epot=2.059527e+06, Fnorm=5.976e+04, Fmax=1.255e+06 (atom 3070)
+Step 68, Epot=1.926954e+06, Fnorm=6.674e+05, Fmax=2.903e+07 (atom 3070)
+Step 69, Epot=2.252743e+06, Fnorm=5.791e+04, Fmax=2.510e+06 (atom 3717)
+Step 70, Epot=2.171592e+06, Fnorm=3.179e+04, Fmax=8.902e+05 (atom 30)
+Step 71, Epot=2.035050e+06, Fnorm=2.776e+04, Fmax=8.496e+05 (atom 30)
+Step 72, Epot=1.898110e+06, Fnorm=2.418e+04, Fmax=6.626e+05 (atom 30)
+Step 73, Epot=1.748699e+06, Fnorm=4.344e+04, Fmax=1.851e+06 (atom 3717)
+Step 74, Epot=1.474376e+06, Fnorm=9.171e+04, Fmax=2.864e+06 (atom 3721)
+Step 75, Epot=1.439130e+06, Fnorm=6.843e+04, Fmax=2.530e+06 (atom 38)
+Step 76, Epot=1.409398e+06, Fnorm=4.517e+04, Fmax=1.369e+06 (atom 3770)
+Step 77, Epot=1.374055e+06, Fnorm=2.670e+05, Fmax=1.158e+07 (atom 3710)
+Step 78, Epot=1.597026e+06, Fnorm=7.901e+05, Fmax=3.434e+07 (atom 45)
+Step 79, Epot=3.716648e+06, Fnorm=4.056e+06, Fmax=1.610e+08 (atom 3119)
+
+WARNING: Listed nonbonded interaction between particles 45 and 52
+at distance 3f which is larger than the table limit 3f nm.
+
+This is likely either a 1,4 interaction, or a listed interaction inside
+a smaller molecule you are decoupling during a free energy calculation.
+Since interactions at distances beyond the table cannot be computed,
+they are skipped until they are inside the table limit again. You will
+only see this message once, even if it occurs for several interactions.
+
+IMPORTANT: This should not happen in a stable simulation, so there is
+probably something wrong with your system. Only change the table-extension
+distance in the mdp file if you are really sure that is the reason.
+
+
+
+A list of missing interactions:
+                Bond of   3799 missing      1
+               Angle of   6897 missing      3
+         Proper Dih. of  10729 missing      6
+               LJ-14 of   9937 missing      6
+          exclusions of  20633 missing     10
+
+Molecule type 'Protein_chain_C'
+the first 10 missing interactions, except for exclusions:
+         Proper Dih. atoms  659  661  664  665 global  3113  3115  3118  3119
+               LJ-14 atoms  659  665           global  3113  3119
+               Angle atoms  661  664  665      global  3115  3118  3119
+         Proper Dih. atoms  662  661  664  665 global  3116  3115  3118  3119
+               LJ-14 atoms  662  665           global  3116  3119
+         Proper Dih. atoms  663  661  664  665 global  3117  3115  3118  3119
+               LJ-14 atoms  663  665           global  3117  3119
+                Bond atoms  664  665           global  3118  3119
+               Angle atoms  665  664  666      global  3119  3118  3120
+               Angle atoms  665  664  667      global  3119  3118  3121
+
+-------------------------------------------------------
+Program mdrun, VERSION 4.6.1
+Source code file: /sw/src/fink.build/gromacs-4.6.1-3/gromacs-4.6.1/src/mdlib/domdec_top.c, line: 393
+
+Fatal error:
+26 of the 52691 bonded interactions could not be calculated because some atoms involved moved further apart than the multi-body cut-off distance (1.1 nm) or the two-body cut-off distance (1.1 nm), see option -rdd, for pairs and tabulated bonds also see option -ddcheck
+For more information and tips for troubleshooting, please check the GROMACS
+website at http://www.gromacs.org/Documentation/Errors
+-------------------------------------------------------
+
+"Shaken, not Stirred" (J. Bond)
+
+Compiled acceleration: SSE4.1 (Gromacs could use AVX_256 on this machine, which is better)

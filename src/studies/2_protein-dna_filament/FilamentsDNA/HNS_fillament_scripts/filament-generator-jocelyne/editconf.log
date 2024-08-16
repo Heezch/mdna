@@ -1,0 +1,95 @@
+                         :-)  G  R  O  M  A  C  S  (-:
+
+            Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+
+                            :-)  VERSION 4.6.1  (-:
+
+        Contributions from Mark Abraham, Emile Apol, Rossen Apostolov, 
+           Herman J.C. Berendsen, Aldert van Buuren, Pär Bjelkmar,  
+     Rudi van Drunen, Anton Feenstra, Gerrit Groenhof, Christoph Junghans, 
+        Peter Kasson, Carsten Kutzner, Per Larsson, Pieter Meulenhoff, 
+           Teemu Murtola, Szilard Pall, Sander Pronk, Roland Schulz, 
+                Michael Shirts, Alfons Sijbers, Peter Tieleman,
+
+               Berk Hess, David van der Spoel, and Erik Lindahl.
+
+       Copyright (c) 1991-2000, University of Groningen, The Netherlands.
+         Copyright (c) 2001-2012,2013, The GROMACS development team at
+        Uppsala University & The Royal Institute of Technology, Sweden.
+            check out http://www.gromacs.org for more information.
+
+         This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU Lesser General Public License
+        as published by the Free Software Foundation; either version 2.1
+             of the License, or (at your option) any later version.
+
+                               :-)  editconf  (-:
+
+Option     Filename  Type         Description
+------------------------------------------------------------
+  -f       conf.gro  Input        Structure file: gro g96 pdb tpr etc.
+  -n      index.ndx  Input, Opt.  Index file
+  -o      boxed.gro  Output, Opt! Structure file: gro g96 pdb etc.
+-mead      mead.pqr  Output, Opt. Coordinate file for MEAD
+ -bf      bfact.dat  Input, Opt.  Generic data file
+
+Option       Type   Value   Description
+------------------------------------------------------
+-[no]h       bool   no      Print help info and quit
+-[no]version bool   no      Print version info and quit
+-nice        int    0       Set the nicelevel
+-[no]w       bool   no      View output .xvg, .xpm, .eps and .pdb files
+-[no]ndef    bool   no      Choose output from default index groups
+-bt          enum   cubic   Box type for -box and -d: triclinic, cubic,
+                            dodecahedron or octahedron
+-box         vector 0 0 0   Box vector lengths (a,b,c)
+-angles      vector 90 90 90  Angles between the box vectors (bc,ac,ab)
+-d           real   3       Distance between the solute and the box
+-[no]c       bool   no      Center molecule in box (implied by -box and -d)
+-center      vector 0 0 0   Coordinates of geometrical center
+-aligncenter vector 0 0 0   Center of rotation for alignment
+-align       vector 0 0 0   Align to target vector
+-translate   vector 0 0 0   Translation
+-rotate      vector 0 0 0   Rotation around the X, Y and Z axes in degrees
+-[no]princ   bool   no      Orient molecule(s) along their principal axes
+-scale       vector 1 1 1   Scaling factor
+-density     real   1000    Density (g/L) of the output box achieved by
+                            scaling
+-[no]pbc     bool   no      Remove the periodicity (make molecule whole again)
+-resnr       int    -1       Renumber residues starting from resnr
+-[no]grasp   bool   no      Store the charge of the atom in the B-factor
+                            field and the radius of the atom in the occupancy
+                            field
+-rvdw        real   0.12    Default Van der Waals radius (in nm) if one can
+                            not be found in the database or if no parameters
+                            are present in the topology file
+-[no]sig56   bool   no      Use rmin/2 (minimum in the Van der Waals
+                            potential) rather than sigma/2 
+-[no]vdwread bool   no      Read the Van der Waals radii from the file
+                            vdwradii.dat rather than computing the radii
+                            based on the force field
+-[no]atom    bool   no      Force B-factor attachment per atom
+-[no]legend  bool   no      Make B-factor legend
+-label       string A       Add chain label for all residues
+-[no]conect  bool   no      Add CONECT records to a .pdb file when written.
+                            Can only be done when a topology is present
+
+
+Back Off! I just backed up boxed.gro to ./#boxed.gro.1#
+
+gcq#284: "Cowardly refusing to create an empty archive" (GNU tar)
+
+Read 10965 atoms
+Volume: 4098.1 nm^3, corresponds to roughly 1844100 electrons
+No velocities found
+    system size : 23.138 16.378 10.814 (nm)
+    diameter    : 25.715               (nm)
+    center      : 20.602 16.965  3.799 (nm)
+    box vectors : 23.138 16.378 10.814 (nm)
+    box angles  :  90.00  90.00  90.00 (degrees)
+    box volume  :4098.10               (nm^3)
+    shift       : -4.745 -1.107 12.058 (nm)
+new center      : 15.858 15.858 15.858 (nm)
+new box vectors : 31.715 31.715 31.715 (nm)
+new box angles  :  90.00  90.00  90.00 (degrees)
+new box volume  :31900.73               (nm^3)

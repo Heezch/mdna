@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pymdna"
+version = "0.0.1"
+description = "Software module for DNA structure analysis and generation"
+readme = "README.md"
+authors = [{ name = "Thor van Heesch", email = "t.vanheesch@uva.nl" }]
+license = { file = "LICENSE" }
+ 
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["Molecular Dynamics", 
+      "Structure Analysis", 
+      "Structuer Generation Tool",
+      "Molecular Toolkit",]
+ 
+dependencies = [ "mdtraj", "numpy" ]
+ 
+requires-python = ">=3.5"
+
+
+[project.urls]
+Homepage = "https://github.com/heezch/pymdna"
+ 
+[tool.setuptools]
+packages = ["mdna"]
+package-dir = {"" = "src"}
+py-modules = ["__init__"] # dash, not underscore

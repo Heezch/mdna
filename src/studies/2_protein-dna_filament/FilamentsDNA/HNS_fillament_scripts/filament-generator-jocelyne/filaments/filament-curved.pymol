@@ -1,0 +1,47 @@
+feedback disable, all, actions
+feedback disable, all, results
+load H-NS-assembly_7_try0.pdb 
+set ray_opaque_background, off
+set ray_shadows, 0
+hide all
+
+sele site1, resi 1-45
+sele linker1, resi 46-54
+sele buckle, resi 42-49
+sele site2, resi 55-83
+sele linker2, resi 84-95
+sele dbd, resi 96-137
+
+sele p, site1 linker1 site2 linker2 dbd
+
+color deepblue, site1
+color white, linker1
+color firebrick, buckle
+color forest, site2
+color white, linker2
+color chocolate, dbd
+
+set cartoon_fancy_helices, 1
+show cartoon, p
+
+set transparency, 0.5
+set solvent_radius, 4
+alter all, vdw=4
+sort
+set surface_quality, 1
+show surface, p
+rebuild
+
+set_view (\
+    -0.177008063,   -0.700601697,    0.691247821,\
+     0.345852762,    0.613269210,    0.710130632,\
+    -0.921441138,    0.364769042,    0.133752048,\
+     0.000000000,    0.000000000, -702.705200195,\
+   100.573341370,  153.485671997,  -63.425876617,\
+   554.018127441,  851.392272949,  -20.000000000 )
+
+zoom complete=1
+ray 1000
+save figure.png
+quit
+
