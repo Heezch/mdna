@@ -852,8 +852,11 @@ class Nucleic:
         Returns:
             linking_number (np.ndarray): Numpy array containing the linking number, writhe, and twist corresponding to the time frame
         """
-
-        from pmcpy import pylk
+        try:
+            from pmcpy import pmcpy
+        except ImportError:
+            pmcpy_available = False
+            print("pmcpy is not installed. You shall not pass.")
 
         if self.frames is None:
                 self._traj_to_frames()

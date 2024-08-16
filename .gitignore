@@ -1,8 +1,11 @@
 # ignore all files
 *.xtc
 *.h5
-/Users/thor/surfdrive/Projects/pymdna/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
-/pymdna/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
-/pymdna/studies/
-pymdna/studies/
+/Users/thor/surfdrive/Projects/pymdna/src/pymdna/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
+/src/pymdna/studies/1_protein-dna_filament/FilamentsDNA/tests/data/*
+/src/pymdna/studies/
+src/pymdna/studies/
 # /examples/
+.gitignore
+.vscode/
+__pycache__/
