@@ -17,11 +17,11 @@ See our [documentation page](https://heezch.github.io/pymdna/)
 
 We welcome contributions from the community! To contribute:
 
-    - Fork the repository.
-    - Create a new branch (`git checkout -b feature-branch`).
-    - Make your changes and commit them (`git commit -am 'Add new feature'`).
-    - Push to the branch (`git push origin feature-branch`).
-    - Create a new Pull Request.
+- Fork the repository.
+- Create a new branch (`git checkout -b feature-branch`).
+- Make your changes and commit them (`git commit -am 'Add new feature'`).
+- Push to the branch (`git push origin feature-branch`).
+- Create a new Pull Request.
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
 
