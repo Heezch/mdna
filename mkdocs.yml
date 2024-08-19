@@ -1,5 +1,5 @@
 # mkdocs.yml
-site_name: Software module for DNA structure analysis and generation
+site_name: MDNA
 
 theme:
   name: "material"
@@ -58,7 +58,7 @@ markdown_extensions:
 
 
 nav:
-  - MDNA Docs: index.md
+  - Home: index.md
   - Tutorials: 
       - Overiew: index-tutorials.md
       - Quickstart: tutorials/tutorials-quickstart.md

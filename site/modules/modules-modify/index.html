@@ -20,7 +20,7 @@
     
     
       
-        <title>Modify - Software module for DNA structure analysis and generation</title>
+        <title>Modify - MDNA</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Software module for DNA structure analysis and generation" class="md-header__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
+    <a href="../.." title="MDNA" class="md-header__button md-logo" aria-label="MDNA" data-md-component="logo">
       
   <img src="../../assets/logo.png" alt="logo">
 
@@ -103,7 +103,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Software module for DNA structure analysis and generation
+            MDNA
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -222,12 +222,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Software module for DNA structure analysis and generation" class="md-nav__button md-logo" aria-label="Software module for DNA structure analysis and generation" data-md-component="logo">
+    <a href="../.." title="MDNA" class="md-nav__button md-logo" aria-label="MDNA" data-md-component="logo">
       
   <img src="../../assets/logo.png" alt="logo">
 
     </a>
-    Software module for DNA structure analysis and generation
+    MDNA
   </label>
   
     <div class="md-nav__source">
@@ -255,7 +255,7 @@
         
   
   <span class="md-ellipsis">
-    MDNA Docs
+    Home
   </span>
   
 
@@ -533,7 +533,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Structure Generation Tutorial
+    Structure Generation Tutorial
   </span>
   
 
@@ -554,7 +554,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -575,7 +575,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Modification Tutorial
+    Modification Tutorial
   </span>
   
 
@@ -596,7 +596,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Analysis Tutorial
+    Analysis Tutorial
   </span>
   
 
@@ -660,7 +660,7 @@
         
   
   <span class="md-ellipsis">
-    Constructing DNA Along a Protein Filament
+    DNA Along a Protein Filament
   </span>
   
 
@@ -681,7 +681,7 @@
         
   
   <span class="md-ellipsis">
-    Extending DNA Structures and Integration with Protein Data
+    Adding Linker DNA
   </span>
   
 
@@ -702,7 +702,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands and Integration with Protein Data
+    Connecting Two DNA Strands
   </span>
   
 
@@ -723,7 +723,7 @@
         
   
   <span class="md-ellipsis">
-    Visualize sequence library
+    The Sequence Library
   </span>
   
 
@@ -1260,7 +1260,7 @@
       <p>Contains mdna DNA structure with reference frames and trajectory</p>
 
               <details class="quote">
-                <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+                <summary>Source code in <code>src/pymdna/nucleic.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-337">337</a></span>
 <span class="normal"><a href="#__codelineno-0-338">338</a></span>
 <span class="normal"><a href="#__codelineno-0-339">339</a></span>
@@ -1805,7 +1805,10 @@
 <span class="normal"><a href="#__codelineno-0-878">878</a></span>
 <span class="normal"><a href="#__codelineno-0-879">879</a></span>
 <span class="normal"><a href="#__codelineno-0-880">880</a></span>
-<span class="normal"><a href="#__codelineno-0-881">881</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-337"><a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="k">class</span> <span class="nc">Nucleic</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-881">881</a></span>
+<span class="normal"><a href="#__codelineno-0-882">882</a></span>
+<span class="normal"><a href="#__codelineno-0-883">883</a></span>
+<span class="normal"><a href="#__codelineno-0-884">884</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-337"><a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="k">class</span> <span class="nc">Nucleic</span><span class="p">:</span>
 </span><span id="__span-0-338"><a id="__codelineno-0-338" name="__codelineno-0-338"></a>
 </span><span id="__span-0-339"><a id="__codelineno-0-339" name="__codelineno-0-339"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Contains mdna DNA structure with reference frames and trajectory&quot;&quot;&quot;</span>
 </span><span id="__span-0-340"><a id="__codelineno-0-340" name="__codelineno-0-340"></a>
@@ -2323,33 +2326,36 @@
 </span><span id="__span-0-852"><a id="__codelineno-0-852" name="__codelineno-0-852"></a><span class="sd">        Returns:</span>
 </span><span id="__span-0-853"><a id="__codelineno-0-853" name="__codelineno-0-853"></a><span class="sd">            linking_number (np.ndarray): Numpy array containing the linking number, writhe, and twist corresponding to the time frame</span>
 </span><span id="__span-0-854"><a id="__codelineno-0-854" name="__codelineno-0-854"></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="__span-0-855"><a id="__codelineno-0-855" name="__codelineno-0-855"></a>
-</span><span id="__span-0-856"><a id="__codelineno-0-856" name="__codelineno-0-856"></a>        <span class="kn">from</span> <span class="nn">pmcpy</span> <span class="kn">import</span> <span class="n">pylk</span>
-</span><span id="__span-0-857"><a id="__codelineno-0-857" name="__codelineno-0-857"></a>
-</span><span id="__span-0-858"><a id="__codelineno-0-858" name="__codelineno-0-858"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-859"><a id="__codelineno-0-859" name="__codelineno-0-859"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_traj_to_frames</span><span class="p">()</span>
-</span><span id="__span-0-860"><a id="__codelineno-0-860" name="__codelineno-0-860"></a>        <span class="n">frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[:,</span><span class="n">frame</span><span class="p">,:,:]</span>
-</span><span id="__span-0-861"><a id="__codelineno-0-861" name="__codelineno-0-861"></a>        <span class="n">positions</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-862"><a id="__codelineno-0-862" name="__codelineno-0-862"></a>        <span class="n">triads</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Flip row vectors to columns</span>
-</span><span id="__span-0-863"><a id="__codelineno-0-863" name="__codelineno-0-863"></a>
-</span><span id="__span-0-864"><a id="__codelineno-0-864" name="__codelineno-0-864"></a>        <span class="n">writhe</span> <span class="o">=</span> <span class="n">pylk</span><span class="o">.</span><span class="n">writhe</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
-</span><span id="__span-0-865"><a id="__codelineno-0-865" name="__codelineno-0-865"></a>        <span class="n">lk</span> <span class="o">=</span> <span class="n">pylk</span><span class="o">.</span><span class="n">triads2link</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">triads</span><span class="p">)</span>
-</span><span id="__span-0-866"><a id="__codelineno-0-866" name="__codelineno-0-866"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lk</span><span class="p">,</span> <span class="n">writhe</span><span class="p">,</span> <span class="n">lk</span> <span class="o">-</span> <span class="n">writhe</span><span class="p">])</span>
-</span><span id="__span-0-867"><a id="__codelineno-0-867" name="__codelineno-0-867"></a>
-</span><span id="__span-0-868"><a id="__codelineno-0-868" name="__codelineno-0-868"></a>    <span class="k">def</span> <span class="nf">save_pdb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frame</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span id="__span-0-869"><a id="__codelineno-0-869" name="__codelineno-0-869"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the DNA structure as a pdb file.</span>
+</span><span id="__span-0-855"><a id="__codelineno-0-855" name="__codelineno-0-855"></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-856"><a id="__codelineno-0-856" name="__codelineno-0-856"></a>            <span class="kn">from</span> <span class="nn">pmcpy</span> <span class="kn">import</span> <span class="n">pmcpy</span>
+</span><span id="__span-0-857"><a id="__codelineno-0-857" name="__codelineno-0-857"></a>        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+</span><span id="__span-0-858"><a id="__codelineno-0-858" name="__codelineno-0-858"></a>            <span class="n">pmcpy_available</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-859"><a id="__codelineno-0-859" name="__codelineno-0-859"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pmcpy is not installed. You shall not pass.&quot;</span><span class="p">)</span>
+</span><span id="__span-0-860"><a id="__codelineno-0-860" name="__codelineno-0-860"></a>
+</span><span id="__span-0-861"><a id="__codelineno-0-861" name="__codelineno-0-861"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-862"><a id="__codelineno-0-862" name="__codelineno-0-862"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_traj_to_frames</span><span class="p">()</span>
+</span><span id="__span-0-863"><a id="__codelineno-0-863" name="__codelineno-0-863"></a>        <span class="n">frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[:,</span><span class="n">frame</span><span class="p">,:,:]</span>
+</span><span id="__span-0-864"><a id="__codelineno-0-864" name="__codelineno-0-864"></a>        <span class="n">positions</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-865"><a id="__codelineno-0-865" name="__codelineno-0-865"></a>        <span class="n">triads</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Flip row vectors to columns</span>
+</span><span id="__span-0-866"><a id="__codelineno-0-866" name="__codelineno-0-866"></a>
+</span><span id="__span-0-867"><a id="__codelineno-0-867" name="__codelineno-0-867"></a>        <span class="n">writhe</span> <span class="o">=</span> <span class="n">pylk</span><span class="o">.</span><span class="n">writhe</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+</span><span id="__span-0-868"><a id="__codelineno-0-868" name="__codelineno-0-868"></a>        <span class="n">lk</span> <span class="o">=</span> <span class="n">pylk</span><span class="o">.</span><span class="n">triads2link</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">triads</span><span class="p">)</span>
+</span><span id="__span-0-869"><a id="__codelineno-0-869" name="__codelineno-0-869"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lk</span><span class="p">,</span> <span class="n">writhe</span><span class="p">,</span> <span class="n">lk</span> <span class="o">-</span> <span class="n">writhe</span><span class="p">])</span>
 </span><span id="__span-0-870"><a id="__codelineno-0-870" name="__codelineno-0-870"></a>
-</span><span id="__span-0-871"><a id="__codelineno-0-871" name="__codelineno-0-871"></a><span class="sd">        Args:</span>
-</span><span id="__span-0-872"><a id="__codelineno-0-872" name="__codelineno-0-872"></a><span class="sd">            filename (str, optional): Filename to save the pdb file. Defaults to None.</span>
-</span><span id="__span-0-873"><a id="__codelineno-0-873" name="__codelineno-0-873"></a><span class="sd">            frame (int, optional): If the trajectory has multiple frames, specify the frame to save. Defaults to -1.</span>
-</span><span id="__span-0-874"><a id="__codelineno-0-874" name="__codelineno-0-874"></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="__span-0-875"><a id="__codelineno-0-875" name="__codelineno-0-875"></a>
-</span><span id="__span-0-876"><a id="__codelineno-0-876" name="__codelineno-0-876"></a>        <span class="c1"># check if traj</span>
-</span><span id="__span-0-877"><a id="__codelineno-0-877" name="__codelineno-0-877"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-878"><a id="__codelineno-0-878" name="__codelineno-0-878"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_frames_to_traj</span><span class="p">()</span>
-</span><span id="__span-0-879"><a id="__codelineno-0-879" name="__codelineno-0-879"></a>        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-880"><a id="__codelineno-0-880" name="__codelineno-0-880"></a>            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;my_mdna&#39;</span>
-</span><span id="__span-0-881"><a id="__codelineno-0-881" name="__codelineno-0-881"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.pdb&#39;</span><span class="p">)</span>
+</span><span id="__span-0-871"><a id="__codelineno-0-871" name="__codelineno-0-871"></a>    <span class="k">def</span> <span class="nf">save_pdb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frame</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span><span id="__span-0-872"><a id="__codelineno-0-872" name="__codelineno-0-872"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the DNA structure as a pdb file.</span>
+</span><span id="__span-0-873"><a id="__codelineno-0-873" name="__codelineno-0-873"></a>
+</span><span id="__span-0-874"><a id="__codelineno-0-874" name="__codelineno-0-874"></a><span class="sd">        Args:</span>
+</span><span id="__span-0-875"><a id="__codelineno-0-875" name="__codelineno-0-875"></a><span class="sd">            filename (str, optional): Filename to save the pdb file. Defaults to None.</span>
+</span><span id="__span-0-876"><a id="__codelineno-0-876" name="__codelineno-0-876"></a><span class="sd">            frame (int, optional): If the trajectory has multiple frames, specify the frame to save. Defaults to -1.</span>
+</span><span id="__span-0-877"><a id="__codelineno-0-877" name="__codelineno-0-877"></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="__span-0-878"><a id="__codelineno-0-878" name="__codelineno-0-878"></a>
+</span><span id="__span-0-879"><a id="__codelineno-0-879" name="__codelineno-0-879"></a>        <span class="c1"># check if traj</span>
+</span><span id="__span-0-880"><a id="__codelineno-0-880" name="__codelineno-0-880"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">traj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-881"><a id="__codelineno-0-881" name="__codelineno-0-881"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_frames_to_traj</span><span class="p">()</span>
+</span><span id="__span-0-882"><a id="__codelineno-0-882" name="__codelineno-0-882"></a>        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-0-883"><a id="__codelineno-0-883" name="__codelineno-0-883"></a>            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;my_mdna&#39;</span>
+</span><span id="__span-0-884"><a id="__codelineno-0-884" name="__codelineno-0-884"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">traj</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.pdb&#39;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
 
@@ -2496,7 +2502,7 @@ The method updates the <code>traj</code> attribute and the <code>sequence</code>
 </span></code></pre></div></p>
 </details>
             <details class="quote">
-              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <summary>Source code in <code>src/pymdna/nucleic.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-672">672</a></span>
 <span class="normal"><a href="#__codelineno-0-673">673</a></span>
 <span class="normal"><a href="#__codelineno-0-674">674</a></span>
@@ -2714,7 +2720,7 @@ The method updates the <code>traj</code> attribute of the DNA object.</p>
 </span></code></pre></div></p>
 </details>
             <details class="quote">
-              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <summary>Source code in <code>src/pymdna/nucleic.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-747">747</a></span>
 <span class="normal"><a href="#__codelineno-0-748">748</a></span>
 <span class="normal"><a href="#__codelineno-0-749">749</a></span>
@@ -2894,7 +2900,7 @@ The method updates the <code>traj</code> attribute of the DNA object.</p>
 </span></code></pre></div></p>
 </details>
             <details class="quote">
-              <summary>Source code in <code>pymdna/nucleic.py</code></summary>
+              <summary>Source code in <code>src/pymdna/nucleic.py</code></summary>
               <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-714">714</a></span>
 <span class="normal"><a href="#__codelineno-0-715">715</a></span>
 <span class="normal"><a href="#__codelineno-0-716">716</a></span>

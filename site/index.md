@@ -1,4 +1,4 @@
-# MDNA: software module for DNA simulations
+# Software module for DNA structure generation and analysis
 
 
 This site contains the project documentation for the

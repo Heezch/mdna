@@ -4,6 +4,6 @@ This section of the documentation provides detailed, information-oriented refere
 
 
 
-1. [Nucleic](nucleic-reference.md)
-2. [Shapes](shapes-reference.md)
-3. [Geometry](geometry-reference.md)
+1. [Nucleic](api/nucleic-reference.md)
+2. [Shapes](api/shapes-reference.md)
+3. [Geometry](api/geometry-reference.md)
