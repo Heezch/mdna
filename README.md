@@ -6,7 +6,7 @@ MDNA is a powerful molecular modeling tool designed to bridge the gap in generat
 ## Installation
 To install MDNA, follow these steps:
 ```bash
-git clone https://github.com/yourusername/mdna.git
+git clone https://github.com/heezch/pymdna.git
 ```
 
 ## Usage
