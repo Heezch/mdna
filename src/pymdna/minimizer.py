@@ -10,7 +10,7 @@ from pmcpy.run.run import Run
 import copy
 from typing import List
 
-
+# Helper functions
 class Minimizer:
     """Minimize the DNA structure using Monte Carlo simulations with pmcpy"""
 
