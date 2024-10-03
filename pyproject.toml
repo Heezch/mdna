@@ -21,7 +21,7 @@ keywords = ["Molecular Dynamics",
       "Structuer Generation Tool",
       "Molecular Toolkit",]
  
-dependencies = [ "mdtraj", "numpy" ]
+dependencies = ["mdtraj","numpy","scipy","openmm","pandas","matplotlib","nglview","biopython","seaborn"]
  
 requires-python = ">=3.5"
 
@@ -33,3 +33,7 @@ Homepage = "https://github.com/heezch/pymdna"
 packages = ["mdna"]
 package-dir = {"" = "src"}
 py-modules = ["__init__"] # dash, not underscore
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

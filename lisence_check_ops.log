@@ -1,0 +1,47 @@
+                                  
+               Info               
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Item            ┃ Value        ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ program         │ licensecheck │
+│ version         │ 2024.3       │
+│ license         │ MIT LICENSE  │
+│ project_license │ MIT LICENSE  │
+└─────────────────┴──────────────┘
+                                                                                            
+                                      List Of Packages                                      
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Compatible ┃ Package           ┃ License(s)                                              ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ ✔          │ Pillow            │ HISTORICAL PERMISSION NOTICE AND DISCLAIMER (HPND)      │
+│ ✔          │ SQLAlchemy        │ MIT LICENSE                                             │
+│ ✔          │ astunparse        │ BSD LICENSE                                             │
+│ ✔          │ certifi           │ MOZILLA PUBLIC LICENSE 2.0 (MPL 2.0)                    │
+│ ✔          │ cftime            │ MIT LICENSE                                             │
+│ ✔          │ contourpy         │ BSD LICENSE                                             │
+│ ✔          │ cycler            │ BSD LICENSE                                             │
+│ ✔          │ dill              │ BSD LICENSE                                             │
+│ ✔          │ fonttools         │ MIT LICENSE                                             │
+│ ✔          │ future            │ MIT LICENSE                                             │
+│ ✔          │ kiwisolver        │ BSD LICENSE                                             │
+│ ✔          │ matplotlib        │ PYTHON SOFTWARE FOUNDATION LICENSE                      │
+│ ✔          │ mdtraj            │ GNU LESSER GENERAL PUBLIC LICENSE V2 OR LATER (LGPLV2+) │
+│ ✔          │ netCDF4           │ MIT LICENSE                                             │
+│ ✔          │ networkx          │ BSD LICENSE                                             │
+│ ✔          │ numpy             │ BSD LICENSE                                             │
+│ ✔          │ openpathsampling  │ MIT LICENSE                                             │
+│ ✔          │ packaging         │ APACHE SOFTWARE LICENSE;; BSD LICENSE                   │
+│ ✔          │ pandas            │ BSD LICENSE                                             │
+│ ✔          │ psutil            │ BSD LICENSE                                             │
+│ ✔          │ pyparsing         │ MIT LICENSE                                             │
+│ ✔          │ python-dateutil   │ BSD LICENSE;; APACHE SOFTWARE LICENSE                   │
+│ ✔          │ pytz              │ MIT LICENSE                                             │
+│ ✔          │ scipy             │ BSD LICENSE                                             │
+│ ✔          │ six               │ MIT LICENSE                                             │
+│ ✔          │ svgwrite          │ MIT LICENSE                                             │
+│ ✔          │ typing_extensions │ PYTHON SOFTWARE FOUNDATION LICENSE                      │
+│ ✔          │ tzdata            │ APACHE SOFTWARE LICENSE                                 │
+│ ✔          │ ujson             │ BSD LICENSE                                             │
+│ ✔          │ wheel             │ MIT LICENSE                                             │
+└────────────┴───────────────────┴─────────────────────────────────────────────────────────┘
+
