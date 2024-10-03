@@ -7,5 +7,5 @@
 src/pymdna/studies/
 # /examples/
 .gitignore
-.vscode/
+.vscode
 __pycache__/

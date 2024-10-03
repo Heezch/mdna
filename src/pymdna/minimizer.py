@@ -5,6 +5,7 @@ import mdtraj as md
 from .spline import SplineFrames
 # from .nucleic import Nucleic
 from .utils import _check_input
+#from pmcpy.run.run import Run
 from pmcpy.run.run import Run
 import copy
 from typing import List
