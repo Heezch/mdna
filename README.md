@@ -8,6 +8,10 @@ To install MDNA, follow these steps:
 ```bash
 git clone --recurse-submodules https://github.com/heezch/pymdna.git
 ```
+After that go to the 'pymdna' project folder and do:
+```bash
+pip install .
+```
 
 ## Usage
 

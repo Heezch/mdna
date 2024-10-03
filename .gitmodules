@@ -1,3 +1,5 @@
-[submodule "pymdna/src/PMCpy"]
-	path = pymdna/src/PMCpy
+[submodule "src/PMCpy"]
+	path = src/PMCpy
 	url = git@github.com:eskoruppa/PMCpy
+
+
