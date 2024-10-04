@@ -1,0 +1,8 @@
+# ignore all files
+.DS_Store
+**.xtc
+**/__pycache__
+**/build/
+src/pymdna/studies
+**.vscode
+**/*.egg-info

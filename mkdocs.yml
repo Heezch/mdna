@@ -1,0 +1,95 @@
+# mkdocs.yml
+site_name: MDNA
+
+theme:
+  name: "material"
+  features:
+    - content.code.copy
+  logo: assets/logo.png
+
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      primary: red
+      accent: light-blue
+      toggle:
+        icon: material/eye
+        name: Switch to dark mode
+   
+    # Palette toggle for dark mode
+    - scheme: slate
+      accent: pink
+      toggle:
+        icon: material/eye-outline
+        name: Switch to light mode
+
+
+
+repo_url: https://github.com/heezch/pymdna
+
+plugins:
+  - mkdocstrings:
+      handlers:
+          python: 
+            options:
+              show_source: true
+              show_root_heading: true
+  - search
+  - mkdocs-jupyter:
+        include_source: True
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+
+
+
+nav:
+  - Home: index.md
+  - Tutorials: 
+      - Overiew: index-tutorials.md
+      - Quickstart: tutorials/tutorials-quickstart.md
+      - Build: tutorials/tutorials-build.md
+      - Modify: tutorials/tutorials-modify.md
+      - Analyse: tutorials/tutorials-analyse.md
+   
+
+  - Explanation: explanation/explanation.md
+  -  Jupyter Notebooks: 
+      - Overview: index-notebooks.md
+      - Basic Notebooks:
+          - Structure Generation: notebooks/0_structure_tutorial.ipynb
+          - Draw DNA Structures: notebooks/1_visualization_tutorial.ipynb
+          - Modify DNA Structures: notebooks/2_modification_tutorial.ipynb
+          - Analyse DNA Structures: notebooks/3_analysis_tutorial.ipynb
+      - Advanced Notebooks:
+          - DNA Along H-NS Filament: notebooks/4_filament_tutorial.ipynb
+          - Add Linker DNA to Nucleosome: notebooks/5_extension_tutorial.ipynb
+          - Add DNA Loop to bridging protein: notebooks/6_connection_tutorial.ipynb
+          - How to add base to Sequence Library: notebooks/7_sequence_library.ipynb
+  - Modules: 
+      - Overview: index-modules.md
+      - Core: modules/modules-core.md
+      - Build: modules/modules-build.md
+      - Modify: modules/modules-modify.md
+      - Analyse: modules/modules-analyse.md
+  - API Reference: 
+      - Overview: index-api.md
+      - Classes:
+        - Nucleic: api/nucleic-reference.md
+        - Shapes: api/shapes-reference.md
+        - Geometry: api/geometry-reference.md
+    
