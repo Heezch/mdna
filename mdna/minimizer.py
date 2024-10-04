@@ -2,14 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation as R
 import mdtraj as md
-from .nucleic import Nucleic
+# from .nucleic import Nucleic
 from .spline import SplineFrames
 from .utils import _check_input
-from .PMCpy.pmcpy.run.run import Run
 import copy
 from typing import List
 
-# Helper functions
 class Minimizer:
     """Minimize the DNA structure using Monte Carlo simulations with pmcpy"""
 
@@ -24,7 +22,7 @@ class Minimizer:
     def _check_import(self):
         """Check if the required import is available"""
         try:
-            from pmcpy.run.run import Run
+            from .PMCpy.pmcpy.run.run import Run
             self.Run = Run  # Store the imported class in the instance
             return True
         except ImportError as e:
