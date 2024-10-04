@@ -1,0 +1,3 @@
+[submodule "mdna/PMCpy"]
+	path = mdna/PMCpy
+	url = git@github.com:eskoruppa/PMCpy
