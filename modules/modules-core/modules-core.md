@@ -1,4 +1,4 @@
-::: pymdna.nucleic
+::: mdna.nucleic
     handler: python
     options:
       members:

@@ -12,7 +12,7 @@ pip install mdna
 
 or dircetly clone the github repository
 ```bash
-git clone --recurse-submodules -j8 git@github.com:heezch/pymdna.git
+git clone --recurse-submodules -j8 git@github.com:heezch/mdna.git
 ```
 
 Once the installation is complete, you’re ready to start coding.
@@ -24,7 +24,7 @@ Once the installation is complete, you’re ready to start coding.
 Let's dive right in by creating a simple DNA structure. We’ll use MDNA to generate a double-stranded DNA with a custom sequence.
 
 ```python
-import pymdna as mdna
+import mdna as mdna
 
 # Generate a DNA structure from a given sequence
 dna = mdna.make(sequence="ATCGATCGGT")

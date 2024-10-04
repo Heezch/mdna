@@ -177,7 +177,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/heezch/pymdna" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/heezch/mdna" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -222,7 +222,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/heezch/pymdna" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/heezch/mdna" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -1813,12 +1813,12 @@ ax.axis('equal')
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pymdna</span> <span class="k">as</span> <span class="nn">mdna</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span>
 <span class="n">dna</span> <span class="o">=</span> <span class="n">mdna</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">control_points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span><span class="n">n_bp</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">dna</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">endpoints_fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">dna</span><span class="o">.</span><span class="n">save_pdb</span><span class="p">(</span><span class="s1">'my_dna_minimized'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6">import pymdna as mdna
+<div class="clipboard-copy-txt" id="cell-6">import mdna as mdna
 dna = mdna.make(control_points=points,n_bp=400)
 dna.minimize(endpoints_fixed=False)
 dna.save_pdb('my_dna_minimized')</div>

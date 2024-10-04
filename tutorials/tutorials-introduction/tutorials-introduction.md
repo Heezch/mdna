@@ -14,7 +14,7 @@ The mdna module allows you to load DNA structures from various sources, such as 
 
 Example: Loading from a Trajectory
 ```python
-import pymdna as mdna
+import mdna as mdna
 import mdtraj as md
 
 # Load a trajectory file

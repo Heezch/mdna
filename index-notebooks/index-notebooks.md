@@ -18,7 +18,7 @@
 
 <!-- docs_folder/docs
 docs_folder/docs/notebooks/ # current_location of where notebooks are referenced from
-docs_folder/pymdna/examples/ # the location I want to use to reference from -->
+docs_folder/mdna/examples/ # the location I want to use to reference from -->
 <!-- 
 # Does not work I get 404 - Not Found
   <!-- - [Structure Generation](../examples/0_structure_tutorial.ipynb) --> 

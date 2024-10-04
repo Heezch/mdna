@@ -1,17 +1,17 @@
 <!-- # Modify  -->
 <!-- 
 ## Mutate DNA sequence
-::: pymdna.nucleic.Nucleic.mutate
+::: mdna.nucleic.Nucleic.mutate
 
 ## Methylation of Nucleobase
-::: pymdna.nucleic.Nucleic.methylate
+::: mdna.nucleic.Nucleic.methylate
 
 ## Flip of Nucleobase in Hoogsteen Fashion
-::: pymdna.nucleic.Nucleic.flip -->
+::: mdna.nucleic.Nucleic.flip -->
 
 
 
-::: pymdna.nucleic.Nucleic
+::: mdna.nucleic.Nucleic
     handler: python
     options:
       members:

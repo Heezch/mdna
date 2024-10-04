@@ -8,10 +8,10 @@ This section of the documentation provides detailed, information-oriented refere
 
 ## Nucleic class
 
-The `pymdna.nucleic` module is the core of the MDNA toolkit, encompassing a variety of classes and functions essential for DNA structure generation, manipulation, and analysis. Below, each key component of the module is outlined with explanations of its purpose and usage. The `Nucleic` class serves as the primary interface for interacting with DNA structures in the MDNA toolkit. It encapsulates both the structural properties of DNA and the trajectory information needed for molecular dynamics simulations. Key methods include:
+The `mdna.nucleic` module is the core of the MDNA toolkit, encompassing a variety of classes and functions essential for DNA structure generation, manipulation, and analysis. Below, each key component of the module is outlined with explanations of its purpose and usage. The `Nucleic` class serves as the primary interface for interacting with DNA structures in the MDNA toolkit. It encapsulates both the structural properties of DNA and the trajectory information needed for molecular dynamics simulations. Key methods include:
 
 
-::: pymdna.nucleic
+::: mdna.nucleic
 
 <!-- ### Nucleic Class
 
@@ -28,7 +28,7 @@ The `Nucleic` class serves as the primary interface for interacting with DNA str
 
 ### Analysis Functions
 
-The `pymdna.nucleic` module also includes a suite of functions designed for the analysis of DNA structures and trajectories:
+The `mdna.nucleic` module also includes a suite of functions designed for the analysis of DNA structures and trajectories:
 
 - **compute_rigid_parameters()**: Calculates rigid base parameters such as translation and rotation between base pairs, essential for understanding DNA's structural dynamics.
 - **compute_linking_number()**: Determines the linking number, a topological property crucial for understanding DNA supercoiling and its biological implications.
@@ -42,7 +42,7 @@ MDNA is designed to integrate seamlessly with the MDTraj library, which facilita
 ### Example Usage
 
 ```python
-import pymdna.nucleic as mdna
+import mdna.nucleic as mdna
 
 # Load a DNA structure from a trajectory
 dna = mdna.load("trajectory.xtc")

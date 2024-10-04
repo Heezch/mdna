@@ -11,7 +11,7 @@ This tutorial will guide you through the process of generating DNA structures, a
 ### Example: Make the DNA structure directly from a sequence
 ```python
 
-import pymdna as mdna
+import mdna as mdna
 import mdtraj as md
 
 sequence = "ATGCATGC"
