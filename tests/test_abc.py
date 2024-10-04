@@ -1,4 +1,4 @@
-import pymdna as mdna
+import mdna as mdna
 
 def test_make():
     n_bp = 10

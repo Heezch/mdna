@@ -2,27 +2,27 @@
 
 ## Build 
 ### Make
-:::pymdna.nucleic.make
+:::mdna.nucleic.make
 
 ### Extend
-:::pymdna.nucleic.Nucleic.extend
+:::mdna.nucleic.Nucleic.extend
 
 ### Connect
-:::pymdna.nucleic.connect
+:::mdna.nucleic.connect
 
 
 ## Modify 
-::: pymdna.nucleic.Nucleic.mutate
-::: pymdna.nucleic.Nucleic.methylate
-::: pymdna.nucleic.Nucleic.flip
+::: mdna.nucleic.Nucleic.mutate
+::: mdna.nucleic.Nucleic.methylate
+::: mdna.nucleic.Nucleic.flip
 
 
 ## Analyse Modules
 ### Rigid Base Parameters
-:::pymdna.nucleic.compute_rigid_parameters
+:::mdna.nucleic.compute_rigid_parameters
 ### Linking Number
-:::pymdna.nucleic.compute_linking_number
+:::mdna.nucleic.compute_linking_number
 ### Curvature
-:::pymdna.nucleic.compute_curvature
+:::mdna.nucleic.compute_curvature
 ### Groove Widths
-:::pymdna.nucleic.compute_groove_width
+:::mdna.nucleic.compute_groove_width

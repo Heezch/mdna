@@ -25,7 +25,7 @@ theme:
 
 
 
-repo_url: https://github.com/heezch/pymdna
+repo_url: https://github.com/heezch/mdna
 
 plugins:
   - mkdocstrings:

@@ -45,8 +45,8 @@ class SequenceGenerator:
 
         return  {base: md.load_hdf5(get_data_file_path(f'atomic/bases/BDNA_{base}.h5')) for base in self.base_pair_map.keys()}
 
-        #return {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/pymdna/pymdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
-        #return {base: md.load_pdb(f'../pymdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
+        #return {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/mdna/mdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
+        #return {base: md.load_pdb(f'../mdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
     
     def _make_DNA(self):
         """Creates a DNA topology and trajectory based on the sequence."""

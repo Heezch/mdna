@@ -6,17 +6,17 @@ MDNA is a powerful molecular modeling tool designed to bridge the gap in generat
 ## Installation
 To install MDNA, follow these steps:
 ```bash
-git clone --recurse-submodules https://github.com/heezch/pymdna.git
+git clone --recurse-submodules https://github.com/heezch/mdna.git
 git submodule update --init --recursive
 ```
-After that go to the 'pymdna' project folder and do:
+After that go to the 'mdna' project folder and do:
 ```bash
 pip install .
 ```
 
 ## Usage
 
-See our [documentation page](https://heezch.github.io/pymdna/)
+See our [documentation page](https://heezch.github.io/mdna/)
 
 ## Contributing
 

@@ -3,6 +3,6 @@
 **.xtc
 **/__pycache__
 **/build/
-src/pymdna/studies
+src/mdna/studies
 **.vscode
 **/*.egg-info

@@ -2,7 +2,7 @@
 
 <!-- ## Generate DNA structure  -->
 <!-- ### Generate DNA structure with `make()` -->
-::: pymdna.nucleic
+::: mdna.nucleic
     handler: python
     options:
         members:
@@ -12,7 +12,7 @@
         show_source: false
 
 
-::: pymdna.nucleic.Nucleic
+::: mdna.nucleic.Nucleic
     handler: python
     options:
         members:
@@ -20,8 +20,8 @@
         show_root_heading: false
         show_source: false
 <!-- ## Extend DNA structure
-::: pymdna.nucleic.Nucleic.extend
+::: mdna.nucleic.Nucleic.extend
 
 ## Connect two DNA strands
-::: pymdna.nucleic.connect -->
+::: mdna.nucleic.connect -->
 

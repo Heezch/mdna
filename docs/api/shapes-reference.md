@@ -1,2 +1,2 @@
 # Shapes class
-::: pymdna.utils.Shapes
+:::  mdna.utils.Shapes

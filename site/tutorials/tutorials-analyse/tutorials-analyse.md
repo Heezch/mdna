@@ -20,7 +20,7 @@ Rigid base parameters are crucial for understanding DNA's mechanical properties.
 First, we load a pre-existing DNA structure from a trajectory file. For this example, assume the files are stored in an anonymized path.
 
 ```python
-import pymdna as mdna
+import mdna as mdna
 
 # Load the DNA structure from the trajectory and topology files
 dna = mdna.load(filename='/path_to_data/dry_0.xtc', top='/path_to_data/dry_0.pdb')

@@ -1,19 +1,19 @@
 # Analysis Modules
 
 <!-- ## Rigid Base Parameters
-::: pymdna.nucleic.compute_rigid_parameters
+::: mdna.nucleic.compute_rigid_parameters
 
 ## Linking Number
-::: pymdna.nucleic.compute_linking_number
+::: mdna.nucleic.compute_linking_number
 
 ## Curvature
-::: pymdna.nucleic.compute_curvature
+::: mdna.nucleic.compute_curvature
 
 ## Groove Widths
-::: pymdna.nucleic.compute_groove_width -->
+::: mdna.nucleic.compute_groove_width -->
 
 
-::: pymdna.nucleic
+::: mdna.nucleic
     handler: python
     options:
       members:
