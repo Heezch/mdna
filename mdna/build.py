@@ -5,7 +5,8 @@ import mdtraj as md
 from .spline import SplineFrames
 from .nucleic import Nucleic
 from .utils import _check_input
-from pmcpy.run.run import Run
+#from pmcpy.run.run import Run
+from .PMCpy.pmcpy.run.run import Run
 import copy
 from typing import List
 
@@ -24,7 +25,8 @@ class Minimizer:
     def _check_import(self):
         """Check if the required import is available"""
         try:
-            from pmcpy.run.run import Run
+            #from pmcpy.run.run import Run
+            from .PMCpy.pmcpy.run.run import Run
             self.Run = Run  # Store the imported class in the instance
             return True
         except ImportError as e:
