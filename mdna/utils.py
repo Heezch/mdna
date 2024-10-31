@@ -192,7 +192,6 @@ class RigidBody:
         # Apply the rotation and squeeze to remove the additional dimension
         return np.dot(R[0], v)
     
-
 class Shapes:
     """Class for generating parametric shapes in 3D space.
     """
