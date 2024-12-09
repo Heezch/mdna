@@ -48,6 +48,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -55,7 +57,16 @@
     
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -65,7 +76,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -122,7 +133,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
@@ -556,7 +567,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1756,7 +1767,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-1">
@@ -1769,40 +1780,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load necessary libraries and retrieve the trajectory object</span>
-<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-
-<span class="c1"># # # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction</span>
-<span class="c1"># # # import mdna as mdna</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="c1"># sys.path.append('/Users/thor/surfdrive/Projects/mdna/')</span>
 <span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/Users/thor/surfdrive/Projects/mdna/docs/notebooks/data'</span><span class="p">)</span>
+<span class="c1"># Import extra libraries</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'./notebooks/data'</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">filament</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
 <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1"># Load necessary libraries and retrieve the trajectory object
-import mdtraj as md
+<div class="clipboard-copy-txt" id="cell-1">import mdtraj as md
 import numpy as np
 import nglview as nv
 import matplotlib.pyplot as plt
 
 from tqdm import tqdm
-
-# # # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction
-# # # import mdna as mdna
-import sys
-# sys.path.append('/Users/thor/surfdrive/Projects/mdna/')
 import mdna as mdna 
 
-sys.path.append('/Users/thor/surfdrive/Projects/mdna/docs/notebooks/data')
+# Import extra libraries
+sys.path.append('./notebooks/data')
 from filament import *
 %load_ext autoreload
 %autoreload 2</div>
@@ -1828,7 +1829,7 @@ from filament import *
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-2">
@@ -1842,20 +1843,17 @@ from filament import *
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load H-NS s1s1 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/dimer/0_s1s1/drytrajs/'</span>
+<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s1s1_dimers/'</span>
 <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-<span class="c1"># start_open = md.load(loc_dimers+f'dry_open.xtc',top=loc_dimers+f'dry_open.pdb').remove_solvent()</span>
-<span class="c1"># start_closed = md.load(loc_dimers+f'dry_closed.xtc',top=loc_dimers+f'dry_closed.pdb').remove_solvent()</span>
-<span class="c1"># s1s1 = md.join([start_open,start_closed,md.join(short_trajs)])</span>
 <span class="n">s1s1</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
 <span class="c1"># Load H-NS s2s2 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/dimer/1_s2s2/drytrajs/'</span>
+<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s2s2/'</span>
 <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">s2s2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
 <span class="c1"># Load H-NS dbd to DNA complex</span>
-<span class="n">loc_dbd</span>  <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/NAR/md/0_highaff/FI/drytrajs/'</span>
+<span class="n">loc_dbd</span>  <span class="o">=</span> <span class="s1">'/path/to/dbd_h-ns_dna/'</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">dna_complex</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
 
@@ -1874,20 +1872,17 @@ from filament import *
 <span class="n">site_map</span><span class="p">[</span><span class="s1">'complex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dna_complex</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-2"># Load H-NS s1s1 dimers
-loc_dimers = '/Users/thor/surfdrive/Data/h-ns/dimer/0_s1s1/drytrajs/'
+loc_dimers = '/path/to/s1s1_dimers/'
 short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
-# start_open = md.load(loc_dimers+f'dry_open.xtc',top=loc_dimers+f'dry_open.pdb').remove_solvent()
-# start_closed = md.load(loc_dimers+f'dry_closed.xtc',top=loc_dimers+f'dry_closed.pdb').remove_solvent()
-# s1s1 = md.join([start_open,start_closed,md.join(short_trajs)])
 s1s1 = md.join(short_trajs)
 
 # Load H-NS s2s2 dimers
-loc_dimers = '/Users/thor/surfdrive/Data/h-ns/dimer/1_s2s2/drytrajs/'
+loc_dimers = '/path/to/s2s2/'
 short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
 s2s2 = md.join(short_trajs)
 
 # Load H-NS dbd to DNA complex
-loc_dbd  = '/Users/thor/surfdrive/Data/h-ns/NAR/md/0_highaff/FI/drytrajs/'
+loc_dbd  = '/path/to/dbd_h-ns_dna/'
 traj = [md.load(loc_dbd+f'dry_{i}.xtc',top=loc_dbd+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
 dna_complex = md.join(traj)
 
@@ -2032,7 +2027,7 @@ traj = assembler.get_traj()
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-4">
@@ -2045,9 +2040,9 @@ traj = assembler.get_traj()
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_dbd_oligos.pdb'</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_oligos.pdb'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">traj.save('lateral_filament_dbd_oligos.pdb')</div>
+<div class="clipboard-copy-txt" id="cell-4">traj.save('./pdbs/lateral_filament_dbd_oligos.pdb')</div>
 </div>
 </div>
 </div>
@@ -2123,7 +2118,7 @@ DNA_chainids = np.array([DNA_chainids[i:i + 2] for i in range(0, len(DNA_chainid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-6">
@@ -2140,13 +2135,13 @@ DNA_chainids = np.array([DNA_chainids[i:i + 2] for i in range(0, len(DNA_chainid
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainids </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="n">selection</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainid </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="n">subtraj</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
-<span class="n">subtraj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_dbd_only_oligos.pdb'</span><span class="p">)</span>
+<span class="n">subtraj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_only_oligos.pdb'</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-6">ids = DNA_chainids.flatten()
 print(f'chainids {''.join([f'{id} ' for id in ids])}')
 selection = traj.top.select(f'chainid {''.join([f'{id} ' for id in ids])}')
 subtraj = traj.atom_slice(selection)
-subtraj.save('lateral_filament_dbd_only_oligos.pdb')
+subtraj.save('./pdbs/lateral_filament_dbd_only_oligos.pdb')
 </div>
 </div>
 </div>
@@ -2297,7 +2292,7 @@ dna.draw()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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YIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCA+R9Qj8M9QNbjTgAAAABJRU5ErkJggg=="/>
+<a class="glightbox" href="data:image/png;base64,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YIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCA+R9Qj8M9QNbjTgAAAABJRU5ErkJggg==" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No description has been provided for this image" class="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAGFCAYAAAASI+9IAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjguNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8fJSN1AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAavElEQVR4nO3dbXBU5d3H8d9ms8suCUlICBERQTAo1YkFUUFUHqyCtkWmZcYHBksEeZGmraUv1DpFx9GWYoWBqRFbh6g4NVMKRVtwABUN8hyCdoo0EJAEAiVPkCXZDewm536R2b85LHjb+y4PCd/PTIeSHDZ7YDzfPdd1znU8juM4AgBAUtLFfgMAgEsHUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwCRf7DeAbyYajaq8vFwNDQ3KysrSiBEj5PP5LvbbAtDNcKbQRZSXl6uqqkrNzc2qqqrSr371K/n9fg0ZMkSHDx++2G8PQDdBFLqAaDSqmpoa19f69eunaDSqAwcO6M4777xI7wxAd8PwURdQVlamWCwmx3EUjUbl8/m0d+9e+35tba22bdvWZYeWzhway8nJ0d13361Dhw5pwIAB+uSTT3TVVVcpHA5rw4YNCofD6tmzp8aPH69YLKbCwkJt2bJFo0eP1u9//3ulpaVd7F0CuiyP4zjOxX4T+HorV65ULBbTrl27VFZWpvz8fM2aNUuRSETBYFDz589X3759bfuamhoVFRVdsINkKBRKODAHg0GVlZXp6NGjkqQ+ffrolVde0cqVK9XW1qaBAwdq48aNysnJ0dq1axUOh+31tm3bpgULFtjvU1NTVVNTo40bN6qlpcW+npSUpF/+8pfat2+ffe3BBx9USUnJWQPSs2fP8/r3AHQHnCl0IcOHD9cNN9ygUCikWCwmSZo1a5ays7Nd2+Xk5KiyslKVlZVqamrSX/7yl2/0SbzzJ/a0tDQtXbpUGzduTIhL5wNuIBDQ3Llz9dlnn0mSvvzyS0nSj3/8Yx06dMje09GjR5WTk2Pv++DBgxo2bJjef/99VxAk6eabb1YwGFQkEpEkNTc364knntCkSZNc27W1tamwsFBPPfWUbbt69WpFo1G9//77amtrkyS1tLTojTfeUGFhobxerx544AEtXbqUMwrgLJhT6AL69etn/9/v98vj8WjatGnq3bu3/H6/otGoa/ukpK/+Wd977z1t377dNUm9Zs0aHT161DUnEY1GtXbtWtuupqZGqampqqys1LJly3TTTTcpFArZAbelpUWO4ygcDuuJJ55QMBiU1HGgXrVqlWpra13vyePxaNSoUbZdfNuqqqqE/fV6vZo3b55tGwwGNWLEiITtPB6PcnJylJ+f7/ra2rVrLQhxGRkZchxHsVhMK1as0OzZsxUOh/X3v/9df/7zn7V8+XJ9/PHHeuyxx5Sbm6tHH31UoVDof/23AbobotAFjBw5UsnJX53U9e7dW5MmTdLixYv1j3/8Q5K0b98+VVVVyXEcnTp1yrYNBoMJk9RZWVmuA2lVVZXKyspcn9jPPIgfPHhQo0aNcn0Cj28XCARcB/FYLKampqaE/Ygf7AOBgP2ZxsZGVVdXS5I2bdqkSCSiY8eOad++ffYep0yZomAwqHfffVeS9MUXX+jAgQOSpB07dig3N1eSFAgE9OKLLyacecRHSDsH6aOPPnKdpTiOo2PHjikYDFoIH3vssbP+ewDdGVHoAnw+n/r37+/6msfjkd/v16xZs+T3+xUKhXTy5ElFo1EtXrzYtnvooYcSXs/j8eiWW25xfRLvPNQT5/V6XfEYP368DdN0Vl9fr6ysLD344IOSpPz8fG3evFlHjx7ViRMntGTJEknS8uXLtXv3buXn5ysQCKhv3746cuSIDTkdO3ZMsVhMSUlJ8vl8uuWWW5SSkqKbb75ZXq9X6enpkqTW1ladPn1aUsckfHZ2tu655x7l5eWpb9++euGFF1RfX68jR46otLRUHo9Hx48f16OPPmr7O3fu3ISzCY/Ho+uuu85+H49QNBrVtm3btGbNGm3bti3hzAzoTohCFzFixAilpKToXNcFjBgxQjfeeKM8Ho8mTpyo3r17a9y4cQoGg3IcR88884za29tVUVGhsrIyBQIB3X777ZKkqVOn2pzA559/rvr6erW0tGj9+vW65ZZb5Pf75ff7NXLkSL3wwgtyHEcbNmzQW2+9JUlaunSpmpqaNGTIEAWDQd12221KSUmR1+tVz549NWHCBEnS5MmTNXbsWN11111asmSJkpKSNHz4cI0dO1aO4+i+++5Tamqq+vbta2cpf/zjH3XVVVepZ8+eGjdunBzHUV5enq6//npJUkFBgXw+n2bOnKk5c+bI4/GosLBQvXv3VlJSkoVv5cqVysnJUVpamkaNGqXs7Gz9+9//dkXuzL/bWCymxsZG17Ba/KwK6K64+qgLiX9iraqqktfrVVJSkhzHkeM4rnkEx3HU1tYmr9crj8cjx3F05MgRXXnllaqurlY4HNawYcP09ttva/369Xr22We1b98+TZw4UevXr9f111+vrKwsbdy4Uffee6/Kysrk9/uVl5enAwcO6JprrlFbW5scx5HP55PH47Gf297erqSkJNfXOr+Xs4kP3Tz33HNasGDB114lFA6HVV5ertGjR8vr9Z71teL7fObPdRxHLS0tOnr0qHJzc1VSUqKbbrpJ/fr10+rVqzVt2jQ1NDRozpw5am1tlSS9/PLLuuqqq1w/o62tTbNnz1ZLS4tdRXXmNkBXRRS6oPgQUXJysvbu3Suv16sxY8ac86Ab197eLo/HYwfN9vZ2xWIxm7yWdM7ISHK9fjgc1pw5c77RQXzOnDl6+OGHNWbMGNfcSOdtCgoKFIlEVFBQoLvuuuus++I4jkpLS1VcXKz8/HwbAjtz21gspk2bNumdd97RwoULXXMJZ3vNcDis/fv3Ky8vT3/4wx/k9/u1YcMGjR07VjNmzHD9XXR+H0VFRZKkQYMGae/evSxDgm6B4aMuyOfz6fHHH9eWLVu0bNkyvfPOO2poaDjn0JLUEYRTp07ZAdTj8cjr9apHjx6ug2okEtHmzZtdrxUPSZzjONqxY4eOHz+uHTt2nPPndt6uqKgo4XXj72vHjh02jPPGG28kTBTHX6uurk7FxcWKRCIqKirS/PnzE4LU3t6uTZs2qaioSMePH9f27du/9v3V1tYqKSlJeXl5kqTZs2dr+vTp+vWvf62MjAwlJSVpxYoVqqystGCeOfdQW1urdevWuYaY3nvvvbPuB3CpIwpdVFpamkpKShQKhVRXV6fHH39cgwYNcn0Sj1+CGQ6HtXnzZu3cuTNhcrWz+EH89ddf17Fjx856MI0P9RQXF0uSiouL1djY+LXbpaamavDgwQqHw+rXr5+Sk5MtSldeeaWamprUq1cv9erVS5MnT9YDDzyggQMHKiUlxf43aNAgPfLII5o6dapyc3M1ffp0bd26VZMmTdKAAQOUnJys5OTkhNcLhUIJ4YifHZSWlurJJ59MCEf8ff3gBz+Q1HHfRE5Ojg4cOKCXXnpJjuOooaFBUsek9W9+8xvXTXVSxxDTm2++yfpU6HIYPupm4jeg1dXVac+ePXrppZcUiUTUp08fBYNBzZw5U4MGDUqIQ/wgHr8RLDs7W08++aRrW8dx1NjYqEWLFqmmpkYej0ff/e539corr2jfvn2qr6+X1PFpfe/evXrjjTc0fPjwi770RDQatburHcdRVVWV5s2bp7q6OkkdB/ZXX331nMNMnYfU4neRv/zyy9q+fbt+9KMfaejQobr22msT/lwsFtO0adMkdQwxxa+yAi5lROEyFA9H/CAuSenp6Vq6dKk+/fRTjRo1yg7k3XXJ7lAopNmzZ2vNmjWSpLlz5+rqq6+273eesD527Jg8Ho/69u3rmsRubGzU8ePHtX//ft1///364IMPdPvtt6tnz55yHEetra2aMWOGvWZDQ4P27NmjI0eOyHEcuzKL5TdwKSEKgNxnE5FIRI2NjXIcRxUVFSouLta8efN0xRVX2PadoxH/9a9//asmT56sf/7zn3IcR/3799dPfvITSR1nI6+88opSUlJcPzcYDGr58uUs6IdLBmsfAeqYvB89erQk91mE4zjKyclRTU2NcnJyXBP1Z/46ZcoUeTweZWRkqK2tzXUPRH5+/lnPCE6ePKlly5ZJkiorK3X69GmVlJSc130Fvg5nCsA3EI1GtW7dOptQPvNMoa2tTadPn3bNS4TDYW3dulV+v1+HDx/WyJEjXXMPZxtiSk1N1cmTJy/YfgFnIgrAN9R5Lqa9vV01NTW23EZFRUXC/SKdw3Hw4EFlZ2fryJEj2rVrly0JUltba0NMkpScnKympiaW/cZFw/AR8A35fD7ddttt9vtQKKThw4fb4nzBYNCW/ZbcQ0vXXHONJGnAgAEKBAJqb2/XokWLNGXKFNfPSE9PT1j2+6OPPtL3vve98717gCTuUwD+z9LS0rRr1y5Nnz5dubm5mjp1qoYMGeI6UzhTIBDQ1VdfbZfz5uTk2NVcwWBQL774YsLlws3NzfL5fOrVq5cefvhhlvTGecXwEfBf1HmI6cSJE3ajnuM4ikQiCoVCrglrx3G0Z88eVVdXKy8vT6tXr9bjjz/ues3O9ztIXz1dDjgfiAJwnjQ2Nqq4uFh+v1//+te/7C7woqIi1xxB/D/BaDSq6upqXXvttXr77bd1//33q3fv3qqrq3PNO6SmpqqxsbFb3j+Ci485BeA8yczM1C9+8Qu7xDW+BEl9fb3rRrn4WYPf77erk2644Qalp6dr165dOnXqlD2eNBgMasaMGfrb3/5mjzZtbm5WXV2dJk6cSBjw/8aZAnCBnXl5a2dnLvldVVWl9vZ2ffnll3rttddUUFCgO+64I2HZcMdxtGXLFi1evJjlvPH/wkQzcIH5fD7de++9rrubOy/SV1hYaJPNAwcO1DXXXKORI0fqnnvu0a233qpPP/1Ux48fd72mx+PRt7/9bbv8dezYsRd0n9B9MHwEXATxMJSXl2v37t0qLy/X0qVL7S7o06dPu1a8TUtL08yZMyV1LG/u8/lUXV2tU6dO2TOqOy9vHn/uNfCfIgrARRK/72HYsGH6+OOP1a9fP/teY2Njwg1r8YP+pEmTJEkHDx5UOBxWe3u7du7cqQEDBti2wWBQpaWlqq+vV1tbmzwej/r376+RI0cy74CvxZwCcAmKX9paU1NjE8qddV5WIxQKaeXKlbrvvvv005/+VIFAQL/97W9dl77GffbZZ/rd736nAQMG6JNPPmHeAQmIAnAJi09KNzc3u+532LFjh66//nrXct6tra1auHChHnroIWVlZcnj8SSsuBoOh5Wfny+p49LWmpoaVmWFCxPNwCUsPvfQv39/1dfXq7S0VAUFBSoqKrK1laSOoaVAIKCnn35agwcPVkVFhT788ENJcj0Zr/OZQ3NzswoLCy/sDuGSx5wCcInz+Xy64447lJeXp8LCQpt7OHLkyFmX85akW2+9VVLH0twLFizQ888/r0gkoqSkJLvnQZLKysq0ZcsWHT16VJLUr18/5h0ucwwfAV3U/3a/QyQSsTMIj8ejhQsX6v7771dNTY1ee+01e6xoVlaW689eccUVev3113nwz2WK4SOgi4oPLQ0cONB1+Wr8EaIFBQXavn27ff1nP/uZhg4dqtbWViUnJ2vevHnKyMhIeN2DBw9q2bJlqqys1LJlyzR79uwLsTu4RHCmAHQD8auVdu/erZ07d6q4uNiWxXj11VftbCF+x3Q4HFZycrKee+45zZs3T0lJX30+PHMBPh78c3lhTgHoBjrf87Bu3TolJycrNTVVffr0UTgcdj3jwev12nDQ3LlzlZSUpCVLlmjChAkaOnSoJLnmHVpbW13PsJaYe+jOOFMAurlt27apqqrqnN93HEcnTpxQSkqKdu/erf379ys7O1tFRUWSpKysLL355psJcxcDBgyw51qj+2BOAejmRowYkbDOUvzXcDisTZs2KRAIyO/3a9iwYbrjjjs0ZMgQSR0PBXr++efPOpldUVEhj8ejgQMH6vDhwxdmZ3DecaYAXAY6P/yntrZWJ0+eVEVFhc09LFq0yC5vjc87bN26VSNHjtSGDRt03XXXafDgwa7X7Hwj3ODBg7V///6LsWv4L2NOAbgMdH6+dPz5DitWrHAtodH5fofk5GSNGTPGzgQyMzN16NAh7d+/X+PGjZPjOCovL7c/W11dzbxDN8HwEXCZSUtLU0lJiRoaGuz50tFoNGG7eCS+9a1vKSMjQ36/XxkZGXIcR6tWrdKyZcts24yMDK1bt06HDh1SLBZTLBbToUOH9Oyzz8rv92vIkCEMMXURDB8BOOuNcPFlNM588E8sFtPatWs1YsQIPfPMM5o0aZImT56sQCCQ8LqRSEQzZsyQxBBTV0EUAEiSa/gnEomosbFRjuOooqJC77zzjhYsWJDwbOnPP/9cmZmZSk9PV2lpqb7//e+7XrPzPQ/JyclqamrShg0bFA6H1bNnT40fPz5hiXBcXMwpAJDUMe8Qv8Q0FAqpsLBQq1atUnNzsxzH0Y4dO3TXXXe55h5uuukmeTwenThxQn379pUkvfvuu7rzzjuVmZnpGpbq0aOHPvzwQ7v/oaWlRevXr9eKFStYUuMSQhQAJEhLS9Nbb71lcdi0aZM2bNigG2+8UZmZmQmL8GVkZOjWW29Ve3u7MjMzlZqaqs8++yzh/oh4EOJaW1ttbqKyslKnT59WSUnJBdhDnAtRAHBO8TjEnTn30Hne4dixY0pPT9edd94pqePmtmAwqEAgoOzsbP385z93Lfd9NqtXr1ZTU5M++OADm8f4zne+o/T09PO7ozDMKQD4j8Tvefjiiy9sTaT4PQ9FRUWuOYL29nZFIhHV1dVp0KBB+tOf/qRBgwZp9OjRam5uVnJysk1ESx3zDiUlJWpra7Oveb1e/fCHP7xg+3e540wBwH+k8zpLw4cP14EDB+x75eXldn+D1DG8lJKSYndUT506VW1tbTp+/LgWLlyop59+Wj169NCpU6ckSenp6a4gSEr4Pc4v7lMA8H+SlpamXbt2afr06Ro8eLAGDx6sDz744Kw3xMX5fD4Fg0FlZmbq+eefVzAY1IQJE9SjRw8FAgHdfffdCT/H6/We933BVxg+AvBftW3bNlVXV8txHNecQ2trq0KhkLKzs11Ldce/d+LECX355Ze6/fbbtWTJEk2cOFEDBw7Uxx9/rPnz53NV0gVCFAD8V8XnHGpra1VfX6+Wlhbt2bPH1lkqKChwXdoqKWECuqGhQampqdq6datee+01PfLII64Jb5w/RAHAeRUKhVxzD8FgUPPnz1d2dvY5r0SKX8301FNPKRKJKDc3V3v37r2Qb/uyxZwCgPOq89xDbm6upk6dqkceeUSpqam2zZnLeZeWlloQvF6vRo0adbHe/mWHMwUAF0XnYabDhw8rGo26lvOWpF69emnKlCnc6XwBEQUAF13nO6fjxowZQwwuAqIAADDMKQAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCA+R9Qj8M9QNbjTgAAAABJRU5ErkJggg=="/></a>
 </div>
 </div>
 </div>
@@ -2320,7 +2315,7 @@ dna.draw()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-9">
@@ -2336,9 +2331,9 @@ dna.draw()</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Save the structures for further analysis</span>
 <span class="n">dna_traj</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
 <span class="n">protein</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'protein'</span><span class="p">))</span>
-<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./lateral_filament_noDNA.pdb'</span><span class="p">)</span>
+<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_noDNA.pdb'</span><span class="p">)</span>
 <span class="n">new_traj</span> <span class="o">=</span> <span class="n">dna_traj</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
-<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./lateral_filament_with_DNA.pdb'</span><span class="p">)</span>
+<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_with_DNA.pdb'</span><span class="p">)</span>
 
 <span class="c1"># Visualize the final combined structure</span>
 <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">new_traj</span><span class="p">)</span>
@@ -2347,9 +2342,9 @@ dna.draw()</div>
 <div class="clipboard-copy-txt" id="cell-9"># Save the structures for further analysis
 dna_traj = dna.get_traj()
 protein = traj.atom_slice(traj.top.select('protein'))
-protein.save('./lateral_filament_noDNA.pdb')
+protein.save('./pdbs/lateral_filament_noDNA.pdb')
 new_traj = dna_traj.stack(protein)
-new_traj.save('./lateral_filament_with_DNA.pdb')
+new_traj.save('./pdbs/lateral_filament_with_DNA.pdb')
 
 # Visualize the final combined structure
 view = nv.show_mdtraj(new_traj)
@@ -2377,7 +2372,7 @@ view</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-10">
@@ -2390,9 +2385,9 @@ view</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_DNA_only.pdb'</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_DNA_only.pdb'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10">dna_traj.save('lateral_filament_DNA_only.pdb')</div>
+<div class="clipboard-copy-txt" id="cell-10">dna_traj.save('./pdbs/lateral_filament_DNA_only.pdb')</div>
 </div>
 </div>
 </div>
@@ -2485,5 +2480,7 @@ view</div>
       <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

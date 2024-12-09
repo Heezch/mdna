@@ -2,7 +2,7 @@
 
 
 This site contains the project documentation for the
-`mdna` project that is python toolkit for the structure generation and analysis of DNA simulations.
+`mdna` project that is python toolkit for the structure generation and analysis of DNA molecular dynamics simulations.
 <!-- 
 [Build Your Python Project Documentation With MkDocs](
     https://realpython.com/python-project-documentation-with-mkdocs/). -->
@@ -11,6 +11,20 @@ This site contains the project documentation for the
 project documentation using Python, MkDocs,
 mkdocstrings, and the Material for MkDocs theme. -->
 
+
+## Example Gallery
+Three examples that highlight the building of biomolecular assemblies with `mdna`. Here we showcase the extension of DNA structures, using proteins as scaffold to generate DNA structure, and lastly to connect two DNA strands to form a DNA loop.
+<div class="image-gallery">
+  <a href="assets/gallery/image1.png" class="glightbox">
+    <img src="assets/gallery/image1.png" alt="Image 1" />
+  </a>
+  <a href="assets/gallery/image2.png" class="glightbox">
+    <img src="assets/gallery/image2.png" alt="Image 2" />
+  </a>
+  <a href="assets/gallery/image3.png" class="glightbox">
+    <img src="assets/gallery/image3.png" alt="Image 3" />
+  </a>
+</div>
 
 ## Table Of Contents
 
@@ -36,12 +50,9 @@ your use case by looking at the different pages.
 
 ## Citation
 
-Link to the [publication](https://www.overleaf.com/project/65ca818c540b7b9562001187)
+Link to the [publication](https://www.overleaf.com/project/)
 
 
 ## Acknowledgements
 
-I want to thank my house plants for providing me with
-a negligible amount of oxygen each day. Also, I want
-to thank the sun for providing more than half of their
-nourishment free of charge.
+This project is supported by the NWO Klein grant.

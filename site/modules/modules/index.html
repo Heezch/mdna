@@ -44,6 +44,8 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -51,7 +53,16 @@
     
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -61,7 +72,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -118,7 +129,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
@@ -550,7 +561,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1255,54 +1266,6 @@
   <a href="#mdna.nucleic.compute_linking_number" class="md-nav__link">
     <span class="md-ellipsis">
       compute_linking_number
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="compute_linking_number">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#curvature" class="md-nav__link">
-    <span class="md-ellipsis">
-      Curvature
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mdna.nucleic.compute_curvature" class="md-nav__link">
-    <span class="md-ellipsis">
-      compute_curvature
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="compute_curvature">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#groove-widths" class="md-nav__link">
-    <span class="md-ellipsis">
-      Groove Widths
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mdna.nucleic.compute_groove_width" class="md-nav__link">
-    <span class="md-ellipsis">
-      compute_groove_width
     </span>
   </a>
   
@@ -3068,61 +3031,10 @@ rigid_params = mdna.compute_rigid_parameters(traj, chainids=[0, 1])
             </details>
     </div>
 
-</div><h3 id="curvature">Curvature<a class="headerlink" href="#curvature" title="Permanent link">&para;</a></h3>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="mdna.nucleic.compute_curvature" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mdna</span><span class="o">.</span><span class="n">nucleic</span><span class="o">.</span><span class="n">compute_curvature</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></code>
-
-<a href="#mdna.nucleic.compute_curvature" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-
-      <p>Compute the curvature of the DNA structure</p>
-
-            <details class="quote">
-              <summary>Source code in <code>mdna/nucleic.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-172">172</a></span>
-<span class="normal"><a href="#__codelineno-0-173">173</a></span>
-<span class="normal"><a href="#__codelineno-0-174">174</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="k">def</span> <span class="nf">compute_curvature</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
-</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the curvature of the DNA structure&quot;&quot;&quot;</span>
-</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div><h3 id="groove-widths">Groove Widths<a class="headerlink" href="#groove-widths" title="Permanent link">&para;</a></h3>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="mdna.nucleic.compute_groove_width" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mdna</span><span class="o">.</span><span class="n">nucleic</span><span class="o">.</span><span class="n">compute_groove_width</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></code>
-
-<a href="#mdna.nucleic.compute_groove_width" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-
-      <p>Compute the groove width of the DNA structure</p>
-
-            <details class="quote">
-              <summary>Source code in <code>mdna/nucleic.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-180">180</a></span>
-<span class="normal"><a href="#__codelineno-0-181">181</a></span>
-<span class="normal"><a href="#__codelineno-0-182">182</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="k">def</span> <span class="nf">compute_groove_width</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
-</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the groove width of the DNA structure&quot;&quot;&quot;</span>
-</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
+</div><!-- ### Curvature
+:::mdna.nucleic.compute_curvature
+### Groove Widths
+:::mdna.nucleic.compute_groove_width -->
 
 
 
@@ -3175,5 +3087,7 @@ rigid_params = mdna.compute_rigid_parameters(traj, chainids=[0, 1])
       <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

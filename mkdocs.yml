@@ -10,7 +10,7 @@ theme:
   palette: 
     # Palette toggle for light mode
     - scheme: default
-      primary: red
+      primary: teal
       accent: light-blue
       toggle:
         icon: material/eye
@@ -34,9 +34,12 @@ plugins:
             options:
               show_source: true
               show_root_heading: true
-  - search
+
   - mkdocs-jupyter:
         include_source: True
+  - glightbox
+  - search
+
 
 markdown_extensions:
   - admonition
@@ -47,6 +50,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.highlight:
@@ -93,3 +97,6 @@ nav:
         - Shapes: api/shapes-reference.md
         - Geometry: api/geometry-reference.md
     
+
+extra_css:
+  - stylesheets/extra.css
