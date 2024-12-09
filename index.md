@@ -15,11 +15,11 @@ mkdocstrings, and the Material for MkDocs theme. -->
 ## Example Gallery
 Three examples that highlight the building of biomolecular assemblies with `mdna`. Here we showcase the extension of DNA structures, using proteins as scaffold to generate DNA structure, and lastly to connect two DNA strands to form a DNA loop.
 <div class="image-gallery">
-  <a href="assets/gallery/image2.png" class="glightbox">
-    <img src="assets/gallery/image2.png" alt="Image 1" />
-  </a>
   <a href="assets/gallery/image1.png" class="glightbox">
-    <img src="assets/gallery/image1.png" alt="Image 2" />
+    <img src="assets/gallery/image1.png" alt="Image 1" />
+  </a>
+  <a href="assets/gallery/image2.png" class="glightbox">
+    <img src="assets/gallery/image2.png" alt="Image 2" />
   </a>
   <a href="assets/gallery/image3.png" class="glightbox">
     <img src="assets/gallery/image3.png" alt="Image 3" />
