@@ -556,7 +556,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1756,7 +1756,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-1">
@@ -1769,40 +1769,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load necessary libraries and retrieve the trajectory object</span>
-<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-
-<span class="c1"># # # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction</span>
-<span class="c1"># # # import mdna as mdna</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="c1"># sys.path.append('/Users/thor/surfdrive/Projects/mdna/')</span>
 <span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/Users/thor/surfdrive/Projects/mdna/docs/notebooks/data'</span><span class="p">)</span>
+<span class="c1"># Import extra libraries</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'./notebooks/data'</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">filament</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
 <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1"># Load necessary libraries and retrieve the trajectory object
-import mdtraj as md
+<div class="clipboard-copy-txt" id="cell-1">import mdtraj as md
 import numpy as np
 import nglview as nv
 import matplotlib.pyplot as plt
 
 from tqdm import tqdm
-
-# # # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction
-# # # import mdna as mdna
-import sys
-# sys.path.append('/Users/thor/surfdrive/Projects/mdna/')
 import mdna as mdna 
 
-sys.path.append('/Users/thor/surfdrive/Projects/mdna/docs/notebooks/data')
+# Import extra libraries
+sys.path.append('./notebooks/data')
 from filament import *
 %load_ext autoreload
 %autoreload 2</div>
@@ -1828,7 +1818,7 @@ from filament import *
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-2">
@@ -1842,20 +1832,17 @@ from filament import *
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load H-NS s1s1 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/dimer/0_s1s1/drytrajs/'</span>
+<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s1s1_dimers/'</span>
 <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-<span class="c1"># start_open = md.load(loc_dimers+f'dry_open.xtc',top=loc_dimers+f'dry_open.pdb').remove_solvent()</span>
-<span class="c1"># start_closed = md.load(loc_dimers+f'dry_closed.xtc',top=loc_dimers+f'dry_closed.pdb').remove_solvent()</span>
-<span class="c1"># s1s1 = md.join([start_open,start_closed,md.join(short_trajs)])</span>
 <span class="n">s1s1</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
 <span class="c1"># Load H-NS s2s2 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/dimer/1_s2s2/drytrajs/'</span>
+<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s2s2/'</span>
 <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">s2s2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
 <span class="c1"># Load H-NS dbd to DNA complex</span>
-<span class="n">loc_dbd</span>  <span class="o">=</span> <span class="s1">'/Users/thor/surfdrive/Data/h-ns/NAR/md/0_highaff/FI/drytrajs/'</span>
+<span class="n">loc_dbd</span>  <span class="o">=</span> <span class="s1">'/path/to/dbd_h-ns_dna/'</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">dna_complex</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
 
@@ -1874,20 +1861,17 @@ from filament import *
 <span class="n">site_map</span><span class="p">[</span><span class="s1">'complex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dna_complex</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-2"># Load H-NS s1s1 dimers
-loc_dimers = '/Users/thor/surfdrive/Data/h-ns/dimer/0_s1s1/drytrajs/'
+loc_dimers = '/path/to/s1s1_dimers/'
 short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
-# start_open = md.load(loc_dimers+f'dry_open.xtc',top=loc_dimers+f'dry_open.pdb').remove_solvent()
-# start_closed = md.load(loc_dimers+f'dry_closed.xtc',top=loc_dimers+f'dry_closed.pdb').remove_solvent()
-# s1s1 = md.join([start_open,start_closed,md.join(short_trajs)])
 s1s1 = md.join(short_trajs)
 
 # Load H-NS s2s2 dimers
-loc_dimers = '/Users/thor/surfdrive/Data/h-ns/dimer/1_s2s2/drytrajs/'
+loc_dimers = '/path/to/s2s2/'
 short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
 s2s2 = md.join(short_trajs)
 
 # Load H-NS dbd to DNA complex
-loc_dbd  = '/Users/thor/surfdrive/Data/h-ns/NAR/md/0_highaff/FI/drytrajs/'
+loc_dbd  = '/path/to/dbd_h-ns_dna/'
 traj = [md.load(loc_dbd+f'dry_{i}.xtc',top=loc_dbd+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
 dna_complex = md.join(traj)
 
@@ -2032,7 +2016,7 @@ traj = assembler.get_traj()
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-4">
@@ -2045,9 +2029,9 @@ traj = assembler.get_traj()
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_dbd_oligos.pdb'</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_oligos.pdb'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">traj.save('lateral_filament_dbd_oligos.pdb')</div>
+<div class="clipboard-copy-txt" id="cell-4">traj.save('./pdbs/lateral_filament_dbd_oligos.pdb')</div>
 </div>
 </div>
 </div>
@@ -2123,7 +2107,7 @@ DNA_chainids = np.array([DNA_chainids[i:i + 2] for i in range(0, len(DNA_chainid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-6">
@@ -2140,13 +2124,13 @@ DNA_chainids = np.array([DNA_chainids[i:i + 2] for i in range(0, len(DNA_chainid
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainids </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="n">selection</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainid </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="n">subtraj</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
-<span class="n">subtraj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_dbd_only_oligos.pdb'</span><span class="p">)</span>
+<span class="n">subtraj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_only_oligos.pdb'</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-6">ids = DNA_chainids.flatten()
 print(f'chainids {''.join([f'{id} ' for id in ids])}')
 selection = traj.top.select(f'chainid {''.join([f'{id} ' for id in ids])}')
 subtraj = traj.atom_slice(selection)
-subtraj.save('lateral_filament_dbd_only_oligos.pdb')
+subtraj.save('./pdbs/lateral_filament_dbd_only_oligos.pdb')
 </div>
 </div>
 </div>
@@ -2320,7 +2304,7 @@ dna.draw()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-9">
@@ -2336,9 +2320,9 @@ dna.draw()</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Save the structures for further analysis</span>
 <span class="n">dna_traj</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
 <span class="n">protein</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'protein'</span><span class="p">))</span>
-<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./lateral_filament_noDNA.pdb'</span><span class="p">)</span>
+<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_noDNA.pdb'</span><span class="p">)</span>
 <span class="n">new_traj</span> <span class="o">=</span> <span class="n">dna_traj</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
-<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./lateral_filament_with_DNA.pdb'</span><span class="p">)</span>
+<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_with_DNA.pdb'</span><span class="p">)</span>
 
 <span class="c1"># Visualize the final combined structure</span>
 <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">new_traj</span><span class="p">)</span>
@@ -2347,9 +2331,9 @@ dna.draw()</div>
 <div class="clipboard-copy-txt" id="cell-9"># Save the structures for further analysis
 dna_traj = dna.get_traj()
 protein = traj.atom_slice(traj.top.select('protein'))
-protein.save('./lateral_filament_noDNA.pdb')
+protein.save('./pdbs/lateral_filament_noDNA.pdb')
 new_traj = dna_traj.stack(protein)
-new_traj.save('./lateral_filament_with_DNA.pdb')
+new_traj.save('./pdbs/lateral_filament_with_DNA.pdb')
 
 # Visualize the final combined structure
 view = nv.show_mdtraj(new_traj)
@@ -2377,7 +2361,7 @@ view</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-10">
@@ -2390,9 +2374,9 @@ view</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'lateral_filament_DNA_only.pdb'</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_DNA_only.pdb'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10">dna_traj.save('lateral_filament_DNA_only.pdb')</div>
+<div class="clipboard-copy-txt" id="cell-10">dna_traj.save('./pdbs/lateral_filament_DNA_only.pdb')</div>
 </div>
 </div>
 </div>

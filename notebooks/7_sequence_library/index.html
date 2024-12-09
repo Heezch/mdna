@@ -556,7 +556,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1673,15 +1673,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">Bio.SVDSuperimposer</span> <span class="kn">import</span> <span class="n">SVDSuperimposer</span>
-
-
-<span class="c1"># # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction</span>
-<span class="c1"># import mdna as mdna</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/Users/thor/surfdrive/Projects/mdna/'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+<span class="kn">import</span> <span class="nn">mdna</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import numpy as np
 import mdtraj as md
@@ -1692,15 +1684,8 @@ import copy
 import nglview as nv
 import random
 from Bio.SVDSuperimposer import SVDSuperimposer
-
-
-# # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction
-# import mdna as mdna
-import sys
-sys.path.append('/Users/thor/surfdrive/Projects/mdna/')
-import mdna as mdna 
-%load_ext autoreload
-%autoreload 2</div>
+import mdna 
+</div>
 </div>
 </div>
 </div>
@@ -2113,10 +2098,6 @@ view</div>
     <span class="n">mutations</span> <span class="o">=</span> <span class="n">mdna</span><span class="o">.</span><span class="n">get_mutations</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">new_sequence</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'start mutation ---- </span><span class="si">{</span><span class="n">mutations</span><span class="si">}</span><span class="s1"> ----'</span><span class="p">)</span>    
-    <span class="c1"># dna = pdb.atom_slice(pdb.top.select(f'chainid {chainids[0]} {chainids[1]}'))</span>
-    <span class="c1"># if verbose:</span>
-    <span class="c1">#     for c in dna.top.chains:</span>
-    <span class="c1">#         print(c.index, c._residues)</span>
 
     <span class="n">dna</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">mutations</span><span class="p">,</span><span class="n">complementary</span><span class="o">=</span><span class="n">complementary</span><span class="p">)</span>
     <span class="n">mutant_sequence</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">sequence</span>
@@ -2155,10 +2136,6 @@ def radiate_system(dna, new_sequence, complementary=True, chainids=[0,1], verbos
     mutations = mdna.get_mutations(s,new_sequence)
     if verbose:
         print(f'start mutation ---- {mutations} ----')    
-    # dna = pdb.atom_slice(pdb.top.select(f'chainid {chainids[0]} {chainids[1]}'))
-    # if verbose:
-    #     for c in dna.top.chains:
-    #         print(c.index, c._residues)
 
     dna.mutate(mutations,complementary=complementary)
     mutant_sequence = dna.sequence

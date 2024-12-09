@@ -22,7 +22,7 @@
 :::mdna.nucleic.compute_rigid_parameters
 ### Linking Number
 :::mdna.nucleic.compute_linking_number
-### Curvature
+<!-- ### Curvature
 :::mdna.nucleic.compute_curvature
 ### Groove Widths
-:::mdna.nucleic.compute_groove_width
+:::mdna.nucleic.compute_groove_width -->

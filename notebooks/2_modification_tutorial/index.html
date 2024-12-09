@@ -558,7 +558,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1728,7 +1728,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-1">
@@ -1745,29 +1745,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
-
-
-<span class="c1"># # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction</span>
-<span class="c1"># # import mdna as mdna</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/Users/thor/surfdrive/Projects/mdna/'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+<span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import numpy as np
 import mdtraj as md
 import matplotlib.pyplot as plt
 import nglview as nv
-
-
-# # # Path: mdna/__init__.py, prototype of the package and atomic is not properly referenced in the package at genertors.py now I just explicitly define the path loction
-# # import mdna as mdna
-import sys
-sys.path.append('/Users/thor/surfdrive/Projects/mdna/')
-import mdna as mdna 
-%load_ext autoreload
-%autoreload 2</div>
+import mdna as mdna </div>
 </div>
 </div>
 </div>
@@ -1869,7 +1853,7 @@ Start rescaling spline based on requested number of base pairs.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-3">
@@ -1884,11 +1868,11 @@ Start rescaling spline based on requested number of base pairs.
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Let's save the original structure</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
-<span class="n">traj</span><span class="o">.</span><span class="n">save_pdb</span><span class="p">(</span><span class="s1">'.pdbs/dna_original.pdb'</span><span class="p">)</span>
+<span class="n">traj</span><span class="o">.</span><span class="n">save_pdb</span><span class="p">(</span><span class="s1">'./pdbs/dna_original.pdb'</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3"># Let's save the original structure
 traj = dna.get_traj()
-traj.save_pdb('.pdbs/dna_original.pdb')</div>
+traj.save_pdb('./pdbs/dna_original.pdb')</div>
 </div>
 </div>
 </div>

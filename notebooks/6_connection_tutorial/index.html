@@ -556,7 +556,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1710,7 +1710,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-1">
@@ -1727,12 +1727,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+<span class="kn">import</span> <span class="nn">mdna</span> 
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'/Users/thor/surfdrive/Projects/mdna/'</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 
 <span class="c1"># Load the structure</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./pdbs/8srp.pdb'</span><span class="p">)</span>
@@ -1745,12 +1741,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 import numpy as np
 import matplotlib.pyplot as plt
 import nglview as nv
+import mdna 
 
-import sys
-sys.path.append('/Users/thor/surfdrive/Projects/mdna/')
-import mdna as mdna 
-%load_ext autoreload
-%autoreload 2
 
 # Load the structure
 traj = md.load('./pdbs/8srp.pdb')
@@ -1769,8 +1761,23 @@ view</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload
+<pre></pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/Users/thor/surfdrive/Projects/mdna/mdna/PMCpy/pmcpy/Evals/PyLk/pylk/writhemap.py:16: UserWarning: Cython version of writhemap (PyLk) not compiled. Defaulting to numba implementation. Consider compiling the cython version.
+  warnings.warn(
+/Users/thor/surfdrive/Projects/mdna/mdna/PMCpy/pmcpy/Evals/PyLk/pylk/eval_link.py:10: UserWarning: Cython version of linkingnumber (PyLk) not compiled. Defaulting to numba implementation. Consider compiling the cython version.
+  warnings.warn(
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>joblib is not installed. Falling back to sequential computation.
 </pre>
 </div>
 </div>

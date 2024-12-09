@@ -550,7 +550,7 @@
         
   
   <span class="md-ellipsis">
-    Visualization Tutorial
+    Quick Visualization Tutorial
   </span>
   
 
@@ -1255,54 +1255,6 @@
   <a href="#mdna.nucleic.compute_linking_number" class="md-nav__link">
     <span class="md-ellipsis">
       compute_linking_number
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="compute_linking_number">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#curvature" class="md-nav__link">
-    <span class="md-ellipsis">
-      Curvature
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mdna.nucleic.compute_curvature" class="md-nav__link">
-    <span class="md-ellipsis">
-      compute_curvature
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="compute_curvature">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#groove-widths" class="md-nav__link">
-    <span class="md-ellipsis">
-      Groove Widths
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mdna.nucleic.compute_groove_width" class="md-nav__link">
-    <span class="md-ellipsis">
-      compute_groove_width
     </span>
   </a>
   
@@ -3068,61 +3020,10 @@ rigid_params = mdna.compute_rigid_parameters(traj, chainids=[0, 1])
             </details>
     </div>
 
-</div><h3 id="curvature">Curvature<a class="headerlink" href="#curvature" title="Permanent link">&para;</a></h3>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="mdna.nucleic.compute_curvature" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mdna</span><span class="o">.</span><span class="n">nucleic</span><span class="o">.</span><span class="n">compute_curvature</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></code>
-
-<a href="#mdna.nucleic.compute_curvature" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-
-      <p>Compute the curvature of the DNA structure</p>
-
-            <details class="quote">
-              <summary>Source code in <code>mdna/nucleic.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-172">172</a></span>
-<span class="normal"><a href="#__codelineno-0-173">173</a></span>
-<span class="normal"><a href="#__codelineno-0-174">174</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="k">def</span> <span class="nf">compute_curvature</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
-</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the curvature of the DNA structure&quot;&quot;&quot;</span>
-</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div><h3 id="groove-widths">Groove Widths<a class="headerlink" href="#groove-widths" title="Permanent link">&para;</a></h3>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="mdna.nucleic.compute_groove_width" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mdna</span><span class="o">.</span><span class="n">nucleic</span><span class="o">.</span><span class="n">compute_groove_width</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></code>
-
-<a href="#mdna.nucleic.compute_groove_width" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-
-      <p>Compute the groove width of the DNA structure</p>
-
-            <details class="quote">
-              <summary>Source code in <code>mdna/nucleic.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-180">180</a></span>
-<span class="normal"><a href="#__codelineno-0-181">181</a></span>
-<span class="normal"><a href="#__codelineno-0-182">182</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="k">def</span> <span class="nf">compute_groove_width</span><span class="p">(</span><span class="n">traj</span><span class="p">,</span> <span class="n">chainids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]):</span>
-</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the groove width of the DNA structure&quot;&quot;&quot;</span>
-</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
+</div><!-- ### Curvature
+:::mdna.nucleic.compute_curvature
+### Groove Widths
+:::mdna.nucleic.compute_groove_width -->
 
 
 

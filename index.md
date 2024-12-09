@@ -2,7 +2,7 @@
 
 
 This site contains the project documentation for the
-`mdna` project that is python toolkit for the structure generation and analysis of DNA simulations.
+`mdna` project that is python toolkit for the structure generation and analysis of DNA molecular dynamics simulations.
 <!-- 
 [Build Your Python Project Documentation With MkDocs](
     https://realpython.com/python-project-documentation-with-mkdocs/). -->
@@ -36,12 +36,9 @@ your use case by looking at the different pages.
 
 ## Citation
 
-Link to the [publication](https://www.overleaf.com/project/65ca818c540b7b9562001187)
+Link to the [publication](https://www.overleaf.com/project/)
 
 
 ## Acknowledgements
 
-I want to thank my house plants for providing me with
-a negligible amount of oxygen each day. Also, I want
-to thank the sun for providing more than half of their
-nourishment free of charge.
+This project is supported by the NWO Klein grant.
