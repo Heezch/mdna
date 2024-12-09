@@ -1,0 +1,18 @@
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Reduced gap between images */
+    justify-content: center;
+  }
+  
+  .image-gallery .glightbox {
+    flex: 1 1 calc(33.333% - 5px); /* Adjusted width calculation to account for the new gap */
+    box-sizing: border-box;
+  }
+  
+  .image-gallery img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    display: block;
+  }
