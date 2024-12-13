@@ -99,6 +99,9 @@ class Methylate:
         self.traj.top.insert_atom(name=name, element=elem.carbon, residue=residue, index=index, rindex=index-offset, serial=None)
         # stack the two xyz arrays together with the new_pos in between
         self.traj.xyz = np.concatenate([xyz1, new_pos[:,None,:], xyz2], axis=1)
+        
+ 
+
 
     def get_traj(self):
         return self.traj
@@ -210,6 +213,7 @@ class Mutate:
         self.verbose = verbose
         self.mutations = mutations
         self.current_resid = 0
+        print('hello')
         self.mutate()
         
     def mutate(self):
@@ -309,6 +313,8 @@ class Mutate:
         for idx in bonds_to_delete:
             traj.top._bonds.pop(idx)
 
+        print("Pre-deletion residue atoms :", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
+         
         # Delete target atoms from the topology
         self._delete_target_atoms(traj, target_indices)
    
@@ -318,9 +324,14 @@ class Mutate:
         # Determine the insertion offset by comparing pre and post deletion atom names and indices
         offset, insert_id = self._find_insertion_offset(pre_atoms, post_atoms)
 
+        print("Pre-insertion residue atoms:", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
+
         # Insert new atoms into the topology at calculated positions
         self._insert_new_atoms(traj, resid, mutant_indices, mutation_traj, offset, insert_id)
 
+        
+        print("Post-insertion residue atoms:", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
+        
         # Update the residue name to reflect the mutation
         traj.top._residues[resid].name = f'D{base}'
 
@@ -339,7 +350,7 @@ class Mutate:
             #print('del',index,traj.top.residue(self.current_resid)._atoms)
             #print('del',index,[at.index for at in traj.top.residue(self.current_resid)._atoms])
 
-    def _find_insertion_offset(self, pre_atoms, post_atoms):
+    def x(self, pre_atoms, post_atoms):
         """
         Determine the correct offset for new atom insertion by comparing
         pre- and post-deletion atom names and indices.
@@ -424,6 +435,9 @@ class Mutate:
 
         # For each residue that needs to be mutated
         for resid,base in mutations.items():
+            if self.verbose:
+                print('Processing residue',resid, 'which corresponds to nucleotide',traj.top._residues[resid],' to mutation',base)
+                
             #print('resid',resid,base)
             #print(traj.top, traj.top._residues)
             self.current_resid = resid
@@ -462,6 +476,13 @@ class Mutate:
 
             # Update the topology
             traj = self.update_mutant_topology(traj, target_indices, mutant_indices, base, resid, mutation_traj)
+
+            print("Original trajectory shape:", traj.xyz.shape)
+            print("xyz1 shape:", xyz1.shape)
+            print("new_xyz shape:", new_xyz.shape)
+            print("xyz2 shape:", xyz2.shape)
+            print("Concatenated shape:", xyz1.shape[1] + new_xyz.shape[1] + xyz2.shape[1])
+
 
             # Concatenate the new xyz with the original xyz
             xyz = np.concatenate([xyz1, new_xyz, xyz2], axis=1)

@@ -49,7 +49,7 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
 
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
-def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None):
+def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None, bp_per_turn : int = 10.5):
     """Generate a DNA structure from a given DNA sequence and control points.
 
     Args:
@@ -59,6 +59,7 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
         closed (bool, optional): Flag indicating if the DNA structure is closed. If True, the DNA structure will be closed. If False, the DNA structure will be open. This argument is deprecated and will be removed in a future version. Please use the 'circular' argument instead. (default: False)
         n_bp (int, optional): Number of base pairs to scale the shape with. If not provided, the number of base pairs will be determined based on the length of the control points or the sequence. (default: None)
         dLk (int, optional): Change in twist in terms of Linking number of the DNA structure. If not provided, a neutral twist based on bp_per_turn = 10.5 will be used. (default: None)
+        bp_per_turn (int, optional): Number of base pairs per turn of the DNA structure. (default: 10.5)
 
     Returns:
         Nucleic (object): DNA structure object.
@@ -86,9 +87,9 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
 
     if not skip:
         sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
-        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
+        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk, bp_per_turn=bp_per_turn)
     else:
-        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk)
+        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk, bp_per_turn=bp_per_turn)
         sequence, n_bp = _check_input(sequence=sequence, n_bp=spline.n_bp)
      
 

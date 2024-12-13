@@ -12,20 +12,6 @@ project documentation using Python, MkDocs,
 mkdocstrings, and the Material for MkDocs theme. -->
 
 
-## Example Gallery
-Three examples that highlight the building of biomolecular assemblies with `mdna`. Here we showcase the extension of DNA structures, using proteins as scaffold to generate DNA structure, and lastly to connect two DNA strands to form a DNA loop.
-<div class="image-gallery">
-  <a href="assets/gallery/image1.png" class="glightbox">
-    <img src="assets/gallery/image1.png" alt="Image 1" />
-  </a>
-  <a href="assets/gallery/image2.png" class="glightbox">
-    <img src="assets/gallery/image2.png" alt="Image 2" />
-  </a>
-  <a href="assets/gallery/image3.png" class="glightbox">
-    <img src="assets/gallery/image3.png" alt="Image 3" />
-  </a>
-</div>
-
 ## Table Of Contents
 
 <!-- The documentation follows the best practice for
@@ -42,6 +28,22 @@ and consists of four separate parts: -->
 
 Quickly find what you're looking for depending on
 your use case by looking at the different pages.
+
+## Example Gallery
+Three examples that highlight the building of biomolecular assemblies with `mdna`. Here we showcase the extension of DNA structures, using proteins as scaffold to generate DNA structure, and lastly to connect two DNA strands to form a DNA loop. Molecular representations are visualized with Mol* Viewer. 
+<div class="image-gallery">
+  <a href="assets/gallery/image1.png" class="glightbox">
+    <img src="assets/gallery/image1.png" alt="Image 1" />
+  </a>
+  <a href="assets/gallery/image2.png" class="glightbox">
+    <img src="assets/gallery/image2.png" alt="Image 2" />
+  </a>
+  <a href="assets/gallery/image3.png" class="glightbox">
+    <img src="assets/gallery/image3.png" alt="Image 3" />
+  </a>
+</div>
+
+
 
 <!-- ## Project Overview
 

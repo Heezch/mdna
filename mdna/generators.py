@@ -182,7 +182,6 @@ class StructureGenerator:
     """
 
     def __init__(self,spline=None,sequence=None, circular=False,frames=None):
-
         self.circular = circular
         self.sequence = sequence # Should deal with the fact if the sequence length does not match the spline length
         self.spline = spline
@@ -202,7 +201,7 @@ class StructureGenerator:
 
     def initialize(self):
         """Initialize the DNA trajectory and topology."""
-    
+
         # Generate DNA sequence
         if self.sequence is None:
             # Fraction of AT content
@@ -213,25 +212,28 @@ class StructureGenerator:
         self.dna = SequenceGenerator(sequence=self.sequence, circular=self.circular)
         self.traj = self.dna.traj
 
+
     def apply_spline(self):
         """Transforms spline frames to coordinates in mdtraj trajectory."""
-        
-        # Generate mean reference frames based on dna trajectory (probably generates errors due to overlapping dna bases when computing the base pair parameters, so need to turn that off)
-        _ = NucleicFrames(self.traj)
 
         # Get base pair topology of strands
         sense = self.traj.top._chains[0]._residues
         anti = self.traj.top._chains[1]._residues[::-1]
         basepairs = np.array(list(zip(sense, anti)))
+            
+        # Set the dummy coordinates
+        initial_frame = np.array([[0,0,0],[1,0,0],[0,1,0],[0,0,1]])
+        
+        # Create a list of initial frames for each base pair
+        basepair_frames = np.array([initial_frame for _ in range(len(basepairs))])  # Shape: (n_basepairs, 4, 3)
 
-        # Set the new coordinates
-        current_frames =  _.mean_reference_frames # has shape (n_basepairs, 1, 4, 3) base pairs, time, frames
+        # Add an empty axis to match expected dimensions (n_basepairs, 1, 4, 3)
+        current_frames = basepair_frames[:, np.newaxis, :, :]
         new_frames = self.frames #spline.frames # has shape (n_basepairs, 4, 3) base pairs, frames
 
         # Loop over base pairs and apply the transformation to the base pair coordinates
         for idx,(old,new) in enumerate(zip(current_frames, new_frames)):
             self.update_basepair_coordinates(old, new, basepairs, idx)
-        #return dna
             
     def update_basepair_coordinates(self, old, new, basepairs, idx):
         """Updates the coordinates of a base pair in the DNA trajectory."""
