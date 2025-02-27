@@ -350,7 +350,7 @@ class Mutate:
             #print('del',index,traj.top.residue(self.current_resid)._atoms)
             #print('del',index,[at.index for at in traj.top.residue(self.current_resid)._atoms])
 
-    def x(self, pre_atoms, post_atoms):
+    def _find_insertion_offset(self, pre_atoms, post_atoms):
         """
         Determine the correct offset for new atom insertion by comparing
         pre- and post-deletion atom names and indices.
