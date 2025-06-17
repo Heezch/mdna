@@ -18,6 +18,7 @@ NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 
                     'Z': ['C1', 'C2', 'C4', 'C6', 'C7', 'N2', 'N3', 'N5', 'O4'],
                     'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
 
+
 BP_MAP = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
         
 DEF_EULER_CLOSE_TO_ONE = 0.9999999
@@ -549,7 +550,7 @@ def get_base_indices(traj):
 
 def get_base_pair_letters(traj):
     """Letter code of base pairs as list, e.g., ['A-T', ...]"""
-    bases = ['DA','DT','DG','DC']  
+    bases = ['DA','DT','DG','DC','DU','A ','C ','G ','T ','U ']  # ideally we add an indicator for methylated bases
     sequence = [b[1] for res in traj.topology._residues for b in bases if b in str(res)]
     a = sequence[:int(len(sequence)/2)]
     b = sequence[int(len(sequence)/2):]
@@ -557,7 +558,7 @@ def get_base_pair_letters(traj):
 
 def get_base_pair_dict(traj):
     """Letter code of base pairs as list, e.g., ['A-T', ...]"""
-    bases = ['DA','DT','DG','DC']  
+    bases = ['DA','DT','DG','DC','DU']  
     sequence = [res for res in traj.topology._residues for b in bases if b in str(res)]
     a = sequence[:int(len(sequence)/2)]
     b = sequence[int(len(sequence)/2):]   
@@ -586,7 +587,7 @@ def get_base_type(traj):
         if all(atom in atoms for atom in base_atoms):
             return base
     # If no base matches, raise an error
-    raise ValueError("Cannot determine the base type from the PDB file.")
+    raise ValueError("Cannot determine the base type from the PDB file.", traj.top._residues)
 
 
 def get_sequence_letters(traj, leading_chain=0):
