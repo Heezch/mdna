@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mdna"
-version = "0.0.1"
+version = "0.0.2"
 description = "Software module for DNA structure analysis and generation"
 readme = "README.md"
 authors = [{ name = "Thor van Heesch", email = "t.vanheesch@uva.nl" }]
