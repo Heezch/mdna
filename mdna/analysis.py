@@ -12,7 +12,6 @@ from .utils import get_sequence_letters, get_base_pair_letters
 from scipy.interpolate import CubicSpline
 import mdtraj as md
 import matplotlib as mpl
-import pandas as pd
 
 def _compute_distance(xyz, pairs):
     "Distance between pairs of points in each frame"
@@ -543,19 +542,19 @@ class ContactCount:
         ax.set_title(f'Contact map of frame {frame}')
         plt.colorbar(im,ax=ax,label="$C_{Protein}$")
         
-    def plot_contact_distribution(self,ax=None,c='Red'):
-        fig,ax = self.check_axis(ax)
-        total_contacts = self.get_total_contacts()
-        df = pd.DataFrame(total_contacts)
+    # def plot_contact_distribution(self,ax=None,c='Red'):
+    #     fig,ax = self.check_axis(ax)
+    #     total_contacts = self.get_total_contacts()
+    #     df = pd.DataFrame(total_contacts)
 
-        data = pd.DataFrame({
-                "idx": np.tile(df.columns, len(df.index)),
-                "$C_{Protein-DNA}$": df.values.ravel()})
+    #     data = pd.DataFrame({
+    #             "idx": np.tile(df.columns, len(df.index)),
+    #             "$C_{Protein-DNA}$": df.values.ravel()})
 
-        sns.kdeplot(
-           data=data, y="$C_{Protein-DNA}$", legend = False, color=c,#hue="idx",
-           fill=True, common_norm=False, palette="Reds",
-           alpha=.5, linewidth=1, ax=ax)
+    #     sns.kdeplot(
+    #        data=data, y="$C_{Protein-DNA}$", legend = False, color=c,#hue="idx",
+    #        fill=True, common_norm=False, palette="Reds",
+    #        alpha=.5, linewidth=1, ax=ax)
         
     def ns_to_steps(self,ns=1):
         # assume a timestep of 2 fs
