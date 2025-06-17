@@ -21,7 +21,7 @@ keywords = ["Molecular Dynamics",
       "Structuer Generation Tool",
       "Molecular Toolkit",]
  
-dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython"]
+dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba"]
  
 requires-python = ">=3.10"
 
