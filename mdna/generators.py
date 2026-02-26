@@ -274,7 +274,10 @@ class StructureGenerator:
         indices = [at.index for at in basepairs[idx][0].atoms] + [at.index for at in basepairs[idx][1].atoms]
         return self.traj.xyz[:,indices,:], indices
 
-    def get_traj(self):
+    def get_traj(self, remove_terminal_phosphates: bool = False):
+        if self.circular or not remove_terminal_phosphates:
+            return self.traj
+
         phosphor_termini = self.traj.top.select(f'name P OP1 OP2 and resid 0 {self.traj.top.chain(0).n_residues}')
         all_atoms = self.traj.top.select('all')
         return self.traj.atom_slice([at for at in all_atoms if at not in phosphor_termini])

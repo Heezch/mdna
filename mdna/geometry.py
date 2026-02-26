@@ -5,6 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 #import quaternionic as qt
 from .utils import RigidBody, get_data_file_path, get_sequence_letters
 from numba import jit 
+from scipy.spatial.transform import Rotation as R
 
 NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
                     'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
@@ -214,15 +215,20 @@ class NucleicFrames:
         ax[_].set_title(names[_])
     """
 
-    def __init__(self, traj, chainids=[0,1]):
+    def __init__(self, traj, chainids=[0,1], fit_reference=False):
         """Initialize the NucleicFrames object.
 
         Args:
             traj (object): MDtraj trajectory object.
             chainids (list, optional): Chainids of sense- and anti-sense strands. Defaults to [0,1].
+            fit_reference (bool, optional): Fit each base to canonical reference bases before frame extraction.
+                Defaults to False.
         """
         self.traj = traj
         self.top = traj.topology
+        self.fit_reference = fit_reference
+        self.reference_base_map = {'U': 'T'}
+        self.reference_fit_data = self._prepare_reference_fit_data() if self.fit_reference else {}
         self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
         self.res_B = self.get_residues(chain_index=chainids[1], reverse=True)
         self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
@@ -239,15 +245,75 @@ class NucleicFrames:
 
     def load_reference_bases(self):
         """Load reference bases from local files."""
-        # Not used at the moment??
         bases = ['C', 'G', 'T', 'A']
-        #return {f'D{base}': md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in bases}
-        return {f'D{base}': md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
+        return {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
+
+    def _prepare_reference_fit_data(self):
+        """Prepare canonical base atom coordinates and frames for optional fitting."""
+        reference_fit_data = {}
+        for base, base_traj in self.load_reference_bases().items():
+            ref_base = ReferenceBase(base_traj)
+            atom_coords = {
+                atom.name: base_traj.xyz[0, atom.index, :]
+                for atom in base_traj.topology.atoms
+                if atom.element.symbol != 'H'
+            }
+            reference_fit_data[base] = {
+                'atom_coords': atom_coords,
+                'frame': np.array([ref_base.b_R[0], ref_base.b_L[0], ref_base.b_D[0], ref_base.b_N[0]])
+            }
+        return reference_fit_data
+
+    def _get_fitted_base_vectors(self, res, ref_base, default_vectors):
+        """Fit residue atoms to canonical reference and transform canonical frame."""
+        reference_key = self.reference_base_map.get(ref_base.base_type, ref_base.base_type)
+        reference_data = self.reference_fit_data.get(reference_key)
+        if reference_data is None:
+            return default_vectors
+
+        residue_atom_indices = {
+            atom.name: atom.index
+            for atom in res.topology.atoms
+            if atom.element.symbol != 'H'
+        }
+
+        candidate_atoms = NUCLEOBASE_DICT.get(ref_base.base_type, [])
+        common_atoms = [
+            atom_name for atom_name in candidate_atoms
+            if atom_name in residue_atom_indices and atom_name in reference_data['atom_coords']
+        ]
+        if len(common_atoms) < 3:
+            return default_vectors
+
+        reference_coords = np.array([reference_data['atom_coords'][atom_name] for atom_name in common_atoms])
+        residue_coords = res.xyz[:, [residue_atom_indices[atom_name] for atom_name in common_atoms], :]
+
+        reference_frame = reference_data['frame']
+        reference_center = reference_coords.mean(axis=0)
+        reference_centered = reference_coords - reference_center
+
+        fitted_vectors = np.empty_like(default_vectors)
+        for frame_index in range(residue_coords.shape[0]):
+            frame_coords = residue_coords[frame_index]
+            frame_center = frame_coords.mean(axis=0)
+            frame_centered = frame_coords - frame_center
+            try:
+                rotation, _ = R.align_vectors(frame_centered, reference_centered)
+            except ValueError:
+                return default_vectors
+
+            fitted_vectors[frame_index, 0] = rotation.apply(reference_frame[0] - reference_center) + frame_center
+            fitted_vectors[frame_index, 1:] = rotation.apply(reference_frame[1:])
+
+        return fitted_vectors
 
     def get_base_vectors(self, res):
         """Compute base vectors from reference base."""
         ref_base = ReferenceBase(res)
-        return np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
+        base_vectors = np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
+        if not self.fit_reference:
+            return base_vectors
+        return self._get_fitted_base_vectors(res, ref_base, base_vectors)
     
     def get_base_reference_frames(self):
         """Get reference frames for each residue."""
