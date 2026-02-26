@@ -32,8 +32,8 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
         Nucleic (object): DNA structure object.
 
     Notes:
-        - The `traj` argument is prioritized over frames and sequence.
-        - If the `filename_or_filenames` argument is provided, the other arguments are ignored, except for the `top` and `stride` arguments and `chainids`.
+        - `filename` is resolved first to an MDtraj trajectory (optionally using `top` and `stride`).
+        - The resulting `traj` then takes precedence over `frames` and `sequence` when constructing `Nucleic`.
 
     Example:
         Load a DNA structure from a trajectory
@@ -72,6 +72,9 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
         - `control_points` + `sequence`: scales spline to `len(sequence)`.
         - `control_points` + `n_bp`: scales spline to `n_bp` and generates a random sequence.
         - `sequence` + `n_bp`: both are accepted only when lengths match.
+
+    Additional behavior:
+        - For `control_points`-only input (`sequence=None`, `n_bp=None`), `n_bp` is inferred from the spline frame count (shape-dependent), not from the default dodecamer.
 
     Validation rules:
         - `n_bp` must be positive when provided.
@@ -325,16 +328,17 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
         return pdb
     else:
         if time_unit == 'picoseconds':
-            time_unit = time * unit.picoseconds
+            simulation_time = time * unit.picoseconds
         elif time_unit == 'nanoseconds':
-            time_unit = time * unit.nanoseconds
+            simulation_time = time * unit.nanoseconds
+        else:
+            raise ValueError("time_unit should be 'picoseconds' or 'nanoseconds'")
 
-        time = time * time_unit
         time_step = 2 * unit.femtoseconds
-        temperature = 310 *unit.kelvin
-        steps = int(time/time_step)
+        temperature = temperature * unit.kelvin
+        steps = int(simulation_time / time_step)
 
-        print(f'Initialize DNA openMM simulation at {temperature._value} K for', time, 'time units')
+        print(f'Initialize DNA openMM simulation at {temperature._value} K for', simulation_time, 'time units')
         topology = pdb.topology.to_openmm()
         modeller = app.Modeller(topology, pdb.xyz[0])
 
@@ -467,8 +471,8 @@ class Nucleic:
     
     def get_frames(self):
         """Get the reference frames of the DNA structure belonging to the base steps:
-        Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
-        where n_frames is the number of frames, n_bp is the number of base pairs, 
+        Returns: array of reference frames of shape (n_bp, n_frames, 4, 3)
+        where n_bp is the number of base pairs, n_frames is the number of frames, 
         and 4 corresponds to the origin and the 3 vectors of the reference frame
         
         Returns:
@@ -541,7 +545,7 @@ class Nucleic:
         Returns:
             dict: A dictionary containing the base reference frames of the DNA structure. 
               The keys are residue topologies of the MDTraj object (traj.top.residues) and the values are the reference frames in shape (n_frames, 4, 3), 
-              where the rows represent the origin, b_D, b_L, and b_N vectors."""
+                            where the rows represent the origin, b_L, b_D, and b_N vectors."""
 
         if self.rigid is None:
             self.get_rigid_object()
@@ -719,6 +723,7 @@ class Nucleic:
                 - Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana] (DOI: 10.1126/science.aat0971)
                 - Fluorescent: 2-aminopurine 2AP (E), triC (D) (DOI: 10.1002/anie.201001312), tricyclic cytosine base analogue (1tuq)
                 - Hydrophobic pairs: d5SICS (L), dNaM (M)
+            - Mutation updates coordinates/topology and clears cached frame/rigid/minimization state.
              
         Example:
             Create a DNA object 
@@ -739,6 +744,9 @@ class Nucleic:
         self.traj = mutant.get_traj()
         # Update sequence
         self.sequence = ''.join(get_sequence_letters(self.traj, leading_chain=self.chainids[0]))
+        self.frames = None
+        self.rigid = None
+        self.minimizer = None
 
 
     def flip(self, fliplist: list = [], deg: int = 180, frame: int = -1):
@@ -756,6 +764,7 @@ class Nucleic:
 
             Notes:
                 - Rotating the nucleobase by 180 degrees corresponds to the Hoogsteen base pair configuration.
+                - Flipping updates coordinates and clears cached frame/rigid/minimization state.
 
             Example:
                 Flip DNA
@@ -773,6 +782,9 @@ class Nucleic:
 
             flipper = Hoogsteen(self.traj, fliplist=fliplist, deg=deg, verbose=True)
             self.traj = flipper.get_traj()
+            self.frames = None
+            self.rigid = None
+            self.minimizer = None
 
     def methylate(self, methylations: list = [], CpG: bool = False, leading_strand: int = 0, frame: int = -1):
             """Methylate the nucleobases of the DNA structure.
@@ -791,6 +803,7 @@ class Nucleic:
 
             Notes:
                 Using the `CpG` flag will methylate the CpG sites in the DNA structure. This flag supercedes the methylations list.
+                Cached frame/rigid/minimization state is cleared after methylation.
 
             Example:
                 Methylate DNA
@@ -806,6 +819,9 @@ class Nucleic:
 
             methylator = Methylate(self.traj, methylations=methylations, CpG=CpG, leading_strand=leading_strand)
             self.traj = methylator.get_traj()
+            self.frames = None
+            self.rigid = None
+            self.minimizer = None
     
     def extend(self, n_bp: int = None, sequence: Union[str|List] = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True, plot : bool = False, exvol_rad : float = 2.0, temperature : int = 300):  
         """Extend the DNA structure in the specified direction.
@@ -886,8 +902,8 @@ class Nucleic:
         if self.frames is None:
                 self._traj_to_frames()
         frames = self.frames[:,frame,:,:]
-        positions = frames[:,0]
-        triads = frames[:,1:].transpose(0,2,1) # Flip row vectors to columns
+        positions = np.ascontiguousarray(frames[:,0])
+        triads = np.ascontiguousarray(frames[:,1:].transpose(0,2,1)) # Flip row vectors to columns
 
         writhe = pylk.writhe(positions)
         lk = pylk.triads2link(positions, triads)
