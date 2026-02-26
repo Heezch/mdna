@@ -7,3 +7,7 @@
 **/*.egg-info
 **/dist/
 **/.venv/
+examples/data/filament_dataset/
+examples/data/filament_dataset*.zip
+examples/data/filament_dataset*.tar
+examples/data/filament_dataset*.tar.gz

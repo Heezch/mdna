@@ -37,3 +37,11 @@ py-modules = ["__init__"] # dash, not underscore
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build]
+exclude = [
+    "examples/data/filament_dataset/**",
+    "examples/data/filament_dataset*.zip",
+    "examples/data/filament_dataset*.tar",
+    "examples/data/filament_dataset*.tar.gz",
+]

@@ -34,6 +34,30 @@ We welcome contributions from the community! To contribute:
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
 
+### Optional full filament dataset (tutorial)
+
+The filament tutorial runs in minimal mode by default using bundled `filament_minimal` data.
+If you want full-trajectory mode, download the optional dataset:
+
+```bash
+cd examples
+export MDNA_FILAMENT_DATASET_URL='https://doi.org/10.6084/m9.figshare.31423193'
+python ./scripts/fetch_filament_dataset.py --output-root ./data
+```
+
+Optional integrity check (only if you know the real archive hash):
+
+```bash
+cd examples
+export MDNA_FILAMENT_DATASET_URL='https://doi.org/10.6084/m9.figshare.31423193'
+export MDNA_FILAMENT_DATASET_SHA256='<REAL_SHA256>'
+python ./scripts/fetch_filament_dataset.py --output-root ./data --force
+```
+
+If you do not have a published SHA256 yet, leave `MDNA_FILAMENT_DATASET_SHA256` unset and run the download command without checksum verification.
+
+What happens behind the scenes: the DOI points to a Figshare item page, and the fetch script automatically resolves the direct file download URL before downloading and unpacking the archive into `examples/data/filament_dataset`.
+
 
 ## License
 
