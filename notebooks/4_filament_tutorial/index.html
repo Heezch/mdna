@@ -20,7 +20,7 @@
     
     
       
-        <title>DNA Along a Protein Filament - MDNA</title>
+        <title>Constructing DNA Along a Protein Filament - MDNA</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dna-along-a-protein-filament" class="md-skip">
+        <a href="#constructing-dna-along-a-protein-filament" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DNA Along a Protein Filament
+              Constructing DNA Along a Protein Filament
             
           </span>
         </div>
@@ -546,7 +546,7 @@
         
   
   <span class="md-ellipsis">
-    Structure Generation Tutorial
+    DNA Structure Generation Tutorial
   </span>
   
 
@@ -567,7 +567,7 @@
         
   
   <span class="md-ellipsis">
-    Quick Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -684,7 +684,7 @@
           
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -695,7 +695,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -754,6 +754,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#optional-full-dataset-download-figshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional full dataset download (Figshare)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#construct-h-ns-filament" class="md-nav__link">
     <span class="md-ellipsis">
       Construct H-NS filament
@@ -805,7 +814,7 @@
         
   
   <span class="md-ellipsis">
-    Adding Linker DNA
+    Extending DNA Structures and Integration with Protein Data
   </span>
   
 
@@ -826,7 +835,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands
+    Connecting Two DNA Strands and Integration with Protein Data
   </span>
   
 
@@ -847,7 +856,7 @@
         
   
   <span class="md-ellipsis">
-    The Sequence Library
+    The sequence library
   </span>
   
 
@@ -1246,6 +1255,15 @@
   <a href="#load-md-data" class="md-nav__link">
     <span class="md-ellipsis">
       Load MD data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-full-dataset-download-figshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional full dataset download (Figshare)
     </span>
   </a>
   
@@ -1742,7 +1760,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="dna-along-a-protein-filament">DNA Along a Protein Filament<a class="anchor-link" href="#dna-along-a-protein-filament">¶</a></h1><p>This tutorial demonstrates how to construct DNA structures along a protein filament, specifically focusing on the lateral H-NS filament assembly process. This technique involves modeling interactions between DNA and protein structures, providing a method to visualize complex biological assemblies.</p>
+<h1 id="constructing-dna-along-a-protein-filament">Constructing DNA Along a Protein Filament<a class="anchor-link" href="#constructing-dna-along-a-protein-filament">¶</a></h1><p>This tutorial demonstrates how to construct DNA structures along a protein filament, specifically focusing on the lateral H-NS filament assembly process. This technique involves modeling interactions between DNA and protein structures, providing a method to visualize complex biological assemblies.</p>
 <h2 id="scientific-context">Scientific Context:<a class="anchor-link" href="#scientific-context">¶</a></h2><ul>
 <li>The process starts with a H-NS decamer homodimer, which serves as the initial protein scaffold.</li>
 <li>Four DNA Binding Domains (DBD) are fitted with 12 bp DNA strands using the H-NS DNA complex structures from previous studies (PDB: 1HNS).</li>
@@ -1761,13 +1779,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a7342a41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a7342a41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-1">
@@ -1780,33 +1798,45 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load necessary libraries and retrieve the trajectory object</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">import</span> <span class="nn">mdna</span> <span class="k">as</span> <span class="nn">mdna</span> 
+<span class="kn">import</span> <span class="nn">mdna</span>
 
-<span class="c1"># Import extra libraries</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'./notebooks/data'</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'./modules/'</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">filament</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
 <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1">import mdtraj as md
+<div class="clipboard-copy-txt" id="cell-1"># Load necessary libraries and retrieve the trajectory object
+import mdtraj as md
 import numpy as np
 import nglview as nv
 import matplotlib.pyplot as plt
-
+import sys
 from tqdm import tqdm
-import mdna as mdna 
+import mdna
 
-# Import extra libraries
-sys.path.append('./notebooks/data')
+sys.path.append('./modules/')
 from filament import *
 %load_ext autoreload
 %autoreload 2</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre></pre>
 </div>
 </div>
 </div>
@@ -1823,13 +1853,35 @@ from filament import *
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b94131ee">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="optional-full-dataset-download-figshare">Optional full dataset download (Figshare)<a class="anchor-link" href="#optional-full-dataset-download-figshare">¶</a></h3><p><code>filament_minimal</code> is bundled and used by default in this tutorial.
+<code>filament_dataset</code> is optional and only needed for full-trajectory mode.</p>
+<p>If you do not have the full dataset yet, run:</p>
+<div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MDNA_FILAMENT_DATASET_URL</span><span class="o">=</span><span class="s1">'https://doi.org/10.6084/m9.figshare.31423193'</span>
+python<span class="w"> </span>./scripts/fetch_filament_dataset.py<span class="w"> </span>--output-root<span class="w"> </span>./data
+</pre></div>
+<p>The fetch script accepts DOI/landing-page URLs and resolves the direct Figshare download automatically.</p>
+<p>Optional integrity check (only if you know the real archive hash):</p>
+<div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MDNA_FILAMENT_DATASET_SHA256</span><span class="o">=</span><span class="s1">'&lt;REAL_SHA256&gt;'</span>
+python<span class="w"> </span>./scripts/fetch_filament_dataset.py<span class="w"> </span>--output-root<span class="w"> </span>./data<span class="w"> </span>--force
+</pre></div>
+<p>After download, full data will be available at <code>./data/filament_dataset/</code>.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=298fb3fc">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c9c90979">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy for="cell-2">
@@ -1842,63 +1894,186 @@ from filament import *
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load H-NS s1s1 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s1s1_dimers/'</span>
-<span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-<span class="n">s1s1</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Load MD data (`filament_minimal` is bundled; set to False to use full trajectories)</span>
+<span class="n">minimal_mode</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">minimal_dir</span> <span class="o">=</span> <span class="s1">'./data/filament_minimal/'</span>
 
-<span class="c1"># Load H-NS s2s2 dimers</span>
-<span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'/path/to/s2s2/'</span>
-<span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-<span class="n">s2s2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">minimal_mode</span><span class="p">:</span>
+    <span class="c1"># Load H-NS s1s1 dimers</span>
+    <span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'./data/filament_dataset/0_s1s1/'</span>
+    <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="n">s1s1</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
-<span class="c1"># Load H-NS dbd to DNA complex</span>
-<span class="n">loc_dbd</span>  <span class="o">=</span> <span class="s1">'/path/to/dbd_h-ns_dna/'</span>
-<span class="n">traj</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
-<span class="n">dna_complex</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+    <span class="c1"># Load H-NS s2s2 dimers</span>
+    <span class="n">loc_dimers</span> <span class="o">=</span> <span class="s1">'./data/filament_dataset/1_s2s2/'</span>
+    <span class="n">short_trajs</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">loc_dimers</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="n">s2s2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">short_trajs</span><span class="p">)</span>
 
-<span class="c1"># Define segments of the protein</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Overlap of residues between segments</span>
-
-<span class="n">segments</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'s1'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">41</span><span class="o">+</span><span class="n">n</span><span class="p">),</span>
-            <span class="s1">'h3'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">41</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="mi">53</span><span class="o">+</span><span class="n">n</span><span class="p">),</span>
-            <span class="s1">'s2'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">53</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="mi">82</span><span class="o">+</span><span class="n">n</span><span class="p">),</span>
-            <span class="s1">'l2'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">82</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="mi">95</span><span class="o">+</span><span class="n">n</span><span class="p">),</span>
-            <span class="s1">'dbd'</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">95</span><span class="o">-</span><span class="n">n</span><span class="p">,</span><span class="mi">137</span><span class="p">)}</span>
-
-<span class="c1"># Site map contains a dictionary with the (sub)trajectories of different sites of the protein catergorized from the s1s1 and s2s2 dimers</span>
-<span class="n">mapper</span> <span class="o">=</span> <span class="n">SiteMapper</span><span class="p">(</span><span class="n">s1s1</span><span class="p">,</span> <span class="n">s2s2</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">site_map</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">get_site_map</span><span class="p">()</span>
-<span class="n">site_map</span><span class="p">[</span><span class="s1">'complex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dna_complex</span>
+    <span class="c1"># Load H-NS dbd to DNA complex</span>
+    <span class="n">loc_dbd</span> <span class="o">=</span> <span class="s1">'./data/filament_dataset/FI/'</span>
+    <span class="n">traj</span> <span class="o">=</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.xtc'</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">loc_dbd</span><span class="o">+</span><span class="sa">f</span><span class="s1">'dry_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.pdb'</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="n">dna_complex</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-2"># Load H-NS s1s1 dimers
-loc_dimers = '/path/to/s1s1_dimers/'
-short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
-s1s1 = md.join(short_trajs)
+<div class="clipboard-copy-txt" id="cell-2"># Load MD data (`filament_minimal` is bundled; set to False to use full trajectories)
+minimal_mode = False
+minimal_dir = './data/filament_minimal/'
 
-# Load H-NS s2s2 dimers
-loc_dimers = '/path/to/s2s2/'
-short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc',top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
-s2s2 = md.join(short_trajs)
+if not minimal_mode:
+    # Load H-NS s1s1 dimers
+    loc_dimers = './data/filament_dataset/0_s1s1/'
+    short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc', top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
+    s1s1 = md.join(short_trajs)
 
-# Load H-NS dbd to DNA complex
-loc_dbd  = '/path/to/dbd_h-ns_dna/'
-traj = [md.load(loc_dbd+f'dry_{i}.xtc',top=loc_dbd+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
-dna_complex = md.join(traj)
+    # Load H-NS s2s2 dimers
+    loc_dimers = './data/filament_dataset/1_s2s2/'
+    short_trajs = [md.load(loc_dimers+f'dry_{i}.xtc', top=loc_dimers+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
+    s2s2 = md.join(short_trajs)
 
-# Define segments of the protein
-n = 2 # Overlap of residues between segments
+    # Load H-NS dbd to DNA complex
+    loc_dbd = './data/filament_dataset/FI/'
+    traj = [md.load(loc_dbd+f'dry_{i}.xtc', top=loc_dbd+f'dry_{i}.pdb').remove_solvent() for i in range(0,2)]
+    dna_complex = md.join(traj)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bf325678">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-3">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-segments = {'s1':np.arange(0,41+n),
-            'h3':np.arange(41-n,53+n),
-            's2':np.arange(53-n,82+n),
-            'l2':np.arange(82-n,95+n),
-            'dbd':np.arange(95-n,137)}
+<span class="k">if</span> <span class="ow">not</span> <span class="n">minimal_mode</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'./data/filament_dataset'</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Full dataset not found.'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Minimal mode is bundled and available at ./data/filament_minimal/.'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Optional download for full mode:'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  export MDNA_FILAMENT_DATASET_URL='https://doi.org/10.6084/m9.figshare.31423193'"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'  python ./scripts/fetch_filament_dataset.py --output-root ./data'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Optional checksum verification (real hash only):'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  export MDNA_FILAMENT_DATASET_SHA256='&lt;REAL_SHA256&gt;'"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-3">from pathlib import Path
 
-# Site map contains a dictionary with the (sub)trajectories of different sites of the protein catergorized from the s1s1 and s2s2 dimers
-mapper = SiteMapper(s1s1, s2s2, segments=segments, k=100)
-site_map = mapper.get_site_map()
-site_map['complex'] = dna_complex</div>
+if not minimal_mode and not Path('./data/filament_dataset').exists():
+    print('Full dataset not found.')
+    print('Minimal mode is bundled and available at ./data/filament_minimal/.')
+    print('Optional download for full mode:')
+    print("  export MDNA_FILAMENT_DATASET_URL='https://doi.org/10.6084/m9.figshare.31423193'")
+    print('  python ./scripts/fetch_filament_dataset.py --output-root ./data')
+    print('Optional checksum verification (real hash only):')
+    print("  export MDNA_FILAMENT_DATASET_SHA256='<real_sha256>'")</real_sha256></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4b4aace0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">minimal_mode</span><span class="p">:</span>
+    <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">dna_complex</span><span class="p">)</span>
+    <span class="n">view</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Minimal mode enabled: skipping full dataset preview cell.'</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4">if not minimal_mode:
+    view = nv.show_mdtraj(dna_complex)
+    view
+else:
+    print('Minimal mode enabled: skipping full dataset preview cell.')</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=298fb3fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Define segments of the protein</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Overlap of residues between segments</span>
+
+<span class="n">segments</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'s1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">41</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span>
+    <span class="s1">'h3'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">41</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="mi">53</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span>
+    <span class="s1">'s2'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">53</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="mi">82</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span>
+    <span class="s1">'l2'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">82</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="mi">95</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span>
+    <span class="s1">'dbd'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">95</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="mi">137</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="n">minimal_mode</span><span class="p">:</span>
+    <span class="n">site_map</span> <span class="o">=</span> <span class="n">Assembler</span><span class="o">.</span><span class="n">load_minimal_site_map</span><span class="p">(</span><span class="n">minimal_dir</span><span class="o">=</span><span class="n">minimal_dir</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span> <span class="n">n_overlap</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Site map contains a dictionary with the (sub)trajectories of different sites</span>
+    <span class="n">mapper</span> <span class="o">=</span> <span class="n">SiteMapper</span><span class="p">(</span><span class="n">s1s1</span><span class="p">,</span> <span class="n">s2s2</span><span class="p">,</span> <span class="n">segments</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">site_map</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">get_site_map</span><span class="p">()</span>
+    <span class="n">site_map</span><span class="p">[</span><span class="s1">'complex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dna_complex</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5"># Define segments of the protein
+n = 2  # Overlap of residues between segments
+
+segments = {
+    's1': np.arange(0, 41 + n),
+    'h3': np.arange(41 - n, 53 + n),
+    's2': np.arange(53 - n, 82 + n),
+    'l2': np.arange(82 - n, 95 + n),
+    'dbd': np.arange(95 - n, 137),
+}
+
+if minimal_mode:
+    site_map = Assembler.load_minimal_site_map(minimal_dir=minimal_dir, segments=segments, n_overlap=n)
+else:
+    # Site map contains a dictionary with the (sub)trajectories of different sites
+    mapper = SiteMapper(s1s1, s2s2, segments=segments, k=100)
+    site_map = mapper.get_site_map()
+    site_map['complex'] = dna_complex</div>
 </div>
 </div>
 </div>
@@ -1921,10 +2096,10 @@ site_map['complex'] = dna_complex</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-3">
+<clipboard-copy for="cell-6">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -1934,18 +2109,19 @@ site_map['complex'] = dna_complex</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1">#  Paramers to make filament</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Parameters to make filament</span>
 <span class="n">n_dimers</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">chains_to_dna</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">chains_to_dna</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
 <span class="n">save</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Initialize class to assemble the filament</span>
 <span class="n">assembler</span> <span class="o">=</span> <span class="n">Assembler</span><span class="p">(</span><span class="n">site_map</span><span class="o">=</span><span class="n">site_map</span><span class="p">)</span>
+<span class="n">segment_mode</span> <span class="o">=</span> <span class="s1">'minimal'</span> <span class="k">if</span> <span class="n">minimal_mode</span> <span class="k">else</span> <span class="s1">'fixed'</span> <span class="c1"># Other options is 'random' if full trajectories are available</span>
 
 <span class="c1"># Add dimers</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Assembling </span><span class="si">{</span><span class="n">n_dimers</span><span class="si">}</span><span class="s1"> H-NS dimers:'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_dimers</span><span class="p">)):</span>
-    <span class="n">assembler</span><span class="o">.</span><span class="n">add_dimer</span><span class="p">(</span><span class="n">segment</span><span class="o">=</span><span class="s1">'fixed'</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+    <span class="n">assembler</span><span class="o">.</span><span class="n">add_dimer</span><span class="p">(</span><span class="n">segment</span><span class="o">=</span><span class="n">segment_mode</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Add DNA oligo's</span>
 <span class="n">n_dna</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chains_to_dna</span><span class="p">)</span>
@@ -1954,22 +2130,22 @@ site_map['complex'] = dna_complex</div>
     <span class="k">for</span> <span class="n">chainid</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">chains_to_dna</span><span class="p">):</span>
         <span class="n">assembler</span><span class="o">.</span><span class="n">add_dna</span><span class="p">(</span><span class="n">chainid</span><span class="o">=</span><span class="n">chainid</span><span class="p">)</span>
 
-
 <span class="c1"># Retrieve the trajectory from the assembled complex</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="n">assembler</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">#  Paramers to make filament
+<div class="clipboard-copy-txt" id="cell-6"># Parameters to make filament
 n_dimers = 6
-chains_to_dna = [0,4,7,11]
+chains_to_dna = [0, 4, 7, 11]
 save = True
 
 # Initialize class to assemble the filament
 assembler = Assembler(site_map=site_map)
+segment_mode = 'minimal' if minimal_mode else 'fixed' # Other options is 'random' if full trajectories are available
 
 # Add dimers
 print(f'Assembling {n_dimers} H-NS dimers:')
 for idx in tqdm(range(n_dimers)):
-    assembler.add_dimer(segment='fixed',verbose=True)  
+    assembler.add_dimer(segment=segment_mode, verbose=True)
 
 # Add DNA oligo's
 n_dna = len(chains_to_dna)
@@ -1978,10 +2154,8 @@ if n_dna &gt; 0:
     for chainid in tqdm(chains_to_dna):
         assembler.add_dna(chainid=chainid)
 
-
 # Retrieve the trajectory from the assembled complex
-traj = assembler.get_traj()
-</div>
+traj = assembler.get_traj()</div>
 </div>
 </div>
 </div>
@@ -2000,7 +2174,7 @@ traj = assembler.get_traj()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 6/6 [00:10&lt;00:00,  1.71s/it]
+<pre>100%|██████████| 6/6 [00:12&lt;00:00,  2.01s/it]
 </pre>
 </div>
 </div>
@@ -2014,35 +2188,8 @@ traj = assembler.get_traj()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████| 4/4 [00:02&lt;00:00,  1.97it/s]
+<pre>100%|██████████| 4/4 [00:03&lt;00:00,  1.18it/s]
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c135b0ba">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-4">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_oligos.pdb'</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-4">traj.save('./pdbs/lateral_filament_dbd_oligos.pdb')</div>
 </div>
 </div>
 </div>
@@ -2076,10 +2223,10 @@ traj = assembler.get_traj()
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-5">
+<clipboard-copy for="cell-7">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2098,7 +2245,7 @@ traj = assembler.get_traj()
 <span class="n">DNA_chainids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">DNA_chainids</span><span class="p">)</span>
 <span class="n">DNA_chainids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">DNA_chainids</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">DNA_chainids</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-5">DNA_residue_names = ['DG','DC','DT','DA']
+<div class="clipboard-copy-txt" id="cell-7">DNA_residue_names = ['DG','DC','DT','DA']
 DNA_chainids = []
 for chain in traj.top.chains:
     for res in chain._residues:
@@ -2107,55 +2254,6 @@ for chain in traj.top.chains:
 DNA_chainids = np.unique(DNA_chainids)
 DNA_chainids = np.array([DNA_chainids[i:i + 2] for i in range(0, len(DNA_chainids), 2)])
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2c8bf5f5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-6">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">ids</span> <span class="o">=</span> <span class="n">DNA_chainids</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainids </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">selection</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">'chainid </span><span class="si">{</span><span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> '</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ids</span><span class="p">])</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-<span class="n">subtraj</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
-<span class="n">subtraj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_dbd_only_oligos.pdb'</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-6">ids = DNA_chainids.flatten()
-print(f'chainids {''.join([f'{id} ' for id in ids])}')
-selection = traj.top.select(f'chainid {''.join([f'{id} ' for id in ids])}')
-subtraj = traj.atom_slice(selection)
-subtraj.save('./pdbs/lateral_filament_dbd_only_oligos.pdb')
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>chainids 12 13 14 15 16 17 18 19 
-</pre>
 </div>
 </div>
 </div>
@@ -2182,7 +2280,7 @@ This follows the previously described scientific model for assembling H-NS filam
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-7">
+<clipboard-copy for="cell-8">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2212,7 +2310,7 @@ This follows the previously described scientific model for assembling H-NS filam
 <span class="n">COM_primes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">COM_primes</span><span class="p">)</span>
 <span class="n">points</span> <span class="o">=</span> <span class="n">COM_primes</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-7">COM_primes = []
+<div class="clipboard-copy-txt" id="cell-8">COM_primes = []
 idx = 0
 for chainids in DNA_chainids:
     nuc = mdna.load(traj, chainids=chainids)
@@ -2258,7 +2356,7 @@ This step visualizes the flexibility and utility of the .make() function in crea
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-8">
+<clipboard-copy for="cell-9">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2271,7 +2369,7 @@ This step visualizes the flexibility and utility of the .make() function in crea
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna</span> <span class="o">=</span> <span class="n">mdna</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">control_points</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
 <span class="n">dna</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-8">dna = mdna.make(control_points=points)
+<div class="clipboard-copy-txt" id="cell-9">dna = mdna.make(control_points=points)
 dna.draw()</div>
 </div>
 </div>
@@ -2284,7 +2382,7 @@ dna.draw()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Random sequence: CCTCGCCCCCGGTTAGTAATCCACATCGGAGGCCAATGATCCACACCTTCTTGTGAAGTTGGATGCCGTCAAGTGATTCGCTAAGGGTAGCGGGTAAGGTGCATCGCCTAGCCTTCGATGCAATGGATCTCACGATCGGGAAAATCTCCGTGGGGGCGTCCTGGCCCGTTCGTGCCCGCCGTGGTTCTACCCGATGATTTGTGGTCGAGGGT 
+<pre>Random sequence: TAGAAAACATGCAGCCTCGTTAGCAAGCTGGGCCGCGGACTACCCCTGTTTTCGTGTCTGGGTATTCCGTCTCTTCCATTTTCTGCTCTCCCTTCGAGTGGGTAGCCCGTCAGAATACCAGGTTGACTGGGCACGCAGATAAGTCCTACACTGTGGGGCTATACGATCTGGTACTCATAATTCGGCGTGCGACCGAGGACGGAATCTGACCA 
 
 </pre>
 </div>
@@ -2292,7 +2390,7 @@ dna.draw()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<a class="glightbox" href="data:image/png;base64,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YIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCA+R9Qj8M9QNbjTgAAAABJRU5ErkJggg==" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No description has been provided for this image" class="" src="data:image/png;base64,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YIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCAIQoAAEMUAACGKAAADFEAABiiAAAwRAEAYIgCAMAQBQCA+R9Qj8M9QNbjTgAAAABJRU5ErkJggg=="/></a>
+<a class="glightbox" href="data:image/png;base64,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QxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADD/D8PxIJk2bc/OAAAAAElFTkSuQmCC" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No description has been provided for this image" class="" src="data:image/png;base64,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QxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADBEAQBgiAIAwBAFAIAhCgAAQxQAAIYoAAAMUQAAGKIAADD/D8PxIJk2bc/OAAAAAElFTkSuQmCC"/></a>
 </div>
 </div>
 </div>
@@ -2315,10 +2413,10 @@ dna.draw()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy for="cell-9">
+<clipboard-copy for="cell-10">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2331,20 +2429,20 @@ dna.draw()</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Save the structures for further analysis</span>
 <span class="n">dna_traj</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_traj</span><span class="p">()</span>
 <span class="n">protein</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">traj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'protein'</span><span class="p">))</span>
-<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_noDNA.pdb'</span><span class="p">)</span>
+<span class="n">protein</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_unoptimized_noDNA.pdb'</span><span class="p">)</span>
 <span class="n">new_traj</span> <span class="o">=</span> <span class="n">dna_traj</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
-<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_with_DNA.pdb'</span><span class="p">)</span>
+<span class="n">new_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_unoptimized.pdb'</span><span class="p">)</span>
 
 <span class="c1"># Visualize the final combined structure</span>
 <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">new_traj</span><span class="p">)</span>
 <span class="n">view</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9"># Save the structures for further analysis
+<div class="clipboard-copy-txt" id="cell-10"># Save the structures for further analysis
 dna_traj = dna.get_traj()
 protein = traj.atom_slice(traj.top.select('protein'))
-protein.save('./pdbs/lateral_filament_noDNA.pdb')
+protein.save('./pdbs/lateral_filament_unoptimized_noDNA.pdb')
 new_traj = dna_traj.stack(protein)
-new_traj.save('./pdbs/lateral_filament_with_DNA.pdb')
+new_traj.save('./pdbs/lateral_filament_unoptimized.pdb')
 
 # Visualize the final combined structure
 view = nv.show_mdtraj(new_traj)
@@ -2361,60 +2459,6 @@ view</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>NGLWidget()</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e61da5d8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-10">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">dna_traj</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./pdbs/lateral_filament_DNA_only.pdb'</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-10">dna_traj.save('./pdbs/lateral_filament_DNA_only.pdb')</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fd885b96">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy for="cell-11">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-11"></div>
 </div>
 </div>
 </div>

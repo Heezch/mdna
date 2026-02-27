@@ -631,7 +631,7 @@
         
   
   <span class="md-ellipsis">
-    Structure Generation Tutorial
+    DNA Structure Generation Tutorial
   </span>
   
 
@@ -652,7 +652,7 @@
         
   
   <span class="md-ellipsis">
-    Quick Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -758,7 +758,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -779,7 +779,7 @@
         
   
   <span class="md-ellipsis">
-    Adding Linker DNA
+    Extending DNA Structures and Integration with Protein Data
   </span>
   
 
@@ -800,7 +800,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands
+    Connecting Two DNA Strands and Integration with Protein Data
   </span>
   
 
@@ -821,7 +821,7 @@
         
   
   <span class="md-ellipsis">
-    The Sequence Library
+    The sequence library
   </span>
   
 
@@ -1283,10 +1283,10 @@
 <h2 id="step-4-analyzing-the-structure">Step 4: Analyzing the Structure<a class="headerlink" href="#step-4-analyzing-the-structure" title="Permanent link">&para;</a></h2>
 <p>Now that we have a minimized DNA structure, let's perform some basic analysis. We’ll calculate the rigid base parameters, which describe the relative positions of the base pairs.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Compute rigid base parameters</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">rigid_params</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_rigid_parameters</span><span class="p">()</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">params</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Output the results</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rigid base parameters calculated:&quot;</span><span class="p">,</span> <span class="n">rigid_params</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rigid base parameters calculated:&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </span></code></pre></div>
 <p>This step gives you a deeper understanding of the DNA’s structural dynamics. The parameters calculated here are essential for more advanced studies, but don’t worry—just getting this far is a great start!</p>
 <h2 id="conclusion-youve-done-it">Conclusion: You've Done It!<a class="headerlink" href="#conclusion-youve-done-it" title="Permanent link">&para;</a></h2>

@@ -1,0 +1,48 @@
+{
+  "data_root": "examples/data",
+  "trajectory_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "stride": 100,
+  "segments_overlap": 2,
+  "fixed_start_requirements": {
+    "s2": 40,
+    "h3": 90
+  },
+  "fixed_extend_requirements": {
+    "s1": 20,
+    "h3": 20,
+    "s2": 20,
+    "l2": 20,
+    "dbd": 20
+  },
+  "start_site_sources": {
+    "s2": "s2s2",
+    "h3": "s1s1"
+  },
+  "extend_site_sources": {
+    "s1": "s1s1",
+    "h3": "s1s1",
+    "s2": "s2s2",
+    "l2": "s1s1",
+    "dbd": "s1s1"
+  },
+  "start_source_frames": {
+    "s2s2": 40,
+    "s1s1": 90
+  },
+  "extend_source_frames": {
+    "s1s1": 20,
+    "s2s2": 20
+  },
+  "dna_frame_index": 1
+}

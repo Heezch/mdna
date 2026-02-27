@@ -544,7 +544,7 @@
         
   
   <span class="md-ellipsis">
-    Structure Generation Tutorial
+    DNA Structure Generation Tutorial
   </span>
   
 
@@ -565,7 +565,7 @@
         
   
   <span class="md-ellipsis">
-    Quick Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -671,7 +671,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -692,7 +692,7 @@
         
   
   <span class="md-ellipsis">
-    Adding Linker DNA
+    Extending DNA Structures and Integration with Protein Data
   </span>
   
 
@@ -713,7 +713,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands
+    Connecting Two DNA Strands and Integration with Protein Data
   </span>
   
 
@@ -734,7 +734,7 @@
         
   
   <span class="md-ellipsis">
-    The Sequence Library
+    The sequence library
   </span>
   
 
@@ -1279,7 +1279,7 @@
 
 
 <h2 id="mdna.nucleic.make" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">make</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">control_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dLk</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">make</span><span class="p">(</span><span class="n">sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">control_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_bp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dLk</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bp_per_turn</span><span class="o">=</span><span class="mf">10.5</span><span class="p">)</span></code>
 
 <a href="#mdna.nucleic.make" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -1384,6 +1384,20 @@
                   <code>None</code>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td><code>bp_per_turn</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of base pairs per turn of the DNA structure. (default: 10.5)</p>
+              </div>
+            </td>
+            <td>
+                  <code>10.5</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -1410,6 +1424,34 @@
       </tbody>
     </table>
 
+
+<details class="decision-matrix" open>
+  <summary>Decision matrix</summary>
+  <ul>
+<li>No <code>control_points</code>, <code>sequence</code> provided: uses default shape (line/circle from <code>circular</code>) and sets <code>n_bp = len(sequence)</code>.</li>
+<li>No <code>control_points</code>, <code>n_bp</code> provided: uses default shape and generates a random sequence of length <code>n_bp</code>.</li>
+<li><code>control_points</code> provided, <code>sequence</code> and <code>n_bp</code> both omitted: infers <code>n_bp</code> from spline sampling, then generates a random sequence of that length.</li>
+<li><code>control_points</code> + <code>sequence</code>: scales spline to <code>len(sequence)</code>.</li>
+<li><code>control_points</code> + <code>n_bp</code>: scales spline to <code>n_bp</code> and generates a random sequence.</li>
+<li><code>sequence</code> + <code>n_bp</code>: both are accepted only when lengths match.</li>
+</ul>
+</details>
+
+<details class="additional-behavior" open>
+  <summary>Additional behavior</summary>
+  <ul>
+<li>For <code>control_points</code>-only input (<code>sequence=None</code>, <code>n_bp=None</code>), <code>n_bp</code> is inferred from the spline frame count (shape-dependent), not from the default dodecamer.</li>
+</ul>
+</details>
+
+<details class="validation-rules" open>
+  <summary>Validation rules</summary>
+  <ul>
+<li><code>n_bp</code> must be positive when provided.</li>
+<li><code>control_points</code> must have shape <code>(n, 3)</code> with <code>n &gt;= 4</code>.</li>
+<li><code>closed</code> is deprecated and treated as an alias of <code>circular</code>.</li>
+</ul>
+</details>
 
 <details class="example" open>
   <summary>Example</summary>

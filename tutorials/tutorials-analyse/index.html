@@ -657,7 +657,7 @@
         
   
   <span class="md-ellipsis">
-    Structure Generation Tutorial
+    DNA Structure Generation Tutorial
   </span>
   
 
@@ -678,7 +678,7 @@
         
   
   <span class="md-ellipsis">
-    Quick Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -784,7 +784,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -805,7 +805,7 @@
         
   
   <span class="md-ellipsis">
-    Adding Linker DNA
+    Extending DNA Structures and Integration with Protein Data
   </span>
   
 
@@ -826,7 +826,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands
+    Connecting Two DNA Strands and Integration with Protein Data
   </span>
   
 
@@ -847,7 +847,7 @@
         
   
   <span class="md-ellipsis">
-    The Sequence Library
+    The sequence library
   </span>
   
 
@@ -1334,7 +1334,7 @@
 <h3 id="visualizing-rigid-base-parameters">Visualizing Rigid Base Parameters<a class="headerlink" href="#visualizing-rigid-base-parameters" title="Permanent link">&para;</a></h3>
 <p>We can plot the rigid base parameters to analyze the structural features of the DNA. This visualization includes confidence intervals for each parameter to indicate the range of possible variations.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Plot per base pair with confidence interval</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">rigid</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_rigid_parameters</span><span class="p">()</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">rigid</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">get_rigid_object</span><span class="p">()</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">_</span> <span class="o">=</span> <span class="n">rigid</span><span class="o">.</span><span class="n">plot_parameters</span><span class="p">()</span>
 </span></code></pre></div>
 <p>In the code block above, <code>plot_parameters()</code> generates plots for each rigid base parameter across the DNA sequence, with confidence intervals that provide insight into the variability and reliability of these measurements. These plots are crucial for identifying regions of the DNA that might have unusual or significant structural deviations.</p>
