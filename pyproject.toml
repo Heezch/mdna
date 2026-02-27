@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mdna"
-version = "0.0.2"
+version = "0.0.3"
 description = "Software module for DNA structure analysis and generation"
 readme = "README.md"
 authors = [{ name = "Thor van Heesch", email = "t.vanheesch@uva.nl" }]
@@ -37,3 +37,11 @@ py-modules = ["__init__"] # dash, not underscore
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build]
+exclude = [
+    "examples/data/filament_dataset/**",
+    "examples/data/filament_dataset*.zip",
+    "examples/data/filament_dataset*.tar",
+    "examples/data/filament_dataset*.tar.gz",
+]

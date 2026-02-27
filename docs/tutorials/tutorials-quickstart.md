@@ -56,10 +56,10 @@ Now that we have a minimized DNA structure, let's perform some basic analysis. W
 
 ```python
 # Compute rigid base parameters
-rigid_params = dna.get_rigid_parameters()
+params, names = dna.get_parameters()
 
 # Output the results
-print("Rigid base parameters calculated:", rigid_params.shape)
+print("Rigid base parameters calculated:", params.shape)
 ```
 
 This step gives you a deeper understanding of the DNA’s structural dynamics. The parameters calculated here are essential for more advanced studies, but don’t worry—just getting this far is a great start!

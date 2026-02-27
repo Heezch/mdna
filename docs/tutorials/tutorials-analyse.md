@@ -35,7 +35,7 @@ We can plot the rigid base parameters to analyze the structural features of the 
 
 ```python
 # Plot per base pair with confidence interval
-rigid = dna.get_rigid_parameters()
+rigid = dna.get_rigid_object()
 _ = rigid.plot_parameters()
 ```
 

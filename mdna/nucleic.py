@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Union
+import warnings
 import mdtraj as md
 from scipy.spatial.transform import Rotation as R
 
@@ -31,8 +32,8 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
         Nucleic (object): DNA structure object.
 
     Notes:
-        - The `traj` argument is prioritized over frames and sequence.
-        - If the `filename_or_filenames` argument is provided, the other arguments are ignored, except for the `top` and `stride` arguments and `chainids`.
+        - `filename` is resolved first to an MDtraj trajectory (optionally using `top` and `stride`).
+        - The resulting `traj` then takes precedence over `frames` and `sequence` when constructing `Nucleic`.
 
     Example:
         Load a DNA structure from a trajectory
@@ -64,6 +65,22 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
     Returns:
         Nucleic (object): DNA structure object.
 
+    Decision matrix:
+        - No `control_points`, `sequence` provided: uses default shape (line/circle from `circular`) and sets `n_bp = len(sequence)`.
+        - No `control_points`, `n_bp` provided: uses default shape and generates a random sequence of length `n_bp`.
+        - `control_points` provided, `sequence` and `n_bp` both omitted: infers `n_bp` from spline sampling, then generates a random sequence of that length.
+        - `control_points` + `sequence`: scales spline to `len(sequence)`.
+        - `control_points` + `n_bp`: scales spline to `n_bp` and generates a random sequence.
+        - `sequence` + `n_bp`: both are accepted only when lengths match.
+
+    Additional behavior:
+        - For `control_points`-only input (`sequence=None`, `n_bp=None`), `n_bp` is inferred from the spline frame count (shape-dependent), not from the default dodecamer.
+
+    Validation rules:
+        - `n_bp` must be positive when provided.
+        - `control_points` must have shape `(n, 3)` with `n >= 4`.
+        - `closed` is deprecated and treated as an alias of `circular`.
+
     Example:
         Generate a DNA structure from a sequence
         ```python
@@ -71,30 +88,46 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
         ```
     """
 
-    # Check if control points are provided, otherwise generate a straight line
-    skip = False
+    # Backward compatibility: keep supporting `closed`, but funnel semantics into `circular`.
+    if closed:
+        warnings.warn(
+            "The 'closed' argument is deprecated and will be removed in a future release. Use 'circular' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        circular = circular or closed
+
+    # Guard against invalid explicit base-pair counts early.
+    if n_bp is not None and n_bp <= 0:
+        raise ValueError('n_bp should be a positive integer')
+
+    # If control points are provided without sequence/n_bp, infer n_bp from spline arc-length sampling.
+    infer_n_bp_from_control_points = False
+
     if control_points is not None:
+        # Normalize and validate control-point geometry input.
+        control_points = np.asarray(control_points)
+        if control_points.ndim != 2 or control_points.shape[1] != 3:
+            raise ValueError('control_points should have shape (n, 3)')
         if len(control_points) < 4:
             raise ValueError('Control points should contain at least 4 points [x, y, z]')
-        elif len(control_points) > 4 and n_bp is None and sequence is None:
-            skip = True
-    elif control_points is None and circular:
+        infer_n_bp_from_control_points = sequence is None and n_bp is None
+    elif circular:
+        # Default closed template when no custom shape is provided.
         control_points = Shapes.circle(radius=1)
-        closed = True
     else:
-        # Linear strand of control points
+        # Default open template when no custom shape is provided.
         control_points = Shapes.line(length=1)
 
-    if not skip:
+    if infer_n_bp_from_control_points:
+        # Build spline first to infer n_bp, then generate a matching random sequence.
+        spline = SplineFrames(control_points=control_points, n_bp=None, closed=circular, dLk=dLk, bp_per_turn=bp_per_turn)
+        sequence, n_bp = _check_input(sequence=None, n_bp=spline.n_bp)
+    else:
+        # Resolve sequence/n_bp first (including random/default generation), then scale spline accordingly.
         sequence, n_bp = _check_input(sequence=sequence, n_bp=n_bp)
         spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk, bp_per_turn=bp_per_turn)
-    else:
-        spline = SplineFrames(control_points=control_points, n_bp=n_bp, closed=circular, dLk=dLk, bp_per_turn=bp_per_turn)
-        sequence, n_bp = _check_input(sequence=sequence, n_bp=spline.n_bp)
-     
-
-    
-    
+         
     return Nucleic(sequence=sequence, n_bp=n_bp, frames=spline.frames, chainids=[0, 1], circular=circular)
 
 def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = None, leader: int = 0, frame: int = -1, margin: int = 1, minimize: bool = True, exvol_rad: float = 0.0, temperature: int = 300, control_points : np.ndarray = None, index : int = 0):  
@@ -143,12 +176,14 @@ def connect(Nucleic0, Nucleic1, sequence: Union[str|List] = None, n_bp: int = No
         connector.connected_nuc.minimize(exvol_rad=exvol_rad, temperature=temperature, fixed=connector.fixed)
     return connector.connected_nuc
 
-def compute_rigid_parameters(traj, chainids=[0,1]):
+def compute_rigid_parameters(traj, chainids=[0,1], fit_reference=False):
     """Compute the rigid base parameters of the DNA structure.
 
     Args:
         traj (object): MDtraj trajectory containing the DNA structure.
         chainids (list, optional): List of chain IDs of the DNA structure. Default is [0, 1].
+        fit_reference (bool, optional): Fit each base to canonical reference bases before
+            frame extraction. Default is False.
 
     Returns:
         NucleicFrames (object): Object representing the rigid base parameters of the DNA structure.
@@ -168,7 +203,7 @@ def compute_rigid_parameters(traj, chainids=[0,1]):
     """
     if traj is None:
         raise ValueError("The traj argument must be provided.")
-    return NucleicFrames(traj, chainids)
+    return NucleicFrames(traj, chainids, fit_reference=fit_reference)
 
 def compute_curvature(traj, chainids=[0,1]):
     """Compute the curvature of the DNA structure"""
@@ -230,11 +265,7 @@ def sequence_to_pdb(sequence: str = 'CGCGAATTCGCG', filename: str = 'my_dna', sa
     generator = StructureGenerator(sequence=sequence, spline=spline, circular=circular)
 
     # Edit the DNA structure to make it compatible with the AMBER force field
-    traj = generator.traj
-    if output == 'GROMACS':
-        phosphor_termini = traj.top.select(f'name P OP1 OP2 and resid 0 {traj.top.chain(0).n_residues}')
-        all_atoms = traj.top.select('all')
-        traj = traj.atom_slice([at for at in all_atoms if at not in phosphor_termini])
+    traj = generator.get_traj(remove_terminal_phosphates=(output == 'GROMACS'))
 
     # Save the DNA structure as a pdb file
     if save:
@@ -290,23 +321,24 @@ def sequence_to_md(sequence=None, time=10, time_unit='picoseconds',temperature=3
     if filename is None:
         filename = sequence
 
-    pdb = sequence_to_pdb(sequence=sequence, filename=f'{save_location}{filename}', save=True, output='GROMACS',shape=None,n_bp=None,circular=False,dLk=None)
+    pdb = sequence_to_pdb(sequence=sequence, filename=f'{save_location}{filename}', save=True, output='GROMACS',shape=shape,n_bp=n_bp,circular=circular,dLk=dLk)
     
     if not openmm_available:
         print('But here is your DNA structure')
         return pdb
     else:
         if time_unit == 'picoseconds':
-            time_unit = time * unit.picoseconds
+            simulation_time = time * unit.picoseconds
         elif time_unit == 'nanoseconds':
-            time_unit = time * unit.nanoseconds
+            simulation_time = time * unit.nanoseconds
+        else:
+            raise ValueError("time_unit should be 'picoseconds' or 'nanoseconds'")
 
-        time = time * time_unit
         time_step = 2 * unit.femtoseconds
-        temperature = 310 *unit.kelvin
-        steps = int(time/time_step)
+        temperature = temperature * unit.kelvin
+        steps = int(simulation_time / time_step)
 
-        print(f'Initialize DNA openMM simulation at {temperature._value} K for', time, 'time units')
+        print(f'Initialize DNA openMM simulation at {temperature._value} K for', simulation_time, 'time units')
         topology = pdb.topology.to_openmm()
         modeller = app.Modeller(topology, pdb.xyz[0])
 
@@ -428,7 +460,7 @@ class Nucleic:
             raise ValueError('Load reference frames first')
         self.traj = None
         generator = StructureGenerator(frames=self.frames[:,frame,:,:], sequence=self.sequence, circular=self.circular)
-        self.traj = generator.get_traj()
+        self.traj = generator.get_traj(remove_terminal_phosphates=False)
     
     def _traj_to_frames(self):
         """Convert trajectory to reference frames"""
@@ -439,8 +471,8 @@ class Nucleic:
     
     def get_frames(self):
         """Get the reference frames of the DNA structure belonging to the base steps:
-        Returns: array of reference frames of shape (n_frames, n_bp, 4, 3)
-        where n_frames is the number of frames, n_bp is the number of base pairs, 
+        Returns: array of reference frames of shape (n_bp, n_frames, 4, 3)
+        where n_bp is the number of base pairs, n_frames is the number of frames, 
         and 4 corresponds to the origin and the 3 vectors of the reference frame
         
         Returns:
@@ -513,7 +545,7 @@ class Nucleic:
         Returns:
             dict: A dictionary containing the base reference frames of the DNA structure. 
               The keys are residue topologies of the MDTraj object (traj.top.residues) and the values are the reference frames in shape (n_frames, 4, 3), 
-              where the rows represent the origin, b_D, b_L, and b_N vectors."""
+                            where the rows represent the origin, b_L, b_D, and b_N vectors."""
 
         if self.rigid is None:
             self.get_rigid_object()
@@ -691,6 +723,7 @@ class Nucleic:
                 - Hachimoji: B [A_ana], S [T_ana], P [C_ana], Z [G_ana] (DOI: 10.1126/science.aat0971)
                 - Fluorescent: 2-aminopurine 2AP (E), triC (D) (DOI: 10.1002/anie.201001312), tricyclic cytosine base analogue (1tuq)
                 - Hydrophobic pairs: d5SICS (L), dNaM (M)
+            - Mutation updates coordinates/topology and clears cached frame/rigid/minimization state.
              
         Example:
             Create a DNA object 
@@ -711,6 +744,9 @@ class Nucleic:
         self.traj = mutant.get_traj()
         # Update sequence
         self.sequence = ''.join(get_sequence_letters(self.traj, leading_chain=self.chainids[0]))
+        self.frames = None
+        self.rigid = None
+        self.minimizer = None
 
 
     def flip(self, fliplist: list = [], deg: int = 180, frame: int = -1):
@@ -728,6 +764,7 @@ class Nucleic:
 
             Notes:
                 - Rotating the nucleobase by 180 degrees corresponds to the Hoogsteen base pair configuration.
+                - Flipping updates coordinates and clears cached frame/rigid/minimization state.
 
             Example:
                 Flip DNA
@@ -745,6 +782,9 @@ class Nucleic:
 
             flipper = Hoogsteen(self.traj, fliplist=fliplist, deg=deg, verbose=True)
             self.traj = flipper.get_traj()
+            self.frames = None
+            self.rigid = None
+            self.minimizer = None
 
     def methylate(self, methylations: list = [], CpG: bool = False, leading_strand: int = 0, frame: int = -1):
             """Methylate the nucleobases of the DNA structure.
@@ -763,6 +803,7 @@ class Nucleic:
 
             Notes:
                 Using the `CpG` flag will methylate the CpG sites in the DNA structure. This flag supercedes the methylations list.
+                Cached frame/rigid/minimization state is cleared after methylation.
 
             Example:
                 Methylate DNA
@@ -778,6 +819,9 @@ class Nucleic:
 
             methylator = Methylate(self.traj, methylations=methylations, CpG=CpG, leading_strand=leading_strand)
             self.traj = methylator.get_traj()
+            self.frames = None
+            self.rigid = None
+            self.minimizer = None
     
     def extend(self, n_bp: int = None, sequence: Union[str|List] = None, fixed_endpoints: bool = False, forward: bool = True, frame: int = -1, shape: np.ndarray = None, margin: int = 1, minimize: bool = True, plot : bool = False, exvol_rad : float = 2.0, temperature : int = 300):  
         """Extend the DNA structure in the specified direction.
@@ -858,8 +902,8 @@ class Nucleic:
         if self.frames is None:
                 self._traj_to_frames()
         frames = self.frames[:,frame,:,:]
-        positions = frames[:,0]
-        triads = frames[:,1:].transpose(0,2,1) # Flip row vectors to columns
+        positions = np.ascontiguousarray(frames[:,0])
+        triads = np.ascontiguousarray(frames[:,1:].transpose(0,2,1)) # Flip row vectors to columns
 
         writhe = pylk.writhe(positions)
         lk = pylk.triads2link(positions, triads)

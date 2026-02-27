@@ -7,3 +7,8 @@ include LICENSE.txt
 recursive-include data *
 
 include ./atomic
+
+prune examples/data/filament_dataset
+exclude examples/data/filament_dataset*.zip
+exclude examples/data/filament_dataset*.tar
+exclude examples/data/filament_dataset*.tar.gz
