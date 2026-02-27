@@ -1,4 +1,4 @@
-# MDNA: Molecular DNA Structure Generation and Analysis Toolkit
+# MDNA: a software module for DNA structure generation and analysis
 
 ## Description
 
