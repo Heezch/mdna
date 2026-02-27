@@ -333,6 +333,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-mdna" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is MDNA?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acknowledgements" class="md-nav__link">
     <span class="md-ellipsis">
       Acknowledgements
@@ -618,7 +636,7 @@
         
   
   <span class="md-ellipsis">
-    Structure Generation Tutorial
+    DNA Structure Generation Tutorial
   </span>
   
 
@@ -639,7 +657,7 @@
         
   
   <span class="md-ellipsis">
-    Quick Visualization Tutorial
+    Visualization Tutorial
   </span>
   
 
@@ -745,7 +763,7 @@
         
   
   <span class="md-ellipsis">
-    DNA Along a Protein Filament
+    Constructing DNA Along a Protein Filament
   </span>
   
 
@@ -766,7 +784,7 @@
         
   
   <span class="md-ellipsis">
-    Adding Linker DNA
+    Extending DNA Structures and Integration with Protein Data
   </span>
   
 
@@ -787,7 +805,7 @@
         
   
   <span class="md-ellipsis">
-    Connecting Two DNA Strands
+    Connecting Two DNA Strands and Integration with Protein Data
   </span>
   
 
@@ -808,7 +826,7 @@
         
   
   <span class="md-ellipsis">
-    The Sequence Library
+    The sequence library
   </span>
   
 
@@ -1203,6 +1221,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-mdna" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is MDNA?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acknowledgements" class="md-nav__link">
     <span class="md-ellipsis">
       Acknowledgements
@@ -1275,7 +1311,21 @@ your use case by looking at the different pages.</p>
 ::: mdna -->
 
 <h2 id="citation">Citation<a class="headerlink" href="#citation" title="Permanent link">&para;</a></h2>
-<p>Link to the <a href="https://www.overleaf.com/project/">publication</a></p>
+<p>Link to the <a href="https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract">publication</a></p>
+<h2 id="what-is-mdna">What is MDNA?<a class="headerlink" href="#what-is-mdna" title="Permanent link">&para;</a></h2>
+<p>mdna is a Python toolkit for atomic resolution generation and analysis of double stranded DNA structures. It enables the construction of arbitrarily shaped DNA using spline based mapping, supports canonical and non canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations.</p>
+<p>In addition to structure generation, MDNA implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj compatible trajectories for molecular dynamics workflows.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="err">•</span><span class="w">   </span><span class="n">Arbitrary</span><span class="w"> </span><span class="n">DNA</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">spline</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="n">points</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Sequence</span><span class="w"> </span><span class="n">driven</span><span class="w"> </span><span class="n">construction</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">canonical</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">non</span><span class="w"> </span><span class="n">canonical</span><span class="w"> </span><span class="n">bases</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Hoogsteen</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">flipping</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">methylation</span><span class="w"> </span><span class="n">editing</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Circular</span><span class="w"> </span><span class="n">DNA</span><span class="w"> </span><span class="n">generation</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">linking</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">control</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Monte</span><span class="w"> </span><span class="n">Carlo</span><span class="w"> </span><span class="n">based</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">relaxation</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Native</span><span class="w"> </span><span class="n">rigid</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="n">analysis</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Intra</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">pair</span><span class="p">:</span><span class="w"> </span><span class="n">shear</span><span class="p">,</span><span class="w"> </span><span class="n">stretch</span><span class="p">,</span><span class="w"> </span><span class="n">stagger</span><span class="p">,</span><span class="w"> </span><span class="n">buckle</span><span class="p">,</span><span class="w"> </span><span class="n">propeller</span><span class="p">,</span><span class="w"> </span><span class="n">opening</span>
+<span class="err">•</span><span class="w">   </span><span class="n">Inter</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">step</span><span class="p">:</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">slide</span><span class="p">,</span><span class="w"> </span><span class="n">rise</span><span class="p">,</span><span class="w"> </span><span class="n">tilt</span><span class="p">,</span><span class="w"> </span><span class="n">roll</span><span class="p">,</span><span class="w"> </span><span class="n">twist</span>
+</code></pre></div>
+
 <h2 id="acknowledgements">Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permanent link">&para;</a></h2>
 <p>This project is supported by the NWO Klein grant.</p>
 

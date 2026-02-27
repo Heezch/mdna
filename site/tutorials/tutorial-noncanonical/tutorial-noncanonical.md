@@ -42,7 +42,7 @@ Example of Non-Canonical Mutation
 dna = mdna.make(sequence='AGCGATATAGA')
 
 # Mutate the first base to a non-canonical base 'L' and the last base to 'P'
-dna.mutate({0: 'L', dna.n_bp: 'P'}, complementary=False)
+dna.mutate({0: 'L', dna.n_bp - 1: 'P'}, complementary=False)
 
 # Describe the modified DNA structure to confirm changes
 dna.describe()

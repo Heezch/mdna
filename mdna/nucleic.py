@@ -508,7 +508,7 @@ class Nucleic:
         else:
             return self.rigid
         
-    def get_parameters(self, step : bool = False, base : bool = False):
+    def get_parameters(self, step : bool = False, base : bool = False) -> tuple[np.ndarray, list[str]]:
         """By default retuns all the parameters of the DNA structure.
         Use arguments to get a specific parameter group of the DNA structure.
 
@@ -523,7 +523,7 @@ class Nucleic:
             self.get_rigid_object()
         return self.rigid.get_parameters(step=step, base=base)
     
-    def get_parameter(self, parameter_name : str):
+    def get_parameter(self, parameter_name : str) -> np.ndarray:
         """Get a specific parameter from the rigid base parameters class object of the DNA structure
             
         Args:
@@ -539,13 +539,15 @@ class Nucleic:
             self.get_rigid_object()
         return self.rigid.get_parameter(parameter_name)
     
-    def get_base_frames(self):
+    def get_base_frames(self) -> dict:
         """Get the base reference frames of the DNA structure
         
         Returns:
-            dict: A dictionary containing the base reference frames of the DNA structure. 
-              The keys are residue topologies of the MDTraj object (traj.top.residues) and the values are the reference frames in shape (n_frames, 4, 3), 
-                            where the rows represent the origin, b_L, b_D, and b_N vectors."""
+            dict: A dictionary containing the base reference frames of the DNA structure.
+                The keys are residue topologies of the MDTraj object (`traj.top.residues`) and
+                the values are reference frames with shape `(n_frames, 4, 3)`, where rows are
+                origin, `b_L`, `b_D`, and `b_N`.
+        """
 
         if self.rigid is None:
             self.get_rigid_object()
@@ -886,7 +888,8 @@ class Nucleic:
          The method updates attributes of the DNA object.
          
          Raises:
-            NotImplementedError."""
+            NotImplementedError: Not implemented yet.
+        """
         raise NotImplementedError('Not implemented yet')
 
     def get_linking_number(self, frame : int = -1):

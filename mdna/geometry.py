@@ -41,7 +41,7 @@ class ReferenceBase:
         self.b_R, self.b_L, self.b_D, self.b_N = self.calculate_base_frame()
         # self.basis = np.array([self.b_D.T, self.b_L.T, self.b_N])
     
-    def _select_atom_by_name(self, name):
+    def _select_atom_by_name(self, name: str) -> np.ndarray:
         """_summary_
 
         Args:
@@ -53,7 +53,7 @@ class ReferenceBase:
         # Select an atom by name returns shape (n_frames, 1, [x,y,z])
         return np.squeeze(self.traj.xyz[:,[self.traj.topology.select(f'name {name}')[0]],:],axis=1)
         
-    def get_base_type(self):
+    def get_base_type(self) -> str:
         """_summary_
 
         Raises:
@@ -72,7 +72,7 @@ class ReferenceBase:
         # If no base matches, raise an error
         raise ValueError("Cannot determine the base type from the PDB file.")
     
-    def get_coordinates(self):
+    def get_coordinates(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """_summary_
 
         Returns:
@@ -95,10 +95,12 @@ class ReferenceBase:
         elif self.base_type in ['M']: # UBPs hydrophilic
             N_coords = self._select_atom_by_name("C1")
             C_coords = self._select_atom_by_name("C6")
+        else:
+            raise ValueError(f"Unsupported base type: {self.base_type}")
         return C1_coords, N_coords, C_coords
     
     
-    def calculate_base_frame(self):
+    def calculate_base_frame(self) -> np.ndarray:
         """_summary_
 
         Returns:
@@ -497,8 +499,9 @@ class NucleicFrames:
             return self.bp_params, self.base_parameter_names
         elif not step and not base:
             return self.parameters, self.names
+        raise ValueError("Use only one of step=True or base=True, or neither.")
         
-    def get_parameter(self,name='twist'):
+    def get_parameter(self,name='twist') -> np.ndarray:
         """Get the parameter of the DNA structure, choose frome the following:
         - shift, slide, rise, tilt, roll, twist, shear, stretch, stagger, buckle, propeller, opening
 

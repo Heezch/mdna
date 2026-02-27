@@ -1,12 +1,22 @@
 import numpy as np
 import mdtraj as md
 import matplotlib.pyplot as plt
-import nglview as nv
-import networkx as nx
+try:
+    import nglview as nv
+except ImportError:
+    nv = None
+try:
+    import networkx as nx
+except ImportError:
+    nx = None
+from pathlib import Path
 
 # https://biopython.org/docs/1.74/api/Bio.SVDSuperimposer.html
 # conda install conda-forge::biopython
 from Bio.SVDSuperimposer import SVDSuperimposer
+
+# from numpy import dot
+
 
 
 class SiteMapper:
@@ -88,6 +98,8 @@ class SiteMapper:
 
     def show_domain(self, system, domains, domain):
         """"Not working yet, need to fix the selection of the atoms in the domain."""
+        if nv is None:
+            raise ImportError('nglview is required for show_domain but is not installed.')
         # shows first frame
         top = system.top
         view = nv.show_mdtraj(system[0])
@@ -243,6 +255,8 @@ class Helper:
 class Fixer:
 
     def __init__(self, traj):
+        if nx is None:
+            raise ImportError('networkx is required for Fixer but is not installed.')
 
         segments = {'s1':np.arange(0,41),
                      's2':np.arange(53,82)}
@@ -378,6 +392,106 @@ class Assembler:
         self.traj_history = []
         self.cleaned = False
 
+    @staticmethod
+    def default_segments(n_overlap=2):
+        return {
+            's1': np.arange(0, 41 + n_overlap),
+            'h3': np.arange(41 - n_overlap, 53 + n_overlap),
+            's2': np.arange(53 - n_overlap, 82 + n_overlap),
+            'l2': np.arange(82 - n_overlap, 95 + n_overlap),
+            'dbd': np.arange(95 - n_overlap, 137),
+        }
+
+    @staticmethod
+    def _pick_site_frame(site_traj, site_name, source_name):
+        if site_name in {'s1', 's2', 's2_end'}:
+            return site_traj[0]
+        if source_name == 's1s1':
+            return site_traj[0]
+        if source_name == 's2s2':
+            return site_traj[-1]
+        raise ValueError(f'Unknown source name {source_name} for site {site_name}.')
+
+    @staticmethod
+    def load_minimal_site_map(minimal_dir, segments=None, n_overlap=2):
+        """
+        Load minimal source PDBs and build start/extend segment maps on demand.
+
+        Expected files in ``minimal_dir``:
+        - ``s1s1_start.pdb``
+        - ``s2s2_start.pdb``
+        - ``s1s1_extend.pdb``
+        - ``s2s2_extend.pdb``
+        - ``complex_frame_<idx>.pdb``
+        """
+        base = Path(minimal_dir)
+        if segments is None:
+            segments = Assembler.default_segments(n_overlap=n_overlap)
+
+        required_files = [
+            's1s1_start.pdb',
+            's2s2_start.pdb',
+            's1s1_extend.pdb',
+            's2s2_extend.pdb',
+        ]
+        missing = [filename for filename in required_files if not (base / filename).exists()]
+        if missing:
+            raise FileNotFoundError(f'Missing required minimal source files: {missing}')
+
+        manifest = {}
+        manifest_path = base / 'manifest.json'
+        if manifest_path.exists():
+            import json
+
+            with open(manifest_path, 'r', encoding='utf-8') as handle:
+                manifest = json.load(handle)
+
+        start_site_sources = manifest.get('start_site_sources', {'s2': 's2s2', 'h3': 's1s1'})
+        extend_site_sources = manifest.get(
+            'extend_site_sources',
+            {'s1': 's1s1', 'h3': 's1s1', 's2': 's2s2', 'l2': 's1s1', 'dbd': 's1s1'},
+        )
+
+        s1s1_start = md.load(str(base / 's1s1_start.pdb'))
+        s2s2_start = md.load(str(base / 's2s2_start.pdb'))
+        s1s1_extend = md.load(str(base / 's1s1_extend.pdb'))
+        s2s2_extend = md.load(str(base / 's2s2_extend.pdb'))
+
+        start_mapper = SiteMapper(s1s1_start, s2s2_start, segments=segments, k=1)
+        extend_mapper = SiteMapper(s1s1_extend, s2s2_extend, segments=segments, k=1)
+        start_site_map = start_mapper.get_site_map()
+        extend_site_map = extend_mapper.get_site_map()
+
+        minimal_start = {}
+        for site_name, source_name in start_site_sources.items():
+            if site_name not in start_site_map:
+                raise KeyError(f'Start site {site_name} missing from generated site map.')
+            minimal_start[site_name] = Assembler._pick_site_frame(start_site_map[site_name], site_name, source_name)
+
+        minimal_extend = {}
+        for site_name, source_name in extend_site_sources.items():
+            if site_name not in extend_site_map:
+                raise KeyError(f'Extend site {site_name} missing from generated site map.')
+            minimal_extend[site_name] = Assembler._pick_site_frame(extend_site_map[site_name], site_name, source_name)
+
+        site_map = {'minimal_start': minimal_start, 'minimal_extend': minimal_extend}
+
+        dna_frame_idx = manifest.get('dna_frame_index', 1)
+        dna_candidate = base / f'complex_frame_{dna_frame_idx}.pdb'
+        if not dna_candidate.exists():
+            candidates = sorted(base.glob('complex_frame_*.pdb'))
+            if candidates:
+                dna_candidate = candidates[0]
+
+        if dna_candidate.exists():
+            site_map['complex'] = md.load(str(dna_candidate))
+
+        return site_map
+
+    @staticmethod
+    def load_fixed_minimal_site_map(minimal_dir):
+        return Assembler.load_minimal_site_map(minimal_dir=minimal_dir)
+
     def get_traj(self):
         if self.cleaned:
             return self.traj
@@ -418,6 +532,22 @@ class Assembler:
 
     # Get segments based on 'fixed' or 'random' segment criteria
     def get_segments(self, site_a, site_b, segment):
+        if segment == 'minimal' and 'minimal_start' in self.site_map and 'minimal_extend' in self.site_map:
+            if not self.traj:
+                start_map = self.site_map['minimal_start']
+                fallback_map = self.site_map['minimal_extend']
+                A = start_map.get(site_a, fallback_map.get(site_a))
+                B = start_map.get(site_b, fallback_map.get(site_b))
+                if A is None or B is None:
+                    raise KeyError(f'Missing minimal-start entries for {site_a} and/or {site_b}.')
+            else:
+                extension_map = self.site_map['minimal_extend']
+                if site_b not in extension_map:
+                    raise KeyError(f'Missing minimal-extension entry for site {site_b}.')
+                A = self.traj
+                B = extension_map[site_b]
+            return A, B
+
         if not self.traj:
             if segment == 'fixed':
                 x, y = 40, 90
@@ -517,7 +647,10 @@ class Assembler:
             self.clean_traj()
         
         # Select frame of DNA - DBD complex
-        dna_complex = self.site_map['complex'][frame_idx]
+        if 'complex' not in self.site_map:
+            raise KeyError('No DNA complex found in site_map. Provide site_map["complex"] before calling add_dna.')
+        complex_traj = self.site_map['complex']
+        dna_complex = complex_traj[0] if len(complex_traj) == 1 else complex_traj[frame_idx]
 
         # Get selection of dbd residues for fit of only backbone
         indices_dbd_complex = dna_complex.top.select(f'resSeq 95 to 137 and backbone') # SALMONELA

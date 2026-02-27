@@ -35,7 +35,7 @@ traj.save_pdb('dna_original.pdb')
 
 # Modify the DNA sequence
 # Mutate the first base to a G and the last base to a C
-dna.mutate({0: 'G', dna.n_bp : 'C'}, complementary=False)
+dna.mutate({0: 'G', dna.n_bp - 1: 'C'}, complementary=False)
 
 # Get information about the DNA and see the mutated sequence
 dna.describe()
@@ -117,7 +117,7 @@ Example of Non-Canonical Mutation
 dna = mdna.make(sequence='AGCGATATAGA')
 
 # Mutate the first base to a non-canonical base 'L' and the last base to 'P'
-dna.mutate({0: 'L', dna.n_bp: 'P'}, complementary=False)
+dna.mutate({0: 'L', dna.n_bp - 1: 'P'}, complementary=False)
 
 # Describe the modified DNA structure to confirm changes
 dna.describe()
