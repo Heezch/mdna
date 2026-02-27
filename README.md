@@ -20,10 +20,13 @@ After that go to the 'mdna' project folder and do:
 pip install .
 ```
 
-
 ## Usage
 
 See our [documentation page](https://heezch.github.io/mdna/)
+
+## Citation
+
+Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
 
 ## Contributing
 
