@@ -7,8 +7,8 @@ name = "mdna"
 version = "0.0.3"
 description = "Software module for DNA structure analysis and generation"
 readme = "README.md"
+license-files = []
 authors = [{ name = "Thor van Heesch", email = "t.vanheesch@uva.nl" }]
-license = { file = "LICENSE" }
  
 classifiers = [
     "Development Status :: 3 - Alpha",
