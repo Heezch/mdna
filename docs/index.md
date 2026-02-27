@@ -52,9 +52,26 @@ Three examples that highlight the building of biomolecular assemblies with `mdna
 
 ## Citation
 
-Link to the [publication](https://www.overleaf.com/project/)
+Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+
+## What is MDNA?
+
+mdna is a Python toolkit for atomic resolution generation and analysis of double stranded DNA structures. It enables the construction of arbitrarily shaped DNA using spline based mapping, supports canonical and non canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations.
+
+In addition to structure generation, MDNA implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj compatible trajectories for molecular dynamics workflows.
 
 
+## Key Features
+	•	Arbitrary DNA shape generation via spline control points
+	•	Sequence driven construction with canonical and non canonical bases
+	•	Hoogsteen base flipping and methylation editing
+	•	Circular DNA generation with linking number control
+	•	Monte Carlo based structure relaxation
+	•	Native rigid base parameter analysis
+	•	Intra base pair: shear, stretch, stagger, buckle, propeller, opening
+	•	Inter base pair step: shift, slide, rise, tilt, roll, twist
+
+    
 ## Acknowledgements
 
 This project is supported by the NWO Klein grant.
