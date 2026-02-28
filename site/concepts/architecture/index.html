@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../../guide/noncanonical/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../rigid-base/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
-        <title>MDNA</title>
+        <title>Architecture - MDNA</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,18 +46,27 @@
       
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -71,6 +84,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#architecture-how-mdna-works" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -83,9 +101,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="MDNA" class="md-header__button md-logo" aria-label="MDNA" data-md-component="logo">
+    <a href="../.." title="MDNA" class="md-header__button md-logo" aria-label="MDNA" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -102,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Architecture
             
           </span>
         </div>
@@ -215,9 +233,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="MDNA" class="md-nav__button md-logo" aria-label="MDNA" data-md-component="logo">
+    <a href="../.." title="MDNA" class="md-nav__button md-logo" aria-label="MDNA" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     MDNA
@@ -244,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -312,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/getting-started/installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -333,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/getting-started/quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -415,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guide/overview/" class="md-nav__link">
+      <a href="../../guide/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -436,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guide/building/" class="md-nav__link">
+      <a href="../../guide/building/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -457,7 +475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guide/modifying/" class="md-nav__link">
+      <a href="../../guide/modifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guide/analyzing/" class="md-nav__link">
+      <a href="../../guide/analyzing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -499,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guide/noncanonical/" class="md-nav__link">
+      <a href="../../guide/noncanonical/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -524,8 +542,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -547,13 +567,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -567,7 +585,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Concepts
@@ -578,10 +596,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/concepts/architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -590,6 +628,146 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Relationship Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-build-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Build Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Build Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-shape-spline-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Shape → Spline Frames
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sequence-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Sequence → Topology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-frames-topology-trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Frames + Topology → Trajectory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-assembly-nucleic" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Assembly → Nucleic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-analysis-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Analysis Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Analysis Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-trajectory-base-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Trajectory → Base Frames
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-frames-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Frames → Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modification-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modification Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nucleic-object-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Nucleic Object Lifecycle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Design Decisions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -602,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/concepts/rigid-base/" class="md-nav__link">
+      <a href="../rigid-base/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -623,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/concepts/splines/" class="md-nav__link">
+      <a href="../splines/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -644,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/concepts/minimization/" class="md-nav__link">
+      <a href="../minimization/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -665,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/explanation/explanation/" class="md-nav__link">
+      <a href="../../explanation/explanation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -743,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/index-notebooks/" class="md-nav__link">
+      <a href="../../index-notebooks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -813,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/0_structure_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/0_structure_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -834,7 +1012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/1_visualization_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/1_visualization_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -855,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/2_modification_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/2_modification_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -876,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/3_analysis_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/3_analysis_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -954,7 +1132,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/4_filament_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/4_filament_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -975,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/5_extension_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/5_extension_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -996,7 +1174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/6_connection_tutorial/" class="md-nav__link">
+      <a href="../../notebooks/6_connection_tutorial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1017,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/7_sequence_library/" class="md-nav__link">
+      <a href="../../notebooks/7_sequence_library/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1094,7 +1272,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/api/" class="md-nav__link ">
+            <a href="../../api/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1127,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/functions/" class="md-nav__link">
+      <a href="../../api/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1148,7 +1326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/nucleic/" class="md-nav__link">
+      <a href="../../api/nucleic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1169,7 +1347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/shapes/" class="md-nav__link">
+      <a href="../../api/shapes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1190,7 +1368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/geometry/" class="md-nav__link">
+      <a href="../../api/geometry/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1211,7 +1389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/spline/" class="md-nav__link">
+      <a href="../../api/spline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1232,7 +1410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/analysis/" class="md-nav__link">
+      <a href="../../api/analysis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1253,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/generators/" class="md-nav__link">
+      <a href="../../api/generators/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1274,7 +1452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/minimizer/" class="md-nav__link">
+      <a href="../../api/minimizer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1312,6 +1490,136 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Relationship Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-build-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Build Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Build Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-shape-spline-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Shape → Spline Frames
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-sequence-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Sequence → Topology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-frames-topology-trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Frames + Topology → Trajectory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-assembly-nucleic" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Assembly → Nucleic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-analysis-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Analysis Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Analysis Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-trajectory-base-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Trajectory → Base Frames
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-frames-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Frames → Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modification-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modification Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nucleic-object-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Nucleic Object Lifecycle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Design Decisions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1323,7 +1631,193 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+
+
+
+                  
+
+  
+  
+
+
+<h1 id="architecture-how-mdna-works">Architecture &amp; How MDNA Works<a class="headerlink" href="#architecture-how-mdna-works" title="Permanent link">&para;</a></h1>
+<p>This page explains how MDNA's classes and functions relate to each other, and describes the internal pipeline from input to atomic-resolution output.</p>
+<hr />
+<h2 id="class-relationship-diagram">Class Relationship Diagram<a class="headerlink" href="#class-relationship-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TD
+    subgraph "Top-Level Functions"
+        make["mdna.make()"]
+        load["mdna.load()"]
+        connect["mdna.connect()"]
+        crp["mdna.compute_rigid_parameters()"]
+    end
+
+    subgraph "Core Class"
+        NUC["Nucleic"]
+    end
+
+    subgraph "Build Pipeline"
+        SP["SplineFrames"]
+        SG["SequenceGenerator"]
+        STG["StructureGenerator"]
+    end
+
+    subgraph "Geometry &amp; Analysis"
+        RB["ReferenceBase"]
+        NF["NucleicFrames"]
+        GA["GrooveAnalysis"]
+        TA["TorsionAnalysis"]
+    end
+
+    subgraph "Modification"
+        MUT["Mutate"]
+        METH["Methylate"]
+        HOOG["Hoogsteen"]
+    end
+
+    subgraph "Relaxation"
+        MIN["Minimizer"]
+        MC["PMCpy Monte Carlo"]
+    end
+
+    subgraph "Utilities"
+        SH["Shapes"]
+        RBD["RigidBody"]
+    end
+
+    make --&gt; SP
+    make --&gt; NUC
+    load --&gt; NUC
+    connect --&gt; NUC
+
+    SH --&gt;|control points| SP
+    SP --&gt;|frames| STG
+    SG --&gt;|topology| STG
+    STG --&gt;|MDTraj trajectory| NUC
+
+    NUC --&gt;|".minimize()"| MIN
+    MIN --&gt; MC
+    MC --&gt;|relaxed frames| NUC
+
+    NUC --&gt;|".mutate()"| MUT
+    NUC --&gt;|".methylate()"| METH
+    NUC --&gt;|".flip()"| HOOG
+    MUT --&gt;|updated traj| NUC
+    METH --&gt;|updated traj| NUC
+    HOOG --&gt;|updated traj| NUC
+
+    NUC --&gt;|".get_rigid_object()"| NF
+    crp --&gt; NF
+    NF --&gt;|uses| RB
+    NF --&gt;|parameters| NUC
+
+    GA --&gt;|groove widths| NUC
+    TA --&gt;|torsion angles| NUC</code></pre>
+<hr />
+<h2 id="the-build-pipeline">The Build Pipeline<a class="headerlink" href="#the-build-pipeline" title="Permanent link">&para;</a></h2>
+<p>When you call <code>mdna.make(sequence, control_points)</code>, the following happens internally:</p>
+<h3 id="1-shape-spline-frames">1. Shape → Spline Frames<a class="headerlink" href="#1-shape-spline-frames" title="Permanent link">&para;</a></h3>
+<p>The <strong><code>SplineFrames</code></strong> class takes control points (from <code>Shapes</code> or user-defined) and:</p>
+<ul>
+<li>Fits a B-spline through the points</li>
+<li>Distributes base pair origins along the spline at 0.34 nm spacing</li>
+<li>Computes orthonormal reference frames at each position using the Bishop frame method (minimal torsion)</li>
+<li>Applies DNA twist based on <code>bp_per_turn</code> (default 10.5) or a specified linking number difference <code>dLk</code></li>
+</ul>
+<p><strong>Output:</strong> An array of frames with shape <code>(n_bp, 4, 3)</code> — origin + 3 basis vectors per base pair.</p>
+<h3 id="2-sequence-topology">2. Sequence → Topology<a class="headerlink" href="#2-sequence-topology" title="Permanent link">&para;</a></h3>
+<p>The <strong><code>SequenceGenerator</code></strong> class:</p>
+<ul>
+<li>Loads reference base atom coordinates from the atomic library (<code>mdna/atomic/bases/</code>)</li>
+<li>Constructs the sense strand and complementary antisense strand</li>
+<li>Builds an MDTraj <code>Topology</code> with proper residue names, bonds, and chain assignments</li>
+</ul>
+<h3 id="3-frames-topology-trajectory">3. Frames + Topology → Trajectory<a class="headerlink" href="#3-frames-topology-trajectory" title="Permanent link">&para;</a></h3>
+<p>The <strong><code>StructureGenerator</code></strong> class:</p>
+<ul>
+<li>Places each reference base into its corresponding frame using rigid body transformations</li>
+<li>Handles purine/pyrimidine placement geometry via the <strong><code>ReferenceBase</code></strong> class</li>
+<li>Produces a full atomic-resolution MDTraj <code>Trajectory</code></li>
+</ul>
+<h3 id="4-assembly-nucleic">4. Assembly → Nucleic<a class="headerlink" href="#4-assembly-nucleic" title="Permanent link">&para;</a></h3>
+<p>The <strong><code>Nucleic</code></strong> class wraps everything into a single object holding:</p>
+<ul>
+<li><code>sequence</code> — the DNA sequence string</li>
+<li><code>frames</code> — reference frames array <code>(n_bp, n_timesteps, 4, 3)</code></li>
+<li><code>traj</code> — the MDTraj trajectory (lazy-generated when needed)</li>
+<li><code>circular</code> — topology flag</li>
+</ul>
+<hr />
+<h2 id="the-analysis-pipeline">The Analysis Pipeline<a class="headerlink" href="#the-analysis-pipeline" title="Permanent link">&para;</a></h2>
+<p>When you call methods like <code>dna.get_parameters()</code>:</p>
+<h3 id="1-trajectory-base-frames">1. Trajectory → Base Frames<a class="headerlink" href="#1-trajectory-base-frames" title="Permanent link">&para;</a></h3>
+<p>The <strong><code>NucleicFrames</code></strong> class:</p>
+<ul>
+<li>Extracts individual nucleobase atoms from the trajectory</li>
+<li>Fits each base to a <strong><code>ReferenceBase</code></strong> coordinate frame using the Tsukuba convention</li>
+<li>Computes mid-step frames (average of consecutive base pair frames)</li>
+</ul>
+<h3 id="2-frames-parameters">2. Frames → Parameters<a class="headerlink" href="#2-frames-parameters" title="Permanent link">&para;</a></h3>
+<p>From the base pair and step frames, <code>NucleicFrames</code> computes:</p>
+<ul>
+<li><strong>Intra-base pair parameters:</strong> Shear, Stretch, Stagger, Buckle, Propeller, Opening</li>
+<li><strong>Inter-base pair step parameters:</strong> Shift, Slide, Rise, Tilt, Roll, Twist</li>
+</ul>
+<p>These are derived from the rotation matrices and displacement vectors between frames using the <strong><code>RigidBody</code></strong> utility class (Euler vector decomposition).</p>
+<hr />
+<h2 id="modification-pipeline">Modification Pipeline<a class="headerlink" href="#modification-pipeline" title="Permanent link">&para;</a></h2>
+<p>Modifications operate on the MDTraj trajectory:</p>
+<ul>
+<li><strong><code>Mutate</code></strong>: Replaces atom coordinates and topology for specified residues using reference base structures</li>
+<li><strong><code>Methylate</code></strong>: Inserts a methyl carbon atom at the C5 (cytosine) or O6 (guanine) position</li>
+<li><strong><code>Hoogsteen</code></strong>: Rotates the nucleobase heavy atoms around the glycosidic bond axis</li>
+</ul>
+<p>All modifications clear cached frames and rigid parameters, since the atomic coordinates have changed.</p>
+<hr />
+<h2 id="the-nucleic-object-lifecycle">The Nucleic Object Lifecycle<a class="headerlink" href="#the-nucleic-object-lifecycle" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Created: make() / load()
+    Created --&gt; HasFrames: get_frames()
+    Created --&gt; HasTraj: get_traj()
+    HasFrames --&gt; HasTraj: _frames_to_traj()
+    HasTraj --&gt; HasFrames: _traj_to_frames()
+    HasTraj --&gt; Analyzed: get_rigid_object()
+    HasTraj --&gt; Modified: mutate() / flip() / methylate()
+    Modified --&gt; HasTraj: (traj updated)
+    Modified --&gt; Created: (frames cleared)
+    HasFrames --&gt; Minimized: minimize()
+    Minimized --&gt; HasTraj: (traj regenerated)
+    Analyzed --&gt; HasTraj: (rigid params cached)</code></pre>
+<p>The <code>Nucleic</code> object lazily converts between frames and trajectory as needed. Modifications clear the frame/analysis cache, and minimization updates frames then regenerates the trajectory.</p>
+<hr />
+<h2 id="key-design-decisions">Key Design Decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Lazy evaluation</strong>: Trajectory and frames are computed on demand, not eagerly. This allows working with frames-only workflows (fast) or full atomic trajectories (when needed).</p>
+</li>
+<li>
+<p><strong>In-place modification</strong>: Methods like <code>mutate()</code>, <code>flip()</code>, <code>methylate()</code>, <code>minimize()</code>, and <code>extend()</code> modify the <code>Nucleic</code> object in-place rather than returning new objects.</p>
+</li>
+<li>
+<p><strong>MDTraj interoperability</strong>: The atomic representation is always an MDTraj <code>Trajectory</code>, ensuring compatibility with the broader MD ecosystem.</p>
+</li>
+<li>
+<p><strong>Spline-based construction</strong>: DNA shape is defined by control points → spline → frames, decoupling geometry from sequence. This enables arbitrary shapes while maintaining correct base pair spacing and twist.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
 
               </article>
             </div>
@@ -1364,13 +1858,15 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["content.code.copy", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow"], "search": "/assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
