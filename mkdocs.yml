@@ -5,6 +5,11 @@ theme:
   name: "material"
   features:
     - content.code.copy
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
   logo: assets/logo.png
 
   palette: 
@@ -52,10 +57,8 @@ markdown_extensions:
   - codehilite
   - attr_list
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
   - md_in_html
   - toc:
       permalink: true
@@ -63,22 +66,35 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tabbed:
+      alternate_style: true
 
 
 
 nav:
   - Home: index.md
-  - Tutorials: 
-      - Overiew: index-tutorials.md
-      - Quickstart: tutorials/tutorials-quickstart.md
-      - Build: tutorials/tutorials-build.md
-      - Modify: tutorials/tutorials-modify.md
-      - Analyse: tutorials/tutorials-analyse.md
-   
-
-  - Explanation: explanation/explanation.md
-  -  Jupyter Notebooks: 
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+  - User Guide:
+      - Overview: guide/overview.md
+      - Building DNA: guide/building.md
+      - Modifying DNA: guide/modifying.md
+      - Analyzing DNA: guide/analyzing.md
+      - Non-Canonical Bases: guide/noncanonical.md
+  - Concepts:
+      - Architecture: concepts/architecture.md
+      - Rigid Base Parameters: concepts/rigid-base.md
+      - Splines & Geometry: concepts/splines.md
+      - Background: explanation/explanation.md
+  - Jupyter Notebooks: 
       - Overview: index-notebooks.md
       - Basic Notebooks:
           - Structure Generation: notebooks/0_structure_tutorial.ipynb
@@ -90,19 +106,20 @@ nav:
           - Add Linker DNA to Nucleosome: notebooks/5_extension_tutorial.ipynb
           - Add DNA Loop to bridging protein: notebooks/6_connection_tutorial.ipynb
           - How to add base to Sequence Library: notebooks/7_sequence_library.ipynb
-  - Modules: 
-      - Overview: index-modules.md
-      - Core: modules/modules-core.md
-      - Build: modules/modules-build.md
-      - Modify: modules/modules-modify.md
-      - Analyse: modules/modules-analyse.md
   - API Reference: 
-      - Overview: index-api.md
-      - Classes:
-        - Nucleic: api/nucleic-reference.md
-        - Shapes: api/shapes-reference.md
-        - Geometry: api/geometry-reference.md
+      - Overview: api/index.md
+      - Top-Level Functions: api/functions.md
+      - Nucleic: api/nucleic.md
+      - Shapes: api/shapes.md
+      - Geometry: api/geometry.md
+      - SplineFrames: api/spline.md
+      - Analysis: api/analysis.md
+      - Generators: api/generators.md
+      - Minimizer: api/minimizer.md
     
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

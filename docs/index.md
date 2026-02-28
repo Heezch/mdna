@@ -1,77 +1,75 @@
-# Software module for DNA structure generation and analysis
+# MDNA — DNA Structure Generation & Analysis Toolkit
 
+A Python toolkit for atomic-resolution generation and analysis of double-stranded DNA structures.
 
-This site contains the project documentation for the
-`mdna` project that is python toolkit for the structure generation and analysis of DNA molecular dynamics simulations.
-<!-- 
-[Build Your Python Project Documentation With MkDocs](
-    https://realpython.com/python-project-documentation-with-mkdocs/). -->
+---
 
-<!-- Its aim is to give you a framework to build your
-project documentation using Python, MkDocs,
-mkdocstrings, and the Material for MkDocs theme. -->
+## What is MDNA?
 
+MDNA enables the construction of arbitrarily shaped DNA using spline-based mapping, supports canonical and non-canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations. In addition, it implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj-compatible trajectories for molecular dynamics workflows.
 
-## Table Of Contents
+## Quick Example
 
-<!-- The documentation follows the best practice for
-project documentation as described by Daniele Procida
-in the [Diátaxis documentation framework](https://diataxis.fr/)
-and consists of four separate parts: -->
+```python
+import mdna
 
-1. [Quick Start](tutorials/tutorials-quickstart.md)
-2. [Tutorials](index-tutorials.md)
-3. [Explanation](explanation/explanation.md)
-4. [Jupyter Notebooks](index-notebooks.md)
-5. [Modules](index-modules.md)
-6. [API reference](index-api.md)
+# Generate a 100-bp DNA minicircle
+dna = mdna.make(n_bp=100, circular=True)
 
-Quickly find what you're looking for depending on
-your use case by looking at the different pages.
+# Relax the structure
+dna.minimize()
+
+# Compute rigid base parameters
+params, names = dna.get_parameters()
+
+# Export to PDB
+dna.save_pdb('minicircle.pdb')
+```
+
+## Key Features
+
+- **Arbitrary DNA shapes** via spline control points
+- **Sequence-driven construction** with canonical and non-canonical bases (hachimoji, fluorescent, hydrophobic UBPs)
+- **Hoogsteen base flipping** and **methylation** editing
+- **Circular DNA** generation with linking number control ($\Delta Lk$)
+- **Monte Carlo relaxation** for physically consistent configurations
+- **Rigid base parameter analysis**: shear, stretch, stagger, buckle, propeller, opening, shift, slide, rise, tilt, roll, twist
+- **MDTraj interoperability** for seamless MD workflows
+
+---
+
+## Documentation
+
+## Documentation
+
+| | Section | Description |
+|---|---------|-------------|
+| :material-rocket-launch: | **[Getting Started](getting-started/installation.md)** | Install MDNA and generate your first DNA in 5 minutes |
+| :material-book-open-variant: | **[User Guide](guide/overview.md)** | Task-oriented guides: [Build](guide/building.md) · [Modify](guide/modifying.md) · [Analyse](guide/analyzing.md) |
+| :material-lightbulb-on: | **[Concepts](concepts/architecture.md)** | Architecture, splines, rigid base formalism |
+| :material-notebook: | **[Jupyter Notebooks](index-notebooks.md)** | Interactive tutorials from basic to advanced |
+| :material-code-tags: | **[API Reference](api/index.md)** | Complete reference for all classes and functions |
 
 ## Example Gallery
-Three examples that highlight the building of biomolecular assemblies with `mdna`. Here we showcase the extension of DNA structures, using proteins as scaffold to generate DNA structure, and lastly to connect two DNA strands to form a DNA loop. Molecular representations are visualized with Mol* Viewer. 
+
+Three examples that highlight the building of biomolecular assemblies with MDNA: extension of DNA structures, using proteins as scaffold to generate DNA structure, and connecting two DNA strands to form a DNA loop. Molecular representations are visualized with Mol* Viewer.
+
 <div class="image-gallery">
   <a href="assets/gallery/image1.png" class="glightbox">
-    <img src="assets/gallery/image1.png" alt="Image 1" />
+    <img src="assets/gallery/image1.png" alt="DNA Extension" />
   </a>
   <a href="assets/gallery/image2.png" class="glightbox">
-    <img src="assets/gallery/image2.png" alt="Image 2" />
+    <img src="assets/gallery/image2.png" alt="Protein-Scaffolded DNA" />
   </a>
   <a href="assets/gallery/image3.png" class="glightbox">
-    <img src="assets/gallery/image3.png" alt="Image 3" />
+    <img src="assets/gallery/image3.png" alt="DNA Loop Connection" />
   </a>
 </div>
-
-
-
-<!-- ## Project Overview
-
-::: mdna -->
-
 
 ## Citation
 
 Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
 
-## What is MDNA?
-
-mdna is a Python toolkit for atomic resolution generation and analysis of double stranded DNA structures. It enables the construction of arbitrarily shaped DNA using spline based mapping, supports canonical and non canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations.
-
-In addition to structure generation, MDNA implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj compatible trajectories for molecular dynamics workflows.
-
-
-## Key Features
-	•	Arbitrary DNA shape generation via spline control points
-	•	Sequence driven construction with canonical and non canonical bases
-	•	Hoogsteen base flipping and methylation editing
-	•	Circular DNA generation with linking number control
-	•	Monte Carlo based structure relaxation
-	•	Native rigid base parameter analysis
-	•	Intra base pair: shear, stretch, stagger, buckle, propeller, opening
-	•	Inter base pair step: shift, slide, rise, tilt, roll, twist
-
-    
 ## Acknowledgements
 
 This project is supported by the NWO Klein grant.
