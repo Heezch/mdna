@@ -15,6 +15,11 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 ### Fixed
 -
 
+## [0.1.1] - 2026-02-28
+
+### Fixed
+- Excluded accidental platform-specific compiled extension artifacts (`*.so`, `*.pyd`) and generated Cython build outputs from release artifacts.
+
 ## [0.1.0] - 2026-02-28
 
 ### Added

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mdna"
-version = "0.1.0"
+version = "0.1.1"
 description = "Software module for DNA structure analysis and generation"
 readme = "README.md"
 license-files = []
@@ -44,4 +44,9 @@ exclude = [
     "examples/data/filament_dataset*.zip",
     "examples/data/filament_dataset*.tar",
     "examples/data/filament_dataset*.tar.gz",
+    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.so",
+    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.pyd",
+    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*cpython-*.so",
+    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.c",
+    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.html",
 ]
