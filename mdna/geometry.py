@@ -22,13 +22,28 @@ NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 
                     'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
 
 class ReferenceBase:
-    """_summary_
+    """Compute a nucleobase reference frame following the Tsukuba convention.
+
+    Given an MDTraj trajectory for a single residue, this class identifies the
+    base type (purine, pyrimidine, or non-canonical analogue), locates the key
+    atoms (C1', N-glycosidic nitrogen, and a ring carbon), and calculates the
+    local reference frame vectors (origin *b_R*, long axis *b_L*, short axis
+    *b_D*, and normal *b_N*).
+
+    Attributes:
+        traj (md.Trajectory): Single-residue trajectory.
+        base_type (str): One-letter nucleobase code (e.g. ``'A'``, ``'T'``, ``'D'``).
+        b_R (numpy.ndarray): Reference point (origin) of shape ``(n_frames, 3)``.
+        b_L (numpy.ndarray): Long-axis unit vector of shape ``(n_frames, 3)``.
+        b_D (numpy.ndarray): Short-axis unit vector of shape ``(n_frames, 3)``.
+        b_N (numpy.ndarray): Base-normal unit vector of shape ``(n_frames, 3)``.
     """
+
     def __init__(self, traj):
-        """_summary_
+        """Initialize the reference base calculation.
 
         Args:
-            traj (_type_): _description_
+            traj (md.Trajectory): MDTraj trajectory containing a single nucleotide residue.
         """
         self.traj = traj
         # Determine base type (purine/pyrimidine/other)
@@ -42,25 +57,28 @@ class ReferenceBase:
         # self.basis = np.array([self.b_D.T, self.b_L.T, self.b_N])
     
     def _select_atom_by_name(self, name: str) -> np.ndarray:
-        """_summary_
+        """Select atom coordinates by atom name.
 
         Args:
-            name (_type_): _description_
+            name (str): Atom selection string (e.g. ``'N9'``, ``'"C1\'"'``).
 
         Returns:
-            _type_: _description_
+            numpy.ndarray: Coordinates of shape ``(n_frames, 3)``.
         """
         # Select an atom by name returns shape (n_frames, 1, [x,y,z])
         return np.squeeze(self.traj.xyz[:,[self.traj.topology.select(f'name {name}')[0]],:],axis=1)
         
     def get_base_type(self) -> str:
-        """_summary_
+        """Determine the nucleobase type from the atoms present in the trajectory.
+
+        Matches the set of non-hydrogen atom names against the known
+        nucleobase dictionaries for canonical and non-canonical bases.
 
         Raises:
-            ValueError: _description_
+            ValueError: If no known base type matches the atom set.
 
         Returns:
-            _type_: _description_
+            str: Single-letter nucleobase code (e.g. ``'A'``, ``'G'``, ``'D'``).
         """
         # Extracts all non-hydrogen atoms from the trajectory topology
         atoms = {atom.name for atom in self.traj.topology.atoms if atom.element.symbol != 'H'}
@@ -73,10 +91,14 @@ class ReferenceBase:
         raise ValueError("Cannot determine the base type from the PDB file.")
     
     def get_coordinates(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-        """_summary_
+        """Retrieve C1', N-glycosidic, and ring-carbon coordinates for the base.
+
+        The specific atoms selected depend on the base type (purine vs
+        pyrimidine vs non-canonical analogue).
 
         Returns:
-            _type_: _description_
+            tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]:
+                ``(C1_coords, N_coords, C_coords)`` each of shape ``(n_frames, 3)``.
         """
         # Get the coordinates of key atoms based on the base type
         C1_coords = self._select_atom_by_name('"C1\'"')
@@ -101,10 +123,15 @@ class ReferenceBase:
     
     
     def calculate_base_frame(self) -> np.ndarray:
-        """_summary_
+        """Calculate the base reference frame from the Tsukuba convention.
+
+        Computes the base-normal (*b_N*) from the cross product of key atom
+        vectors, then derives the reference point (*b_R*), long axis (*b_L*),
+        and short axis (*b_D*) by rotating the N→C1' vector.
 
         Returns:
-            _type_: _description_
+            numpy.ndarray: Array of shape ``(4, n_frames, 3)`` containing
+                ``[b_R, b_D, b_L, b_N]``.
         """
 
         # Calculate normal vector using cross product of vectors formed by key atoms
@@ -132,14 +159,14 @@ class ReferenceBase:
         return np.array([b_R, b_D, b_L, b_N])
         #return np.array([b_R, -b_D, -b_L, -b_N])
 
-    def plot_baseframe(self,atoms=True, frame=True, ax=None,length=1):
-        """_summary_
+    def plot_baseframe(self, atoms=True, frame=True, ax=None, length=1):
+        """Plot the nucleobase atoms and/or reference frame vectors in 3D.
 
         Args:
-            atoms (bool, optional): _description_. Defaults to True.
-            frame (bool, optional): _description_. Defaults to True.
-            ax (_type_, optional): _description_. Defaults to None.
-            length (int, optional): _description_. Defaults to 1.
+            atoms (bool): If True, scatter-plot the atom positions. Defaults to True.
+            frame (bool): If True, draw quiver arrows for the *b_L*, *b_D*, and *b_N* vectors. Defaults to True.
+            ax (matplotlib.axes.Axes, optional): Existing 3D axes to draw on. If None, a new figure is created.
+            length (int): Length scale for the quiver arrows. Defaults to 1.
         """
         if ax is None:
             fig = plt.figure()
@@ -187,34 +214,36 @@ class ReferenceBase:
         ax.axis('equal')
 
 class NucleicFrames:
-    """Class to compute the rigid base parameters of a DNA structure.
-    
-    loc = '/Users/thor/surfdrive/Scripts/notebooks/HNS-sequence/WorkingDir/nolinker/data/md/0_highaff/FI/drytrajs/'
-    traj = md.load(loc+'dry_10.xtc',top=loc+'dry_10.pdb')
+    """Rigid base-pair parameter computation from DNA trajectories.
 
-    dna = NucleicFrames(traj)
-    params, names = dna.get_paramters()
-    params.shape, names
+    Extracts nucleobase reference frames from an MDTraj trajectory using the
+    Tsukuba convention, then computes the six intra-base-pair parameters
+    (shear, stretch, stagger, buckle, propeller, opening) and six inter-base-pair
+    step parameters (shift, slide, rise, tilt, roll, twist) for every frame in
+    the trajectory.
 
-    # Confidence intervals 
-    from scipy.stats import t
+    The mean base-pair reference frames are also stored and can be used as input
+    for downstream construction or analysis.
 
-    fig, ax = plt.subplots(2,6,figsize=(12,4))
-    fig.tight_layout()
-    ax = ax.flatten()
-    M = np.mean(params, axis=0)
-    S = np.std(params, axis=0)
-    n = params.shape[0]
-    ci = t.ppf(0.975, df=n-1) * S / np.sqrt(n)
-    x = np.arange(0, params.shape[1])
-    for _, i in enumerate(M.T):
-        if _ >= 6:
-            c1, c2 = 'red','coral'
-        else:
-            c1, c2 = 'blue','cornflowerblue'
-        ax[_].plot(i[::-1], '-o',color=c1)
-        ax[_].fill_between(x, (i-ci[_])[::-1], (i+ci[_])[::-1], color=c2, alpha=0.2)
-        ax[_].set_title(names[_])
+    Attributes:
+        traj (md.Trajectory): Input trajectory.
+        frames (numpy.ndarray): Mean reference frames of shape ``(n_bp, n_frames, 4, 3)``.
+        parameters (numpy.ndarray): Combined base-pair and step parameters of shape
+            ``(n_bp, n_frames, 12)``.
+        bp_params (numpy.ndarray): Intra-base-pair parameters of shape ``(n_bp, n_frames, 6)``.
+        step_params (numpy.ndarray): Inter-base-pair step parameters of shape ``(n_bp, n_frames, 6)``.
+        names (list[str]): Parameter names (base + step).
+
+    Example:
+        ```python
+        import mdtraj as md
+        import mdna
+
+        traj = md.load('dna_trajectory.xtc', top='dna.pdb')
+        dna = mdna.NucleicFrames(traj)
+        params, names = dna.get_parameters()
+        # params.shape → (n_frames, n_bp, 12)
+        ```
     """
 
     def __init__(self, traj, chainids=[0,1], fit_reference=False):
@@ -238,7 +267,18 @@ class NucleicFrames:
         self.analyse_frames()
 
     def get_residues(self, chain_index, reverse=False):
-        """Get residues from specified chain."""
+        """Get residues from a specified chain.
+
+        Args:
+            chain_index (int): Index of the chain in the topology.
+            reverse (bool): If True, return residues in reverse order (used for the anti-sense strand).
+
+        Returns:
+            list: List of MDTraj Residue objects.
+
+        Raises:
+            IndexError: If *chain_index* is out of range.
+        """
         if chain_index >= len(self.top._chains):
             raise IndexError("Chain index out of range.")
         chain = self.top._chains[chain_index]
@@ -246,7 +286,11 @@ class NucleicFrames:
         return list(reversed(residues)) if reverse else residues
 
     def load_reference_bases(self):
-        """Load reference bases from local files."""
+        """Load canonical reference base structures from bundled HDF5 files.
+
+        Returns:
+            dict[str, md.Trajectory]: Mapping of base letter (A, C, G, T) to single-frame trajectory.
+        """
         bases = ['C', 'G', 'T', 'A']
         return {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
 
@@ -310,7 +354,15 @@ class NucleicFrames:
         return fitted_vectors
 
     def get_base_vectors(self, res):
-        """Compute base vectors from reference base."""
+        """Compute base reference vectors for a single residue.
+
+        Args:
+            res (md.Trajectory): Single-residue trajectory slice.
+
+        Returns:
+            numpy.ndarray: Base vectors of shape ``(n_frames, 4, 3)``
+                ordered as ``[b_R, b_L, b_D, b_N]``.
+        """
         ref_base = ReferenceBase(res)
         base_vectors = np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
         if not self.fit_reference:
@@ -318,7 +370,11 @@ class NucleicFrames:
         return self._get_fitted_base_vectors(res, ref_base, base_vectors)
     
     def get_base_reference_frames(self):
-        """Get reference frames for each residue."""
+        """Compute reference frames for all residues in both strands.
+
+        Returns:
+            dict: Mapping of MDTraj Residue → base vectors array of shape ``(n_frames, 4, 3)``.
+        """
         reference_frames = {} # Dictionary to store the base vectors for each residue
         for res in self.res_A + self.res_B:
             res_traj = self.traj.atom_slice([at.index for at in res.atoms])
@@ -463,7 +519,11 @@ class NucleicFrames:
 
 
     def analyse_frames(self):
-        """Analyze the trajectory and compute parameters."""
+        """Compute base-pair and step parameters from the extracted reference frames.
+
+        Populates ``bp_params``, ``step_params``, ``parameters``, ``frames``,
+        and ``names`` attributes.
+        """
 
         # Get base reference frames for each residue
         frames_A = np.array([self.base_frames[res] for res in self.res_A])
@@ -485,14 +545,26 @@ class NucleicFrames:
         self._clean_parameters()
 
     def _clean_parameters(self):
-        """Clean the parameters by removing the first and last frame."""
+        """Assign parameter names and merge base-pair and step arrays."""
         self.step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
         self.base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
         self.names = self.base_parameter_names + self.step_parameter_names
         self.parameters = np.dstack((self.bp_params, self.step_params))
 
-    def get_parameters(self,step=False,base=False):
-        """Return the computed parameters of shape (n_frames, n_base_pairs, n_parameters)"""
+    def get_parameters(self, step=False, base=False):
+        """Return computed rigid base parameters.
+
+        Args:
+            step (bool): If True, return only step parameters.
+            base (bool): If True, return only base-pair parameters.
+
+        Returns:
+            tuple[numpy.ndarray, list[str]]: Parameters of shape
+                ``(n_frames, n_bp, n_params)`` and corresponding names.
+
+        Raises:
+            ValueError: If both *step* and *base* are True.
+        """
         if step and not base:
             return self.step_params, self.step_parameter_names
         elif base and not step:
@@ -501,32 +573,43 @@ class NucleicFrames:
             return self.parameters, self.names
         raise ValueError("Use only one of step=True or base=True, or neither.")
         
-    def get_parameter(self,name='twist') -> np.ndarray:
-        """Get the parameter of the DNA structure, choose frome the following:
-        - shift, slide, rise, tilt, roll, twist, shear, stretch, stagger, buckle, propeller, opening
+    def get_parameter(self, name='twist') -> np.ndarray:
+        """Get a single named parameter across all frames.
 
         Args:
-            name (str): parameter name
+            name (str): Parameter name. One of: shear, stretch, stagger, buckle,
+                propeller, opening, shift, slide, rise, tilt, roll, twist.
 
         Returns:
-            parameter(ndarray) : parameter in shape (n_frames, n_base_pairs)"""
+            numpy.ndarray: Parameter values of shape ``(n_frames, n_bp)``.
+
+        Raises:
+            ValueError: If the parameter name is not recognised.
+        """
 
         if name not in self.names:
             raise ValueError(f"Parameter {name} not found.")
         return self.parameters[:,:,self.names.index(name)]
     
 
-    def plot_parameters(self, fig=None, ax=None, mean=True, std=True,figsize=[10,3.5], save=False,step=True,base=True,base_color='cornflowerblue',step_color='coral'):
-        """Plot the rigid base parameters of the DNA structure
+    def plot_parameters(self, fig=None, ax=None, mean=True, std=True, figsize=[10, 3.5], save=False, step=True, base=True, base_color='cornflowerblue', step_color='coral'):
+        """Plot the rigid base parameters of the DNA structure.
+
         Args:
-            fig: figure
-            ax: axis
-            mean: plot mean
-            std: plot standard deviation
-            figsize: figure size
-            save: save figure
+            fig (matplotlib.figure.Figure, optional): Existing figure.
+            ax (numpy.ndarray, optional): Array of axes to plot on.
+            mean (bool): Plot the mean line.
+            std (bool): Plot the standard deviation band.
+            figsize (list): Figure size ``[width, height]``.
+            save (bool): If True, save the figure to ``parameters.png``.
+            step (bool): Include step parameters.
+            base (bool): Include base-pair parameters.
+            base_color (str): Color for base-pair parameter plots.
+            step_color (str): Color for step parameter plots.
+
         Returns:
-            figure, axis"""
+            tuple: ``(fig, ax)`` matplotlib figure and axes array.
+        """
 
         import matplotlib.pyplot as plt
 
