@@ -77,20 +77,35 @@ Refs:
 class SplineFrames:
     
     def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],n_bp=None,dLk=None):
-        """
-        Initializes the SplineFrames class.
+        """Initialize a spline path with Bishop-frame coordinate systems.
 
-        Spline gets initialized based on the control points, degree, and closed properties.
-        The spline is evaluated and the frames are positione along the spline based on the frame spacing.
-        
-        In the subsequent stage the frames are tested for continouity / minimal torsion.
-        Then frames are twisted based on the bp_per_turn property or requested delta linking number.
+        The spline is fitted to the control points, evenly-spaced frames are
+        placed along the arc length, continuity is verified, and an optional
+        twist is applied.
 
         Args:
-            control_points (numpy.ndarray): Control points defining the path.
-            degree (int, optional): Degree of the spline. Defaults to 3.
-            closed (bool, optional): Indicates if the path is closed. Defaults to False.
-            up_vector (list or numpy.ndarray, optional): Up vector for frame computation. Defaults to [0, 0, 1].
+            control_points (numpy.ndarray): 3-D control points, shape ``(n, 3)``.
+            degree (int): B-spline degree (1–5).
+            closed (bool): If True, close the spline into a loop.
+            up_vector (list or numpy.ndarray): Reference up direction for
+                initial frame orientation.
+            frame_spacing (float): Target arc-length distance between frames
+                (nm).  Defaults to 0.34 nm (one base-pair rise).
+            twist (bool): Apply a helical twist to the frames.
+            bp_per_turn (float): Base pairs per helical turn (default 10.5).
+            frame_tolerance (float): Maximum allowed angular deviation when
+                testing frame continuity.
+            verbose (bool): Print diagnostic messages.
+            num_points (int): Number of spline evaluation points for internal
+                interpolation.
+            initial_frame (tuple or numpy.ndarray, optional): Explicit initial
+                frame ``(origin, d1, d2, d3)`` to align the first frame.
+            modified_ranges (list): List of ``(start, end, twist_angle)`` tuples
+                specifying local twist modifications.
+            n_bp (int, optional): Desired number of base pairs.  When set, the
+                spline is rescaled to match this count.
+            dLk (int, optional): Change in linking number applied via uniform
+                twist redistribution.
         """
         self.control_points = control_points
         self.n = num_points
@@ -126,7 +141,7 @@ class SplineFrames:
         if self.twist:
             self.twist_frames(modified_ranges=modified_ranges)
 
-    def update_initial_frame(self, initial_frame):
+    def update_initial_frame(self, initial_frame) -> 'SplineFrames':
         """
         Updates the initial frame.
 
@@ -134,21 +149,18 @@ class SplineFrames:
             initial_frame (tuple): Tuple containing the position, right, up, and forward vectors of the frame.
 
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The updated instance.
         """
         self.initial_frame = initial_frame
         self._compute_frames()
         return self
 
-    def update_control_points(self, control_points):
+    def update_control_points(self, control_points) -> None:
         """
         Updates the control points defining the path.
 
         Args:
             control_points (numpy.ndarray): Control points defining the path.
-
-        Returns:
-            self: Returns the instance of the class.
         """
         self.control_points = control_points
         self.frames = []
@@ -158,7 +170,7 @@ class SplineFrames:
         self.test_frames()
         # return self
 
-    def update_spline_degree(self, degree):
+    def update_spline_degree(self, degree) -> 'SplineFrames':
         """
         Updates the degree of the spline.
 
@@ -166,14 +178,14 @@ class SplineFrames:
             degree (int): Degree of the spline.
 
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The updated instance.
         """
         self.degree = degree
         self._initialize_spline()
         self._evaluate_spline()
         return self
 
-    def update_closed(self, closed):
+    def update_closed(self, closed) -> 'SplineFrames':
         """
         Updates the closed property indicating if the path is closed.
 
@@ -181,33 +193,33 @@ class SplineFrames:
             closed (bool): Indicates if the path is closed.
 
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The updated instance.
         """
         self.closed = closed
         self._initialize_spline()
         self._evaluate_spline()
         return self
 
-    def update_up_vector(self, up_vector):
+    def update_up_vector(self, up_vector) -> 'SplineFrames':
         """
-        Updates the up vector used for frame computation. Not used at the moment
+        Updates the up vector used for frame computation. Not used at the moment.
 
         Args:
             up_vector (list or numpy.ndarray): Up vector for frame computation.
 
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The updated instance.
         """
         self.up_vector = np.array(up_vector)
         self._compute_frames()
         return self
 
-    def _initialize_spline(self):
+    def _initialize_spline(self) -> 'SplineFrames':
         """
         Initializes the spline with the control points.
 
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The initialized instance.
         """
         if self.verbose:
             print("Initializing spline")
@@ -227,15 +239,12 @@ class SplineFrames:
         self.tck = tck
         return self
 
-    def _evaluate_spline(self):
+    def _evaluate_spline(self) -> 'SplineFrames':
         """
         Evaluates the spline curve and its derivatives.
 
-        Args:
-            n (int, optional): Number of points to sample on the spline. Defaults to 1000.
-
         Returns:
-            self: Returns the instance of the class.
+            SplineFrames: The evaluated instance with ``curve``, ``der1``, and ``arc_length`` attributes set.
         """
         if self.verbose:
             print("Evaluating spline")
@@ -252,18 +261,16 @@ class SplineFrames:
         self.arc_length = np.hstack([0, cumulative_trapezoid(arc)])
         return self
 
-    def distribute_points(self):
+    def distribute_points(self) -> 'SplineFrames':
         """
-        D,
-        and evaluate the derivatives at these points. Adjusts the spacing to match the first and last points of the spline.
-
-        Args:
-            d (float): Desired distance between points.
-            derivative_order (int): The order of the derivative to compute.
+        Distributes equidistant points along the spline and evaluates the derivatives
+        at these points. Adjusts the spacing to match the first and last points of the spline.
 
         Returns:
-            equidistant_points: Equidistant points along the spline.
-            derivatives: Derivatives at the equidistant points.
+            SplineFrames: The instance with ``positions`` and ``derivatives`` attributes set.
+
+        Raises:
+            ValueError: If a suitable segment length cannot be found within the tolerance.
         """
 
         # Calculate the new segment length within the specified tolerance
@@ -418,14 +425,22 @@ class SplineFrames:
             print("\tNew number of base pairs:", self.frames.shape[0])
         
 
-    def plot_frames(self, fig=False, equal_bounds=False, equal=True, spline=False,control_points=False, triads=True, transparent=False,legend=False):
+    def plot_frames(self, fig=False, equal_bounds=False, equal=True, spline=False, control_points=False, triads=True, transparent=False, legend=False) -> None:
         """
         Plots the frames along the spline.
 
-        Note: This method needs to be called after the frames are computed.
+        Note:
+            This method needs to be called after the frames are computed.
 
-        Returns:
-            None
+        Args:
+            fig (bool): If True, return the figure and axes objects instead of None.
+            equal_bounds (bool): If True, set equal axis bounds based on data extent.
+            equal (bool): If True, set equal aspect ratio on all axes.
+            spline (bool): If True, overlay the continuous spline curve.
+            control_points (bool): If True, plot the control points.
+            triads (bool): If True, draw the right/up/forward triads at each frame.
+            transparent (bool): If True, make the figure background transparent.
+            legend (bool): If True, suppress the automatic legend.
         """
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
@@ -474,15 +489,12 @@ class SplineFrames:
         else:
             return None 
 
-    def test_frames(self):
+    def test_frames(self) -> None:
         """
         Tests the computed frames for correctness.
 
-        Args:
-            frames (list): List of frames to test.
-
-        Returns:
-            None
+        Checks consecutive frames for abrupt flips in the right and up vectors
+        and prints warnings when angle deviations exceed 90 degrees.
         """
         for i in range(len(self.frames)-1):
             frame1 = self.frames[i]

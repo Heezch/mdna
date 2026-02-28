@@ -14,25 +14,50 @@ import mdtraj as md
 import matplotlib as mpl
 
 def _compute_distance(xyz, pairs):
-    "Distance between pairs of points in each frame"
+    """Compute Euclidean distance between atom pairs for every frame.
+
+    Args:
+        xyz (numpy.ndarray): Coordinates with shape ``(n_frames, n_atoms, 3)``.
+        pairs (list[tuple[int, int]]): Atom-index pairs.
+
+    Returns:
+        numpy.ndarray: Distances with shape ``(n_frames, n_pairs)``.
+    """
     delta = np.diff(xyz[:, pairs], axis=2)[:, :, 0]
     return (delta ** 2.).sum(-1) ** 0.5
 
 class GrooveAnalysis:
-    
-    """
-    DNA groove analysis
+    """Compute minor and major groove widths from a DNA trajectory.
 
-    Example usage:
+    Extracts phosphorus-atom positions from the two DNA strands, fits cubic
+    splines through them, and measures inter-strand distances to derive
+    groove widths for every frame.
 
-    traj = md.load('./data/md/0_highaff/FI/drytrajs/dry_10.xtc',top='./data/md/0_highaff/FI/drytrajs/dry_10.pdb')
-    grooves = GrooveAnalysis(traj) 
-    fig,ax=plt.subplots(figsize=(4,2))
-    grooves.plot_groove_widths(ax=ax)
+    Attributes:
+        minor_widths (numpy.ndarray): Minor-groove widths, shape ``(n_frames, n_points)``.
+        major_widths (numpy.ndarray): Major-groove widths, shape ``(n_frames, n_points)``.
+        sequence (list[str]): Sense-strand sequence letters.
+        base_pairs (list[str]): Base-pair labels (e.g. ``['G-C', 'A-T', ...]``).
 
+    Example:
+        ```python
+        import mdtraj as md
+        traj = md.load('trajectory.xtc', top='topology.pdb')
+        grooves = GrooveAnalysis(traj)
+        fig, ax = plt.subplots()
+        grooves.plot_groove_widths(ax=ax)
+        ```
     """
     
     def __init__(self, raw_traj, points=None, parallel=joblib_available):
+        """Initialize groove analysis.
+
+        Args:
+            raw_traj (md.Trajectory): Trajectory containing at least two DNA chains.
+            points (int, optional): Number of spline interpolation points.
+                Defaults to ``(n_bp - 1) * 4``.
+            parallel (bool): Use joblib for parallel computation when available.
+        """
         
         self.use_parallel = parallel
         self.points = points
@@ -52,9 +77,18 @@ class GrooveAnalysis:
         self.compute_groove_widths()
     
     def describe(self):
+        """Print a summary of the DNA trajectory (base-pair count and frames)."""
         print(f'Your DNA has {self.nbp} base pairs and contains {self.DNA_traj.n_frames} frames.')
      
     def get_phosphors_only_traj(self, raw_traj):
+        """Extract phosphorus-only sub-trajectories for each strand.
+
+        Populates :attr:`DNA_traj`, :attr:`phos_traj`, :attr:`strand_A`,
+        and :attr:`strand_B`.
+
+        Args:
+            raw_traj (md.Trajectory): Full trajectory.
+        """
 
         # Assuming first two chains are the DNA strands
         DNA_indices = [i.index for c in raw_traj.top._chains[:2] for i in c.atoms]
@@ -73,6 +107,10 @@ class GrooveAnalysis:
         self.strand_B = self.phos_traj.atom_slice([i.index for i in phos_chain_B.atoms])
         
     def fit_cubic_spline(self):
+        """Fit cubic splines through phosphorus positions and compute inter-strand distances.
+
+        Populates :attr:`pairs`, :attr:`distances`, and :attr:`distance_matrices`.
+        """
     
         # fit cubic spline curve
         curves_A = self.fit_curves(self.strand_A, self.points)
@@ -103,6 +141,15 @@ class GrooveAnalysis:
     
 
     def fit_curves(self, traj, points):
+        """Interpolate atom positions with a cubic spline.
+
+        Args:
+            traj (md.Trajectory): Single-strand phosphorus trajectory.
+            points (int): Number of interpolation points.
+
+        Returns:
+            coordinates (numpy.ndarray): Interpolated coordinates.
+        """
         
         # make curve with shape[n_particles, xyz, time]
         xyz = traj.xyz.T.swapaxes(0,1)
@@ -117,6 +164,14 @@ class GrooveAnalysis:
     
     @staticmethod
     def find_first_local_minimum(arr):
+        """Return the first local minimum in *arr*, or ``NaN`` if none exists.
+
+        Args:
+            arr (numpy.ndarray): 1-D array of values.
+
+        Returns:
+            minimum (float): First local minimum value.
+        """
         for i in range(1, len(arr) - 1):
             if arr[i] < arr[i - 1] and arr[i] < arr[i + 1]:
                 return arr[i]  # Return the first local minimum found
@@ -124,6 +179,14 @@ class GrooveAnalysis:
 
     @staticmethod
     def split_array(array):
+        """Split an anti-diagonal slice into minor and major halves.
+
+        Args:
+            array (numpy.ndarray): Anti-diagonal slice.
+
+        Returns:
+            halves (tuple[numpy.ndarray, numpy.ndarray]): ``(minor_half, major_half)``.
+        """
         # Compute the midpoint of the array
         midpoint = len(array) // 2
         
@@ -135,11 +198,27 @@ class GrooveAnalysis:
 
     @staticmethod
     def get_anti_diagonal_slices(matrix):
+        """Extract all anti-diagonal slices from a square matrix.
+
+        Args:
+            matrix (numpy.ndarray): Square distance matrix.
+
+        Returns:
+            slices (list[numpy.ndarray]): Anti-diagonal slices.
+        """
         n = matrix.shape[0] # Get the size of the matrix and skip the first and last anti diagonal
         return [np.diagonal(np.flipud(matrix), offset) for offset in range(-(n - 2), n - 2)]
 
 
-    def get_minor_major_widths(self,distance_matrix):
+    def get_minor_major_widths(self, distance_matrix):
+        """Compute minor and major groove widths from one distance matrix.
+
+        Args:
+            distance_matrix (numpy.ndarray): Inter-strand distance matrix for a single frame.
+
+        Returns:
+            widths (tuple[list[float], list[float]]): ``(minor_widths, major_widths)``.
+        """
 
         # Split the distance matrix into anti diagonal slices
         diagonal_slices = self.get_anti_diagonal_slices(distance_matrix)
@@ -153,6 +232,10 @@ class GrooveAnalysis:
         return minor_widths, major_widths
 
     def compute_groove_widths(self):
+        """Compute groove widths for all frames (parallel or sequential).
+
+        Populates :attr:`minor_widths` and :attr:`major_widths`.
+        """
         if self.use_parallel:
             # Parallelize the computation and subtract 0.58 to account for the vdw radius of the phosphorus atoms
             results = Parallel(n_jobs=-1)(delayed(self.get_minor_major_widths)(distance_matrix) for distance_matrix in self.distance_matrices)
@@ -165,22 +248,48 @@ class GrooveAnalysis:
         self.major_widths = np.array(major_widths_batch)
 
 
-    def plot_width(self,ax,groove,color=None,std=True,ls='-',lw=0.5):
-            
-        # Calculate the mean and standard deviation of major widths
-        # Suppress warnings for mean of empty slice
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore", category=RuntimeWarning)    
-                # Calculate the mean and standard deviation of major widths
-                mean = np.nanmean(groove, axis=0)
-                stds = np.nanstd(groove, axis=0)
-    
-            ax.plot(mean,color=color,ls=ls,lw=lw)
-            if std:
-                # Fill the area around the mean for widths
-                ax.fill_between(range(len(mean)), mean - stds, mean + stds, alpha=0.25,color=color,ls='-',lw=lw)
+    def plot_width(self, ax, groove, color=None, std=True, ls='-', lw=0.5):
+        """Plot mean groove width with optional standard-deviation shading.
 
-    def plot_groove_widths(self, minor=True, major=True, std=True, color='k', c_minor=None, lw=0.5,c_major=None, ax=None, base_labels=True,ls='-'):
+        Args:
+            ax (matplotlib.axes.Axes): Target axes.
+            groove (numpy.ndarray): Groove-width array, shape ``(n_frames, n_points)``.
+            color (str, optional): Line colour.
+            std (bool): If True, shade the ±1σ region.
+            ls (str): Line style.
+            lw (float): Line width.
+        """
+        # Suppress warnings for mean of empty slice
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=RuntimeWarning)    
+            # Calculate the mean and standard deviation of major widths
+            mean = np.nanmean(groove, axis=0)
+            stds = np.nanstd(groove, axis=0)
+    
+        ax.plot(mean,color=color,ls=ls,lw=lw)
+        if std:
+            # Fill the area around the mean for widths
+            ax.fill_between(range(len(mean)), mean - stds, mean + stds, alpha=0.25,color=color,ls='-',lw=lw)
+
+    def plot_groove_widths(self, minor=True, major=True, std=True, color='k', c_minor=None, lw=0.5, c_major=None, ax=None, base_labels=True, ls='-'):
+        """Plot minor and/or major groove widths.
+
+        Args:
+            minor (bool): Plot minor groove widths.
+            major (bool): Plot major groove widths.
+            std (bool): Show standard-deviation shading.
+            color (str): Fallback colour when *c_minor*/*c_major* are not set.
+            c_minor (str, optional): Minor-groove colour.
+            c_major (str, optional): Major-groove colour.
+            lw (float): Line width.
+            ax (matplotlib.axes.Axes, optional): Target axes.  A new figure
+                is created if ``None``.
+            base_labels (bool): Label the x-axis with base-pair identifiers.
+            ls (str): Line style.
+
+        Returns:
+            result (tuple | None): ``(fig, ax)`` when *ax* was ``None``.
+        """
 
         # Create a figure and axes for plotting
         if ax is None:
@@ -245,26 +354,59 @@ class GrooveAnalysis:
         return groove_depths_base_pair_level, groove_depths_half_way
 
 class TorsionAnalysis:
-    """
-    torsions = mdna.TorsionAnalysis(traj)
-    epsi, zeta = torsions.compute_BI_BII()
-    B_state = torsions.B_state 
-    epsi.shape, zeta.shape, B_state.shape
-    plt.plot(B_state)
+    """Compute backbone torsion angles and BI/BII conformational states.
+
+    Calculates the epsilon and zeta dihedral angles of the DNA backbone
+    and classifies each base step as BI or BII based on the sign of
+    epsilon − zeta.
+
+    Attributes:
+        epsilon (numpy.ndarray): Epsilon torsion angles, shape ``(n_frames, n_steps)``.
+        zeta (numpy.ndarray): Zeta torsion angles, shape ``(n_frames, n_steps)``.
+        B_state (numpy.ndarray): Fraction of BII per base step.
+
+    Example:
+        ```python
+        torsions = TorsionAnalysis(traj)
+        torsions.B_state  # BII fraction per base step
+        ```
     """
 
-    def __init__(self, traj,degrees=True, chain=0):
+    def __init__(self, traj, degrees=True, chain=0):
+        """Initialize torsion analysis.
+
+        Args:
+            traj (md.Trajectory): DNA-containing trajectory.
+            degrees (bool): Report angles in degrees (default) or radians.
+            chain (int): Chain index to analyse (0 = sense, 1 = anti-sense).
+        """
         self.chain = chain
         self.dna = self.load_trajectory_and_slice_dna(traj)
         self.epsilon, self.zeta = self.compute_BI_BII(degrees=degrees)
         self.B_state = self.get_B_state(self.epsilon - self.zeta)
 
-    def load_trajectory_and_slice_dna(self,traj):
-        """ Load trajectory's topology and slice DNA part """
+    def load_trajectory_and_slice_dna(self, traj):
+        """Slice a trajectory to keep only canonical DNA residues.
+
+        Args:
+            traj (md.Trajectory): Input trajectory.
+
+        Returns:
+            dna (md.Trajectory): Sub-trajectory containing DG, DC, DA, and DT residues.
+        """
         dna = traj.atom_slice(traj.top.select('resname DG DC DA DT'))
         return dna
         
     def get_backbone_indices(self, chainid, ref_atoms):
+        """Collect backbone atom objects matching *ref_atoms* from a chain.
+
+        Args:
+            chainid (int): Chain index.
+            ref_atoms (list[str]): Atom names to select (e.g. ``["C3'", "O3'"]``).
+
+        Returns:
+            indices (list): Atom objects.
+        """
         indices = []
         # find torsions based on the epsilon and zeta atoms
         # finally map the torsions for all base steps 
@@ -280,6 +422,15 @@ class TorsionAnalysis:
         return indices
 
     def get_torsions(self, indices, ref_atoms):
+        """Group sequential atoms into torsion-angle quartets.
+
+        Args:
+            indices (list): Ordered backbone atom objects.
+            ref_atoms (list[str]): Reference atom-name pattern for one torsion.
+
+        Returns:
+            torsions (list[list]): Each element is a four-atom group defining one torsion.
+        """
         # Find the chunks based on ref_atoms
         torsions = []
         i = 0
@@ -293,17 +444,42 @@ class TorsionAnalysis:
         return torsions
 
     def get_torsion_indices(self, chainid, ref_atoms):
+        """Get torsion-angle atom groups for a chain.
+
+        Args:
+            chainid (int): Chain index.
+            ref_atoms (list[str]): Atom-name pattern.
+
+        Returns:
+            torsions (list[list]): Torsion atom groups.
+        """
         indices = self.get_backbone_indices(chainid, ref_atoms)
         torsions = self.get_torsions(indices, ref_atoms)
         return torsions
 
-    def convert_torsion_indices_to_atom_indices(self,torsion_indices):
+    def convert_torsion_indices_to_atom_indices(self, torsion_indices):
+        """Convert atom objects to integer indices for MDTraj.
+
+        Args:
+            torsion_indices (list[list]): Torsion atom-object groups.
+
+        Returns:
+            atom_indices (list[list[int]]): Integer atom indices.
+        """
         atom_indices = []
         for torsion in torsion_indices:
             atom_indices.append([at.index for at in torsion])
         return atom_indices
 
-    def compute_BI_BII(self,degrees=True):
+    def compute_BI_BII(self, degrees=True):
+        """Compute epsilon and zeta backbone torsion angles.
+
+        Args:
+            degrees (bool): Return angles in degrees.
+
+        Returns:
+            angles (tuple[numpy.ndarray, numpy.ndarray]): ``(epsilon, zeta)`` arrays.
+        """
 
         epsilon_atoms = ["C4'","C3'","O3'","P"] 
         zeta_atoms = ["C3'","O3'","P","O5'"]
@@ -333,9 +509,14 @@ class TorsionAnalysis:
         print(epsi.shape, zeta.shape)
         return epsi, zeta
     
-    def get_B_state(self,diff):
-        """
-        BI = 0, BII = 1
+    def get_B_state(self, diff):
+        """Classify each base step as BI (0) or BII (1) from epsilon−zeta.
+
+        Args:
+            diff (numpy.ndarray): ``epsilon - zeta`` array.
+
+        Returns:
+            state (numpy.ndarray): BII fraction per base step.
         """
         state = np.zeros_like(diff)
         state[diff < 0] = 0  # BI
@@ -395,30 +576,38 @@ class TorsionAnalysis:
     #     fig.savefig('Anti_BII_densities.png',dpi=300,bbox_inches='tight')
 
 class ContactCount:
+    """Compute protein–DNA contacts using a smooth switching function.
 
-    """
+    Measures distances between user-specified protein donor atoms and
+    DNA groove acceptor atoms, then applies a rational switching function
+    to obtain a continuous contact count.
 
-    Example Usage:
+    Attributes:
+        contacts (numpy.ndarray): Contact values for all pairs, shape ``(n_frames, n_pairs)``.
+        contact_matrix (numpy.ndarray): Contacts reshaped to ``(n_frames, n_protein, n_dna)``.
 
-    protein_donors = {'GLN112':['N','NE2'],
-                  'GLY113':['N'],
-                  'ARG114':['N','NE','NH1','NH2']}
-
-    minor_acceptors = {'DA':['N3'],
-                    'DT':['O2'],
-                    'DC':['O2'],
-                    'DG':['N3']}
-    
-    major_acceptors = {'DA':['N7'],
-                   'DT':['"O4'"'],
-                   'DC':['None'],
-                   'DG':['"O4'"','N7']}
-    
-    # Here you can adjust the parameters nn and mm to change the shape of the smoothing function
-    contacts = ContactCount(traj,protein_donors,minor_acceptors,d0=0.25,r0=0.4,nn=2,mm=4)
+    Example:
+        ```python
+        protein_donors = {'GLN112': ['N', 'NE2'], 'ARG114': ['N', 'NE', 'NH1', 'NH2']}
+        minor_acceptors = {'DA': ['N3'], 'DT': ['O2'], 'DC': ['O2'], 'DG': ['N3']}
+        contacts = ContactCount(traj, protein_donors, minor_acceptors)
+        ```
     """
     
-    def __init__(self, traj, protein_queue, dna_haystack, d0=0.25,r0=0.4,nn=2,mm=4):
+    def __init__(self, traj, protein_queue, dna_haystack, d0=0.25, r0=0.4, nn=2, mm=4):
+        """Initialize contact analysis.
+
+        Args:
+            traj (md.Trajectory): Trajectory with protein and DNA.
+            protein_queue (dict[str, list[str]]): Protein residue–atom mapping,
+                e.g. ``{'GLN112': ['N', 'NE2']}``.
+            dna_haystack (dict[str, list[str]]): DNA residue–atom mapping for
+                groove atoms, e.g. ``{'DA': ['N3']}``.
+            d0 (float): Contact distance offset (nm).
+            r0 (float): Contact distance scale (nm).
+            nn (int): Exponent in the numerator of the switching function.
+            mm (int): Exponent in the denominator of the switching function.
+        """
         # store trajectory and topology information
         self.traj = traj
         self.top = traj.topology
@@ -446,18 +635,41 @@ class ContactCount:
         self.collect_sections()
     
     def get_protein_indices(self):
+        """Get atom indices for the specified protein donor atoms.
+
+        Returns:
+            list[int]: Atom indices.
+        """
         # Find protein indices corresponding to queue (Restype-Atomtype) 
         return [self.atom_names.index(res+'-'+i) for res,at in self.protein_queue.items() for i in at]
     
     def get_groove_indices(self):
+        """Get atom indices for the specified DNA groove acceptor atoms.
+
+        Returns:
+            list[int]: Sorted atom indices.
+        """
         # Find selection of atom types for each nucleobase
         return sorted(sum([list(self.top.select(f"resname {res} and {' '.join(['name '+i for i in at])}")) for res,at in self.dna_haystack.items()],[]))
     
     def smooth_contact(self, r):
+        """Evaluate the rational switching function for distances *r*.
+
+        Args:
+            r (numpy.ndarray): Distance array.
+
+        Returns:
+            numpy.ndarray: Continuous contact values in [0, 1].
+        """
         # Compute contact based on distance smoothing function
         return ((1 - ((r-self.d0)/self.r0)**self.nn ) / (1 - ( (r-self.d0)/self.r0)**self.mm) )
 
     def compute_contacts(self):
+        """Apply the switching function to all pair distances.
+
+        Returns:
+            numpy.ndarray: Contact values, shape ``(n_frames, n_pairs)``.
+        """
         # Check where first condition holds
         ones = np.where(self.distances-self.d0 <= 0)
         # Apply second condition
@@ -467,25 +679,43 @@ class ContactCount:
         return contacts
 
     def get_total_contacts(self):
+        """Sum contacts over all pairs per frame.
+
+        Returns:
+            numpy.ndarray: Total contacts per frame.
+        """
         return np.sum(self.contacts,axis=1)
     
     def get_protein_names(self):
+        """Return atom names for the selected protein donors."""
         return [self.atom_names[idx] for idx in self.protein_indices]
-    
+
     def get_dna_names(self):
+        """Return atom names for the selected DNA acceptors."""
         return [self.atom_names[idx] for idx in sorted(self.groove_indices)]
-    
+
     def get_distance_matrix(self):
+        """Reshape pair distances into a protein × DNA matrix.
+
+        Returns:
+            numpy.ndarray: Shape ``(n_frames, n_protein, n_dna)``.
+        """
         # Reshape pair distances to n x n matrix
         s = self.distances.shape
         return self.distances.reshape(s[0],len(self.protein_indices),len(self.groove_indices))
     
     def get_contact_matrix(self):
+        """Reshape contact values into a protein × DNA matrix.
+
+        Returns:
+            numpy.ndarray: Shape ``(n_frames, n_protein, n_dna)``.
+        """
         # Reshape pair distances to n x n matrix
         s = self.contacts.shape
         return self.contacts.reshape(s[0],len(self.protein_indices),len(self.groove_indices))
     
     def collect_sections(self):
+        """Compute section boundaries for splitting contacts per protein residue."""
         section_ends = []
         count = 0
         for residue in self.protein_queue.keys():
@@ -494,24 +724,54 @@ class ContactCount:
         self.sections = section_ends[:-1]
 
     def split_data(self):
+        """Split the contact matrix by protein residue.
+
+        Returns:
+            list[numpy.ndarray]: One sub-matrix per protein residue.
+        """
         return np.split(self.contact_matrix,self.sections,axis=1)
         
     def get_contacts_per_residue(self):
+        """Total contacts per protein residue across all DNA atoms.
+
+        Returns:
+            numpy.ndarray: Shape ``(n_residues, n_frames)``.
+        """
         return np.array([np.sum(d,axis=(1,2)) for d in self.split_data()])
     
     def get_contacts_per_residue_per_base(self):
+        """Contacts per protein residue resolved by DNA base.
+
+        Returns:
+            numpy.ndarray: Shape ``(n_residues, n_frames, n_bases)``.
+        """
         return np.array([np.sum(d,axis=1) for d in self.split_data()])
             
-    def get_contacts_per_base(self):    
+    def get_contacts_per_base(self):
+        """Total contacts per DNA base (summed over protein residues).
+
+        Returns:
+            numpy.ndarray: Shape ``(n_bases, n_frames)``.
+        """    
         contacts_per_residue_per_base = self.get_contacts_per_residue_per_base()
         return np.sum(contacts_per_residue_per_base,axis=0).T     
                          
     def get_contacts_per_bp(self):
+        """Total contacts per base pair (sense + anti-sense combined).
+
+        Returns:
+            numpy.ndarray: Shape ``(n_bp, n_frames)``.
+        """
         contacts_per_base = self.get_contacts_per_base()
         n_bases = len(contacts_per_base)
         return np.array([a+b for a,b in zip(contacts_per_base[:n_bases//2],contacts_per_base[n_bases//2:][::-1])])
     
     def get_contacts_per_residue_per_bp(self):
+        """Contacts per protein residue per base pair.
+
+        Returns:
+            numpy.ndarray: Shape ``(n_residues, n_frames, n_bp)``.
+        """
         contacts_per_residue_per_base = self.get_contacts_per_residue_per_base()
         n_bases = len(contacts_per_residue_per_base.T)
         return np.array([a+b for a,b in zip(contacts_per_residue_per_base.T[:n_bases//2], contacts_per_residue_per_base.T[n_bases//2:][::-1])]).T
@@ -521,7 +781,13 @@ class ContactCount:
             fig,ax = plt.subplots(figsize=(8,8))
         return fig,ax
     
-    def plot_contact_map(self,ax=None,frame=-1):
+    def plot_contact_map(self, ax=None, frame=-1):
+        """Plot the contact map as a heatmap.
+
+        Args:
+            ax (matplotlib.axes.Axes, optional): Target axes.
+            frame (int): Frame index to plot.  Use ``-1`` for the time-averaged map.
+        """
         fig,ax = self.check_axis(ax)
         contact_matrices = self.get_contact_matrix()
         if frame == -1:

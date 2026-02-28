@@ -5,28 +5,32 @@ from .geometry import NucleicFrames
 from .utils import get_data_file_path
 
 class SequenceGenerator:
-    
-    """Generates a mdtraj DNA trajectory and topology based on a provided sequence.
-    
-        # Some sanity checks to see if topology is properly created
-        selection = DNA.top.select('(resname DG and chainid 1) and element type N')
-        sliced = DNA.atom_slice(selection)
-        import nglview as nv
-        view = nv.show_mdtraj(sliced)
-        view
-        
-        # Generate DNA trajectory and topology with dummy coordinates (aka everything based on standard bases)
-        dna_generator = DNAGenerator(sequence='GCAATATATTGC', circular=False)
-        dna = dna_generator.DNA
+    """Build an MDTraj DNA trajectory and topology from a nucleotide sequence.
 
-        sense_residues = dna.top._chains[0]._residues
-        anti_residues = dna.top._chains[1]._residues
+    Creates a double-stranded DNA structure using pre-loaded canonical and
+    non-canonical base reference structures.  Each base is placed at a
+    dummy position; the real coordinates are applied later by
+    :class:`StructureGenerator`.
 
-        print('sense',sense_residues)
-        print('anti ', anti_residues)
-        """
+    Attributes:
+        sequence (str): Sense-strand sequence.
+        circular (bool): Whether the DNA is circular.
+        traj (md.Trajectory): The generated trajectory with topology.
+
+    Example:
+        ```python
+        gen = SequenceGenerator(sequence='GCAATATATTGC', circular=False)
+        gen.traj  # MDTraj Trajectory with dummy coordinates
+        ```
+    """
 
     def __init__(self, sequence=None, circular=False):
+        """Initialize the sequence generator.
+
+        Args:
+            sequence (str, optional): DNA sequence code (sense strand).
+            circular (bool): If True, create a circular DNA topology.
+        """
         #self.base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C','H':'T'}
         self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
         self.sequence = sequence
@@ -49,13 +53,24 @@ class SequenceGenerator:
         #return {base: md.load_pdb(f'../mdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
     
     def _make_DNA(self):
-        """Creates a DNA topology and trajectory based on the sequence."""
+        """Create the combined DNA trajectory and topology.
+
+        Returns:
+            md.Trajectory: Trajectory with both sense and anti-sense chains.
+        """
         trajectory = self._create_trajectory()
         topology = self._create_topology()
         return md.Trajectory(trajectory, topology)
 
     def _create_trajectory(self, translation=0.00001):
-        """Creates a DNA trajectory based on the sequence."""
+        """Create coordinate arrays for both strands.
+
+        Args:
+            translation (float): Small offset to avoid overlapping reference coordinates.
+
+        Returns:
+            numpy.ndarray: Concatenated coordinates for all atoms.
+        """
         trajectory_coords = []
 
         # Sense chain coordinates are added first starting from index 0 to N-1 sequence length
@@ -69,7 +84,11 @@ class SequenceGenerator:
         return np.concatenate(trajectory_coords, axis=1)
 
     def _create_topology(self):
-        """Creates a DNA topology based on the sequence."""
+        """Build the MDTraj topology with sense and anti-sense chains.
+
+        Returns:
+            md.Topology: Complete double-stranded DNA topology.
+        """
         topology = md.Topology()
         sense_chain = topology.add_chain()
         antisense_chain = topology.add_chain()
@@ -98,38 +117,80 @@ class SequenceGenerator:
         return topology
 
     def _add_chain_to_topology(self, sequence, topology, chain):
-        """Adds a chain and its residues to the given topology."""
+        """Add residues for a full strand to the topology.
+
+        Args:
+            sequence (str or list): Nucleotide sequence.
+            topology (md.Topology): Target topology.
+            chain: Chain object to add residues to.
+        """
         for _,base in enumerate(sequence):
             self._add_residue_to_topology(base, topology, chain, resSeq=_+1)
 
-    def _add_residue_to_topology(self, base, topology, chain,resSeq):
-        """Adds a residue and its atoms to the given topology."""
+    def _add_residue_to_topology(self, base, topology, chain, resSeq):
+        """Add a single residue and its atoms to the topology.
+
+        Args:
+            base (str): One-letter base code.
+            topology (md.Topology): Target topology.
+            chain: Chain to add the residue to.
+            resSeq (int): Residue sequence number.
+        """
         residue = topology.add_residue(name='D' + base, chain=chain, resSeq=resSeq)
         self._copy_atoms_from_reference(base, residue, topology)
    
     def _copy_atoms_from_reference(self, base, residue, topology):
-        """Copies atoms from the reference base to the topology."""
+        """Copy atom definitions from the reference base to the new residue.
+
+        Args:
+            base (str): One-letter base code.
+            residue: Target residue in the topology.
+            topology (md.Topology): Target topology.
+        """
         for atom in self.reference_bases[base].topology.atoms:
             topology.add_atom(atom.name, atom.element, residue)
 
     def _connect_chain(self, topology, chain):
-        """Connect adjacent residues of a given chain."""
+        """Add phosphodiester bonds between adjacent residues in a chain.
+
+        Args:
+            topology (md.Topology): Target topology.
+            chain: Chain whose residues should be connected.
+        """
         residues = list(chain.residues)
         for i in range(len(residues) - 1):
             self._connect_residues(topology, residues[i], residues[i+1])
 
     def _connect_residues(self, topology, residue1, residue2):
-        """Connects two residues in the topology by adding a phosphodiester bond."""
+        """Add an O3'–P phosphodiester bond between two residues.
+
+        Args:
+            topology (md.Topology): Target topology.
+            residue1: Upstream residue (provides O3').
+            residue2: Downstream residue (provides P).
+        """
         topology.add_bond(residue1.atom("O3'"), residue2.atom("P"))
 
     def get_basepair(self, base):
-        """Get base pair trajectory based on complementary base."""
+        """Get reference base-pair trajectories for a base and its complement.
+
+        Args:
+            base (str): One-letter base code.
+
+        Returns:
+            result (tuple[md.Trajectory, md.Trajectory]): ``(base_traj, complement_traj)``.
+        """
         return self.reference_bases[base], self.reference_bases[self.base_pair_map[base]]
     
     def _rotation_matrix(self,axis, theta):
-        """
-        Return the rotation matrix associated with counterclockwise rotation about
-        the given axis by theta radians.
+        """Compute a rotation matrix for counterclockwise rotation.
+
+        Args:
+            axis (numpy.ndarray): Rotation axis.
+            theta (float): Rotation angle in radians.
+
+        Returns:
+            R (numpy.ndarray): 3x3 rotation matrix.
         """
         axis = np.asarray(axis)
         axis = axis / np.linalg.norm(axis)
@@ -142,7 +203,17 @@ class SequenceGenerator:
                         [2 * (bd + ac), 2 * (cd - ab), aa + dd - bb - cc]])
     
     def _get_chain_coordinates(self, sequence, translation, antisense=False):
-        """Adds (dummy) coordinates of residues to chains."""
+        """Generate coordinate arrays for a single strand.
+
+        Args:
+            sequence (str or list): Nucleotide sequence.
+            translation (float): Small offset applied to reference coordinates.
+            antisense (bool): If True, rotate coordinates 180° around the x-axis
+                for the anti-sense strand.
+
+        Returns:
+            list[numpy.ndarray]: Per-residue coordinate arrays.
+        """
         coords = []
         for base in sequence:
             base_coords = (self.reference_bases[base].xyz + translation) #* -1
@@ -159,29 +230,46 @@ class SequenceGenerator:
         return coords
     
 class StructureGenerator:
+    """Place nucleotide coordinates onto a spatial path defined by rigid-body frames.
 
-    """Provides tools for generating and modifying DNA structures.
+    Takes an array of rigid-body frames (origin + three basis vectors per
+    base pair) and a nucleotide sequence, then produces an MDTraj trajectory
+    with atomic coordinates transformed to follow the path.
 
     Attributes:
-    - circular (bool): Indicates whether the DNA is circular or not.
-    - sequence (str): The DNA sequence. If not provided, a random sequence is generated.
-    - spline (object): An object that defines the spline frames for the DNA.
-    - dna (object): Represents the DNA structure based on the provided sequence.
-    - traj (object): Represents the DNA trajectory and topology.
-    - length (int): Number of base pairs in the DNA.
+        circular (bool): Whether the DNA is circular.
+        sequence (str): Sense-strand sequence (auto-generated if not provided).
+        spline (SplineFrames or None): Optional spline that supplies the frames.
+        frames (numpy.ndarray): Shape ``(n_bp, 4, 3)`` rigid-body frames.
+        length (int): Number of base pairs.
+        traj (md.Trajectory): Resulting trajectory with positioned coordinates.
 
-    Methods:
-    - initialize(): Initializes the DNA trajectory and topology.
-    - update_basepair_coordinates(old, new, basepairs, idx): Updates the coordinates of a base pair in the DNA trajectory.
-    - apply_spline(): Transforms spline frames to coordinates in an mdtraj trajectory.
-    - generate_letter_sequence(at_fraction=0.5): Generates a DNA sequence based on AT content fraction.
-    - get_basepair_xyz(basepairs, idx): Fetches the xyz coordinates of a base pair.
-
-    Note:
-    - The 'initialize' method must be called before any other method to ensure the class attributes are set up correctly.
+    Example:
+        ```python
+        from mdna import SplineFrames, StructureGenerator
+        spline = SplineFrames(control_points)
+        gen = StructureGenerator(spline=spline, sequence='ATCG')
+        gen.traj  # MDTraj trajectory with coordinates on the spline
+        ```
     """
 
-    def __init__(self,spline=None,sequence=None, circular=False,frames=None):
+    def __init__(self, spline=None, sequence=None, circular=False, frames=None):
+        """Initialize the structure generator.
+
+        Either *spline* or *frames* must be provided.  If both are given,
+        *frames* takes precedence.
+
+        Args:
+            spline (SplineFrames, optional): Spline object that provides frames.
+            sequence (str, optional): DNA sequence.  When ``None`` a random
+                sequence with 50 %% AT content is generated.
+            circular (bool): Generate circular DNA topology.
+            frames (numpy.ndarray, optional): Rigid-body frames with shape
+                ``(n_bp, 4, 3)``.
+
+        Raises:
+            ValueError: If neither *spline* nor *frames* is provided.
+        """
         self.circular = circular
         self.sequence = sequence # Should deal with the fact if the sequence length does not match the spline length
         self.spline = spline
@@ -200,7 +288,11 @@ class StructureGenerator:
         self.apply_spline()
 
     def initialize(self):
-        """Initialize the DNA trajectory and topology."""
+        """Build the initial trajectory with dummy coordinates.
+
+        Generates a random sequence if none was provided, then creates
+        the topology and reference coordinates via :class:`SequenceGenerator`.
+        """
 
         # Generate DNA sequence
         if self.sequence is None:
@@ -214,7 +306,12 @@ class StructureGenerator:
 
 
     def apply_spline(self):
-        """Transforms spline frames to coordinates in mdtraj trajectory."""
+        """Transform dummy base-pair coordinates to follow the spatial frames.
+
+        Iterates over every base pair and applies a rotation and translation
+        so that each base pair is positioned and oriented according to the
+        corresponding entry in :attr:`frames`.
+        """
 
         # Get base pair topology of strands
         sense = self.traj.top._chains[0]._residues
@@ -236,7 +333,14 @@ class StructureGenerator:
             self.update_basepair_coordinates(old, new, basepairs, idx)
             
     def update_basepair_coordinates(self, old, new, basepairs, idx):
-        """Updates the coordinates of a base pair in the DNA trajectory."""
+        """Rotate and translate a single base pair to a new frame.
+
+        Args:
+            old (numpy.ndarray): Current frame for this base pair, shape ``(1, 4, 3)``.
+            new (numpy.ndarray): Target frame, shape ``(4, 3)``.
+            basepairs (numpy.ndarray): Array of ``(sense_residue, antisense_residue)`` pairs.
+            idx (int): Index of the base pair to update.
+        """
 
         # Get the origin of the old and new frames
         old_origin = old[0][0]
@@ -261,7 +365,18 @@ class StructureGenerator:
         self.traj.xyz[:,indices,:] = new_xyz
         # return dna
 
-    def generate_letter_sequence(self,at_fraction=0.5):
+    def generate_letter_sequence(self, at_fraction=0.5):
+        """Generate a random DNA sequence with a specified AT content.
+
+        Args:
+            at_fraction (float): Fraction of A/T bases (0–1).
+
+        Returns:
+            sequence (str): Random DNA sequence of length :attr:`length`.
+
+        Raises:
+            ValueError: If *at_fraction* is outside [0, 1].
+        """
         # Ensure at_fraction is within valid bounds
         if not (0 <= at_fraction <= 1):
             raise ValueError("at_fraction must be between 0 and 1 inclusive")
@@ -269,12 +384,29 @@ class StructureGenerator:
         bases = ['A', 'T'] * int(self.length * at_fraction) + ['G', 'C'] * (self.length - int(self.length * at_fraction))
         return ''.join(random.sample(bases, self.length))
     
-    def get_basepair_xyz(self,basepairs, idx):
-        """Get xyz coordinates of a base pair."""
+    def get_basepair_xyz(self, basepairs, idx):
+        """Get atom coordinates for a single base pair.
+
+        Args:
+            basepairs (numpy.ndarray): Array of ``(sense_residue, antisense_residue)`` pairs.
+            idx (int): Base-pair index.
+
+        Returns:
+            result (tuple[numpy.ndarray, list[int]]): ``(xyz, atom_indices)``.
+        """
         indices = [at.index for at in basepairs[idx][0].atoms] + [at.index for at in basepairs[idx][1].atoms]
         return self.traj.xyz[:,indices,:], indices
 
     def get_traj(self, remove_terminal_phosphates: bool = False):
+        """Return the DNA trajectory, optionally trimming terminal phosphates.
+
+        Args:
+            remove_terminal_phosphates (bool): If True and the structure is
+                linear, remove the 5′ phosphate groups at the termini.
+
+        Returns:
+            traj (md.Trajectory): DNA trajectory.
+        """
         if self.circular or not remove_terminal_phosphates:
             return self.traj
 

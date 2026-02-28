@@ -9,17 +9,33 @@ from mdtraj.core import element as elem
 
 
 class Methylate:
-    """
-    Class to add methyl groups to the DNA structure
-    Methylate DNA currently only does C and G methylation (no A or T) and G at the O6 oxygen and C at the C5 carbon
-    In principle we could add an extra requirement for C to only methylate when it is in a CpG context
+    """Add methyl groups to cytosine (C5) or guanine (O6) residues.
+
+    Currently supports C-methylation at C5 and G-methylation at O6.
+    Optionally restricts C-methylation to CpG dinucleotide contexts.
+
+    Attributes:
+        traj (md.Trajectory): Modified trajectory with methylated residues.
+        baselist (list[int]): Residue indices that were methylated.
 
     Example:
-    # This methylates the first base in the pdb file 
-    methylator = mdna.Methylate(pdb, methylations=[0])
-    methylated_traj = methylator.get_traj()
+        ```python
+        methylator = Methylate(traj, methylations=[0, 5])
+        methylated_traj = methylator.get_traj()
+        ```
     """
+
     def __init__(self, traj, methylations=None, CpG=False, leading_strand=None):
+        """Initialize methylation.
+
+        Args:
+            traj (md.Trajectory): Input DNA trajectory.
+            methylations (list[int], optional): Residue indices to methylate.
+            CpG (bool): If True, auto-detect and methylate all C in CpG contexts
+                (overrides *methylations*).
+            leading_strand (int, optional): Chain index of the leading strand.
+                Required when *CpG* is True.
+        """
         self.traj = copy.deepcopy(traj)
         if CpG and leading_strand is not None :
             print('Methylate all C in CpG context, superseeds methylations list.')
@@ -34,6 +50,7 @@ class Methylate:
         self.apply_methylation()
     
     def apply_methylation(self):
+        """Modify the trajectory in-place by adding a methyl carbon to each target residue."""
 
         # For each residue that needs to be mutated
         for resid in self.baselist:
@@ -55,11 +72,28 @@ class Methylate:
                 print(f"Residue {residue} with methylations index {resid} could not be methylated.")
 
 
-    def find_CpGs(self,leading_strand=0):
+    def find_CpGs(self, leading_strand=0):
+        """Return residue indices of C bases in CpG contexts on the leading strand.
+
+        Args:
+            leading_strand (int): Chain index.
+
+        Returns:
+            list[int]: Residue indices.
+        """
         sequence = ''.join([res.name[1] for res in self.traj.top.chain(leading_strand)._residues])
         return [i for i in range(len(sequence) - 1) if sequence[i:i+2] == 'CG']
 
     def get_atoms(self, residue, code):
+        """Get the anchor and reference atoms for methyl placement.
+
+        Args:
+            residue: MDTraj residue object.
+            code (str): One-letter base code (``'C'`` or ``'G'``).
+
+        Returns:
+            tuple: ``(anchor_atom, reference_atom)`` or ``(None, None)``.
+        """
         # Get the atoms to add the methyl group to
         atom_a, atom_b  = None, None
         for at in residue.atoms:
@@ -75,6 +109,14 @@ class Methylate:
         return atom_a, atom_b
 
     def add_methyl(self, a, b, residue, code):
+        """Insert a methyl carbon atom into the topology and coordinates.
+
+        Args:
+            a: Anchor atom (C5 for C, O6 for G).
+            b: Reference atom used to determine placement direction.
+            residue: Target residue.
+            code (str): One-letter base code.
+        """
 
         # Get the index of the atom to insert the new atom after
         index = a.index+1
@@ -104,13 +146,36 @@ class Methylate:
 
 
     def get_traj(self):
+        """Return the methylated trajectory."""
         return self.traj
     
 
 class Hoogsteen:
-    """ Hoogsteen base pair flip"""
-    # should still update for all the other bases (non-canonical)
-    def __init__(self, traj, fliplist, deg=180,verbose=False):
+    """Apply a Hoogsteen base-pair flip by rotating nucleobases 180°.
+
+    Rotates the nucleobase around the glycosidic bond (C1′–N) axis
+    to produce a syn conformation.
+
+    Attributes:
+        traj (md.Trajectory): Modified trajectory.
+        fliplist (list[int]): Residue indices that were flipped.
+
+    Example:
+        ```python
+        hs = Hoogsteen(traj, fliplist=[3, 8])
+        flipped_traj = hs.get_traj()
+        ```
+    """
+
+    def __init__(self, traj, fliplist, deg=180, verbose=False):
+        """Initialize Hoogsteen flip.
+
+        Args:
+            traj (md.Trajectory): Input DNA trajectory.
+            fliplist (list[int]): Residue indices to flip.
+            deg (float): Rotation angle in degrees.
+            verbose (bool): Print diagnostic messages.
+        """
         self.traj = copy.deepcopy(traj)
         self.verbose = verbose
         self.fliplist = fliplist # List of resids that need to be flipped
@@ -200,13 +265,37 @@ class Hoogsteen:
             self.traj.xyz[:, nucleobase_selection, :] = new_xyz
 
     def get_traj(self):
+        """Return the flipped trajectory."""
         return self.traj
 
 
 class Mutate:
-    """ Class to mutate a DNA structure
+    """Mutate one or more bases in a DNA structure.
+
+    Replaces nucleobases by superimposing reference base coordinates
+    onto the target residue frame.  Complementary-strand mutations are
+    applied automatically when *complementary* is True.
+
+    Attributes:
+        mutant_traj (md.Trajectory): Trajectory with applied mutations.
+
+    Example:
+        ```python
+        mutator = Mutate(traj, mutations={0: 'A', 6: 'T'})
+        mutant_traj = mutator.get_traj()
+        ```
     """
+
     def __init__(self, traj, mutations, complementary=True, verbose=False):
+        """Initialize mutation.
+
+        Args:
+            traj (md.Trajectory): Input DNA trajectory.
+            mutations (dict[int, str]): Mapping of residue index to desired
+                one-letter base code.
+            complementary (bool): Automatically mutate the complementary strand.
+            verbose (bool): Print diagnostic messages.
+        """
     
         self.traj = traj
         self.complementary = complementary
@@ -499,6 +588,7 @@ class Mutate:
         return traj
 
     def get_traj(self):
+        """Return the mutated trajectory."""
         return self.mutant_traj
 
 # traj = md.load('/Users/thor/surfdrive/Data/h-ns/BacterialChromatin/FI/0_k/2_ApT/dry_0.pdb')

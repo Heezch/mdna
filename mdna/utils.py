@@ -26,6 +26,7 @@ DEF_EULER_CLOSE_TO_MINUS_ONE = -0.9999999
 
 
 class RigidBody:
+    """Utility class for rigid-body rotations using Euler-vector representation."""
 
     @staticmethod
     def extract_omega_values(R):
@@ -131,7 +132,14 @@ class RigidBody:
 
     @staticmethod
     def get_rotation_matrix(omega):
-        # Calculate the norm of each vector in the batch
+        """Compute rotation matrices from Euler vectors (batched).
+
+        Args:
+            omega (numpy.ndarray): Euler vectors, shape ``(n, 3)``.
+
+        Returns:
+            R (numpy.ndarray): Rotation matrices, shape ``(n, 3, 3)``.
+        """
         omega_norm = np.linalg.norm(omega, axis=-1, keepdims=True)
         
         # Avoid division by zero issues by setting a small epsilon
@@ -194,10 +202,20 @@ class RigidBody:
         return np.dot(R[0], v)
     
 class Shapes:
-    """Class for generating parametric shapes in 3D space.
+    """Factory for parametric 3-D curves used as DNA path control points.
+
+    Each class method returns an ``(n, 3)`` array of points tracing a named
+    shape that can be passed directly to :class:`~mdna.SplineFrames`.
     """
-    
+
     def __init__(self, parametric_function, t_values=None, num_points=100):
+        """Initialize a Shapes instance from a parametric function.
+
+        Args:
+            parametric_function (callable): ``f(t) -> (x, y, z)``.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
+        """
         self.num_points = num_points
         self.parametric_function = parametric_function
         self.points = self._generate_points(t_values)
@@ -211,12 +229,13 @@ class Shapes:
         """Create a circle in 3D space.
 
         Args:
-            radius (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            radius (float): Radius of the circle.
+            t_values (numpy.ndarray, optional): Parameter values; defaults
+                to ``linspace(0, 2π, num_points)``.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the circle of shape (num_points, 3)
+            points (numpy.ndarray): Points on the circle, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -229,14 +248,14 @@ class Shapes:
 
     @classmethod
     def line(cls, length=1, num_points=100):
-        """Create a line in 3D space.
+        """Create a straight line along the x-axis.
 
         Args:
-            length (int, optional): _description_. Defaults to 1.
-            num_points (int, optional): _description_. Defaults to 100.
+            length (float): Length of the line.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the line of shape (num_points, 3)
+            points (numpy.ndarray): Points on the line, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, 1, num=num_points)
         parametric_function = lambda t_values: (
@@ -248,17 +267,17 @@ class Shapes:
     
     @classmethod
     def helix(cls, radius=1, pitch=1, height=1, num_turns=1, num_points=100):
-        """Create a helix in 3D space.
+        """Create a helical curve.
 
         Args:
-            radius (int, optional): _description_. Defaults to 1.
-            pitch (int, optional): _description_. Defaults to 1.
-            height (int, optional): _description_. Defaults to 1.
-            num_turns (int, optional): _description_. Defaults to 1.
-            num_points (int, optional): _description_. Defaults to 100.
+            radius (float): Helix radius.
+            pitch (float): Pitch factor (rise per turn).
+            height (float): Overall height scaling.
+            num_turns (int): Number of helical turns.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the helix of shape (num_points, 3)
+            points (numpy.ndarray): Points on the helix, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
         parametric_function = lambda t_values: (
@@ -270,17 +289,17 @@ class Shapes:
     
     @classmethod
     def spiral(cls, radius=1, pitch=1, height=1, num_turns=1, num_points=100):
-        """Create a spiral in 3D space.
+        """Create an expanding spiral (radius grows with *t*).
 
         Args:
-            radius (int, optional): _description_. Defaults to 1.
-            pitch (int, optional): _description_. Defaults to 1.
-            height (int, optional): _description_. Defaults to 1.
-            num_turns (int, optional): _description_. Defaults to 1.
-            num_points (int, optional): _description_. Defaults to 100.
+            radius (float): Initial radius scaling.
+            pitch (float): Pitch factor.
+            height (float): Height scaling.
+            num_turns (int): Number of turns.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the spiral of shape (num_points, 3)
+            points (numpy.ndarray): Points on the spiral, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
         parametric_function = lambda t_values: (
@@ -292,17 +311,17 @@ class Shapes:
     
     @classmethod
     def mobius_strip(cls, radius=1, width=0.5, num_twists=1, t_values=None, num_points=100):
-        """Create a Mobius strip in 3D space.
+        """Create a Möbius strip centre-line.
 
         Args:
-            radius (int, optional): _description_. Defaults to 1.
-            width (float, optional): _description_. Defaults to 0.5.
-            num_twists (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            radius (float): Major radius of the strip.
+            width (float): Half-width of the strip.
+            num_twists (int): Number of half-twists.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the Mobius strip of shape (num_points, 3)
+            points (numpy.ndarray): Points on the Möbius strip, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -320,15 +339,15 @@ class Shapes:
     
     @classmethod
     def square(cls, side_length=1,t_values=None,num_points=100):
-        """Create a square in 3D space.
+        """Create a square path (first definition — piecewise).
 
         Args:
-            side_length (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            side_length (float): Length of each side.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the square of shape (num_points, 3)
+            points (numpy.ndarray): Points on the square, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 1, num=num_points)
@@ -341,16 +360,16 @@ class Shapes:
 
     @classmethod
     def trefoil(cls, radius=1, num_turns=1,t_values=None,num_points=100):
-        """Create a trefoil knot in 3D space.
+        """Create a trefoil knot.
 
         Args:
-            radius (int, optional): _description_. Defaults to 1.
-            num_turns (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            radius (float): Scaling factor.
+            num_turns (int): Number of traversals around the knot.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the trefoil knot of shape (num_points, 3)
+            points (numpy.ndarray): Points on the trefoil knot, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
@@ -366,15 +385,15 @@ class Shapes:
     
     @classmethod
     def square(cls, side=1, t_values=None,num_points=100):
-        """Create a square in 3D space.
+        """Create a square path (segment-wise construction).
 
         Args:
-            side (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            side (float): Length of each side.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the square of shape (num_points, 3)
+            points (numpy.ndarray): Points on the square, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 4, num=num_points)
@@ -404,17 +423,17 @@ class Shapes:
     
     @classmethod
     def heart(cls, a=1, b=1, c=1,t_values=None,num_points=100):
-        """Create a heart shape in 3D space.
+        """Create a heart-shaped curve.
 
         Args:
-            a (int, optional): _description_. Defaults to 1.
-            b (int, optional): _description_. Defaults to 1.
-            c (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            a (float): Amplitude of the x-component.
+            b (float): Amplitude of the first cosine term.
+            c (float): Amplitude of the second cosine term.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the heart shape of shape (num_points, 3)
+            points (numpy.ndarray): Points on the heart shape, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(-np.pi, np.pi, num=num_points)
@@ -426,16 +445,16 @@ class Shapes:
 
     @classmethod
     def ellipse(cls, a=1, b=1, t_values=None,num_points=100):
-        """Create an ellipse in 3D space.
+        """Create an ellipse in the xy-plane.
 
         Args:
-            a (int, optional): _description_. Defaults to 1.
-            b (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            a (float): Semi-major axis (x).
+            b (float): Semi-minor axis (y).
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the ellipse of shape (num_points, 3) 
+            points (numpy.ndarray): Points on the ellipse, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -447,16 +466,16 @@ class Shapes:
 
     @classmethod
     def lemniscate_of_bernoulli(cls, a=1, b=1, t_values=None,num_points=100):
-        """Create a lemniscate of Bernoulli in 3D space.
+        """Create a lemniscate of Bernoulli (figure-eight curve).
 
         Args:
-            a (int, optional): _description_. Defaults to 1.
-            b (int, optional): _description_. Defaults to 1.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            a (float): x-scaling factor.
+            b (float): y-scaling factor.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the leminscate of Bernouli of shape (num_points, 3)
+            points (numpy.ndarray): Points on the lemniscate, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -468,17 +487,17 @@ class Shapes:
     
     @classmethod
     def torus_helix(cls, R=1, r=2, num_windings=3, t_values=None, num_points=100):
-        """Create a torus helix in 3D space.
+        """Create a helix wound around a torus.
 
         Args:
-            R (int, optional): _description_. Defaults to 1.
-            r (int, optional): _description_. Defaults to 2.
-            num_windings (int, optional): _description_. Defaults to 3.
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            R (float): Major radius of the torus.
+            r (float): Minor radius (tube radius).
+            num_windings (int): Number of windings around the torus.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the torus helix of shape (num_points, 3)
+            points (numpy.ndarray): Points on the torus helix, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -492,16 +511,16 @@ class Shapes:
     
     @classmethod
     def bonus(cls, t_values=None,num_points=100):
-        """Create a bonus shape in 3D space.
-        
-        Credit: https://www.geogebra.org/m/pH8wD3rW, Author:Simona Riva"
+        """Create a bonus (Batman) shape.
+
+        Credit: https://www.geogebra.org/m/pH8wD3rW, Author: Simona Riva.
 
         Args:
-            t_values (_type_, optional): _description_. Defaults to None.
-            num_points (int, optional): _description_. Defaults to 100.
+            t_values (numpy.ndarray, optional): Parameter values.
+            num_points (int): Number of sample points.
 
         Returns:
-            points (np.ndarray): points on the bonus function of shape (num_points, 3)
+            points (numpy.ndarray): Points on the bonus shape, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
