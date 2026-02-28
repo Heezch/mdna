@@ -4,10 +4,6 @@ Classes for constructing DNA topology and atomic coordinates from sequence and f
 
 ---
 
-## Sequence Generator
-
-Builds an MDTraj topology and trajectory from a DNA sequence using reference base structures.
-
 ::: mdna.generators.SequenceGenerator
     handler: python
     options:
@@ -15,10 +11,6 @@ Builds an MDTraj topology and trajectory from a DNA sequence using reference bas
       show_root_heading: true
 
 ---
-
-## Structure Generator
-
-Places atomic base structures into spline-generated reference frames to produce a complete DNA trajectory.
 
 ::: mdna.generators.StructureGenerator
     handler: python

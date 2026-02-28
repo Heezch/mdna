@@ -4,10 +4,6 @@ Classes for groove width and torsion angle analysis.
 
 ---
 
-## Groove Analysis
-
-Computes DNA major and minor groove widths by fitting cubic splines through phosphorus atom positions.
-
 ::: mdna.analysis.GrooveAnalysis
     handler: python
     options:
@@ -15,10 +11,6 @@ Computes DNA major and minor groove widths by fitting cubic splines through phos
       show_root_heading: true
 
 ---
-
-## Torsion Analysis
-
-Computes backbone torsion angles from DNA trajectories.
 
 ::: mdna.analysis.TorsionAnalysis
     handler: python

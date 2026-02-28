@@ -5,7 +5,7 @@ Each section contains task-oriented examples showing how to use the toolkit in p
 
 ```mermaid
 graph LR
-    B[🔨 Build] --> M[✏️ Modify] --> A[📊 Analyse]
+    B[Build] --> M[Modify] --> A[Analyse]
     B --> A
 ```
 

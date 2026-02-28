@@ -9,9 +9,29 @@ import copy
 from typing import List
 
 class Minimizer:
-    """Minimize the DNA structure using Monte Carlo simulations with pmcpy"""
+    """Monte Carlo energy minimization of DNA structures using the PMCpy engine.
 
-    def __init__(self, nucleic):
+    The Minimizer relaxes a ``Nucleic`` object by running rigid base-pair Monte
+    Carlo simulations with sequence-dependent elastic potentials and optional
+    excluded-volume interactions.  Three equilibration strategies are available:
+
+    * **Full equilibration** (default) — adaptive convergence monitoring.
+    * **Simple equilibration** — fixed-sweep protocol, faster but less thorough.
+    * **Writhe equilibration** — maintains linking number while equilibrating
+      writhe for circular DNA (requires compiled PyLk Cython extensions).
+
+    After minimization the internal frames are updated in-place and the full MC
+    trajectory can be retrieved via :meth:`get_MC_traj`.
+
+    Args:
+        nucleic: A :class:`~mdna.nucleic.Nucleic` instance whose attributes
+            (frames, sequence, topology, …) are copied into the Minimizer.
+
+    Raises:
+        ImportError: If the PMCpy ``Run`` class cannot be imported.
+    """
+
+    def __init__(self, nucleic: 'Nucleic') -> None:
         # Dynamically set attributes from the nucleic instance
         self.__dict__.update(nucleic.__dict__)
 
@@ -19,8 +39,12 @@ class Minimizer:
         if not self._check_import():
             raise ImportError("Run class from pmcpy.run.run is not available.")
 
-    def _check_import(self):
-        """Check if the required import is available"""
+    def _check_import(self) -> bool:
+        """Check whether the PMCpy ``Run`` class is importable.
+
+        Returns:
+            bool: True if import succeeds, False otherwise.
+        """
         try:
             from .PMCpy.pmcpy.run.run import Run
             self.Run = Run  # Store the imported class in the instance
@@ -30,7 +54,11 @@ class Minimizer:
             return False
 
     def _initialize_mc_engine(self):
-        """Initialize the Monte Carlo engine"""
+        """Create and return a PMCpy ``Run`` instance configured from the current state.
+
+        Returns:
+            Run: An initialized PMCpy Monte Carlo engine.
+        """
         # Get the positions and triads of the current frame
         pos = self.frames[:,self.frame,0,:]
         triads = self.frames[:,self.frame,1:,:].transpose(0,2,1) # flip row vectors to column vectors
@@ -45,14 +73,24 @@ class Minimizer:
                         exvol_rad=self.exvol_rad)
         return  mc
 
-    def _update_frames(self):
-        """Update the reference frames with the new positions and triads"""
+    def _update_frames(self) -> None:
+        """Write optimized positions and triads back into the stored frames array."""
         # update the spline with new positions and triads
         self.frames[:,self.frame,0,:] = self.out['positions'] # set the origins of the frames
         self.frames[:,self.frame,1:,:] = self.out['triads'].transpose(0,2,1) # set the triads of the frames as row vectors
         
     def _get_positions_and_triads(self):
-        """Get the positions and triads from the output"""
+        """Extract final positions and triads from the MC output.
+
+        Also stores the last-frame triads and positions in ``self.out`` for
+        subsequent use by :meth:`_update_frames`.
+
+        Returns:
+            tuple[numpy.ndarray, numpy.ndarray]: ``(positions, triads)`` arrays
+                with shapes ``(n_frames, n_bp, 3)`` and
+                ``(n_frames, n_bp, 3, 3)`` respectively, where triads are
+                returned as row-vector convention.
+        """
         # get the positions and triads of the simulation
         positions = self.out['confs'][:,:,:3,3] 
         triads = self.out['confs'][:,:,:3,:3]
@@ -62,8 +100,33 @@ class Minimizer:
         self.out['positions'] = positions[-1]
         return positions, triads.transpose(0,1,3,2) # flip column vectors to row vectors
 
-    def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 20, plot : bool = False):
-        """Minimize the DNA structure."""
+    def minimize(self,  frame: int = -1, exvol_rad : float = 2.0, temperature : int = 300,  simple : bool = False, equilibrate_writhe : bool = False, endpoints_fixed : bool = True, fixed : List[int] = [], dump_every : int = 20, plot : bool = False) -> None:
+        """Run Monte Carlo energy minimization on the DNA structure.
+
+        Initializes the PMCpy engine with the current base-pair frames and
+        sequence, performs MC equilibration, and updates the internal frames
+        with the relaxed configuration.
+
+        Args:
+            frame: Index of the stored frame to minimize (default ``-1``, the
+                last frame).
+            exvol_rad: Excluded-volume radius in nm.  Base pairs closer than
+                this distance incur a repulsive energy penalty.
+            temperature: Temperature in Kelvin for the Metropolis acceptance
+                criterion.
+            simple: If True, use simple (fixed-sweep) equilibration instead of
+                the adaptive convergence protocol.
+            equilibrate_writhe: If True, additionally equilibrate the writhe
+                for circular DNA.  Requires ``simple=True``.
+            endpoints_fixed: If True, the first and last base pairs are held
+                fixed during the simulation.
+            fixed: List of base-pair indices to keep fixed.
+            dump_every: Save a trajectory snapshot every *n* MC sweeps.
+            plot: If True, plot the energy trace during full equilibration.
+
+        Raises:
+            ValueError: If ``equilibrate_writhe=True`` with ``simple=False``.
+        """
         # Set the parameters
         self.endpoints_fixed = endpoints_fixed
         self.fixed = fixed
@@ -85,8 +148,17 @@ class Minimizer:
         positions, triads = self._get_positions_and_triads()
         self._update_frames()
 
-    def get_MC_traj(self):
-        """Get the MC sampling energy minimization trajectory of the new spline."""
+    def get_MC_traj(self) -> 'md.Trajectory':
+        """Build an MDTraj Trajectory from the MC sampling snapshots.
+
+        Each frame contains Argon atoms at base-pair center positions and
+        Helium (dummy) atoms offset along the major-groove vector, connected
+        by bonds.  This allows visualization of the MC relaxation path.
+
+        Returns:
+            md.Trajectory: An MDTraj trajectory with ``2 * n_bp`` atoms per
+                frame and ``n_snapshots`` frames.
+        """
         # Get the xyz coordinates of the new spline
         xyz = self.out['confs'][:, :, :3, 3]
         

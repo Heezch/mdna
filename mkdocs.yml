@@ -34,6 +34,7 @@ theme:
 repo_url: https://github.com/heezch/mdna
 
 exclude_docs: |
+  _archive/**
   notebooks/data/filament_dataset/**
   notebooks/data/filament_dataset*.zip
   notebooks/data/filament_dataset*.tar

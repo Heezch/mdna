@@ -30,16 +30,16 @@ These are available directly via `import mdna`:
 |-------|-------------|
 | [`NucleicFrames`](geometry.md#rigid-base-parameter-class) | Rigid base parameter computation from trajectories |
 | [`ReferenceBase`](geometry.md#reference-base-class) | Single nucleobase reference frame fitting |
-| [`GrooveAnalysis`](analysis.md#groove-analysis) | DNA groove width computation |
-| [`TorsionAnalysis`](analysis.md#torsion-analysis) | Backbone torsion angle computation |
+| [`GrooveAnalysis`](analysis.md#mdna.analysis.GrooveAnalysis) | DNA groove width computation |
+| [`TorsionAnalysis`](analysis.md#mdna.analysis.TorsionAnalysis) | Backbone torsion angle computation |
 
 ## Build Internals
 
 | Class | Description |
 |-------|-------------|
 | [`SplineFrames`](spline.md) | Spline interpolation and frame generation |
-| [`SequenceGenerator`](generators.md#sequence-generator) | DNA topology construction from sequence |
-| [`StructureGenerator`](generators.md#structure-generator) | Atomic coordinate placement into frames |
+| [`SequenceGenerator`](generators.md#mdna.generators.SequenceGenerator) | DNA topology construction from sequence |
+| [`StructureGenerator`](generators.md#mdna.generators.StructureGenerator) | Atomic coordinate placement into frames |
 
 ## Relaxation
 
