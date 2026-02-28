@@ -3,6 +3,7 @@ site_name: MDNA
 
 theme:
   name: "material"
+  custom_dir: docs/overrides
   features:
     - content.code.copy
     - navigation.sections
@@ -93,6 +94,7 @@ nav:
       - Architecture: concepts/architecture.md
       - Rigid Base Parameters: concepts/rigid-base.md
       - Splines & Geometry: concepts/splines.md
+      - Monte Carlo Minimization: concepts/minimization.md
       - Background: explanation/explanation.md
   - Jupyter Notebooks: 
       - Overview: index-notebooks.md
