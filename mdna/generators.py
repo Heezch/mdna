@@ -178,14 +178,19 @@ class SequenceGenerator:
             base (str): One-letter base code.
 
         Returns:
-            tuple[md.Trajectory, md.Trajectory]: ``(base_traj, complement_traj)``.
+            result (tuple[md.Trajectory, md.Trajectory]): ``(base_traj, complement_traj)``.
         """
         return self.reference_bases[base], self.reference_bases[self.base_pair_map[base]]
     
     def _rotation_matrix(self,axis, theta):
-        """
-        Return the rotation matrix associated with counterclockwise rotation about
-        the given axis by theta radians.
+        """Compute a rotation matrix for counterclockwise rotation.
+
+        Args:
+            axis (numpy.ndarray): Rotation axis.
+            theta (float): Rotation angle in radians.
+
+        Returns:
+            R (numpy.ndarray): 3x3 rotation matrix.
         """
         axis = np.asarray(axis)
         axis = axis / np.linalg.norm(axis)
@@ -367,7 +372,7 @@ class StructureGenerator:
             at_fraction (float): Fraction of A/T bases (0–1).
 
         Returns:
-            str: Random DNA sequence of length :attr:`length`.
+            sequence (str): Random DNA sequence of length :attr:`length`.
 
         Raises:
             ValueError: If *at_fraction* is outside [0, 1].
@@ -387,7 +392,7 @@ class StructureGenerator:
             idx (int): Base-pair index.
 
         Returns:
-            tuple[numpy.ndarray, list[int]]: ``(xyz, atom_indices)``.
+            result (tuple[numpy.ndarray, list[int]]): ``(xyz, atom_indices)``.
         """
         indices = [at.index for at in basepairs[idx][0].atoms] + [at.index for at in basepairs[idx][1].atoms]
         return self.traj.xyz[:,indices,:], indices
@@ -400,7 +405,7 @@ class StructureGenerator:
                 linear, remove the 5′ phosphate groups at the termini.
 
         Returns:
-            md.Trajectory: DNA trajectory.
+            traj (md.Trajectory): DNA trajectory.
         """
         if self.circular or not remove_terminal_phosphates:
             return self.traj

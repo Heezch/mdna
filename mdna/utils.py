@@ -138,7 +138,7 @@ class RigidBody:
             omega (numpy.ndarray): Euler vectors, shape ``(n, 3)``.
 
         Returns:
-            numpy.ndarray: Rotation matrices, shape ``(n, 3, 3)``.
+            R (numpy.ndarray): Rotation matrices, shape ``(n, 3, 3)``.
         """
         omega_norm = np.linalg.norm(omega, axis=-1, keepdims=True)
         
@@ -235,7 +235,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the circle, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the circle, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -255,7 +255,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the line, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the line, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, 1, num=num_points)
         parametric_function = lambda t_values: (
@@ -277,7 +277,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the helix, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the helix, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
         parametric_function = lambda t_values: (
@@ -299,7 +299,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the spiral, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the spiral, shape ``(num_points, 3)``.
         """
         t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
         parametric_function = lambda t_values: (
@@ -321,7 +321,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the Möbius strip, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the Möbius strip, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -347,7 +347,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the square, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the square, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 1, num=num_points)
@@ -369,7 +369,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the trefoil knot, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the trefoil knot, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, num_turns * 2 * np.pi, num=num_points)
@@ -393,7 +393,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the square, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the square, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 4, num=num_points)
@@ -433,7 +433,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the heart shape, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the heart shape, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(-np.pi, np.pi, num=num_points)
@@ -454,7 +454,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the ellipse, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the ellipse, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -475,7 +475,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the lemniscate, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the lemniscate, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -497,7 +497,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the torus helix, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the torus helix, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)
@@ -520,7 +520,7 @@ class Shapes:
             num_points (int): Number of sample points.
 
         Returns:
-            numpy.ndarray: Points on the bonus shape, shape ``(num_points, 3)``.
+            points (numpy.ndarray): Points on the bonus shape, shape ``(num_points, 3)``.
         """
         if t_values is None:
             t_values = np.linspace(0, 2 * np.pi, num=num_points)

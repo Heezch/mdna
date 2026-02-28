@@ -148,7 +148,7 @@ class GrooveAnalysis:
             points (int): Number of interpolation points.
 
         Returns:
-            numpy.ndarray: Interpolated coordinates.
+            coordinates (numpy.ndarray): Interpolated coordinates.
         """
         
         # make curve with shape[n_particles, xyz, time]
@@ -170,7 +170,7 @@ class GrooveAnalysis:
             arr (numpy.ndarray): 1-D array of values.
 
         Returns:
-            float: First local minimum value.
+            minimum (float): First local minimum value.
         """
         for i in range(1, len(arr) - 1):
             if arr[i] < arr[i - 1] and arr[i] < arr[i + 1]:
@@ -185,7 +185,7 @@ class GrooveAnalysis:
             array (numpy.ndarray): Anti-diagonal slice.
 
         Returns:
-            tuple[numpy.ndarray, numpy.ndarray]: ``(minor_half, major_half)``.
+            halves (tuple[numpy.ndarray, numpy.ndarray]): ``(minor_half, major_half)``.
         """
         # Compute the midpoint of the array
         midpoint = len(array) // 2
@@ -204,7 +204,7 @@ class GrooveAnalysis:
             matrix (numpy.ndarray): Square distance matrix.
 
         Returns:
-            list[numpy.ndarray]: Anti-diagonal slices.
+            slices (list[numpy.ndarray]): Anti-diagonal slices.
         """
         n = matrix.shape[0] # Get the size of the matrix and skip the first and last anti diagonal
         return [np.diagonal(np.flipud(matrix), offset) for offset in range(-(n - 2), n - 2)]
@@ -217,7 +217,7 @@ class GrooveAnalysis:
             distance_matrix (numpy.ndarray): Inter-strand distance matrix for a single frame.
 
         Returns:
-            tuple[list[float], list[float]]: ``(minor_widths, major_widths)``.
+            widths (tuple[list[float], list[float]]): ``(minor_widths, major_widths)``.
         """
 
         # Split the distance matrix into anti diagonal slices
@@ -288,7 +288,7 @@ class GrooveAnalysis:
             ls (str): Line style.
 
         Returns:
-            tuple or None: ``(fig, ax)`` when *ax* was ``None``.
+            result (tuple | None): ``(fig, ax)`` when *ax* was ``None``.
         """
 
         # Create a figure and axes for plotting
@@ -392,7 +392,7 @@ class TorsionAnalysis:
             traj (md.Trajectory): Input trajectory.
 
         Returns:
-            md.Trajectory: Sub-trajectory containing DG, DC, DA, and DT residues.
+            dna (md.Trajectory): Sub-trajectory containing DG, DC, DA, and DT residues.
         """
         dna = traj.atom_slice(traj.top.select('resname DG DC DA DT'))
         return dna
@@ -405,7 +405,7 @@ class TorsionAnalysis:
             ref_atoms (list[str]): Atom names to select (e.g. ``["C3'", "O3'"]``).
 
         Returns:
-            list: Atom objects.
+            indices (list): Atom objects.
         """
         indices = []
         # find torsions based on the epsilon and zeta atoms
@@ -429,7 +429,7 @@ class TorsionAnalysis:
             ref_atoms (list[str]): Reference atom-name pattern for one torsion.
 
         Returns:
-            list[list]: Each element is a four-atom group defining one torsion.
+            torsions (list[list]): Each element is a four-atom group defining one torsion.
         """
         # Find the chunks based on ref_atoms
         torsions = []
@@ -451,7 +451,7 @@ class TorsionAnalysis:
             ref_atoms (list[str]): Atom-name pattern.
 
         Returns:
-            list[list]: Torsion atom groups.
+            torsions (list[list]): Torsion atom groups.
         """
         indices = self.get_backbone_indices(chainid, ref_atoms)
         torsions = self.get_torsions(indices, ref_atoms)
@@ -464,7 +464,7 @@ class TorsionAnalysis:
             torsion_indices (list[list]): Torsion atom-object groups.
 
         Returns:
-            list[list[int]]: Integer atom indices.
+            atom_indices (list[list[int]]): Integer atom indices.
         """
         atom_indices = []
         for torsion in torsion_indices:
@@ -478,7 +478,7 @@ class TorsionAnalysis:
             degrees (bool): Return angles in degrees.
 
         Returns:
-            tuple[numpy.ndarray, numpy.ndarray]: ``(epsilon, zeta)`` arrays.
+            angles (tuple[numpy.ndarray, numpy.ndarray]): ``(epsilon, zeta)`` arrays.
         """
 
         epsilon_atoms = ["C4'","C3'","O3'","P"] 
@@ -516,7 +516,7 @@ class TorsionAnalysis:
             diff (numpy.ndarray): ``epsilon - zeta`` array.
 
         Returns:
-            numpy.ndarray: BII fraction per base step.
+            state (numpy.ndarray): BII fraction per base step.
         """
         state = np.zeros_like(diff)
         state[diff < 0] = 0  # BI

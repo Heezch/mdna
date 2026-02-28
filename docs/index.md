@@ -1,12 +1,29 @@
-# MDNA — DNA Structure Generation & Analysis Toolkit
+# Software module for DNA structure generation and analysis
 
-A Python toolkit for atomic-resolution generation and analysis of double-stranded DNA structures.
+A Python toolkit for generation and analysis of double-stranded DNA structures.
 
 ---
 
 ## What is MDNA?
 
-MDNA enables the construction of arbitrarily shaped DNA using spline-based mapping, supports canonical and non-canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations. In addition, it implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj-compatible trajectories for molecular dynamics workflows.
+MDNA enables the construction of arbitrarily shaped DNA using spline-based mapping, supports canonical and non-canonical nucleotides, and integrates Monte Carlo relaxation to obtain physically consistent configurations. In addition, it implements rigid base parameter analysis and linking number calculations, and exports directly to MDTraj and OpenMM compatible trajectories for molecular dynamics workflows.
+
+
+## Example Gallery
+
+Three examples that highlight the building of biomolecular assemblies with MDNA: extension of DNA structures, using proteins as scaffold to generate DNA structure, and connecting two DNA strands to form a DNA loop. Molecular representations are visualized with Mol* Viewer.
+
+<div class="image-gallery">
+  <a href="assets/gallery/image1.png" class="glightbox">
+    <img src="assets/gallery/image1.png" alt="DNA Extension" />
+  </a>
+  <a href="assets/gallery/image2.png" class="glightbox">
+    <img src="assets/gallery/image2.png" alt="Protein-Scaffolded DNA" />
+  </a>
+  <a href="assets/gallery/image3.png" class="glightbox">
+    <img src="assets/gallery/image3.png" alt="DNA Loop Connection" />
+  </a>
+</div>
 
 ## Quick Example
 
@@ -40,31 +57,15 @@ dna.save_pdb('minicircle.pdb')
 
 ## Documentation
 
-## Documentation
+| Section | Description |
+|---------|-------------|
+| **[Getting Started](getting-started/installation.md)** | Install MDNA and generate your first DNA in 5 minutes |
+| **[User Guide](guide/overview.md)** | Task-oriented guides: [Build](guide/building.md) · [Modify](guide/modifying.md) · [Analyse](guide/analyzing.md) |
+| **[Concepts](concepts/architecture.md)** | Architecture, splines, rigid base formalism |
+| **[Jupyter Notebooks](index-notebooks.md)** | Interactive tutorials from basic to advanced |
+| **[API Reference](api/index.md)** | Complete reference for all classes and functions |
 
-| | Section | Description |
-|---|---------|-------------|
-| :material-rocket-launch: | **[Getting Started](getting-started/installation.md)** | Install MDNA and generate your first DNA in 5 minutes |
-| :material-book-open-variant: | **[User Guide](guide/overview.md)** | Task-oriented guides: [Build](guide/building.md) · [Modify](guide/modifying.md) · [Analyse](guide/analyzing.md) |
-| :material-lightbulb-on: | **[Concepts](concepts/architecture.md)** | Architecture, splines, rigid base formalism |
-| :material-notebook: | **[Jupyter Notebooks](index-notebooks.md)** | Interactive tutorials from basic to advanced |
-| :material-code-tags: | **[API Reference](api/index.md)** | Complete reference for all classes and functions |
 
-## Example Gallery
-
-Three examples that highlight the building of biomolecular assemblies with MDNA: extension of DNA structures, using proteins as scaffold to generate DNA structure, and connecting two DNA strands to form a DNA loop. Molecular representations are visualized with Mol* Viewer.
-
-<div class="image-gallery">
-  <a href="assets/gallery/image1.png" class="glightbox">
-    <img src="assets/gallery/image1.png" alt="DNA Extension" />
-  </a>
-  <a href="assets/gallery/image2.png" class="glightbox">
-    <img src="assets/gallery/image2.png" alt="Protein-Scaffolded DNA" />
-  </a>
-  <a href="assets/gallery/image3.png" class="glightbox">
-    <img src="assets/gallery/image3.png" alt="DNA Loop Connection" />
-  </a>
-</div>
 
 ## Citation
 

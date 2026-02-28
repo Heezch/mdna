@@ -274,7 +274,7 @@ class NucleicFrames:
             reverse (bool): If True, return residues in reverse order (used for the anti-sense strand).
 
         Returns:
-            list: List of MDTraj Residue objects.
+            residues (list): MDTraj Residue objects.
 
         Raises:
             IndexError: If *chain_index* is out of range.
@@ -289,7 +289,7 @@ class NucleicFrames:
         """Load canonical reference base structures from bundled HDF5 files.
 
         Returns:
-            dict[str, md.Trajectory]: Mapping of base letter (A, C, G, T) to single-frame trajectory.
+            bases (dict[str, md.Trajectory]): Mapping of base letter (A, C, G, T) to single-frame trajectory.
         """
         bases = ['C', 'G', 'T', 'A']
         return {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in bases}
@@ -360,7 +360,7 @@ class NucleicFrames:
             res (md.Trajectory): Single-residue trajectory slice.
 
         Returns:
-            numpy.ndarray: Base vectors of shape ``(n_frames, 4, 3)``
+            vectors (numpy.ndarray): Base vectors of shape ``(n_frames, 4, 3)``
                 ordered as ``[b_R, b_L, b_D, b_N]``.
         """
         ref_base = ReferenceBase(res)
@@ -373,7 +373,7 @@ class NucleicFrames:
         """Compute reference frames for all residues in both strands.
 
         Returns:
-            dict: Mapping of MDTraj Residue → base vectors array of shape ``(n_frames, 4, 3)``.
+            frames (dict): Mapping of MDTraj Residue to base vectors array of shape ``(n_frames, 4, 3)``.
         """
         reference_frames = {} # Dictionary to store the base vectors for each residue
         for res in self.res_A + self.res_B:
@@ -559,7 +559,7 @@ class NucleicFrames:
             base (bool): If True, return only base-pair parameters.
 
         Returns:
-            tuple[numpy.ndarray, list[str]]: Parameters of shape
+            result (tuple[numpy.ndarray, list[str]]): Parameters of shape
                 ``(n_frames, n_bp, n_params)`` and corresponding names.
 
         Raises:
@@ -608,7 +608,7 @@ class NucleicFrames:
             step_color (str): Color for step parameter plots.
 
         Returns:
-            tuple: ``(fig, ax)`` matplotlib figure and axes array.
+            result (tuple): ``(fig, ax)`` matplotlib figure and axes array.
         """
 
         import matplotlib.pyplot as plt
