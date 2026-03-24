@@ -546,7 +546,7 @@ class Nucleic:
             dict: A dictionary containing the base reference frames of the DNA structure.
                 The keys are residue topologies of the MDTraj object (`traj.top.residues`) and
                 the values are reference frames with shape `(n_frames, 4, 3)`, where rows are
-                origin, `b_L`, `b_D`, and `b_N`.
+                origin, `b_D`, `b_L`, and `b_N`.
         """
 
         if self.rigid is None:
