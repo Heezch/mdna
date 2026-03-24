@@ -12,7 +12,7 @@ from .generators import SequenceGenerator, StructureGenerator
 from .modify import Mutate, Hoogsteen, Methylate
 
 from .minimizer import Minimizer
-from .PMCpy.pmcpy.Evals.PyLk import pylk
+from .simulate.Evals.PyLk import pylk
 
 
 def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, filename=None, top=None, stride=None):

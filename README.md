@@ -13,10 +13,8 @@ pip install mdna
 
 Or if you want to install the most recent version of MDNA, follow these steps:
 ```bash
-git clone --recurse-submodules https://github.com/heezch/mdna.git
-```
-After that go to the 'mdna' project folder and do:
-```bash
+git clone https://github.com/heezch/mdna.git
+cd mdna
 pip install .
 ```
 
@@ -66,35 +64,26 @@ What happens behind the scenes: the DOI points to a Figshare item page, and the 
 
 ### Optional: build PyLk Cython extensions (faster + no fallback warnings)
 
-MDNA vendors `PyLk` inside `mdna/PMCpy/pmcpy/Evals/PyLk`. If you see warnings like
+MDNA bundles `PyLk` at `mdna/simulate/Evals/PyLk`. If you see warnings like
 "Cython version of writhemap/linkingnumber not compiled", you can compile the extensions in-place:
 
 Prerequisite: ensure `Cython` is installed in the same environment where you run MDNA.
 
 ```bash
-# example for conda/mamba env named `mdna`
-mamba run -n mdna python -m pip install Cython
+pip install Cython
 ```
 
 ```bash
 # from repository root
-cd mdna/PMCpy/pmcpy/Evals/PyLk
+cd mdna/simulate/Evals/PyLk
 python setup.py build_ext --inplace
-```
-
-If you use conda/mamba, run with your env explicitly:
-
-```bash
-mamba run -n mdna python mdna/PMCpy/pmcpy/Evals/PyLk/setup.py build_ext --inplace
 ```
 
 Quick verification:
 
-```bash
-mamba run -n mdna python - <<'PY'
-from mdna.PMCpy.pmcpy.Evals.PyLk.pylk import writhemap, eval_link
-print('PyLk import OK:', writhemap.__name__, eval_link.__name__)
-PY
+```python
+from mdna.simulate.Evals.PyLk.pylk import writhemap, linkingnumber
+print('PyLk import OK:', writhemap.__name__, linkingnumber.__name__)
 ```
 
 ## License

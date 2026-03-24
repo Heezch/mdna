@@ -1,8 +1,9 @@
 # Monte Carlo Minimization
 
 MDNA uses Monte Carlo (MC) simulations to relax DNA structures into physically
-consistent configurations.  The minimization engine is provided by **PMCpy** [github](https://github.com/eskoruppa/PMCpy/tree/405a064eec7e10c949f729c1897f4f8950930b71), a vendored subpackage located at
-`mdna/PMCpy/`.
+consistent configurations.  The minimization engine is powered by vendored
+simulation code (originally from [PMCpy](https://github.com/eskoruppa/PMCpy)),
+now integrated as `mdna.simulate`.
 
 ## Why Minimization?
 
@@ -14,7 +15,7 @@ reference configuration while respecting an elastic energy model.
 
 ## The Rigid Base-Pair Model
 
-PMCpy treats each base-pair step as a rigid body connected to its neighbors
+The simulation engine treats each base-pair step as a rigid body connected to its neighbors
 through a harmonic elastic potential parameterized by the six rigid base-pair
 step parameters (shift, slide, rise, tilt, roll, twist).  The stiffness
 matrices are sequence-dependent and derived from atomistic MD simulations.
@@ -44,7 +45,7 @@ The `minimize()` method supports three equilibration strategies:
 dna.minimize()
 ```
 
-Runs the full PMCpy equilibration protocol.  This iteratively adjusts both the
+Runs the full equilibration protocol.  This iteratively adjusts both the
 step parameters and global configuration until convergence is reached.  The
 equilibration monitors the energy trace and terminates when fluctuations
 stabilize.
@@ -111,7 +112,7 @@ structure relaxes over the course of the simulation.
 ```mermaid
 flowchart TD
     N["Nucleic"] -->|".minimize()"| M["Minimizer"]
-    M -->|"copies frames"| MC["PMCpy Run engine"]
+    M -->|"copies frames"| MC["MC Run engine"]
     MC -->|"MC sweeps"| OUT["positions + triads"]
     OUT -->|"update"| N
     MC -->|"snapshots"| TRAJ["get_MC_traj() → MDTraj"]
