@@ -40,7 +40,7 @@ graph TD
 
     subgraph "Relaxation"
         MIN["Minimizer"]
-        MC["PMCpy Monte Carlo"]
+        MC["MC Simulation (mdna.simulate)"]
     end
 
     subgraph "Utilities"

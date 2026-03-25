@@ -21,7 +21,7 @@ keywords = ["Molecular Dynamics",
       "Structuer Generation Tool",
       "Molecular Toolkit",]
  
-dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba"]
+dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba","tables","joblib"]
  
 requires-python = ">=3.10"
 
@@ -44,9 +44,10 @@ exclude = [
     "examples/data/filament_dataset*.zip",
     "examples/data/filament_dataset*.tar",
     "examples/data/filament_dataset*.tar.gz",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.so",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.pyd",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*cpython-*.so",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.c",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.html",
+    "mdna/simulate/Evals/PyLk/pylk/*.so",
+    "mdna/simulate/Evals/PyLk/pylk/*.pyd",
+    "mdna/simulate/Evals/PyLk/pylk/*cpython-*.so",
+    "mdna/simulate/Evals/PyLk/pylk/*_cython.c",
+    "mdna/simulate/Evals/PyLk/pylk/*_cython.html",
+    "mdna/simulate/Evals/PyLk/build/**",
 ]

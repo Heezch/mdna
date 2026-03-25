@@ -1,6 +1,6 @@
 # Minimizer
 
-Monte Carlo energy minimization for DNA structures using the PMCpy engine.
+Monte Carlo energy minimization for DNA structures using the integrated simulation engine.
 
 ::: mdna.minimizer.Minimizer
     handler: python

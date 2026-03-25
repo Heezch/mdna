@@ -46,7 +46,7 @@ class Minimizer:
             bool: True if import succeeds, False otherwise.
         """
         try:
-            from .PMCpy.pmcpy.run.run import Run
+            from .simulate.run.run import Run
             self.Run = Run  # Store the imported class in the instance
             return True
         except ImportError as e:
