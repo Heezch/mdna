@@ -18,7 +18,7 @@ pip install -e .
 
 ## Dependencies
 
-MDNA requires Python 3.9+ and depends on:
+MDNA requires Python 3.10+ and depends on:
 
 | Package | Purpose |
 |---------|---------|
