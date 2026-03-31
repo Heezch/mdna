@@ -26,6 +26,7 @@ dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba","table
 requires-python = ">=3.10"
 
 # Use pip install -e .[docs] if you also want to install the dependencies for building the documentation
+# In zsh, quote extras so brackets are not treated as a glob: python -m pip install -e '.[docs]'
 [project.optional-dependencies]
 docs = [
     "mkdocs",
