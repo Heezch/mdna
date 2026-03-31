@@ -7,6 +7,10 @@
 **/*.egg-info
 **/dist/
 **/.venv/
+.cache/
+.cache/mkdocs-jupyter/
+*.pytest_cache
+
 examples/data/filament_dataset/
 examples/data/filament_dataset*.zip
 examples/data/filament_dataset*.tar
