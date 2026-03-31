@@ -25,7 +25,7 @@ dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba","table
  
 requires-python = ">=3.10"
 
-% Use pip install -e .[docs] if you also want to install the dependencies for building the documentation
+# Use pip install -e .[docs] if you also want to install the dependencies for building the documentation
 [project.optional-dependencies]
 docs = [
     "mkdocs",
