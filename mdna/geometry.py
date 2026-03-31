@@ -53,7 +53,7 @@ class ReferenceBase:
         # Get coordinates of key atoms based on base type
         self.C1_coords, self.N_coords, self.C_coords = self.get_coordinates()
         # Calculate base reference point and base vectors
-        self.b_R, self.b_L, self.b_D, self.b_N = self.calculate_base_frame()
+        self.b_R, self.b_D, self.b_L, self.b_N = self.calculate_base_frame()
         # self.basis = np.array([self.b_D.T, self.b_L.T, self.b_N])
     
     def _select_atom_by_name(self, name: str) -> np.ndarray:
@@ -157,7 +157,7 @@ class ReferenceBase:
         b_D = np.cross(b_L, b_N, axis=1)
         
         return np.array([b_R, b_D, b_L, b_N])
-        #return np.array([b_R, -b_D, -b_L, -b_N])
+
 
     def plot_baseframe(self, atoms=True, frame=True, ax=None, length=1):
         """Plot the nucleobase atoms and/or reference frame vectors in 3D.
@@ -306,7 +306,7 @@ class NucleicFrames:
             }
             reference_fit_data[base] = {
                 'atom_coords': atom_coords,
-                'frame': np.array([ref_base.b_R[0], ref_base.b_L[0], ref_base.b_D[0], ref_base.b_N[0]])
+                'frame': np.array([ref_base.b_R[0], ref_base.b_D[0], ref_base.b_L[0], ref_base.b_N[0]])
             }
         return reference_fit_data
 
@@ -361,10 +361,10 @@ class NucleicFrames:
 
         Returns:
             vectors (numpy.ndarray): Base vectors of shape ``(n_frames, 4, 3)``
-                ordered as ``[b_R, b_L, b_D, b_N]``.
+                ordered as ``[b_R, b_D, b_L, b_N]``.
         """
         ref_base = ReferenceBase(res)
-        base_vectors = np.array([ref_base.b_R, ref_base.b_L, ref_base.b_D, ref_base.b_N]).swapaxes(0,1)
+        base_vectors = np.array([ref_base.b_R, ref_base.b_D, ref_base.b_L, ref_base.b_N]).swapaxes(0,1)
         if not self.fit_reference:
             return base_vectors
         return self._get_fitted_base_vectors(res, ref_base, base_vectors)
@@ -414,6 +414,7 @@ class NucleicFrames:
             # flip (connecting the backbones) and the (baseplane normals).
             # so the second and third vector b_L, b_N
             rotation_B[:,[1,2]] *= -1
+          
      
         # Extract origins of triads
         origin_A = input_A_[:,0]  # shape (n, 3)
@@ -473,7 +474,7 @@ class NucleicFrames:
 
         Assumes frames are of shape (n_frames, n_residues, 4, 3) where the last two dimensions are the base triads.
         The base triads consist of an origin (first index) and three vectors (latter 3 indices) representing the base frame.
-        With the order of the vectors being: b_R, b_L, b_D, b_N.
+        With the order of the vectors being: b_R, b_D, b_L, b_N.
 
         Args:
             frames_A (ndarray): Frames of shape (n_frames, n_residues, 4, 3) representing the base triads for chain A.

@@ -12,7 +12,7 @@ from .generators import SequenceGenerator, StructureGenerator
 from .modify import Mutate, Hoogsteen, Methylate
 
 from .minimizer import Minimizer
-from .PMCpy.pmcpy.Evals.PyLk import pylk
+from .simulate.Evals.PyLk import pylk
 
 
 def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, filename=None, top=None, stride=None):
@@ -546,7 +546,7 @@ class Nucleic:
             dict: A dictionary containing the base reference frames of the DNA structure.
                 The keys are residue topologies of the MDTraj object (`traj.top.residues`) and
                 the values are reference frames with shape `(n_frames, 4, 3)`, where rows are
-                origin, `b_L`, `b_D`, and `b_N`.
+                origin, `b_D`, `b_L`, and `b_N`.
         """
 
         if self.rigid is None:

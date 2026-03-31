@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mdna"
-version = "0.1.1"
-description = "Software module for DNA structure analysis and generation"
+version = "0.2.0"
+description = "Software module for DNA structure generation and analysis"
 readme = "README.md"
 license-files = []
 authors = [{ name = "Thor van Heesch", email = "t.vanheesch@uva.nl" }]
@@ -18,13 +18,22 @@ classifiers = [
 ]
 keywords = ["Molecular Dynamics", 
       "Structure Analysis", 
-      "Structuer Generation Tool",
+      "Structure Generation Tool",
       "Molecular Toolkit",]
  
-dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba"]
+dependencies = ["mdtraj","numpy","scipy","matplotlib","biopython","numba","tables","joblib"]
  
 requires-python = ">=3.10"
 
+# Use pip install -e .[docs] if you also want to install the dependencies for building the documentation
+[project.optional-dependencies]
+docs = [
+    "mkdocs",
+    "mkdocstrings[python]",
+    "mkdocs-jupyter",
+    "mkdocs-glightbox",
+    "mkdocs-material",  
+]
 
 [project.urls]
 Homepage = "https://github.com/heezch/mdna"
@@ -44,9 +53,10 @@ exclude = [
     "examples/data/filament_dataset*.zip",
     "examples/data/filament_dataset*.tar",
     "examples/data/filament_dataset*.tar.gz",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.so",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*.pyd",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*cpython-*.so",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.c",
-    "mdna/PMCpy/pmcpy/Evals/PyLk/pylk/*_cython.html",
+    "mdna/simulate/Evals/PyLk/pylk/*.so",
+    "mdna/simulate/Evals/PyLk/pylk/*.pyd",
+    "mdna/simulate/Evals/PyLk/pylk/*cpython-*.so",
+    "mdna/simulate/Evals/PyLk/pylk/*_cython.c",
+    "mdna/simulate/Evals/PyLk/pylk/*_cython.html",
+    "mdna/simulate/Evals/PyLk/build/**",
 ]

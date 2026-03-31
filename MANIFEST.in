@@ -3,7 +3,7 @@ recursive-include mdna *.py
 
 # Include any additional files or directories
 include README.md
-include LICENSE.txt
+include LICENSE
 recursive-include data *
 
 include ./atomic

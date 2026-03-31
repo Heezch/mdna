@@ -586,25 +586,42 @@ class Twister:
 
     
     def adjust_to_dLk(self):
-        """Adjust the twist angles to match the given Delta linking number. Not sure how to round the twist number to the nearest integer... or at all, really."""
-        print(f"Adjusting twist angles to match the given Delta linking number: {self.dLk}")
+        """Adjust twist to realise the requested linking number difference.
 
-        current_twist_number = sum(self.twists)/360
+        Uses the White–Fuller theorem: Lk = Tw + Wr.  The writhe (Wr) of the
+        current spline shape is computed from the base-pair positions via PyLk,
+        and the twist is set so that Tw = Tw₀ + dLk − Wr, where Tw₀ is the
+        current (relaxed) twist.  This ensures that the *total* linking number
+        change equals dLk, even for self-crossing shapes that already carry
+        significant writhe.
+        """
+        from .simulate.Evals.PyLk.pylk import writhe as _writhe
+
+        positions = np.ascontiguousarray(self.frames[:, 0])
+        wr = _writhe(positions, closed=self.circular)
+
+        current_twist_number = sum(self.twists) / 360
         old_twist_angle = sum(self.twists) / self.frames.shape[0]
-        print(f"\tCurrent twist number: {current_twist_number:.2f}")
 
-        # Compute the new twist number based on the given Delta linking number        
-        new_twist_number = current_twist_number + self.dLk
-    
+        print(f"Adjusting twist to match ΔLk = {self.dLk}")
+        print(f"\tCurrent twist number (Tw₀): {current_twist_number:.2f}")
+        print(f"\tComputed writhe (Wr):        {wr:.2f}")
+
+        # Tw_new = Tw_0 + dLk - Wr
+        new_twist_number = current_twist_number + self.dLk - wr
+
+        print(f"\tTarget twist number (Tw):    {new_twist_number:.2f}")
+        print(f"\tResulting Lk = Tw + Wr:      {new_twist_number + wr:.2f}")
+
         # Set the new twist angle per base pair
         self.twist_angle = new_twist_number * 360 / self.n_bp
 
         # Change the twist angles to match the new twist
         self.twists = np.full(self.n_bp, self.twist_angle)
         self.accumulated_twists = np.cumsum(self.twists) - self.twist_angle
-        
-        print(f"\tOld twist angle per base pair: {old_twist_angle:.2f} degrees")
-        print(f"\tAdjusted twist angle per base pair: {self.twist_angle:.2f} degrees\n")
+
+        print(f"\tOld twist angle per bp:      {old_twist_angle:.2f}°")
+        print(f"\tNew twist angle per bp:      {self.twist_angle:.2f}°\n")
 
     def apply_rotations(self):
         """Apply the computed rotations to the DNA frames."""

@@ -13,10 +13,8 @@ pip install mdna
 
 Or if you want to install the most recent version of MDNA, follow these steps:
 ```bash
-git clone --recurse-submodules https://github.com/heezch/mdna.git
-```
-After that go to the 'mdna' project folder and do:
-```bash
+git clone https://github.com/heezch/mdna.git
+cd mdna
 pip install .
 ```
 
@@ -26,7 +24,21 @@ See our [documentation page](https://heezch.github.io/mdna/)
 
 ## Citation
 
-Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+If you use MDNA in your research, please cite:
+
+> Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+
+If you use the Monte Carlo simulation / minimization features, please also cite the underlying PMCpy work:
+
+> Enrico Skoruppa, Helmut Schiessel,
+> **Systematic coarse-graining of sequence-dependent structure and elasticity of double-stranded DNA**,
+> *Physical Review Research* **7**, 013044 (2025).
+> DOI: [10.1103/PhysRevResearch.7.013044](https://doi.org/10.1103/PhysRevResearch.7.013044)
+
+> Willem Vanderlinden, Enrico Skoruppa, Pauline J. Kolbeck, Enrico Carlon, Jan Lipfert,
+> **DNA fluctuations reveal the size and dynamics of topological domains**,
+> *PNAS Nexus* **1**(5), pgac268 (2022).
+> DOI: [10.1093/pnasnexus/pgac268](https://doi.org/10.1093/pnasnexus/pgac268)
 
 ## Contributing
 
@@ -39,6 +51,12 @@ We welcome contributions from the community! To contribute:
 - Create a new Pull Request.
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
+
+
+### Integrated Monte Carlo engine
+
+MDNA includes a fully integrated Monte Carlo simulation engine (`mdna.simulate`) based on [PMCpy](https://github.com/eskoruppa/PMCpy) by Enrico Skoruppa. The original PMCpy code — including its SO3, pyConDec, and PyLk submodules — has been vendored and adapted so that no external git submodules or separate installation steps are required. This engine powers `dna.minimize()` and provides sequence-dependent conformational sampling with features such as excluded volume, automated equilibration, and writhe/linking-number evaluation. See [`mdna/simulate/README.md`](mdna/simulate/README.md) for details on the integration.
+
 
 ### Optional full filament dataset (tutorial)
 
@@ -66,35 +84,26 @@ What happens behind the scenes: the DOI points to a Figshare item page, and the 
 
 ### Optional: build PyLk Cython extensions (faster + no fallback warnings)
 
-MDNA vendors `PyLk` inside `mdna/PMCpy/pmcpy/Evals/PyLk`. If you see warnings like
+MDNA bundles `PyLk` at `mdna/simulate/Evals/PyLk`. If you see warnings like
 "Cython version of writhemap/linkingnumber not compiled", you can compile the extensions in-place:
 
 Prerequisite: ensure `Cython` is installed in the same environment where you run MDNA.
 
 ```bash
-# example for conda/mamba env named `mdna`
-mamba run -n mdna python -m pip install Cython
+pip install Cython
 ```
 
 ```bash
 # from repository root
-cd mdna/PMCpy/pmcpy/Evals/PyLk
+cd mdna/simulate/Evals/PyLk
 python setup.py build_ext --inplace
-```
-
-If you use conda/mamba, run with your env explicitly:
-
-```bash
-mamba run -n mdna python mdna/PMCpy/pmcpy/Evals/PyLk/setup.py build_ext --inplace
 ```
 
 Quick verification:
 
-```bash
-mamba run -n mdna python - <<'PY'
-from mdna.PMCpy.pmcpy.Evals.PyLk.pylk import writhemap, eval_link
-print('PyLk import OK:', writhemap.__name__, eval_link.__name__)
-PY
+```python
+from mdna.simulate.Evals.PyLk.pylk import writhemap, linkingnumber
+print('PyLk import OK:', writhemap.__name__, linkingnumber.__name__)
 ```
 
 ## License

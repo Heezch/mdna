@@ -8,17 +8,17 @@ pip install mdna
 
 ## From Source
 
-Clone the repository (including submodules for the Monte Carlo engine):
+Clone the repository:
 
 ```bash
-git clone --recurse-submodules -j8 git@github.com:heezch/mdna.git
+git clone git@github.com:heezch/mdna.git
 cd mdna
 pip install -e .
 ```
 
 ## Dependencies
 
-MDNA requires Python 3.9+ and depends on:
+MDNA requires Python 3.10+ and depends on:
 
 | Package | Purpose |
 |---------|---------|
@@ -27,6 +27,8 @@ MDNA requires Python 3.9+ and depends on:
 | **mdtraj** | Molecular trajectory I/O and topology |
 | **matplotlib** | Visualization and plotting |
 | **numba** | JIT-compiled geometry routines |
+| **tables** | HDF5 I/O for atomic base templates (PyTables) |
+| **joblib** | Parallel computation in groove analysis |
 
 ### Optional Dependencies
 
@@ -34,7 +36,7 @@ MDNA requires Python 3.9+ and depends on:
 |---------|---------|
 | **openmm** | Molecular dynamics simulation via `sequence_to_md()` |
 | **nglview** | Interactive 3D molecular visualization in notebooks |
-| **joblib** | Parallel computation in groove analysis |
+| **Cython** | Build fast PyLk extensions for writhe/linking number |
 
 ## Verify Installation
 
@@ -51,7 +53,7 @@ If this prints the DNA structure info without errors, you're ready to go.
 
 ## Building PyLk Cython Extensions
 
-MDNA vendors `PyLk` (inside `mdna/PMCpy/pmcpy/Evals/PyLk`) for linking-number and writhe calculations. Without the compiled Cython extensions you may see warnings like *"Cython version of writhemap/linkingnumber not compiled"*. The pure-Python fallback still works, but the compiled version is significantly faster.
+MDNA bundles `PyLk` (at `mdna/simulate/Evals/PyLk`) for linking-number and writhe calculations. Without the compiled Cython extensions you may see warnings like *"Cython version of writhemap/linkingnumber not compiled"*. The pure-Python and Numba fallbacks still work, but the compiled Cython version is significantly faster.
 
 ### 1. Install Cython
 
@@ -67,21 +69,21 @@ pip install Cython
 
 ```bash
 # from the repository root
-cd mdna/PMCpy/pmcpy/Evals/PyLk
+cd mdna/simulate/Evals/PyLk
 python setup.py build_ext --inplace
 ```
 
 If you use conda/mamba, you can run with your environment explicitly:
 
 ```bash
-mamba run -n mdna python mdna/PMCpy/pmcpy/Evals/PyLk/setup.py build_ext --inplace
+mamba run -n mdna python mdna/simulate/Evals/PyLk/setup.py build_ext --inplace
 ```
 
 ### 3. Verify
 
 ```python
-from mdna.PMCpy.pmcpy.Evals.PyLk.pylk import writhemap, eval_link
-print("PyLk OK:", writhemap.__name__, eval_link.__name__)
+from mdna.simulate.Evals.PyLk.pylk import writhemap, linkingnumber
+print("PyLk OK:", writhemap.__name__, linkingnumber.__name__)
 ```
 
 ## Filament Dataset (for notebooks)
