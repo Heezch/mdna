@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, List, Tuple
 
 import numpy as np
 
-from ..aux import random_unitsphere
+from ..utils import random_unitsphere
 from ..BPStep.BPStep import BPStep
 from ..chain import Chain
 from ..ExVol.ExVol import ExVol

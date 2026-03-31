@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, List, Tuple
 
 import numpy as np
 
-from ...aux import params2conf
+from ...utils import params2conf
 from ...BPStep.BPS_RBP import RBP
 from ...BPStep.BPStep import BPStep
 from ...chain import Chain
