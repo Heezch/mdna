@@ -335,7 +335,7 @@ def doubleMove_intervals(
 ########## Current Max Distance #########################################################
 #########################################################################################
 
-@cond_jit 
+@cond_jit
 def largest_dist(    
     evpos: np.ndarray, 
     closed: bool,
@@ -347,7 +347,7 @@ def largest_dist(
             largest = dist
     return largest
 
-@cond_jit 
+@cond_jit
 def norms(vecs: np.ndarray) -> np.ndarray:
     dists = np.empty(len(vecs))
     for i in range(len(vecs)):

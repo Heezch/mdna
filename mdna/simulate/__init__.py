@@ -1,4 +1,4 @@
-from .aux import params2conf, random_unitsphere
+from .utils import params2conf, random_unitsphere
 from .BPStep.BPS_RBP import RBP
 from .BPStep.BPStep import BPStep
 from .chain import Chain

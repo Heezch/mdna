@@ -4,7 +4,7 @@ from typing import Any, Callable, Dict, List, Tuple
 
 import numpy as np
 from .. import math as so3
-from .aux import triad_realign
+from .utils import triad_realign
 
 class Chain:
     

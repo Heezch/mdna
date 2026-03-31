@@ -24,7 +24,21 @@ See our [documentation page](https://heezch.github.io/mdna/)
 
 ## Citation
 
-Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+If you use MDNA in your research, please cite:
+
+> Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+
+If you use the Monte Carlo simulation / minimization features, please also cite the underlying PMCpy work:
+
+> Enrico Skoruppa, Helmut Schiessel,
+> **Systematic coarse-graining of sequence-dependent structure and elasticity of double-stranded DNA**,
+> *Physical Review Research* **7**, 013044 (2025).
+> DOI: [10.1103/PhysRevResearch.7.013044](https://doi.org/10.1103/PhysRevResearch.7.013044)
+
+> Willem Vanderlinden, Enrico Skoruppa, Pauline J. Kolbeck, Enrico Carlon, Jan Lipfert,
+> **DNA fluctuations reveal the size and dynamics of topological domains**,
+> *PNAS Nexus* **1**(5), pgac268 (2022).
+> DOI: [10.1093/pnasnexus/pgac268](https://doi.org/10.1093/pnasnexus/pgac268)
 
 ## Contributing
 
@@ -37,6 +51,12 @@ We welcome contributions from the community! To contribute:
 - Create a new Pull Request.
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
+
+
+### Integrated Monte Carlo engine
+
+MDNA includes a fully integrated Monte Carlo simulation engine (`mdna.simulate`) based on [PMCpy](https://github.com/eskoruppa/PMCpy) by Enrico Skoruppa. The original PMCpy code — including its SO3, pyConDec, and PyLk submodules — has been vendored and adapted so that no external git submodules or separate installation steps are required. This engine powers `dna.minimize()` and provides sequence-dependent conformational sampling with features such as excluded volume, automated equilibration, and writhe/linking-number evaluation. See [`mdna/simulate/README.md`](mdna/simulate/README.md) for details on the integration.
+
 
 ### Optional full filament dataset (tutorial)
 
