@@ -2,7 +2,7 @@
 
 ## Description
 
-MDNA is a Python toolkit for building, modifying and analyzing double stranded DNA structures at atomic resolution. It generates arbitrary DNA shapes through spline based mapping, supports canonical and non canonical base modifications, and applies Monte Carlo minimization to obtain physically consistent configurations. The toolkit implements full rigid base analysis, including intra base pair parameters shear, stretch, stagger, buckle, propeller, and opening, as well as inter base pair step parameters shift, slide, rise, tilt, roll, and twist. With built in linking number calculations and seamless interoperability with MDTraj and OpenMM, MDNA unifies structure generation, editing, and analysis in a single modular framework for complex DNA and DNA protein assemblies.
+MDNA is a Python toolkit for building, modifying and analyzing double stranded DNA structures at atomic resolution. It generates arbitrary DNA shapes through spline based mapping, supports canonical and non canonical base modifications, and applies Monte Carlo minimization to obtain physically consistent configurations. The toolkit implements full rigid base analysis, including intra base pair parameters shear, stretch, stagger, buckle, propeller, and opening, as well as inter base pair step parameters shift, slide, rise, tilt, roll, and twist. With built in linking number calculations and seamless interoperability with [MDTraj](https://github.com/mdtraj/mdtraj) and [OpenMM](https://github.com/openmm/openmm), MDNA unifies structure generation, editing, and analysis in a single modular framework for complex DNA and DNA protein assemblies.
 
 
 ## Installation
