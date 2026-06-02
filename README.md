@@ -26,7 +26,7 @@ See our [documentation page](https://heezch.github.io/mdna/)
 
 If you use MDNA in your research, please cite:
 
-> Link to the [publication](https://www.biorxiv.org/content/10.1101/2025.07.26.666940v1.abstract)
+> Link to the [publication](https://doi.org/10.1093/nar/gkag549) at Nucleic Acids Research, Volume 54, Issue 10, 10 June 2026, gkag549.
 
 If you use the Monte Carlo simulation / minimization features, please also cite the underlying PMCpy work:
 
