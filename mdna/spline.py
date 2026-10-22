@@ -412,7 +412,9 @@ class SplineFrames:
 
         # Compute the ratio to scale the spline to match the target number of base pairs
         ratio = target_bp*self.frame_spacing/total_length
-        new_control_points = self.control_points * ratio
+        # scale about the centroid, so the spline stays where it is (scaling about the origin moved it away)
+        centre = self.control_points.mean(axis=0)
+        new_control_points = centre + (self.control_points - centre) * ratio
 
         # Update the control points and reinitialize the spline
         self.update_control_points(new_control_points)  
