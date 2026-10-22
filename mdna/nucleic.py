@@ -5,7 +5,7 @@ import warnings
 import mdtraj as md
 from scipy.spatial.transform import Rotation as R
 
-from .utils import Shapes, get_sequence_letters, _check_input
+from .utils import Shapes, get_sequence_letters, _check_input, BP_MAP
 from .spline import SplineFrames, Twister
 from .geometry import ReferenceBase, NucleicFrames
 from .generators import SequenceGenerator, StructureGenerator
@@ -437,7 +437,7 @@ class Nucleic:
             self.circular = self._is_circular() if circular is None else circular 
             self.rigid = None # Container for rigid base parameters class output
             self.minimizer = None # Container for minimizer class output
-            self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+            self.base_pair_map = BP_MAP
 
     def describe(self):
         """Print the DNA structure information"""
@@ -470,13 +470,13 @@ class Nucleic:
         self.frames =self.rigid.frames
     
     def get_frames(self):
-        """Get the reference frames of the DNA structure belonging to the base steps:
-        Returns: array of reference frames of shape (n_bp, n_frames, 4, 3)
-        where n_bp is the number of base pairs, n_frames is the number of frames, 
-        and 4 corresponds to the origin and the 3 vectors of the reference frame
-        
+        """Get the base-pair reference frames of the DNA structure.
+
         Returns:
-            frames (np.ndarray): reference frames of the DNA structure"""
+            frames (np.ndarray): shape (n_bp, n_frames, 4, 3), in nm. For base pair i in trajectory frame t,
+                frames[i, t] holds the origin (the base-pair centre on the helical axis) followed by the unit
+                vectors x, y and z of the frame; z is the local helical axis (the tangent of the spline).
+                Base pair i is residue i of the first strand and residue 2 * n_bp - 1 - i of the second."""
         
         if self.frames is None:
             self._traj_to_frames()
@@ -674,6 +674,10 @@ class Nucleic:
             plot (bool): Whether to plot the energy. Defaults to False.
 
         Additional keyword arguments can be provided and will be passed to the minimizer.
+
+        After minimization, ``self.minimizer.out`` holds the Monte Carlo trace: ``out["confs"]`` has shape
+        (n_snapshots, n_bp, 4, 4), base-pair frames as homogeneous matrices (position in ``[:, :, :3, 3]``, nm),
+        and ``out["energies"]`` one row per snapshot (sweep, energy in kT).
 
         Notes:
 

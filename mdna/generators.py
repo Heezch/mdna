@@ -2,7 +2,7 @@ import numpy as np
 import mdtraj as md
 import random
 from .geometry import NucleicFrames 
-from .utils import get_data_file_path
+from .utils import get_data_file_path, BP_MAP
 
 class SequenceGenerator:
     """Build an MDTraj DNA trajectory and topology from a nucleotide sequence.
@@ -31,8 +31,7 @@ class SequenceGenerator:
             sequence (str, optional): DNA sequence code (sense strand).
             circular (bool): If True, create a circular DNA topology.
         """
-        #self.base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C','H':'T'}
-        self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        self.base_pair_map = BP_MAP
         self.sequence = sequence
         self.circular = circular
         self.reference_bases = self._load_reference_bases()
