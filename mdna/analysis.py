@@ -175,7 +175,7 @@ class GrooveAnalysis:
         for i in range(1, len(arr) - 1):
             if arr[i] < arr[i - 1] and arr[i] < arr[i + 1]:
                 return arr[i]  # Return the first local minimum found
-        return np.NaN  # Return None if no local minimum is found
+        return np.nan  # Return None if no local minimum is found
 
     @staticmethod
     def split_array(array):
