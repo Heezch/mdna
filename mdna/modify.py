@@ -1,5 +1,5 @@
 import copy
-from .utils import get_base_pair_dict, RigidBody, get_data_file_path
+from .utils import get_base_pair_dict, RigidBody, get_data_file_path, BP_MAP
 import numpy as np
 from .geometry import ReferenceBase
 import mdtraj as md
@@ -302,14 +302,12 @@ class Mutate:
         self.verbose = verbose
         self.mutations = mutations
         self.current_resid = 0
-        print('hello')
         self.mutate()
         
     def mutate(self):
 
         # Define the base pair map and the complementary mutant map
-        #base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C'}
-        base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        base_pair_map = BP_MAP
         if self.complementary:
             # Update dict with the complementary mutations
             self.mutations = self.make_complementary_mutations(self.traj, self.mutations, base_pair_map)

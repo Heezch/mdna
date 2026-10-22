@@ -576,12 +576,13 @@ def get_base_pair_letters(traj):
     return [f'{i}-{j}'for i,j in zip(a,reversed(b))]
 
 def get_base_pair_dict(traj):
-    """Letter code of base pairs as list, e.g., ['A-T', ...]"""
-    bases = ['DA','DT','DG','DC','DU']  
-    sequence = [res for res in traj.topology._residues for b in bases if b in str(res)]
-    a = sequence[:int(len(sequence)/2)]
-    b = sequence[int(len(sequence)/2):]   
-    return {i:j for i,j in zip(a,reversed(b))}
+    """Map each residue of the first DNA strand to its partner in the second, and back.
+
+    Residue i of strand 1 pairs with the i-th residue from the end of strand 2. Pairing by chain
+    position works for every base in the library, including methylated and non-canonical ones."""
+    first, second = (list(chain.residues) for chain in list(traj.topology.chains)[:2])
+    pairs = dict(zip(first, reversed(second)))
+    return {**pairs, **{j: i for i, j in pairs.items()}}
 
 def get_data_file_path(relative_path):
     """Returns the absolute path of a file in the data directory"""
