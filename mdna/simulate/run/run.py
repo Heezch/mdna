@@ -263,7 +263,7 @@ class Run:
             for c in range(cycles_per_eval):
                 if n_cycle%dump_every==0:
                     dump_confs.append(np.copy(self.chain.conf))
-                    dump_energies.append(self.bps.get_total_energy())
+                    dump_energies.append([n_cycle, self.bps.get_total_energy()])
                 self.run(1,dump_every=-1)
                 n_cycle+=1
             equi_energies.append(self.bps.get_total_energy())
@@ -302,7 +302,7 @@ class Run:
                 for c in range(cycles_per_eval):
                     if n_cycle%dump_every==0:
                         dump_confs.append(np.copy(self.chain.conf))
-                        dump_energies.append(self.bps.get_total_energy())
+                        dump_energies.append([n_cycle, self.bps.get_total_energy()])
                     self.run(1,dump_every=-1)
                     n_cycle+=1
                 if not E_equi:
@@ -339,12 +339,13 @@ class Run:
         # add last snapshot to output if applicable
         if n_cycle%dump_every==0:
             dump_confs.append(np.copy(self.chain.conf))
-            dump_energies.append(self.bps.get_total_energy())
+            dump_energies.append([n_cycle, self.bps.get_total_energy()])
         
         # generate output dictionary
         out = {
             "last" :  np.copy(self.chain.conf),
             "energy": equi_energies,
+            "energies": np.array(dump_energies),  # (cycle, energy) at each dumped snapshot, as in equilibrate()
             "confs":  np.array(dump_confs),
         }
         return out

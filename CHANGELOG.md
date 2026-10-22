@@ -17,6 +17,7 @@ The format is based on Keep a Changelog, and this project follows Semantic Versi
 - `connect()` no longer depends on where the DNA sits: away from the origin the linker's base pairs were pulled apart (up to 80 A at 50 nm).
 - NumPy 2 support (`np.NaN` in `GrooveAnalysis`).
 - A debug print in `Mutate`.
+- Simple equilibration (`minimize(simple=True)`) now returns its energy trace as `minimizer.out["energies"]` (cycle, energy), like full equilibration; it was collected but dropped.
 
 ## [0.1.1] - 2026-02-28
 
