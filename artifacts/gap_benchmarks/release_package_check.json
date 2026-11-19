@@ -1,0 +1,23 @@
+{
+  "wheel": "mdna-0.2.0-py3-none-any.whl",
+  "wheel_sha256": "3ecfd14e35b023081c16c306ef6ec17c278bd10c47300bddd8332e00f2bd5693",
+  "sdist": "mdna-0.2.0.tar.gz",
+  "sdist_sha256": "16d1e450447be153002d768258068f36def4f13166a7e9bb8cd6d6248d5d80be",
+  "wheel_files": 210,
+  "smoke": {
+    "version": "0.2.0",
+    "residues": 16,
+    "expected_links": 14,
+    "missing_links": 0,
+    "registered_dna_templates": 13,
+    "rna_component_json": true
+  },
+  "wheel_regression_files": [
+    "test_generator_contract.py",
+    "test_geometry_contract.py",
+    "test_rna_gap_closure.py",
+    "test_duplex_mmcif.py"
+  ],
+  "wheel_regression_output": "...............................                                          [100%]\n31 passed in 3.61s\n",
+  "scope": "Unpacked wheel outside source tree with the existing dependency environment"
+}

@@ -1,0 +1,748 @@
+{
+  "method": "For each RNA chain, compare the terminal residue with the nearest same-base internal residue using the listed local bond length and bond angle. No fitting or coordinates are modified.",
+  "entries": [
+    {
+      "entry_id": "4U3L",
+      "source": "https://files.rcsb.org/download/4U3L.cif",
+      "file": "4u3l.cif",
+      "sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c",
+      "chains": [
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4223427856884585,
+            "internal_angstrom": 1.4155853912781111,
+            "terminal_minus_internal_angstrom": 0.006757394410347395
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.41006027471825,
+            "internal_degrees": 111.24942849940588,
+            "terminal_minus_internal_degrees": 0.1606317753123676
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4210084447321196,
+            "internal_angstrom": 1.4159219611263894,
+            "terminal_minus_internal_angstrom": 0.005086483605730274
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 113.31673681074793,
+            "internal_degrees": 112.56686367982583,
+            "terminal_minus_internal_degrees": 0.7498731309220972
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4236140628695693,
+            "internal_angstrom": 1.4152441485482283,
+            "terminal_minus_internal_angstrom": 0.008369914321340932
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.28977752105392,
+            "internal_degrees": 110.82684477913558,
+            "terminal_minus_internal_degrees": 0.4629327419183369
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4176946074525354,
+            "internal_angstrom": 1.413567826458992,
+            "terminal_minus_internal_angstrom": 0.004126780993543466
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.88753753723803,
+            "internal_degrees": 112.58334338855256,
+            "terminal_minus_internal_degrees": 0.30419414868546824
+          }
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3O",
+      "source": "https://files.rcsb.org/download/4U3O.cif",
+      "file": "4u3o.cif",
+      "sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236",
+      "chains": [
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4206850460253235,
+            "internal_angstrom": 1.4181769988263089,
+            "terminal_minus_internal_angstrom": 0.0025080471990146513
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.19112098195775,
+            "internal_degrees": 111.08573738158437,
+            "terminal_minus_internal_degrees": 0.10538360037338634
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.417277672158846,
+            "internal_angstrom": 1.4133697322356946,
+            "terminal_minus_internal_angstrom": 0.003907939923151416
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.99113273627347,
+            "internal_degrees": 113.07361690137083,
+            "terminal_minus_internal_degrees": -0.08248416509735534
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4200690124074966,
+            "internal_angstrom": 1.4155797398945766,
+            "terminal_minus_internal_angstrom": 0.004489272512919973
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.1915156892812,
+            "internal_degrees": 110.26561349946462,
+            "terminal_minus_internal_degrees": 0.9259021898165827
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4176730934880566,
+            "internal_angstrom": 1.4198514006754401,
+            "terminal_minus_internal_angstrom": -0.0021783071873835436
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.83972197205657,
+            "internal_degrees": 112.49153111123114,
+            "terminal_minus_internal_degrees": 0.34819086082542583
+          }
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3P",
+      "source": "https://files.rcsb.org/download/4U3P.cif",
+      "file": "4u3p.cif",
+      "sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0",
+      "chains": [
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4202957438505532,
+            "internal_angstrom": 1.4177009557731148,
+            "terminal_minus_internal_angstrom": 0.0025947880774384036
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.49886952948884,
+            "internal_degrees": 111.38343696075901,
+            "terminal_minus_internal_degrees": 0.11543256872982965
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4182150753676268,
+            "internal_angstrom": 1.4141718424576277,
+            "terminal_minus_internal_angstrom": 0.004043232909999084
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.90143698172056,
+            "internal_degrees": 113.10200390462899,
+            "terminal_minus_internal_degrees": -0.20056692290842193
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4189534876097938,
+            "internal_angstrom": 1.4163947189960855,
+            "terminal_minus_internal_angstrom": 0.0025587686137082954
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.39781812460517,
+            "internal_degrees": 111.09193275092336,
+            "terminal_minus_internal_degrees": 0.3058853736818037
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.413918668099407,
+            "internal_angstrom": 1.4224218783469271,
+            "terminal_minus_internal_angstrom": -0.00850321024752021
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.7933259049955,
+            "internal_degrees": 112.54367969660584,
+            "terminal_minus_internal_degrees": 0.24964620838966312
+          }
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3R",
+      "source": "https://files.rcsb.org/download/4U3R.cif",
+      "file": "4u3r.cif",
+      "sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c",
+      "chains": [
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4201834388557002,
+            "internal_angstrom": 1.416221380999454,
+            "terminal_minus_internal_angstrom": 0.003962057856246259
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.6732778058412,
+            "internal_degrees": 111.8492787775945,
+            "terminal_minus_internal_degrees": -0.17600097175331086
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.417578921965193,
+            "internal_angstrom": 1.4161451196823023,
+            "terminal_minus_internal_angstrom": 0.001433802282890806
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.91316453326071,
+            "internal_degrees": 112.78155857934598,
+            "terminal_minus_internal_degrees": 0.13160595391472896
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4186944702789253,
+            "internal_angstrom": 1.4169932956792703,
+            "terminal_minus_internal_angstrom": 0.0017011745996549088
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.47781594877729,
+            "internal_degrees": 111.8811134308431,
+            "terminal_minus_internal_degrees": -0.40329748206580973
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4171457229233688,
+            "internal_angstrom": 1.4167889751123843,
+            "terminal_minus_internal_angstrom": 0.0003567478109844924
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.93568577773843,
+            "internal_degrees": 113.1560252711485,
+            "terminal_minus_internal_degrees": -0.22033949341006576
+          }
+        }
+      ]
+    },
+    {
+      "entry_id": "4U47",
+      "source": "https://files.rcsb.org/download/4U47.cif",
+      "file": "4u47.cif",
+      "sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3",
+      "chains": [
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4183465725978266,
+            "internal_angstrom": 1.4172064069852346,
+            "terminal_minus_internal_angstrom": 0.0011401656125920034
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.6831429165049,
+            "internal_degrees": 110.90520650771093,
+            "terminal_minus_internal_degrees": 0.7779364087939769
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4173316478509899,
+            "internal_angstrom": 1.4176480522329946,
+            "terminal_minus_internal_angstrom": -0.0003164043820047535
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.93548949467306,
+            "internal_degrees": 112.86467373488924,
+            "terminal_minus_internal_degrees": 0.07081575978382659
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.4190260744609298,
+            "internal_angstrom": 1.4165482695623188,
+            "terminal_minus_internal_angstrom": 0.0024778048986109358
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.75575388681948,
+            "internal_degrees": 111.3315118860003,
+            "terminal_minus_internal_degrees": 0.4242420008191772
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": false,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.411350417153728,
+            "internal_angstrom": 1.4119160739930683,
+            "terminal_minus_internal_angstrom": -0.0005656568393401784
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.53541515588635,
+            "internal_degrees": 113.31694136105742,
+            "terminal_minus_internal_degrees": -0.7815262051710619
+          }
+        }
+      ]
+    },
+    {
+      "entry_id": "4U78",
+      "source": "https://files.rcsb.org/download/4U78.cif",
+      "file": "4u78.cif",
+      "sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035",
+      "chains": [
+        {
+          "chain_id": "B",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.420041196585507,
+            "internal_angstrom": 1.4169837684320887,
+            "terminal_minus_internal_angstrom": 0.0030574281534183623
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.56941962485915,
+            "internal_degrees": 111.75950627644802,
+            "terminal_minus_internal_degrees": -0.19008665158887084
+          }
+        },
+        {
+          "chain_id": "B",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.4170582203988658,
+            "internal_angstrom": 1.4171220836611078,
+            "terminal_minus_internal_angstrom": -6.386326224205874e-05
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.98930829219218,
+            "internal_degrees": 113.05932983904773,
+            "terminal_minus_internal_degrees": -0.07002154685555695
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "five_prime",
+          "base": "U",
+          "terminal_residue_id": "1",
+          "internal_comparison_residue_id": "4",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C5'",
+              "O5'"
+            ],
+            "terminal_angstrom": 1.419804211854578,
+            "internal_angstrom": 1.4180419598869405,
+            "terminal_minus_internal_angstrom": 0.0017622519676374626
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C5'",
+              "O5'"
+            ],
+            "terminal_degrees": 111.55457065646154,
+            "internal_degrees": 111.86784128024324,
+            "terminal_minus_internal_degrees": -0.31327062378170467
+          }
+        },
+        {
+          "chain_id": "A",
+          "terminus": "three_prime",
+          "base": "A",
+          "terminal_residue_id": "8",
+          "internal_comparison_residue_id": "5",
+          "terminal_substituent_observed": true,
+          "internal_substituent_observed": true,
+          "bond": {
+            "atom_names": [
+              "C3'",
+              "O3'"
+            ],
+            "terminal_angstrom": 1.415886294869753,
+            "internal_angstrom": 1.4159908191792772,
+            "terminal_minus_internal_angstrom": -0.00010452430952412328
+          },
+          "angle": {
+            "atom_names": [
+              "C4'",
+              "C3'",
+              "O3'"
+            ],
+            "terminal_degrees": 112.96821017448241,
+            "internal_degrees": 112.73191276939576,
+            "terminal_minus_internal_degrees": 0.23629740508664554
+          }
+        }
+      ]
+    }
+  ],
+  "summary_absolute_differences": {
+    "five_prime_bond_angstrom": {
+      "n": 12,
+      "median_absolute_difference": 0.0025767783455733495,
+      "maximum_absolute_difference": 0.008369914321340932
+    },
+    "five_prime_angle_degrees": {
+      "n": 12,
+      "median_absolute_difference": 0.3095779987317542,
+      "maximum_absolute_difference": 0.9259021898165827
+    },
+    "three_prime_bond_angstrom": {
+      "n": 12,
+      "median_absolute_difference": 0.0018060547351371747,
+      "maximum_absolute_difference": 0.00850321024752021
+    },
+    "three_prime_angle_degrees": {
+      "n": 12,
+      "median_absolute_difference": 0.22831844924835565,
+      "maximum_absolute_difference": 0.7815262051710619
+    }
+  },
+  "interpretation_limit": "This six-entry same-sequence comparison describes selected local heavy-atom geometry only. It does not validate transfer to other sequences, terminal hydrogen placement, chemistry states, or a generated full chain."
+}

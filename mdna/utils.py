@@ -2,6 +2,7 @@
 import numpy as np
 import os
 from typing import Union, List
+from .chemistry import NUCLEOTIDE_COMPLEMENTS
 
 NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 'C4'],
                     'T': ['N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6'],
@@ -19,7 +20,7 @@ NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 
                     'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
 
 
-BP_MAP = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+BP_MAP = dict(NUCLEOTIDE_COMPLEMENTS)
         
 DEF_EULER_CLOSE_TO_ONE = 0.9999999
 DEF_EULER_CLOSE_TO_MINUS_ONE = -0.9999999
@@ -576,12 +577,31 @@ def get_base_pair_letters(traj):
     return [f'{i}-{j}'for i,j in zip(a,reversed(b))]
 
 def get_base_pair_dict(traj):
-    """Letter code of base pairs as list, e.g., ['A-T', ...]"""
-    bases = ['DA','DT','DG','DC','DU']  
-    sequence = [res for res in traj.topology._residues for b in bases if b in str(res)]
-    a = sequence[:int(len(sequence)/2)]
-    b = sequence[int(len(sequence)/2):]   
-    return {i:j for i,j in zip(a,reversed(b))}
+    """Map paired residues in a two-chain, antiparallel nucleic-acid model.
+
+    The first chain is paired against the reversed residue order of the
+    second chain, matching ``SequenceGenerator``. Pairing is based on chain
+    topology rather than residue-name prefixes, so registered components
+    such as Hachimoji bases are retained.
+    """
+    chains = list(traj.topology.chains)
+    if len(chains) != 2:
+        raise ValueError(
+            f"Expected a two-chain duplex, found {len(chains)} chains."
+        )
+
+    first_chain = list(chains[0].residues)
+    second_chain = list(chains[1].residues)[::-1]
+    if len(first_chain) != len(second_chain):
+        raise ValueError(
+            "The two chains must have the same residue count to map base pairs."
+        )
+
+    pairs = {}
+    for first, second in zip(first_chain, second_chain):
+        pairs[first] = second
+        pairs[second] = first
+    return pairs
 
 def get_data_file_path(relative_path):
     """Returns the absolute path of a file in the data directory"""

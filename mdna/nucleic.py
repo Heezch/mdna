@@ -7,9 +7,11 @@ from scipy.spatial.transform import Rotation as R
 
 from .utils import Shapes, get_sequence_letters, _check_input
 from .spline import SplineFrames, Twister
+from .path_geometry import regularize_open_path
 from .geometry import ReferenceBase, NucleicFrames
 from .generators import SequenceGenerator, StructureGenerator
 from .modify import Mutate, Hoogsteen, Methylate
+from .chemistry import NUCLEOTIDE_COMPLEMENTS
 
 from .minimizer import Minimizer
 from .simulate.Evals.PyLk import pylk
@@ -50,7 +52,7 @@ def load(traj=None, frames=None, sequence=None, chainids=[0,1], circular=None, f
 
     return Nucleic(sequence=sequence, n_bp=None, traj=traj, frames=frames, chainids=chainids, circular=None)
 
-def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None, bp_per_turn : int = 10.5):
+def make(sequence: str = None, control_points: np.ndarray = None, circular : bool = False, closed: bool = False, n_bp : int = None, dLk : int = None, bp_per_turn : int = 10.5, *, path_deviation_nm: float = None):
     """Generate a DNA structure from a given DNA sequence and control points.
 
     Args:
@@ -61,6 +63,10 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
         n_bp (int, optional): Number of base pairs to scale the shape with. If not provided, the number of base pairs will be determined based on the length of the control points or the sequence. (default: None)
         dLk (int, optional): Change in twist in terms of Linking number of the DNA structure. If not provided, a neutral twist based on bp_per_turn = 10.5 will be used. (default: None)
         bp_per_turn (int, optional): Number of base pairs per turn of the DNA structure. (default: 10.5)
+
+        path_deviation_nm (float, optional): Smooth an explicit open path within a sampled
+            displacement budget before sequence length rescaling. Call regularize_open_path
+            to inspect the curve diagnostics.
 
     Returns:
         Nucleic (object): DNA structure object.
@@ -100,6 +106,11 @@ def make(sequence: str = None, control_points: np.ndarray = None, circular : boo
     # Guard against invalid explicit base-pair counts early.
     if n_bp is not None and n_bp <= 0:
         raise ValueError('n_bp should be a positive integer')
+
+    if path_deviation_nm is not None:
+        if control_points is None or circular:
+            raise ValueError("path_deviation_nm requires explicit control points and an open path")
+        control_points, _ = regularize_open_path(control_points, max_deviation=path_deviation_nm)
 
     # If control points are provided without sequence/n_bp, infer n_bp from spline arc-length sampling.
     infer_n_bp_from_control_points = False
@@ -437,7 +448,7 @@ class Nucleic:
             self.circular = self._is_circular() if circular is None else circular 
             self.rigid = None # Container for rigid base parameters class output
             self.minimizer = None # Container for minimizer class output
-            self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+            self.base_pair_map = dict(NUCLEOTIDE_COMPLEMENTS)
 
     def describe(self):
         """Print the DNA structure information"""
@@ -912,6 +923,12 @@ class Nucleic:
         lk = pylk.triads2link(positions, triads)
         return np.array([lk, writhe, lk - writhe])
     
+    def save_mmcif(self, filename, frame: int = -1):
+        """Export one standard DNA frame with its explicit covalent graph."""
+        from .structure_export import save_standard_dna_mmcif
+
+        return save_standard_dna_mmcif(self.get_traj(), filename, frame=frame)
+
     def save_pdb(self, filename : str = None, frame : int = -1):
         """Save the DNA structure as a pdb file.
 
@@ -1049,9 +1066,17 @@ class Connector:
             # Guess the shape of the spline C by interpolating the start and end points
             # Note, we add to extra base pairs to account for the double count of the start and end points of the original strands
             control_points_C = self._interplotate_points(self.start[0], self.end[0], self.n_bp+2)# if opti else self.n_bp)
-            distance = np.linalg.norm(self.start-self.end)
-            # Create frames object with the sequence and shape of spline C while squishing the correct number of BPs in the spline
-            spline_C = SplineFrames(control_points=control_points_C, frame_spacing=distance/len(control_points_C),n_bp=self.n_bp+2)
+            origin_distance = float(np.linalg.norm(self.end[0] - self.start[0]))
+            if not np.isfinite(origin_distance) or origin_distance <= 0:
+                raise ValueError("DNA connector endpoint origins must be separated by a positive distance.")
+            # The spline contains both anchors plus the requested connecting base pairs.
+            frame_spacing = origin_distance / (self.n_bp + 1)
+            spline_C = SplineFrames(
+                control_points=control_points_C,
+                frame_spacing=frame_spacing,
+                n_bp=self.n_bp + 2,
+                initial_frame=self.start,
+            )
         else:
             spline_C = SplineFrames(control_points=control_points,frame_spacing=0.34, initial_frame=self.start)
 

@@ -1,0 +1,1174 @@
+{
+  "target": "438D",
+  "target_sha256": "d5f34520caed139d1b931be000b39a36ef2d8bc4a6616532aabb3cb8c9f6ef4c",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CG",
+    "GA",
+    "GC",
+    "GU",
+    "UA",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "GGGCGCUCC",
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "GGGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "2",
+          "sequence": "GGCG",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              13,
+              2
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              13,
+              2
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              13,
+              2
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              13,
+              2
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              13,
+              2
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "CGCU",
+          "missing_contexts": [
+            "CU"
+          ]
+        },
+        {
+          "start": "5",
+          "sequence": "GCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "6",
+          "sequence": "CUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "1",
+          "sequence": "GGGCG",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "2",
+          "sequence": "GGCGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GCGCU",
+          "missing_contexts": [
+            "CU"
+          ]
+        },
+        {
+          "start": "4",
+          "sequence": "CGCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "5",
+          "sequence": "GCUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "1",
+          "sequence": "GGGCGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "2",
+          "sequence": "GGCGCU",
+          "missing_contexts": [
+            "CU",
+            "GG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GCGCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "4",
+          "sequence": "CGCUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        }
+      ]
+    },
+    "B": {
+      "sequence": "GGGCGCUCC",
+      "windows": [
+        {
+          "start": "10",
+          "sequence": "GGGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "11",
+          "sequence": "GGCG",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "12",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              4,
+              19,
+              2
+            ],
+            "counts": {
+              "overlap": 46,
+              "displacement": 52,
+              "frame": 0,
+              "assembly": 1,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {
+              "assembled bond length changed by 0.163835 \u00c5, above limit 0.1 \u00c5; endpoints ((0, \"O3'\"), (1, 'P')).": 1
+            },
+            "best": null
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              4,
+              19,
+              2
+            ],
+            "counts": {
+              "overlap": 46,
+              "displacement": 52,
+              "frame": 0,
+              "assembly": 1,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {
+              "assembled bond length changed by 0.315452 \u00c5, above limit 0.1 \u00c5; endpoints ((0, \"O3'\"), (1, 'P')).": 1
+            },
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              4,
+              19,
+              2
+            ],
+            "counts": {
+              "overlap": 46,
+              "displacement": 52,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 1,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": {
+              "suites": [
+                "157D:B:22-23",
+                "4U47:B:2-3",
+                "157D:A:2-3"
+              ],
+              "max_shared_shift_A": 0.4999990000021722,
+              "max_bond_change_A": 0.09999900000022577,
+              "frame_translation_A": [
+                0.19820666775427526,
+                0.2836021471304135,
+                0.07963371516545469,
+                0.12048430155884031
+              ],
+              "frame_rotation_deg": [
+                1.8532446999735122,
+                3.9915886533333533,
+                2.1874898220970835,
+                5.479009576942571
+              ],
+              "qc": {
+                "links": [
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 0,
+                    "right_residue_index": 1,
+                    "bond_present": true,
+                    "left_residue_name": "G",
+                    "right_residue_name": "C",
+                    "o3p_A": 1.7236380311587083,
+                    "c3_o3_p_deg": 125.11369606991619,
+                    "o3_p_o5_deg": 98.84167846353365,
+                    "p_o5_c5_deg": 121.0011282256807,
+                    "c4_c3_o3_p_deg": -160.26695666257797,
+                    "c3_o3_p_o5_deg": -63.15635209014554,
+                    "o3_p_o5_c5_deg": -93.0246139610651,
+                    "p_o5_c5_c4_deg": 175.52346002138742
+                  },
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 1,
+                    "right_residue_index": 2,
+                    "bond_present": true,
+                    "left_residue_name": "C",
+                    "right_residue_name": "G",
+                    "o3p_A": 1.571682744335114,
+                    "c3_o3_p_deg": 115.8949900827746,
+                    "o3_p_o5_deg": 98.13199514671253,
+                    "p_o5_c5_deg": 120.61216422187415,
+                    "c4_c3_o3_p_deg": -145.66839256038205,
+                    "c3_o3_p_o5_deg": -78.11272484081245,
+                    "o3_p_o5_c5_deg": -62.21090629907757,
+                    "p_o5_c5_c4_deg": -173.75354691160038
+                  },
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 2,
+                    "right_residue_index": 3,
+                    "bond_present": true,
+                    "left_residue_name": "G",
+                    "right_residue_name": "C",
+                    "o3p_A": 1.5567389192741887,
+                    "c3_o3_p_deg": 111.16399128691536,
+                    "o3_p_o5_deg": 99.18331676839449,
+                    "p_o5_c5_deg": 114.96549190156027,
+                    "c4_c3_o3_p_deg": -151.01219388478458,
+                    "c3_o3_p_o5_deg": -65.47264765759209,
+                    "o3_p_o5_c5_deg": -87.30548182345679,
+                    "p_o5_c5_c4_deg": -169.02388454965734
+                  }
+                ],
+                "missing_links": 0,
+                "contact_cutoff_A": 2.0,
+                "short_heavy_contacts": 0,
+                "min_short_heavy_distance_A": null,
+                "atoms_without_element": 0
+              },
+              "context": {
+                "ribose_signs": [
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  }
+                ],
+                "reference_ribose_signs": {
+                  "C1'": 1,
+                  "C2'": -1,
+                  "C3'": -1,
+                  "C4'": 1
+                },
+                "all_ribose_signs_match": true,
+                "boundary_distances": [
+                  {
+                    "fragment_atom": [
+                      0,
+                      "P"
+                    ],
+                    "environment_atom": [
+                      "B",
+                      "11",
+                      "O3'",
+                      "\u0000"
+                    ],
+                    "distance_A": 1.8638702215922314
+                  },
+                  {
+                    "fragment_atom": [
+                      3,
+                      "O3'"
+                    ],
+                    "environment_atom": [
+                      "B",
+                      "16",
+                      "P",
+                      "\u0000"
+                    ],
+                    "distance_A": 2.1333845006019505
+                  }
+                ],
+                "boundary_initial_geometry": [
+                  {
+                    "o3p_A": 1.8638702215922314,
+                    "c3_o3_p_deg": 110.79827072417224,
+                    "o3_p_o5_deg": 105.19287215773141,
+                    "p_o5_c5_deg": 115.60831263273383,
+                    "c4_c3_o3_p_deg": -142.22618858387443,
+                    "c3_o3_p_o5_deg": -74.19202449472122,
+                    "o3_p_o5_c5_deg": -44.10455211807128,
+                    "p_o5_c5_c4_deg": 167.83027031066112
+                  },
+                  {
+                    "o3p_A": 2.1333845006019505,
+                    "c3_o3_p_deg": 112.50653911005868,
+                    "o3_p_o5_deg": 113.09173913364906,
+                    "p_o5_c5_deg": 120.94570564390938,
+                    "c4_c3_o3_p_deg": -153.0762580702864,
+                    "c3_o3_p_o5_deg": -68.50985380160046,
+                    "o3_p_o5_c5_deg": -53.92725748635984,
+                    "p_o5_c5_c4_deg": 163.41632812870947
+                  }
+                ],
+                "expected_boundary_count": 2,
+                "boundary_rigid_trial": {
+                  "converged": true,
+                  "before_A": [
+                    1.8638702215922314,
+                    2.1333845006019505
+                  ],
+                  "after_A": [
+                    1.6706686936710784,
+                    1.7972176582665198
+                  ],
+                  "target_A": 1.6032365659374577,
+                  "max_shift_A": 0.350000000005177,
+                  "shift_cap_A": 0.35,
+                  "passed_distance_diagnostic": false,
+                  "after_contacts": [],
+                  "before_link_geometry": [
+                    {
+                      "o3p_A": 1.8638702215922314,
+                      "c3_o3_p_deg": 110.79827072417224,
+                      "o3_p_o5_deg": 105.19287215773141,
+                      "p_o5_c5_deg": 115.60831263273383,
+                      "c4_c3_o3_p_deg": -142.22618858387443,
+                      "c3_o3_p_o5_deg": -74.19202449472122,
+                      "o3_p_o5_c5_deg": -44.10455211807128,
+                      "p_o5_c5_c4_deg": 167.83027031066112
+                    },
+                    {
+                      "o3p_A": 2.1333845006019505,
+                      "c3_o3_p_deg": 112.50653911005868,
+                      "o3_p_o5_deg": 113.09173913364906,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.0762580702864,
+                      "c3_o3_p_o5_deg": -68.50985380160046,
+                      "o3_p_o5_c5_deg": -53.92725748635984,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "after_link_geometry": [
+                    {
+                      "o3p_A": 1.6706686936710784,
+                      "c3_o3_p_deg": 103.60917232901296,
+                      "o3_p_o5_deg": 113.93845034659724,
+                      "p_o5_c5_deg": 115.6083126327337,
+                      "c4_c3_o3_p_deg": -147.76958726946611,
+                      "c3_o3_p_o5_deg": -75.65621742271888,
+                      "o3_p_o5_c5_deg": -37.21244250618083,
+                      "p_o5_c5_c4_deg": 167.83027031066115
+                    },
+                    {
+                      "o3p_A": 1.7972176582665198,
+                      "c3_o3_p_deg": 117.37661364840176,
+                      "o3_p_o5_deg": 112.73553851242971,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.57517868542197,
+                      "c3_o3_p_o5_deg": -67.02572003361117,
+                      "o3_p_o5_c5_deg": -56.998382434086906,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "diagnostic_distance_tolerance_A": 0.1,
+                  "before_frame_audit": {
+                    "translation_A": [
+                      0.19820666775427526,
+                      0.2836021471304135,
+                      0.07963371516545469,
+                      0.12048430155884031
+                    ],
+                    "rotation_deg": [
+                      1.8532446999735122,
+                      3.9915886533333533,
+                      2.1874898220970835,
+                      5.479009576942571
+                    ],
+                    "passed": true
+                  },
+                  "after_frame_audit": {
+                    "translation_A": [
+                      0.20758483629734842,
+                      0.2938713022370634,
+                      0.09166762556586268,
+                      0.11474174208705112
+                    ],
+                    "rotation_deg": [
+                      3.7455791991056007,
+                      2.8199199028108484,
+                      0.572620580368023,
+                      4.486878346547633
+                    ],
+                    "passed": true
+                  },
+                  "passed_joint_frame_distance_diagnostic": false
+                },
+                "boundary_frame_constrained_trial": {
+                  "converged": true,
+                  "before_A": [
+                    1.8638702215922314,
+                    2.1333845006019505
+                  ],
+                  "after_A": [
+                    1.6706687080367195,
+                    1.7972176525522696
+                  ],
+                  "target_A": 1.6032365659374577,
+                  "max_shift_A": 0.3500000000053099,
+                  "shift_cap_A": 0.35,
+                  "after_link_geometry": [
+                    {
+                      "o3p_A": 1.6706687080367195,
+                      "c3_o3_p_deg": 103.60917415011889,
+                      "o3_p_o5_deg": 113.93845365102632,
+                      "p_o5_c5_deg": 115.6083126327337,
+                      "c4_c3_o3_p_deg": -147.76959101177695,
+                      "c3_o3_p_o5_deg": -75.65621501385316,
+                      "o3_p_o5_c5_deg": -37.21244563161106,
+                      "p_o5_c5_c4_deg": 167.83027031066112
+                    },
+                    {
+                      "o3p_A": 1.7972176525522696,
+                      "c3_o3_p_deg": 117.37661314316274,
+                      "o3_p_o5_deg": 112.73553852168764,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.57517862687263,
+                      "c3_o3_p_o5_deg": -67.02572066270011,
+                      "o3_p_o5_c5_deg": -56.998381808888176,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "boundary_angles_passed": true,
+                  "after_frame_audit": {
+                    "translation_A": [
+                      0.2075848239540031,
+                      0.2938713386460494,
+                      0.09166764583481303,
+                      0.11474175570544676
+                    ],
+                    "rotation_deg": [
+                      3.7455792935946963,
+                      2.8199198103789707,
+                      0.5726201924209495,
+                      4.486878259824908
+                    ],
+                    "passed": true
+                  },
+                  "after_contacts": [],
+                  "passed_joint_frame_distance_diagnostic": false,
+                  "passed_context_diagnostic": false
+                },
+                "contacts": [],
+                "cutoff_A": 2.0,
+                "excluded_pairs": 2
+              }
+            }
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              4,
+              19,
+              2
+            ],
+            "counts": {
+              "overlap": 46,
+              "displacement": 52,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 1,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": {
+              "suites": [
+                "157D:B:22-23",
+                "4U47:B:2-3",
+                "157D:A:2-3"
+              ],
+              "max_shared_shift_A": 0.49999900003434133,
+              "max_bond_change_A": 0.09999900000221729,
+              "frame_translation_A": [
+                0.19820666775427526,
+                0.28360203242264426,
+                0.07963363408879569,
+                0.12048430155884031
+              ],
+              "frame_rotation_deg": [
+                1.8532446999735122,
+                3.9915873060942637,
+                2.187490221065226,
+                5.479009576942571
+              ],
+              "qc": {
+                "links": [
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 0,
+                    "right_residue_index": 1,
+                    "bond_present": true,
+                    "left_residue_name": "G",
+                    "right_residue_name": "C",
+                    "o3p_A": 1.7236380311587083,
+                    "c3_o3_p_deg": 125.11369606991619,
+                    "o3_p_o5_deg": 98.84166899387297,
+                    "p_o5_c5_deg": 121.00111924548258,
+                    "c4_c3_o3_p_deg": -160.26695666257797,
+                    "c3_o3_p_o5_deg": -63.15634942727921,
+                    "o3_p_o5_c5_deg": -93.02463205284117,
+                    "p_o5_c5_c4_deg": 175.52347405777383
+                  },
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 1,
+                    "right_residue_index": 2,
+                    "bond_present": true,
+                    "left_residue_name": "C",
+                    "right_residue_name": "G",
+                    "o3p_A": 1.571682744335114,
+                    "c3_o3_p_deg": 115.8949900827746,
+                    "o3_p_o5_deg": 98.13199514671253,
+                    "p_o5_c5_deg": 120.61216784095429,
+                    "c4_c3_o3_p_deg": -145.66839256038205,
+                    "c3_o3_p_o5_deg": -78.11272484081245,
+                    "o3_p_o5_c5_deg": -62.2109049489315,
+                    "p_o5_c5_c4_deg": -173.753545434357
+                  },
+                  {
+                    "chain_index": 0,
+                    "left_residue_index": 2,
+                    "right_residue_index": 3,
+                    "bond_present": true,
+                    "left_residue_name": "G",
+                    "right_residue_name": "C",
+                    "o3p_A": 1.556738851148556,
+                    "c3_o3_p_deg": 111.16399146572746,
+                    "o3_p_o5_deg": 99.18331331183785,
+                    "p_o5_c5_deg": 114.96549190156027,
+                    "c4_c3_o3_p_deg": -151.0121939317822,
+                    "c3_o3_p_o5_deg": -65.47264574068258,
+                    "o3_p_o5_c5_deg": -87.30548530960529,
+                    "p_o5_c5_c4_deg": -169.02388454965734
+                  }
+                ],
+                "missing_links": 0,
+                "contact_cutoff_A": 2.0,
+                "short_heavy_contacts": 0,
+                "min_short_heavy_distance_A": null,
+                "atoms_without_element": 0
+              },
+              "context": {
+                "ribose_signs": [
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  },
+                  {
+                    "C1'": 1,
+                    "C2'": -1,
+                    "C3'": -1,
+                    "C4'": 1
+                  }
+                ],
+                "reference_ribose_signs": {
+                  "C1'": 1,
+                  "C2'": -1,
+                  "C3'": -1,
+                  "C4'": 1
+                },
+                "all_ribose_signs_match": true,
+                "boundary_distances": [
+                  {
+                    "fragment_atom": [
+                      0,
+                      "P"
+                    ],
+                    "environment_atom": [
+                      "B",
+                      "11",
+                      "O3'",
+                      "\u0000"
+                    ],
+                    "distance_A": 1.8638702215922314
+                  },
+                  {
+                    "fragment_atom": [
+                      3,
+                      "O3'"
+                    ],
+                    "environment_atom": [
+                      "B",
+                      "16",
+                      "P",
+                      "\u0000"
+                    ],
+                    "distance_A": 2.1333845006019505
+                  }
+                ],
+                "boundary_initial_geometry": [
+                  {
+                    "o3p_A": 1.8638702215922314,
+                    "c3_o3_p_deg": 110.79827072417224,
+                    "o3_p_o5_deg": 105.19287215773141,
+                    "p_o5_c5_deg": 115.60831263273383,
+                    "c4_c3_o3_p_deg": -142.22618858387443,
+                    "c3_o3_p_o5_deg": -74.19202449472122,
+                    "o3_p_o5_c5_deg": -44.10455211807128,
+                    "p_o5_c5_c4_deg": 167.83027031066112
+                  },
+                  {
+                    "o3p_A": 2.1333845006019505,
+                    "c3_o3_p_deg": 112.50653911005868,
+                    "o3_p_o5_deg": 113.09173913364906,
+                    "p_o5_c5_deg": 120.94570564390938,
+                    "c4_c3_o3_p_deg": -153.0762580702864,
+                    "c3_o3_p_o5_deg": -68.50985380160046,
+                    "o3_p_o5_c5_deg": -53.92725748635984,
+                    "p_o5_c5_c4_deg": 163.41632812870947
+                  }
+                ],
+                "expected_boundary_count": 2,
+                "boundary_rigid_trial": {
+                  "converged": true,
+                  "before_A": [
+                    1.8638702215922314,
+                    2.1333845006019505
+                  ],
+                  "after_A": [
+                    1.6706686925598693,
+                    1.7972176593002045
+                  ],
+                  "target_A": 1.6032365659374577,
+                  "max_shift_A": 0.35000000000541304,
+                  "shift_cap_A": 0.35,
+                  "passed_distance_diagnostic": false,
+                  "after_contacts": [],
+                  "before_link_geometry": [
+                    {
+                      "o3p_A": 1.8638702215922314,
+                      "c3_o3_p_deg": 110.79827072417224,
+                      "o3_p_o5_deg": 105.19287215773141,
+                      "p_o5_c5_deg": 115.60831263273383,
+                      "c4_c3_o3_p_deg": -142.22618858387443,
+                      "c3_o3_p_o5_deg": -74.19202449472122,
+                      "o3_p_o5_c5_deg": -44.10455211807128,
+                      "p_o5_c5_c4_deg": 167.83027031066112
+                    },
+                    {
+                      "o3p_A": 2.1333845006019505,
+                      "c3_o3_p_deg": 112.50653911005868,
+                      "o3_p_o5_deg": 113.09173913364906,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.0762580702864,
+                      "c3_o3_p_o5_deg": -68.50985380160046,
+                      "o3_p_o5_c5_deg": -53.92725748635984,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "after_link_geometry": [
+                    {
+                      "o3p_A": 1.6706686925598693,
+                      "c3_o3_p_deg": 103.60917246913198,
+                      "o3_p_o5_deg": 113.93844983249865,
+                      "p_o5_c5_deg": 115.6083126327337,
+                      "c4_c3_o3_p_deg": -147.7695869265446,
+                      "c3_o3_p_o5_deg": -75.65621682092382,
+                      "o3_p_o5_c5_deg": -37.21244240888664,
+                      "p_o5_c5_c4_deg": 167.83027031066118
+                    },
+                    {
+                      "o3p_A": 1.7972176593002045,
+                      "c3_o3_p_deg": 117.37661350250023,
+                      "o3_p_o5_deg": 112.73553853750829,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.5751795622681,
+                      "c3_o3_p_o5_deg": -67.0257196236876,
+                      "o3_p_o5_c5_deg": -56.99838255113423,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "diagnostic_distance_tolerance_A": 0.1,
+                  "before_frame_audit": {
+                    "translation_A": [
+                      0.19820666775427526,
+                      0.28360203242264426,
+                      0.07963363408879569,
+                      0.12048430155884031
+                    ],
+                    "rotation_deg": [
+                      1.8532446999735122,
+                      3.9915873060942637,
+                      2.187490221065226,
+                      5.479009576942571
+                    ],
+                    "passed": true
+                  },
+                  "after_frame_audit": {
+                    "translation_A": [
+                      0.2075848578953968,
+                      0.2938711748098535,
+                      0.09166742926117516,
+                      0.11474181271362703
+                    ],
+                    "rotation_deg": [
+                      3.7455788529427774,
+                      2.8199194176484026,
+                      0.5726191273473752,
+                      4.486877804970264
+                    ],
+                    "passed": true
+                  },
+                  "passed_joint_frame_distance_diagnostic": false
+                },
+                "boundary_frame_constrained_trial": {
+                  "converged": true,
+                  "before_A": [
+                    1.8638702215922314,
+                    2.1333845006019505
+                  ],
+                  "after_A": [
+                    1.6706687051881528,
+                    1.7972176528384953
+                  ],
+                  "target_A": 1.6032365659374577,
+                  "max_shift_A": 0.3500000000052126,
+                  "shift_cap_A": 0.35,
+                  "after_link_geometry": [
+                    {
+                      "o3p_A": 1.6706687051881528,
+                      "c3_o3_p_deg": 103.60917350776927,
+                      "o3_p_o5_deg": 113.93845351335943,
+                      "p_o5_c5_deg": 115.60831263273396,
+                      "c4_c3_o3_p_deg": -147.76959052737303,
+                      "c3_o3_p_o5_deg": -75.65621645666532,
+                      "o3_p_o5_c5_deg": -37.212444989941794,
+                      "p_o5_c5_c4_deg": 167.8302703106611
+                    },
+                    {
+                      "o3p_A": 1.7972176528384953,
+                      "c3_o3_p_deg": 117.37661350834978,
+                      "o3_p_o5_deg": 112.73553844567304,
+                      "p_o5_c5_deg": 120.94570564390938,
+                      "c4_c3_o3_p_deg": -153.57517739200986,
+                      "c3_o3_p_o5_deg": -67.02572108104286,
+                      "o3_p_o5_c5_deg": -56.998381829041804,
+                      "p_o5_c5_c4_deg": 163.41632812870947
+                    }
+                  ],
+                  "boundary_angles_passed": true,
+                  "after_frame_audit": {
+                    "translation_A": [
+                      0.20758479619672873,
+                      0.29387125095081,
+                      0.09166760663799078,
+                      0.11474165432869228
+                    ],
+                    "rotation_deg": [
+                      3.745579750332173,
+                      2.8199179586959846,
+                      0.5726192721933232,
+                      4.486879036269775
+                    ],
+                    "passed": true
+                  },
+                  "after_contacts": [],
+                  "passed_joint_frame_distance_diagnostic": false,
+                  "passed_context_diagnostic": false
+                },
+                "contacts": [],
+                "cutoff_A": 2.0,
+                "excluded_pairs": 2
+              }
+            }
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              4,
+              19,
+              2
+            ],
+            "counts": {
+              "overlap": 46,
+              "displacement": 52,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "13",
+          "sequence": "CGCU",
+          "missing_contexts": [
+            "CU"
+          ]
+        },
+        {
+          "start": "14",
+          "sequence": "GCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "15",
+          "sequence": "CUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "10",
+          "sequence": "GGGCG",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "11",
+          "sequence": "GGCGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "12",
+          "sequence": "GCGCU",
+          "missing_contexts": [
+            "CU"
+          ]
+        },
+        {
+          "start": "13",
+          "sequence": "CGCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "14",
+          "sequence": "GCUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "10",
+          "sequence": "GGGCGC",
+          "missing_contexts": [
+            "GG"
+          ]
+        },
+        {
+          "start": "11",
+          "sequence": "GGCGCU",
+          "missing_contexts": [
+            "CU",
+            "GG"
+          ]
+        },
+        {
+          "start": "12",
+          "sequence": "GCGCUC",
+          "missing_contexts": [
+            "CU",
+            "UC"
+          ]
+        },
+        {
+          "start": "13",
+          "sequence": "CGCUCC",
+          "missing_contexts": [
+            "CC",
+            "CU",
+            "UC"
+          ]
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": {
+    "entry": "157D",
+    "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+    "added_suites": 18,
+    "manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e"
+  },
+  "sensitivity_scope": "Single-gate ablations; exploratory only, not acceptance.",
+  "rigid_gap_trial_reference": {
+    "entry": "4U3L",
+    "audit_sha256": "8525156dfa4e411da8a9064f3ef36a53db3feeed223ad39fe8a48e625cb110a4",
+    "fields": [
+      "o3p_A",
+      "c3_o3_p_deg",
+      "o3_p_o5_deg",
+      "p_o5_c5_deg"
+    ],
+    "medians": [
+      1.6032365659374577,
+      119.96477789067671,
+      104.1039073986887,
+      120.4564564167265
+    ],
+    "max_shift_A": 0.5,
+    "max_phosphate_turn_deg": 20.0,
+    "torsion_fields": [
+      "c4_c3_o3_p_deg",
+      "c3_o3_p_o5_deg",
+      "o3_p_o5_c5_deg",
+      "p_o5_c5_c4_deg"
+    ],
+    "selection_policy": "rigid_pass_then_phosphate_pass; torsions descriptive only"
+  },
+  "length_summary": {
+    "4": {
+      "total": 12,
+      "covered": 2,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 1,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 1,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "5": {
+      "total": 10,
+      "covered": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "6": {
+      "total": 8,
+      "covered": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    }
+  }
+}

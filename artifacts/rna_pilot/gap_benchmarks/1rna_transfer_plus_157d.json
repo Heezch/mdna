@@ -1,0 +1,1381 @@
+{
+  "target": "1RNA",
+  "target_sha256": "2acdde575063cdd4d3257b68b8105a12d587ebf6deb9e37bf531cca037f3d60c",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CG",
+    "GA",
+    "GC",
+    "GU",
+    "UA",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "UUAUAUAUAUAUAA",
+      "full_path": {
+        "status": "not_run_internal_only"
+      },
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "UUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "339c9abd57c087815296c76e80159ed5da22e69ffe455f084cebafad781164a9",
+            "end_frame_sha256": "ed9ab538086df66b03a1c34ae0a3b47de80cf5cb831abab90ebe5668b82cc05a",
+            "start_anchor_atoms_sha256": "e831f109620162194f4f3d1177e979a2c855687d4a24eead40bbcd19d29341ae",
+            "end_anchor_atoms_sha256": "9dcc224ba585279eadad4d9eafa03f1ff0818d941b2b7edfbcb57eb0b9575610",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 14,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "4895647c62706294bb5921421d1ffdf9e718d53a0c622a56530e5e604bbcf0bf",
+            "end_frame_sha256": "48317265c9be387c0ebbffb02dbaa03b7dc242ee84d61c68da0808a8b33490b8",
+            "start_anchor_atoms_sha256": "db48bb69c00c07afbeeb8defe25ae68ab1ee91bbe6cb85ef03d51fd6f129232a",
+            "end_anchor_atoms_sha256": "0ef32d824ed5c1e8edfd4b4670d8503f34a56fcb6c35ab73c611f32553cf18c6",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 14,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "ed9ab538086df66b03a1c34ae0a3b47de80cf5cb831abab90ebe5668b82cc05a",
+            "end_frame_sha256": "be2d077132b723cffcd10fff8b13e1b10cf6212bfae9512d72e1a687d7c09565",
+            "start_anchor_atoms_sha256": "9dcc224ba585279eadad4d9eafa03f1ff0818d941b2b7edfbcb57eb0b9575610",
+            "end_anchor_atoms_sha256": "5b84d652a953407de745149afc69e67d1d2396114e777cbfd7b81b1cf6230767",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 14,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "48317265c9be387c0ebbffb02dbaa03b7dc242ee84d61c68da0808a8b33490b8",
+            "end_frame_sha256": "fb45ad2f493f94e14455d27c60847246870a485daa785c8ea79a630f55f5da0e",
+            "start_anchor_atoms_sha256": "0ef32d824ed5c1e8edfd4b4670d8503f34a56fcb6c35ab73c611f32553cf18c6",
+            "end_anchor_atoms_sha256": "e5414dee68a2597a305d02bcd69c7724e28c49d01f43a32be07da9f22fc52bf0",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 14,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "5",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "be2d077132b723cffcd10fff8b13e1b10cf6212bfae9512d72e1a687d7c09565",
+            "end_frame_sha256": "f55eaad77d4bd95c16d344cd1ef0173bb61e95fdd7979ff4f514d5343426a911",
+            "start_anchor_atoms_sha256": "5b84d652a953407de745149afc69e67d1d2396114e777cbfd7b81b1cf6230767",
+            "end_anchor_atoms_sha256": "1a910836bc65f5a7dd9abd95d3ecb4d446a60fc572884eef4cc904240b186723",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "6",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 42,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "fb45ad2f493f94e14455d27c60847246870a485daa785c8ea79a630f55f5da0e",
+            "end_frame_sha256": "3578b3aea4a8c34cefe92294ac74b4c32f422142abc55880f4026c9dfb9ee638",
+            "start_anchor_atoms_sha256": "e5414dee68a2597a305d02bcd69c7724e28c49d01f43a32be07da9f22fc52bf0",
+            "end_anchor_atoms_sha256": "ae48c839379be6c333c33a6788d7270a0642fd4b8c2e45b6713c9701a14d5375",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 18,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 4,
+              "anchor_connection_geometry": 2,
+              "assembly": 4,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 1 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "7",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "f55eaad77d4bd95c16d344cd1ef0173bb61e95fdd7979ff4f514d5343426a911",
+            "end_frame_sha256": "bd436b66d8035c1aff1d5b585be7a85275faea6e1b6198b1215434ec5b97a046",
+            "start_anchor_atoms_sha256": "1a910836bc65f5a7dd9abd95d3ecb4d446a60fc572884eef4cc904240b186723",
+            "end_anchor_atoms_sha256": "062b50530ab556c1aa03abd8ab7e4da2b230917ac1da32482da95450a3b2ee2b",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "8",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 22,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "3578b3aea4a8c34cefe92294ac74b4c32f422142abc55880f4026c9dfb9ee638",
+            "end_frame_sha256": "5f6020604d24a1e19d32f2257d60a3efe86ed70f0ac09060a7527919b63149e1",
+            "start_anchor_atoms_sha256": "ae48c839379be6c333c33a6788d7270a0642fd4b8c2e45b6713c9701a14d5375",
+            "end_anchor_atoms_sha256": "d35be7903874f75ff8261833aeb2219edf2f7e32e86f3c69852f630b8915558e",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 6,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 12,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "9",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "bd436b66d8035c1aff1d5b585be7a85275faea6e1b6198b1215434ec5b97a046",
+            "end_frame_sha256": "de374031cf8f22fc78316355fd25da4bac6b668db85c14fd3c9370b93cd3d199",
+            "start_anchor_atoms_sha256": "062b50530ab556c1aa03abd8ab7e4da2b230917ac1da32482da95450a3b2ee2b",
+            "end_anchor_atoms_sha256": "82e01189be4fe8c09c15fc709bf83c6f3f118589de8aa89ac7abae6588bf2143",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "10",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 42,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "5f6020604d24a1e19d32f2257d60a3efe86ed70f0ac09060a7527919b63149e1",
+            "end_frame_sha256": "c3f4fa9a852876e4303265e17ed3c4c74394a29bd24ec1ebd6f92bda97f88516",
+            "start_anchor_atoms_sha256": "d35be7903874f75ff8261833aeb2219edf2f7e32e86f3c69852f630b8915558e",
+            "end_anchor_atoms_sha256": "7718d944dc14a6fadcf88f3cf02e7b05105ba098689632948dfe0ab1f2ec3938",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 23,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 5,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "11",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "de374031cf8f22fc78316355fd25da4bac6b668db85c14fd3c9370b93cd3d199",
+            "end_frame_sha256": "d2d915f5109ebbb873910d3330525cd58c0e2d14c1e4bb0a4cd5410827cc05c1",
+            "start_anchor_atoms_sha256": "82e01189be4fe8c09c15fc709bf83c6f3f118589de8aa89ac7abae6588bf2143",
+            "end_anchor_atoms_sha256": "ed001164b029868d6fa7d909aa7e433b6353ad538c9440122873f0136efb0616",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "12",
+          "sequence": "UAA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAA",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 40,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "c3f4fa9a852876e4303265e17ed3c4c74394a29bd24ec1ebd6f92bda97f88516",
+            "end_frame_sha256": "7a203935e010c0eb2361933ca79e452dc9cc66bbf46fa0c9838b3c718eb521ab",
+            "start_anchor_atoms_sha256": "7718d944dc14a6fadcf88f3cf02e7b05105ba098689632948dfe0ab1f2ec3938",
+            "end_anchor_atoms_sha256": "b8d99b65fa54c1601c0f87945d1e6cc151149d171fd6e68241526de159c0c0d0",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "dec9ee53fa1f59e12a9eead5a0c0cbe0912096660165acfb6cb30583bacc5fa9",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 15,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 11,
+              "anchor_connection_geometry": 1,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 1 (AA) satisfies the downstream frame residual limits."
+          }
+        }
+      ]
+    },
+    "B": {
+      "sequence": "UUAUAUAUAUAUAA",
+      "full_path": {
+        "status": "not_run_internal_only"
+      },
+      "windows": [
+        {
+          "start": "15",
+          "sequence": "UUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "3c29e1bbadc9f71c650fe739d940946306924877f7b97e71349376466aa875a8",
+            "end_frame_sha256": "81356320e7cbebb6e00d547d194f57fee5363088f9c7d119e1caafd9468db395",
+            "start_anchor_atoms_sha256": "8eb8a8c77e72cc5499b58757a73d93a3c5142a3a09843ac9a3042c3af77e4d07",
+            "end_anchor_atoms_sha256": "85705c053bed75c4de2c038913b8e01de78ef86134cc0df0bc3b987c53626442",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "16",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 14,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "008a64555b9423b36d0a147412272adf5beb2102f7e2163df36799c971acf66d",
+            "end_frame_sha256": "2d1e35b56d9e6715ca536cf595e147cc1624c06a04662c7f51c577aed7deb605",
+            "start_anchor_atoms_sha256": "663cc30b27ba7042741adab0edd93b7e882180d21f0312b124494f3696bd5e85",
+            "end_anchor_atoms_sha256": "3d6300f3345fb78b9dae9773259379df43a2c454611d956e3cccfedfe9ad197a",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 14,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "17",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 16,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "81356320e7cbebb6e00d547d194f57fee5363088f9c7d119e1caafd9468db395",
+            "end_frame_sha256": "8ce3afffdb44d395a0b9372c0725a5d0bae3f8534fa7d24703be7aae9c950e39",
+            "start_anchor_atoms_sha256": "85705c053bed75c4de2c038913b8e01de78ef86134cc0df0bc3b987c53626442",
+            "end_anchor_atoms_sha256": "4fff20460b31c4b4a07464ebf41d67b061bda99d23d499886e223f9e06ab6626",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 6,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 9,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "18",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 38,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "2d1e35b56d9e6715ca536cf595e147cc1624c06a04662c7f51c577aed7deb605",
+            "end_frame_sha256": "9deb422dd03b577404d30b7f83ccd8e7afb811d512b4d4e486ea0849c05a2463",
+            "start_anchor_atoms_sha256": "3d6300f3345fb78b9dae9773259379df43a2c454611d956e3cccfedfe9ad197a",
+            "end_anchor_atoms_sha256": "8071ecfbf2f89ba18514bc0ddd85f7ff94de42981713c0da998ac4970a4b1dbd",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 24,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "19",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "8ce3afffdb44d395a0b9372c0725a5d0bae3f8534fa7d24703be7aae9c950e39",
+            "end_frame_sha256": "7786227edc114ff1b15176ca90d7950c0413f755841870e4ca4613a4e58795f2",
+            "start_anchor_atoms_sha256": "4fff20460b31c4b4a07464ebf41d67b061bda99d23d499886e223f9e06ab6626",
+            "end_anchor_atoms_sha256": "bd2a825374756364cf25cd8f62bacd29aeaa872cb066552e2e9381ef9b89ee50",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "20",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 40,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "9deb422dd03b577404d30b7f83ccd8e7afb811d512b4d4e486ea0849c05a2463",
+            "end_frame_sha256": "2e2ba38690843205a979da1d5ac9137ff5de620ab7230a91a5e612ea7eed11e3",
+            "start_anchor_atoms_sha256": "8071ecfbf2f89ba18514bc0ddd85f7ff94de42981713c0da998ac4970a4b1dbd",
+            "end_anchor_atoms_sha256": "fe9f0231e86e56327b982e154f8c3ab55c1995eab0b582746e614b25e097eebc",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 8,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 16,
+              "anchor_connection_geometry": 3,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 1 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "21",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 16,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "7786227edc114ff1b15176ca90d7950c0413f755841870e4ca4613a4e58795f2",
+            "end_frame_sha256": "f844a173f0537cee4ec4894ba68f9330f7b02564c5101a23573c168e366f4881",
+            "start_anchor_atoms_sha256": "bd2a825374756364cf25cd8f62bacd29aeaa872cb066552e2e9381ef9b89ee50",
+            "end_anchor_atoms_sha256": "7a1b7353996addb33e0e906da7313e55e0a7f46655819d505c2cb85f743a2fc0",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 4,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 11,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "22",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 36,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "2e2ba38690843205a979da1d5ac9137ff5de620ab7230a91a5e612ea7eed11e3",
+            "end_frame_sha256": "bae5785a9875b782e4e7b4f62e4c138d42c2be8fb0683d2d12b21bc4ce0638b2",
+            "start_anchor_atoms_sha256": "fe9f0231e86e56327b982e154f8c3ab55c1995eab0b582746e614b25e097eebc",
+            "end_anchor_atoms_sha256": "7cb4ee108fe8be80de249f84af2a293495500706daf14048af2aa360076e307a",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 9,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 16,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 1 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "23",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "f844a173f0537cee4ec4894ba68f9330f7b02564c5101a23573c168e366f4881",
+            "end_frame_sha256": "a23f0d9f05adaea645bb04770911bc30d2d24e6ba55ad2aeb81707dfd24ed39e",
+            "start_anchor_atoms_sha256": "7a1b7353996addb33e0e906da7313e55e0a7f46655819d505c2cb85f743a2fc0",
+            "end_anchor_atoms_sha256": "6288b68128d4dd51a65ad080d8d6f21962d494d9c375cedab256a5d9b0f4819a",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "24",
+          "sequence": "UAU",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAU",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 24,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "bae5785a9875b782e4e7b4f62e4c138d42c2be8fb0683d2d12b21bc4ce0638b2",
+            "end_frame_sha256": "42d4739693a1d3e9da7d0aee064e9dca6fe960b15fa1936008cc67fc32bcca3b",
+            "start_anchor_atoms_sha256": "7cb4ee108fe8be80de249f84af2a293495500706daf14048af2aa360076e307a",
+            "end_anchor_atoms_sha256": "914ac66038dfb6e1b22f8b383eb85c376b3076e24183364f3d284baa92d2de06",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 8,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 11,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 1 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "25",
+          "sequence": "AUA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "AUA",
+            "missing_sequence": "U",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 2,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "a23f0d9f05adaea645bb04770911bc30d2d24e6ba55ad2aeb81707dfd24ed39e",
+            "end_frame_sha256": "a0a804d43a784fb8dfe8c8547cfa3b02a38cb8ba0a6b6a9749af696e028294da",
+            "start_anchor_atoms_sha256": "6288b68128d4dd51a65ad080d8d6f21962d494d9c375cedab256a5d9b0f4819a",
+            "end_anchor_atoms_sha256": "598e98d25f64189be4dbd8f1c9805b0f86281a039baf0ebb1093ae4b0c4b72b8",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 0,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 2,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (AU) satisfies the downstream frame residual limits."
+          }
+        },
+        {
+          "start": "26",
+          "sequence": "UAA",
+          "missing_contexts": [],
+          "gap": {
+            "schema_version": 1,
+            "algorithm": "rna-suite-anchor-dfs-hard-limits-v2",
+            "sequence_including_anchors": "UAA",
+            "missing_sequence": "A",
+            "missing_residue_indices": [
+              1
+            ],
+            "status": "no_solution_found",
+            "search_complete": true,
+            "expanded_states": 24,
+            "total_compatible_closures": 0,
+            "returned_candidate_count": 0,
+            "candidates_truncated": false,
+            "start_frame_sha256": "42d4739693a1d3e9da7d0aee064e9dca6fe960b15fa1936008cc67fc32bcca3b",
+            "end_frame_sha256": "66ae7ecf4a4129d660f99bc972a5a7a57025a59c754d151dd1ad0bd0be8655fd",
+            "start_anchor_atoms_sha256": "914ac66038dfb6e1b22f8b383eb85c376b3076e24183364f3d284baa92d2de06",
+            "end_anchor_atoms_sha256": "2a7a13afaf26058e0ce54bb4946cd72ea5553396482c604a618dbaa9d2828b0a",
+            "source_manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e",
+            "chemistry_registry_sha256": "f3e204f83dfbe6c84b6c1a023a52041d245051f4868e74e6ec64eb2e9ff9b1b9",
+            "environment_atoms_sha256": "96f9e1289bbcbce4add5d78d404d148cfc0bf8f5085354eb115c665eafc8450c",
+            "limits": {
+              "max_translation_residual_A": 1.0,
+              "max_rotation_residual_degrees": 20.0,
+              "max_shared_residue_rmsd_A": 1.5,
+              "max_shared_atom_displacement_A": 1.0,
+              "max_bond_length_deviation_A": 0.25,
+              "max_anchor_atom_displacement_A": 1.0,
+              "max_anchor_connection_length_deviation_A": 0.25,
+              "min_environment_distance_A": 1.5,
+              "max_search_states": 100000,
+              "max_returned_candidates": 25
+            },
+            "rejections": {
+              "endpoint_frame": 9,
+              "shared_residue": 0,
+              "anchor_atom_inventory": 0,
+              "anchor_displacement": 10,
+              "anchor_connection_geometry": 0,
+              "assembly": 0,
+              "environment_clash": 0
+            },
+            "candidates": [],
+            "scientific_acceptance": false
+          },
+          "gap_rmsd_A_and_atom_count": [],
+          "path": {
+            "status": "rejected",
+            "reason": "No suite at step 0 (UA) satisfies the downstream frame residual limits."
+          }
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": {
+    "entry": "157D",
+    "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+    "added_suites": 18,
+    "manifest_sha256": "6bf9050d92be9fe9e0bc7d09390427233b6f3f11f0740adc11fdd471c623ff2e"
+  }
+}

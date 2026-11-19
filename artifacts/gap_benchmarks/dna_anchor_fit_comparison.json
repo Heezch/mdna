@@ -1,0 +1,1781 @@
+{
+  "environment_screening": "not_evaluated",
+  "formal_thresholds_changed": false,
+  "interpretation_limit": "Full-anchor Kabsch is a rigid-fit diagnostic. Candidates are screened using existing geometric limits for middle-frame mismatch, shared-residue consistency, pinned covalent bond deviation, and anchor-link length deviation. It does not optimize internal coordinates, assess nonbonded environment, or establish experimental accuracy or independent-family generalization.",
+  "masked_middle_coordinates_used": false,
+  "protocol": "masked-dna-gap-baseframe-vs-full-anchor-kabsch-diagnostic-v1",
+  "runs": [
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.4539147346856975,
+            "end_anchor_rmsd_A": 1.1831350154186147,
+            "endpoint_rotation_residual_degrees": 12.879587765076135,
+            "endpoint_translation_residual_A": 1.1294528760870475,
+            "shared_residue_max_displacement_A": 3.3700974352095514,
+            "shared_residue_rmsd_A": 1.276582010379736,
+            "start_anchor_max_displacement_A": 1.494162407498835,
+            "start_anchor_rmsd_A": 0.6037345733730201
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.17044388627601847,
+            "end_anchor_fit_max_displacement_A": 0.6684214188475159,
+            "end_anchor_fit_rmsd_A": 0.2544805705195383,
+            "end_anchor_pinned_bond_max_deviation_A": 0.17044388627601847,
+            "middle_frame_rotation_residual_degrees": 9.024735239168889,
+            "middle_frame_translation_residual_A": 1.0672773984305837,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.9781411002582359,
+            "shared_residue_rmsd_A": 1.1846884507745514,
+            "start_anchor_connection_length_deviation_A": 0.20399205988415803,
+            "start_anchor_fit_max_displacement_A": 1.0725684069249133,
+            "start_anchor_fit_rmsd_A": 0.49681444918755435,
+            "start_anchor_pinned_bond_max_deviation_A": 0.2039920598841587
+          },
+          "suite_ids": [
+            "119D:B:19-20",
+            "1WQY:A:2-3"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.2657119116408528,
+            "end_anchor_rmsd_A": 0.8990881761898715,
+            "endpoint_rotation_residual_degrees": 6.591407073829462,
+            "endpoint_translation_residual_A": 0.9968951192317466,
+            "shared_residue_max_displacement_A": 1.7636494380346968,
+            "shared_residue_rmsd_A": 0.939594578965087,
+            "start_anchor_max_displacement_A": 1.494162407498835,
+            "start_anchor_rmsd_A": 0.6037345733730201
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.013596921835806963,
+            "end_anchor_fit_max_displacement_A": 0.39735599631199003,
+            "end_anchor_fit_rmsd_A": 0.25748486349805544,
+            "end_anchor_pinned_bond_max_deviation_A": 0.017120263328028296,
+            "middle_frame_rotation_residual_degrees": 7.201638017089571,
+            "middle_frame_translation_residual_A": 1.4695074239441295,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.506090342610156,
+            "shared_residue_rmsd_A": 1.1757545466564192,
+            "start_anchor_connection_length_deviation_A": 0.20399205988415803,
+            "start_anchor_fit_max_displacement_A": 1.0725684069249133,
+            "start_anchor_fit_rmsd_A": 0.49681444918755435,
+            "start_anchor_pinned_bond_max_deviation_A": 0.2039920598841587
+          },
+          "suite_ids": [
+            "119D:B:19-20",
+            "3SV3:B:104-105"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.093286089058597,
+            "end_anchor_rmsd_A": 1.65543693376254,
+            "endpoint_rotation_residual_degrees": 8.794947934584037,
+            "endpoint_translation_residual_A": 1.2118488302941446,
+            "shared_residue_max_displacement_A": 2.3235813605115645,
+            "shared_residue_rmsd_A": 0.9388608873391915,
+            "start_anchor_max_displacement_A": 1.3530378549238846,
+            "start_anchor_rmsd_A": 0.5786905471046045
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.17044388627601847,
+            "end_anchor_fit_max_displacement_A": 0.6684214188475159,
+            "end_anchor_fit_rmsd_A": 0.2544805705195383,
+            "end_anchor_pinned_bond_max_deviation_A": 0.17044388627601847,
+            "middle_frame_rotation_residual_degrees": 12.211396111807074,
+            "middle_frame_translation_residual_A": 1.3546673528630195,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.796626535146911,
+            "shared_residue_rmsd_A": 1.1846416050995263,
+            "start_anchor_connection_length_deviation_A": 0.1527494651989889,
+            "start_anchor_fit_max_displacement_A": 0.7561665489819483,
+            "start_anchor_fit_rmsd_A": 0.3579197973357678,
+            "start_anchor_pinned_bond_max_deviation_A": 0.1527494651989887
+          },
+          "suite_ids": [
+            "1BNA:B:20-21",
+            "1WQY:A:2-3"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.8347467125726995,
+            "end_anchor_rmsd_A": 1.5413549829545101,
+            "endpoint_rotation_residual_degrees": 5.20652634656762,
+            "endpoint_translation_residual_A": 1.5020313167856094,
+            "shared_residue_max_displacement_A": 2.0866621777797114,
+            "shared_residue_rmsd_A": 0.8078316742631722,
+            "start_anchor_max_displacement_A": 1.494162407498835,
+            "start_anchor_rmsd_A": 0.6037345733730201
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.21769572288544792,
+            "end_anchor_fit_max_displacement_A": 0.7849284724711987,
+            "end_anchor_fit_rmsd_A": 0.3068104124867285,
+            "end_anchor_pinned_bond_max_deviation_A": 0.21769572288544858,
+            "middle_frame_rotation_residual_degrees": 10.533847373285072,
+            "middle_frame_translation_residual_A": 1.5045937386245836,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.283910810007059,
+            "shared_residue_rmsd_A": 1.3735199741478576,
+            "start_anchor_connection_length_deviation_A": 0.20399205988415803,
+            "start_anchor_fit_max_displacement_A": 1.0725684069249133,
+            "start_anchor_fit_rmsd_A": 0.49681444918755435,
+            "start_anchor_pinned_bond_max_deviation_A": 0.2039920598841587
+          },
+          "suite_ids": [
+            "119D:B:19-20",
+            "1WQY:B:12-13"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.6097232632059706,
+            "end_anchor_rmsd_A": 1.9583222911821394,
+            "endpoint_rotation_residual_degrees": 17.261749852977022,
+            "endpoint_translation_residual_A": 1.647431788482698,
+            "shared_residue_max_displacement_A": 3.54095053279476,
+            "shared_residue_rmsd_A": 1.4655773020183842,
+            "start_anchor_max_displacement_A": 1.4516980549273681,
+            "start_anchor_rmsd_A": 0.6565227742459144
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.17044388627601847,
+            "end_anchor_fit_max_displacement_A": 0.6684214188475159,
+            "end_anchor_fit_rmsd_A": 0.2544805705195383,
+            "end_anchor_pinned_bond_max_deviation_A": 0.17044388627601847,
+            "middle_frame_rotation_residual_degrees": 18.583232252074808,
+            "middle_frame_translation_residual_A": 1.507897718089679,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.3852566535626973,
+            "shared_residue_rmsd_A": 1.3694193049765717,
+            "start_anchor_connection_length_deviation_A": 0.22038975280631057,
+            "start_anchor_fit_max_displacement_A": 0.9531130665180662,
+            "start_anchor_fit_rmsd_A": 0.49611170008121674,
+            "start_anchor_pinned_bond_max_deviation_A": 0.220389752806311
+          },
+          "suite_ids": [
+            "119D:A:7-8",
+            "1WQY:A:2-3"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 12,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 12,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 12
+      },
+      "left_suite_count": 4,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 3.4166372959561344,
+          "median": 2.372418882279611,
+          "minimum": 1.494162407498835,
+          "p90": 3.066168268585825
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.0725684069249133,
+          "median": 0.8690207694946324,
+          "minimum": 0.7527044726401999,
+          "p90": 1.0725684069249133
+        }
+      },
+      "pair_count": 12,
+      "right_suite_count": 3,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "TCA",
+      "target_suite_ids": [
+        "1KX5:I:-72--71",
+        "1KX5:I:-71--70"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.5035068125894384,
+            "end_anchor_rmsd_A": 1.1663042628260667,
+            "endpoint_rotation_residual_degrees": 8.306624945272967,
+            "endpoint_translation_residual_A": 0.858517517719715,
+            "shared_residue_max_displacement_A": 1.7287553274774048,
+            "shared_residue_rmsd_A": 0.7046540995749743,
+            "start_anchor_max_displacement_A": 1.6634439008854884,
+            "start_anchor_rmsd_A": 0.6706715163038015
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.011897339492506376,
+            "end_anchor_fit_max_displacement_A": 0.31104117967231293,
+            "end_anchor_fit_rmsd_A": 0.17130028106081177,
+            "end_anchor_pinned_bond_max_deviation_A": 0.017471593531774854,
+            "middle_frame_rotation_residual_degrees": 7.498315898876791,
+            "middle_frame_translation_residual_A": 0.6919534187368387,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 0.8053711754836871,
+            "shared_residue_rmsd_A": 0.6658208826527526,
+            "start_anchor_connection_length_deviation_A": 0.24816239183164202,
+            "start_anchor_fit_max_displacement_A": 0.9526345123932204,
+            "start_anchor_fit_rmsd_A": 0.4735287774082399,
+            "start_anchor_pinned_bond_max_deviation_A": 0.24816239183164202
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1WQY:B:17-18"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.6578891122835007,
+            "end_anchor_rmsd_A": 1.2472012896740463,
+            "endpoint_rotation_residual_degrees": 6.498594275116346,
+            "endpoint_translation_residual_A": 1.359314098454302,
+            "shared_residue_max_displacement_A": 0.841504462881618,
+            "shared_residue_rmsd_A": 0.3851517483463114,
+            "start_anchor_max_displacement_A": 1.6634439008854884,
+            "start_anchor_rmsd_A": 0.6706715163038015
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.00671198579252219,
+            "end_anchor_fit_max_displacement_A": 0.36240289285511784,
+            "end_anchor_fit_rmsd_A": 0.15955369552501128,
+            "end_anchor_pinned_bond_max_deviation_A": 0.010651091104198374,
+            "middle_frame_rotation_residual_degrees": 5.5673371339178255,
+            "middle_frame_translation_residual_A": 0.7770276227657555,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.1258776990152881,
+            "shared_residue_rmsd_A": 0.8054004306783269,
+            "start_anchor_connection_length_deviation_A": 0.24816239183164202,
+            "start_anchor_fit_max_displacement_A": 0.9526345123932204,
+            "start_anchor_fit_rmsd_A": 0.4735287774082399,
+            "start_anchor_pinned_bond_max_deviation_A": 0.24816239183164202
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1WQY:A:7-8"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.7097226023814416,
+            "end_anchor_rmsd_A": 1.3817721682969832,
+            "endpoint_rotation_residual_degrees": 8.24654568137397,
+            "endpoint_translation_residual_A": 1.4430811853838619,
+            "shared_residue_max_displacement_A": 1.5082164297268286,
+            "shared_residue_rmsd_A": 0.5083590083647248,
+            "start_anchor_max_displacement_A": 1.1414214974075896,
+            "start_anchor_rmsd_A": 0.49460195057876083
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.065636558368517,
+            "end_anchor_fit_max_displacement_A": 0.42380123815139414,
+            "end_anchor_fit_rmsd_A": 0.19170009845043015,
+            "end_anchor_pinned_bond_max_deviation_A": 0.065636558368517,
+            "middle_frame_rotation_residual_degrees": 1.5980986659729999,
+            "middle_frame_translation_residual_A": 0.9148209427520195,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.4749836538439856,
+            "shared_residue_rmsd_A": 0.9542201089525653,
+            "start_anchor_connection_length_deviation_A": 0.09100754315560988,
+            "start_anchor_fit_max_displacement_A": 0.7073711383916981,
+            "start_anchor_fit_rmsd_A": 0.3390418185172596,
+            "start_anchor_pinned_bond_max_deviation_A": 0.0910075431556101
+          },
+          "suite_ids": [
+            "1BNA:A:4-5",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.5606260843981552,
+            "end_anchor_rmsd_A": 1.2033650945098857,
+            "endpoint_rotation_residual_degrees": 5.820458058622577,
+            "endpoint_translation_residual_A": 1.2293110648973191,
+            "shared_residue_max_displacement_A": 1.3550787290314485,
+            "shared_residue_rmsd_A": 0.571825542195407,
+            "start_anchor_max_displacement_A": 1.6634439008854884,
+            "start_anchor_rmsd_A": 0.6706715163038015
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.065636558368517,
+            "end_anchor_fit_max_displacement_A": 0.42380123815139414,
+            "end_anchor_fit_rmsd_A": 0.19170009845043015,
+            "end_anchor_pinned_bond_max_deviation_A": 0.065636558368517,
+            "middle_frame_rotation_residual_degrees": 3.144376213773289,
+            "middle_frame_translation_residual_A": 0.8275543072062188,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.1825964424162883,
+            "shared_residue_rmsd_A": 0.9442547898012882,
+            "start_anchor_connection_length_deviation_A": 0.24816239183164202,
+            "start_anchor_fit_max_displacement_A": 0.9526345123932204,
+            "start_anchor_fit_rmsd_A": 0.4735287774082399,
+            "start_anchor_pinned_bond_max_deviation_A": 0.24816239183164202
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.7381882747978386,
+            "end_anchor_rmsd_A": 1.2789736120747395,
+            "endpoint_rotation_residual_degrees": 8.51321995785953,
+            "endpoint_translation_residual_A": 1.2738040498781524,
+            "shared_residue_max_displacement_A": 1.4053658151765567,
+            "shared_residue_rmsd_A": 0.5455311678751431,
+            "start_anchor_max_displacement_A": 1.6634439008854884,
+            "start_anchor_rmsd_A": 0.6706715163038015
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.062238544425589515,
+            "end_anchor_fit_max_displacement_A": 0.48187174628159934,
+            "end_anchor_fit_rmsd_A": 0.22946217571722943,
+            "end_anchor_pinned_bond_max_deviation_A": 0.062238544425589515,
+            "middle_frame_rotation_residual_degrees": 2.9921743154615275,
+            "middle_frame_translation_residual_A": 0.8546935889838332,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.5153006657426351,
+            "shared_residue_rmsd_A": 0.9436119115765419,
+            "start_anchor_connection_length_deviation_A": 0.24816239183164202,
+            "start_anchor_fit_max_displacement_A": 0.9526345123932204,
+            "start_anchor_fit_rmsd_A": 0.4735287774082399,
+            "start_anchor_pinned_bond_max_deviation_A": 0.24816239183164202
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1BNA:B:18-19"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 31,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 1
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 8,
+        "middle_frame_geometry": 31,
+        "pinned_bond_geometry": 8,
+        "shared_residue_geometry": 32
+      },
+      "left_suite_count": 4,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 3.9926404230615864,
+          "median": 2.428338033504833,
+          "minimum": 1.6634439008854884,
+          "p90": 3.69979334989068
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.1385558973535175,
+          "median": 0.9560966277266665,
+          "minimum": 0.7073711383916981,
+          "p90": 1.1385558973535175
+        }
+      },
+      "pair_count": 32,
+      "right_suite_count": 8,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "GAT",
+      "target_suite_ids": [
+        "1KX5:I:-56--55",
+        "1KX5:I:-55--54"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.4536458410205821,
+            "end_anchor_rmsd_A": 1.0411567946223206,
+            "endpoint_rotation_residual_degrees": 7.1098273445119435,
+            "endpoint_translation_residual_A": 0.5639721468969247,
+            "shared_residue_max_displacement_A": 1.4765011845099845,
+            "shared_residue_rmsd_A": 0.5345143334194651,
+            "start_anchor_max_displacement_A": 1.9061421969386265,
+            "start_anchor_rmsd_A": 0.7819257884453578
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.13987731786018665,
+            "end_anchor_fit_max_displacement_A": 0.6449310868248426,
+            "end_anchor_fit_rmsd_A": 0.27132698391292975,
+            "end_anchor_pinned_bond_max_deviation_A": 0.13987731786018665,
+            "middle_frame_rotation_residual_degrees": 17.407551872615347,
+            "middle_frame_translation_residual_A": 1.0382330223466238,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.116021013875316,
+            "shared_residue_rmsd_A": 1.3309821143455913,
+            "start_anchor_connection_length_deviation_A": 0.07499966334038621,
+            "start_anchor_fit_max_displacement_A": 1.4014291146097677,
+            "start_anchor_fit_rmsd_A": 0.5811816476736962,
+            "start_anchor_pinned_bond_max_deviation_A": 0.07499966334038666
+          },
+          "suite_ids": [
+            "1WQY:A:5-6",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.500442459075325,
+            "end_anchor_rmsd_A": 0.8113442857156675,
+            "endpoint_rotation_residual_degrees": 8.759921913935269,
+            "endpoint_translation_residual_A": 0.3127148270171712,
+            "shared_residue_max_displacement_A": 0.28312430070227845,
+            "shared_residue_rmsd_A": 0.13576597221618655,
+            "start_anchor_max_displacement_A": 1.9061421969386265,
+            "start_anchor_rmsd_A": 0.7819257884453578
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.04210624699850718,
+            "end_anchor_fit_max_displacement_A": 0.22980527679193435,
+            "end_anchor_fit_rmsd_A": 0.09098896134987605,
+            "end_anchor_pinned_bond_max_deviation_A": 0.04210624699850718,
+            "middle_frame_rotation_residual_degrees": 12.049403126737634,
+            "middle_frame_translation_residual_A": 1.1205453305126387,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.307188310693767,
+            "shared_residue_rmsd_A": 1.6017836758596882,
+            "start_anchor_connection_length_deviation_A": 0.07499966334038621,
+            "start_anchor_fit_max_displacement_A": 1.4014291146097677,
+            "start_anchor_fit_rmsd_A": 0.5811816476736962,
+            "start_anchor_pinned_bond_max_deviation_A": 0.07499966334038666
+          },
+          "suite_ids": [
+            "1WQY:A:5-6",
+            "1WQY:A:7-8"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.339895832695107,
+            "end_anchor_rmsd_A": 0.646915168825784,
+            "endpoint_rotation_residual_degrees": 13.440835902133989,
+            "endpoint_translation_residual_A": 0.8385661626044204,
+            "shared_residue_max_displacement_A": 1.3212713647729166,
+            "shared_residue_rmsd_A": 0.45559984249003466,
+            "start_anchor_max_displacement_A": 3.0635754121066316,
+            "start_anchor_rmsd_A": 1.171415911484947
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.04210624699850718,
+            "end_anchor_fit_max_displacement_A": 0.22980527679193435,
+            "end_anchor_fit_rmsd_A": 0.09098896134987605,
+            "end_anchor_pinned_bond_max_deviation_A": 0.04210624699850718,
+            "middle_frame_rotation_residual_degrees": 13.389976376690205,
+            "middle_frame_translation_residual_A": 1.3350455097779919,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.6656847674022606,
+            "shared_residue_rmsd_A": 1.75932704605789,
+            "start_anchor_connection_length_deviation_A": 0.13021024579730045,
+            "start_anchor_fit_max_displacement_A": 2.001297900692868,
+            "start_anchor_fit_rmsd_A": 0.8556855757705597,
+            "start_anchor_pinned_bond_max_deviation_A": 0.1302102457973009
+          },
+          "suite_ids": [
+            "1WQY:B:15-16",
+            "1WQY:A:7-8"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.3235944870113099,
+            "end_anchor_rmsd_A": 0.7626041021405227,
+            "endpoint_rotation_residual_degrees": 7.033948772559826,
+            "endpoint_translation_residual_A": 0.38024431319852725,
+            "shared_residue_max_displacement_A": 2.289370407061619,
+            "shared_residue_rmsd_A": 0.8068927227280485,
+            "start_anchor_max_displacement_A": 3.0635754121066316,
+            "start_anchor_rmsd_A": 1.171415911484947
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.13987731786018665,
+            "end_anchor_fit_max_displacement_A": 0.6449310868248426,
+            "end_anchor_fit_rmsd_A": 0.27132698391292975,
+            "end_anchor_pinned_bond_max_deviation_A": 0.13987731786018665,
+            "middle_frame_rotation_residual_degrees": 18.075573337185254,
+            "middle_frame_translation_residual_A": 1.2391904690721853,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.4550655086760056,
+            "shared_residue_rmsd_A": 1.5639688980350397,
+            "start_anchor_connection_length_deviation_A": 0.13021024579730045,
+            "start_anchor_fit_max_displacement_A": 2.001297900692868,
+            "start_anchor_fit_rmsd_A": 0.8556855757705597,
+            "start_anchor_pinned_bond_max_deviation_A": 0.1302102457973009
+          },
+          "suite_ids": [
+            "1WQY:B:15-16",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.8109980951147806,
+            "end_anchor_rmsd_A": 1.1711259741288529,
+            "endpoint_rotation_residual_degrees": 5.09265889588505,
+            "endpoint_translation_residual_A": 0.5304977069457236,
+            "shared_residue_max_displacement_A": 0.8383205900406449,
+            "shared_residue_rmsd_A": 0.3720282040493681,
+            "start_anchor_max_displacement_A": 1.9061421969386265,
+            "start_anchor_rmsd_A": 0.7819257884453578
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.030238709017259335,
+            "end_anchor_fit_max_displacement_A": 0.5449901957869302,
+            "end_anchor_fit_rmsd_A": 0.2034040478421467,
+            "end_anchor_pinned_bond_max_deviation_A": 0.05183764007159364,
+            "middle_frame_rotation_residual_degrees": 16.658263863333136,
+            "middle_frame_translation_residual_A": 1.1911788089136093,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.373372492495,
+            "shared_residue_rmsd_A": 1.7495553922483116,
+            "start_anchor_connection_length_deviation_A": 0.07499966334038621,
+            "start_anchor_fit_max_displacement_A": 1.4014291146097677,
+            "start_anchor_fit_rmsd_A": 0.5811816476736962,
+            "start_anchor_pinned_bond_max_deviation_A": 0.07499966334038666
+          },
+          "suite_ids": [
+            "1WQY:A:5-6",
+            "1BNA:B:18-19"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 48,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 8,
+        "middle_frame_geometry": 48,
+        "pinned_bond_geometry": 8,
+        "shared_residue_geometry": 48
+      },
+      "left_suite_count": 6,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 4.942047096959557,
+          "median": 3.1589876200812776,
+          "minimum": 1.9061421969386265,
+          "p90": 4.34226621184886
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 2.001297900692868,
+          "median": 1.6212531355999973,
+          "minimum": 1.4014291146097677,
+          "p90": 2.001297900692868
+        }
+      },
+      "pair_count": 48,
+      "right_suite_count": 8,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "TAT",
+      "target_suite_ids": [
+        "1KX5:I:-40--39",
+        "1KX5:I:-39--38"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.0986004039706732,
+            "end_anchor_rmsd_A": 0.7839932309163583,
+            "endpoint_rotation_residual_degrees": 11.536705393211843,
+            "endpoint_translation_residual_A": 1.504333168639082,
+            "shared_residue_max_displacement_A": 1.9960534796811706,
+            "shared_residue_rmsd_A": 0.6827660921951793,
+            "start_anchor_max_displacement_A": 1.9962494786167169,
+            "start_anchor_rmsd_A": 0.8609496771124482
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.07371597227287663,
+            "end_anchor_fit_max_displacement_A": 0.7607916282327641,
+            "end_anchor_fit_rmsd_A": 0.3301864313987428,
+            "end_anchor_pinned_bond_max_deviation_A": 0.07371597227287707,
+            "middle_frame_rotation_residual_degrees": 14.152556868535482,
+            "middle_frame_translation_residual_A": 0.987763663615561,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.3824911255552146,
+            "shared_residue_rmsd_A": 0.9775836562303324,
+            "start_anchor_connection_length_deviation_A": 0.151707180423452,
+            "start_anchor_fit_max_displacement_A": 1.2415092210988525,
+            "start_anchor_fit_rmsd_A": 0.4532610434177146,
+            "start_anchor_pinned_bond_max_deviation_A": 0.151707180423452
+          },
+          "suite_ids": [
+            "1WQY:A:2-3",
+            "1WQY:B:17-18"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.1924902474178931,
+            "end_anchor_rmsd_A": 0.7048920793852936,
+            "endpoint_rotation_residual_degrees": 11.311059096604788,
+            "endpoint_translation_residual_A": 1.3217937751659605,
+            "shared_residue_max_displacement_A": 0.9272315175011365,
+            "shared_residue_rmsd_A": 0.28168544040370874,
+            "start_anchor_max_displacement_A": 1.9962494786167169,
+            "start_anchor_rmsd_A": 0.8609496771124482
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.08040865893965932,
+            "end_anchor_fit_max_displacement_A": 0.8492311391331061,
+            "end_anchor_fit_rmsd_A": 0.32229487801851875,
+            "end_anchor_pinned_bond_max_deviation_A": 0.08040865893965887,
+            "middle_frame_rotation_residual_degrees": 15.284321474579448,
+            "middle_frame_translation_residual_A": 1.0503785944556168,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.9723877991864869,
+            "shared_residue_rmsd_A": 1.1657151536817127,
+            "start_anchor_connection_length_deviation_A": 0.151707180423452,
+            "start_anchor_fit_max_displacement_A": 1.2415092210988525,
+            "start_anchor_fit_rmsd_A": 0.4532610434177146,
+            "start_anchor_pinned_bond_max_deviation_A": 0.151707180423452
+          },
+          "suite_ids": [
+            "1WQY:A:2-3",
+            "1WQY:B:13-14"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.4308509222700412,
+            "end_anchor_rmsd_A": 0.9461623342319415,
+            "endpoint_rotation_residual_degrees": 11.279860811907652,
+            "endpoint_translation_residual_A": 0.44312642200231805,
+            "shared_residue_max_displacement_A": 1.400098201048001,
+            "shared_residue_rmsd_A": 0.6866718099654852,
+            "start_anchor_max_displacement_A": 3.676859375482559,
+            "start_anchor_rmsd_A": 1.2520634347811972
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.06161751325200848,
+            "end_anchor_fit_max_displacement_A": 0.7240997791145284,
+            "end_anchor_fit_rmsd_A": 0.33885255785267104,
+            "end_anchor_pinned_bond_max_deviation_A": 0.06161751325200848,
+            "middle_frame_rotation_residual_degrees": 9.886053550221854,
+            "middle_frame_translation_residual_A": 1.2577144521572359,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.8551472619592109,
+            "shared_residue_rmsd_A": 1.3743714664365687,
+            "start_anchor_connection_length_deviation_A": 0.31523755343378146,
+            "start_anchor_fit_max_displacement_A": 1.6636682541922805,
+            "start_anchor_fit_rmsd_A": 0.5718629225586243,
+            "start_anchor_pinned_bond_max_deviation_A": 0.3152375534337819
+          },
+          "suite_ids": [
+            "3SV3:B:104-105",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.2419713225248488,
+            "end_anchor_rmsd_A": 0.7291547922989212,
+            "endpoint_rotation_residual_degrees": 17.50385531857147,
+            "endpoint_translation_residual_A": 1.2349902438018532,
+            "shared_residue_max_displacement_A": 1.9628052886898926,
+            "shared_residue_rmsd_A": 0.6705153211374411,
+            "start_anchor_max_displacement_A": 1.9962494786167169,
+            "start_anchor_rmsd_A": 0.8609496771124482
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.06161751325200848,
+            "end_anchor_fit_max_displacement_A": 0.7240997791145284,
+            "end_anchor_fit_rmsd_A": 0.33885255785267104,
+            "end_anchor_pinned_bond_max_deviation_A": 0.06161751325200848,
+            "middle_frame_rotation_residual_degrees": 18.311587349192873,
+            "middle_frame_translation_residual_A": 1.048924797505586,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.7251262284252353,
+            "shared_residue_rmsd_A": 1.2233041136418612,
+            "start_anchor_connection_length_deviation_A": 0.151707180423452,
+            "start_anchor_fit_max_displacement_A": 1.2415092210988525,
+            "start_anchor_fit_rmsd_A": 0.4532610434177146,
+            "start_anchor_pinned_bond_max_deviation_A": 0.151707180423452
+          },
+          "suite_ids": [
+            "1WQY:A:2-3",
+            "119D:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.675028037809898,
+            "end_anchor_rmsd_A": 1.0396010313708897,
+            "endpoint_rotation_residual_degrees": 15.684899922705315,
+            "endpoint_translation_residual_A": 0.7571382680090902,
+            "shared_residue_max_displacement_A": 0.9220021042962765,
+            "shared_residue_rmsd_A": 0.44447173618638397,
+            "start_anchor_max_displacement_A": 3.676859375482559,
+            "start_anchor_rmsd_A": 1.2520634347811972
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.04165036298034752,
+            "end_anchor_fit_max_displacement_A": 0.7969863743241842,
+            "end_anchor_fit_rmsd_A": 0.36139693967544045,
+            "end_anchor_pinned_bond_max_deviation_A": 0.04165036298034752,
+            "middle_frame_rotation_residual_degrees": 6.728563210877074,
+            "middle_frame_translation_residual_A": 1.3448851436854876,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.0979351431045807,
+            "shared_residue_rmsd_A": 1.7074303910827464,
+            "start_anchor_connection_length_deviation_A": 0.31523755343378146,
+            "start_anchor_fit_max_displacement_A": 1.6636682541922805,
+            "start_anchor_fit_rmsd_A": 0.5718629225586243,
+            "start_anchor_pinned_bond_max_deviation_A": 0.3152375534337819
+          },
+          "suite_ids": [
+            "3SV3:B:104-105",
+            "1WQY:A:7-8"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 24,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 8,
+        "middle_frame_geometry": 24,
+        "pinned_bond_geometry": 8,
+        "shared_residue_geometry": 24
+      },
+      "left_suite_count": 3,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 3.676859375482559,
+          "median": 2.4287966585608696,
+          "minimum": 1.7236148773576123,
+          "p90": 3.676859375482559
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.6636682541922805,
+          "median": 1.4411700268422876,
+          "minimum": 1.2415092210988525,
+          "p90": 1.6636682541922805
+        }
+      },
+      "pair_count": 24,
+      "right_suite_count": 8,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "CAT",
+      "target_suite_ids": [
+        "1KX5:I:-24--23",
+        "1KX5:I:-23--22"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.069144479532327,
+            "end_anchor_rmsd_A": 1.1485947609846263,
+            "endpoint_rotation_residual_degrees": 14.628362015379688,
+            "endpoint_translation_residual_A": 1.0319788479926622,
+            "shared_residue_max_displacement_A": 0.773301356555115,
+            "shared_residue_rmsd_A": 0.338991298193458,
+            "start_anchor_max_displacement_A": 0.3971484565354098,
+            "start_anchor_rmsd_A": 0.20506905248192775
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.22093880781896869,
+            "end_anchor_fit_max_displacement_A": 1.6982469357278465,
+            "end_anchor_fit_rmsd_A": 0.7083908938047935,
+            "end_anchor_pinned_bond_max_deviation_A": 0.22093880781896913,
+            "middle_frame_rotation_residual_degrees": 20.446005058869677,
+            "middle_frame_translation_residual_A": 0.8758935258011071,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.6967184040355443,
+            "shared_residue_rmsd_A": 1.5413743672857168,
+            "start_anchor_connection_length_deviation_A": 0.019633399919842587,
+            "start_anchor_fit_max_displacement_A": 0.18540842661279494,
+            "start_anchor_fit_rmsd_A": 0.10420250830939319,
+            "start_anchor_pinned_bond_max_deviation_A": 0.01963339991984192
+          },
+          "suite_ids": [
+            "1WQY:B:12-13",
+            "119D:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.1581096778368853,
+            "end_anchor_rmsd_A": 1.7790335355248792,
+            "endpoint_rotation_residual_degrees": 26.474444030716658,
+            "endpoint_translation_residual_A": 1.8558876306012784,
+            "shared_residue_max_displacement_A": 1.3077987668658677,
+            "shared_residue_rmsd_A": 0.5226021174452435,
+            "start_anchor_max_displacement_A": 1.0697392699232946,
+            "start_anchor_rmsd_A": 0.36961563244072143
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.22093880781896869,
+            "end_anchor_fit_max_displacement_A": 1.6982469357278465,
+            "end_anchor_fit_rmsd_A": 0.7083908938047935,
+            "end_anchor_pinned_bond_max_deviation_A": 0.22093880781896913,
+            "middle_frame_rotation_residual_degrees": 26.847351036903103,
+            "middle_frame_translation_residual_A": 0.9116180080722867,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 3.366489697067168,
+            "shared_residue_rmsd_A": 1.7888226734057322,
+            "start_anchor_connection_length_deviation_A": 0.10256343899019638,
+            "start_anchor_fit_max_displacement_A": 0.43501353993397435,
+            "start_anchor_fit_rmsd_A": 0.19487577395954223,
+            "start_anchor_pinned_bond_max_deviation_A": 0.10256343899019638
+          },
+          "suite_ids": [
+            "1WQY:A:2-3",
+            "119D:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.314883718102853,
+            "end_anchor_rmsd_A": 1.7809864658141397,
+            "endpoint_rotation_residual_degrees": 21.738450757097965,
+            "endpoint_translation_residual_A": 1.7745816114529591,
+            "shared_residue_max_displacement_A": 1.5982311272261478,
+            "shared_residue_rmsd_A": 0.6090005393752939,
+            "start_anchor_max_displacement_A": 3.62469120743283,
+            "start_anchor_rmsd_A": 1.583368689124386
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.22093880781896869,
+            "end_anchor_fit_max_displacement_A": 1.6982469357278465,
+            "end_anchor_fit_rmsd_A": 0.7083908938047935,
+            "end_anchor_pinned_bond_max_deviation_A": 0.22093880781896913,
+            "middle_frame_rotation_residual_degrees": 51.594708025138736,
+            "middle_frame_translation_residual_A": 1.1314741346110282,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 3.1494332894354016,
+            "shared_residue_rmsd_A": 1.7215201474538218,
+            "start_anchor_connection_length_deviation_A": 0.18514470443476072,
+            "start_anchor_fit_max_displacement_A": 0.8949995045968717,
+            "start_anchor_fit_rmsd_A": 0.46073895644617774,
+            "start_anchor_pinned_bond_max_deviation_A": 0.18514470443476116
+          },
+          "suite_ids": [
+            "3SV3:B:104-105",
+            "119D:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.3290678231717408,
+            "end_anchor_rmsd_A": 1.9036745538669222,
+            "endpoint_rotation_residual_degrees": 29.237049296243942,
+            "endpoint_translation_residual_A": 1.114201757123864,
+            "shared_residue_max_displacement_A": 1.3646957414957537,
+            "shared_residue_rmsd_A": 0.6883573058526912,
+            "start_anchor_max_displacement_A": 0.3971484565354098,
+            "start_anchor_rmsd_A": 0.20506905248192775
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.03570504217392023,
+            "end_anchor_fit_max_displacement_A": 1.8578555689092644,
+            "end_anchor_fit_rmsd_A": 0.7990574401348621,
+            "end_anchor_pinned_bond_max_deviation_A": 0.057787488784022845,
+            "middle_frame_rotation_residual_degrees": 36.633186896301105,
+            "middle_frame_translation_residual_A": 2.1797878212756046,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 4.609217937610814,
+            "shared_residue_rmsd_A": 2.3834410491116484,
+            "start_anchor_connection_length_deviation_A": 0.019633399919842587,
+            "start_anchor_fit_max_displacement_A": 0.18540842661279494,
+            "start_anchor_fit_rmsd_A": 0.10420250830939319,
+            "start_anchor_pinned_bond_max_deviation_A": 0.01963339991984192
+          },
+          "suite_ids": [
+            "1WQY:B:12-13",
+            "119D:A:4-5"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 4.244315474617659,
+            "end_anchor_rmsd_A": 1.949956370982986,
+            "endpoint_rotation_residual_degrees": 36.56175859852596,
+            "endpoint_translation_residual_A": 1.3346635360119679,
+            "shared_residue_max_displacement_A": 2.269758904541864,
+            "shared_residue_rmsd_A": 0.9067952439057838,
+            "start_anchor_max_displacement_A": 3.62469120743283,
+            "start_anchor_rmsd_A": 1.583368689124386
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.03570504217392023,
+            "end_anchor_fit_max_displacement_A": 1.8578555689092644,
+            "end_anchor_fit_rmsd_A": 0.7990574401348621,
+            "end_anchor_pinned_bond_max_deviation_A": 0.057787488784022845,
+            "middle_frame_rotation_residual_degrees": 66.80176236152184,
+            "middle_frame_translation_residual_A": 0.6358037071896421,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 4.416387314528332,
+            "shared_residue_rmsd_A": 2.1488426924400748,
+            "start_anchor_connection_length_deviation_A": 0.18514470443476072,
+            "start_anchor_fit_max_displacement_A": 0.8949995045968717,
+            "start_anchor_fit_rmsd_A": 0.46073895644617774,
+            "start_anchor_pinned_bond_max_deviation_A": 0.18514470443476116
+          },
+          "suite_ids": [
+            "3SV3:B:104-105",
+            "119D:A:4-5"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 6,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 6,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 6
+      },
+      "left_suite_count": 3,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 4.244315474617659,
+          "median": 3.4768795153022856,
+          "minimum": 2.069144479532327,
+          "p90": 4.157199379053342
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.8578555689092644,
+          "median": 1.7780512523185554,
+          "minimum": 1.6982469357278465,
+          "p90": 1.8578555689092644
+        }
+      },
+      "pair_count": 6,
+      "right_suite_count": 2,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "CAG",
+      "target_suite_ids": [
+        "1KX5:I:-8--7",
+        "1KX5:I:-7--6"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.688838279052397,
+            "end_anchor_rmsd_A": 0.9240484481526761,
+            "endpoint_rotation_residual_degrees": 18.103791953152395,
+            "endpoint_translation_residual_A": 0.8778740377871969,
+            "shared_residue_max_displacement_A": 1.467511591522657e-14,
+            "shared_residue_rmsd_A": 7.903813682805411e-15,
+            "start_anchor_max_displacement_A": 1.0975975783752294,
+            "start_anchor_rmsd_A": 0.4878029321231961
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.00857181491129655,
+            "end_anchor_fit_max_displacement_A": 0.38153894605733174,
+            "end_anchor_fit_rmsd_A": 0.2269254882830059,
+            "end_anchor_pinned_bond_max_deviation_A": 0.035030777966194915,
+            "middle_frame_rotation_residual_degrees": 18.589552379031282,
+            "middle_frame_translation_residual_A": 0.31101809532850394,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.2869703194906164,
+            "shared_residue_rmsd_A": 0.5773751004086829,
+            "start_anchor_connection_length_deviation_A": 0.004749249447487669,
+            "start_anchor_fit_max_displacement_A": 0.47823905431911923,
+            "start_anchor_fit_rmsd_A": 0.293824997487924,
+            "start_anchor_pinned_bond_max_deviation_A": 0.04040169056548848
+          },
+          "suite_ids": [
+            "1BNA:A:4-5",
+            "1BNA:A:5-6"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.047950663499409,
+            "end_anchor_rmsd_A": 1.2135208087172809,
+            "endpoint_rotation_residual_degrees": 16.972325662145977,
+            "endpoint_translation_residual_A": 0.6990765007989783,
+            "shared_residue_max_displacement_A": 0.9123453106648783,
+            "shared_residue_rmsd_A": 0.41204904351265204,
+            "start_anchor_max_displacement_A": 0.6955289710394945,
+            "start_anchor_rmsd_A": 0.26919631733272725
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.00857181491129655,
+            "end_anchor_fit_max_displacement_A": 0.38153894605733174,
+            "end_anchor_fit_rmsd_A": 0.2269254882830059,
+            "end_anchor_pinned_bond_max_deviation_A": 0.035030777966194915,
+            "middle_frame_rotation_residual_degrees": 17.351785384083925,
+            "middle_frame_translation_residual_A": 0.26211991249927813,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.8307114560357363,
+            "shared_residue_rmsd_A": 0.8649404379735417,
+            "start_anchor_connection_length_deviation_A": 0.15282191568964687,
+            "start_anchor_fit_max_displacement_A": 0.40242147952353324,
+            "start_anchor_fit_rmsd_A": 0.2000963562414154,
+            "start_anchor_pinned_bond_max_deviation_A": 0.15282191568964687
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1BNA:A:5-6"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.339113043876404,
+            "end_anchor_rmsd_A": 1.2810474729557206,
+            "endpoint_rotation_residual_degrees": 17.658453623617348,
+            "endpoint_translation_residual_A": 0.6772920319015892,
+            "shared_residue_max_displacement_A": 1.5586992496187349,
+            "shared_residue_rmsd_A": 0.5825894036916426,
+            "start_anchor_max_displacement_A": 1.0975975783752294,
+            "start_anchor_rmsd_A": 0.4878029321231961
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.15834095577368568,
+            "end_anchor_fit_max_displacement_A": 0.47373575421358016,
+            "end_anchor_fit_rmsd_A": 0.2269071080046161,
+            "end_anchor_pinned_bond_max_deviation_A": 0.15834095577368545,
+            "middle_frame_rotation_residual_degrees": 22.731626261034624,
+            "middle_frame_translation_residual_A": 0.2364098956987935,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.3740375022386893,
+            "shared_residue_rmsd_A": 1.0211563031355761,
+            "start_anchor_connection_length_deviation_A": 0.004749249447487669,
+            "start_anchor_fit_max_displacement_A": 0.47823905431911923,
+            "start_anchor_fit_rmsd_A": 0.293824997487924,
+            "start_anchor_pinned_bond_max_deviation_A": 0.04040169056548848
+          },
+          "suite_ids": [
+            "1BNA:A:4-5",
+            "1WQY:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.5825299546832094,
+            "end_anchor_rmsd_A": 1.5488951997336522,
+            "endpoint_rotation_residual_degrees": 16.07274645489624,
+            "endpoint_translation_residual_A": 0.8852331624589732,
+            "shared_residue_max_displacement_A": 1.9416563048044753,
+            "shared_residue_rmsd_A": 0.7341778318852242,
+            "start_anchor_max_displacement_A": 0.6955289710394945,
+            "start_anchor_rmsd_A": 0.26919631733272725
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.15834095577368568,
+            "end_anchor_fit_max_displacement_A": 0.47373575421358016,
+            "end_anchor_fit_rmsd_A": 0.2269071080046161,
+            "end_anchor_pinned_bond_max_deviation_A": 0.15834095577368545,
+            "middle_frame_rotation_residual_degrees": 20.613086233550607,
+            "middle_frame_translation_residual_A": 0.3535714184189437,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.030712911559885,
+            "shared_residue_rmsd_A": 1.1149078165885116,
+            "start_anchor_connection_length_deviation_A": 0.15282191568964687,
+            "start_anchor_fit_max_displacement_A": 0.40242147952353324,
+            "start_anchor_fit_rmsd_A": 0.2000963562414154,
+            "start_anchor_pinned_bond_max_deviation_A": 0.15282191568964687
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1WQY:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.35786977224829,
+            "end_anchor_rmsd_A": 1.357143674534592,
+            "endpoint_rotation_residual_degrees": 19.496640675725327,
+            "endpoint_translation_residual_A": 0.6613134485364046,
+            "shared_residue_max_displacement_A": 1.4708674422151798e-14,
+            "shared_residue_rmsd_A": 8.620474204593959e-15,
+            "start_anchor_max_displacement_A": 0.6955289710394945,
+            "start_anchor_rmsd_A": 0.26919631733272725
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.13757458399064126,
+            "end_anchor_fit_max_displacement_A": 0.5129843902042759,
+            "end_anchor_fit_rmsd_A": 0.21946879604186628,
+            "end_anchor_pinned_bond_max_deviation_A": 0.13757458399064104,
+            "middle_frame_rotation_residual_degrees": 21.352663536379808,
+            "middle_frame_translation_residual_A": 0.6038824350857805,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.847627360863576,
+            "shared_residue_rmsd_A": 0.8360480604007137,
+            "start_anchor_connection_length_deviation_A": 0.15282191568964687,
+            "start_anchor_fit_max_displacement_A": 0.40242147952353324,
+            "start_anchor_fit_rmsd_A": 0.2000963562414154,
+            "start_anchor_pinned_bond_max_deviation_A": 0.15282191568964687
+          },
+          "suite_ids": [
+            "1BNA:B:16-17",
+            "1BNA:B:17-18"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 16,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 4,
+        "middle_frame_geometry": 16,
+        "pinned_bond_geometry": 4,
+        "shared_residue_geometry": 16
+      },
+      "left_suite_count": 4,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 3.619160363791774,
+          "median": 2.7630169814528736,
+          "minimum": 1.688838279052397,
+          "p90": 3.4851804393640697
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.5163005093645667,
+          "median": 0.9152585320656303,
+          "minimum": 0.40242147952353324,
+          "p90": 1.5163005093645667
+        }
+      },
+      "pair_count": 16,
+      "right_suite_count": 4,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "GAA",
+      "target_suite_ids": [
+        "1KX5:I:8-9",
+        "1KX5:I:9-10"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.4392125438109677,
+            "end_anchor_rmsd_A": 2.683476568641519,
+            "endpoint_rotation_residual_degrees": 24.106641328317632,
+            "endpoint_translation_residual_A": 2.4793216375744467,
+            "shared_residue_max_displacement_A": 1.8968788137726214,
+            "shared_residue_rmsd_A": 0.7356335008207527,
+            "start_anchor_max_displacement_A": 2.6597324372101947,
+            "start_anchor_rmsd_A": 0.9302815207677629
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.0455383956597466,
+            "end_anchor_fit_max_displacement_A": 1.6431415153744457,
+            "end_anchor_fit_rmsd_A": 0.6174096963586898,
+            "end_anchor_pinned_bond_max_deviation_A": 0.05390016355430749,
+            "middle_frame_rotation_residual_degrees": 9.739238015857255,
+            "middle_frame_translation_residual_A": 1.1831008368905809,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.6130479761736762,
+            "shared_residue_rmsd_A": 1.1693450244177792,
+            "start_anchor_connection_length_deviation_A": 0.027086244934218184,
+            "start_anchor_fit_max_displacement_A": 1.3528768023950763,
+            "start_anchor_fit_rmsd_A": 0.5558943577158321,
+            "start_anchor_pinned_bond_max_deviation_A": 0.02708624493421774
+          },
+          "suite_ids": [
+            "3SV3:B:107-108",
+            "119D:B:17-18"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 4.0767263636666,
+            "end_anchor_rmsd_A": 2.850170478304847,
+            "endpoint_rotation_residual_degrees": 25.23144137912486,
+            "endpoint_translation_residual_A": 2.7710729886970014,
+            "shared_residue_max_displacement_A": 2.691122827041474,
+            "shared_residue_rmsd_A": 1.0739963813844142,
+            "start_anchor_max_displacement_A": 2.6597324372101947,
+            "start_anchor_rmsd_A": 0.9302815207677629
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.11260858792650397,
+            "end_anchor_fit_max_displacement_A": 1.0650567646906222,
+            "end_anchor_fit_rmsd_A": 0.4177472973111725,
+            "end_anchor_pinned_bond_max_deviation_A": 0.11260858792650374,
+            "middle_frame_rotation_residual_degrees": 16.869172579464138,
+            "middle_frame_translation_residual_A": 1.0170083080647598,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.689601663683042,
+            "shared_residue_rmsd_A": 1.3539277701697314,
+            "start_anchor_connection_length_deviation_A": 0.027086244934218184,
+            "start_anchor_fit_max_displacement_A": 1.3528768023950763,
+            "start_anchor_fit_rmsd_A": 0.5558943577158321,
+            "start_anchor_pinned_bond_max_deviation_A": 0.02708624493421774
+          },
+          "suite_ids": [
+            "3SV3:B:107-108",
+            "1BNA:A:4-5"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.96791907628935,
+            "end_anchor_rmsd_A": 2.9347906802767354,
+            "endpoint_rotation_residual_degrees": 26.561089905610743,
+            "endpoint_translation_residual_A": 2.804066459582244,
+            "shared_residue_max_displacement_A": 3.4222540997971422,
+            "shared_residue_rmsd_A": 1.277975731877035,
+            "start_anchor_max_displacement_A": 2.6597324372101947,
+            "start_anchor_rmsd_A": 0.9302815207677629
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.03545972620753801,
+            "end_anchor_fit_max_displacement_A": 1.6469058934840173,
+            "end_anchor_fit_rmsd_A": 0.4686398873604921,
+            "end_anchor_pinned_bond_max_deviation_A": 0.03940945667624263,
+            "middle_frame_rotation_residual_degrees": 12.664982150103619,
+            "middle_frame_translation_residual_A": 1.247182217767191,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.8282556470582523,
+            "shared_residue_rmsd_A": 1.4878450441992896,
+            "start_anchor_connection_length_deviation_A": 0.027086244934218184,
+            "start_anchor_fit_max_displacement_A": 1.3528768023950763,
+            "start_anchor_fit_rmsd_A": 0.5558943577158321,
+            "start_anchor_pinned_bond_max_deviation_A": 0.02708624493421774
+          },
+          "suite_ids": [
+            "3SV3:B:107-108",
+            "1BNA:B:16-17"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.828010734830051,
+            "end_anchor_rmsd_A": 2.2623204365166343,
+            "endpoint_rotation_residual_degrees": 26.064724950650117,
+            "endpoint_translation_residual_A": 1.5730560837144203,
+            "shared_residue_max_displacement_A": 1.9419771180198098,
+            "shared_residue_rmsd_A": 0.870686615411537,
+            "start_anchor_max_displacement_A": 2.6597324372101947,
+            "start_anchor_rmsd_A": 0.9302815207677629
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.1402071597412029,
+            "end_anchor_fit_max_displacement_A": 0.7299095070900045,
+            "end_anchor_fit_rmsd_A": 0.33998507411014967,
+            "end_anchor_pinned_bond_max_deviation_A": 0.14020715974120268,
+            "middle_frame_rotation_residual_degrees": 19.387277799638316,
+            "middle_frame_translation_residual_A": 1.575558024529149,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.5752800236017133,
+            "shared_residue_rmsd_A": 0.9784943556665128,
+            "start_anchor_connection_length_deviation_A": 0.027086244934218184,
+            "start_anchor_fit_max_displacement_A": 1.3528768023950763,
+            "start_anchor_fit_rmsd_A": 0.5558943577158321,
+            "start_anchor_pinned_bond_max_deviation_A": 0.02708624493421774
+          },
+          "suite_ids": [
+            "3SV3:B:107-108",
+            "119D:A:5-6"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.4304571725956032,
+            "end_anchor_rmsd_A": 1.8274612877229943,
+            "endpoint_rotation_residual_degrees": 26.138890931463596,
+            "endpoint_translation_residual_A": 1.676118973930293,
+            "shared_residue_max_displacement_A": 2.8016794262961486,
+            "shared_residue_rmsd_A": 1.1994714521758367,
+            "start_anchor_max_displacement_A": 3.1171138119992685,
+            "start_anchor_rmsd_A": 1.0799766497336933
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.0455383956597466,
+            "end_anchor_fit_max_displacement_A": 1.6431415153744457,
+            "end_anchor_fit_rmsd_A": 0.6174096963586898,
+            "end_anchor_pinned_bond_max_deviation_A": 0.05390016355430749,
+            "middle_frame_rotation_residual_degrees": 12.90043716601177,
+            "middle_frame_translation_residual_A": 1.748151111444513,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.260239579205859,
+            "shared_residue_rmsd_A": 1.6182536483645609,
+            "start_anchor_connection_length_deviation_A": 0.02794927482884546,
+            "start_anchor_fit_max_displacement_A": 1.7497613031591879,
+            "start_anchor_fit_rmsd_A": 0.6988572945837095,
+            "start_anchor_pinned_bond_max_deviation_A": 0.027949274828845683
+          },
+          "suite_ids": [
+            "3SV3:C:213-214",
+            "119D:B:17-18"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 8,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 8,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 8
+      },
+      "left_suite_count": 2,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 4.0767263636666,
+          "median": 3.2781631779051184,
+          "minimum": 3.1171138119992685,
+          "p90": 4.000561262502525
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.7497613031591879,
+          "median": 1.6983335983216026,
+          "minimum": 1.3528768023950763,
+          "p90": 1.7497613031591879
+        }
+      },
+      "pair_count": 8,
+      "right_suite_count": 4,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "GGA",
+      "target_suite_ids": [
+        "1KX5:I:24-25",
+        "1KX5:I:25-26"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.914387055928387,
+            "end_anchor_rmsd_A": 1.2804563854773816,
+            "endpoint_rotation_residual_degrees": 6.154098572547962,
+            "endpoint_translation_residual_A": 1.0038365367181938,
+            "shared_residue_max_displacement_A": 0.5537107409594011,
+            "shared_residue_rmsd_A": 0.28271328039745586,
+            "start_anchor_max_displacement_A": 2.575314357960874,
+            "start_anchor_rmsd_A": 0.9799348416323898
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.006542552616997099,
+            "end_anchor_fit_max_displacement_A": 0.2399461494451043,
+            "end_anchor_fit_rmsd_A": 0.10885698399921322,
+            "end_anchor_pinned_bond_max_deviation_A": 0.01602740928361257,
+            "middle_frame_rotation_residual_degrees": 9.942366736887118,
+            "middle_frame_translation_residual_A": 1.0270222070602275,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.703183905883834,
+            "shared_residue_rmsd_A": 0.93474790236371,
+            "start_anchor_connection_length_deviation_A": 0.14973692198941357,
+            "start_anchor_fit_max_displacement_A": 0.801745572244082,
+            "start_anchor_fit_rmsd_A": 0.40016358892939,
+            "start_anchor_pinned_bond_max_deviation_A": 0.14973692198941402
+          },
+          "suite_ids": [
+            "3SV3:B:102-103",
+            "3SV3:B:104-105"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 1.1026610167749744,
+            "end_anchor_rmsd_A": 0.5650372994256314,
+            "endpoint_rotation_residual_degrees": 6.295877558548055,
+            "endpoint_translation_residual_A": 0.38561384079672406,
+            "shared_residue_max_displacement_A": 2.8849391643295483,
+            "shared_residue_rmsd_A": 1.191456086871973,
+            "start_anchor_max_displacement_A": 1.5153264686252785,
+            "start_anchor_rmsd_A": 0.5809863755426572
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.006542552616997099,
+            "end_anchor_fit_max_displacement_A": 0.2399461494451043,
+            "end_anchor_fit_rmsd_A": 0.10885698399921322,
+            "end_anchor_pinned_bond_max_deviation_A": 0.01602740928361257,
+            "middle_frame_rotation_residual_degrees": 8.139956849030266,
+            "middle_frame_translation_residual_A": 1.03901278320229,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.8447343195464856,
+            "shared_residue_rmsd_A": 1.2624381032146421,
+            "start_anchor_connection_length_deviation_A": 0.006255324054774025,
+            "start_anchor_fit_max_displacement_A": 1.0005079940890502,
+            "start_anchor_fit_rmsd_A": 0.3899994401233941,
+            "start_anchor_pinned_bond_max_deviation_A": 0.017817981798259552
+          },
+          "suite_ids": [
+            "3SV3:B:105-106",
+            "3SV3:B:104-105"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.328946253109017,
+            "end_anchor_rmsd_A": 1.5502406916813527,
+            "endpoint_rotation_residual_degrees": 16.92270257978684,
+            "endpoint_translation_residual_A": 0.976703719349391,
+            "shared_residue_max_displacement_A": 1.1328521922634973,
+            "shared_residue_rmsd_A": 0.5810514347740049,
+            "start_anchor_max_displacement_A": 1.5153264686252785,
+            "start_anchor_rmsd_A": 0.5809863755426572
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.1916085418642237,
+            "end_anchor_fit_max_displacement_A": 0.5973360223753915,
+            "end_anchor_fit_rmsd_A": 0.24990189234326882,
+            "end_anchor_pinned_bond_max_deviation_A": 0.19160854186422438,
+            "middle_frame_rotation_residual_degrees": 11.484900572890384,
+            "middle_frame_translation_residual_A": 1.1654251939077114,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.745197136927963,
+            "shared_residue_rmsd_A": 0.9946191524896458,
+            "start_anchor_connection_length_deviation_A": 0.006255324054774025,
+            "start_anchor_fit_max_displacement_A": 1.0005079940890502,
+            "start_anchor_fit_rmsd_A": 0.3899994401233941,
+            "start_anchor_pinned_bond_max_deviation_A": 0.017817981798259552
+          },
+          "suite_ids": [
+            "3SV3:B:105-106",
+            "1WQY:B:12-13"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 2.404220878886725,
+            "end_anchor_rmsd_A": 1.9404968098076336,
+            "endpoint_rotation_residual_degrees": 5.7162056054953085,
+            "endpoint_translation_residual_A": 1.8305850928101952,
+            "shared_residue_max_displacement_A": 1.7111462890777822,
+            "shared_residue_rmsd_A": 0.9300560934468803,
+            "start_anchor_max_displacement_A": 2.9075610863771284,
+            "start_anchor_rmsd_A": 0.8771152250312543
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.006542552616997099,
+            "end_anchor_fit_max_displacement_A": 0.2399461494451043,
+            "end_anchor_fit_rmsd_A": 0.10885698399921322,
+            "end_anchor_pinned_bond_max_deviation_A": 0.01602740928361257,
+            "middle_frame_rotation_residual_degrees": 6.508756865157485,
+            "middle_frame_translation_residual_A": 1.0385014065634643,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 2.403104081669368,
+            "shared_residue_rmsd_A": 1.6353197028804427,
+            "start_anchor_connection_length_deviation_A": 0.151397909797236,
+            "start_anchor_fit_max_displacement_A": 1.671237036395533,
+            "start_anchor_fit_rmsd_A": 0.564358840273988,
+            "start_anchor_pinned_bond_max_deviation_A": 0.15139790979723533
+          },
+          "suite_ids": [
+            "119D:B:22-23",
+            "3SV3:B:104-105"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.047490633634229,
+            "end_anchor_rmsd_A": 2.2350203841769005,
+            "endpoint_rotation_residual_degrees": 17.66890859780544,
+            "endpoint_translation_residual_A": 1.535281603017721,
+            "shared_residue_max_displacement_A": 2.942583054405015,
+            "shared_residue_rmsd_A": 1.3123709178594676,
+            "start_anchor_max_displacement_A": 2.575314357960874,
+            "start_anchor_rmsd_A": 0.9799348416323898
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.1916085418642237,
+            "end_anchor_fit_max_displacement_A": 0.5973360223753915,
+            "end_anchor_fit_rmsd_A": 0.24990189234326882,
+            "end_anchor_pinned_bond_max_deviation_A": 0.19160854186422438,
+            "middle_frame_rotation_residual_degrees": 12.757081572150389,
+            "middle_frame_translation_residual_A": 1.208819011087706,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.7175806684985828,
+            "shared_residue_rmsd_A": 1.1165049935467106,
+            "start_anchor_connection_length_deviation_A": 0.14973692198941357,
+            "start_anchor_fit_max_displacement_A": 0.801745572244082,
+            "start_anchor_fit_rmsd_A": 0.40016358892939,
+            "start_anchor_pinned_bond_max_deviation_A": 0.14973692198941402
+          },
+          "suite_ids": [
+            "3SV3:B:102-103",
+            "1WQY:B:12-13"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 12,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 12,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 12
+      },
+      "left_suite_count": 4,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 4.581759752969099,
+          "median": 3.0034721091929475,
+          "minimum": 1.5153264686252785,
+          "p90": 4.334682700598884
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.671237036395533,
+          "median": 1.222248071195429,
+          "minimum": 0.801745572244082,
+          "p90": 1.671237036395533
+        }
+      },
+      "pair_count": 12,
+      "right_suite_count": 3,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "ACA",
+      "target_suite_ids": [
+        "1KX5:I:40-41",
+        "1KX5:I:41-42"
+      ]
+    },
+    {
+      "best_full_anchor_rigid_fit_pairs": [
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 3.2560618423890753,
+            "end_anchor_rmsd_A": 2.364029883015049,
+            "endpoint_rotation_residual_degrees": 18.36462431353558,
+            "endpoint_translation_residual_A": 2.080519300426478,
+            "shared_residue_max_displacement_A": 1.935423327418501,
+            "shared_residue_rmsd_A": 0.7040500624658063,
+            "start_anchor_max_displacement_A": 1.2586814440873082,
+            "start_anchor_rmsd_A": 0.4854713596076846
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.2704907888887129,
+            "end_anchor_fit_max_displacement_A": 1.4623164704748828,
+            "end_anchor_fit_rmsd_A": 0.46361410503209277,
+            "end_anchor_pinned_bond_max_deviation_A": 0.2704907888887129,
+            "middle_frame_rotation_residual_degrees": 8.428142411624158,
+            "middle_frame_translation_residual_A": 1.1140156217501114,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.458658219133673,
+            "shared_residue_rmsd_A": 1.1622324146887208,
+            "start_anchor_connection_length_deviation_A": 0.09670722135741494,
+            "start_anchor_fit_max_displacement_A": 0.6354619951528644,
+            "start_anchor_fit_rmsd_A": 0.29564522546298727,
+            "start_anchor_pinned_bond_max_deviation_A": 0.09670722135741561
+          },
+          "suite_ids": [
+            "119D:A:8-9",
+            "1WQY:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 4.132774638677871,
+            "end_anchor_rmsd_A": 2.9533164632912015,
+            "endpoint_rotation_residual_degrees": 27.691969107633483,
+            "endpoint_translation_residual_A": 2.1762537976436116,
+            "shared_residue_max_displacement_A": 1.688691821070779,
+            "shared_residue_rmsd_A": 0.5469767912218311,
+            "start_anchor_max_displacement_A": 2.064003119764948,
+            "start_anchor_rmsd_A": 0.831525637274721
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.2704907888887129,
+            "end_anchor_fit_max_displacement_A": 1.4623164704748828,
+            "end_anchor_fit_rmsd_A": 0.46361410503209277,
+            "end_anchor_pinned_bond_max_deviation_A": 0.2704907888887129,
+            "middle_frame_rotation_residual_degrees": 12.32642379771072,
+            "middle_frame_translation_residual_A": 1.1897905854514588,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 1.7466551110699289,
+            "shared_residue_rmsd_A": 1.1787220026114194,
+            "start_anchor_connection_length_deviation_A": 0.052713964603343655,
+            "start_anchor_fit_max_displacement_A": 0.4304411406541455,
+            "start_anchor_fit_rmsd_A": 0.2451266262292132,
+            "start_anchor_pinned_bond_max_deviation_A": 0.05809946389243881
+          },
+          "suite_ids": [
+            "119D:B:20-21",
+            "1WQY:B:18-19"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 5.384846184403738,
+            "end_anchor_rmsd_A": 3.196709605180252,
+            "endpoint_rotation_residual_degrees": 30.588668745209418,
+            "endpoint_translation_residual_A": 2.695302675629983,
+            "shared_residue_max_displacement_A": 1.51434306453847,
+            "shared_residue_rmsd_A": 0.5657649841565247,
+            "start_anchor_max_displacement_A": 1.2586814440873082,
+            "start_anchor_rmsd_A": 0.4854713596076846
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.0913779558327461,
+            "end_anchor_fit_max_displacement_A": 1.616660063628815,
+            "end_anchor_fit_rmsd_A": 0.6754757789371397,
+            "end_anchor_pinned_bond_max_deviation_A": 0.09137795583274566,
+            "middle_frame_rotation_residual_degrees": 27.380781363607596,
+            "middle_frame_translation_residual_A": 1.1045683144567209,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 3.333123702589296,
+            "shared_residue_rmsd_A": 1.8936424703518446,
+            "start_anchor_connection_length_deviation_A": 0.09670722135741494,
+            "start_anchor_fit_max_displacement_A": 0.6354619951528644,
+            "start_anchor_fit_rmsd_A": 0.29564522546298727,
+            "start_anchor_pinned_bond_max_deviation_A": 0.09670722135741561
+          },
+          "suite_ids": [
+            "119D:A:8-9",
+            "1WQY:A:8-9"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 4.726942425793243,
+            "end_anchor_rmsd_A": 3.2024465183570507,
+            "endpoint_rotation_residual_degrees": 27.452602501822163,
+            "endpoint_translation_residual_A": 3.104343775935904,
+            "shared_residue_max_displacement_A": 1.786442188318145,
+            "shared_residue_rmsd_A": 0.6462496142752001,
+            "start_anchor_max_displacement_A": 1.2586814440873082,
+            "start_anchor_rmsd_A": 0.4854713596076846
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.13698340385872654,
+            "end_anchor_fit_max_displacement_A": 1.8226151468217122,
+            "end_anchor_fit_rmsd_A": 0.7803231538263409,
+            "end_anchor_pinned_bond_max_deviation_A": 0.1369834038587272,
+            "middle_frame_rotation_residual_degrees": 25.600177705726715,
+            "middle_frame_translation_residual_A": 1.2951443264833895,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 3.7659782538095095,
+            "shared_residue_rmsd_A": 2.114335150058541,
+            "start_anchor_connection_length_deviation_A": 0.09670722135741494,
+            "start_anchor_fit_max_displacement_A": 0.6354619951528644,
+            "start_anchor_fit_rmsd_A": 0.29564522546298727,
+            "start_anchor_pinned_bond_max_deviation_A": 0.09670722135741561
+          },
+          "suite_ids": [
+            "119D:A:8-9",
+            "3SV3:C:212-213"
+          ]
+        },
+        {
+          "baseframe": {
+            "end_anchor_max_displacement_A": 6.814554580790459,
+            "end_anchor_rmsd_A": 4.357657408871735,
+            "endpoint_rotation_residual_degrees": 39.16634981557755,
+            "endpoint_translation_residual_A": 3.2467186067957763,
+            "shared_residue_max_displacement_A": 2.0580777029557082,
+            "shared_residue_rmsd_A": 0.7090866567905391,
+            "start_anchor_max_displacement_A": 2.064003119764948,
+            "start_anchor_rmsd_A": 0.831525637274721
+          },
+          "full_anchor_rigid_fit": {
+            "end_anchor_connection_length_deviation_A": 0.0913779558327461,
+            "end_anchor_fit_max_displacement_A": 1.616660063628815,
+            "end_anchor_fit_rmsd_A": 0.6754757789371397,
+            "end_anchor_pinned_bond_max_deviation_A": 0.09137795583274566,
+            "middle_frame_rotation_residual_degrees": 29.798139216103205,
+            "middle_frame_translation_residual_A": 1.3313923345076142,
+            "passes_existing_geometry_limits": false,
+            "shared_residue_max_displacement_A": 3.7490834835444935,
+            "shared_residue_rmsd_A": 2.008642088009837,
+            "start_anchor_connection_length_deviation_A": 0.052713964603343655,
+            "start_anchor_fit_max_displacement_A": 0.4304411406541455,
+            "start_anchor_fit_rmsd_A": 0.2451266262292132,
+            "start_anchor_pinned_bond_max_deviation_A": 0.05809946389243881
+          },
+          "suite_ids": [
+            "119D:B:20-21",
+            "1WQY:A:8-9"
+          ]
+        }
+      ],
+      "first_failure_counts": {
+        "anchor_connection_geometry": 0,
+        "middle_frame_geometry": 6,
+        "pinned_bond_geometry": 0,
+        "shared_residue_geometry": 0
+      },
+      "full_anchor_rigid_fit_survivor_count": 0,
+      "gate_failure_counts": {
+        "anchor_connection_geometry": 2,
+        "middle_frame_geometry": 6,
+        "pinned_bond_geometry": 2,
+        "shared_residue_geometry": 6
+      },
+      "left_suite_count": 2,
+      "max_anchor_displacement_A": {
+        "baseframe_placement": {
+          "maximum": 6.814554580790459,
+          "median": 5.055894305098491,
+          "minimum": 3.2560618423890753,
+          "p90": 6.419943639169258
+        },
+        "full_anchor_rigid_fit_residual": {
+          "maximum": 1.8226151468217122,
+          "median": 1.616660063628815,
+          "minimum": 1.4623164704748828,
+          "p90": 1.8226151468217122
+        }
+      },
+      "pair_count": 6,
+      "right_suite_count": 3,
+      "target_chain": "I",
+      "target_sequence_including_anchors": "CTG",
+      "target_suite_ids": [
+        "1KX5:I:56-57",
+        "1KX5:I:57-58"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "target_entry": "1KX5",
+  "template_entry_ids": [
+    "119D",
+    "1BNA",
+    "1WQY",
+    "3SV3"
+  ],
+  "template_library_files": [
+    "artifacts/gap_benchmarks/1bna_dna_suites.json",
+    "artifacts/gap_benchmarks/3sv3_dna_suites.json",
+    "artifacts/gap_benchmarks/1wqy_dna_suites.json",
+    "artifacts/gap_benchmarks/119d_dna_suites.json"
+  ],
+  "template_suite_count": 67,
+  "window_count": 9
+}

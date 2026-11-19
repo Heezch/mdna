@@ -22,6 +22,16 @@ pip install .
 
 See our [documentation page](https://heezch.github.io/mdna/)
 
+## Fork development snapshot
+
+This branch adds explicit DNA/RNA chemistry and bond graphs, standard DNA duplex and RNA fragment mmCIF export, experimental RNA construction from supplied base frames and single-residue gap closure, and atom-level checks for open paths. See the [support matrix and release evidence](docs/guide/release-evidence.md).
+
+In the fixed-seed 48 bp DNA test, path smoothing reduced the largest frame-to-frame turn from 98.62° to 45.17° and short heavy-atom contacts from 183 to 23. The smoothed model still had 67 of 94 O3′–P connections outside the distance screen. A four-residue RNA development case passed the local boundary and context checks. Transfer to other structures remains limited, and arbitrary RNA paths, hybrid backbones and modified RNA do not have release validation.
+
+Run the test suite from the repository root with `python -m pytest -q`. The [DNA path benchmark](docs/guide/open-path-bend-qc.md) and [RNA frame benchmark](docs/guide/rna-path-building.md) describe the inputs, outputs and limits of the research probes.
+
+The benchmark fixtures include reference coordinates from the [wwPDB archive, available under CC0](https://www.wwpdb.org/about/usage-policies). The [DNA](artifacts/gap_benchmarks/README.md) and [RNA](artifacts/rna_pilot/README.md) fixture notes record entry IDs and provenance.
+
 ## Citation
 
 If you use MDNA in your research, please cite:

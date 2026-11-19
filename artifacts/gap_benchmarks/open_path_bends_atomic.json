@@ -1,0 +1,2835 @@
+{
+  "seed": 20261119,
+  "budget_nm": 0.9,
+  "sequence": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "input_points_nm": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.9273971717735627,
+      -0.17536635308470622,
+      -0.17988698164887382
+    ],
+    [
+      1.9146112607134325,
+      -0.5434628722080063,
+      -0.13444882763338745
+    ],
+    [
+      2.98571869670614,
+      -0.521463352941567,
+      -0.20060165408643868
+    ],
+    [
+      3.957890215537543,
+      -0.39133073082908376,
+      -0.17138484849955823
+    ],
+    [
+      4.948812638396946,
+      1.183110242172705,
+      0.38734788690901645
+    ],
+    [
+      6.0020308307486205,
+      -0.7055792557699283,
+      -0.07323275009735675
+    ],
+    [
+      7.198880889237295,
+      0.23474071473812796,
+      0.29273602435065327
+    ],
+    [
+      8.304012336052685,
+      0.33698966906697797,
+      0.34224826512790973
+    ],
+    [
+      9.317017466564,
+      0.4655686907124852,
+      0.29334494831197955
+    ],
+    [
+      10.4972483275802,
+      0.21729504005861822,
+      0.38487136487014173
+    ],
+    [
+      11.407191031349024,
+      0.1442655384052699,
+      0.24992163359383288
+    ]
+  ],
+  "smoothed_points_nm": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.9348524149359538,
+      -0.19938715389847786,
+      -0.15180372767063655
+    ],
+    [
+      1.92506725429543,
+      -0.49484350229304996,
+      -0.1483568980177167
+    ],
+    [
+      2.973387882032408,
+      -0.5079862529201838,
+      -0.18871532107484798
+    ],
+    [
+      3.960227222452405,
+      -0.21132028449640258,
+      -0.10538896970485531
+    ],
+    [
+      4.956576831731449,
+      0.7514851938240147,
+      0.26030641753836126
+    ],
+    [
+      6.01993229639825,
+      -0.352987472456048,
+      0.029783706451070285
+    ],
+    [
+      7.187449598810874,
+      0.13028827036361995,
+      0.25329466694529723
+    ],
+    [
+      8.292530231620711,
+      0.3402713001443879,
+      0.32998230513569543
+    ],
+    [
+      9.33785953838887,
+      0.41859989924873414,
+      0.3108473181954499
+    ],
+    [
+      10.463561136202694,
+      0.2391364823374436,
+      0.356644655227227
+    ],
+    [
+      11.407191031349024,
+      0.1442655384052699,
+      0.24992163359383288
+    ]
+  ],
+  "curve": {
+    "max_turn_before_deg": 79.44578482639021,
+    "max_turn_after_deg": 40.95025265601566,
+    "p95_turn_before_deg": 22.445212527102097,
+    "p95_turn_after_deg": 18.391990607463516,
+    "max_sample_deviation": 0.518497381582675,
+    "max_control_deviation": 0.45,
+    "length_before": 14.260384861948678,
+    "length_after": 12.76676861830227,
+    "samples": 81
+  },
+  "endpoint_displacement_nm": [
+    0.0,
+    0.0
+  ],
+  "atom_level": {
+    "straight": {
+      "links": [
+        {
+          "chain_index": 0,
+          "left_residue_index": 0,
+          "right_residue_index": 1,
+          "bond_present": true,
+          "o3p_A": 1.3167587903969655,
+          "c3_o3_p_deg": 127.09473469715525,
+          "o3_p_o5_deg": 87.07765170094073
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 1,
+          "right_residue_index": 2,
+          "bond_present": true,
+          "o3p_A": 1.2587169106825764,
+          "c3_o3_p_deg": 105.91262717086839,
+          "o3_p_o5_deg": 133.50917362549097
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 2,
+          "right_residue_index": 3,
+          "bond_present": true,
+          "o3p_A": 2.238470556791316,
+          "c3_o3_p_deg": 137.34437822722242,
+          "o3_p_o5_deg": 75.77229445805546
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 3,
+          "right_residue_index": 4,
+          "bond_present": true,
+          "o3p_A": 0.9079226919171657,
+          "c3_o3_p_deg": 133.38731019914795,
+          "o3_p_o5_deg": 144.33094412217903
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 4,
+          "right_residue_index": 5,
+          "bond_present": true,
+          "o3p_A": 1.3167582974086192,
+          "c3_o3_p_deg": 127.09473007460578,
+          "o3_p_o5_deg": 87.07763707838153
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 5,
+          "right_residue_index": 6,
+          "bond_present": true,
+          "o3p_A": 1.2587169424651696,
+          "c3_o3_p_deg": 105.91259744530079,
+          "o3_p_o5_deg": 133.50912616718665
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 6,
+          "right_residue_index": 7,
+          "bond_present": true,
+          "o3p_A": 2.2384713063795694,
+          "c3_o3_p_deg": 137.34435478204577,
+          "o3_p_o5_deg": 75.77232052934467
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 7,
+          "right_residue_index": 8,
+          "bond_present": true,
+          "o3p_A": 0.9079223752133475,
+          "c3_o3_p_deg": 133.38731613455923,
+          "o3_p_o5_deg": 144.33097816636771
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 8,
+          "right_residue_index": 9,
+          "bond_present": true,
+          "o3p_A": 1.3167582747187374,
+          "c3_o3_p_deg": 127.09475608909938,
+          "o3_p_o5_deg": 87.077596965665
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 9,
+          "right_residue_index": 10,
+          "bond_present": true,
+          "o3p_A": 1.258716650982937,
+          "c3_o3_p_deg": 105.91260439949842,
+          "o3_p_o5_deg": 133.5091671741399
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 10,
+          "right_residue_index": 11,
+          "bond_present": true,
+          "o3p_A": 2.2384708328404206,
+          "c3_o3_p_deg": 137.34435056804895,
+          "o3_p_o5_deg": 75.77226133839082
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 11,
+          "right_residue_index": 12,
+          "bond_present": true,
+          "o3p_A": 0.9079222271095518,
+          "c3_o3_p_deg": 133.3873195552375,
+          "o3_p_o5_deg": 144.33093967932837
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 12,
+          "right_residue_index": 13,
+          "bond_present": true,
+          "o3p_A": 1.3167582412568466,
+          "c3_o3_p_deg": 127.0946693447935,
+          "o3_p_o5_deg": 87.0776170990926
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 13,
+          "right_residue_index": 14,
+          "bond_present": true,
+          "o3p_A": 1.2587168380850016,
+          "c3_o3_p_deg": 105.91264080673758,
+          "o3_p_o5_deg": 133.50919124298323
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 14,
+          "right_residue_index": 15,
+          "bond_present": true,
+          "o3p_A": 2.238470932340076,
+          "c3_o3_p_deg": 137.34437285004302,
+          "o3_p_o5_deg": 75.77226502246225
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 15,
+          "right_residue_index": 16,
+          "bond_present": true,
+          "o3p_A": 0.9079231992650288,
+          "c3_o3_p_deg": 133.38717239530092,
+          "o3_p_o5_deg": 144.33089313054967
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 16,
+          "right_residue_index": 17,
+          "bond_present": true,
+          "o3p_A": 1.3167580515717936,
+          "c3_o3_p_deg": 127.09468377937844,
+          "o3_p_o5_deg": 87.07775146265203
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 17,
+          "right_residue_index": 18,
+          "bond_present": true,
+          "o3p_A": 1.2587172933184287,
+          "c3_o3_p_deg": 105.91262825363356,
+          "o3_p_o5_deg": 133.50907815795898
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 18,
+          "right_residue_index": 19,
+          "bond_present": true,
+          "o3p_A": 2.2384716805389666,
+          "c3_o3_p_deg": 137.34438179988044,
+          "o3_p_o5_deg": 75.77233627963928
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 19,
+          "right_residue_index": 20,
+          "bond_present": true,
+          "o3p_A": 0.9079197042325906,
+          "c3_o3_p_deg": 133.3873803511753,
+          "o3_p_o5_deg": 144.33104835865262
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 20,
+          "right_residue_index": 21,
+          "bond_present": true,
+          "o3p_A": 1.3167591362159963,
+          "c3_o3_p_deg": 127.09481620752732,
+          "o3_p_o5_deg": 87.07756774677695
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 21,
+          "right_residue_index": 22,
+          "bond_present": true,
+          "o3p_A": 1.258716487740087,
+          "c3_o3_p_deg": 105.91260458775945,
+          "o3_p_o5_deg": 133.50920898355855
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 22,
+          "right_residue_index": 23,
+          "bond_present": true,
+          "o3p_A": 2.238470293122675,
+          "c3_o3_p_deg": 137.3443265126554,
+          "o3_p_o5_deg": 75.77225848960016
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 23,
+          "right_residue_index": 24,
+          "bond_present": true,
+          "o3p_A": 0.907921923786241,
+          "c3_o3_p_deg": 133.38733789266706,
+          "o3_p_o5_deg": 144.3309886794973
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 24,
+          "right_residue_index": 25,
+          "bond_present": true,
+          "o3p_A": 1.3167586255932002,
+          "c3_o3_p_deg": 127.09464659961169,
+          "o3_p_o5_deg": 87.07761847109741
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 25,
+          "right_residue_index": 26,
+          "bond_present": true,
+          "o3p_A": 1.2587176543303193,
+          "c3_o3_p_deg": 105.91258717537565,
+          "o3_p_o5_deg": 133.50894343846414
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 26,
+          "right_residue_index": 27,
+          "bond_present": true,
+          "o3p_A": 2.2384695596084603,
+          "c3_o3_p_deg": 137.3443384535094,
+          "o3_p_o5_deg": 75.77222425046489
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 27,
+          "right_residue_index": 28,
+          "bond_present": true,
+          "o3p_A": 0.9079190587819994,
+          "c3_o3_p_deg": 133.38760730687525,
+          "o3_p_o5_deg": 144.33109577470717
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 28,
+          "right_residue_index": 29,
+          "bond_present": true,
+          "o3p_A": 1.316760931041225,
+          "c3_o3_p_deg": 127.09464948794957,
+          "o3_p_o5_deg": 87.0775977216353
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 29,
+          "right_residue_index": 30,
+          "bond_present": true,
+          "o3p_A": 1.2587176106494105,
+          "c3_o3_p_deg": 105.91253295851918,
+          "o3_p_o5_deg": 133.50904673297438
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 30,
+          "right_residue_index": 31,
+          "bond_present": true,
+          "o3p_A": 2.238469721382897,
+          "c3_o3_p_deg": 137.34436837901973,
+          "o3_p_o5_deg": 75.77229902298836
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 31,
+          "right_residue_index": 32,
+          "bond_present": true,
+          "o3p_A": 0.9079221147491168,
+          "c3_o3_p_deg": 133.38714349390202,
+          "o3_p_o5_deg": 144.3309610445353
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 32,
+          "right_residue_index": 33,
+          "bond_present": true,
+          "o3p_A": 1.3167633859455639,
+          "c3_o3_p_deg": 127.09444308131808,
+          "o3_p_o5_deg": 87.07758091686755
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 33,
+          "right_residue_index": 34,
+          "bond_present": true,
+          "o3p_A": 1.258715481170227,
+          "c3_o3_p_deg": 105.91272011227593,
+          "o3_p_o5_deg": 133.50953360156208
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 34,
+          "right_residue_index": 35,
+          "bond_present": true,
+          "o3p_A": 2.238469520297267,
+          "c3_o3_p_deg": 137.34433437402043,
+          "o3_p_o5_deg": 75.77218119261042
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 35,
+          "right_residue_index": 36,
+          "bond_present": true,
+          "o3p_A": 0.9079165240782665,
+          "c3_o3_p_deg": 133.3876163609505,
+          "o3_p_o5_deg": 144.33112917374638
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 36,
+          "right_residue_index": 37,
+          "bond_present": true,
+          "o3p_A": 1.316753277399001,
+          "c3_o3_p_deg": 127.09485432760847,
+          "o3_p_o5_deg": 87.07763035935999
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 37,
+          "right_residue_index": 38,
+          "bond_present": true,
+          "o3p_A": 1.2587179119285168,
+          "c3_o3_p_deg": 105.91245731272149,
+          "o3_p_o5_deg": 133.50883966047266
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 38,
+          "right_residue_index": 39,
+          "bond_present": true,
+          "o3p_A": 2.2384705742104507,
+          "c3_o3_p_deg": 137.34432603840705,
+          "o3_p_o5_deg": 75.77233852629749
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 39,
+          "right_residue_index": 40,
+          "bond_present": true,
+          "o3p_A": 0.9079228581508216,
+          "c3_o3_p_deg": 133.38746655898044,
+          "o3_p_o5_deg": 144.3309572107636
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 40,
+          "right_residue_index": 41,
+          "bond_present": true,
+          "o3p_A": 1.316757776814785,
+          "c3_o3_p_deg": 127.09489223103965,
+          "o3_p_o5_deg": 87.07759841491297
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 41,
+          "right_residue_index": 42,
+          "bond_present": true,
+          "o3p_A": 1.2587186147147784,
+          "c3_o3_p_deg": 105.91234325091253,
+          "o3_p_o5_deg": 133.50897780792423
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 42,
+          "right_residue_index": 43,
+          "bond_present": true,
+          "o3p_A": 2.238473182726863,
+          "c3_o3_p_deg": 137.3443358213073,
+          "o3_p_o5_deg": 75.77236148636207
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 43,
+          "right_residue_index": 44,
+          "bond_present": true,
+          "o3p_A": 0.9079242373632921,
+          "c3_o3_p_deg": 133.3870725798974,
+          "o3_p_o5_deg": 144.33095187401238
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 44,
+          "right_residue_index": 45,
+          "bond_present": true,
+          "o3p_A": 1.3167591317877436,
+          "c3_o3_p_deg": 127.09451763979352,
+          "o3_p_o5_deg": 87.07789264875865
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 45,
+          "right_residue_index": 46,
+          "bond_present": true,
+          "o3p_A": 1.2587166918378976,
+          "c3_o3_p_deg": 105.91260673502164,
+          "o3_p_o5_deg": 133.50928581352812
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 46,
+          "right_residue_index": 47,
+          "bond_present": true,
+          "o3p_A": 2.3105407847156663,
+          "c3_o3_p_deg": 137.86156442883563,
+          "o3_p_o5_deg": 77.77576812663536
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 48,
+          "right_residue_index": 49,
+          "bond_present": true,
+          "o3p_A": 1.4391946992077151,
+          "c3_o3_p_deg": 125.4201314505157,
+          "o3_p_o5_deg": 89.94624703466863
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 49,
+          "right_residue_index": 50,
+          "bond_present": true,
+          "o3p_A": 1.2587172500407893,
+          "c3_o3_p_deg": 105.9125493963632,
+          "o3_p_o5_deg": 133.50899736751478
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 50,
+          "right_residue_index": 51,
+          "bond_present": true,
+          "o3p_A": 2.238473498336164,
+          "c3_o3_p_deg": 137.34436196951802,
+          "o3_p_o5_deg": 75.77240202033114
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 51,
+          "right_residue_index": 52,
+          "bond_present": true,
+          "o3p_A": 0.9079186666330589,
+          "c3_o3_p_deg": 133.38762267280015,
+          "o3_p_o5_deg": 144.33099247965686
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 52,
+          "right_residue_index": 53,
+          "bond_present": true,
+          "o3p_A": 1.3167594532463762,
+          "c3_o3_p_deg": 127.09482913664688,
+          "o3_p_o5_deg": 87.07746164518717
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 53,
+          "right_residue_index": 54,
+          "bond_present": true,
+          "o3p_A": 1.258718210509643,
+          "c3_o3_p_deg": 105.91250044774759,
+          "o3_p_o5_deg": 133.50905185285438
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 54,
+          "right_residue_index": 55,
+          "bond_present": true,
+          "o3p_A": 2.2384728331889288,
+          "c3_o3_p_deg": 137.34436709944848,
+          "o3_p_o5_deg": 75.7723526209344
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 55,
+          "right_residue_index": 56,
+          "bond_present": true,
+          "o3p_A": 0.9079274342687277,
+          "c3_o3_p_deg": 133.38707023489272,
+          "o3_p_o5_deg": 144.33064000421388
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 56,
+          "right_residue_index": 57,
+          "bond_present": true,
+          "o3p_A": 1.3167612588105995,
+          "c3_o3_p_deg": 127.0947974347292,
+          "o3_p_o5_deg": 87.07761529895306
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 57,
+          "right_residue_index": 58,
+          "bond_present": true,
+          "o3p_A": 1.2587183880002444,
+          "c3_o3_p_deg": 105.91243103430016,
+          "o3_p_o5_deg": 133.5088320421498
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 58,
+          "right_residue_index": 59,
+          "bond_present": true,
+          "o3p_A": 2.2384687220779145,
+          "c3_o3_p_deg": 137.34433948600565,
+          "o3_p_o5_deg": 75.77226253102829
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 59,
+          "right_residue_index": 60,
+          "bond_present": true,
+          "o3p_A": 0.907924315256442,
+          "c3_o3_p_deg": 133.38735711387397,
+          "o3_p_o5_deg": 144.3309575430014
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 60,
+          "right_residue_index": 61,
+          "bond_present": true,
+          "o3p_A": 1.3167526556674765,
+          "c3_o3_p_deg": 127.09492331341579,
+          "o3_p_o5_deg": 87.07760773918787
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 61,
+          "right_residue_index": 62,
+          "bond_present": true,
+          "o3p_A": 1.2587176295189686,
+          "c3_o3_p_deg": 105.91245259251355,
+          "o3_p_o5_deg": 133.5091489899598
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 62,
+          "right_residue_index": 63,
+          "bond_present": true,
+          "o3p_A": 2.2384727090788297,
+          "c3_o3_p_deg": 137.34434663419373,
+          "o3_p_o5_deg": 75.77228922791812
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 63,
+          "right_residue_index": 64,
+          "bond_present": true,
+          "o3p_A": 0.9079209752063652,
+          "c3_o3_p_deg": 133.38732202173927,
+          "o3_p_o5_deg": 144.33104142221015
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 64,
+          "right_residue_index": 65,
+          "bond_present": true,
+          "o3p_A": 1.3167586782337237,
+          "c3_o3_p_deg": 127.09477124361361,
+          "o3_p_o5_deg": 87.07775903924995
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 65,
+          "right_residue_index": 66,
+          "bond_present": true,
+          "o3p_A": 1.25871790857498,
+          "c3_o3_p_deg": 105.91250664637725,
+          "o3_p_o5_deg": 133.50892169356476
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 66,
+          "right_residue_index": 67,
+          "bond_present": true,
+          "o3p_A": 2.238468965385846,
+          "c3_o3_p_deg": 137.34434170905425,
+          "o3_p_o5_deg": 75.77231438701494
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 67,
+          "right_residue_index": 68,
+          "bond_present": true,
+          "o3p_A": 0.9079207277875413,
+          "c3_o3_p_deg": 133.3875233919294,
+          "o3_p_o5_deg": 144.33082956602362
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 68,
+          "right_residue_index": 69,
+          "bond_present": true,
+          "o3p_A": 1.31675779469359,
+          "c3_o3_p_deg": 127.09466869008804,
+          "o3_p_o5_deg": 87.07763887223935
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 69,
+          "right_residue_index": 70,
+          "bond_present": true,
+          "o3p_A": 1.2587161222591545,
+          "c3_o3_p_deg": 105.91271565906607,
+          "o3_p_o5_deg": 133.50930024856854
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 70,
+          "right_residue_index": 71,
+          "bond_present": true,
+          "o3p_A": 2.238472293381593,
+          "c3_o3_p_deg": 137.3443670908565,
+          "o3_p_o5_deg": 75.77233601299936
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 71,
+          "right_residue_index": 72,
+          "bond_present": true,
+          "o3p_A": 0.9079270192487222,
+          "c3_o3_p_deg": 133.38692582308403,
+          "o3_p_o5_deg": 144.33079178710616
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 72,
+          "right_residue_index": 73,
+          "bond_present": true,
+          "o3p_A": 1.3167563098136312,
+          "c3_o3_p_deg": 127.09487670560019,
+          "o3_p_o5_deg": 87.07759504152979
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 73,
+          "right_residue_index": 74,
+          "bond_present": true,
+          "o3p_A": 1.2587170340537774,
+          "c3_o3_p_deg": 105.91260425342871,
+          "o3_p_o5_deg": 133.50915599847997
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 74,
+          "right_residue_index": 75,
+          "bond_present": true,
+          "o3p_A": 2.2384709656187303,
+          "c3_o3_p_deg": 137.3443501287611,
+          "o3_p_o5_deg": 75.77231602985668
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 75,
+          "right_residue_index": 76,
+          "bond_present": true,
+          "o3p_A": 0.9079225422031566,
+          "c3_o3_p_deg": 133.3873906720906,
+          "o3_p_o5_deg": 144.330959824518
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 76,
+          "right_residue_index": 77,
+          "bond_present": true,
+          "o3p_A": 1.3167594644238076,
+          "c3_o3_p_deg": 127.09471754963405,
+          "o3_p_o5_deg": 87.07760075247118
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 77,
+          "right_residue_index": 78,
+          "bond_present": true,
+          "o3p_A": 1.2587162222317467,
+          "c3_o3_p_deg": 105.91271683740662,
+          "o3_p_o5_deg": 133.50929723757756
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 78,
+          "right_residue_index": 79,
+          "bond_present": true,
+          "o3p_A": 2.2384708373982223,
+          "c3_o3_p_deg": 137.34439072133122,
+          "o3_p_o5_deg": 75.77231769355198
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 79,
+          "right_residue_index": 80,
+          "bond_present": true,
+          "o3p_A": 0.9079239707023554,
+          "c3_o3_p_deg": 133.3872895726289,
+          "o3_p_o5_deg": 144.33090889559134
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 80,
+          "right_residue_index": 81,
+          "bond_present": true,
+          "o3p_A": 1.3167582749645321,
+          "c3_o3_p_deg": 127.09478280274192,
+          "o3_p_o5_deg": 87.07761226319283
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 81,
+          "right_residue_index": 82,
+          "bond_present": true,
+          "o3p_A": 1.2587170111823252,
+          "c3_o3_p_deg": 105.91260243417392,
+          "o3_p_o5_deg": 133.5091414182489
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 82,
+          "right_residue_index": 83,
+          "bond_present": true,
+          "o3p_A": 2.238471357626256,
+          "c3_o3_p_deg": 137.3443614059426,
+          "o3_p_o5_deg": 75.77224976526642
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 83,
+          "right_residue_index": 84,
+          "bond_present": true,
+          "o3p_A": 0.9079219844766516,
+          "c3_o3_p_deg": 133.38724892443582,
+          "o3_p_o5_deg": 144.3309756124469
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 84,
+          "right_residue_index": 85,
+          "bond_present": true,
+          "o3p_A": 1.3167595738286595,
+          "c3_o3_p_deg": 127.09469140259301,
+          "o3_p_o5_deg": 87.07761369269728
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 85,
+          "right_residue_index": 86,
+          "bond_present": true,
+          "o3p_A": 1.2587170393133083,
+          "c3_o3_p_deg": 105.91262433202918,
+          "o3_p_o5_deg": 133.50912891194622
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 86,
+          "right_residue_index": 87,
+          "bond_present": true,
+          "o3p_A": 2.2384705698091385,
+          "c3_o3_p_deg": 137.34436038298182,
+          "o3_p_o5_deg": 75.7722883367934
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 87,
+          "right_residue_index": 88,
+          "bond_present": true,
+          "o3p_A": 0.9079214490055143,
+          "c3_o3_p_deg": 133.38730515960683,
+          "o3_p_o5_deg": 144.33101102177076
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 88,
+          "right_residue_index": 89,
+          "bond_present": true,
+          "o3p_A": 1.3167587194112043,
+          "c3_o3_p_deg": 127.09473547283534,
+          "o3_p_o5_deg": 87.07768768122484
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 89,
+          "right_residue_index": 90,
+          "bond_present": true,
+          "o3p_A": 1.258716873520747,
+          "c3_o3_p_deg": 105.91264010269089,
+          "o3_p_o5_deg": 133.50915219991185
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 90,
+          "right_residue_index": 91,
+          "bond_present": true,
+          "o3p_A": 2.238470919415315,
+          "c3_o3_p_deg": 137.34436577652085,
+          "o3_p_o5_deg": 75.77226909826808
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 91,
+          "right_residue_index": 92,
+          "bond_present": true,
+          "o3p_A": 0.9079225721000999,
+          "c3_o3_p_deg": 133.38731136967425,
+          "o3_p_o5_deg": 144.33094287036963
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 92,
+          "right_residue_index": 93,
+          "bond_present": true,
+          "o3p_A": 1.316758852642272,
+          "c3_o3_p_deg": 127.09471518757596,
+          "o3_p_o5_deg": 87.07766062485275
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 93,
+          "right_residue_index": 94,
+          "bond_present": true,
+          "o3p_A": 1.2587166170560564,
+          "c3_o3_p_deg": 105.91264821548972,
+          "o3_p_o5_deg": 133.50915854981793
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 94,
+          "right_residue_index": 95,
+          "bond_present": true,
+          "o3p_A": 2.2384706181984653,
+          "c3_o3_p_deg": 137.3443637418403,
+          "o3_p_o5_deg": 75.772285662196
+        }
+      ],
+      "missing_links": 0,
+      "contact_cutoff_A": 2.0,
+      "short_heavy_contacts": 0,
+      "min_short_heavy_distance_A": null,
+      "atoms_without_element": 0,
+      "max_frame_turn_deg": 2.3796589346424896e-14,
+      "triage": {
+        "status": "failed",
+        "failures": [
+          "out_of_screen_link_length"
+        ],
+        "o3p_screen_A": [
+          1.3,
+          2.0
+        ],
+        "per_chain": [
+          {
+            "chain_index": 0,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 23,
+            "long_links": 12,
+            "min_o3p_A": 0.9079165240782665,
+            "max_o3p_A": 2.3105407847156663
+          },
+          {
+            "chain_index": 1,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 23,
+            "long_links": 12,
+            "min_o3p_A": 0.9079186666330589,
+            "max_o3p_A": 2.238473498336164
+          }
+        ]
+      }
+    },
+    "original": {
+      "links": [
+        {
+          "chain_index": 0,
+          "left_residue_index": 0,
+          "right_residue_index": 1,
+          "bond_present": true,
+          "o3p_A": 3.4160731773552144,
+          "c3_o3_p_deg": 114.88906226121446,
+          "o3_p_o5_deg": 97.67793448004645
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 1,
+          "right_residue_index": 2,
+          "bond_present": true,
+          "o3p_A": 1.7599548176101052,
+          "c3_o3_p_deg": 129.2270715328073,
+          "o3_p_o5_deg": 132.4603106473032
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 2,
+          "right_residue_index": 3,
+          "bond_present": true,
+          "o3p_A": 2.519385445198195,
+          "c3_o3_p_deg": 134.35368553232064,
+          "o3_p_o5_deg": 75.41821589062825
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 3,
+          "right_residue_index": 4,
+          "bond_present": true,
+          "o3p_A": 0.681927866997192,
+          "c3_o3_p_deg": 135.08939286160913,
+          "o3_p_o5_deg": 149.33060866175236
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 4,
+          "right_residue_index": 5,
+          "bond_present": true,
+          "o3p_A": 1.1774284434941535,
+          "c3_o3_p_deg": 133.8270912474539,
+          "o3_p_o5_deg": 89.25014010528297
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 5,
+          "right_residue_index": 6,
+          "bond_present": true,
+          "o3p_A": 1.521754215807616,
+          "c3_o3_p_deg": 125.69870782059743,
+          "o3_p_o5_deg": 144.14729649740795
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 6,
+          "right_residue_index": 7,
+          "bond_present": true,
+          "o3p_A": 3.5598660270960854,
+          "c3_o3_p_deg": 134.55241978402515,
+          "o3_p_o5_deg": 83.31998373219372
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 7,
+          "right_residue_index": 8,
+          "bond_present": true,
+          "o3p_A": 1.6576399510881763,
+          "c3_o3_p_deg": 124.09169938674307,
+          "o3_p_o5_deg": 126.45784623284867
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 8,
+          "right_residue_index": 9,
+          "bond_present": true,
+          "o3p_A": 1.280973700649025,
+          "c3_o3_p_deg": 127.2562385908201,
+          "o3_p_o5_deg": 86.28643389377295
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 9,
+          "right_residue_index": 10,
+          "bond_present": true,
+          "o3p_A": 1.4240036328259478,
+          "c3_o3_p_deg": 106.09312057673918,
+          "o3_p_o5_deg": 129.56891944857983
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 10,
+          "right_residue_index": 11,
+          "bond_present": true,
+          "o3p_A": 2.4756461593489636,
+          "c3_o3_p_deg": 136.77726775013468,
+          "o3_p_o5_deg": 77.38858351345974
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 11,
+          "right_residue_index": 12,
+          "bond_present": true,
+          "o3p_A": 0.2261508828096219,
+          "c3_o3_p_deg": 121.48355759794298,
+          "o3_p_o5_deg": 144.21888754606937
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 12,
+          "right_residue_index": 13,
+          "bond_present": true,
+          "o3p_A": 2.0905695238174773,
+          "c3_o3_p_deg": 63.62402637572807,
+          "o3_p_o5_deg": 54.53977765753483
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 13,
+          "right_residue_index": 14,
+          "bond_present": true,
+          "o3p_A": 3.621018690613398,
+          "c3_o3_p_deg": 65.83061853571311,
+          "o3_p_o5_deg": 84.71634701861872
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 14,
+          "right_residue_index": 15,
+          "bond_present": true,
+          "o3p_A": 1.9520074747686915,
+          "c3_o3_p_deg": 133.24724923043564,
+          "o3_p_o5_deg": 70.80400871260983
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 15,
+          "right_residue_index": 16,
+          "bond_present": true,
+          "o3p_A": 0.8240247138279382,
+          "c3_o3_p_deg": 138.79951502895744,
+          "o3_p_o5_deg": 159.7688881054751
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 16,
+          "right_residue_index": 17,
+          "bond_present": true,
+          "o3p_A": 1.3938417463371033,
+          "c3_o3_p_deg": 128.3718388210894,
+          "o3_p_o5_deg": 90.31397193607229
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 17,
+          "right_residue_index": 18,
+          "bond_present": true,
+          "o3p_A": 1.297382151906723,
+          "c3_o3_p_deg": 102.24415901248473,
+          "o3_p_o5_deg": 129.73864211621844
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 18,
+          "right_residue_index": 19,
+          "bond_present": true,
+          "o3p_A": 2.0136789786826967,
+          "c3_o3_p_deg": 108.4694653570813,
+          "o3_p_o5_deg": 61.443354021382106
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 19,
+          "right_residue_index": 20,
+          "bond_present": true,
+          "o3p_A": 11.060701455314982,
+          "c3_o3_p_deg": 78.90988324991822,
+          "o3_p_o5_deg": 38.40004202816457
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 20,
+          "right_residue_index": 21,
+          "bond_present": true,
+          "o3p_A": 1.126137452650964,
+          "c3_o3_p_deg": 148.76896379448047,
+          "o3_p_o5_deg": 80.65378461440366
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 21,
+          "right_residue_index": 22,
+          "bond_present": true,
+          "o3p_A": 1.3380920001268624,
+          "c3_o3_p_deg": 110.04257581978302,
+          "o3_p_o5_deg": 134.54410942472342
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 22,
+          "right_residue_index": 23,
+          "bond_present": true,
+          "o3p_A": 2.2478788922318405,
+          "c3_o3_p_deg": 137.4784682961795,
+          "o3_p_o5_deg": 75.89548618152577
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 23,
+          "right_residue_index": 24,
+          "bond_present": true,
+          "o3p_A": 0.7206826466703858,
+          "c3_o3_p_deg": 136.55541762232733,
+          "o3_p_o5_deg": 153.3730224341856
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 24,
+          "right_residue_index": 25,
+          "bond_present": true,
+          "o3p_A": 0.9321916920648853,
+          "c3_o3_p_deg": 136.0295313887408,
+          "o3_p_o5_deg": 81.60214138728443
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 25,
+          "right_residue_index": 26,
+          "bond_present": true,
+          "o3p_A": 1.8348584472192588,
+          "c3_o3_p_deg": 97.79283268906558,
+          "o3_p_o5_deg": 115.43348350546694
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 26,
+          "right_residue_index": 27,
+          "bond_present": true,
+          "o3p_A": 4.061626362787532,
+          "c3_o3_p_deg": 138.5907159742129,
+          "o3_p_o5_deg": 93.46308157056558
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 27,
+          "right_residue_index": 28,
+          "bond_present": true,
+          "o3p_A": 6.363155202709327,
+          "c3_o3_p_deg": 101.12532404501046,
+          "o3_p_o5_deg": 130.37675467123162
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 28,
+          "right_residue_index": 29,
+          "bond_present": true,
+          "o3p_A": 2.9529361635819913,
+          "c3_o3_p_deg": 116.44324673033724,
+          "o3_p_o5_deg": 95.08682172941779
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 29,
+          "right_residue_index": 30,
+          "bond_present": true,
+          "o3p_A": 1.210416751898557,
+          "c3_o3_p_deg": 109.505202328967,
+          "o3_p_o5_deg": 137.53276463116921
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 30,
+          "right_residue_index": 31,
+          "bond_present": true,
+          "o3p_A": 2.124778205973058,
+          "c3_o3_p_deg": 138.8354446696713,
+          "o3_p_o5_deg": 75.61029687132168
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 31,
+          "right_residue_index": 32,
+          "bond_present": true,
+          "o3p_A": 1.1386817056975949,
+          "c3_o3_p_deg": 137.8247544476262,
+          "o3_p_o5_deg": 157.26477472265444
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 32,
+          "right_residue_index": 33,
+          "bond_present": true,
+          "o3p_A": 2.9075503107983502,
+          "c3_o3_p_deg": 119.12641370150867,
+          "o3_p_o5_deg": 103.37049752385266
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 33,
+          "right_residue_index": 34,
+          "bond_present": true,
+          "o3p_A": 2.0941187214699246,
+          "c3_o3_p_deg": 129.23021235335108,
+          "o3_p_o5_deg": 134.79549736137022
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 34,
+          "right_residue_index": 35,
+          "bond_present": true,
+          "o3p_A": 2.863249084282444,
+          "c3_o3_p_deg": 136.82780129889085,
+          "o3_p_o5_deg": 80.60030228188229
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 35,
+          "right_residue_index": 36,
+          "bond_present": true,
+          "o3p_A": 1.0382637041342397,
+          "c3_o3_p_deg": 135.41547948385713,
+          "o3_p_o5_deg": 150.3762807439758
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 36,
+          "right_residue_index": 37,
+          "bond_present": true,
+          "o3p_A": 1.6091524058684836,
+          "c3_o3_p_deg": 128.79708580272526,
+          "o3_p_o5_deg": 95.6473651943314
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 37,
+          "right_residue_index": 38,
+          "bond_present": true,
+          "o3p_A": 1.3045837819445558,
+          "c3_o3_p_deg": 106.81875085890974,
+          "o3_p_o5_deg": 133.06947115780892
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 38,
+          "right_residue_index": 39,
+          "bond_present": true,
+          "o3p_A": 1.8871629348003838,
+          "c3_o3_p_deg": 132.7014998822256,
+          "o3_p_o5_deg": 69.90956929442993
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 39,
+          "right_residue_index": 40,
+          "bond_present": true,
+          "o3p_A": 0.8492469454048021,
+          "c3_o3_p_deg": 108.36247709955866,
+          "o3_p_o5_deg": 117.15335466925485
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 40,
+          "right_residue_index": 41,
+          "bond_present": true,
+          "o3p_A": 1.082934694594164,
+          "c3_o3_p_deg": 141.38519627771385,
+          "o3_p_o5_deg": 91.05432036309561
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 41,
+          "right_residue_index": 42,
+          "bond_present": true,
+          "o3p_A": 1.3880126421891326,
+          "c3_o3_p_deg": 107.5723003384809,
+          "o3_p_o5_deg": 131.59390858618613
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 42,
+          "right_residue_index": 43,
+          "bond_present": true,
+          "o3p_A": 2.1151267204905357,
+          "c3_o3_p_deg": 137.62262438560614,
+          "o3_p_o5_deg": 74.79636166259594
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 43,
+          "right_residue_index": 44,
+          "bond_present": true,
+          "o3p_A": 0.5832525877225555,
+          "c3_o3_p_deg": 129.41993592378478,
+          "o3_p_o5_deg": 151.99938129737612
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 44,
+          "right_residue_index": 45,
+          "bond_present": true,
+          "o3p_A": 0.8459738372629634,
+          "c3_o3_p_deg": 151.21778323815695,
+          "o3_p_o5_deg": 84.13307676298437
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 45,
+          "right_residue_index": 46,
+          "bond_present": true,
+          "o3p_A": 1.743886724862107,
+          "c3_o3_p_deg": 112.50423722910503,
+          "o3_p_o5_deg": 127.57605672230011
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 46,
+          "right_residue_index": 47,
+          "bond_present": true,
+          "o3p_A": 2.3083331978829245,
+          "c3_o3_p_deg": 137.85034470478917,
+          "o3_p_o5_deg": 77.7188980874357
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 48,
+          "right_residue_index": 49,
+          "bond_present": true,
+          "o3p_A": 1.4355414750058997,
+          "c3_o3_p_deg": 125.46711201607953,
+          "o3_p_o5_deg": 89.87027655565461
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 49,
+          "right_residue_index": 50,
+          "bond_present": true,
+          "o3p_A": 1.2218032607009863,
+          "c3_o3_p_deg": 109.05634723616444,
+          "o3_p_o5_deg": 163.8007843159687
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 50,
+          "right_residue_index": 51,
+          "bond_present": true,
+          "o3p_A": 2.961376617518058,
+          "c3_o3_p_deg": 134.12179005100768,
+          "o3_p_o5_deg": 88.42690216839833
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 51,
+          "right_residue_index": 52,
+          "bond_present": true,
+          "o3p_A": 1.6888198002498813,
+          "c3_o3_p_deg": 116.37652689187648,
+          "o3_p_o5_deg": 133.53340760888892
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 52,
+          "right_residue_index": 53,
+          "bond_present": true,
+          "o3p_A": 1.562505227243388,
+          "c3_o3_p_deg": 122.41561236998189,
+          "o3_p_o5_deg": 93.14805221332863
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 53,
+          "right_residue_index": 54,
+          "bond_present": true,
+          "o3p_A": 1.1689213019844262,
+          "c3_o3_p_deg": 109.13732726958428,
+          "o3_p_o5_deg": 143.67046331618116
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 54,
+          "right_residue_index": 55,
+          "bond_present": true,
+          "o3p_A": 2.6561006454596736,
+          "c3_o3_p_deg": 135.25794657133068,
+          "o3_p_o5_deg": 84.96608613015462
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 55,
+          "right_residue_index": 56,
+          "bond_present": true,
+          "o3p_A": 2.3896444760393902,
+          "c3_o3_p_deg": 108.3600045823978,
+          "o3_p_o5_deg": 128.95837459195724
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 56,
+          "right_residue_index": 57,
+          "bond_present": true,
+          "o3p_A": 2.012788995830795,
+          "c3_o3_p_deg": 118.51710633828594,
+          "o3_p_o5_deg": 99.27093488013094
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 57,
+          "right_residue_index": 58,
+          "bond_present": true,
+          "o3p_A": 1.219333496046848,
+          "c3_o3_p_deg": 107.14443379935959,
+          "o3_p_o5_deg": 136.8683717375599
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 58,
+          "right_residue_index": 59,
+          "bond_present": true,
+          "o3p_A": 2.310156001728782,
+          "c3_o3_p_deg": 134.83892803236472,
+          "o3_p_o5_deg": 78.12016277434155
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 59,
+          "right_residue_index": 60,
+          "bond_present": true,
+          "o3p_A": 1.1551470014201957,
+          "c3_o3_p_deg": 120.61148684791749,
+          "o3_p_o5_deg": 136.9936170042392
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 60,
+          "right_residue_index": 61,
+          "bond_present": true,
+          "o3p_A": 1.0278926813635794,
+          "c3_o3_p_deg": 125.44314796543327,
+          "o3_p_o5_deg": 65.62456357663567
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 61,
+          "right_residue_index": 62,
+          "bond_present": true,
+          "o3p_A": 1.798977009547303,
+          "c3_o3_p_deg": 88.36016818654643,
+          "o3_p_o5_deg": 86.164021153879
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 62,
+          "right_residue_index": 63,
+          "bond_present": true,
+          "o3p_A": 2.1223955653995095,
+          "c3_o3_p_deg": 125.71350235207798,
+          "o3_p_o5_deg": 71.20148169929612
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 63,
+          "right_residue_index": 64,
+          "bond_present": true,
+          "o3p_A": 1.602627712967156,
+          "c3_o3_p_deg": 108.99709755568881,
+          "o3_p_o5_deg": 131.20515512870872
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 64,
+          "right_residue_index": 65,
+          "bond_present": true,
+          "o3p_A": 1.7302587986432756,
+          "c3_o3_p_deg": 118.35931474692815,
+          "o3_p_o5_deg": 95.5534284269569
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 65,
+          "right_residue_index": 66,
+          "bond_present": true,
+          "o3p_A": 1.3051271033161969,
+          "c3_o3_p_deg": 103.26378258050524,
+          "o3_p_o5_deg": 126.71861066307416
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 66,
+          "right_residue_index": 67,
+          "bond_present": true,
+          "o3p_A": 2.1250847477025956,
+          "c3_o3_p_deg": 117.91111796004971,
+          "o3_p_o5_deg": 54.72471843262688
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 67,
+          "right_residue_index": 68,
+          "bond_present": true,
+          "o3p_A": 1.630308616182856,
+          "c3_o3_p_deg": 77.02613329547289,
+          "o3_p_o5_deg": 8.699584528382447
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 68,
+          "right_residue_index": 69,
+          "bond_present": true,
+          "o3p_A": 3.3094560790706176,
+          "c3_o3_p_deg": 77.51668089353672,
+          "o3_p_o5_deg": 105.40844644791854
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 69,
+          "right_residue_index": 70,
+          "bond_present": true,
+          "o3p_A": 1.447339165486835,
+          "c3_o3_p_deg": 110.600224974179,
+          "o3_p_o5_deg": 160.0061785786342
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 70,
+          "right_residue_index": 71,
+          "bond_present": true,
+          "o3p_A": 2.4945498155583676,
+          "c3_o3_p_deg": 139.31878882012953,
+          "o3_p_o5_deg": 82.48808572962203
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 71,
+          "right_residue_index": 72,
+          "bond_present": true,
+          "o3p_A": 1.0827482331735674,
+          "c3_o3_p_deg": 128.48604186617686,
+          "o3_p_o5_deg": 141.50015173653514
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 72,
+          "right_residue_index": 73,
+          "bond_present": true,
+          "o3p_A": 1.312338081037757,
+          "c3_o3_p_deg": 126.81099525594169,
+          "o3_p_o5_deg": 86.88954741231233
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 73,
+          "right_residue_index": 74,
+          "bond_present": true,
+          "o3p_A": 1.1878145992934923,
+          "c3_o3_p_deg": 106.84759290793177,
+          "o3_p_o5_deg": 136.25687413081187
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 74,
+          "right_residue_index": 75,
+          "bond_present": true,
+          "o3p_A": 3.8849129115538887,
+          "c3_o3_p_deg": 121.59520696513918,
+          "o3_p_o5_deg": 93.2703341150948
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 75,
+          "right_residue_index": 76,
+          "bond_present": true,
+          "o3p_A": 14.377448816771853,
+          "c3_o3_p_deg": 64.74145098314052,
+          "o3_p_o5_deg": 105.21456480668195
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 76,
+          "right_residue_index": 77,
+          "bond_present": true,
+          "o3p_A": 3.0043595657696494,
+          "c3_o3_p_deg": 114.28048273724333,
+          "o3_p_o5_deg": 103.7150131130395
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 77,
+          "right_residue_index": 78,
+          "bond_present": true,
+          "o3p_A": 1.2483705200467305,
+          "c3_o3_p_deg": 107.65592700675657,
+          "o3_p_o5_deg": 138.47761333415013
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 78,
+          "right_residue_index": 79,
+          "bond_present": true,
+          "o3p_A": 2.2691861732189467,
+          "c3_o3_p_deg": 136.90958575620476,
+          "o3_p_o5_deg": 76.90837791728956
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 79,
+          "right_residue_index": 80,
+          "bond_present": true,
+          "o3p_A": 1.388982551292886,
+          "c3_o3_p_deg": 117.4614278288994,
+          "o3_p_o5_deg": 135.0444049529753
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 80,
+          "right_residue_index": 81,
+          "bond_present": true,
+          "o3p_A": 2.5449332013128885,
+          "c3_o3_p_deg": 110.83569857647203,
+          "o3_p_o5_deg": 102.19625662027515
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 81,
+          "right_residue_index": 82,
+          "bond_present": true,
+          "o3p_A": 2.7754118934881484,
+          "c3_o3_p_deg": 108.08651802323021,
+          "o3_p_o5_deg": 137.29648437990147
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 82,
+          "right_residue_index": 83,
+          "bond_present": true,
+          "o3p_A": 3.1671714145972363,
+          "c3_o3_p_deg": 151.65851463242493,
+          "o3_p_o5_deg": 89.83072072883925
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 83,
+          "right_residue_index": 84,
+          "bond_present": true,
+          "o3p_A": 0.8634442387600282,
+          "c3_o3_p_deg": 148.5790160190828,
+          "o3_p_o5_deg": 153.75485342951814
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 84,
+          "right_residue_index": 85,
+          "bond_present": true,
+          "o3p_A": 1.0957737011333697,
+          "c3_o3_p_deg": 130.5050270281528,
+          "o3_p_o5_deg": 75.64531461943936
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 85,
+          "right_residue_index": 86,
+          "bond_present": true,
+          "o3p_A": 1.1682908710013014,
+          "c3_o3_p_deg": 110.0727497428527,
+          "o3_p_o5_deg": 147.4530483227238
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 86,
+          "right_residue_index": 87,
+          "bond_present": true,
+          "o3p_A": 2.243029444829845,
+          "c3_o3_p_deg": 137.57872552565513,
+          "o3_p_o5_deg": 75.94713136772374
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 87,
+          "right_residue_index": 88,
+          "bond_present": true,
+          "o3p_A": 0.500755842223303,
+          "c3_o3_p_deg": 146.28259114128676,
+          "o3_p_o5_deg": 122.29531497721666
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 88,
+          "right_residue_index": 89,
+          "bond_present": true,
+          "o3p_A": 1.0613609318835553,
+          "c3_o3_p_deg": 113.36597776862808,
+          "o3_p_o5_deg": 44.49217981998906
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 89,
+          "right_residue_index": 90,
+          "bond_present": true,
+          "o3p_A": 1.117403142992527,
+          "c3_o3_p_deg": 102.87881343833602,
+          "o3_p_o5_deg": 123.26044807166913
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 90,
+          "right_residue_index": 91,
+          "bond_present": true,
+          "o3p_A": 2.425859584997857,
+          "c3_o3_p_deg": 137.532519785764,
+          "o3_p_o5_deg": 81.04515317155555
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 91,
+          "right_residue_index": 92,
+          "bond_present": true,
+          "o3p_A": 0.970811181503989,
+          "c3_o3_p_deg": 134.29485719921428,
+          "o3_p_o5_deg": 145.09095413037056
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 92,
+          "right_residue_index": 93,
+          "bond_present": true,
+          "o3p_A": 1.035837074043876,
+          "c3_o3_p_deg": 130.41320127480716,
+          "o3_p_o5_deg": 62.75074625043217
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 93,
+          "right_residue_index": 94,
+          "bond_present": true,
+          "o3p_A": 2.26505012027165,
+          "c3_o3_p_deg": 85.02971505212219,
+          "o3_p_o5_deg": 85.89086096964006
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 94,
+          "right_residue_index": 95,
+          "bond_present": true,
+          "o3p_A": 2.0806812477803076,
+          "c3_o3_p_deg": 117.3631251610916,
+          "o3_p_o5_deg": 52.74076754794801
+        }
+      ],
+      "missing_links": 0,
+      "contact_cutoff_A": 2.0,
+      "short_heavy_contacts": 183,
+      "min_short_heavy_distance_A": 0.2619359165635658,
+      "atoms_without_element": 0,
+      "max_frame_turn_deg": 98.61875658031647,
+      "triage": {
+        "status": "failed",
+        "failures": [
+          "out_of_screen_link_length",
+          "short_heavy_atom_contacts"
+        ],
+        "o3p_screen_A": [
+          1.3,
+          2.0
+        ],
+        "per_chain": [
+          {
+            "chain_index": 0,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 16,
+            "long_links": 18,
+            "min_o3p_A": 0.2261508828096219,
+            "max_o3p_A": 11.060701455314982
+          },
+          {
+            "chain_index": 1,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 16,
+            "long_links": 20,
+            "min_o3p_A": 0.500755842223303,
+            "max_o3p_A": 14.377448816771853
+          }
+        ]
+      }
+    },
+    "regularized": {
+      "links": [
+        {
+          "chain_index": 0,
+          "left_residue_index": 0,
+          "right_residue_index": 1,
+          "bond_present": true,
+          "o3p_A": 2.554818098029121,
+          "c3_o3_p_deg": 118.62794200136263,
+          "o3_p_o5_deg": 95.48030348727416
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 1,
+          "right_residue_index": 2,
+          "bond_present": true,
+          "o3p_A": 1.2818008742706999,
+          "c3_o3_p_deg": 127.83392242025435,
+          "o3_p_o5_deg": 145.95004768476488
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 2,
+          "right_residue_index": 3,
+          "bond_present": true,
+          "o3p_A": 2.3663092994910397,
+          "c3_o3_p_deg": 135.16774645921765,
+          "o3_p_o5_deg": 75.08009231592614
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 3,
+          "right_residue_index": 4,
+          "bond_present": true,
+          "o3p_A": 0.7353319416343803,
+          "c3_o3_p_deg": 134.17419534395185,
+          "o3_p_o5_deg": 146.37538975311352
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 4,
+          "right_residue_index": 5,
+          "bond_present": true,
+          "o3p_A": 1.159387915458489,
+          "c3_o3_p_deg": 130.6975352757666,
+          "o3_p_o5_deg": 86.04943337440253
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 5,
+          "right_residue_index": 6,
+          "bond_present": true,
+          "o3p_A": 1.3257396381917919,
+          "c3_o3_p_deg": 114.23713529818639,
+          "o3_p_o5_deg": 138.73189408602315
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 6,
+          "right_residue_index": 7,
+          "bond_present": true,
+          "o3p_A": 2.888342863368814,
+          "c3_o3_p_deg": 137.05196453543894,
+          "o3_p_o5_deg": 81.06585897823072
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 7,
+          "right_residue_index": 8,
+          "bond_present": true,
+          "o3p_A": 1.7209861868105052,
+          "c3_o3_p_deg": 123.7891133168139,
+          "o3_p_o5_deg": 126.26240886284656
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 8,
+          "right_residue_index": 9,
+          "bond_present": true,
+          "o3p_A": 1.7674611608435948,
+          "c3_o3_p_deg": 120.94186350599932,
+          "o3_p_o5_deg": 88.405598491199
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 9,
+          "right_residue_index": 10,
+          "bond_present": true,
+          "o3p_A": 1.1264060643760079,
+          "c3_o3_p_deg": 111.40640903683816,
+          "o3_p_o5_deg": 141.623415316543
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 10,
+          "right_residue_index": 11,
+          "bond_present": true,
+          "o3p_A": 2.2946368158233605,
+          "c3_o3_p_deg": 136.18557374801625,
+          "o3_p_o5_deg": 75.37343572201218
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 11,
+          "right_residue_index": 12,
+          "bond_present": true,
+          "o3p_A": 0.6522102084456411,
+          "c3_o3_p_deg": 132.16759847673572,
+          "o3_p_o5_deg": 141.8840346122498
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 12,
+          "right_residue_index": 13,
+          "bond_present": true,
+          "o3p_A": 0.6659128803483138,
+          "c3_o3_p_deg": 106.1551953170573,
+          "o3_p_o5_deg": 41.02640496154847
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 13,
+          "right_residue_index": 14,
+          "bond_present": true,
+          "o3p_A": 2.6987311850549056,
+          "c3_o3_p_deg": 72.25411458063405,
+          "o3_p_o5_deg": 92.98947957154587
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 14,
+          "right_residue_index": 15,
+          "bond_present": true,
+          "o3p_A": 2.021031108134278,
+          "c3_o3_p_deg": 129.7390039447813,
+          "o3_p_o5_deg": 69.70195544191257
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 15,
+          "right_residue_index": 16,
+          "bond_present": true,
+          "o3p_A": 0.8481847433185322,
+          "c3_o3_p_deg": 139.61877057191722,
+          "o3_p_o5_deg": 161.9909425001832
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 16,
+          "right_residue_index": 17,
+          "bond_present": true,
+          "o3p_A": 1.429403299851238,
+          "c3_o3_p_deg": 128.54806977765853,
+          "o3_p_o5_deg": 91.30834413481304
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 17,
+          "right_residue_index": 18,
+          "bond_present": true,
+          "o3p_A": 1.3238361542323553,
+          "c3_o3_p_deg": 100.00361913330326,
+          "o3_p_o5_deg": 127.3255164453516
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 18,
+          "right_residue_index": 19,
+          "bond_present": true,
+          "o3p_A": 1.839005805801565,
+          "c3_o3_p_deg": 120.99511987891513,
+          "o3_p_o5_deg": 64.42948190127213
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 19,
+          "right_residue_index": 20,
+          "bond_present": true,
+          "o3p_A": 5.052864959966249,
+          "c3_o3_p_deg": 78.40435744360263,
+          "o3_p_o5_deg": 61.8390971069325
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 20,
+          "right_residue_index": 21,
+          "bond_present": true,
+          "o3p_A": 1.9842402416746656,
+          "c3_o3_p_deg": 140.9305249267132,
+          "o3_p_o5_deg": 76.65659384712616
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 21,
+          "right_residue_index": 22,
+          "bond_present": true,
+          "o3p_A": 1.5169383002676788,
+          "c3_o3_p_deg": 119.35008592434441,
+          "o3_p_o5_deg": 138.2546675328617
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 22,
+          "right_residue_index": 23,
+          "bond_present": true,
+          "o3p_A": 2.3313699796018668,
+          "c3_o3_p_deg": 137.93139906978342,
+          "o3_p_o5_deg": 76.99088508340989
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 23,
+          "right_residue_index": 24,
+          "bond_present": true,
+          "o3p_A": 0.5295266873794264,
+          "c3_o3_p_deg": 136.27238121749727,
+          "o3_p_o5_deg": 166.57734934442337
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 24,
+          "right_residue_index": 25,
+          "bond_present": true,
+          "o3p_A": 0.7954396973082599,
+          "c3_o3_p_deg": 123.94177033200488,
+          "o3_p_o5_deg": 63.7574937639107
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 25,
+          "right_residue_index": 26,
+          "bond_present": true,
+          "o3p_A": 3.1304986576342455,
+          "c3_o3_p_deg": 93.41104273329513,
+          "o3_p_o5_deg": 94.53206572442687
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 26,
+          "right_residue_index": 27,
+          "bond_present": true,
+          "o3p_A": 3.6441964156972166,
+          "c3_o3_p_deg": 141.230965551473,
+          "o3_p_o5_deg": 91.37751805554325
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 27,
+          "right_residue_index": 28,
+          "bond_present": true,
+          "o3p_A": 2.34430506514492,
+          "c3_o3_p_deg": 122.99000549753558,
+          "o3_p_o5_deg": 133.46708478925618
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 28,
+          "right_residue_index": 29,
+          "bond_present": true,
+          "o3p_A": 1.8046145366257835,
+          "c3_o3_p_deg": 122.67155280874542,
+          "o3_p_o5_deg": 91.52555056716392
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 29,
+          "right_residue_index": 30,
+          "bond_present": true,
+          "o3p_A": 1.4070895557598389,
+          "c3_o3_p_deg": 97.33009088980718,
+          "o3_p_o5_deg": 123.38972185529632
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 30,
+          "right_residue_index": 31,
+          "bond_present": true,
+          "o3p_A": 2.050444995775823,
+          "c3_o3_p_deg": 139.13721866995914,
+          "o3_p_o5_deg": 74.90552934964519
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 31,
+          "right_residue_index": 32,
+          "bond_present": true,
+          "o3p_A": 1.0349443933200788,
+          "c3_o3_p_deg": 138.64925811077302,
+          "o3_p_o5_deg": 158.89093418144228
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 32,
+          "right_residue_index": 33,
+          "bond_present": true,
+          "o3p_A": 1.7880685091032889,
+          "c3_o3_p_deg": 126.59921560771814,
+          "o3_p_o5_deg": 96.70863790068113
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 33,
+          "right_residue_index": 34,
+          "bond_present": true,
+          "o3p_A": 1.300858170756498,
+          "c3_o3_p_deg": 118.60597198508799,
+          "o3_p_o5_deg": 142.99089222453148
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 34,
+          "right_residue_index": 35,
+          "bond_present": true,
+          "o3p_A": 2.3192632116350276,
+          "c3_o3_p_deg": 138.5261945395516,
+          "o3_p_o5_deg": 77.36615810158855
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 35,
+          "right_residue_index": 36,
+          "bond_present": true,
+          "o3p_A": 0.9709234374309967,
+          "c3_o3_p_deg": 133.47760814897669,
+          "o3_p_o5_deg": 144.84649577125583
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 36,
+          "right_residue_index": 37,
+          "bond_present": true,
+          "o3p_A": 1.2746896166083608,
+          "c3_o3_p_deg": 126.38738810356968,
+          "o3_p_o5_deg": 85.26206637842073
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 37,
+          "right_residue_index": 38,
+          "bond_present": true,
+          "o3p_A": 1.4030868967866208,
+          "c3_o3_p_deg": 92.25301281707505,
+          "o3_p_o5_deg": 119.97759816548587
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 38,
+          "right_residue_index": 39,
+          "bond_present": true,
+          "o3p_A": 1.872776339936895,
+          "c3_o3_p_deg": 132.06209410999153,
+          "o3_p_o5_deg": 69.35983811563808
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 39,
+          "right_residue_index": 40,
+          "bond_present": true,
+          "o3p_A": 0.6009613576165451,
+          "c3_o3_p_deg": 134.3111219798274,
+          "o3_p_o5_deg": 159.7094168354713
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 40,
+          "right_residue_index": 41,
+          "bond_present": true,
+          "o3p_A": 1.1359430020132866,
+          "c3_o3_p_deg": 133.09261805949015,
+          "o3_p_o5_deg": 87.28539499724147
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 41,
+          "right_residue_index": 42,
+          "bond_present": true,
+          "o3p_A": 1.3484354301845702,
+          "c3_o3_p_deg": 103.07714829626963,
+          "o3_p_o5_deg": 129.02497175065767
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 42,
+          "right_residue_index": 43,
+          "bond_present": true,
+          "o3p_A": 2.0937790346283913,
+          "c3_o3_p_deg": 137.08651395694142,
+          "o3_p_o5_deg": 74.24988157122937
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 43,
+          "right_residue_index": 44,
+          "bond_present": true,
+          "o3p_A": 0.6179546320521825,
+          "c3_o3_p_deg": 137.5962746665442,
+          "o3_p_o5_deg": 165.01174541608663
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 44,
+          "right_residue_index": 45,
+          "bond_present": true,
+          "o3p_A": 1.002001501508095,
+          "c3_o3_p_deg": 140.0436082159528,
+          "o3_p_o5_deg": 87.13497482392118
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 45,
+          "right_residue_index": 46,
+          "bond_present": true,
+          "o3p_A": 1.5287637341335238,
+          "c3_o3_p_deg": 111.1357502836317,
+          "o3_p_o5_deg": 131.22290525122543
+        },
+        {
+          "chain_index": 0,
+          "left_residue_index": 46,
+          "right_residue_index": 47,
+          "bond_present": true,
+          "o3p_A": 2.3095893134713172,
+          "c3_o3_p_deg": 137.85682325313553,
+          "o3_p_o5_deg": 77.75114910599981
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 48,
+          "right_residue_index": 49,
+          "bond_present": true,
+          "o3p_A": 1.4376268662788165,
+          "c3_o3_p_deg": 125.43999182897934,
+          "o3_p_o5_deg": 89.91352945566321
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 49,
+          "right_residue_index": 50,
+          "bond_present": true,
+          "o3p_A": 1.1191515239630803,
+          "c3_o3_p_deg": 110.74636212907079,
+          "o3_p_o5_deg": 154.46569079697076
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 50,
+          "right_residue_index": 51,
+          "bond_present": true,
+          "o3p_A": 2.596667957962824,
+          "c3_o3_p_deg": 137.10975038246755,
+          "o3_p_o5_deg": 84.14293676840514
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 51,
+          "right_residue_index": 52,
+          "bond_present": true,
+          "o3p_A": 1.4317147482232084,
+          "c3_o3_p_deg": 119.94439340772988,
+          "o3_p_o5_deg": 135.98204307233675
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 52,
+          "right_residue_index": 53,
+          "bond_present": true,
+          "o3p_A": 1.537604401248397,
+          "c3_o3_p_deg": 123.51159849515523,
+          "o3_p_o5_deg": 92.82438616273828
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 53,
+          "right_residue_index": 54,
+          "bond_present": true,
+          "o3p_A": 1.2165874865521376,
+          "c3_o3_p_deg": 108.70988450962145,
+          "o3_p_o5_deg": 141.88416245231286
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 54,
+          "right_residue_index": 55,
+          "bond_present": true,
+          "o3p_A": 2.399221902896133,
+          "c3_o3_p_deg": 138.2025034742025,
+          "o3_p_o5_deg": 80.48372251619233
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 55,
+          "right_residue_index": 56,
+          "bond_present": true,
+          "o3p_A": 1.5989195507716105,
+          "c3_o3_p_deg": 117.14904123633075,
+          "o3_p_o5_deg": 134.18263848854463
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 56,
+          "right_residue_index": 57,
+          "bond_present": true,
+          "o3p_A": 1.9236473986009548,
+          "c3_o3_p_deg": 120.31320533287598,
+          "o3_p_o5_deg": 98.5884803539639
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 57,
+          "right_residue_index": 58,
+          "bond_present": true,
+          "o3p_A": 1.2862963188401468,
+          "c3_o3_p_deg": 109.72524297180826,
+          "o3_p_o5_deg": 145.34123933933896
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 58,
+          "right_residue_index": 59,
+          "bond_present": true,
+          "o3p_A": 2.2280635241904183,
+          "c3_o3_p_deg": 137.4453760734932,
+          "o3_p_o5_deg": 75.30461213511383
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 59,
+          "right_residue_index": 60,
+          "bond_present": true,
+          "o3p_A": 0.9329281432295725,
+          "c3_o3_p_deg": 130.7587425925169,
+          "o3_p_o5_deg": 142.779518818262
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 60,
+          "right_residue_index": 61,
+          "bond_present": true,
+          "o3p_A": 1.363617178841518,
+          "c3_o3_p_deg": 123.91830520032367,
+          "o3_p_o5_deg": 87.93251863659918
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 61,
+          "right_residue_index": 62,
+          "bond_present": true,
+          "o3p_A": 1.2395387337942256,
+          "c3_o3_p_deg": 102.8276616487158,
+          "o3_p_o5_deg": 124.13158290794473
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 62,
+          "right_residue_index": 63,
+          "bond_present": true,
+          "o3p_A": 2.248131218829757,
+          "c3_o3_p_deg": 133.92772092555785,
+          "o3_p_o5_deg": 76.20036991879272
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 63,
+          "right_residue_index": 64,
+          "bond_present": true,
+          "o3p_A": 1.6044980799386834,
+          "c3_o3_p_deg": 110.3597069566067,
+          "o3_p_o5_deg": 131.6864163670598
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 64,
+          "right_residue_index": 65,
+          "bond_present": true,
+          "o3p_A": 2.2117141238931035,
+          "c3_o3_p_deg": 112.00738327952574,
+          "o3_p_o5_deg": 100.21875390008101
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 65,
+          "right_residue_index": 66,
+          "bond_present": true,
+          "o3p_A": 1.2415851749403064,
+          "c3_o3_p_deg": 110.07584974053118,
+          "o3_p_o5_deg": 146.59046503024268
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 66,
+          "right_residue_index": 67,
+          "bond_present": true,
+          "o3p_A": 2.120289875325049,
+          "c3_o3_p_deg": 132.3743656711963,
+          "o3_p_o5_deg": 69.40076120801051
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 67,
+          "right_residue_index": 68,
+          "bond_present": true,
+          "o3p_A": 0.3103585715231993,
+          "c3_o3_p_deg": 156.5051150860801,
+          "o3_p_o5_deg": 130.4036707356833
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 68,
+          "right_residue_index": 69,
+          "bond_present": true,
+          "o3p_A": 2.722023069382074,
+          "c3_o3_p_deg": 85.1451402771897,
+          "o3_p_o5_deg": 102.12919639968348
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 69,
+          "right_residue_index": 70,
+          "bond_present": true,
+          "o3p_A": 3.3475498897361957,
+          "c3_o3_p_deg": 93.8508885557245,
+          "o3_p_o5_deg": 133.22666039709318
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 70,
+          "right_residue_index": 71,
+          "bond_present": true,
+          "o3p_A": 3.213800190161333,
+          "c3_o3_p_deg": 136.17302259684186,
+          "o3_p_o5_deg": 90.34462783061795
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 71,
+          "right_residue_index": 72,
+          "bond_present": true,
+          "o3p_A": 1.325586826465545,
+          "c3_o3_p_deg": 123.96508296767986,
+          "o3_p_o5_deg": 138.30548891746116
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 72,
+          "right_residue_index": 73,
+          "bond_present": true,
+          "o3p_A": 1.2761279589328551,
+          "c3_o3_p_deg": 126.30388501628859,
+          "o3_p_o5_deg": 85.25864234280448
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 73,
+          "right_residue_index": 74,
+          "bond_present": true,
+          "o3p_A": 1.0507806569332885,
+          "c3_o3_p_deg": 107.77013845909866,
+          "o3_p_o5_deg": 141.41311750870904
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 74,
+          "right_residue_index": 75,
+          "bond_present": true,
+          "o3p_A": 6.159879683621348,
+          "c3_o3_p_deg": 103.37682792872903,
+          "o3_p_o5_deg": 96.58803737556119
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 75,
+          "right_residue_index": 76,
+          "bond_present": true,
+          "o3p_A": 7.710019330037688,
+          "c3_o3_p_deg": 86.3868743733068,
+          "o3_p_o5_deg": 118.19906455162447
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 76,
+          "right_residue_index": 77,
+          "bond_present": true,
+          "o3p_A": 2.509316533083395,
+          "c3_o3_p_deg": 116.14275864555283,
+          "o3_p_o5_deg": 102.39379850707343
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 77,
+          "right_residue_index": 78,
+          "bond_present": true,
+          "o3p_A": 1.2504051190524303,
+          "c3_o3_p_deg": 108.31832346802081,
+          "o3_p_o5_deg": 140.63207085058312
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 78,
+          "right_residue_index": 79,
+          "bond_present": true,
+          "o3p_A": 2.272872273503683,
+          "c3_o3_p_deg": 136.59545880762235,
+          "o3_p_o5_deg": 77.0407524678704
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 79,
+          "right_residue_index": 80,
+          "bond_present": true,
+          "o3p_A": 1.6448203016819865,
+          "c3_o3_p_deg": 112.07715590273492,
+          "o3_p_o5_deg": 132.2429755911506
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 80,
+          "right_residue_index": 81,
+          "bond_present": true,
+          "o3p_A": 3.0692575530327377,
+          "c3_o3_p_deg": 106.7320195246217,
+          "o3_p_o5_deg": 103.82283475274137
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 81,
+          "right_residue_index": 82,
+          "bond_present": true,
+          "o3p_A": 2.047735878092225,
+          "c3_o3_p_deg": 111.36696348636161,
+          "o3_p_o5_deg": 148.60585213772387
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 82,
+          "right_residue_index": 83,
+          "bond_present": true,
+          "o3p_A": 2.5538492648246556,
+          "c3_o3_p_deg": 144.781663818239,
+          "o3_p_o5_deg": 83.75321420860485
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 83,
+          "right_residue_index": 84,
+          "bond_present": true,
+          "o3p_A": 0.8347145677616902,
+          "c3_o3_p_deg": 143.43629534265992,
+          "o3_p_o5_deg": 150.22468136605576
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 84,
+          "right_residue_index": 85,
+          "bond_present": true,
+          "o3p_A": 1.1534716264156994,
+          "c3_o3_p_deg": 132.0507151463441,
+          "o3_p_o5_deg": 80.426948954267
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 85,
+          "right_residue_index": 86,
+          "bond_present": true,
+          "o3p_A": 1.40953502961425,
+          "c3_o3_p_deg": 100.29448441534798,
+          "o3_p_o5_deg": 120.06885740977536
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 86,
+          "right_residue_index": 87,
+          "bond_present": true,
+          "o3p_A": 2.122779887235726,
+          "c3_o3_p_deg": 130.16320897555389,
+          "o3_p_o5_deg": 67.17179801788771
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 87,
+          "right_residue_index": 88,
+          "bond_present": true,
+          "o3p_A": 0.49824221473925506,
+          "c3_o3_p_deg": 144.19782600513705,
+          "o3_p_o5_deg": 119.29977246285513
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 88,
+          "right_residue_index": 89,
+          "bond_present": true,
+          "o3p_A": 1.0397513559532539,
+          "c3_o3_p_deg": 124.65134361218408,
+          "o3_p_o5_deg": 67.11340455418974
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 89,
+          "right_residue_index": 90,
+          "bond_present": true,
+          "o3p_A": 1.1848392557420049,
+          "c3_o3_p_deg": 105.87401646579522,
+          "o3_p_o5_deg": 132.71955465589744
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 90,
+          "right_residue_index": 91,
+          "bond_present": true,
+          "o3p_A": 2.3349099598011365,
+          "c3_o3_p_deg": 138.50819317958863,
+          "o3_p_o5_deg": 78.89678583821947
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 91,
+          "right_residue_index": 92,
+          "bond_present": true,
+          "o3p_A": 0.9239711479123183,
+          "c3_o3_p_deg": 135.85571365134862,
+          "o3_p_o5_deg": 145.96996579990147
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 92,
+          "right_residue_index": 93,
+          "bond_present": true,
+          "o3p_A": 1.0567190596064253,
+          "c3_o3_p_deg": 134.36667976463596,
+          "o3_p_o5_deg": 72.7305264887938
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 93,
+          "right_residue_index": 94,
+          "bond_present": true,
+          "o3p_A": 1.7514766929841634,
+          "c3_o3_p_deg": 91.4851363279352,
+          "o3_p_o5_deg": 99.81427666214304
+        },
+        {
+          "chain_index": 1,
+          "left_residue_index": 94,
+          "right_residue_index": 95,
+          "bond_present": true,
+          "o3p_A": 2.0652084238779773,
+          "c3_o3_p_deg": 125.15558549182934,
+          "o3_p_o5_deg": 61.529863856747355
+        }
+      ],
+      "missing_links": 0,
+      "contact_cutoff_A": 2.0,
+      "short_heavy_contacts": 23,
+      "min_short_heavy_distance_A": 0.7529644937725936,
+      "atoms_without_element": 0,
+      "max_frame_turn_deg": 45.16604588609622,
+      "triage": {
+        "status": "failed",
+        "failures": [
+          "out_of_screen_link_length",
+          "short_heavy_atom_contacts"
+        ],
+        "o3p_screen_A": [
+          1.3,
+          2.0
+        ],
+        "per_chain": [
+          {
+            "chain_index": 0,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 16,
+            "long_links": 15,
+            "min_o3p_A": 0.5295266873794264,
+            "max_o3p_A": 5.052864959966249
+          },
+          {
+            "chain_index": 1,
+            "expected_links": 47,
+            "missing_links": 0,
+            "unmeasured_links": 0,
+            "short_links": 17,
+            "long_links": 19,
+            "min_o3p_A": 0.3103585715231993,
+            "max_o3p_A": 7.710019330037688
+          }
+        ]
+      }
+    }
+  },
+  "resolution_check": {
+    "48": {
+      "max_turn_before_deg": 98.87093311730341,
+      "max_turn_after_deg": 45.79869381859265,
+      "max_paired_deviation_nm": 0.5237577040338552
+    },
+    "161": {
+      "max_turn_before_deg": 52.33885119218486,
+      "max_turn_after_deg": 23.21440717373434,
+      "max_paired_deviation_nm": 0.5248603154057202
+    },
+    "401": {
+      "max_turn_before_deg": 27.92240605040537,
+      "max_turn_after_deg": 9.901473987228703,
+      "max_paired_deviation_nm": 0.5248704696722417
+    }
+  },
+  "post_rescale_max_frame_shift_nm": 1.4968123445888275,
+  "post_rescale_endpoint_shift_nm": [
+    1.0321474827405146e-17,
+    1.4968123445888275
+  ],
+  "post_rescale_exceeds_input_budget": true
+}
