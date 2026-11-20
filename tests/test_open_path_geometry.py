@@ -12,6 +12,21 @@ BENCH = runpy.run_path(str(ROOT / 'scripts' / 'gap_benchmarks' / 'evaluate_open_
 
 
 class TestOpenPath(unittest.TestCase):
+    def test_step_budget_is_applied_while_selecting_a_smoothed_path(self):
+        points = BENCH['controls']()
+        selected, metrics = PATH['regularize_open_path'](
+            points, max_deviation=.90, frame_count=48, max_step_deviation=.065)
+        spline, _ = PATH['splprep'](selected.T, s=0, k=3)
+        frames, _, _, deviation = PATH['_endpoint_frames'](spline, selected, 48, .34)
+        np.testing.assert_array_equal(frames[[0, -1]], points[[0, -1]])
+        self.assertLessEqual(deviation, .065)
+        self.assertLess(metrics['max_placed_turn_after_deg'], metrics['max_placed_turn_before_deg'])
+        self.assertLess(metrics['max_placed_turn_after_deg'], 85.)
+        self.assertAlmostEqual(metrics['max_placed_turn_after_deg'], PATH['_turns'](frames).max())
+        with self.assertRaisesRegex(ValueError, 'requested step deviation'):
+            PATH['regularize_open_path'](points, max_deviation=0., frame_count=48,
+                                         max_step_deviation=.01)
+
     def test_link_torsion_signed_and_missing_atoms_reported(self):
         left = {"C4'": [0, 1, 0], "C3'": [0, 0, 0], "O3'": [1, 0, 0]}
         right = {"P": [1, 0, 1]}

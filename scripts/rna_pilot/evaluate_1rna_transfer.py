@@ -214,11 +214,14 @@ def audit_assembled_context(assembly, model, window_chain, window, chirality, ta
 
 
 def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_only=False, progress=False,
-             frame_preflight=False, window_filter=None):
+             frame_preflight=False, window_filter=None, suite_path=None):
     if frame_preflight:
         long_paths_only = True
     if window_filter is not None and not long_paths_only:
         raise ValueError("window filtering requires a long-path evaluation")
+    if suite_path is not None and (frame_preflight or window_filter is None
+                                   or len(suite_path) != window_filter[2]-1):
+        raise ValueError("suite replay requires exactly one suite per step in a selected long-path window")
     source = REFERENCE_DIR / f"{entry.lower()}.cif"
     target_hash = digest(source)
     internal = REFERENCE_DIR / "rna_suite_library.json"
@@ -326,6 +329,8 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
                         continue
                     if not missing:
                         frames = np.stack([_make_frame(r) for r in window])
+                        frame_screen = screen_frame_pairs(library, segment, frames, PATH_LIMITS,
+                                                          report_frame_misses=True, suite_ids=suite_path)
                         def audit_window(assembly):
                             return audit_assembled_context(
                                 assembly, structure[0], chain.name, window, signs[0], target[0])
@@ -337,7 +342,8 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
                             row[key] = probe_shared_residue(
                                 library, segment, frames, PATH_LIMITS, make_base_frame,
                                 audit_context=audit_window, reverse_source=reverse, joint=joint,
-                                constrain_frames=frame_bound, report_frame_misses=key == "probe")
+                                constrain_frames=frame_bound, report_frame_misses=key == "probe",
+                                frame_screen=frame_screen)
                         boundaries = []
                         for neighbor_index, key, atom in ((i-1, (0, "P"), "O3'"),
                                 (i+length, (length-1, "O3'"), "P")):
@@ -351,7 +357,7 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
                         if boundaries and len(boundaries) == expected:
                             variants = [("joint_boundary_probe", False, False)]
                             downstream_angle = None
-                            if row["probe"]["closest_rejected_overlap_by_step"]:
+                            if row["probe"]["closest_rejected_overlap_by_step"] or suite_path is not None:
                                 variants.extend((("displacement_bound_probe", True, False),
                                                  ("reverse_displacement_bound_probe", True, True)))
                                 if i > 0:
@@ -367,7 +373,10 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
                                                                 *ANGLE_WINDOWS["o3_p_o5_deg"])
                                             variants.extend((("upstream_backbone_angle_probe", True, True),
                                                              ("terminal_backbone_angle_probe", True, True)))
+                                            if suite_path is not None:
+                                                variants.append(("terminal_phosphate_clearance_probe", True, True))
                             for key, use_bound, reverse in variants:
+                                clearance = key == "terminal_phosphate_clearance_probe"
                                 p = probe_shared_residue(
                                     library, segment, frames, PATH_LIMITS, make_base_frame,
                                     audit_context=audit_window, joint=True, constrain_frames=True,
@@ -376,11 +385,15 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
                                     upstream_torsions={"upstream_phosphate_probe": 1,
                                                        "upstream_backbone_probe": 2,
                                                        "upstream_backbone_angle_probe": 2,
-                                                       "terminal_backbone_angle_probe": 2}.get(key, 0),
+                                                       "terminal_backbone_angle_probe": 2,
+                                                       "terminal_phosphate_clearance_probe": 2}.get(key, 0),
                                     downstream_angle=(downstream_angle if key in ("upstream_backbone_angle_probe",
-                                                                                 "terminal_backbone_angle_probe")
+                                                                                 "terminal_backbone_angle_probe",
+                                                                                 "terminal_phosphate_clearance_probe")
                                                       else None),
-                                    rotate_downstream_o3=key == "terminal_backbone_angle_probe")
+                                    rotate_downstream_o3=key == "terminal_backbone_angle_probe" or clearance,
+                                    upstream_oxygen_cutoff=(boundaries[0][1], 2.0) if clearance else None,
+                                    frame_screen=frame_screen)
                                 row[key] = p
                                 if p["best"] is not None:
                                     context = p["best"]["context"]
@@ -563,6 +576,8 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
         raise ValueError("no standard RNA chains in target")
     if window_filter is not None:
         report["window_filter"] = dict(chain=window_filter[0], start=window_filter[1], length=window_filter[2])
+    if suite_path is not None:
+        report["replayed_suite_path"] = suite_path
     if frame_preflight:
         report["scope"] = "Template, frame, and pairwise overlap screening only; no fitting or assembly attempted."
         rows = [w for c in report["chains"].values() for w in c["windows"]]
@@ -620,7 +635,7 @@ def evaluate(entry="1RNA", supplement=None, *, sensitivity=False, long_paths_onl
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--entry", choices=("1RNA", "1MIS", "157D", "420D", "438D", "2G3S", "4JRT", "8FEP"),
+    parser.add_argument("--entry", choices=("1RNA", "1MIS", "157D", "280D", "420D", "438D", "2G3S", "4JRT", "8FEP"),
                         default="1RNA")
     parser.add_argument("--supplement", choices=("1RNA", "1RXB", "157D", "255D", "420D", "438D"),
                         action="append")
@@ -631,6 +646,8 @@ if __name__ == "__main__":
     parser.add_argument("--progress", action="store_true", help="Report each finished long-path window to stderr.")
     parser.add_argument("--window", nargs=3, metavar=("CHAIN", "START", "LENGTH"),
                         help="Write a separate report for one 4–6-residue window.")
+    parser.add_argument("--suite-path", nargs="+", metavar="SUITE_ID",
+                        help="Replay one selected suite path and test upstream phosphate clearance.")
     args = parser.parse_args()
     if args.frame_preflight and (args.long_paths_only or args.sensitivity or args.progress):
         parser.error("--frame-preflight is a separate report mode")
@@ -646,6 +663,9 @@ if __name__ == "__main__":
         if length not in {"4", "5", "6"}:
             parser.error("--window length must be 4, 5, or 6")
         window_filter = (chain, start, int(length))
+    if args.suite_path and (not args.long_paths_only or window_filter is None
+                            or len(args.suite_path) != window_filter[2]-1):
+        parser.error("--suite-path requires --long-paths-only and one suite ID per selected window step")
     suffix = "".join(f"_plus_{entry.lower()}" for entry in (args.supplement or ()))
     if args.frame_preflight:
         suffix += "_frame_preflight"
@@ -655,10 +675,14 @@ if __name__ == "__main__":
         suffix += "_sensitivity"
     if window_filter is not None:
         suffix += f"_{chain}_{start}_{length}"
+    if args.suite_path:
+        replay_id = hashlib.sha256(json.dumps(args.suite_path).encode()).hexdigest()[:12]
+        suffix += f"_replay_{replay_id}"
     output = REFERENCE_DIR.parent / f"gap_benchmarks/{args.entry.lower()}_transfer{suffix}.json"
     output.write_text(json.dumps(evaluate(args.entry, args.supplement,
                                           sensitivity=args.sensitivity or args.long_paths_only,
                                           long_paths_only=args.long_paths_only, progress=args.progress,
-                                          frame_preflight=args.frame_preflight, window_filter=window_filter),
+                                          frame_preflight=args.frame_preflight, window_filter=window_filter,
+                                          suite_path=args.suite_path),
                                  indent=2, allow_nan=False) + "\n",
                       encoding="utf-8")

@@ -3,6 +3,7 @@ from scipy.interpolate import splprep, splev
 from scipy.integrate import cumulative_trapezoid
 import matplotlib.pyplot as plt
 from .utils import RigidBody 
+from .path_geometry import StepSpacingError, _endpoint_frames
 
 """
 This script contains the class `SplineFrames` which is used to generate and manipulate a 3D spline path based on 
@@ -76,7 +77,7 @@ Refs:
 
 class SplineFrames:
     
-    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],n_bp=None,dLk=None):
+    def __init__(self, control_points, degree=3, closed=False, up_vector=[0, 0, 1],frame_spacing=0.34, twist=True, bp_per_turn=10.5, frame_tolerance=0.5, verbose=False, num_points=1000, initial_frame=None, modified_ranges=[],n_bp=None,dLk=None, *, preserve_endpoints=False, max_step_deviation_nm=None):
         """Initialize a spline path with Bishop-frame coordinate systems.
 
         The spline is fitted to the control points, evenly-spaced frames are
@@ -106,7 +107,20 @@ class SplineFrames:
                 spline is rescaled to match this count.
             dLk (int, optional): Change in linking number applied via uniform
                 twist redistribution.
+            preserve_endpoints (bool): Sample the open spline at its original scale.
+            max_step_deviation_nm (float, optional): Reject endpoint-preserving frames
+                if any chord length deviates from the target spacing by more than this amount.
         """
+        if preserve_endpoints and closed:
+            raise ValueError("Endpoint preservation requires an open spline.")
+        if max_step_deviation_nm is not None:
+            if not preserve_endpoints:
+                raise ValueError("max_step_deviation_nm requires endpoint preservation.")
+            max_step_deviation_nm = float(max_step_deviation_nm)
+            if not np.isfinite(max_step_deviation_nm) or max_step_deviation_nm < 0:
+                raise ValueError("max_step_deviation_nm must be finite and nonnegative.")
+        self.preserve_endpoints = preserve_endpoints
+        self.max_step_deviation_nm = max_step_deviation_nm
         self.control_points = control_points
         self.n = num_points
         self.twist = twist
@@ -132,7 +146,7 @@ class SplineFrames:
         self.distribute_points()
         self.test_frames()
         
-        if self.n_bp is not None:
+        if self.n_bp is not None and not self.preserve_endpoints:
             print(f"""\nStart rescaling spline based on requested number of base pairs.\n\tThis requires recomputation of the control points to match the desired number of base pairs.""")
             self._scale_to_nbp()
         else:
@@ -273,6 +287,10 @@ class SplineFrames:
             ValueError: If a suitable segment length cannot be found within the tolerance.
         """
 
+        if self.preserve_endpoints:
+            self._distribute_open_endpoints()
+            return self
+
         # Calculate the new segment length within the specified tolerance
         adjusted_arc_length = self.arc_length[-1] - self.frame_spacing  # Subtract the first and last segments
         num_segments = np.round(adjusted_arc_length / self.frame_spacing)
@@ -308,6 +326,20 @@ class SplineFrames:
         # Assuming self._compute_frames() updates self with the new frames
         self._compute_frames()
         return self
+
+    def _distribute_open_endpoints(self):
+        """Invert the sampled arc length without rescaling the control points."""
+        positions, parameter, target, deviation = _endpoint_frames(
+            self.tck, self.control_points, self.n_bp, self.frame_spacing, min_samples=self.n+1)
+        if self.max_step_deviation_nm is not None and deviation > self.max_step_deviation_nm + 1e-12:
+            raise StepSpacingError(f"Endpoint-preserving step deviation {deviation:.6f} nm exceeds "
+                                   f"the requested limit {self.max_step_deviation_nm:.6f} nm.")
+        self.segment_lengths = target[1:-1]
+        self.t_values = parameter
+        self.positions = positions
+        steps = np.diff(positions, axis=0)
+        self.derivatives = np.vstack((steps, steps[-1]))
+        self._compute_frames()
 
     def rotation_matrix_from_vectors(self,vec1, vec2):
         """ Find the rotation matrix that aligns vec1 to vec2 """

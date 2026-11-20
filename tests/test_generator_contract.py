@@ -4,6 +4,23 @@ import numpy as np
 import pytest
 
 from mdna.generators import StructureGenerator
+from mdna import make
+
+
+def test_endpoint_preserving_make_keeps_requested_nonzero_endpoints():
+    points = np.linspace([3., 1., -2.], [4.02, 1., -2.], 4)
+    model = make(sequence="ACGT", control_points=points, preserve_path_endpoints=True,
+                 max_step_deviation_nm=1e-6)
+    origins = model.get_frames()[:, 0, 0, :]
+    np.testing.assert_array_equal(origins[[0, -1]], points[[0, -1]])
+    np.testing.assert_allclose(np.linalg.norm(np.diff(origins, axis=0), axis=1), .34)
+
+
+def test_endpoint_preserving_make_rejects_incompatible_sequence_spacing():
+    points = np.linspace([0., 0., 0.], [2., 0., 0.], 4)
+    with pytest.raises(ValueError, match="step deviation"):
+        make(sequence="ACGT", control_points=points, preserve_path_endpoints=True,
+             max_step_deviation_nm=.05)
 
 
 def _frames(n_bp):

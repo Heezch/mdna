@@ -60,7 +60,7 @@ def reconcile(first, second, *, reverse_source=False):
 
 def fit_joint_poses(placed, consensus, limits, *, frames=None, sequence=None, frame_from_atoms=None,
                     boundaries=(), trace=None, upstream_torsions=0, downstream_angle=None,
-                    rotate_downstream_o3=False):
+                    rotate_downstream_o3=False, upstream_oxygen_cutoff=None):
     """Adjust overlap poses together with inequalities for both source copies."""
     source_copies = {}
     links = []
@@ -192,6 +192,11 @@ def fit_joint_poses(placed, consensus, limits, *, frames=None, sequence=None, fr
                 right = oxygen-phosphorus
                 angle = np.degrees(np.arctan2(np.linalg.norm(np.cross(left, right)), left @ right))
                 result["downstream_angle_degrees"] = np.array([angle-low-1e-6, high-angle-1e-6])
+            if upstream_oxygen_cutoff is not None:
+                oxygen, cutoff = upstream_oxygen_cutoff
+                distances = [np.linalg.norm(global_pose(coords[0, name], x)-oxygen)
+                             for name in ("OP1", "OP2")]
+                result["upstream_phosphate_clearance_A"] = np.asarray(distances)-cutoff-1e-6
         if frames is None:
             return result
         moved = [reference_frames[0]]
@@ -236,7 +241,8 @@ def fit_joint_poses(placed, consensus, limits, *, frames=None, sequence=None, fr
             ("internal_geometry", ("internal_bond_length_A",)),
             ("target_frames", ("frame_translation_A", "frame_rotation_degrees")),
             ("external_geometry", ("global_displacement_A", "boundary_bond_length_A",
-                                   "local_phosphate_displacement_A", "downstream_angle_degrees")),
+                                   "local_phosphate_displacement_A", "downstream_angle_degrees",
+                                   "upstream_phosphate_clearance_A")),
         ]
         active = []
         internal_feasible = False
@@ -352,7 +358,7 @@ def fit_joint_poses(placed, consensus, limits, *, frames=None, sequence=None, fr
             lambda key, points: global_pose(coords[key] if key in local_keys else points, result.x))
 
 
-def screen_frame_pairs(library, sequence, frames, limits, *, report_frame_misses=False):
+def screen_frame_pairs(library, sequence, frames, limits, *, report_frame_misses=False, suite_ids=None):
     """Return suite placements that meet both original frame tolerances."""
     pairs = []
     frame_misses = []
@@ -362,6 +368,10 @@ def screen_frame_pairs(library, sequence, frames, limits, *, report_frame_misses
         matches = []
         pair = sequence[i:i+2]
         suites = library.get_suites(pair)
+        if suite_ids is not None:
+            suites = tuple(s for s in suites if s["suite_id"] == suite_ids[i])
+            if not suites:
+                raise ValueError(f"Suite {suite_ids[i]} is unavailable at step {i} ({pair}).")
         misses = []
         for suite in suites:
             p = library.place_suite(suite, frames[i], coordinate_unit="angstrom",
@@ -386,7 +396,8 @@ def screen_frame_pairs(library, sequence, frames, limits, *, report_frame_misses
 def probe(library, sequence, frames, limits, frame_from_atoms, *, audit_context=None,
           max_paths=10000, reverse_source=False, joint=False, constrain_frames=False, boundaries=(),
           report_frame_misses=False, use_displacement_bound=False, upstream_torsions=0,
-          downstream_angle=None, rotate_downstream_o3=False):
+          downstream_angle=None, rotate_downstream_o3=False, upstream_oxygen_cutoff=None,
+          suite_ids=None, frame_screen=None):
     from audit_fragment_context import frame_residuals
 
     if use_displacement_bound and not joint:
@@ -397,8 +408,10 @@ def probe(library, sequence, frames, limits, frame_from_atoms, *, audit_context=
         raise ValueError("terminal phosphate rotation requires an upstream boundary and joint fitting")
     if rotate_downstream_o3 and (upstream_torsions != 2 or downstream_angle is None):
         raise ValueError("downstream O3' rotation requires both upstream torsions and the downstream angle")
-    pairs, frame_misses = screen_frame_pairs(library, sequence, frames, limits,
-                                             report_frame_misses=report_frame_misses)
+    if frame_screen is None:
+        frame_screen = screen_frame_pairs(library, sequence, frames, limits,
+                                          report_frame_misses=report_frame_misses, suite_ids=suite_ids)
+    pairs, frame_misses = frame_screen
     counts = dict(overlap=0, displacement=0, frame=0, assembly=0, contacts=0, passed=0)
     if joint:
         counts["joint_fit_rejected"] = 0
@@ -470,7 +483,8 @@ def probe(library, sequence, frames, limits, frame_from_atoms, *, audit_context=
                                         sequence=sequence, frame_from_atoms=frame_from_atoms,
                                         boundaries=boundaries, trace=trace,
                                         upstream_torsions=upstream_torsions, downstream_angle=downstream_angle,
-                                        rotate_downstream_o3=rotate_downstream_o3)
+                                        rotate_downstream_o3=rotate_downstream_o3,
+                                        upstream_oxygen_cutoff=upstream_oxygen_cutoff)
             if trace is not None and len(joint_traces) < 10:
                 joint_traces.append(dict(suite_ids=[p.suite_id for p in selected], stages=trace))
             if fitted is None:

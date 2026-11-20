@@ -109,3 +109,37 @@ python -B scripts/gap_benchmarks/probe_rigid_phosphate.py --search --anchor-budg
 ### 固定中心重新估计帧朝向
 
 复跑：`OPENBLAS_NUM_THREADS=1 python -B scripts/gap_benchmarks/probe_frame_orientation.py --output artifacts/gap_benchmarks/frame_orientation_probe.json`。平滑模型在两帧跨度、15° 旋转上限下，不可达 7→5、近接触 11→7、可达但角度超差 48→46，全部路径帧中心保持原位。30° 候选有更少的近接触（3 对），仍有 6 条不可达。所有候选都未通过组合诊断；原始曲线没有三项同时不恶化的候选。已构建路径的初始缩放偏差须单独评估。
+## 上游与开发快照对照
+
+在项目根目录运行 `python -B scripts/gap_benchmarks/compare_open_path_revisions.py --output artifacts/gap_benchmarks/open_path_revision_comparison.json`。脚本默认独立导入上游 `8fa36bf` 和 fork `afc7494` 两个 Git 快照，用同一固定种子、序列、控制点和原子检查复算。
+
+直线和原始急弯的旧调用输出逐原子一致。显式启用平滑后，急弯转角 98.619° → 45.166°，近接触 183 → 23，超距骨架连接 70 → 67。生成后的末端相对上游原始急弯偏移 1.497 nm，超过 0.90 nm 输入路径预算。结果同时记录生成器的长度重缩放效应。
+
+## 保留开放路径端点
+
+`mdna.make(sequence=seq, control_points=points, preserve_path_endpoints=True)` 按输入路径原尺度分布帧。若需限制步距，传入 `max_step_deviation_nm`，逐帧直线距离偏离 0.34 nm 超过该值时会报错。该检查仅针对帧位置，骨架质量仍需独立检查。
+
+复算使用 `python -B scripts/gap_benchmarks/evaluate_open_path_bends.py --preserve-endpoints --output artifacts/gap_benchmarks/open_path_fixed_endpoints.json`。固定种子 48 bp 对照的两端误差均为零。平滑减少了近接触，但导致步距缩短，且 68/94 条连接超出骨架距离窗口。
+
+同时指定平滑与步距限值时，程序从满足两组约束的候选中选择最终帧最大转角较小的曲线，再复查实际帧。对照命令可额外加 `--max-step-deviation-nm 0.065`。在全局平滑对照之后加入单个控制点的局部调整，仍保持零端点误差，最大步距偏差为 0.06485 nm，最终转角由 93.31° 降到 79.41°，近接触由 228 降到 175。仍有 67/94 条骨架连接超出距离窗口。
+
+四条新种子的留出曲线均在同一策略下保持端点并满足 0.065 nm 步距预算。下表以各自固定端点、未平滑模型为基线。
+
+| 种子 | 最大帧间转角 | 重原子近接触 | 超距 O3′–P（共 94 条） |
+|---|---:|---:|---:|
+| 20261120 | 97.19° → 67.69° | 234 → 152 | 75 → 70 |
+| 20261121 | 89.07° → 58.41° | 246 → 158 | 74 → 68 |
+| 20261122 | 100.37° → 59.45° | 282 → 111 | 78 → 75 |
+| 20261123 | 94.75° → 87.27° | 255 → 226 | 69 → 71 |
+
+用 `--seed <seed>` 复算相应曲线。四例均未通过综合原子筛查。第四例的长连接增加，说明减小转角和近接触仍需结合骨架距离判断。
+
+### 用骨架距离筛选路径候选
+
+实验脚本 `screen_open_path_backbone.py` 比较六档位移预算，在端点、步距、短连接、长连接及近接触均过比较筛查的候选中，选取最大转角较小的一条。此前长连接恶化的 20261123 在 0.15 nm 搜索预算下，长连接从 33 降到 32，短连接从 36 降到 35，近接触从 255 降到 217。试验四例仍有 67–75 条超距连接，全部未通过综合原子筛查。
+
+以冻结条件复查新种子 20261124 和 20261125，两者均无候选通过比较筛查。前者能满足步距但骨架条件失败，后者的六档搜索均未构建出步距合格模型。复算参数用 `--seed 20261124 20261125`，逐项记录见 `artifacts/gap_benchmarks/open_path_backbone_holdout.json`。
+
+### 在原曲线上重新分配帧位置
+
+实验脚本 `probe_open_path_resampling.py` 在原曲线的有序网格上搜索满足端点、步距与配对帧位移约束的帧位置。用 `--seed 20261125 --grid-size 1001` 或 `--grid-size 2001` 并指定 `--output` 复算。2001 点搜索将最大转角从 77.40° 降至 72.33°，最大步距偏差从 0.14874 nm 降至 0.06445 nm，两端误差为零。重原子近接触从 360 降至 348，长 O3′–P 连接从 36 增至 37。两组网格试验均未通过综合原子筛查。该搜索只在基准脚本中使用。

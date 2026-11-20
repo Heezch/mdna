@@ -57,11 +57,11 @@ def controls(seed=SEED):
     return np.vstack([np.zeros(3), np.cumsum(steps, axis=0)])
 
 
-def benchmark(curve_only):
+def benchmark(curve_only, *, preserve_endpoints=False, max_step_deviation_nm=None, seed=SEED):
     geom = runpy.run_path(str(ROOT / 'mdna' / 'path_geometry.py'))
-    points = controls()
+    points = controls(seed)
     updated, metrics = geom['regularize_open_path'](points, max_deviation=BUDGET_NM)
-    report = dict(seed=SEED, budget_nm=BUDGET_NM, sequence=SEQUENCE, input_points_nm=points.tolist(),
+    report = dict(seed=seed, budget_nm=BUDGET_NM, sequence=SEQUENCE, input_points_nm=points.tolist(),
                   smoothed_points_nm=updated.tolist(), curve=metrics,
                   endpoint_displacement_nm=np.linalg.norm((updated-points)[[0,-1]], axis=1).tolist(),
                   atom_level=None)
@@ -78,17 +78,41 @@ def benchmark(curve_only):
     if not curve_only:
         sys.path.insert(0, str(ROOT))
         from mdna import make
+        from mdna.path_geometry import StepSpacingError
         from mdna.structure_qc import measure_open_chain_geometry
         straight = np.linspace(points[0], points[-1], len(points))
         structures = {}
         origins = {}
-        for name, cp in [('straight', straight), ('original', points), ('regularized', points)]:
-            model = make(sequence=SEQUENCE, control_points=cp,
-                         path_deviation_nm=BUDGET_NM if name == 'regularized' else None)
+        cases = [('straight', straight), ('original', points), ('regularized', points)]
+        if preserve_endpoints:
+            cases += [('endpoint_original', points), ('endpoint_regularized', points)]
+        if max_step_deviation_nm is not None:
+            cases.append(('endpoint_step_limited_regularized', points))
+        for name, cp in cases:
+            anchored = name.startswith('endpoint_')
+            spacing_limit = max_step_deviation_nm if name == 'endpoint_step_limited_regularized' else None
+            try:
+                model = make(sequence=SEQUENCE, control_points=cp,
+                             path_deviation_nm=BUDGET_NM if name.endswith('regularized') else None,
+                             preserve_path_endpoints=anchored, max_step_deviation_nm=spacing_limit)
+            except StepSpacingError as exc:
+                structures[name] = dict(status='rejected_step_spacing', detail=str(exc),
+                                        requested_step_deviation_nm=spacing_limit)
+                continue
             origins[name] = model.get_frames()[:, 0, 0, :]
             structures[name] = measure_open_chain_geometry(model.get_traj())
             structures[name]['max_frame_turn_deg'] = float(geom['_turns'](origins[name]).max())
             structures[name]['triage'] = screen_atomic_geometry(structures[name])
+            if anchored:
+                distances = np.linalg.norm(np.diff(origins[name], axis=0), axis=1)
+                structures[name]['frame_step_range_nm'] = [float(distances.min()), float(distances.max())]
+                structures[name]['max_frame_step_deviation_nm'] = float(np.abs(distances-.34).max())
+                structures[name]['endpoint_error_nm'] = np.linalg.norm(
+                    origins[name][[0, -1]]-cp[[0, -1]], axis=1).tolist()
+                structures[name]['max_paired_frame_shift_nm'] = float(np.linalg.norm(
+                    origins[name]-origins['endpoint_original'], axis=1).max())
+                if name == 'endpoint_step_limited_regularized':
+                    structures[name]['requested_step_deviation_nm'] = max_step_deviation_nm
         report['atom_level'] = structures
         shift = np.linalg.norm(origins['regularized'] - origins['original'], axis=1)
         report['post_rescale_max_frame_shift_nm'] = float(shift.max())
@@ -134,11 +158,19 @@ def plot_curve_comparison(report, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--curve-only', action='store_true')
+    parser.add_argument('--seed', type=int, default=SEED)
+    parser.add_argument('--preserve-endpoints', action='store_true',
+                        help='Include fixed-endpoint atomic comparisons.')
+    parser.add_argument('--max-step-deviation-nm', type=float,
+                        help='Add a fixed-endpoint smoothing case with this maximum frame-step deviation.')
     parser.add_argument('--output', type=Path)
     parser.add_argument('--plot', type=Path)
     args = parser.parse_args()
+    if args.max_step_deviation_nm is not None and (not args.preserve_endpoints or args.curve_only):
+        parser.error('--max-step-deviation-nm requires the fixed-endpoint atomic comparison')
     with redirect_stdout(sys.stderr):
-        report = benchmark(args.curve_only)
+        report = benchmark(args.curve_only, preserve_endpoints=args.preserve_endpoints,
+                           max_step_deviation_nm=args.max_step_deviation_nm, seed=args.seed)
         if args.plot:
             plot_curve_comparison(report, args.plot)
     text = json.dumps(report, allow_nan=False, indent=2) + '\n'

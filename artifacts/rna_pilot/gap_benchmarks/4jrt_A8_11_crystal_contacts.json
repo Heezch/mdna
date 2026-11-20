@@ -1,0 +1,17 @@
+{
+  "target": "4JRT",
+  "target_sha256": "ac527dfa5fd20f64526fc776347c74d0378252263a7a9a53e9cf25270f30f257",
+  "fit_report_sha256": "edc728c7724c28b150d943f23b05b34e3c461d2cf5f13c70af4287a8a251b4ce",
+  "chain": "A",
+  "residues": [
+    "8",
+    "9",
+    "10",
+    "11"
+  ],
+  "space_group": "P 43",
+  "cutoff_A": 2.0,
+  "window_heavy_atoms": 89,
+  "deposited_contacts": [],
+  "rebuilt_contacts": []
+}

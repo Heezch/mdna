@@ -1,0 +1,191 @@
+{
+  "sequence": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "path_budget_nm": 0.9,
+  "spacing_deviation_limit_nm": 0.065,
+  "search_budgets_nm": [
+    0.15,
+    0.3,
+    0.45,
+    0.6,
+    0.75,
+    0.9
+  ],
+  "results": [
+    {
+      "seed": 20261124,
+      "baseline": {
+        "max_turn_deg": 65.43456339616394,
+        "short_links": 39,
+        "long_links": 33,
+        "short_heavy_contacts": 210,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.08950718602935726,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.3,
+          "max_paired_frame_shift_nm": 0.20553971702939267,
+          "failures": [
+            "short_links",
+            "long_links",
+            "no_turn_improvement"
+          ],
+          "max_turn_deg": 74.32869931148919,
+          "short_links": 40,
+          "long_links": 34,
+          "short_heavy_contacts": 134,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06446625973621833,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.45,
+          "max_paired_frame_shift_nm": 0.36369203165834724,
+          "failures": [
+            "short_links",
+            "no_turn_improvement"
+          ],
+          "max_turn_deg": 67.50416952865814,
+          "short_links": 41,
+          "long_links": 33,
+          "short_heavy_contacts": 126,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.05400863031469527,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.6,
+          "max_paired_frame_shift_nm": 0.4690574102282982,
+          "failures": [
+            "short_links",
+            "long_links"
+          ],
+          "max_turn_deg": 52.54894434191371,
+          "short_links": 43,
+          "long_links": 34,
+          "short_heavy_contacts": 82,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.058167356537482895,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.75,
+          "max_paired_frame_shift_nm": 0.6202796462354555,
+          "failures": [
+            "short_links",
+            "long_links"
+          ],
+          "max_turn_deg": 49.65284498322305,
+          "short_links": 42,
+          "long_links": 35,
+          "short_heavy_contacts": 101,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06262728955142433,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.9,
+          "max_paired_frame_shift_nm": 0.6202796462354555,
+          "failures": [
+            "short_links",
+            "long_links"
+          ],
+          "max_turn_deg": 49.65284498322305,
+          "short_links": 42,
+          "long_links": 35,
+          "short_heavy_contacts": 101,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06262728955142433,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "selected": null
+    },
+    {
+      "seed": 20261125,
+      "baseline": {
+        "max_turn_deg": 77.39869257661333,
+        "short_links": 39,
+        "long_links": 36,
+        "short_heavy_contacts": 360,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.1487379871713829,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.3,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.45,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.6,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.75,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.9,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        }
+      ],
+      "selected": null
+    }
+  ]
+}

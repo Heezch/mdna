@@ -20,6 +20,10 @@
 
 在冻结方法和模板清单下，新条目 4JRT 有 1/48 窗进入末端双端求解，遇到共享残基位移限制。1MIS 的 24 窗均有序列模板，但都在逐步帧筛查阶段停止。两条目未得到额外的上下文通过窗口。[4JRT 原始结构](https://www.rcsb.org/structure/4JRT) · [1MIS 原始结构](https://www.rcsb.org/structure/1MIS)
 
+补齐 4JRT 面板缺少的模板后，48 窗均有序列覆盖，一个四残基双端窗口通过局部原子几何与晶体对称近接触筛查。模板补充参考了同一面板的序列缺口。五、六残基仍无通过，通用发布判断维持科研原型。
+
+独立 RNA 目标 280D 的 96 个窗口均有序列模板覆盖，其中 34 窗的各步均有帧候选。在 D 链 39–42 的四残基窗口上，末端骨架方案评价了 10 条路径，上下文几何通过数为零。其余窗口只做预筛。复算使用 `evaluate_1rna_transfer.py --entry 280D --supplement 157D --supplement 438D --supplement 255D --supplement 420D --supplement 1RXB --long-paths-only --window D 39 4`。[280D 坐标来源](https://www.rcsb.org/structure/280D)
+
 ## 本机离线打包核查
 
 在已提供项目依赖、`build`、`setuptools>=69` 与 `wheel` 的 WSL 环境运行：
