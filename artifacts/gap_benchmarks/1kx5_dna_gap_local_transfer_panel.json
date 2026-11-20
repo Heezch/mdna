@@ -1,0 +1,3117 @@
+{
+  "each_window_excludes_its_two_exact_target_suites": true,
+  "interpretation_limit": "All windows and remaining candidate templates come from the same 1KX5 entry and nucleosome structure family. Relaxed runs exceed the strict shared-atom and bond-deviation limits. Results do not establish independent-family generalization, environment compatibility, or structural acceptance.",
+  "masked_truth_used_for_candidate_generation": false,
+  "paired_control_also_excludes_same_index_suite_pair_from_other_chain": true,
+  "panel_selection_policy": "Nine contiguous three-nucleotide windows selected at 16-residue intervals from the 1KX5 chain-I suite register, before panel evaluation; this is a within-entry diagnostic panel, not an independent-family validation set.",
+  "panel_window_count": 9,
+  "protocol": "fixed-spaced-same-entry-dna-gap-transfer-panel-v1",
+  "runs": [
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": 0.37095243124417204,
+        "candidate_truth_metrics": [
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.37095243124417204,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 8,
+                  "max_displacement_A": 0.42390801978318365,
+                  "rmsd_A": 0.2744493658039227
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.6043218778353004,
+                  "rmsd_A": 0.42767115484509166
+                }
+              },
+              "heavy_atom_count": 19,
+              "heavy_atom_max_displacement_A": 0.6043218778353004,
+              "heavy_atom_rmsd_A": 0.37095243124417204,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 3.6473833921419474,
+            "solver_rank": 1,
+            "suite_ids": [
+              "1KX5:J:-9--8",
+              "1KX5:I:-24--23"
+            ]
+          },
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.37095243124417204,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 8,
+                  "max_displacement_A": 0.42390801978318365,
+                  "rmsd_A": 0.2744493658039227
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.6043218778353004,
+                  "rmsd_A": 0.42767115484509166
+                }
+              },
+              "heavy_atom_count": 19,
+              "heavy_atom_max_displacement_A": 0.6043218778353004,
+              "heavy_atom_rmsd_A": 0.37095243124417204,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 4.241201215161957,
+            "solver_rank": 2,
+            "suite_ids": [
+              "1KX5:J:-9--8",
+              "1KX5:J:-24--23"
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "assembly_atom_count": 60,
+            "assembly_bond_count": 66,
+            "assembly_max_bond_length_deviation_A": 0.2810263726692106,
+            "end_anchor_max_displacement_A": 0.5885658198110223,
+            "end_connection_length_A": 1.3728645741871868,
+            "end_connection_reference_length_A": 1.5954820588148342,
+            "endpoint_rotation_residual_degrees": 5.7087133792154,
+            "endpoint_translation_residual_A": 0.3600914655482097,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 3.6473833921419474,
+            "score_components": {
+              "anchor_connection_deviation": 0.8521945387304275,
+              "end_anchor_deviation": 0.5412651941403449,
+              "endpoint_rotation": 0.22631533643078408,
+              "endpoint_translation": 0.23051709077450222,
+              "pinned_assembly_bond_deviation": 0.8775091348401561,
+              "shared_residue_continuity": 0.3720782820828051,
+              "start_anchor_deviation": 0.547503815142927
+            },
+            "start_anchor_max_displacement_A": 0.5919480059021006,
+            "start_connection_length_A": 1.6672925105418213,
+            "start_connection_reference_length_A": 1.6064351838776398,
+            "suite_ids": [
+              "1KX5:J:-9--8",
+              "1KX5:I:-24--23"
+            ]
+          },
+          {
+            "assembly_atom_count": 60,
+            "assembly_bond_count": 66,
+            "assembly_max_bond_length_deviation_A": 0.27078688204384727,
+            "end_anchor_max_displacement_A": 0.7260980944678135,
+            "end_connection_length_A": 1.3977061137760292,
+            "end_connection_reference_length_A": 1.5852425681894893,
+            "endpoint_rotation_residual_degrees": 8.239760859442343,
+            "endpoint_translation_residual_A": 0.4329365920580659,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 4.241201215161957,
+            "score_components": {
+              "anchor_connection_deviation": 0.6219765750829231,
+              "end_anchor_deviation": 0.8237788168590465,
+              "endpoint_rotation": 0.4714837431999863,
+              "endpoint_translation": 0.3332161648761816,
+              "pinned_assembly_bond_deviation": 0.814728172078094,
+              "shared_residue_continuity": 0.6285139279227981,
+              "start_anchor_deviation": 0.547503815142927
+            },
+            "start_anchor_max_displacement_A": 0.5919480059021006,
+            "start_connection_length_A": 1.6672925105418213,
+            "start_connection_reference_length_A": 1.6064351838776398,
+            "suite_ids": [
+              "1KX5:J:-9--8",
+              "1KX5:J:-24--23"
+            ]
+          }
+        ],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+        "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 405,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 354,
+          "assembly": 0,
+          "end_anchor_displacement": 3,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 49,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 351,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 2,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "TCA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+        "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+        "status": "complete",
+        "total_compatible_closures": 2,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 5,
+          "endpoint_rotation_residual_degrees": 54,
+          "endpoint_translation_residual_A": 54,
+          "max_anchor_connection_length_deviation_A": 2,
+          "pinned_anchor_max_bond_length_deviation_A": 2,
+          "shared_residue_rmsd_A": 5,
+          "start_anchor_max_displacement_A": 405
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 0.5885658198110223,
+          "endpoint_rotation_residual_degrees": 4.647601816063727,
+          "endpoint_translation_residual_A": 0.3600914655482097,
+          "max_anchor_connection_length_deviation_A": 0.18753645441346012,
+          "pinned_anchor_max_bond_length_deviation_A": 0.27078688204384727,
+          "shared_residue_rmsd_A": 1.3355358571373961e-14,
+          "start_anchor_max_displacement_A": 0.5919480059021006
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:-72--71",
+          "1KX5:J:-71--70"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": 0.37095243124417204,
+          "candidate_truth_metrics": [
+            {
+              "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.37095243124417204,
+              "missing_residue_posthoc_truth_metrics": {
+                "groups": {
+                  "base": {
+                    "atom_count": 8,
+                    "max_displacement_A": 0.42390801978318365,
+                    "rmsd_A": 0.2744493658039227
+                  },
+                  "sugar_phosphate": {
+                    "atom_count": 11,
+                    "max_displacement_A": 0.6043218778353004,
+                    "rmsd_A": 0.42767115484509166
+                  }
+                },
+                "heavy_atom_count": 19,
+                "heavy_atom_max_displacement_A": 0.6043218778353004,
+                "heavy_atom_rmsd_A": 0.37095243124417204,
+                "use": "post-search analysis only; not used for candidate generation or ranking"
+              },
+              "normalized_score": 3.6473833921419474,
+              "solver_rank": 1,
+              "suite_ids": [
+                "1KX5:J:-9--8",
+                "1KX5:I:-24--23"
+              ]
+            },
+            {
+              "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.37095243124417204,
+              "missing_residue_posthoc_truth_metrics": {
+                "groups": {
+                  "base": {
+                    "atom_count": 8,
+                    "max_displacement_A": 0.42390801978318365,
+                    "rmsd_A": 0.2744493658039227
+                  },
+                  "sugar_phosphate": {
+                    "atom_count": 11,
+                    "max_displacement_A": 0.6043218778353004,
+                    "rmsd_A": 0.42767115484509166
+                  }
+                },
+                "heavy_atom_count": 19,
+                "heavy_atom_max_displacement_A": 0.6043218778353004,
+                "heavy_atom_rmsd_A": 0.37095243124417204,
+                "use": "post-search analysis only; not used for candidate generation or ranking"
+              },
+              "normalized_score": 4.241201215161957,
+              "solver_rank": 2,
+              "suite_ids": [
+                "1KX5:J:-9--8",
+                "1KX5:J:-24--23"
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "assembly_atom_count": 60,
+              "assembly_bond_count": 66,
+              "assembly_max_bond_length_deviation_A": 0.2810263726692106,
+              "end_anchor_max_displacement_A": 0.5885658198110223,
+              "end_connection_length_A": 1.3728645741871868,
+              "end_connection_reference_length_A": 1.5954820588148342,
+              "endpoint_rotation_residual_degrees": 5.7087133792154,
+              "endpoint_translation_residual_A": 0.3600914655482097,
+              "environment_screening": "not_evaluated",
+              "normalized_score": 3.6473833921419474,
+              "score_components": {
+                "anchor_connection_deviation": 0.8521945387304275,
+                "end_anchor_deviation": 0.5412651941403449,
+                "endpoint_rotation": 0.22631533643078408,
+                "endpoint_translation": 0.23051709077450222,
+                "pinned_assembly_bond_deviation": 0.8775091348401561,
+                "shared_residue_continuity": 0.3720782820828051,
+                "start_anchor_deviation": 0.547503815142927
+              },
+              "start_anchor_max_displacement_A": 0.5919480059021006,
+              "start_connection_length_A": 1.6672925105418213,
+              "start_connection_reference_length_A": 1.6064351838776398,
+              "suite_ids": [
+                "1KX5:J:-9--8",
+                "1KX5:I:-24--23"
+              ]
+            },
+            {
+              "assembly_atom_count": 60,
+              "assembly_bond_count": 66,
+              "assembly_max_bond_length_deviation_A": 0.27078688204384727,
+              "end_anchor_max_displacement_A": 0.7260980944678135,
+              "end_connection_length_A": 1.3977061137760292,
+              "end_connection_reference_length_A": 1.5852425681894893,
+              "endpoint_rotation_residual_degrees": 8.239760859442343,
+              "endpoint_translation_residual_A": 0.4329365920580659,
+              "environment_screening": "not_evaluated",
+              "normalized_score": 4.241201215161957,
+              "score_components": {
+                "anchor_connection_deviation": 0.6219765750829231,
+                "end_anchor_deviation": 0.8237788168590465,
+                "endpoint_rotation": 0.4714837431999863,
+                "endpoint_translation": 0.3332161648761816,
+                "pinned_assembly_bond_deviation": 0.814728172078094,
+                "shared_residue_continuity": 0.6285139279227981,
+                "start_anchor_deviation": 0.547503815142927
+              },
+              "start_anchor_max_displacement_A": 0.5919480059021006,
+              "start_connection_length_A": 1.6672925105418213,
+              "start_connection_reference_length_A": 1.6064351838776398,
+              "suite_ids": [
+                "1KX5:J:-9--8",
+                "1KX5:J:-24--23"
+              ]
+            }
+          ],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+          "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 364,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "C",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 315,
+            "assembly": 0,
+            "end_anchor_displacement": 3,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 47,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 312,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 2,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "TCA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+          "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+          "status": "complete",
+          "total_compatible_closures": 2,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 5,
+            "endpoint_rotation_residual_degrees": 52,
+            "endpoint_translation_residual_A": 52,
+            "max_anchor_connection_length_deviation_A": 2,
+            "pinned_anchor_max_bond_length_deviation_A": 2,
+            "shared_residue_rmsd_A": 5,
+            "start_anchor_max_displacement_A": 364
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 0.5885658198110223,
+            "endpoint_rotation_residual_degrees": 4.647601816063727,
+            "endpoint_translation_residual_A": 0.3600914655482097,
+            "max_anchor_connection_length_deviation_A": 0.18753645441346012,
+            "pinned_anchor_max_bond_length_deviation_A": 0.27078688204384727,
+            "shared_residue_rmsd_A": 1.3355358571373961e-14,
+            "start_anchor_max_displacement_A": 0.5919480059021006
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {
+            "shared atom displacement at residue 1 is 1.71272 \u00c5, above limit 0.8 \u00c5.": 1,
+            "shared atom displacement at residue 1 is 1.82922 \u00c5, above limit 0.8 \u00c5.": 1
+          },
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+          "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 364,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "C",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 315,
+            "assembly": 2,
+            "end_anchor_displacement": 3,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 47,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 312,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "TCA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+          "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 5,
+            "endpoint_rotation_residual_degrees": 52,
+            "endpoint_translation_residual_A": 52,
+            "max_anchor_connection_length_deviation_A": 2,
+            "shared_residue_rmsd_A": 5,
+            "start_anchor_max_displacement_A": 364
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 0.5885658198110223,
+            "endpoint_rotation_residual_degrees": 4.647601816063727,
+            "endpoint_translation_residual_A": 0.3600914655482097,
+            "max_anchor_connection_length_deviation_A": 0.18753645441346012,
+            "shared_residue_rmsd_A": 1.3355358571373961e-14,
+            "start_anchor_max_displacement_A": 0.5919480059021006
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {
+          "shared atom displacement at residue 1 is 1.71272 \u00c5, above limit 0.8 \u00c5.": 1,
+          "shared atom displacement at residue 1 is 1.82922 \u00c5, above limit 0.8 \u00c5.": 1
+        },
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+        "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 405,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 354,
+          "assembly": 2,
+          "end_anchor_displacement": 3,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 49,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 351,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TCA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+        "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 5,
+          "endpoint_rotation_residual_degrees": 54,
+          "endpoint_translation_residual_A": 54,
+          "max_anchor_connection_length_deviation_A": 2,
+          "shared_residue_rmsd_A": 5,
+          "start_anchor_max_displacement_A": 405
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 0.5885658198110223,
+          "endpoint_rotation_residual_degrees": 4.647601816063727,
+          "endpoint_translation_residual_A": 0.3600914655482097,
+          "max_anchor_connection_length_deviation_A": 0.18753645441346012,
+          "shared_residue_rmsd_A": 1.3355358571373961e-14,
+          "start_anchor_max_displacement_A": 0.5919480059021006
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "-72",
+        "-71",
+        "-70"
+      ],
+      "target_sequence_including_anchors": "TCA",
+      "target_suite_ids": [
+        "1KX5:I:-72--71",
+        "1KX5:I:-71--70"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+        "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 375,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 375,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 375,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "GAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+        "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 375
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 0.9687568260312167
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:-56--55",
+          "1KX5:J:-55--54"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+          "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 336,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 336,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 336,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "GAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+          "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 336
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 0.9687568260312167
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+          "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 336,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 336,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 336,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "GAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+          "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 336
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 0.9687568260312167
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+        "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 375,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 375,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 375,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+        "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 375
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 0.9687568260312167
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "-56",
+        "-55",
+        "-54"
+      ],
+      "target_sequence_including_anchors": "GAT",
+      "target_suite_ids": [
+        "1KX5:I:-56--55",
+        "1KX5:I:-55--54"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+        "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 375,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 375,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 375,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "TAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+        "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 375
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.2227688391127691
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:-40--39",
+          "1KX5:J:-39--38"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+          "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 336,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 336,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 336,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "TAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+          "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 336
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.2227688391127691
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+          "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 336,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 336,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 336,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "TAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+          "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 336
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.2227688391127691
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+        "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 375,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 375,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 375,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+        "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 375
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.2227688391127691
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "-40",
+        "-39",
+        "-38"
+      ],
+      "target_sequence_including_anchors": "TAT",
+      "target_suite_ids": [
+        "1KX5:I:-40--39",
+        "1KX5:I:-39--38"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+        "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 675,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 675,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 675,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "CAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+        "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 675
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.0024203422883085
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:-24--23",
+          "1KX5:J:-23--22"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+          "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 624,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 624,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 624,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "CAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+          "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 624
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.128651675350164
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+          "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 624,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 624,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 624,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "CAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+          "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 624
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.128651675350164
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+        "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 675,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 675,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 675,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CAT",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+        "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 675
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.0024203422883085
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "-24",
+        "-23",
+        "-22"
+      ],
+      "target_sequence_including_anchors": "CAT",
+      "target_suite_ids": [
+        "1KX5:I:-24--23",
+        "1KX5:I:-23--22"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7253fc1fb2b7b15d7a3dba3ecbff48011b2053226fcde94a3a8eca7f435c812c",
+        "end_frame_sha256": "361c6cde94bf338062c9a79d43838957e309da9679cd6b2d1cfa10cbdaaff6ed",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 459,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 306,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 153,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 306,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "CAG",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "1612b4f04a0a71bb5a7af9bf6e5e539dd61ed9d13784e3c830c061cdab1af888",
+        "start_frame_sha256": "2d5cbbcf709ca4df241058e81c215b1af1901d0434a134536b794b241f383cee",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "endpoint_rotation_residual_degrees": 153,
+          "endpoint_translation_residual_A": 153,
+          "start_anchor_max_displacement_A": 459
+        },
+        "trial_metric_minima": {
+          "endpoint_rotation_residual_degrees": 5.596637663474844,
+          "endpoint_translation_residual_A": 0.5639953393209715,
+          "start_anchor_max_displacement_A": 0.30856960043712917
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:-8--7",
+          "1KX5:J:-7--6"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "7253fc1fb2b7b15d7a3dba3ecbff48011b2053226fcde94a3a8eca7f435c812c",
+          "end_frame_sha256": "361c6cde94bf338062c9a79d43838957e309da9679cd6b2d1cfa10cbdaaff6ed",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 416,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 272,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 144,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 272,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "CAG",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "1612b4f04a0a71bb5a7af9bf6e5e539dd61ed9d13784e3c830c061cdab1af888",
+          "start_frame_sha256": "2d5cbbcf709ca4df241058e81c215b1af1901d0434a134536b794b241f383cee",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "endpoint_rotation_residual_degrees": 144,
+            "endpoint_translation_residual_A": 144,
+            "start_anchor_max_displacement_A": 416
+          },
+          "trial_metric_minima": {
+            "endpoint_rotation_residual_degrees": 5.596637663474844,
+            "endpoint_translation_residual_A": 0.5639953393209715,
+            "start_anchor_max_displacement_A": 0.30856960043712917
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "7253fc1fb2b7b15d7a3dba3ecbff48011b2053226fcde94a3a8eca7f435c812c",
+          "end_frame_sha256": "361c6cde94bf338062c9a79d43838957e309da9679cd6b2d1cfa10cbdaaff6ed",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 416,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 272,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 144,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 272,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "CAG",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "1612b4f04a0a71bb5a7af9bf6e5e539dd61ed9d13784e3c830c061cdab1af888",
+          "start_frame_sha256": "2d5cbbcf709ca4df241058e81c215b1af1901d0434a134536b794b241f383cee",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "endpoint_rotation_residual_degrees": 144,
+            "endpoint_translation_residual_A": 144,
+            "start_anchor_max_displacement_A": 416
+          },
+          "trial_metric_minima": {
+            "endpoint_rotation_residual_degrees": 5.596637663474844,
+            "endpoint_translation_residual_A": 0.5639953393209715,
+            "start_anchor_max_displacement_A": 0.30856960043712917
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7253fc1fb2b7b15d7a3dba3ecbff48011b2053226fcde94a3a8eca7f435c812c",
+        "end_frame_sha256": "361c6cde94bf338062c9a79d43838957e309da9679cd6b2d1cfa10cbdaaff6ed",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 459,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 306,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 153,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 306,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CAG",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "1612b4f04a0a71bb5a7af9bf6e5e539dd61ed9d13784e3c830c061cdab1af888",
+        "start_frame_sha256": "2d5cbbcf709ca4df241058e81c215b1af1901d0434a134536b794b241f383cee",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "endpoint_rotation_residual_degrees": 153,
+          "endpoint_translation_residual_A": 153,
+          "start_anchor_max_displacement_A": 459
+        },
+        "trial_metric_minima": {
+          "endpoint_rotation_residual_degrees": 5.596637663474844,
+          "endpoint_translation_residual_A": 0.5639953393209715,
+          "start_anchor_max_displacement_A": 0.30856960043712917
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "-8",
+        "-7",
+        "-6"
+      ],
+      "target_sequence_including_anchors": "CAG",
+      "target_suite_ids": [
+        "1KX5:I:-8--7",
+        "1KX5:I:-7--6"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": 0.15835600898584706,
+        "candidate_truth_metrics": [
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 0.8636246595408587,
+            "solver_rank": 1,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:9-10"
+            ]
+          },
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 1.6965390918452958,
+            "solver_rank": 2,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:I:-33--32"
+            ]
+          },
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 2.5016819479694234,
+            "solver_rank": 3,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:I:-45--44"
+            ]
+          },
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 2.7722559444550727,
+            "solver_rank": 4,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:-18--17"
+            ]
+          },
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 2.868604720806413,
+            "solver_rank": 5,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:-45--44"
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.3038948341314512,
+            "end_connection_length_A": 1.6539831583197633,
+            "end_connection_reference_length_A": 1.597890484357416,
+            "endpoint_rotation_residual_degrees": 4.8340755495415975,
+            "endpoint_translation_residual_A": 0.39499319829879065,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 0.8636246595408587,
+            "score_components": {
+              "anchor_connection_deviation": 0.13272999579012612,
+              "end_anchor_deviation": 0.14430010970590973,
+              "endpoint_rotation": 0.1622797667963604,
+              "endpoint_translation": 0.2773682252485471,
+              "pinned_assembly_bond_deviation": 0.05721374071818368,
+              "shared_residue_continuity": 7.677673867824848e-29,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:9-10"
+            ]
+          },
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.4487564231720189,
+            "end_connection_length_A": 1.7184527144985875,
+            "end_connection_reference_length_A": 1.6013088396683521,
+            "endpoint_rotation_residual_degrees": 3.6144553319045216,
+            "endpoint_translation_residual_A": 0.4516059065335205,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 1.6965390918452958,
+            "score_components": {
+              "anchor_connection_deviation": 0.3019507851980566,
+              "end_anchor_deviation": 0.31465988646585014,
+              "endpoint_rotation": 0.09072421768286824,
+              "endpoint_translation": 0.36257403522837844,
+              "pinned_assembly_bond_deviation": 0.05721374071818368,
+              "shared_residue_continuity": 0.4796836052702272,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:I:-33--32"
+            ]
+          },
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.7855363300419851,
+            "end_connection_length_A": 1.6085536125355828,
+            "end_connection_reference_length_A": 1.5973922498872946,
+            "endpoint_rotation_residual_degrees": 4.305217038932549,
+            "endpoint_translation_residual_A": 0.7348969953622883,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 2.5016819479694234,
+            "score_components": {
+              "anchor_connection_deviation": 0.08438100289285269,
+              "end_anchor_deviation": 0.9641676965872351,
+              "endpoint_rotation": 0.12871453994663293,
+              "endpoint_translation": 0.9601308334089229,
+              "pinned_assembly_bond_deviation": 0.05721374071818368,
+              "shared_residue_continuity": 0.21734131313386437,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:I:-45--44"
+            ]
+          },
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.6450345508039694,
+            "end_connection_length_A": 1.467534102248718,
+            "end_connection_reference_length_A": 1.6025370510537325,
+            "endpoint_rotation_residual_degrees": 8.639475996958044,
+            "endpoint_translation_residual_A": 0.5446520070622725,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 2.7722559444550727,
+            "score_components": {
+              "anchor_connection_deviation": 0.3740005256109764,
+              "end_anchor_deviation": 0.6501087058294979,
+              "endpoint_rotation": 0.5183371215417651,
+              "endpoint_translation": 0.527370326750154,
+              "pinned_assembly_bond_deviation": 0.05721374071818368,
+              "shared_residue_continuity": 0.5554927027227634,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:-18--17"
+            ]
+          },
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.718133880921717,
+            "end_connection_length_A": 1.4925329935270621,
+            "end_connection_reference_length_A": 1.6046413929598122,
+            "endpoint_rotation_residual_degrees": 7.441504253254191,
+            "endpoint_translation_residual_A": 0.6961016835769428,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 2.868604720806413,
+            "score_components": {
+              "anchor_connection_deviation": 0.2834804782081557,
+              "end_anchor_deviation": 0.8058066733245106,
+              "endpoint_rotation": 0.3845554552166681,
+              "endpoint_translation": 0.8614356513398297,
+              "pinned_assembly_bond_deviation": 0.05721374071818368,
+              "shared_residue_continuity": 0.38637990071733397,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:-45--44"
+            ]
+          }
+        ],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+        "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 360,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 339,
+          "assembly": 0,
+          "end_anchor_displacement": 3,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 12,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 4,
+          "start_anchor_displacement": 336,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 5,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "GAA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+        "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+        "status": "complete",
+        "total_compatible_closures": 5,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 8,
+          "endpoint_rotation_residual_degrees": 24,
+          "endpoint_translation_residual_A": 24,
+          "max_anchor_connection_length_deviation_A": 5,
+          "pinned_anchor_max_bond_length_deviation_A": 5,
+          "shared_residue_rmsd_A": 12,
+          "start_anchor_max_displacement_A": 360
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 0.3038948341314512,
+          "endpoint_rotation_residual_degrees": 2.4971519767753296,
+          "endpoint_translation_residual_A": 0.0860671622974152,
+          "max_anchor_connection_length_deviation_A": 0.07175818186546179,
+          "pinned_anchor_max_bond_length_deviation_A": 0.07175818186546068,
+          "shared_residue_rmsd_A": 7.009786926439279e-15,
+          "start_anchor_max_displacement_A": 0.23964349692889286
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [
+        "1KX5:J:8-9",
+        "1KX5:J:9-10"
+      ],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:8-9",
+          "1KX5:J:9-10"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+          "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 322,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 322,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 322,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "GAA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+          "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 322
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.2603791515324156
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+          "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 322,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 322,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 322,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "GAA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+          "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 322
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.2603791515324156
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {
+          "shared atom displacement at residue 1 is 0.928453 \u00c5, above limit 0.8 \u00c5.": 1,
+          "shared atom displacement at residue 1 is 1.00205 \u00c5, above limit 0.8 \u00c5.": 1,
+          "shared atom displacement at residue 1 is 1.07612 \u00c5, above limit 0.8 \u00c5.": 1,
+          "shared atom displacement at residue 1 is 1.84186 \u00c5, above limit 0.8 \u00c5.": 1
+        },
+        "best_candidate_rmsd_to_masked_truth_A": 0.15835600898584706,
+        "candidate_truth_metrics": [
+          {
+            "missing_residue_heavy_atom_rmsd_to_masked_truth_A": 0.15835600898584706,
+            "missing_residue_posthoc_truth_metrics": {
+              "groups": {
+                "base": {
+                  "atom_count": 10,
+                  "max_displacement_A": 0.20307782914766448,
+                  "rmsd_A": 0.1583833069844598
+                },
+                "sugar_phosphate": {
+                  "atom_count": 11,
+                  "max_displacement_A": 0.21866123079617467,
+                  "rmsd_A": 0.15833118853934647
+                }
+              },
+              "heavy_atom_count": 21,
+              "heavy_atom_max_displacement_A": 0.21866123079617467,
+              "heavy_atom_rmsd_A": 0.15835600898584706,
+              "use": "post-search analysis only; not used for candidate generation or ranking"
+            },
+            "normalized_score": 0.8887987054568595,
+            "solver_rank": 1,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:9-10"
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "assembly_atom_count": 64,
+            "assembly_bond_count": 72,
+            "assembly_max_bond_length_deviation_A": 0.07175818186546068,
+            "end_anchor_max_displacement_A": 0.3038948341314512,
+            "end_connection_length_A": 1.6539831583197633,
+            "end_connection_reference_length_A": 1.597890484357416,
+            "endpoint_rotation_residual_degrees": 4.8340755495415975,
+            "endpoint_translation_residual_A": 0.39499319829879065,
+            "environment_screening": "not_evaluated",
+            "normalized_score": 0.8887987054568595,
+            "score_components": {
+              "anchor_connection_deviation": 0.13272999579012612,
+              "end_anchor_deviation": 0.14430010970590973,
+              "endpoint_rotation": 0.1622797667963604,
+              "endpoint_translation": 0.2773682252485471,
+              "pinned_assembly_bond_deviation": 0.08238778663418447,
+              "shared_residue_continuity": 7.677673867824848e-29,
+              "start_anchor_deviation": 0.08973282128173167
+            },
+            "start_anchor_max_displacement_A": 0.23964349692889286,
+            "start_connection_length_A": 1.6680491954340924,
+            "start_connection_reference_length_A": 1.5962910135686306,
+            "suite_ids": [
+              "1KX5:J:8-9",
+              "1KX5:J:9-10"
+            ]
+          }
+        ],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+        "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 360,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 339,
+          "assembly": 4,
+          "end_anchor_displacement": 3,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 12,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 4,
+          "start_anchor_displacement": 336,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 1,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+        "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+        "status": "complete",
+        "total_compatible_closures": 1,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 8,
+          "endpoint_rotation_residual_degrees": 24,
+          "endpoint_translation_residual_A": 24,
+          "max_anchor_connection_length_deviation_A": 5,
+          "pinned_anchor_max_bond_length_deviation_A": 1,
+          "shared_residue_rmsd_A": 12,
+          "start_anchor_max_displacement_A": 360
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 0.3038948341314512,
+          "endpoint_rotation_residual_degrees": 2.4971519767753296,
+          "endpoint_translation_residual_A": 0.0860671622974152,
+          "max_anchor_connection_length_deviation_A": 0.07175818186546179,
+          "pinned_anchor_max_bond_length_deviation_A": 0.07175818186546068,
+          "shared_residue_rmsd_A": 7.009786926439279e-15,
+          "start_anchor_max_displacement_A": 0.23964349692889286
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "8",
+        "9",
+        "10"
+      ],
+      "target_sequence_including_anchors": "GAA",
+      "target_suite_ids": [
+        "1KX5:I:8-9",
+        "1KX5:I:9-10"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+        "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 195,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "G",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 195,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 195,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "GGA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+        "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 195
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.7122188208389384
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:24-25",
+          "1KX5:J:25-26"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+          "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 168,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "G",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 168,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 168,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "GGA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+          "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 168
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.8657003558551726
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+          "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 168,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "G",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 168,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 168,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "GGA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+          "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 168
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.8657003558551726
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+        "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 195,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "G",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 195,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 195,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GGA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+        "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 195
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.7122188208389384
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "24",
+        "25",
+        "26"
+      ],
+      "target_sequence_including_anchors": "GGA",
+      "target_suite_ids": [
+        "1KX5:I:24-25",
+        "1KX5:I:25-26"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+        "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 351,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 298,
+          "assembly": 0,
+          "end_anchor_displacement": 1,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 53,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 297,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "ACA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+        "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 1,
+          "endpoint_rotation_residual_degrees": 54,
+          "endpoint_translation_residual_A": 54,
+          "shared_residue_rmsd_A": 1,
+          "start_anchor_max_displacement_A": 351
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 2.546686935515154,
+          "endpoint_rotation_residual_degrees": 7.848252116399832,
+          "endpoint_translation_residual_A": 0.36747013949654544,
+          "shared_residue_rmsd_A": 0.4890455250626955,
+          "start_anchor_max_displacement_A": 0.6275607701292444
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:40-41",
+          "1KX5:J:41-42"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+          "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 312,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "C",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 261,
+            "assembly": 0,
+            "end_anchor_displacement": 1,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 51,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 260,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "ACA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+          "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 1,
+            "endpoint_rotation_residual_degrees": 52,
+            "endpoint_translation_residual_A": 52,
+            "shared_residue_rmsd_A": 1,
+            "start_anchor_max_displacement_A": 312
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 2.546686935515154,
+            "endpoint_rotation_residual_degrees": 7.848252116399832,
+            "endpoint_translation_residual_A": 0.36747013949654544,
+            "shared_residue_rmsd_A": 0.4890455250626955,
+            "start_anchor_max_displacement_A": 0.6275607701292444
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+          "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 312,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "C",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 261,
+            "assembly": 0,
+            "end_anchor_displacement": 1,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 51,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 260,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "ACA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+          "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 1,
+            "endpoint_rotation_residual_degrees": 52,
+            "endpoint_translation_residual_A": 52,
+            "shared_residue_rmsd_A": 1,
+            "start_anchor_max_displacement_A": 312
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 2.546686935515154,
+            "endpoint_rotation_residual_degrees": 7.848252116399832,
+            "endpoint_translation_residual_A": 0.36747013949654544,
+            "shared_residue_rmsd_A": 0.4890455250626955,
+            "start_anchor_max_displacement_A": 0.6275607701292444
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+        "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 351,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 298,
+          "assembly": 0,
+          "end_anchor_displacement": 1,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 53,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 297,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "ACA",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+        "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 1,
+          "endpoint_rotation_residual_degrees": 54,
+          "endpoint_translation_residual_A": 54,
+          "shared_residue_rmsd_A": 1,
+          "start_anchor_max_displacement_A": 351
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 2.546686935515154,
+          "endpoint_rotation_residual_degrees": 7.848252116399832,
+          "endpoint_translation_residual_A": 0.36747013949654544,
+          "shared_residue_rmsd_A": 0.4890455250626955,
+          "start_anchor_max_displacement_A": 0.6275607701292444
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "40",
+        "41",
+        "42"
+      ],
+      "target_sequence_including_anchors": "ACA",
+      "target_suite_ids": [
+        "1KX5:I:40-41",
+        "1KX5:I:41-42"
+      ]
+    },
+    {
+      "candidate_library_suite_count": 286,
+      "exact_target_suites_excluded": true,
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "27b08c1f8d8077cd3ced804a529518afe8eecc71e2dff2c2e25152962f36a451",
+        "end_frame_sha256": "cf6f167407875c461e123f5bde012fbb893df6bfae9d4fb341caf84b92835b37",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 459,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "T",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 459,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 459,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+        "sequence_including_anchors": "CTG",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "9aba63c850bcd9cf575834522b6a63fcab47ad7254f8f8c3389704e2be9e94af",
+        "start_frame_sha256": "b4d766709b2266c110888fd9e4c4d3eaebf4ea7e65ff0e85e37e7391435e832f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 459
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.0284037091324445
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "same_entry_same_residue_index_template_matches": [],
+      "same_index_copy_excluded": {
+        "additional_excluded_suite_ids": [
+          "1KX5:J:56-57",
+          "1KX5:J:57-58"
+        ],
+        "candidate_library_suite_count": 284,
+        "interface_relaxed_diagnostic": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "27b08c1f8d8077cd3ced804a529518afe8eecc71e2dff2c2e25152962f36a451",
+          "end_frame_sha256": "cf6f167407875c461e123f5bde012fbb893df6bfae9d4fb341caf84b92835b37",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 416,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.3,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 2.0,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 416,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 416,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "selection_policy": "Candidates remain ordered by the solver score. Masked-truth RMSD is computed only after candidate generation and does not select a candidate.",
+          "sequence_including_anchors": "CTG",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "9aba63c850bcd9cf575834522b6a63fcab47ad7254f8f8c3389704e2be9e94af",
+          "start_frame_sha256": "b4d766709b2266c110888fd9e4c4d3eaebf4ea7e65ff0e85e37e7391435e832f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 416
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.0284037091324445
+          }
+        },
+        "strict_defaults": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "best_candidate_rmsd_to_masked_truth_A": null,
+          "candidate_truth_metrics": [],
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "27b08c1f8d8077cd3ced804a529518afe8eecc71e2dff2c2e25152962f36a451",
+          "end_frame_sha256": "cf6f167407875c461e123f5bde012fbb893df6bfae9d4fb341caf84b92835b37",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 416,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 416,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 416,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "CTG",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "9aba63c850bcd9cf575834522b6a63fcab47ad7254f8f8c3389704e2be9e94af",
+          "start_frame_sha256": "b4d766709b2266c110888fd9e4c4d3eaebf4ea7e65ff0e85e37e7391435e832f",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 416
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.0284037091324445
+          },
+          "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+        }
+      },
+      "scientific_acceptance": false,
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "27b08c1f8d8077cd3ced804a529518afe8eecc71e2dff2c2e25152962f36a451",
+        "end_frame_sha256": "cf6f167407875c461e123f5bde012fbb893df6bfae9d4fb341caf84b92835b37",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 459,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "T",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 459,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 459,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CTG",
+        "source_files": [
+          {
+            "file": "docs/notebooks/pdbs/1kx5.pdb",
+            "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+          }
+        ],
+        "start_anchor_atoms_sha256": "9aba63c850bcd9cf575834522b6a63fcab47ad7254f8f8c3389704e2be9e94af",
+        "start_frame_sha256": "b4d766709b2266c110888fd9e4c4d3eaebf4ea7e65ff0e85e37e7391435e832f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 459
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.0284037091324445
+        },
+        "truth_metric_use": "computed after strict and relaxed candidate generation; not used for candidate selection"
+      },
+      "target_residue_numbers_5prime_to_3prime": [
+        "56",
+        "57",
+        "58"
+      ],
+      "target_sequence_including_anchors": "CTG",
+      "target_suite_ids": [
+        "1KX5:I:56-57",
+        "1KX5:I:57-58"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "suite_library_file": "artifacts/gap_benchmarks/1kx5_dna_suites.json",
+  "suite_library_sha256": "a77ced79ad7c716a9a2ea03d3a5d7f7d043cadc66544c26c80204e3e721f0b62",
+  "target_chain": "I",
+  "target_entry": "1KX5"
+}

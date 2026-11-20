@@ -1,0 +1,6 @@
+# Benchmark manifests hash coordinate files byte for byte.
+/artifacts/**/*.cif -text
+/artifacts/**/*.pdb -text
+/docs/notebooks/pdbs/1kx5.pdb -text
+/mdna/atomic/artificial_basepair/3sv3.pdb -text
+/mdna/atomic/ddd/1bna.pdb -text

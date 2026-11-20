@@ -1,0 +1,2260 @@
+{
+  "schema_version": 1,
+  "source": "RCSB Protein Data Bank Chemical Component Dictionary",
+  "source_documentation": "https://www.wwpdb.org/data/ccd",
+  "retrieval_endpoint_template": "https://files.rcsb.org/ligands/download/{component_id}.cif",
+  "retrieval_date": "2026-10-27",
+  "coordinate_convention": "RCSB CCD ideal coordinates in angstrom",
+  "components": [
+    {
+      "component_id": "RNA:A",
+      "polymer_type": "RNA",
+      "sugar_chemistry": "ribose",
+      "backbone_chemistry": "phosphodiester",
+      "residue_name": "A",
+      "atoms": [
+        {
+          "name": "OP3",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.135,
+            -1.141,
+            -5.313
+          ]
+        },
+        {
+          "name": "P",
+          "element": "P",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.024,
+            -0.137,
+            -4.723
+          ]
+        },
+        {
+          "name": "OP1",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.633,
+            1.19,
+            -4.488
+          ]
+        },
+        {
+          "name": "OP2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.183,
+            0.005,
+            -5.778
+          ]
+        },
+        {
+          "name": "O5'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.456,
+            -0.72,
+            -3.334
+          ]
+        },
+        {
+          "name": "C5'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.52,
+            0.209,
+            -2.863
+          ]
+        },
+        {
+          "name": "C4'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.101,
+            -0.287,
+            -1.538
+          ]
+        },
+        {
+          "name": "O4'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.064,
+            -0.383,
+            -0.538
+          ]
+        },
+        {
+          "name": "C3'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.105,
+            0.739,
+            -0.969
+          ]
+        },
+        {
+          "name": "O3'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.445,
+            0.36,
+            -1.287
+          ]
+        },
+        {
+          "name": "C2'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.874,
+            0.684,
+            0.558
+          ]
+        },
+        {
+          "name": "O2'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.065,
+            0.271,
+            1.231
+          ]
+        },
+        {
+          "name": "C1'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.755,
+            -0.367,
+            0.729
+          ]
+        },
+        {
+          "name": "N9",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.158,
+            0.029,
+            1.803
+          ]
+        },
+        {
+          "name": "C8",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.265,
+            0.813,
+            1.672
+          ]
+        },
+        {
+          "name": "N7",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.843,
+            0.963,
+            2.828
+          ]
+        },
+        {
+          "name": "C5",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.143,
+            0.292,
+            3.773
+          ]
+        },
+        {
+          "name": "C6",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.29,
+            0.091,
+            5.156
+          ]
+        },
+        {
+          "name": "N6",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.344,
+            0.664,
+            5.846
+          ]
+        },
+        {
+          "name": "N1",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.391,
+            -0.656,
+            5.787
+          ]
+        },
+        {
+          "name": "C2",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.617,
+            -1.206,
+            5.136
+          ]
+        },
+        {
+          "name": "N3",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.792,
+            -1.051,
+            3.841
+          ]
+        },
+        {
+          "name": "C4",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.056,
+            -0.32,
+            3.126
+          ]
+        },
+        {
+          "name": "HOP3",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.448,
+            -0.755,
+            -6.142
+          ]
+        },
+        {
+          "name": "HOP2",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.552,
+            -0.879,
+            -5.902
+          ]
+        },
+        {
+          "name": "H5'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.319,
+            0.301,
+            -3.599
+          ]
+        },
+        {
+          "name": "H5''",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.052,
+            1.182,
+            -2.712
+          ]
+        },
+        {
+          "name": "H4'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.586,
+            -1.254,
+            -1.677
+          ]
+        },
+        {
+          "name": "H3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.89,
+            1.736,
+            -1.353
+          ]
+        },
+        {
+          "name": "HO3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -4.024,
+            1.035,
+            -0.908
+          ]
+        },
+        {
+          "name": "H2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.543,
+            1.654,
+            0.93
+          ]
+        },
+        {
+          "name": "HO2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.74,
+            0.936,
+            1.037
+          ]
+        },
+        {
+          "name": "H1'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.185,
+            -1.346,
+            0.94
+          ]
+        },
+        {
+          "name": "H8",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.611,
+            1.246,
+            0.745
+          ]
+        },
+        {
+          "name": "H61",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.432,
+            0.522,
+            6.801
+          ]
+        },
+        {
+          "name": "H62",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.996,
+            1.205,
+            5.374
+          ]
+        },
+        {
+          "name": "H2",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.325,
+            -1.807,
+            5.688
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "atom_1": "OP3",
+          "atom_2": "P",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP3",
+          "atom_2": "HOP3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP1",
+          "order": "doub"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "O5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP2",
+          "atom_2": "HOP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O5'",
+          "atom_2": "C5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "C4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5''",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "O4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "C3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "H4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O4'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "O3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "C2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "H3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O3'",
+          "atom_2": "HO3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "O2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "H2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O2'",
+          "atom_2": "HO2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "N9",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "H1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N9",
+          "atom_2": "C8",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N9",
+          "atom_2": "C4",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C8",
+          "atom_2": "N7",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C8",
+          "atom_2": "H8",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N7",
+          "atom_2": "C5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C6",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C4",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "N6",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "N1",
+          "order": "doub"
+        },
+        {
+          "atom_1": "N6",
+          "atom_2": "H61",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N6",
+          "atom_2": "H62",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "N3",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "H2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N3",
+          "atom_2": "C4",
+          "order": "sing"
+        }
+      ],
+      "source": "https://files.rcsb.org/ligands/download/A.cif",
+      "sha256": "46db841d33a8147dcd5a3802123e362d708c875f9ba7db457525f094ab55179a",
+      "coordinate_unit": "angstrom",
+      "template_key": null
+    },
+    {
+      "component_id": "RNA:C",
+      "polymer_type": "RNA",
+      "sugar_chemistry": "ribose",
+      "backbone_chemistry": "phosphodiester",
+      "residue_name": "C",
+      "atoms": [
+        {
+          "name": "OP3",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.147,
+            -1.021,
+            -4.678
+          ]
+        },
+        {
+          "name": "P",
+          "element": "P",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.049,
+            -0.039,
+            -4.028
+          ]
+        },
+        {
+          "name": "OP1",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.692,
+            1.237,
+            -3.646
+          ]
+        },
+        {
+          "name": "OP2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.116,
+            0.246,
+            -5.102
+          ]
+        },
+        {
+          "name": "O5'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.415,
+            -0.733,
+            -2.721
+          ]
+        },
+        {
+          "name": "C5'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.546,
+            0.181,
+            -2.193
+          ]
+        },
+        {
+          "name": "C4'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.189,
+            -0.419,
+            -0.942
+          ]
+        },
+        {
+          "name": "O4'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.19,
+            -0.648,
+            0.076
+          ]
+        },
+        {
+          "name": "C3'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.178,
+            0.583,
+            -0.307
+          ]
+        },
+        {
+          "name": "O3'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.518,
+            0.283,
+            -0.703
+          ]
+        },
+        {
+          "name": "C2'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.001,
+            0.373,
+            1.215
+          ]
+        },
+        {
+          "name": "O2'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.228,
+            -0.059,
+            1.806
+          ]
+        },
+        {
+          "name": "C1'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.924,
+            -0.729,
+            1.317
+          ]
+        },
+        {
+          "name": "N1",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.036,
+            -0.47,
+            2.453
+          ]
+        },
+        {
+          "name": "C2",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.652,
+            0.683,
+            2.514
+          ]
+        },
+        {
+          "name": "O2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.529,
+            1.504,
+            1.62
+          ]
+        },
+        {
+          "name": "N3",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.467,
+            0.945,
+            3.535
+          ]
+        },
+        {
+          "name": "C4",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.62,
+            0.07,
+            4.52
+          ]
+        },
+        {
+          "name": "N4",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.464,
+            0.35,
+            5.569
+          ]
+        },
+        {
+          "name": "C5",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.916,
+            -1.151,
+            4.483
+          ]
+        },
+        {
+          "name": "C6",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.087,
+            -1.399,
+            3.442
+          ]
+        },
+        {
+          "name": "HOP3",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.501,
+            -0.569,
+            -5.456
+          ]
+        },
+        {
+          "name": "HOP2",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.508,
+            -0.608,
+            -5.323
+          ]
+        },
+        {
+          "name": "H5'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.315,
+            0.371,
+            -2.941
+          ]
+        },
+        {
+          "name": "H5''",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.052,
+            1.118,
+            -1.933
+          ]
+        },
+        {
+          "name": "H4'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.699,
+            -1.35,
+            -1.188
+          ]
+        },
+        {
+          "name": "H3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.917,
+            1.604,
+            -0.586
+          ]
+        },
+        {
+          "name": "HO3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -4.088,
+            0.939,
+            -0.278
+          ]
+        },
+        {
+          "name": "H2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.653,
+            1.29,
+            1.689
+          ]
+        },
+        {
+          "name": "HO2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -3.874,
+            0.644,
+            1.656
+          ]
+        },
+        {
+          "name": "H1'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.392,
+            -1.708,
+            1.418
+          ]
+        },
+        {
+          "name": "H41",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.95,
+            1.189,
+            5.59
+          ]
+        },
+        {
+          "name": "H42",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.571,
+            -0.289,
+            6.29
+          ]
+        },
+        {
+          "name": "H5",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.03,
+            -1.873,
+            5.278
+          ]
+        },
+        {
+          "name": "H6",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.465,
+            -2.326,
+            3.393
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "atom_1": "OP3",
+          "atom_2": "P",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP3",
+          "atom_2": "HOP3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP1",
+          "order": "doub"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "O5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP2",
+          "atom_2": "HOP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O5'",
+          "atom_2": "C5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "C4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5''",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "O4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "C3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "H4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O4'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "O3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "C2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "H3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O3'",
+          "atom_2": "HO3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "O2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "H2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O2'",
+          "atom_2": "HO2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "N1",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "H1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C6",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "O2",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "N3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N3",
+          "atom_2": "C4",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C4",
+          "atom_2": "N4",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4",
+          "atom_2": "C5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N4",
+          "atom_2": "H41",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N4",
+          "atom_2": "H42",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C6",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "H5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "H6",
+          "order": "sing"
+        }
+      ],
+      "source": "https://files.rcsb.org/ligands/download/C.cif",
+      "sha256": "4937647bc2142b3a67fedb3db7e4f24c0ecad844ca5330356f2e95a981e9544e",
+      "coordinate_unit": "angstrom",
+      "template_key": null
+    },
+    {
+      "component_id": "RNA:G",
+      "polymer_type": "RNA",
+      "sugar_chemistry": "ribose",
+      "backbone_chemistry": "phosphodiester",
+      "residue_name": "G",
+      "atoms": [
+        {
+          "name": "OP3",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.945,
+            -1.36,
+            5.599
+          ]
+        },
+        {
+          "name": "P",
+          "element": "P",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.911,
+            -0.277,
+            5.008
+          ]
+        },
+        {
+          "name": "OP1",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.598,
+            1.022,
+            4.844
+          ]
+        },
+        {
+          "name": "OP2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.325,
+            -0.105,
+            6.025
+          ]
+        },
+        {
+          "name": "O5'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.365,
+            -0.78,
+            3.58
+          ]
+        },
+        {
+          "name": "C5'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.542,
+            0.217,
+            3.109
+          ]
+        },
+        {
+          "name": "C4'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.1,
+            -0.2,
+            1.748
+          ]
+        },
+        {
+          "name": "O4'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.033,
+            -0.318,
+            0.782
+          ]
+        },
+        {
+          "name": "C3'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.025,
+            0.898,
+            1.182
+          ]
+        },
+        {
+          "name": "O3'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.395,
+            0.582,
+            1.439
+          ]
+        },
+        {
+          "name": "C2'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.741,
+            0.884,
+            -0.338
+          ]
+        },
+        {
+          "name": "O2'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.927,
+            0.56,
+            -1.066
+          ]
+        },
+        {
+          "name": "C1'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.675,
+            -0.22,
+            -0.507
+          ]
+        },
+        {
+          "name": "N9",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.297,
+            0.162,
+            -1.534
+          ]
+        },
+        {
+          "name": "C8",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.44,
+            0.88,
+            -1.334
+          ]
+        },
+        {
+          "name": "N7",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.066,
+            1.037,
+            -2.464
+          ]
+        },
+        {
+          "name": "C5",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.364,
+            0.431,
+            -3.453
+          ]
+        },
+        {
+          "name": "C6",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.556,
+            0.279,
+            -4.846
+          ]
+        },
+        {
+          "name": "O6",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.534,
+            0.755,
+            -5.397
+          ]
+        },
+        {
+          "name": "N1",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.626,
+            -0.401,
+            -5.551
+          ]
+        },
+        {
+          "name": "C2",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.459,
+            -0.934,
+            -4.923
+          ]
+        },
+        {
+          "name": "N2",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.384,
+            -1.626,
+            -5.664
+          ]
+        },
+        {
+          "name": "N3",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.649,
+            -0.8,
+            -3.63
+          ]
+        },
+        {
+          "name": "C4",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.226,
+            -0.134,
+            -2.868
+          ]
+        },
+        {
+          "name": "HOP3",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.247,
+            -1.021,
+            6.453
+          ]
+        },
+        {
+          "name": "HOP2",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.745,
+            -0.973,
+            6.104
+          ]
+        },
+        {
+          "name": "H5'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.362,
+            0.327,
+            3.82
+          ]
+        },
+        {
+          "name": "H5''",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.018,
+            1.168,
+            3.011
+          ]
+        },
+        {
+          "name": "H4'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.64,
+            -1.144,
+            1.833
+          ]
+        },
+        {
+          "name": "H3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.772,
+            1.868,
+            1.61
+          ]
+        },
+        {
+          "name": "HO3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.923,
+            1.3,
+            1.065
+          ]
+        },
+        {
+          "name": "H2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.346,
+            1.847,
+            -0.662
+          ]
+        },
+        {
+          "name": "HO2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.573,
+            1.254,
+            -0.871
+          ]
+        },
+        {
+          "name": "H1'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.148,
+            -1.167,
+            -0.769
+          ]
+        },
+        {
+          "name": "H8",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.776,
+            1.261,
+            -0.381
+          ]
+        },
+        {
+          "name": "H1",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.736,
+            -0.518,
+            -6.508
+          ]
+        },
+        {
+          "name": "H21",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.165,
+            -2.007,
+            -5.232
+          ]
+        },
+        {
+          "name": "H22",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.256,
+            -1.736,
+            -6.619
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "atom_1": "OP3",
+          "atom_2": "P",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP3",
+          "atom_2": "HOP3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP1",
+          "order": "doub"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "O5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP2",
+          "atom_2": "HOP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O5'",
+          "atom_2": "C5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "C4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5''",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "O4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "C3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "H4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O4'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "O3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "C2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "H3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O3'",
+          "atom_2": "HO3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "O2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "H2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O2'",
+          "atom_2": "HO2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "N9",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "H1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N9",
+          "atom_2": "C8",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N9",
+          "atom_2": "C4",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C8",
+          "atom_2": "N7",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C8",
+          "atom_2": "H8",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N7",
+          "atom_2": "C5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C6",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C4",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "O6",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "N1",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "H1",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "N2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "N3",
+          "order": "doub"
+        },
+        {
+          "atom_1": "N2",
+          "atom_2": "H21",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N2",
+          "atom_2": "H22",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N3",
+          "atom_2": "C4",
+          "order": "sing"
+        }
+      ],
+      "source": "https://files.rcsb.org/ligands/download/G.cif",
+      "sha256": "4fbcf5b5222d7c7f0a761676cffa9bb997daa8f76d41fdb7657aa59e969b85fa",
+      "coordinate_unit": "angstrom",
+      "template_key": null
+    },
+    {
+      "component_id": "RNA:U",
+      "polymer_type": "RNA",
+      "sugar_chemistry": "ribose",
+      "backbone_chemistry": "phosphodiester",
+      "residue_name": "U",
+      "atoms": [
+        {
+          "name": "OP3",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.122,
+            1.033,
+            -4.69
+          ]
+        },
+        {
+          "name": "P",
+          "element": "P",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.03,
+            0.047,
+            -4.037
+          ]
+        },
+        {
+          "name": "OP1",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.679,
+            -1.228,
+            -3.66
+          ]
+        },
+        {
+          "name": "OP2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.138,
+            -0.241,
+            -5.107
+          ]
+        },
+        {
+          "name": "O5'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.399,
+            0.736,
+            -2.726
+          ]
+        },
+        {
+          "name": "C5'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.557,
+            -0.182,
+            -2.196
+          ]
+        },
+        {
+          "name": "C4'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.197,
+            0.415,
+            -0.942
+          ]
+        },
+        {
+          "name": "O4'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.194,
+            0.645,
+            0.074
+          ]
+        },
+        {
+          "name": "C3'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            2.181,
+            -0.588,
+            -0.301
+          ]
+        },
+        {
+          "name": "O3'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.524,
+            -0.288,
+            -0.686
+          ]
+        },
+        {
+          "name": "C2'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.995,
+            -0.383,
+            1.218
+          ]
+        },
+        {
+          "name": "O2'",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.219,
+            0.046,
+            1.819
+          ]
+        },
+        {
+          "name": "C1'",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.922,
+            0.723,
+            1.319
+          ]
+        },
+        {
+          "name": "N1",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.028,
+            0.464,
+            2.451
+          ]
+        },
+        {
+          "name": "C2",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.69,
+            -0.671,
+            2.486
+          ]
+        },
+        {
+          "name": "O2",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.587,
+            -1.474,
+            1.58
+          ]
+        },
+        {
+          "name": "N3",
+          "element": "N",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.515,
+            -0.936,
+            3.517
+          ]
+        },
+        {
+          "name": "C4",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -1.641,
+            -0.055,
+            4.53
+          ]
+        },
+        {
+          "name": "O4",
+          "element": "O",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.391,
+            -0.292,
+            5.46
+          ]
+        },
+        {
+          "name": "C5",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.894,
+            1.146,
+            4.502
+          ]
+        },
+        {
+          "name": "C6",
+          "element": "C",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.07,
+            1.384,
+            3.459
+          ]
+        },
+        {
+          "name": "HOP3",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.475,
+            0.583,
+            -5.47
+          ]
+        },
+        {
+          "name": "HOP2",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.534,
+            0.613,
+            -5.325
+          ]
+        },
+        {
+          "name": "H5'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.329,
+            -0.373,
+            -2.942
+          ]
+        },
+        {
+          "name": "H5''",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.06,
+            -1.117,
+            -1.94
+          ]
+        },
+        {
+          "name": "H4'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.712,
+            1.345,
+            -1.185
+          ]
+        },
+        {
+          "name": "H3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.923,
+            -1.609,
+            -0.583
+          ]
+        },
+        {
+          "name": "HO3'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            4.094,
+            -0.926,
+            -0.234
+          ]
+        },
+        {
+          "name": "H2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.643,
+            -1.301,
+            1.688
+          ]
+        },
+        {
+          "name": "HO2'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            3.865,
+            -0.657,
+            1.671
+          ]
+        },
+        {
+          "name": "H1'",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            1.392,
+            1.7,
+            1.423
+          ]
+        },
+        {
+          "name": "H3",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -2.024,
+            -1.762,
+            3.528
+          ]
+        },
+        {
+          "name": "H5",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            -0.982,
+            1.863,
+            5.305
+          ]
+        },
+        {
+          "name": "H6",
+          "element": "H",
+          "charge": 0,
+          "ideal_coordinate": [
+            0.507,
+            2.295,
+            3.421
+          ]
+        }
+      ],
+      "bonds": [
+        {
+          "atom_1": "OP3",
+          "atom_2": "P",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP3",
+          "atom_2": "HOP3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP1",
+          "order": "doub"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "OP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "P",
+          "atom_2": "O5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "OP2",
+          "atom_2": "HOP2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O5'",
+          "atom_2": "C5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "C4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5'",
+          "atom_2": "H5''",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "O4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "C3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4'",
+          "atom_2": "H4'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O4'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "O3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "C2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C3'",
+          "atom_2": "H3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O3'",
+          "atom_2": "HO3'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "O2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "C1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2'",
+          "atom_2": "H2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "O2'",
+          "atom_2": "HO2'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "N1",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C1'",
+          "atom_2": "H1'",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C2",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N1",
+          "atom_2": "C6",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "O2",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C2",
+          "atom_2": "N3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N3",
+          "atom_2": "C4",
+          "order": "sing"
+        },
+        {
+          "atom_1": "N3",
+          "atom_2": "H3",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C4",
+          "atom_2": "O4",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C4",
+          "atom_2": "C5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "C6",
+          "order": "doub"
+        },
+        {
+          "atom_1": "C5",
+          "atom_2": "H5",
+          "order": "sing"
+        },
+        {
+          "atom_1": "C6",
+          "atom_2": "H6",
+          "order": "sing"
+        }
+      ],
+      "source": "https://files.rcsb.org/ligands/download/U.cif",
+      "sha256": "de78a1e4a9860baaefc17c5e509fad96b0b25e0b62f90352976f9079cd4b051b",
+      "coordinate_unit": "angstrom",
+      "template_key": null
+    }
+  ]
+}

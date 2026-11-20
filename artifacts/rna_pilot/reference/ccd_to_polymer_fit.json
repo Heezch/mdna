@@ -1,0 +1,1627 @@
+{
+  "audit_tool": "scripts/rna_pilot/evaluate_ccd_to_polymer_fit.py",
+  "coordinate_unit": "angstrom",
+  "base_ring_atoms": {
+    "A": [
+      "N9",
+      "C8",
+      "N7",
+      "C5",
+      "C6",
+      "N1",
+      "C2",
+      "N3",
+      "C4"
+    ],
+    "G": [
+      "N9",
+      "C8",
+      "N7",
+      "C5",
+      "C6",
+      "N1",
+      "C2",
+      "N3",
+      "C4"
+    ],
+    "C": [
+      "N1",
+      "C2",
+      "N3",
+      "C4",
+      "C5",
+      "C6"
+    ],
+    "U": [
+      "N1",
+      "C2",
+      "N3",
+      "C4",
+      "C5",
+      "C6"
+    ]
+  },
+  "fit_method": "proper-rotation Kabsch fit of CCD ideal heavy-atom base ring to each observed residue base ring",
+  "input_ccd_components": [
+    {
+      "file": "A.cif",
+      "sha256": "46db841d33a8147dcd5a3802123e362d708c875f9ba7db457525f094ab55179a"
+    },
+    {
+      "file": "C.cif",
+      "sha256": "4937647bc2142b3a67fedb3db7e4f24c0ecad844ca5330356f2e95a981e9544e"
+    },
+    {
+      "file": "G.cif",
+      "sha256": "4fbcf5b5222d7c7f0a761676cffa9bb997daa8f76d41fdb7657aa59e969b85fa"
+    },
+    {
+      "file": "U.cif",
+      "sha256": "de78a1e4a9860baaefc17c5e509fad96b0b25e0b62f90352976f9079cd4b051b"
+    }
+  ],
+  "summary": {
+    "entry_count": 6,
+    "residue_count": 96,
+    "adjacent_link_count": 84,
+    "metrics": {
+      "base_ring_fit_rmsd_A": {
+        "count": 96,
+        "mean": 0.046846847316881234,
+        "median": 0.047450377691144796,
+        "p95": 0.06724935231926048,
+        "min": 0.022622918806018685,
+        "max": 0.07978477394203123
+      },
+      "all_heavy_rmsd_after_base_fit_A": {
+        "count": 96,
+        "mean": 3.2396235251831533,
+        "median": 2.5444551020498736,
+        "p95": 5.051639358858272,
+        "min": 1.396866083481899,
+        "max": 5.092395882311232
+      },
+      "sugar_rmsd_after_base_fit_A": {
+        "count": 96,
+        "mean": 2.8538112738564627,
+        "median": 2.8754096120392227,
+        "p95": 4.229200447430091,
+        "min": 1.3035745987495457,
+        "max": 4.278742446756963
+      },
+      "backbone_rmsd_after_base_fit_A": {
+        "count": 96,
+        "mean": 5.147125901265416,
+        "median": 4.255669994308286,
+        "p95": 7.756295732417267,
+        "min": 2.313496306320695,
+        "max": 7.81798859004289
+      },
+      "independently_fitted_O3_prime_to_next_P_A": {
+        "count": 84,
+        "mean": 7.141807247863643,
+        "median": 4.99454774234745,
+        "p95": 12.24416975216381,
+        "min": 2.2436959329838997,
+        "max": 12.344970740537363
+      },
+      "observed_O3_prime_to_next_P_A": {
+        "count": 84,
+        "mean": 1.6060000334731104,
+        "median": 1.60637231050856,
+        "p95": 1.6118454805420468,
+        "min": 1.5945764327870922,
+        "max": 1.614583537634395
+      }
+    }
+  },
+  "entries": [
+    {
+      "entry_id": "4U3L",
+      "source_coordinate_file": "4u3l.cif",
+      "source_coordinate_sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c",
+      "chains": [
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04654753791353785,
+              "all_heavy_rmsd_after_base_fit_A": 2.8848960776789565,
+              "sugar_rmsd_after_base_fit_A": 3.964511543855084,
+              "backbone_rmsd_after_base_fit_A": 4.820236718894003
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.025145577488086084,
+              "all_heavy_rmsd_after_base_fit_A": 4.9931203456002455,
+              "sugar_rmsd_after_base_fit_A": 4.172792107132681,
+              "backbone_rmsd_after_base_fit_A": 7.669324334149086
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.062066824802201374,
+              "all_heavy_rmsd_after_base_fit_A": 1.9677405753354744,
+              "sugar_rmsd_after_base_fit_A": 1.5675361721816434,
+              "backbone_rmsd_after_base_fit_A": 3.308841008952906
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.0420796750044807,
+              "all_heavy_rmsd_after_base_fit_A": 5.034451272015941,
+              "sugar_rmsd_after_base_fit_A": 4.19765726785093,
+              "backbone_rmsd_after_base_fit_A": 7.731163668853221
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05153318975529853,
+              "all_heavy_rmsd_after_base_fit_A": 1.9781838940116656,
+              "sugar_rmsd_after_base_fit_A": 1.4704655209252762,
+              "backbone_rmsd_after_base_fit_A": 3.2439349468522747
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02293265312733025,
+              "all_heavy_rmsd_after_base_fit_A": 5.022615448962962,
+              "sugar_rmsd_after_base_fit_A": 4.157591268221856,
+              "backbone_rmsd_after_base_fit_A": 7.703237834242833
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06572473565755894,
+              "all_heavy_rmsd_after_base_fit_A": 1.4330203227890537,
+              "sugar_rmsd_after_base_fit_A": 1.346442441159768,
+              "backbone_rmsd_after_base_fit_A": 2.3689289196330097
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05470722569793314,
+              "all_heavy_rmsd_after_base_fit_A": 1.936234941855663,
+              "sugar_rmsd_after_base_fit_A": 1.4680608324173967,
+              "backbone_rmsd_after_base_fit_A": 3.186095858678473
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.246600286858783,
+              "observed_O3_prime_to_next_P_A": 1.6056385022787667
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.37081109529195,
+              "observed_O3_prime_to_next_P_A": 1.6078740622324863
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.875830748321082,
+              "observed_O3_prime_to_next_P_A": 1.6050856674956646
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.50540771455047,
+              "observed_O3_prime_to_next_P_A": 1.609996583847307
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.57000554093337,
+              "observed_O3_prime_to_next_P_A": 1.6008510236745945
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.514229593552426,
+              "observed_O3_prime_to_next_P_A": 1.5979317882813424
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.6385501942678498,
+              "observed_O3_prime_to_next_P_A": 1.6033533609282773
+            }
+          ]
+        },
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04340688439157363,
+              "all_heavy_rmsd_after_base_fit_A": 2.8750888280135696,
+              "sugar_rmsd_after_base_fit_A": 3.9510365200822077,
+              "backbone_rmsd_after_base_fit_A": 4.811581422188764
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.027414010476244248,
+              "all_heavy_rmsd_after_base_fit_A": 4.907207544621777,
+              "sugar_rmsd_after_base_fit_A": 4.095390372708034,
+              "backbone_rmsd_after_base_fit_A": 7.533207986545463
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06878338230018502,
+              "all_heavy_rmsd_after_base_fit_A": 1.9347169733653862,
+              "sugar_rmsd_after_base_fit_A": 1.4644128277531685,
+              "backbone_rmsd_after_base_fit_A": 3.2405540704417515
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.041950406743114454,
+              "all_heavy_rmsd_after_base_fit_A": 5.007333003122271,
+              "sugar_rmsd_after_base_fit_A": 4.196585620222097,
+              "backbone_rmsd_after_base_fit_A": 7.684360450178763
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05334821454918162,
+              "all_heavy_rmsd_after_base_fit_A": 1.953842174160304,
+              "sugar_rmsd_after_base_fit_A": 1.4777844471027983,
+              "backbone_rmsd_after_base_fit_A": 3.2061447724157364
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.0264162824049285,
+              "all_heavy_rmsd_after_base_fit_A": 5.028119660784893,
+              "sugar_rmsd_after_base_fit_A": 4.208241747824193,
+              "backbone_rmsd_after_base_fit_A": 7.718533449005308
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.07978477394203123,
+              "all_heavy_rmsd_after_base_fit_A": 2.0648435385763104,
+              "sugar_rmsd_after_base_fit_A": 1.7997827039962377,
+              "backbone_rmsd_after_base_fit_A": 3.4604217433495084
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05288872292465511,
+              "all_heavy_rmsd_after_base_fit_A": 1.9341781016801534,
+              "sugar_rmsd_after_base_fit_A": 1.4748272111573013,
+              "backbone_rmsd_after_base_fit_A": 3.1821408852487254
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.064418485482102,
+              "observed_O3_prime_to_next_P_A": 1.5993680001800707
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.668950570461538,
+              "observed_O3_prime_to_next_P_A": 1.6037923805779843
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.765681052980092,
+              "observed_O3_prime_to_next_P_A": 1.6024621680401698
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.841576248694636,
+              "observed_O3_prime_to_next_P_A": 1.6005955141758954
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.617657552513348,
+              "observed_O3_prime_to_next_P_A": 1.6031197709466378
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.138134052952886,
+              "observed_O3_prime_to_next_P_A": 1.6067859222684273
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.4205373933783814,
+              "observed_O3_prime_to_next_P_A": 1.600411822000825
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3O",
+      "source_coordinate_file": "4u3o.cif",
+      "source_coordinate_sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236",
+      "chains": [
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04296079960030936,
+              "all_heavy_rmsd_after_base_fit_A": 2.9447526804414963,
+              "sugar_rmsd_after_base_fit_A": 4.046867089328454,
+              "backbone_rmsd_after_base_fit_A": 4.925467981219388
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.026620133326889752,
+              "all_heavy_rmsd_after_base_fit_A": 5.010931611464868,
+              "sugar_rmsd_after_base_fit_A": 4.185258026148459,
+              "backbone_rmsd_after_base_fit_A": 7.697253606939837
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06351342237931579,
+              "all_heavy_rmsd_after_base_fit_A": 2.2001277615791475,
+              "sugar_rmsd_after_base_fit_A": 1.705100150608009,
+              "backbone_rmsd_after_base_fit_A": 3.6997585664278065
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04618346181511219,
+              "all_heavy_rmsd_after_base_fit_A": 4.934338193512955,
+              "sugar_rmsd_after_base_fit_A": 4.122821387568617,
+              "backbone_rmsd_after_base_fit_A": 7.577043742429
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05515073787196963,
+              "all_heavy_rmsd_after_base_fit_A": 2.0605245661803755,
+              "sugar_rmsd_after_base_fit_A": 1.5651053958003782,
+              "backbone_rmsd_after_base_fit_A": 3.3876083577035887
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.027969888986901715,
+              "all_heavy_rmsd_after_base_fit_A": 5.086736599976536,
+              "sugar_rmsd_after_base_fit_A": 4.2587139650243016,
+              "backbone_rmsd_after_base_fit_A": 7.804905536298327
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06989139172880468,
+              "all_heavy_rmsd_after_base_fit_A": 1.7466974325852571,
+              "sugar_rmsd_after_base_fit_A": 1.5934246283325866,
+              "backbone_rmsd_after_base_fit_A": 2.911843059249754
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05369627482803669,
+              "all_heavy_rmsd_after_base_fit_A": 2.081677307146534,
+              "sugar_rmsd_after_base_fit_A": 1.5666127774815315,
+              "backbone_rmsd_after_base_fit_A": 3.420988446597808
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.190723057247245,
+              "observed_O3_prime_to_next_P_A": 1.6043322598514327
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.156842731107262,
+              "observed_O3_prime_to_next_P_A": 1.6018879486405992
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.843072261288448,
+              "observed_O3_prime_to_next_P_A": 1.6076753403594888
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.179826313239051,
+              "observed_O3_prime_to_next_P_A": 1.6019322707280719
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.628146210668707,
+              "observed_O3_prime_to_next_P_A": 1.6035887876884147
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.349690275102877,
+              "observed_O3_prime_to_next_P_A": 1.6072395589954842
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.479614620846777,
+              "observed_O3_prime_to_next_P_A": 1.5945764327870922
+            }
+          ]
+        },
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04614360740290363,
+              "all_heavy_rmsd_after_base_fit_A": 2.96732915640365,
+              "sugar_rmsd_after_base_fit_A": 4.077828350688274,
+              "backbone_rmsd_after_base_fit_A": 4.960341507237625
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.027407069539419605,
+              "all_heavy_rmsd_after_base_fit_A": 4.925650773543551,
+              "sugar_rmsd_after_base_fit_A": 4.167720277535682,
+              "backbone_rmsd_after_base_fit_A": 7.563543637155585
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06645190646757067,
+              "all_heavy_rmsd_after_base_fit_A": 2.0141352877038554,
+              "sugar_rmsd_after_base_fit_A": 1.5487443455847718,
+              "backbone_rmsd_after_base_fit_A": 3.3842376467927817
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04415941164414415,
+              "all_heavy_rmsd_after_base_fit_A": 4.9867318635026825,
+              "sugar_rmsd_after_base_fit_A": 4.194519813251642,
+              "backbone_rmsd_after_base_fit_A": 7.646093849180503
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.055186091419823224,
+              "all_heavy_rmsd_after_base_fit_A": 2.056886552794916,
+              "sugar_rmsd_after_base_fit_A": 1.5596304185597107,
+              "backbone_rmsd_after_base_fit_A": 3.37961008223606
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.025850525210199492,
+              "all_heavy_rmsd_after_base_fit_A": 5.022260201955607,
+              "sugar_rmsd_after_base_fit_A": 4.2216183034340995,
+              "backbone_rmsd_after_base_fit_A": 7.7104873191536925
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06308024995979115,
+              "all_heavy_rmsd_after_base_fit_A": 2.044171706344564,
+              "sugar_rmsd_after_base_fit_A": 1.6437261289483214,
+              "backbone_rmsd_after_base_fit_A": 3.4334637134159287
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05266913235011815,
+              "all_heavy_rmsd_after_base_fit_A": 2.002842509821853,
+              "sugar_rmsd_after_base_fit_A": 1.4772543891498957,
+              "backbone_rmsd_after_base_fit_A": 3.2946296088038296
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.298888471781446,
+              "observed_O3_prime_to_next_P_A": 1.6099251535397545
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.451020138081551,
+              "observed_O3_prime_to_next_P_A": 1.6076087832554313
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.892352873959268,
+              "observed_O3_prime_to_next_P_A": 1.6047445279545278
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.674772684980571,
+              "observed_O3_prime_to_next_P_A": 1.60586113970044
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.820729162893558,
+              "observed_O3_prime_to_next_P_A": 1.6052267752563834
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.066796068061987,
+              "observed_O3_prime_to_next_P_A": 1.6130765635889686
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.29895642979045,
+              "observed_O3_prime_to_next_P_A": 1.6119364131379368
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3P",
+      "source_coordinate_file": "4u3p.cif",
+      "source_coordinate_sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0",
+      "chains": [
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04464295799587863,
+              "all_heavy_rmsd_after_base_fit_A": 3.0049778470197,
+              "sugar_rmsd_after_base_fit_A": 4.129610663970109,
+              "backbone_rmsd_after_base_fit_A": 5.01866220394375
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.026385361594433353,
+              "all_heavy_rmsd_after_base_fit_A": 5.0123471711053496,
+              "sugar_rmsd_after_base_fit_A": 4.190537662061286,
+              "backbone_rmsd_after_base_fit_A": 7.696007976712651
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.060941255878751516,
+              "all_heavy_rmsd_after_base_fit_A": 2.092071642436199,
+              "sugar_rmsd_after_base_fit_A": 1.5775003564549042,
+              "backbone_rmsd_after_base_fit_A": 3.5167704204190677
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.037115820115621166,
+              "all_heavy_rmsd_after_base_fit_A": 5.01819639937506,
+              "sugar_rmsd_after_base_fit_A": 4.206776638082935,
+              "backbone_rmsd_after_base_fit_A": 7.702392651484984
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.048936774361672965,
+              "all_heavy_rmsd_after_base_fit_A": 1.9920522058037895,
+              "sugar_rmsd_after_base_fit_A": 1.5150110807868997,
+              "backbone_rmsd_after_base_fit_A": 3.27462764642311
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.028400137206998927,
+              "all_heavy_rmsd_after_base_fit_A": 5.031098151264849,
+              "sugar_rmsd_after_base_fit_A": 4.193454648724105,
+              "backbone_rmsd_after_base_fit_A": 7.729276667456489
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06133117049602421,
+              "all_heavy_rmsd_after_base_fit_A": 2.1679240958329684,
+              "sugar_rmsd_after_base_fit_A": 1.7051804829719193,
+              "backbone_rmsd_after_base_fit_A": 3.6452650350472435
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.04833083815319195,
+              "all_heavy_rmsd_after_base_fit_A": 1.972032684217254,
+              "sugar_rmsd_after_base_fit_A": 1.4885754724023077,
+              "backbone_rmsd_after_base_fit_A": 3.239843680051198
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.230396722225624,
+              "observed_O3_prime_to_next_P_A": 1.6063330912360623
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.550496648723781,
+              "observed_O3_prime_to_next_P_A": 1.6048239778866706
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.96362318912122,
+              "observed_O3_prime_to_next_P_A": 1.5992207477393483
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.824461703063901,
+              "observed_O3_prime_to_next_P_A": 1.602703341233181
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.667055896411938,
+              "observed_O3_prime_to_next_P_A": 1.603798304027037
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 3.8187697765029847,
+              "observed_O3_prime_to_next_P_A": 1.6101409876156805
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.4968302455545017,
+              "observed_O3_prime_to_next_P_A": 1.605529507670288
+            }
+          ]
+        },
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04368688899198015,
+              "all_heavy_rmsd_after_base_fit_A": 2.8985537247672677,
+              "sugar_rmsd_after_base_fit_A": 3.983296533109247,
+              "backbone_rmsd_after_base_fit_A": 4.834416647027245
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.027836649284498045,
+              "all_heavy_rmsd_after_base_fit_A": 4.974503988370504,
+              "sugar_rmsd_after_base_fit_A": 4.121003143270044,
+              "backbone_rmsd_after_base_fit_A": 7.64523623936454
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06745557918217251,
+              "all_heavy_rmsd_after_base_fit_A": 1.93430054785365,
+              "sugar_rmsd_after_base_fit_A": 1.5499922986115848,
+              "backbone_rmsd_after_base_fit_A": 3.2496563901209914
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04231370274428851,
+              "all_heavy_rmsd_after_base_fit_A": 5.00968411572144,
+              "sugar_rmsd_after_base_fit_A": 4.204690267921475,
+              "backbone_rmsd_after_base_fit_A": 7.692690334945673
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.053329499847114666,
+              "all_heavy_rmsd_after_base_fit_A": 2.213821376086177,
+              "sugar_rmsd_after_base_fit_A": 1.6924011614648284,
+              "backbone_rmsd_after_base_fit_A": 3.643733354645322
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02632029127432922,
+              "all_heavy_rmsd_after_base_fit_A": 5.021313344801608,
+              "sugar_rmsd_after_base_fit_A": 4.201574827665634,
+              "backbone_rmsd_after_base_fit_A": 7.698076800355621
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.07052247346294342,
+              "all_heavy_rmsd_after_base_fit_A": 1.8745628134375871,
+              "sugar_rmsd_after_base_fit_A": 1.6940582057906353,
+              "backbone_rmsd_after_base_fit_A": 3.135476701408129
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.054178236413135086,
+              "all_heavy_rmsd_after_base_fit_A": 2.027960904180139,
+              "sugar_rmsd_after_base_fit_A": 1.4738773992265224,
+              "backbone_rmsd_after_base_fit_A": 3.333398879111262
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.11309801205332,
+              "observed_O3_prime_to_next_P_A": 1.6100487570257003
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.094306814063339,
+              "observed_O3_prime_to_next_P_A": 1.606621921921894
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 11.07482058298116,
+              "observed_O3_prime_to_next_P_A": 1.6121867137524728
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.147519236000264,
+              "observed_O3_prime_to_next_P_A": 1.614583537634395
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.532747894783384,
+              "observed_O3_prime_to_next_P_A": 1.6056042476276648
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.39673010362759,
+              "observed_O3_prime_to_next_P_A": 1.600094372216839
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.2436959329838997,
+              "observed_O3_prime_to_next_P_A": 1.598982801658605
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry_id": "4U3R",
+      "source_coordinate_file": "4u3r.cif",
+      "source_coordinate_sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c",
+      "chains": [
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04732391979926051,
+              "all_heavy_rmsd_after_base_fit_A": 2.9958738906756657,
+              "sugar_rmsd_after_base_fit_A": 4.117073841189405,
+              "backbone_rmsd_after_base_fit_A": 4.999940202100342
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02507310748567092,
+              "all_heavy_rmsd_after_base_fit_A": 5.050492726178232,
+              "sugar_rmsd_after_base_fit_A": 4.231215338566887,
+              "backbone_rmsd_after_base_fit_A": 7.754734593536259
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06517350769520017,
+              "all_heavy_rmsd_after_base_fit_A": 1.9931028259941386,
+              "sugar_rmsd_after_base_fit_A": 1.5790991361788347,
+              "backbone_rmsd_after_base_fit_A": 3.35395092336003
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04475939688870742,
+              "all_heavy_rmsd_after_base_fit_A": 5.029988398085332,
+              "sugar_rmsd_after_base_fit_A": 4.2039055752504755,
+              "backbone_rmsd_after_base_fit_A": 7.721938329374266
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05207608393118817,
+              "all_heavy_rmsd_after_base_fit_A": 2.0147723076852673,
+              "sugar_rmsd_after_base_fit_A": 1.523945824481521,
+              "backbone_rmsd_after_base_fit_A": 3.316524485703122
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.024956021097675106,
+              "all_heavy_rmsd_after_base_fit_A": 5.056003755609915,
+              "sugar_rmsd_after_base_fit_A": 4.187868013252972,
+              "backbone_rmsd_after_base_fit_A": 7.761502098204747
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.0660670767961566,
+              "all_heavy_rmsd_after_base_fit_A": 1.396866083481899,
+              "sugar_rmsd_after_base_fit_A": 1.3035745987495457,
+              "backbone_rmsd_after_base_fit_A": 2.313496306320695
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.052028135373815246,
+              "all_heavy_rmsd_after_base_fit_A": 2.0539896594457017,
+              "sugar_rmsd_after_base_fit_A": 1.535934642188447,
+              "backbone_rmsd_after_base_fit_A": 3.380725740873671
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.21811001492195,
+              "observed_O3_prime_to_next_P_A": 1.6064454550341882
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.121348711361408,
+              "observed_O3_prime_to_next_P_A": 1.6067299088521378
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 11.070716238395264,
+              "observed_O3_prime_to_next_P_A": 1.6079073356384674
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.320934266766013,
+              "observed_O3_prime_to_next_P_A": 1.607764286206159
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.794145254669875,
+              "observed_O3_prime_to_next_P_A": 1.607547199929134
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.609926219586625,
+              "observed_O3_prime_to_next_P_A": 1.605993150670326
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.6003987509590827,
+              "observed_O3_prime_to_next_P_A": 1.6044382194400644
+            }
+          ]
+        },
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.045636030996229496,
+              "all_heavy_rmsd_after_base_fit_A": 2.943041717068227,
+              "sugar_rmsd_after_base_fit_A": 4.044454451877668,
+              "backbone_rmsd_after_base_fit_A": 4.911733183777817
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.024817466652545896,
+              "all_heavy_rmsd_after_base_fit_A": 4.994375955477189,
+              "sugar_rmsd_after_base_fit_A": 4.199334874901648,
+              "backbone_rmsd_after_base_fit_A": 7.668814703778385
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06509313666054253,
+              "all_heavy_rmsd_after_base_fit_A": 1.996370666751223,
+              "sugar_rmsd_after_base_fit_A": 1.5242978837822296,
+              "backbone_rmsd_after_base_fit_A": 3.3570371525664258
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04420218179960487,
+              "all_heavy_rmsd_after_base_fit_A": 5.092395882311232,
+              "sugar_rmsd_after_base_fit_A": 4.278742446756963,
+              "backbone_rmsd_after_base_fit_A": 7.81798859004289
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05156116263845495,
+              "all_heavy_rmsd_after_base_fit_A": 1.9987446318450255,
+              "sugar_rmsd_after_base_fit_A": 1.5351238325705499,
+              "backbone_rmsd_after_base_fit_A": 3.2888245619973864
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02437458852813256,
+              "all_heavy_rmsd_after_base_fit_A": 5.05507925689839,
+              "sugar_rmsd_after_base_fit_A": 4.237584832081745,
+              "backbone_rmsd_after_base_fit_A": 7.760979149060289
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06423521560043281,
+              "all_heavy_rmsd_after_base_fit_A": 1.9588958475287956,
+              "sugar_rmsd_after_base_fit_A": 1.5459305766592708,
+              "backbone_rmsd_after_base_fit_A": 3.2923147132544046
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.051995872708684124,
+              "all_heavy_rmsd_after_base_fit_A": 2.0456604532753397,
+              "sugar_rmsd_after_base_fit_A": 1.53047915257887,
+              "backbone_rmsd_after_base_fit_A": 3.3681690848994945
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.344970740537363,
+              "observed_O3_prime_to_next_P_A": 1.6065543875014017
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.70369516882712,
+              "observed_O3_prime_to_next_P_A": 1.6063667078223451
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.933709685208,
+              "observed_O3_prime_to_next_P_A": 1.6061077174336706
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.769392545876614,
+              "observed_O3_prime_to_next_P_A": 1.6077179479000665
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.867691709796684,
+              "observed_O3_prime_to_next_P_A": 1.608943442138349
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.093478786081476,
+              "observed_O3_prime_to_next_P_A": 1.6089176486072865
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.4557614493347817,
+              "observed_O3_prime_to_next_P_A": 1.6076809384949493
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry_id": "4U47",
+      "source_coordinate_file": "4u47.cif",
+      "source_coordinate_sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3",
+      "chains": [
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.042905356126574264,
+              "all_heavy_rmsd_after_base_fit_A": 2.9590525664340506,
+              "sugar_rmsd_after_base_fit_A": 4.066493317032688,
+              "backbone_rmsd_after_base_fit_A": 4.929681836051998
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.028406863311972678,
+              "all_heavy_rmsd_after_base_fit_A": 4.999320153254741,
+              "sugar_rmsd_after_base_fit_A": 4.1757670079846685,
+              "backbone_rmsd_after_base_fit_A": 7.6800869909056795
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.062285607059292494,
+              "all_heavy_rmsd_after_base_fit_A": 2.079149615040206,
+              "sugar_rmsd_after_base_fit_A": 1.60208195975735,
+              "backbone_rmsd_after_base_fit_A": 3.495905398291376
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04013941455265859,
+              "all_heavy_rmsd_after_base_fit_A": 4.97124653046379,
+              "sugar_rmsd_after_base_fit_A": 4.176799653441649,
+              "backbone_rmsd_after_base_fit_A": 7.626265935075196
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.049965614902725435,
+              "all_heavy_rmsd_after_base_fit_A": 2.060645385533249,
+              "sugar_rmsd_after_base_fit_A": 1.559690936745226,
+              "backbone_rmsd_after_base_fit_A": 3.3842279383147273
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.022622918806018685,
+              "all_heavy_rmsd_after_base_fit_A": 4.97137122647667,
+              "sugar_rmsd_after_base_fit_A": 4.172079910523459,
+              "backbone_rmsd_after_base_fit_A": 7.630693089612163
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.059287951401457865,
+              "all_heavy_rmsd_after_base_fit_A": 2.0688951548042627,
+              "sugar_rmsd_after_base_fit_A": 1.6341462132450526,
+              "backbone_rmsd_after_base_fit_A": 3.4813626978151517
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.050235029129511395,
+              "all_heavy_rmsd_after_base_fit_A": 2.0364781119602986,
+              "sugar_rmsd_after_base_fit_A": 1.503045940558209,
+              "backbone_rmsd_after_base_fit_A": 3.34804889540158
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.268248815867219,
+              "observed_O3_prime_to_next_P_A": 1.6076174918182506
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.556208479523384,
+              "observed_O3_prime_to_next_P_A": 1.609375655339671
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.806714551196672,
+              "observed_O3_prime_to_next_P_A": 1.602623162193783
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.632422572824495,
+              "observed_O3_prime_to_next_P_A": 1.6061385369886378
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.780286664942151,
+              "observed_O3_prime_to_next_P_A": 1.6054734504189099
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 3.9266226298800366,
+              "observed_O3_prime_to_next_P_A": 1.6067028350009223
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.529097595367371,
+              "observed_O3_prime_to_next_P_A": 1.6044715640982856
+            }
+          ]
+        },
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04612776198306537,
+              "all_heavy_rmsd_after_base_fit_A": 2.9391440159703235,
+              "sugar_rmsd_after_base_fit_A": 4.039116619487126,
+              "backbone_rmsd_after_base_fit_A": 4.89879600386591
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02946319691039874,
+              "all_heavy_rmsd_after_base_fit_A": 5.060017725373417,
+              "sugar_rmsd_after_base_fit_A": 4.209535651891716,
+              "backbone_rmsd_after_base_fit_A": 7.777668237798783
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06540576534192952,
+              "all_heavy_rmsd_after_base_fit_A": 2.127593593004237,
+              "sugar_rmsd_after_base_fit_A": 1.655643738454663,
+              "backbone_rmsd_after_base_fit_A": 3.5775179841317635
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04282202127337301,
+              "all_heavy_rmsd_after_base_fit_A": 5.0252415165784985,
+              "sugar_rmsd_after_base_fit_A": 4.231166996255047,
+              "backbone_rmsd_after_base_fit_A": 7.712707694134899
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05047708679768136,
+              "all_heavy_rmsd_after_base_fit_A": 2.0551295971782033,
+              "sugar_rmsd_after_base_fit_A": 1.5755375429533918,
+              "backbone_rmsd_after_base_fit_A": 3.379987315604901
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02632175826198269,
+              "all_heavy_rmsd_after_base_fit_A": 5.040424896821897,
+              "sugar_rmsd_after_base_fit_A": 4.1984316396783115,
+              "backbone_rmsd_after_base_fit_A": 7.737154188884495
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.0585375799370757,
+              "all_heavy_rmsd_after_base_fit_A": 1.8036374776897686,
+              "sugar_rmsd_after_base_fit_A": 1.4891326738576285,
+              "backbone_rmsd_after_base_fit_A": 3.0260728118761158
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.04757683558302908,
+              "all_heavy_rmsd_after_base_fit_A": 2.0949564147247206,
+              "sugar_rmsd_after_base_fit_A": 1.5850095231742012,
+              "backbone_rmsd_after_base_fit_A": 3.44835367954715
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.019493643682125,
+              "observed_O3_prime_to_next_P_A": 1.6093396161158775
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.355672915055191,
+              "observed_O3_prime_to_next_P_A": 1.6091320641886424
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.816238306769309,
+              "observed_O3_prime_to_next_P_A": 1.6113301958320032
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.412142457832524,
+              "observed_O3_prime_to_next_P_A": 1.6097139497438664
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.624462302945565,
+              "observed_O3_prime_to_next_P_A": 1.6034179118370862
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.1748295143868415,
+              "observed_O3_prime_to_next_P_A": 1.604016521111925
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.534287066899964,
+              "observed_O3_prime_to_next_P_A": 1.612521627761936
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry_id": "4U78",
+      "source_coordinate_file": "4u78.cif",
+      "source_coordinate_sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035",
+      "chains": [
+        {
+          "chain_id": "B",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04693533830650578,
+              "all_heavy_rmsd_after_base_fit_A": 2.979172547057626,
+              "sugar_rmsd_after_base_fit_A": 4.0941133788376725,
+              "backbone_rmsd_after_base_fit_A": 4.970657798425949
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.024887484402819873,
+              "all_heavy_rmsd_after_base_fit_A": 5.018910361256838,
+              "sugar_rmsd_after_base_fit_A": 4.225214177213884,
+              "backbone_rmsd_after_base_fit_A": 7.707322652205118
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06462499847857509,
+              "all_heavy_rmsd_after_base_fit_A": 2.018927483481402,
+              "sugar_rmsd_after_base_fit_A": 1.5431765891557097,
+              "backbone_rmsd_after_base_fit_A": 3.3946120931795463
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04459753161889645,
+              "all_heavy_rmsd_after_base_fit_A": 5.036359600417008,
+              "sugar_rmsd_after_base_fit_A": 4.228544931155105,
+              "backbone_rmsd_after_base_fit_A": 7.729359479746052
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.052318204485778626,
+              "all_heavy_rmsd_after_base_fit_A": 2.030267403133218,
+              "sugar_rmsd_after_base_fit_A": 1.5565394358080271,
+              "backbone_rmsd_after_base_fit_A": 3.34007995513361
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.024670846612972506,
+              "all_heavy_rmsd_after_base_fit_A": 5.02195386459167,
+              "sugar_rmsd_after_base_fit_A": 4.20117993678809,
+              "backbone_rmsd_after_base_fit_A": 7.711250822659805
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06422059259282291,
+              "all_heavy_rmsd_after_base_fit_A": 1.9432461902256783,
+              "sugar_rmsd_after_base_fit_A": 1.534245921955302,
+              "backbone_rmsd_after_base_fit_A": 3.2647713268454033
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.05202761733635693,
+              "all_heavy_rmsd_after_base_fit_A": 2.0723153299241273,
+              "sugar_rmsd_after_base_fit_A": 1.5544411399115174,
+              "backbone_rmsd_after_base_fit_A": 3.4117901818015
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.295775756800357,
+              "observed_O3_prime_to_next_P_A": 1.6062671010762806
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.698422300244652,
+              "observed_O3_prime_to_next_P_A": 1.6069688858220004
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 10.878025724439967,
+              "observed_O3_prime_to_next_P_A": 1.6057823638339037
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 4.720818949135004,
+              "observed_O3_prime_to_next_P_A": 1.6063779131947753
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.730003994119246,
+              "observed_O3_prime_to_next_P_A": 1.6080553473061794
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.202414339584716,
+              "observed_O3_prime_to_next_P_A": 1.6084654177196345
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.559892584482584,
+              "observed_O3_prime_to_next_P_A": 1.6073064424682688
+            }
+          ]
+        },
+        {
+          "chain_id": "A",
+          "residue_count": 8,
+          "residues": [
+            {
+              "residue": "U:1",
+              "component_id": "U",
+              "atom_count_common_heavy": 17,
+              "base_ring_fit_rmsd_A": 0.04626583628921439,
+              "all_heavy_rmsd_after_base_fit_A": 2.9663083521823914,
+              "sugar_rmsd_after_base_fit_A": 4.0764431778799555,
+              "backbone_rmsd_after_base_fit_A": 4.950103727082443
+            },
+            {
+              "residue": "C:2",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.024701978375998336,
+              "all_heavy_rmsd_after_base_fit_A": 5.040490779397732,
+              "sugar_rmsd_after_base_fit_A": 4.2175567776868075,
+              "backbone_rmsd_after_base_fit_A": 7.741938580828096
+            },
+            {
+              "residue": "G:3",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.0655901461725808,
+              "all_heavy_rmsd_after_base_fit_A": 1.9869907465630998,
+              "sugar_rmsd_after_base_fit_A": 1.570553695262623,
+              "backbone_rmsd_after_base_fit_A": 3.3435406133749614
+            },
+            {
+              "residue": "U:4",
+              "component_id": "U",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.04546999068120857,
+              "all_heavy_rmsd_after_base_fit_A": 5.031164550530909,
+              "sugar_rmsd_after_base_fit_A": 4.208897932896438,
+              "backbone_rmsd_after_base_fit_A": 7.724210019283693
+            },
+            {
+              "residue": "A:5",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.0511575493439704,
+              "all_heavy_rmsd_after_base_fit_A": 2.0516214777435016,
+              "sugar_rmsd_after_base_fit_A": 1.5477055070142776,
+              "backbone_rmsd_after_base_fit_A": 3.3767471351278
+            },
+            {
+              "residue": "C:6",
+              "component_id": "C",
+              "atom_count_common_heavy": 20,
+              "base_ring_fit_rmsd_A": 0.02467391255360647,
+              "all_heavy_rmsd_after_base_fit_A": 5.030113147747341,
+              "sugar_rmsd_after_base_fit_A": 4.176526486329584,
+              "backbone_rmsd_after_base_fit_A": 7.7184857077909275
+            },
+            {
+              "residue": "G:7",
+              "component_id": "G",
+              "atom_count_common_heavy": 23,
+              "base_ring_fit_rmsd_A": 0.06718061003162314,
+              "all_heavy_rmsd_after_base_fit_A": 1.4621858754362886,
+              "sugar_rmsd_after_base_fit_A": 1.3624156700858645,
+              "backbone_rmsd_after_base_fit_A": 2.4252686757299884
+            },
+            {
+              "residue": "A:8",
+              "component_id": "A",
+              "atom_count_common_heavy": 22,
+              "base_ring_fit_rmsd_A": 0.052629200393934636,
+              "all_heavy_rmsd_after_base_fit_A": 2.059084748467919,
+              "sugar_rmsd_after_base_fit_A": 1.540478291582299,
+              "backbone_rmsd_after_base_fit_A": 3.389226877114358
+            }
+          ],
+          "links": [
+            {
+              "upstream": "U:1",
+              "downstream": "C:2",
+              "independently_fitted_O3_prime_to_next_P_A": 12.193342934530028,
+              "observed_O3_prime_to_next_P_A": 1.6070656489390844
+            },
+            {
+              "upstream": "C:2",
+              "downstream": "G:3",
+              "independently_fitted_O3_prime_to_next_P_A": 4.3919880070762085,
+              "observed_O3_prime_to_next_P_A": 1.6084206539335413
+            },
+            {
+              "upstream": "G:3",
+              "downstream": "U:4",
+              "independently_fitted_O3_prime_to_next_P_A": 11.029872349949637,
+              "observed_O3_prime_to_next_P_A": 1.6079256823622168
+            },
+            {
+              "upstream": "U:4",
+              "downstream": "A:5",
+              "independently_fitted_O3_prime_to_next_P_A": 5.247106048472043,
+              "observed_O3_prime_to_next_P_A": 1.6084442794203349
+            },
+            {
+              "upstream": "A:5",
+              "downstream": "C:6",
+              "independently_fitted_O3_prime_to_next_P_A": 10.764493823069714,
+              "observed_O3_prime_to_next_P_A": 1.6069766644229773
+            },
+            {
+              "upstream": "C:6",
+              "downstream": "G:7",
+              "independently_fitted_O3_prime_to_next_P_A": 4.497163366051056,
+              "observed_O3_prime_to_next_P_A": 1.60290143177926
+            },
+            {
+              "upstream": "G:7",
+              "downstream": "A:8",
+              "independently_fitted_O3_prime_to_next_P_A": 2.6371069957107744,
+              "observed_O3_prime_to_next_P_A": 1.6045052196861203
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation_limit": "This audit tests independent rigid placement of ideal CCD monomers against observed polymer residues. It does not optimize torsions, join coordinates, generate a new RNA model, evaluate density, or establish universal support."
+}

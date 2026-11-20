@@ -3,6 +3,13 @@ import mdtraj as md
 import random
 from .geometry import NucleicFrames 
 from .utils import get_data_file_path
+from .chemistry import (
+    NUCLEOTIDE_COMPLEMENTS,
+    NUCLEOTIDE_REGISTRY,
+    copy_template_bonds,
+    get_nucleotide_definition,
+    template_relative_path,
+)
 
 class SequenceGenerator:
     """Build an MDTraj DNA trajectory and topology from a nucleotide sequence.
@@ -31,8 +38,16 @@ class SequenceGenerator:
             sequence (str, optional): DNA sequence code (sense strand).
             circular (bool): If True, create a circular DNA topology.
         """
-        #self.base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C','H':'T'}
-        self.base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        if sequence is None:
+            raise ValueError("A nucleotide sequence is required.")
+        if isinstance(sequence, str):
+            sequence = sequence.upper()
+        else:
+            sequence = [str(base).upper() for base in sequence]
+        for base in sequence:
+            get_nucleotide_definition(base)
+
+        self.base_pair_map = dict(NUCLEOTIDE_COMPLEMENTS)
         self.sequence = sequence
         self.circular = circular
         self.reference_bases = self._load_reference_bases()
@@ -47,7 +62,31 @@ class SequenceGenerator:
         # print(isolated_nodes)
         # # somhow Thymine phospho-oxyo's are not connected to anything
 
-        return  {base: md.load_hdf5(get_data_file_path(f'atomic/bases/BDNA_{base}.h5')) for base in self.base_pair_map.keys()}
+        reference_bases = {}
+        for base, definition in NUCLEOTIDE_REGISTRY.items():
+            reference = md.load_hdf5(
+                get_data_file_path(template_relative_path(base))
+            )
+            residues = list(reference.topology.residues)
+            if len(residues) != 1:
+                raise ValueError(
+                    f"Template {definition.template_key!r} must contain exactly "
+                    f"one residue; found {len(residues)}."
+                )
+            observed_name = residues[0].name.strip().upper()
+            if observed_name != definition.template_residue_name:
+                raise ValueError(
+                    f"Template for {base!r} is registered as "
+                    f"{definition.template_residue_name!r}, but contains "
+                    f"{observed_name!r}. Check the chemistry registry."
+                )
+            if not list(reference.topology.bonds):
+                raise ValueError(
+                    f"Template for {base!r} has no internal bond graph and "
+                    "cannot be used for structure generation."
+                )
+            reference_bases[base] = reference
+        return reference_bases
 
         #return {base: md.load_pdb(f'/Users/thor/surfdrive/Projects/mdna/mdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
         #return {base: md.load_pdb(f'../mdna/atomic/BDNA_{base}.pdb') for base in self.base_pair_map.keys()}
@@ -100,9 +139,6 @@ class SequenceGenerator:
         antisense_sequence = [self.base_pair_map[base] for base in self.sequence]
         self._add_chain_to_topology(antisense_sequence[::-1], topology, antisense_chain)
 
-        # Create standard bonds between atoms
-        topology.create_standard_bonds()
-
         # Connect adjacent residues
         self._connect_chain(topology, sense_chain)
         self._connect_chain(topology, antisense_chain)
@@ -136,7 +172,10 @@ class SequenceGenerator:
             chain: Chain to add the residue to.
             resSeq (int): Residue sequence number.
         """
-        residue = topology.add_residue(name='D' + base, chain=chain, resSeq=resSeq)
+        definition = get_nucleotide_definition(base)
+        residue = topology.add_residue(
+            name=definition.residue_name, chain=chain, resSeq=resSeq
+        )
         self._copy_atoms_from_reference(base, residue, topology)
    
     def _copy_atoms_from_reference(self, base, residue, topology):
@@ -147,8 +186,13 @@ class SequenceGenerator:
             residue: Target residue in the topology.
             topology (md.Topology): Target topology.
         """
-        for atom in self.reference_bases[base].topology.atoms:
-            topology.add_atom(atom.name, atom.element, residue)
+        reference_topology = self.reference_bases[base].topology
+        atom_map = {}
+        for atom in reference_topology.atoms:
+            atom_map[atom] = topology.add_atom(atom.name, atom.element, residue)
+        copy_template_bonds(
+            topology, reference_topology, atom_map, require_all=True
+        )
 
     def _connect_chain(self, topology, chain):
         """Add phosphodiester bonds between adjacent residues in a chain.
@@ -282,8 +326,41 @@ class StructureGenerator:
             print("Both spline and frames are provided, using frames")
         else:
             raise ValueError("Either spline or frames must be provided")
-        
-        self.length = self.frames.shape[0] # numer of base pairs 
+
+        self.frames = np.asarray(self.frames, dtype=float)
+        if self.frames.ndim != 3 or self.frames.shape[1:] != (4, 3):
+            raise ValueError(
+                "Target frames must have shape (n_bp, 4, 3); "
+                f"received {self.frames.shape}."
+            )
+        if self.frames.shape[0] == 0:
+            raise ValueError("At least one target base-pair frame is required.")
+        if not np.isfinite(self.frames).all():
+            raise ValueError("Target frames must contain only finite coordinates.")
+
+        basis = self.frames[:, 1:, :]
+        gram = np.einsum("nij,nkj->nik", basis, basis)
+        identity = np.eye(3, dtype=float)
+        determinants = np.linalg.det(basis)
+        if (
+            not np.allclose(gram, identity[None, :, :], rtol=0.0, atol=1e-3)
+            or np.any(determinants <= 0.0)
+        ):
+            raise ValueError(
+                "Target frame basis vectors must form an orthonormal "
+                "right-handed coordinate frame."
+            )
+
+        if self.sequence is not None:
+            sequence_length = len(self.sequence)
+            if sequence_length != self.frames.shape[0]:
+                raise ValueError(
+                    "Target frame count must match sequence length; "
+                    f"received {self.frames.shape[0]} frames for "
+                    f"{sequence_length} bases."
+                )
+
+        self.length = self.frames.shape[0] # number of base pairs
         self.initialize()
         self.apply_spline()
 

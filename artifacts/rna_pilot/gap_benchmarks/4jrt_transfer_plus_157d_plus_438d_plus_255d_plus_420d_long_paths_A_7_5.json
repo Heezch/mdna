@@ -1,0 +1,1359 @@
+{
+  "target": "4JRT",
+  "target_sha256": "ac527dfa5fd20f64526fc776347c74d0378252263a7a9a53e9cf25270f30f257",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CA",
+    "CG",
+    "CU",
+    "GA",
+    "GC",
+    "GG",
+    "GU",
+    "UA",
+    "UC",
+    "UG",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "GGGUGGUGCGGG",
+      "windows": [
+        {
+          "start": "7",
+          "sequence": "UGCGG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 2,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [],
+            "closest_rejected_overlap_by_step": [
+              {
+                "step": 1,
+                "rmsd_A": 0.6372188542690927,
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4"
+                ],
+                "group_rmsd_A": {
+                  "base": 0.5489999614588962,
+                  "sugar": 0.7313743988782005,
+                  "phosphate": 0.6349576975194865
+                },
+                "worst_atom": "O2'",
+                "worst_atom_separation_A": 0.9154420816882,
+                "min_required_displacement_A": 0.4577210408441
+              }
+            ]
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 2,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 2,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 2,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 2,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "displacement_bound_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -7.7108377680037
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.226096312654459,
+                      "internal_bond_length_A": -0.28219628718166273
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.12166515439081954,
+                      "internal_bond_length_A": -0.0011955767876387635,
+                      "frame_translation_A": 0.06396172739140615,
+                      "frame_rotation_degrees": 0.962359855703192
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -1602.4700067177507,
+                      "internal_bond_length_A": -2045.738855132081,
+                      "frame_translation_A": -2302.9673234849765,
+                      "frame_rotation_degrees": -115.69820400168022,
+                      "global_displacement_A": -3773.7298951092625,
+                      "boundary_bond_length_A": -1810.8994475649695
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "reverse_displacement_bound_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -6.9371131116864735
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.1740448022650835,
+                      "internal_bond_length_A": -0.030732732142453922
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.14209625211443583,
+                      "internal_bond_length_A": -0.02262730592830703,
+                      "frame_translation_A": -0.002106328137701119,
+                      "frame_rotation_degrees": -1.873202576144469
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.16344884567074108,
+                      "internal_bond_length_A": -0.02494532099606034,
+                      "frame_translation_A": -0.09152052039345021,
+                      "frame_rotation_degrees": -2.5217668722528215,
+                      "global_displacement_A": -0.0025211633976230385,
+                      "boundary_bond_length_A": 0.09974423947202254
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "upstream_phosphate_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -6.9371131116864735
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.1740448022650835,
+                      "internal_bond_length_A": -0.030732732142453922
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.14209625211443583,
+                      "internal_bond_length_A": -0.02262730592830703,
+                      "frame_translation_A": -0.002106328137701119,
+                      "frame_rotation_degrees": -1.873202576144469
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.8998028722886173,
+                      "internal_bond_length_A": -0.3725321447167608,
+                      "frame_translation_A": -1.5057618560514603,
+                      "frame_rotation_degrees": -9.41445873708621,
+                      "global_displacement_A": -1.1975810374773697,
+                      "boundary_bond_length_A": -0.9600734335658214,
+                      "local_phosphate_displacement_A": 0.08523925889791778
+                    },
+                    "local_phosphate_rotation_degrees": -6.153835996238242,
+                    "trial_boundary_lengths_A": [
+                      2.6131313243139527,
+                      2.663308999503279
+                    ],
+                    "final_fit_attempts": [
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -6.154305981966705,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.8997758933892384,
+                          "internal_bond_length_A": -0.37251030629730403,
+                          "global_displacement_A": -1.1974691085133014,
+                          "boundary_bond_length_A": -0.9600590402286167,
+                          "local_phosphate_displacement_A": 0.0852190578974909,
+                          "frame_translation_A": -1.5057239778671019,
+                          "frame_rotation_degrees": -9.414713551012767
+                        },
+                        "trial_boundary_lengths_A": [
+                          2.6130769437218264,
+                          2.6632946061660743
+                        ]
+                      },
+                      {
+                        "seed_rotation_degrees": -7.73109004635233,
+                        "final_rotation_degrees": -8.137989522476136,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -3233729.441182102,
+                          "internal_bond_length_A": -4934195.81446992,
+                          "global_displacement_A": -2715185.4341074773,
+                          "boundary_bond_length_A": -1159734.5319682655,
+                          "local_phosphate_displacement_A": 5.551115123125783e-17,
+                          "frame_translation_A": -3678017.4754655836,
+                          "frame_rotation_degrees": -94.96018121495736
+                        },
+                        "trial_boundary_lengths_A": [
+                          1159736.2352038315,
+                          1159727.0446888523
+                        ]
+                      },
+                      {
+                        "seed_rotation_degrees": -4.068994761238068,
+                        "final_rotation_degrees": -7.5365351995105,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16339417206478796,
+                          "internal_bond_length_A": -0.024948349612122278,
+                          "global_displacement_A": -0.3940550406889027,
+                          "boundary_bond_length_A": -0.5301384531443611,
+                          "local_phosphate_displacement_A": 0.025828573865892712,
+                          "frame_translation_A": -0.29230655773643505,
+                          "frame_rotation_degrees": -0.6707602402241868
+                        },
+                        "trial_boundary_lengths_A": [
+                          2.2333740190818188,
+                          1.752789089241558
+                        ]
+                      },
+                      {
+                        "seed_rotation_degrees": 4.068994761238068,
+                        "final_rotation_degrees": -2.261577064676682,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.3539536363076406,
+                          "internal_bond_length_A": -0.4604386209079689,
+                          "global_displacement_A": -0.6062920407799324,
+                          "boundary_bond_length_A": -0.32036574506188925,
+                          "local_phosphate_displacement_A": 0.2526575090509593,
+                          "frame_translation_A": -0.3666019913539064,
+                          "frame_rotation_degrees": -1.9066043732525513
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.9902740883715322,
+                          2.023601310999347
+                        ]
+                      },
+                      {
+                        "seed_rotation_degrees": 7.73109004635233,
+                        "final_rotation_degrees": -7.976734934817808,
+                        "optimizer_status": 9,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1633840116167729,
+                          "internal_bond_length_A": -0.024960670512380767,
+                          "global_displacement_A": 0.03065373052332082,
+                          "boundary_bond_length_A": 0.09965025979001091,
+                          "local_phosphate_displacement_A": 0.006923925288891408,
+                          "frame_translation_A": -0.031020018185225984,
+                          "frame_rotation_degrees": -1.393823784961632
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6033607464684967,
+                          1.6028878257274686
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "upstream_backbone_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -6.9371131116864735
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.1740448022650835,
+                      "internal_bond_length_A": -0.030732732142453922
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.14209625211443583,
+                      "internal_bond_length_A": -0.02262730592830703,
+                      "frame_translation_A": -0.002106328137701119,
+                      "frame_rotation_degrees": -1.873202576144469
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.16517079663010553,
+                      "internal_bond_length_A": -0.018117001398735677,
+                      "frame_translation_A": -0.01152242919646601,
+                      "frame_rotation_degrees": -1.605607638849639,
+                      "global_displacement_A": -0.0008386998631834119,
+                      "boundary_bond_length_A": 0.09749539604741547,
+                      "local_phosphate_displacement_A": -0.009497893178656736
+                    },
+                    "local_phosphate_rotation_degrees": -6.386943925327141,
+                    "local_sugar_rotation_degrees": 4.388452923683029,
+                    "trial_boundary_lengths_A": [
+                      1.6041359498019558,
+                      1.6057401698900422
+                    ],
+                    "final_fit_attempts": [
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.905593091363379,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16343647349275953,
+                          "internal_bond_length_A": -0.024936078397839345,
+                          "global_displacement_A": 0.003335874782393111,
+                          "boundary_bond_length_A": 0.09903326830340992,
+                          "local_phosphate_displacement_A": 0.010381280911025359,
+                          "frame_translation_A": -0.014501707508948025,
+                          "frame_rotation_degrees": -0.6603255729753617
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6035852419319798,
+                          1.6042022976340478
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 5.359570795202973
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": -4.566325060101682,
+                        "optimizer_status": 9,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -21.797029249951454,
+                          "internal_bond_length_A": -19.697370464814565,
+                          "global_displacement_A": -354.72377323822815,
+                          "boundary_bond_length_A": -349.674372880422,
+                          "local_phosphate_displacement_A": 0.004997629529092773,
+                          "frame_translation_A": -357.2815383508357,
+                          "frame_rotation_degrees": -164.10225972203165
+                        },
+                        "trial_boundary_lengths_A": [
+                          351.3776084463595,
+                          346.3629147918318
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 5.826833233891043
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -8.80908737797806,
+                        "optimizer_status": 9,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16533236567443504,
+                          "internal_bond_length_A": -0.017928445491832645,
+                          "global_displacement_A": -0.1753649794619337,
+                          "boundary_bond_length_A": 0.09548138671135692,
+                          "local_phosphate_displacement_A": -0.3330363302020493,
+                          "frame_translation_A": -0.06633465678519707,
+                          "frame_rotation_degrees": -0.052696035452198586
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.604724493499546,
+                          1.6077541792261008
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 11.843461736639572
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.039621215290856,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16342829291024047,
+                          "internal_bond_length_A": -0.024951689059240445,
+                          "global_displacement_A": 0.10229946437602491,
+                          "boundary_bond_length_A": 0.09983537011107396,
+                          "local_phosphate_displacement_A": 0.0544355712126377,
+                          "frame_translation_A": -0.13091201964840288,
+                          "frame_rotation_degrees": -1.5977174654202368
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6033330476218617,
+                          1.6030729360485316
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 4.8739107113111215
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -5.477012297713081,
+                        "optimizer_status": 9,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16348156979211076,
+                          "internal_bond_length_A": -0.024935685789100492,
+                          "global_displacement_A": -7.158867837142591e-06,
+                          "boundary_bond_length_A": 0.0998649444030762,
+                          "local_phosphate_displacement_A": -0.06574657746171697,
+                          "frame_translation_A": -0.07530782017848975,
+                          "frame_rotation_degrees": -0.1339306133719944
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.603307541999325,
+                          1.6033706215343815
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 7.054934531104237
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": -4.37366718654716,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.4573188296075204,
+                          "internal_bond_length_A": -0.18984400805842266,
+                          "global_displacement_A": -1.0410520152515998,
+                          "boundary_bond_length_A": -0.48849623182209795,
+                          "local_phosphate_displacement_A": 0.0005888231192128224,
+                          "frame_translation_A": -0.8910465431309549,
+                          "frame_rotation_degrees": -2.3002362594520553
+                        },
+                        "trial_boundary_lengths_A": [
+                          2.1348022878971276,
+                          2.1917317977595556
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 6.116974771347836
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -4.574250831154169,
+                        "optimizer_status": 3,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -26.493389880442482,
+                          "internal_bond_length_A": -33.19477791889585,
+                          "global_displacement_A": -51.4083276578841,
+                          "boundary_bond_length_A": -41.63151819344108,
+                          "local_phosphate_displacement_A": -0.10955473877050709,
+                          "frame_translation_A": -34.238394711872026,
+                          "frame_rotation_degrees": -160.28680322198284
+                        },
+                        "trial_boundary_lengths_A": [
+                          24.438493395932714,
+                          43.334753759378536
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 8.977707543108428
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "upstream_backbone_angle_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -6.9371131116864735
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.1740448022650835,
+                      "internal_bond_length_A": -0.030732732142453922
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.14209625211443583,
+                      "internal_bond_length_A": -0.02262730592830703,
+                      "frame_translation_A": -0.002106328137701119,
+                      "frame_rotation_degrees": -1.873202576144469
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.16340388584574556,
+                      "internal_bond_length_A": -0.024957521621851775,
+                      "frame_translation_A": -0.10294611182772445,
+                      "frame_rotation_degrees": -0.6571761863187771,
+                      "global_displacement_A": 0.06288180896248435,
+                      "boundary_bond_length_A": 0.09884873764804764,
+                      "local_phosphate_displacement_A": 0.0257659809570282,
+                      "downstream_angle_degrees": 10.409559005529657
+                    },
+                    "local_phosphate_rotation_degrees": -3.819792471445567,
+                    "local_sugar_rotation_degrees": 5.866880719565427,
+                    "trial_boundary_lengths_A": [
+                      1.604156110759382,
+                      1.6020863035855053
+                    ],
+                    "final_fit_attempts": [
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.005017963402089,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340272717767196,
+                          "internal_bond_length_A": -0.02495775293786323,
+                          "global_displacement_A": -0.001298999320587635,
+                          "boundary_bond_length_A": 0.09993468909930919,
+                          "local_phosphate_displacement_A": 0.040633804697745635,
+                          "downstream_angle_degrees": 3.745160147916576,
+                          "frame_translation_A": -0.06748589190828364,
+                          "frame_rotation_degrees": -0.36197983008425005
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6033008768381485,
+                          1.6031810927354941
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 5.29887636929589
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": -5.307206867710713,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340268751597792,
+                          "internal_bond_length_A": -0.024957780664233986,
+                          "global_displacement_A": -0.0003256599008973349,
+                          "boundary_bond_length_A": 0.09987346428333904,
+                          "local_phosphate_displacement_A": -1.5378247357755725e-06,
+                          "downstream_angle_degrees": 0.041668465827908424,
+                          "frame_translation_A": -0.0347002542914025,
+                          "frame_rotation_degrees": -0.5504093689135532
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6033621016541186,
+                          1.6031227532273673
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 5.277737489228319
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -4.319776849912557,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1634051284615597,
+                          "internal_bond_length_A": -0.02495711081022528,
+                          "global_displacement_A": -0.0010091762183390696,
+                          "boundary_bond_length_A": 0.09965887908626919,
+                          "local_phosphate_displacement_A": -0.004603567184586876,
+                          "downstream_angle_degrees": 1.1999734181551507,
+                          "frame_translation_A": -0.05552140341954698,
+                          "frame_rotation_degrees": -0.04343961206310265
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6035766868511885,
+                          1.6034751167384609
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 6.306932722516055
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.244592898782259,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1634073436800048,
+                          "internal_bond_length_A": -0.024955412730726045,
+                          "global_displacement_A": -0.00015723004175582922,
+                          "boundary_bond_length_A": 0.09945665271825305,
+                          "local_phosphate_displacement_A": -0.0028385145580247517,
+                          "downstream_angle_degrees": 1.002388608767146,
+                          "frame_translation_A": -0.06270913512102799,
+                          "frame_rotation_degrees": -0.04742394130927963
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6037789132192046,
+                          1.6037011099056349
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 6.318885333132339
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -2.424602989510909,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1634059111832698,
+                          "internal_bond_length_A": -0.06288311051473533,
+                          "global_displacement_A": -0.003982535635119466,
+                          "boundary_bond_length_A": 0.03268414794579316,
+                          "local_phosphate_displacement_A": 0.028818231612457723,
+                          "downstream_angle_degrees": 2.8761789947940004,
+                          "frame_translation_A": -0.0864016095446219,
+                          "frame_rotation_degrees": 0.0442344539795716
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.670025190386984,
+                          1.6705514179916645
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 6.738979602451028
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": -4.039956498746309,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.17494980523306053,
+                          "internal_bond_length_A": -0.08757437663168449,
+                          "global_displacement_A": -0.06252506794916424,
+                          "boundary_bond_length_A": -0.006476113968527819,
+                          "local_phosphate_displacement_A": 0.0420311692418423,
+                          "downstream_angle_degrees": 4.227390870321469,
+                          "frame_translation_A": -0.22410990209538834,
+                          "frame_rotation_degrees": -0.8477752636107754
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.709122390714843,
+                          1.7097116799059855
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 5.229069138760349
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -4.240095185425076,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340483356493224,
+                          "internal_bond_length_A": -0.024957068365498436,
+                          "global_displacement_A": -0.0015134545170312763,
+                          "boundary_bond_length_A": 0.09972024945807073,
+                          "local_phosphate_displacement_A": -0.0004727278118013545,
+                          "downstream_angle_degrees": 0.3653649320389409,
+                          "frame_translation_A": -0.04441424306723468,
+                          "frame_rotation_degrees": -0.015661408282353406
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.603515316479387,
+                          1.6033324576909387
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 6.256724331617854
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "terminal_backbone_angle_probe": {
+            "frame_candidates": [
+              2,
+              1,
+              15,
+              1
+            ],
+            "counts": {
+              "overlap": 15,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 1
+            },
+            "paths_evaluated": 1,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "joint_constraint_traces": [
+              {
+                "suite_ids": [
+                  "420D:B:30-31",
+                  "438D:A:3-4",
+                  "4U3L:B:6-7",
+                  "255D:A:8-9"
+                ],
+                "stages": [
+                  {
+                    "stage": "source_atom_displacement",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -6.9371131116864735
+                    }
+                  },
+                  {
+                    "stage": "internal_geometry",
+                    "feasible": false,
+                    "optimizer_status": 9,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.1740448022650835,
+                      "internal_bond_length_A": -0.030732732142453922
+                    }
+                  },
+                  {
+                    "stage": "target_frames",
+                    "feasible": false,
+                    "optimizer_status": 4,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.14209625211443583,
+                      "internal_bond_length_A": -0.02262730592830703,
+                      "frame_translation_A": -0.002106328137701119,
+                      "frame_rotation_degrees": -1.873202576144469
+                    }
+                  },
+                  {
+                    "stage": "external_geometry",
+                    "feasible": false,
+                    "optimizer_status": 8,
+                    "minimum_margin": {
+                      "source_atom_displacement_A": -0.16340423698353007,
+                      "internal_bond_length_A": -0.024957727634031313,
+                      "frame_translation_A": -0.0005962419467276381,
+                      "frame_rotation_degrees": -0.8102824215795996,
+                      "global_displacement_A": -0.025196431386691476,
+                      "boundary_bond_length_A": 0.09914231786382427,
+                      "local_phosphate_displacement_A": -8.752259700567366e-05,
+                      "downstream_angle_degrees": -0.11273687532996032
+                    },
+                    "local_phosphate_rotation_degrees": -4.078239411755478,
+                    "local_sugar_rotation_degrees": 6.375440662265707,
+                    "local_downstream_o3_rotation_degrees": -2.68322974675357,
+                    "trial_boundary_lengths_A": [
+                      1.6039388994854609,
+                      1.6040932480736334
+                    ],
+                    "final_fit_attempts": [
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": 12.794835311318689,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -11.67836545728654,
+                          "internal_bond_length_A": -4.25669863314554,
+                          "global_displacement_A": -13.659988403094822,
+                          "boundary_bond_length_A": -9.292986377634618,
+                          "local_phosphate_displacement_A": -0.5081689243772232,
+                          "downstream_angle_degrees": -16.58404673993984,
+                          "frame_translation_A": -12.490950730065785,
+                          "frame_rotation_degrees": -148.78755614697113
+                        },
+                        "trial_boundary_lengths_A": [
+                          10.996221943572076,
+                          10.846946982484182
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": -13.268001778269362,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": -4.336294044323917
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": -6.074196305867258,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1634021091209164,
+                          "internal_bond_length_A": -0.024961209200992707,
+                          "global_displacement_A": 1.4624338407320803e-05,
+                          "boundary_bond_length_A": 0.09502324607177642,
+                          "local_phosphate_displacement_A": 0.00014848053667515515,
+                          "downstream_angle_degrees": 1.562754181095085,
+                          "frame_translation_A": -0.023355422848509277,
+                          "frame_rotation_degrees": -1.1246418488193441
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.598260812009234,
+                          1.59877731739752
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 4.440030448995308,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": -3.082018573739593
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -1.838951307477037,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340258499830645,
+                          "internal_bond_length_A": -0.024957713253312697,
+                          "global_displacement_A": -0.0031426465098536305,
+                          "boundary_bond_length_A": 0.09796377428089437,
+                          "local_phosphate_displacement_A": -0.0006355232693394108,
+                          "downstream_angle_degrees": 3.465090165267452,
+                          "frame_translation_A": -0.06919581608368525,
+                          "frame_rotation_degrees": -0.3278357746716072
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6052717916565633,
+                          1.6041044948143612
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 7.789356913715616,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": -1.3648214059888375
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -6.5117090850508665,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340382264497072,
+                          "internal_bond_length_A": -0.02495742109518434,
+                          "global_displacement_A": -0.0016810574277698609,
+                          "boundary_bond_length_A": 0.099316162404473,
+                          "local_phosphate_displacement_A": 3.201947601605415e-05,
+                          "downstream_angle_degrees": 2.2316070877142637,
+                          "frame_translation_A": -0.055935596480138516,
+                          "frame_rotation_degrees": -0.41595979968925967
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6039194035329847,
+                          1.6035072892957425
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 3.9056467207262284,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": -1.2048373202835823
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -5.1871296865221845,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340708454043235,
+                          "internal_bond_length_A": -0.024949983330926295,
+                          "global_displacement_A": -0.00612000884789593,
+                          "boundary_bond_length_A": 0.09944459305024461,
+                          "local_phosphate_displacement_A": -0.06939902525406755,
+                          "downstream_angle_degrees": 1.9742140908230514,
+                          "frame_translation_A": -0.06435849048999281,
+                          "frame_rotation_degrees": -0.20054281393167894
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.603790972887213,
+                          1.6033370311533104
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 7.407389335200848,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": 4.368879739051566
+                      },
+                      {
+                        "seed_rotation_degrees": -5.0,
+                        "final_rotation_degrees": 19.952648694514078,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -80.73934028875118,
+                          "internal_bond_length_A": -80.89994713417286,
+                          "global_displacement_A": -123.97011715877191,
+                          "boundary_bond_length_A": -43.579348487787705,
+                          "local_phosphate_displacement_A": -0.7493405064289866,
+                          "downstream_angle_degrees": 11.51473978288014,
+                          "frame_translation_A": -62.37235099484187,
+                          "frame_rotation_degrees": -149.80550369195421
+                        },
+                        "trial_boundary_lengths_A": [
+                          45.28258405372516,
+                          41.60102434931106
+                        ],
+                        "seed_sugar_rotation_degrees": 5.0,
+                        "final_sugar_rotation_degrees": 19.950069887625737,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": -19.913297221192042
+                      },
+                      {
+                        "seed_rotation_degrees": 5.0,
+                        "final_rotation_degrees": -4.9714748509426245,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.1634032210007234,
+                          "internal_bond_length_A": -0.02495837107148574,
+                          "global_displacement_A": -0.03370856363473279,
+                          "boundary_bond_length_A": 0.09884359845490082,
+                          "local_phosphate_displacement_A": -0.0015039841131935794,
+                          "downstream_angle_degrees": 1.831377562753642,
+                          "frame_translation_A": -0.041716345449608505,
+                          "frame_rotation_degrees": -0.15750315792218839
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6043919674825569,
+                          1.6031533339537876
+                        ],
+                        "seed_sugar_rotation_degrees": -5.0,
+                        "final_sugar_rotation_degrees": 5.648024277957492,
+                        "seed_downstream_o3_rotation_degrees": 0.0,
+                        "final_downstream_o3_rotation_degrees": 2.1847425949641996
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.0777426174381395,
+                        "optimizer_status": 8,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -0.16340529475689253,
+                          "internal_bond_length_A": -0.0249572290882229,
+                          "global_displacement_A": -0.006964552034978977,
+                          "boundary_bond_length_A": 0.09946899556387484,
+                          "local_phosphate_displacement_A": -0.00012167888052344589,
+                          "downstream_angle_degrees": -0.00825712269173348,
+                          "frame_translation_A": -0.03524404531414721,
+                          "frame_rotation_degrees": -0.009097904951713254
+                        },
+                        "trial_boundary_lengths_A": [
+                          1.6037665703735828,
+                          1.6032129440039886
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 6.3767724430163355,
+                        "seed_downstream_o3_rotation_degrees": -5.0,
+                        "final_downstream_o3_rotation_degrees": 0.26452260943924755
+                      },
+                      {
+                        "seed_rotation_degrees": 0.0,
+                        "final_rotation_degrees": -4.276100106831864,
+                        "optimizer_status": 4,
+                        "minimum_margin": {
+                          "source_atom_displacement_A": -6346.148440701621,
+                          "internal_bond_length_A": -7319.60454140411,
+                          "global_displacement_A": -11867.002619017556,
+                          "boundary_bond_length_A": -2430.2300733190677,
+                          "local_phosphate_displacement_A": 0.00027854816515249237,
+                          "downstream_angle_degrees": -32.52250163655404,
+                          "frame_translation_A": -5840.886849839656,
+                          "frame_rotation_degrees": -160.1648565658289
+                        },
+                        "trial_boundary_lengths_A": [
+                          2427.0213012174195,
+                          2431.9333088850053
+                        ],
+                        "seed_sugar_rotation_degrees": 0.0,
+                        "final_sugar_rotation_degrees": 6.2064140013054265,
+                        "seed_downstream_o3_rotation_degrees": 5.0,
+                        "final_downstream_o3_rotation_degrees": 7.028340708856904
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": null,
+  "supplemental_internal_sources": [
+    {
+      "entry": "157D",
+      "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+      "added_suites": 18
+    },
+    {
+      "entry": "438D",
+      "sha256": "d5f34520caed139d1b931be000b39a36ef2d8bc4a6616532aabb3cb8c9f6ef4c",
+      "added_suites": 12
+    },
+    {
+      "entry": "255D",
+      "sha256": "345068e3afe32b3ba18fbb91ea2950a8bb0b523cd1756ad57d691e74712bd097",
+      "added_suites": 9
+    },
+    {
+      "entry": "420D",
+      "sha256": "1f65ac4e2affd5cc7753771d546f063a4ce6347598d5874c6c8a504e84df0448",
+      "added_suites": 26
+    }
+  ],
+  "combined_internal_manifest_sha256": "8d4ea36f72b18cf777690877eda1361bfe4a78df0bb0e2adce39e10a5e939761",
+  "sensitivity_scope": "Single-gate ablations; exploratory only, not acceptance.",
+  "rigid_gap_trial_reference": {
+    "entry": "4U3L",
+    "audit_sha256": "8525156dfa4e411da8a9064f3ef36a53db3feeed223ad39fe8a48e625cb110a4",
+    "fields": [
+      "o3p_A",
+      "c3_o3_p_deg",
+      "o3_p_o5_deg",
+      "p_o5_c5_deg"
+    ],
+    "medians": [
+      1.6032365659374577,
+      119.96477789067671,
+      104.1039073986887,
+      120.4564564167265
+    ],
+    "max_shift_A": 0.5,
+    "max_phosphate_turn_deg": 20.0,
+    "torsion_fields": [
+      "c4_c3_o3_p_deg",
+      "c3_o3_p_o5_deg",
+      "o3_p_o5_c5_deg",
+      "p_o5_c5_c4_deg"
+    ],
+    "selection_policy": "rigid_pass_then_phosphate_pass; torsions descriptive only"
+  },
+  "window_filter": {
+    "chain": "A",
+    "start": "7",
+    "length": 5
+  },
+  "length_summary": {
+    "4": {
+      "total": 0,
+      "covered": 0,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 0,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 0,
+      "terminal_backbone_paths_evaluated": 0,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "5": {
+      "total": 1,
+      "covered": 1,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 0,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 1,
+      "terminal_backbone_paths_evaluated": 1,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "6": {
+      "total": 0,
+      "covered": 0,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 0,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 0,
+      "terminal_backbone_paths_evaluated": 0,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    }
+  }
+}

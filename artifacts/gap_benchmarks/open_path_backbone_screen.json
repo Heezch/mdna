@@ -1,0 +1,576 @@
+{
+  "sequence": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "path_budget_nm": 0.9,
+  "spacing_deviation_limit_nm": 0.065,
+  "search_budgets_nm": [
+    0.15,
+    0.3,
+    0.45,
+    0.6,
+    0.75,
+    0.9
+  ],
+  "results": [
+    {
+      "seed": 20261120,
+      "baseline": {
+        "max_turn_deg": 97.19122947758225,
+        "short_links": 39,
+        "long_links": 36,
+        "short_heavy_contacts": 234,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.06097370368225857,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "max_paired_frame_shift_nm": 0.1409027810806801,
+          "failures": [
+            "short_links"
+          ],
+          "max_turn_deg": 89.45153013054338,
+          "short_links": 42,
+          "long_links": 36,
+          "short_heavy_contacts": 201,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06079076969911701,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.3,
+          "max_paired_frame_shift_nm": 0.29244621864152637,
+          "failures": [],
+          "max_turn_deg": 80.6039498974999,
+          "short_links": 37,
+          "long_links": 36,
+          "short_heavy_contacts": 186,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06193870255962497,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.45,
+          "max_paired_frame_shift_nm": 0.3723239731944484,
+          "failures": [],
+          "max_turn_deg": 76.70760531313286,
+          "short_links": 38,
+          "long_links": 35,
+          "short_heavy_contacts": 178,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06238551444606494,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.6,
+          "max_paired_frame_shift_nm": 0.5855231010528342,
+          "failures": [],
+          "max_turn_deg": 68.2278504274563,
+          "short_links": 37,
+          "long_links": 32,
+          "short_heavy_contacts": 146,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06498675818679805,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.75,
+          "max_paired_frame_shift_nm": 0.5766795493409178,
+          "failures": [],
+          "max_turn_deg": 67.9534570782853,
+          "short_links": 37,
+          "long_links": 34,
+          "short_heavy_contacts": 150,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06453487468934871,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.9,
+          "max_paired_frame_shift_nm": 0.5789530611302172,
+          "failures": [],
+          "max_turn_deg": 67.68835714697173,
+          "short_links": 37,
+          "long_links": 33,
+          "short_heavy_contacts": 152,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06479450936015924,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "selected": {
+        "search_budget_nm": 0.9,
+        "max_paired_frame_shift_nm": 0.5789530611302172,
+        "failures": [],
+        "max_turn_deg": 67.68835714697173,
+        "short_links": 37,
+        "long_links": 33,
+        "short_heavy_contacts": 152,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.06479450936015924,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "seed": 20261121,
+      "baseline": {
+        "max_turn_deg": 89.06781862080885,
+        "short_links": 39,
+        "long_links": 35,
+        "short_heavy_contacts": 246,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.11278544771797266,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "status": "rejected_step_spacing",
+          "detail": "No sampled endpoint-preserving path satisfies the requested step deviation."
+        },
+        {
+          "search_budget_nm": 0.3,
+          "max_paired_frame_shift_nm": 0.25485671686671646,
+          "failures": [
+            "short_links",
+            "no_turn_improvement"
+          ],
+          "max_turn_deg": 100.79512325655175,
+          "short_links": 40,
+          "long_links": 33,
+          "short_heavy_contacts": 212,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.050781788452342824,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.45,
+          "max_paired_frame_shift_nm": 0.42821222813645,
+          "failures": [],
+          "max_turn_deg": 69.54857925692433,
+          "short_links": 37,
+          "long_links": 33,
+          "short_heavy_contacts": 180,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.05881010243044277,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.6,
+          "max_paired_frame_shift_nm": 0.3943430105614764,
+          "failures": [
+            "short_links"
+          ],
+          "max_turn_deg": 78.79316173548018,
+          "short_links": 42,
+          "long_links": 32,
+          "short_heavy_contacts": 133,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06410249878387608,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.75,
+          "max_paired_frame_shift_nm": 0.43656131462122627,
+          "failures": [
+            "short_links"
+          ],
+          "max_turn_deg": 76.14378599165124,
+          "short_links": 42,
+          "long_links": 33,
+          "short_heavy_contacts": 128,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.0639999017945937,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.9,
+          "max_paired_frame_shift_nm": 0.5472582423918702,
+          "failures": [],
+          "max_turn_deg": 58.409810346670376,
+          "short_links": 37,
+          "long_links": 31,
+          "short_heavy_contacts": 158,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.05614635438863452,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "selected": {
+        "search_budget_nm": 0.9,
+        "max_paired_frame_shift_nm": 0.5472582423918702,
+        "failures": [],
+        "max_turn_deg": 58.409810346670376,
+        "short_links": 37,
+        "long_links": 31,
+        "short_heavy_contacts": 158,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.05614635438863452,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "seed": 20261122,
+      "baseline": {
+        "max_turn_deg": 100.36934436339457,
+        "short_links": 42,
+        "long_links": 36,
+        "short_heavy_contacts": 282,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.09478885121905742,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "max_paired_frame_shift_nm": 0.10800676996411121,
+          "failures": [
+            "no_turn_improvement"
+          ],
+          "max_turn_deg": 105.4208075788165,
+          "short_links": 40,
+          "long_links": 34,
+          "short_heavy_contacts": 237,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06303184316298766,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.3,
+          "max_paired_frame_shift_nm": 0.1952912450822634,
+          "failures": [],
+          "max_turn_deg": 100.03199858864413,
+          "short_links": 39,
+          "long_links": 32,
+          "short_heavy_contacts": 217,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06442350297666954,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.45,
+          "max_paired_frame_shift_nm": 0.1952912450822634,
+          "failures": [],
+          "max_turn_deg": 100.03199858864413,
+          "short_links": 39,
+          "long_links": 32,
+          "short_heavy_contacts": 217,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06442350297666954,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.6,
+          "max_paired_frame_shift_nm": 0.4943170759668725,
+          "failures": [],
+          "max_turn_deg": 73.89276528919812,
+          "short_links": 39,
+          "long_links": 33,
+          "short_heavy_contacts": 188,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06247568645156881,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.75,
+          "max_paired_frame_shift_nm": 0.596933005210773,
+          "failures": [],
+          "max_turn_deg": 59.453086317888484,
+          "short_links": 42,
+          "long_links": 33,
+          "short_heavy_contacts": 111,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.0649839488503478,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.9,
+          "max_paired_frame_shift_nm": 0.596933005210773,
+          "failures": [],
+          "max_turn_deg": 59.453086317888484,
+          "short_links": 42,
+          "long_links": 33,
+          "short_heavy_contacts": 111,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.0649839488503478,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "selected": {
+        "search_budget_nm": 0.75,
+        "max_paired_frame_shift_nm": 0.596933005210773,
+        "failures": [],
+        "max_turn_deg": 59.453086317888484,
+        "short_links": 42,
+        "long_links": 33,
+        "short_heavy_contacts": 111,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.0649839488503478,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "seed": 20261123,
+      "baseline": {
+        "max_turn_deg": 94.74884281631681,
+        "short_links": 36,
+        "long_links": 33,
+        "short_heavy_contacts": 255,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.0772393289645657,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidates": [
+        {
+          "search_budget_nm": 0.15,
+          "max_paired_frame_shift_nm": 0.1316794909700283,
+          "failures": [],
+          "max_turn_deg": 88.03005493340352,
+          "short_links": 35,
+          "long_links": 32,
+          "short_heavy_contacts": 217,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.0639300002029769,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.3,
+          "max_paired_frame_shift_nm": 0.14830290560933035,
+          "failures": [
+            "long_links"
+          ],
+          "max_turn_deg": 87.27217015398692,
+          "short_links": 36,
+          "long_links": 35,
+          "short_heavy_contacts": 226,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06420098102429611,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.45,
+          "max_paired_frame_shift_nm": 0.14830290560933035,
+          "failures": [
+            "long_links"
+          ],
+          "max_turn_deg": 87.27217015398692,
+          "short_links": 36,
+          "long_links": 35,
+          "short_heavy_contacts": 226,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06420098102429611,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.6,
+          "max_paired_frame_shift_nm": 0.14830290560933035,
+          "failures": [
+            "long_links"
+          ],
+          "max_turn_deg": 87.27217015398692,
+          "short_links": 36,
+          "long_links": 35,
+          "short_heavy_contacts": 226,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06420098102429611,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.75,
+          "max_paired_frame_shift_nm": 0.14830290560933035,
+          "failures": [
+            "long_links"
+          ],
+          "max_turn_deg": 87.27217015398692,
+          "short_links": 36,
+          "long_links": 35,
+          "short_heavy_contacts": 226,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06420098102429611,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "search_budget_nm": 0.9,
+          "max_paired_frame_shift_nm": 0.14830290560933035,
+          "failures": [
+            "long_links"
+          ],
+          "max_turn_deg": 87.27217015398692,
+          "short_links": 36,
+          "long_links": 35,
+          "short_heavy_contacts": 226,
+          "missing_links": 0,
+          "unmeasured_links": 0,
+          "triage_status": "failed",
+          "max_step_deviation_nm": 0.06420098102429611,
+          "endpoint_error_nm": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "selected": {
+        "search_budget_nm": 0.15,
+        "max_paired_frame_shift_nm": 0.1316794909700283,
+        "failures": [],
+        "max_turn_deg": 88.03005493340352,
+        "short_links": 35,
+        "long_links": 32,
+        "short_heavy_contacts": 217,
+        "missing_links": 0,
+        "unmeasured_links": 0,
+        "triage_status": "failed",
+        "max_step_deviation_nm": 0.0639300002029769,
+        "endpoint_error_nm": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ]
+}

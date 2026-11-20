@@ -1,0 +1,267 @@
+{
+  "target": "1RNA",
+  "target_sha256": "2acdde575063cdd4d3257b68b8105a12d587ebf6deb9e37bf531cca037f3d60c",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AC",
+    "CG",
+    "GU",
+    "UA"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "UUAUAUAUAUAUAA",
+      "full_path": {
+        "status": "UnsupportedSuiteSequenceError",
+        "reason": "No observed RNA suite for UU with terminal_role='five_prime'; current library coverage: UC."
+      },
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "UUA",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "2",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "3",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "4",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "5",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "6",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "7",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "8",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "9",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "10",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "11",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "12",
+          "sequence": "UAA",
+          "missing_contexts": [
+            "AA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        }
+      ]
+    },
+    "B": {
+      "sequence": "UUAUAUAUAUAUAA",
+      "full_path": {
+        "status": "UnsupportedSuiteSequenceError",
+        "reason": "No observed RNA suite for UU with terminal_role='five_prime'; current library coverage: UC."
+      },
+      "windows": [
+        {
+          "start": "15",
+          "sequence": "UUA",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "16",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "17",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "18",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "19",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "20",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "21",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "22",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "23",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "24",
+          "sequence": "UAU",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "25",
+          "sequence": "AUA",
+          "missing_contexts": [
+            "AU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "26",
+          "sequence": "UAA",
+          "missing_contexts": [
+            "AA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2797 @@
+{
+  "target": "280D",
+  "target_sha256": "b743846d5741b7268c8f910a7c07d187cbbea7442aeabc0062799bdaf5fd3be0",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CA",
+    "CC",
+    "CG",
+    "CU",
+    "GA",
+    "GC",
+    "GG",
+    "GU",
+    "UA",
+    "UC",
+    "UG",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "GGCGCUUGCGUC",
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "GGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              17
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 7,
+                "closest": {
+                  "suite_id": "1RXB:B:13-14",
+                  "translation_A": 0.5439655428479259,
+                  "rotation_deg": 2.823177891098217
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              17,
+              3
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 204,
+            "overlap_rmsd_paths": 65,
+            "overlap_displacement_bound_paths": 135
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "CGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              17,
+              3,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "GCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "5",
+          "sequence": "CUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "6",
+          "sequence": "UUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              4
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "7",
+          "sequence": "UGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              23
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "8",
+          "sequence": "GCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              23,
+              6
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 552,
+            "overlap_rmsd_paths": 32,
+            "overlap_displacement_bound_paths": 64
+          }
+        },
+        {
+          "start": "9",
+          "sequence": "CGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              23,
+              6,
+              6
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 828,
+            "overlap_rmsd_paths": 286,
+            "overlap_displacement_bound_paths": 264
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GGCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              17,
+              3
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 7,
+                "closest": {
+                  "suite_id": "1RXB:B:13-14",
+                  "translation_A": 0.5439655428479259,
+                  "rotation_deg": 2.823177891098217
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "GCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              17,
+              3,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "CGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              17,
+              3,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "GCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "5",
+          "sequence": "CUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              4
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "6",
+          "sequence": "UUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              4,
+              23
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "7",
+          "sequence": "UGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              23,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "8",
+          "sequence": "GCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              23,
+              6,
+              6
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 3312,
+            "overlap_rmsd_paths": 128,
+            "overlap_displacement_bound_paths": 215
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GGCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              17,
+              3,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 7,
+                "closest": {
+                  "suite_id": "1RXB:B:13-14",
+                  "translation_A": 0.5439655428479259,
+                  "rotation_deg": 2.823177891098217
+                }
+              },
+              {
+                "step": 4,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "GCGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              17,
+              3,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 4,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "CGCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              17,
+              3,
+              0,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 4,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "GCUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              0,
+              0,
+              0,
+              4
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "5",
+          "sequence": "CUUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              4,
+              23
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6537282885391653,
+                  "rotation_deg": 2.173423239054534
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "6",
+          "sequence": "UUGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              4,
+              23,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.8841793278722162,
+                  "rotation_deg": 3.8087381422764186
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "7",
+          "sequence": "UGCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              4,
+              23,
+              6,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UG",
+                "template_count": 2,
+                "closest": {
+                  "suite_id": "420D:B:30-31",
+                  "translation_A": 0.5918882305402889,
+                  "rotation_deg": 7.345131499848636
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        }
+      ]
+    },
+    "B": {
+      "sequence": "GGCGCUUGCGUC",
+      "windows": [
+        {
+          "start": "13",
+          "sequence": "GGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              12
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 120,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "14",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              5,
+              12,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 120,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "15",
+          "sequence": "CGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              12,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "16",
+          "sequence": "GCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "17",
+          "sequence": "CUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              1
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "18",
+          "sequence": "UUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              1,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "19",
+          "sequence": "UGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              6,
+              24
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 144,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 32
+          }
+        },
+        {
+          "start": "20",
+          "sequence": "GCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              6,
+              24,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 1008,
+            "overlap_rmsd_paths": 491,
+            "overlap_displacement_bound_paths": 654
+          }
+        },
+        {
+          "start": "21",
+          "sequence": "CGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              24,
+              7,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 840,
+            "overlap_rmsd_paths": 294,
+            "overlap_displacement_bound_paths": 404
+          }
+        },
+        {
+          "start": "13",
+          "sequence": "GGCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              12,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 240,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "14",
+          "sequence": "GCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              5,
+              12,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "15",
+          "sequence": "CGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              12,
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "16",
+          "sequence": "GCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0,
+              1
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "17",
+          "sequence": "CUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              1,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "18",
+          "sequence": "UUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              1,
+              6,
+              24
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "19",
+          "sequence": "UGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              6,
+              24,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 1008,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 184
+          }
+        },
+        {
+          "start": "20",
+          "sequence": "GCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              6,
+              24,
+              7,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 5040,
+            "overlap_rmsd_paths": 1253,
+            "overlap_displacement_bound_paths": 1944
+          }
+        },
+        {
+          "start": "13",
+          "sequence": "GGCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              12,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 4,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "14",
+          "sequence": "GCGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              5,
+              12,
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 4,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "15",
+          "sequence": "CGCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              12,
+              2,
+              0,
+              0,
+              1
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "16",
+          "sequence": "GCUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0,
+              1,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "17",
+          "sequence": "CUUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              1,
+              6,
+              24
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.6415489948847112,
+                  "rotation_deg": 6.82422846719049
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "18",
+          "sequence": "UUGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              1,
+              6,
+              24,
+              7
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.6859884968195359,
+                  "rotation_deg": 3.0757834070174837
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "19",
+          "sequence": "UGCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              6,
+              24,
+              7,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 5040,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 547
+          }
+        }
+      ]
+    },
+    "C": {
+      "sequence": "GGCGCUUGCGUC",
+      "windows": [
+        {
+          "start": "25",
+          "sequence": "GGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              3,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 21,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "26",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 42,
+            "overlap_rmsd_paths": 28,
+            "overlap_displacement_bound_paths": 20
+          }
+        },
+        {
+          "start": "27",
+          "sequence": "CGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "28",
+          "sequence": "GCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "29",
+          "sequence": "CUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "30",
+          "sequence": "UUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              5
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "31",
+          "sequence": "UGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              21
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 210,
+            "overlap_rmsd_paths": 31,
+            "overlap_displacement_bound_paths": 66
+          }
+        },
+        {
+          "start": "32",
+          "sequence": "GCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              5,
+              21,
+              6
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 630,
+            "overlap_rmsd_paths": 178,
+            "overlap_displacement_bound_paths": 191
+          }
+        },
+        {
+          "start": "33",
+          "sequence": "CGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              21,
+              6,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 630,
+            "overlap_rmsd_paths": 300,
+            "overlap_displacement_bound_paths": 317
+          }
+        },
+        {
+          "start": "25",
+          "sequence": "GGCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              3,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 42,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "26",
+          "sequence": "GCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "27",
+          "sequence": "CGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "28",
+          "sequence": "GCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "29",
+          "sequence": "CUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              2,
+              5
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "30",
+          "sequence": "UUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              5,
+              21
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "31",
+          "sequence": "UGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              21,
+              6
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 1260,
+            "overlap_rmsd_paths": 108,
+            "overlap_displacement_bound_paths": 256
+          }
+        },
+        {
+          "start": "32",
+          "sequence": "GCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              5,
+              21,
+              6,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 3150,
+            "overlap_rmsd_paths": 890,
+            "overlap_displacement_bound_paths": 917
+          }
+        },
+        {
+          "start": "25",
+          "sequence": "GGCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              3,
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 4,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "26",
+          "sequence": "GCGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              3,
+              7,
+              2,
+              0,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 4,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "27",
+          "sequence": "CGCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "28",
+          "sequence": "GCUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              0,
+              2,
+              5
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "29",
+          "sequence": "CUUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              0,
+              2,
+              5,
+              21
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "CU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:4-5",
+                  "translation_A": 0.7965211179789012,
+                  "rotation_deg": 3.1373193496116567
+                }
+              },
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "30",
+          "sequence": "UUGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              5,
+              21,
+              6
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "255D:A:5-6",
+                  "translation_A": 1.0120175985670319,
+                  "rotation_deg": 8.831123682347517
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "31",
+          "sequence": "UGCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              5,
+              21,
+              6,
+              5
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 6300,
+            "overlap_rmsd_paths": 540,
+            "overlap_displacement_bound_paths": 1229
+          }
+        }
+      ]
+    },
+    "D": {
+      "sequence": "GGCGCUUGCGUC",
+      "windows": [
+        {
+          "start": "37",
+          "sequence": "GGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              6,
+              10
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 240,
+            "overlap_rmsd_paths": 27,
+            "overlap_displacement_bound_paths": 68
+          }
+        },
+        {
+          "start": "38",
+          "sequence": "GCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              6,
+              10,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 420,
+            "overlap_rmsd_paths": 88,
+            "overlap_displacement_bound_paths": 105
+          }
+        },
+        {
+          "start": "39",
+          "sequence": "CGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              10,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 140,
+            "overlap_rmsd_paths": 8,
+            "overlap_displacement_bound_paths": 10
+          }
+        },
+        {
+          "start": "40",
+          "sequence": "GCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "41",
+          "sequence": "CUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "42",
+          "sequence": "UUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "43",
+          "sequence": "UGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              2,
+              13
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 52,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 16
+          }
+        },
+        {
+          "start": "44",
+          "sequence": "GCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              13,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 182,
+            "overlap_rmsd_paths": 98,
+            "overlap_displacement_bound_paths": 134
+          }
+        },
+        {
+          "start": "45",
+          "sequence": "CGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              13,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 182,
+            "overlap_rmsd_paths": 57,
+            "overlap_displacement_bound_paths": 166
+          }
+        },
+        {
+          "start": "37",
+          "sequence": "GGCGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              6,
+              10,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 1680,
+            "overlap_rmsd_paths": 48,
+            "overlap_displacement_bound_paths": 132
+          }
+        },
+        {
+          "start": "38",
+          "sequence": "GCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              6,
+              10,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 840,
+            "overlap_rmsd_paths": 44,
+            "overlap_displacement_bound_paths": 51
+          }
+        },
+        {
+          "start": "39",
+          "sequence": "CGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              10,
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "40",
+          "sequence": "GCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "41",
+          "sequence": "CUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              2,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "42",
+          "sequence": "UUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              2,
+              13
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "43",
+          "sequence": "UGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              2,
+              13,
+              7
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 364,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 102
+          }
+        },
+        {
+          "start": "44",
+          "sequence": "GCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              13,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 364,
+            "overlap_rmsd_paths": 92,
+            "overlap_displacement_bound_paths": 268
+          }
+        },
+        {
+          "start": "37",
+          "sequence": "GGCGCU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              4,
+              6,
+              10,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 3360,
+            "overlap_rmsd_paths": 24,
+            "overlap_displacement_bound_paths": 64
+          }
+        },
+        {
+          "start": "38",
+          "sequence": "GCGCUU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              6,
+              10,
+              7,
+              2,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 4,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "39",
+          "sequence": "CGCUUG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              10,
+              7,
+              2,
+              0,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "40",
+          "sequence": "GCUUGC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              7,
+              2,
+              0,
+              2,
+              2
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "41",
+          "sequence": "CUUGCG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              0,
+              2,
+              2,
+              13
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "42",
+          "sequence": "UUGCGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              0,
+              2,
+              2,
+              13,
+              7
+            ],
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "UU",
+                "template_count": 5,
+                "closest": {
+                  "suite_id": "420D:B:23-24",
+                  "translation_A": 0.5821921388083825,
+                  "rotation_deg": 2.7757644716996426
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "43",
+          "sequence": "UGCGUC",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              2,
+              2,
+              13,
+              7,
+              2
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 728,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 204
+          }
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": null,
+  "supplemental_internal_sources": [
+    {
+      "entry": "157D",
+      "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+      "added_suites": 18
+    },
+    {
+      "entry": "438D",
+      "sha256": "d5f34520caed139d1b931be000b39a36ef2d8bc4a6616532aabb3cb8c9f6ef4c",
+      "added_suites": 12
+    },
+    {
+      "entry": "255D",
+      "sha256": "345068e3afe32b3ba18fbb91ea2950a8bb0b523cd1756ad57d691e74712bd097",
+      "added_suites": 9
+    },
+    {
+      "entry": "420D",
+      "sha256": "1f65ac4e2affd5cc7753771d546f063a4ce6347598d5874c6c8a504e84df0448",
+      "added_suites": 26
+    },
+    {
+      "entry": "1RXB",
+      "sha256": "3f671bcb5fb4ac42e52e0876bc29cd24dc8c829da5e96cb9a982f55af698d17d",
+      "added_suites": 10
+    }
+  ],
+  "combined_internal_manifest_sha256": "9e8a9e074cb56bb7e8479e1039ad9ebbc75b29021b3cbd33bd36026f7e42a85d",
+  "scope": "Template, frame, and pairwise overlap screening only; no fitting or assembly attempted.",
+  "length_summary": {
+    "4": {
+      "total": 36,
+      "covered": 36,
+      "all_steps_have_frame_candidates": 19,
+      "combinations_before_overlap": 6565,
+      "overlap_rmsd_paths": 1983,
+      "overlap_displacement_bound_paths": 2646
+    },
+    "5": {
+      "total": 32,
+      "covered": 32,
+      "all_steps_have_frame_candidates": 11,
+      "combinations_before_overlap": 17300,
+      "overlap_rmsd_paths": 2563,
+      "overlap_displacement_bound_paths": 4069
+    },
+    "6": {
+      "total": 28,
+      "covered": 28,
+      "all_steps_have_frame_candidates": 4,
+      "combinations_before_overlap": 15428,
+      "overlap_rmsd_paths": 564,
+      "overlap_displacement_bound_paths": 2044
+    }
+  }
+}

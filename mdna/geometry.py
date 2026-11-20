@@ -21,6 +21,77 @@ NUCLEOBASE_DICT =  {'A': ['N9', 'C8', 'N7', 'C5', 'C6', 'N6', 'N1', 'C2', 'N3', 
                     'Z': ['C1', 'C2', 'C4', 'C6', 'C7', 'N2', 'N3', 'N5', 'O4'],
                     'P': ['N9', 'C8', 'N7', 'C6', 'N6', 'C5', 'N1', 'C2', 'O2', 'N3', 'C4']}
 
+
+def calculate_local_helical_parameters(frames):
+    """Calculate local helical rise and twist from consecutive base-pair frames.
+
+    Args:
+        frames (numpy.ndarray): Array with shape ``(n_bp, 4, 3)``. Coordinates
+            use MDTraj units (nm); each frame stores origin and right-handed
+            x/y/z basis vectors as rows.
+
+    Returns:
+        numpy.ndarray: ``(n_bp - 1, 2)`` array of helical rise (angstrom) and
+            helical twist (degrees).
+
+    The local helical axis follows the 3DNA definition
+    ``cross(x2 - x1, y2 - y1)``. These values differ from the local base-pair
+    step ``Rise``/``Twist`` parameters calculated by :class:`NucleicFrames`.
+    The procedure follows section 5.6 of the 3DNA v1.5 manual and is cross-
+    checked against the published X3DNA means for six 8-nt RNA duplexes.
+    Manual: https://web.x3dna.org/public/3dna_old/doc/x3dna_v1.5.pdf
+    """
+    frames = np.asarray(frames, dtype=float)
+    if frames.ndim != 3 or frames.shape[1:] != (4, 3) or frames.shape[0] < 2:
+        raise ValueError("frames must have shape (n_bp >= 2, 4, 3).")
+    if not np.isfinite(frames).all():
+        raise ValueError("frames must contain only finite coordinates.")
+
+    result = np.empty((frames.shape[0] - 1, 2), dtype=float)
+    for index, (first, second) in enumerate(zip(frames[:-1], frames[1:])):
+        origin_1, x_1, y_1, z_1 = first
+        origin_2, x_2, y_2, z_2 = second
+        axis = np.cross(x_2 - x_1, y_2 - y_1)
+        axis_norm = np.linalg.norm(axis)
+        if axis_norm <= 1e-10:
+            raise ValueError(
+                f"Cannot determine local helical axis at base-pair step {index}."
+            )
+        axis /= axis_norm
+
+        normal_alignment = float(np.dot(axis, z_1 + z_2))
+        if abs(normal_alignment) <= 1e-10:
+            raise ValueError(
+                f"Local helical axis direction is ambiguous at step {index}."
+            )
+        if normal_alignment < 0:
+            axis *= -1
+
+        align_1 = R.align_vectors(axis[np.newaxis, :], z_1[np.newaxis, :])[0]
+        align_2 = R.align_vectors(axis[np.newaxis, :], z_2[np.newaxis, :])[0]
+        y_1_helical = align_1.apply(y_1)
+        y_2_helical = align_2.apply(y_2)
+        y_1_helical -= np.dot(y_1_helical, axis) * axis
+        y_2_helical -= np.dot(y_2_helical, axis) * axis
+        y_1_norm = np.linalg.norm(y_1_helical)
+        y_2_norm = np.linalg.norm(y_2_helical)
+        if y_1_norm <= 1e-10 or y_2_norm <= 1e-10:
+            raise ValueError(
+                f"Cannot determine local helical twist at base-pair step {index}."
+            )
+        y_1_helical /= y_1_norm
+        y_2_helical /= y_2_norm
+
+        twist = np.degrees(
+            np.arctan2(
+                np.dot(axis, np.cross(y_1_helical, y_2_helical)),
+                np.dot(y_1_helical, y_2_helical),
+            )
+        )
+        rise_angstrom = np.dot(origin_2 - origin_1, axis) * 10.0
+        result[index] = rise_angstrom, twist
+    return result
+
 class ReferenceBase:
     """Compute a nucleobase reference frame following the Tsukuba convention.
 
@@ -214,10 +285,11 @@ class ReferenceBase:
         ax.axis('equal')
 
 class NucleicFrames:
-    """Rigid base-pair parameter computation from DNA trajectories.
+    """Extract base-pair frames and parameters from nucleic-acid trajectories.
 
     Extracts nucleobase reference frames from an MDTraj trajectory using the
-    Tsukuba convention, then computes the six intra-base-pair parameters
+    Tsukuba convention when the selected residues contain supported base atom
+    names, then computes the six intra-base-pair parameters
     (shear, stretch, stagger, buckle, propeller, opening) and six inter-base-pair
     step parameters (shift, slide, rise, tilt, roll, twist) for every frame in
     the trajectory.
@@ -230,6 +302,8 @@ class NucleicFrames:
         frames (numpy.ndarray): Mean reference frames of shape ``(n_bp, n_frames, 4, 3)``.
         parameters (numpy.ndarray): Combined base-pair and step parameters of shape
             ``(n_bp, n_frames, 12)``.
+        helical_params (numpy.ndarray): Local helical rise and twist values of shape
+            ``(n_frames, n_bp - 1, 2)``. Rise is in angstroms and twist is in degrees.
         bp_params (numpy.ndarray): Intra-base-pair parameters of shape ``(n_bp, n_frames, 6)``.
         step_params (numpy.ndarray): Inter-base-pair step parameters of shape ``(n_bp, n_frames, 6)``.
         names (list[str]): Parameter names (base + step).
@@ -244,6 +318,10 @@ class NucleicFrames:
         params, names = dna.get_parameters()
         # params.shape → (n_frames, n_bp, 12)
         ```
+
+    The class can extract frames from the standard dsRNA pilot. Its rise/twist
+    outputs have not been cross-validated against X3DNA/CEHS definitions and
+    must not be treated as those standard parameters without such a comparison.
     """
 
     def __init__(self, traj, chainids=[0,1], fit_reference=False):
@@ -259,9 +337,29 @@ class NucleicFrames:
         self.top = traj.topology
         self.fit_reference = fit_reference
         self.reference_base_map = {'U': 'T'}
+        if (
+            not isinstance(chainids, (list, tuple))
+            or len(chainids) != 2
+            or any(
+                isinstance(chainid, bool) or not isinstance(chainid, (int, np.integer))
+                for chainid in chainids
+            )
+            or chainids[0] == chainids[1]
+            or any(chainid < 0 or chainid >= len(self.top._chains) for chainid in chainids)
+        ):
+            raise ValueError(
+                "chainids must contain two distinct, valid chain indices."
+            )
         self.reference_fit_data = self._prepare_reference_fit_data() if self.fit_reference else {}
         self.res_A = self.get_residues(chain_index=chainids[0], reverse=False)
         self.res_B = self.get_residues(chain_index=chainids[1], reverse=True)
+        if not self.res_A or not self.res_B:
+            raise ValueError("Both selected chains must contain residues.")
+        if len(self.res_A) != len(self.res_B):
+            raise ValueError(
+                "Selected chains must have equal residue counts to define "
+                "one-to-one base pairs."
+            )
         self.mean_reference_frames = np.empty((len(self.res_A), 1, 4, 3))
         self.base_frames = self.get_base_reference_frames()
         self.analyse_frames()
@@ -546,11 +644,27 @@ class NucleicFrames:
         self._clean_parameters()
 
     def _clean_parameters(self):
-        """Assign parameter names and merge base-pair and step arrays."""
+        """Assign names and calculate local helical parameters separately."""
         self.step_parameter_names = ['shift', 'slide', 'rise', 'tilt', 'roll', 'twist']
         self.base_parameter_names = ['shear', 'stretch', 'stagger', 'buckle', 'propeller', 'opening']
         self.names = self.base_parameter_names + self.step_parameter_names
         self.parameters = np.dstack((self.bp_params, self.step_params))
+        self.helical_parameter_names = ['helical_rise', 'helical_twist']
+        if self.frames.shape[0] < 2:
+            self.helical_params = np.empty(
+                (self.frames.shape[1], 0, len(self.helical_parameter_names)),
+                dtype=float,
+            )
+        else:
+            self.helical_params = np.stack(
+                [
+                    calculate_local_helical_parameters(
+                        self.frames[:, frame_index, :, :]
+                    )
+                    for frame_index in range(self.frames.shape[1])
+                ],
+                axis=0,
+            )
 
     def get_parameters(self, step=False, base=False):
         """Return computed rigid base parameters.
@@ -573,6 +687,10 @@ class NucleicFrames:
         elif not step and not base:
             return self.parameters, self.names
         raise ValueError("Use only one of step=True or base=True, or neither.")
+
+    def get_helical_parameters(self):
+        """Return local helical rise/twist separately from step parameters."""
+        return self.helical_params, self.helical_parameter_names
         
     def get_parameter(self, name='twist') -> np.ndarray:
         """Get a single named parameter across all frames.

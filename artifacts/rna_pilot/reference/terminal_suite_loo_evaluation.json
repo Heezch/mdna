@@ -1,0 +1,3005 @@
+{
+  "method": "Leave one PDB entry out. Place every same-role, same-sequence candidate from other entries into the held-out upstream base frame. Compare its predicted downstream frame and atom coordinates with the held-out reference.",
+  "candidate_selection": "No candidate is selected or ranked by held-out atom coordinates. Metrics are reported for every cross-entry candidate; target downstream frames are explicit oracle pose constraints from the held-out structures.",
+  "source_entries": [
+    {
+      "file": "4u3l.cif",
+      "sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c"
+    },
+    {
+      "file": "4u3o.cif",
+      "sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236"
+    },
+    {
+      "file": "4u3p.cif",
+      "sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0"
+    },
+    {
+      "file": "4u3r.cif",
+      "sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c"
+    },
+    {
+      "file": "4u47.cif",
+      "sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3"
+    },
+    {
+      "file": "4u78.cif",
+      "sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035"
+    }
+  ],
+  "case_count": 24,
+  "candidate_pair_count": 240,
+  "summary_by_terminal_role": {
+    "five_prime": {
+      "downstream_frame_translation_residual_A": {
+        "n": 120,
+        "median": 0.4510609952700799,
+        "p95": 0.7100339926809971,
+        "maximum": 0.8255498315484929
+      },
+      "downstream_frame_rotation_residual_degrees": {
+        "n": 120,
+        "median": 5.368582065769721,
+        "p95": 9.56480667649621,
+        "maximum": 11.43297477965097
+      },
+      "all_shared_heavy_atom_rmsd_A": {
+        "n": 120,
+        "median": 0.25815155007583723,
+        "p95": 0.4505536475220347,
+        "maximum": 0.496387905142897
+      },
+      "sugar_rmsd_A": {
+        "n": 120,
+        "median": 0.27353000984716846,
+        "p95": 0.5013407548963196,
+        "maximum": 0.5885398657769033
+      },
+      "backbone_rmsd_A": {
+        "n": 120,
+        "median": 0.2767034618211123,
+        "p95": 0.5507251193115061,
+        "maximum": 0.6075687229118614
+      }
+    },
+    "three_prime": {
+      "downstream_frame_translation_residual_A": {
+        "n": 120,
+        "median": 0.361891036149579,
+        "p95": 0.6462592152722845,
+        "maximum": 0.7685826207287896
+      },
+      "downstream_frame_rotation_residual_degrees": {
+        "n": 120,
+        "median": 3.4375528791489973,
+        "p95": 6.8805506899488424,
+        "maximum": 9.285091470057782
+      },
+      "all_shared_heavy_atom_rmsd_A": {
+        "n": 120,
+        "median": 0.4328167282970138,
+        "p95": 0.7081155749866062,
+        "maximum": 0.7677532834366859
+      },
+      "sugar_rmsd_A": {
+        "n": 120,
+        "median": 0.4781488291630561,
+        "p95": 0.6531875763679683,
+        "maximum": 0.7275251790455413
+      },
+      "backbone_rmsd_A": {
+        "n": 120,
+        "median": 0.5476961166182313,
+        "p95": 0.9501423233716513,
+        "maximum": 0.9920342328185099
+      }
+    }
+  },
+  "cases": [
+    {
+      "held_out_entry": "4U3L",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3L:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.623765051279286,
+          "downstream_frame_rotation_residual_degrees": 5.301705368971434,
+          "all_shared_heavy_atom_rmsd_A": 0.21843862422170474,
+          "sugar_rmsd_A": 0.16729792344386246,
+          "backbone_rmsd_A": 0.20592028447082072
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5801146263885542,
+          "downstream_frame_rotation_residual_degrees": 6.938721118039359,
+          "all_shared_heavy_atom_rmsd_A": 0.2394009802831211,
+          "sugar_rmsd_A": 0.224217259218775,
+          "backbone_rmsd_A": 0.23593232058622107
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.24450090415455542,
+          "downstream_frame_rotation_residual_degrees": 5.1614574265141275,
+          "all_shared_heavy_atom_rmsd_A": 0.36871065558885135,
+          "sugar_rmsd_A": 0.4283895007474903,
+          "backbone_rmsd_A": 0.4597585999407771
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.36777379917318803,
+          "downstream_frame_rotation_residual_degrees": 5.977075766760442,
+          "all_shared_heavy_atom_rmsd_A": 0.20233087666769425,
+          "sugar_rmsd_A": 0.22887624849828178,
+          "backbone_rmsd_A": 0.22259831848780334
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.35788032017220606,
+          "downstream_frame_rotation_residual_degrees": 4.085135913284556,
+          "all_shared_heavy_atom_rmsd_A": 0.18872527822071852,
+          "sugar_rmsd_A": 0.19085184038178102,
+          "backbone_rmsd_A": 0.21880076267273416
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.24350911348244544,
+          "downstream_frame_rotation_residual_degrees": 2.3273663343014435,
+          "all_shared_heavy_atom_rmsd_A": 0.19637284957432724,
+          "sugar_rmsd_A": 0.21161545857527908,
+          "backbone_rmsd_A": 0.21867598623079018
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.38572978141315545,
+          "downstream_frame_rotation_residual_degrees": 5.971859686909398,
+          "all_shared_heavy_atom_rmsd_A": 0.393399554905387,
+          "sugar_rmsd_A": 0.4596699134478632,
+          "backbone_rmsd_A": 0.4945898182012024
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.547845830761514,
+          "downstream_frame_rotation_residual_degrees": 7.932353107067653,
+          "all_shared_heavy_atom_rmsd_A": 0.2635939467508125,
+          "sugar_rmsd_A": 0.27218778644461755,
+          "backbone_rmsd_A": 0.30309842525951336
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2889413325679824,
+          "downstream_frame_rotation_residual_degrees": 2.418969820162661,
+          "all_shared_heavy_atom_rmsd_A": 0.21548465585262033,
+          "sugar_rmsd_A": 0.22637960922071357,
+          "backbone_rmsd_A": 0.23552997278822752
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2500427061733422,
+          "downstream_frame_rotation_residual_degrees": 3.956582068153624,
+          "all_shared_heavy_atom_rmsd_A": 0.2004714833678646,
+          "sugar_rmsd_A": 0.20061107895337582,
+          "backbone_rmsd_A": 0.2292671438430877
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3L",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3L:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1477815121336836,
+          "downstream_frame_rotation_residual_degrees": 4.892544778108753,
+          "all_shared_heavy_atom_rmsd_A": 0.35533976216619173,
+          "sugar_rmsd_A": 0.3327511171038002,
+          "backbone_rmsd_A": 0.47815393606196266
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22758753906499757,
+          "downstream_frame_rotation_residual_degrees": 5.750631632036657,
+          "all_shared_heavy_atom_rmsd_A": 0.6578670039183636,
+          "sugar_rmsd_A": 0.5555605520516104,
+          "backbone_rmsd_A": 0.8865272290945994
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.29820505133586533,
+          "downstream_frame_rotation_residual_degrees": 9.285091470057704,
+          "all_shared_heavy_atom_rmsd_A": 0.7211698770092172,
+          "sugar_rmsd_A": 0.5842842603827992,
+          "backbone_rmsd_A": 0.9500709483327042
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.38551579064718466,
+          "downstream_frame_rotation_residual_degrees": 5.050014888789892,
+          "all_shared_heavy_atom_rmsd_A": 0.4860495948466145,
+          "sugar_rmsd_A": 0.4701661204586382,
+          "backbone_rmsd_A": 0.6171022889527492
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4903731298379289,
+          "downstream_frame_rotation_residual_degrees": 6.680100246770406,
+          "all_shared_heavy_atom_rmsd_A": 0.3804495089578036,
+          "sugar_rmsd_A": 0.48384433862694837,
+          "backbone_rmsd_A": 0.44035496589033724
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5871979967550028,
+          "downstream_frame_rotation_residual_degrees": 6.062049836637817,
+          "all_shared_heavy_atom_rmsd_A": 0.6867874043396799,
+          "sugar_rmsd_A": 0.6484495370095334,
+          "backbone_rmsd_A": 0.8754835718874853
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4278713347688792,
+          "downstream_frame_rotation_residual_degrees": 5.153679230983419,
+          "all_shared_heavy_atom_rmsd_A": 0.6726385102385477,
+          "sugar_rmsd_A": 0.5774271484283889,
+          "backbone_rmsd_A": 0.8694794329721515
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6647528693481112,
+          "downstream_frame_rotation_residual_degrees": 7.294438724802024,
+          "all_shared_heavy_atom_rmsd_A": 0.6179901996323356,
+          "sugar_rmsd_A": 0.6507791534366711,
+          "backbone_rmsd_A": 0.765316978838422
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6197057690684262,
+          "downstream_frame_rotation_residual_degrees": 6.467272687000508,
+          "all_shared_heavy_atom_rmsd_A": 0.693513469626456,
+          "sugar_rmsd_A": 0.6723621095852835,
+          "backbone_rmsd_A": 0.8748265838692035
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.29337237470577027,
+          "downstream_frame_rotation_residual_degrees": 5.247057431929216,
+          "all_shared_heavy_atom_rmsd_A": 0.28804558987789364,
+          "sugar_rmsd_A": 0.3779705178179376,
+          "backbone_rmsd_A": 0.3406565058606154
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3L",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3L:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.614023093348992,
+          "downstream_frame_rotation_residual_degrees": 5.5990216837742715,
+          "all_shared_heavy_atom_rmsd_A": 0.294312695642826,
+          "sugar_rmsd_A": 0.27534319638439414,
+          "backbone_rmsd_A": 0.33219035490787174
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5243338234077621,
+          "downstream_frame_rotation_residual_degrees": 4.5833310419781315,
+          "all_shared_heavy_atom_rmsd_A": 0.305154492300207,
+          "sugar_rmsd_A": 0.27312590575484286,
+          "backbone_rmsd_A": 0.31546981685214437
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.20854110795834463,
+          "downstream_frame_rotation_residual_degrees": 4.0369889474197915,
+          "all_shared_heavy_atom_rmsd_A": 0.42159247361137303,
+          "sugar_rmsd_A": 0.4656928434622259,
+          "backbone_rmsd_A": 0.5180457723616471
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4399420115789347,
+          "downstream_frame_rotation_residual_degrees": 7.036586236109579,
+          "all_shared_heavy_atom_rmsd_A": 0.2296300984121631,
+          "sugar_rmsd_A": 0.2278559458458235,
+          "backbone_rmsd_A": 0.2541533621867668
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4189474008424798,
+          "downstream_frame_rotation_residual_degrees": 5.435458762568008,
+          "all_shared_heavy_atom_rmsd_A": 0.21920586505848635,
+          "sugar_rmsd_A": 0.18828769656178423,
+          "backbone_rmsd_A": 0.2688937283399824
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.08800012531143823,
+          "downstream_frame_rotation_residual_degrees": 1.2774096950682858,
+          "all_shared_heavy_atom_rmsd_A": 0.18985687421830455,
+          "sugar_rmsd_A": 0.1823712040145503,
+          "backbone_rmsd_A": 0.2340733116154046
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3483597439408784,
+          "downstream_frame_rotation_residual_degrees": 4.752907377971213,
+          "all_shared_heavy_atom_rmsd_A": 0.450726257234278,
+          "sugar_rmsd_A": 0.49998205715196037,
+          "backbone_rmsd_A": 0.557799961157719
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6098325193760019,
+          "downstream_frame_rotation_residual_degrees": 8.506576294728925,
+          "all_shared_heavy_atom_rmsd_A": 0.33480747951831835,
+          "sugar_rmsd_A": 0.323592924406085,
+          "backbone_rmsd_A": 0.38379057491279833
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.21958418983911976,
+          "downstream_frame_rotation_residual_degrees": 1.1884655779013928,
+          "all_shared_heavy_atom_rmsd_A": 0.22447398148078096,
+          "sugar_rmsd_A": 0.19392906074641086,
+          "backbone_rmsd_A": 0.25528067093536966
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3215631902396783,
+          "downstream_frame_rotation_residual_degrees": 5.527291046439776,
+          "all_shared_heavy_atom_rmsd_A": 0.22486036059816372,
+          "sugar_rmsd_A": 0.19280968062755763,
+          "backbone_rmsd_A": 0.27665257345820043
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3L",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3L:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.40114664703998604,
+          "downstream_frame_rotation_residual_degrees": 3.9920741630954195,
+          "all_shared_heavy_atom_rmsd_A": 0.47913439251676615,
+          "sugar_rmsd_A": 0.5271504136700892,
+          "backbone_rmsd_A": 0.5996089076505386
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3617730580367802,
+          "downstream_frame_rotation_residual_degrees": 3.5709735489136243,
+          "all_shared_heavy_atom_rmsd_A": 0.3872902212067711,
+          "sugar_rmsd_A": 0.4980338094986761,
+          "backbone_rmsd_A": 0.4836994018744896
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10023778441623621,
+          "downstream_frame_rotation_residual_degrees": 7.0065203250845585,
+          "all_shared_heavy_atom_rmsd_A": 0.3845440412093884,
+          "sugar_rmsd_A": 0.5115376109308435,
+          "backbone_rmsd_A": 0.5035145672399232
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4313100701122947,
+          "downstream_frame_rotation_residual_degrees": 3.5073335646105237,
+          "all_shared_heavy_atom_rmsd_A": 0.34841702415291653,
+          "sugar_rmsd_A": 0.3297157564106001,
+          "backbone_rmsd_A": 0.4219081324670501
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6083087604500688,
+          "downstream_frame_rotation_residual_degrees": 5.190821390755936,
+          "all_shared_heavy_atom_rmsd_A": 0.7677532834366858,
+          "sugar_rmsd_A": 0.7275251790455413,
+          "backbone_rmsd_A": 0.9920342328185097
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6452858650577673,
+          "downstream_frame_rotation_residual_degrees": 4.117696281720568,
+          "all_shared_heavy_atom_rmsd_A": 0.48307511646175283,
+          "sugar_rmsd_A": 0.6004238885620259,
+          "backbone_rmsd_A": 0.5574857073927866
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.27897892325092666,
+          "downstream_frame_rotation_residual_degrees": 3.4137129597241014,
+          "all_shared_heavy_atom_rmsd_A": 0.38632511232196864,
+          "sugar_rmsd_A": 0.5239379114339376,
+          "backbone_rmsd_A": 0.4920264899913778
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7685826207287896,
+          "downstream_frame_rotation_residual_degrees": 5.522529582086961,
+          "all_shared_heavy_atom_rmsd_A": 0.5523085552125556,
+          "sugar_rmsd_A": 0.6536345827854015,
+          "backbone_rmsd_A": 0.6318500346688258
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6422808341265014,
+          "downstream_frame_rotation_residual_degrees": 4.495739017108779,
+          "all_shared_heavy_atom_rmsd_A": 0.4895536986176355,
+          "sugar_rmsd_A": 0.6183635307690244,
+          "backbone_rmsd_A": 0.5703433120525401
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4251320244044559,
+          "downstream_frame_rotation_residual_degrees": 3.7736110499460596,
+          "all_shared_heavy_atom_rmsd_A": 0.6848101900734828,
+          "sugar_rmsd_A": 0.6531640497144192,
+          "backbone_rmsd_A": 0.8951806026251022
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3O",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3O:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6237650512792864,
+          "downstream_frame_rotation_residual_degrees": 5.301705368971434,
+          "all_shared_heavy_atom_rmsd_A": 0.21843862422170465,
+          "sugar_rmsd_A": 0.16729792344386282,
+          "backbone_rmsd_A": 0.205920284470821
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6140230933489915,
+          "downstream_frame_rotation_residual_degrees": 5.599021683774141,
+          "all_shared_heavy_atom_rmsd_A": 0.29431269564282664,
+          "sugar_rmsd_A": 0.27534319638439436,
+          "backbone_rmsd_A": 0.3321903549078728
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7147329999590005,
+          "downstream_frame_rotation_residual_degrees": 5.56641721157732,
+          "all_shared_heavy_atom_rmsd_A": 0.4228572649856456,
+          "sugar_rmsd_A": 0.44100352278479626,
+          "backbone_rmsd_A": 0.4567594981911738
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.30630497109452665,
+          "downstream_frame_rotation_residual_degrees": 4.918941604530194,
+          "all_shared_heavy_atom_rmsd_A": 0.1875528208297211,
+          "sugar_rmsd_A": 0.2203484609623468,
+          "backbone_rmsd_A": 0.21946678185079524
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.36381507315922335,
+          "downstream_frame_rotation_residual_degrees": 2.242393592720769,
+          "all_shared_heavy_atom_rmsd_A": 0.18596018124848926,
+          "sugar_rmsd_A": 0.19595180695222753,
+          "backbone_rmsd_A": 0.18853887266738062
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6119316803771352,
+          "downstream_frame_rotation_residual_degrees": 5.766524266418615,
+          "all_shared_heavy_atom_rmsd_A": 0.24327426493842097,
+          "sugar_rmsd_A": 0.23450516774213706,
+          "backbone_rmsd_A": 0.23087592261972473
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5452982179095335,
+          "downstream_frame_rotation_residual_degrees": 4.479240775493925,
+          "all_shared_heavy_atom_rmsd_A": 0.4186686267952984,
+          "sugar_rmsd_A": 0.4763862357932615,
+          "backbone_rmsd_A": 0.4886194661212059
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.20852762872537497,
+          "downstream_frame_rotation_residual_degrees": 4.327009205906034,
+          "all_shared_heavy_atom_rmsd_A": 0.22445423512017496,
+          "sugar_rmsd_A": 0.25363373321016225,
+          "backbone_rmsd_A": 0.2571828151655889
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.8255498315484908,
+          "downstream_frame_rotation_residual_degrees": 6.159709810008014,
+          "all_shared_heavy_atom_rmsd_A": 0.31364735880691064,
+          "sugar_rmsd_A": 0.27393411393949413,
+          "backbone_rmsd_A": 0.26175314914045406
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5334915594750003,
+          "downstream_frame_rotation_residual_degrees": 4.259711160620331,
+          "all_shared_heavy_atom_rmsd_A": 0.20967402582047634,
+          "sugar_rmsd_A": 0.18390727979384475,
+          "backbone_rmsd_A": 0.17118212738284247
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3O",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3O:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.14778151213368482,
+          "downstream_frame_rotation_residual_degrees": 4.892544778108753,
+          "all_shared_heavy_atom_rmsd_A": 0.3553397621661933,
+          "sugar_rmsd_A": 0.3327511171038011,
+          "backbone_rmsd_A": 0.47815393606196477
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.40114664703998254,
+          "downstream_frame_rotation_residual_degrees": 3.9920741630954195,
+          "all_shared_heavy_atom_rmsd_A": 0.4791343925167659,
+          "sugar_rmsd_A": 0.5271504136700893,
+          "backbone_rmsd_A": 0.5996089076505384
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.34255397824593314,
+          "downstream_frame_rotation_residual_degrees": 6.873920709152226,
+          "all_shared_heavy_atom_rmsd_A": 0.48881783793349304,
+          "sugar_rmsd_A": 0.48380008249770434,
+          "backbone_rmsd_A": 0.6213570843691736
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.327227564685521,
+          "downstream_frame_rotation_residual_degrees": 2.7267740820707242,
+          "all_shared_heavy_atom_rmsd_A": 0.33263060390352767,
+          "sugar_rmsd_A": 0.3788202349845447,
+          "backbone_rmsd_A": 0.3997284326364124
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.40213158538809185,
+          "downstream_frame_rotation_residual_degrees": 2.151847989875629,
+          "all_shared_heavy_atom_rmsd_A": 0.43749501953105624,
+          "sugar_rmsd_A": 0.3791740548598306,
+          "backbone_rmsd_A": 0.5540828178654785
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5645050691743174,
+          "downstream_frame_rotation_residual_degrees": 3.52358492885211,
+          "all_shared_heavy_atom_rmsd_A": 0.4749440786077344,
+          "sugar_rmsd_A": 0.545706224306075,
+          "backbone_rmsd_A": 0.5777768778553735
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.39262543248725484,
+          "downstream_frame_rotation_residual_degrees": 2.13408645614223,
+          "all_shared_heavy_atom_rmsd_A": 0.47011274595177094,
+          "sugar_rmsd_A": 0.5127731515396349,
+          "backbone_rmsd_A": 0.5826245556324929
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6167700473618651,
+          "downstream_frame_rotation_residual_degrees": 3.923965879479585,
+          "all_shared_heavy_atom_rmsd_A": 0.4281384370629719,
+          "sugar_rmsd_A": 0.522084623192703,
+          "backbone_rmsd_A": 0.4948962538519572
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5798873027535064,
+          "downstream_frame_rotation_residual_degrees": 3.3686579928355944,
+          "all_shared_heavy_atom_rmsd_A": 0.4952665624407164,
+          "sugar_rmsd_A": 0.5760262610070365,
+          "backbone_rmsd_A": 0.5940972763903013
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23713506066134785,
+          "downstream_frame_rotation_residual_degrees": 1.2089249624366998,
+          "all_shared_heavy_atom_rmsd_A": 0.33344895305643524,
+          "sugar_rmsd_A": 0.2699555383089547,
+          "backbone_rmsd_A": 0.43311765465992286
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3O",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3O:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5801146263885546,
+          "downstream_frame_rotation_residual_degrees": 6.938721118039359,
+          "all_shared_heavy_atom_rmsd_A": 0.2394009802831208,
+          "sugar_rmsd_A": 0.22421725921877486,
+          "backbone_rmsd_A": 0.23593232058622096
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5243338234077626,
+          "downstream_frame_rotation_residual_degrees": 4.5833310419781315,
+          "all_shared_heavy_atom_rmsd_A": 0.30515449230020647,
+          "sugar_rmsd_A": 0.27312590575484247,
+          "backbone_rmsd_A": 0.3154698168521437
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4981688009356573,
+          "downstream_frame_rotation_residual_degrees": 2.9322444294244017,
+          "all_shared_heavy_atom_rmsd_A": 0.39026028021254733,
+          "sugar_rmsd_A": 0.3930721004487014,
+          "backbone_rmsd_A": 0.416297975687961
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5351976515351337,
+          "downstream_frame_rotation_residual_degrees": 10.926000629511693,
+          "all_shared_heavy_atom_rmsd_A": 0.252709153400862,
+          "sugar_rmsd_A": 0.28800238974985076,
+          "backbone_rmsd_A": 0.2751503659330386
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6057702025481625,
+          "downstream_frame_rotation_residual_degrees": 8.60290793280445,
+          "all_shared_heavy_atom_rmsd_A": 0.23170159139896201,
+          "sugar_rmsd_A": 0.20614598599254033,
+          "backbone_rmsd_A": 0.197330336770623
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5852656638708282,
+          "downstream_frame_rotation_residual_degrees": 5.818063200975419,
+          "all_shared_heavy_atom_rmsd_A": 0.32664305534065763,
+          "sugar_rmsd_A": 0.34703371213246487,
+          "backbone_rmsd_A": 0.3297900938954298
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22632806855676385,
+          "downstream_frame_rotation_residual_degrees": 3.738631244883557,
+          "all_shared_heavy_atom_rmsd_A": 0.3448355026701205,
+          "sugar_rmsd_A": 0.36817215346414534,
+          "backbone_rmsd_A": 0.3994603192240549
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.48139525032986974,
+          "downstream_frame_rotation_residual_degrees": 11.43297477965097,
+          "all_shared_heavy_atom_rmsd_A": 0.20646791727389782,
+          "sugar_rmsd_A": 0.1968829218511723,
+          "backbone_rmsd_A": 0.20909445414074107
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7097866765084706,
+          "downstream_frame_rotation_residual_degrees": 5.180669407707234,
+          "all_shared_heavy_atom_rmsd_A": 0.33784177571480245,
+          "sugar_rmsd_A": 0.29901107662578946,
+          "backbone_rmsd_A": 0.28259368574996535
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6755748506466912,
+          "downstream_frame_rotation_residual_degrees": 9.556005861701857,
+          "all_shared_heavy_atom_rmsd_A": 0.3023587403802044,
+          "sugar_rmsd_A": 0.29566770225139166,
+          "backbone_rmsd_A": 0.2767543501840238
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3O",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3O:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22758753906499904,
+          "downstream_frame_rotation_residual_degrees": 5.750631632036657,
+          "all_shared_heavy_atom_rmsd_A": 0.6578670039183651,
+          "sugar_rmsd_A": 0.5555605520516098,
+          "backbone_rmsd_A": 0.8865272290946016
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3617730580367824,
+          "downstream_frame_rotation_residual_degrees": 3.5709735489138286,
+          "all_shared_heavy_atom_rmsd_A": 0.38729022120677153,
+          "sugar_rmsd_A": 0.49803380949867554,
+          "backbone_rmsd_A": 0.48369940187449006
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.26577383619141204,
+          "downstream_frame_rotation_residual_degrees": 4.875454065736385,
+          "all_shared_heavy_atom_rmsd_A": 0.17464255551158847,
+          "sugar_rmsd_A": 0.07668186297221113,
+          "backbone_rmsd_A": 0.15049919563802028
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1808431404218577,
+          "downstream_frame_rotation_residual_degrees": 2.0295457878168914,
+          "all_shared_heavy_atom_rmsd_A": 0.40546131435283855,
+          "sugar_rmsd_A": 0.43559728327798913,
+          "backbone_rmsd_A": 0.5397237064783599
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3075359433336873,
+          "downstream_frame_rotation_residual_degrees": 2.5520161581013445,
+          "all_shared_heavy_atom_rmsd_A": 0.7074285064591004,
+          "sugar_rmsd_A": 0.5645663866365008,
+          "backbone_rmsd_A": 0.9514984491116302
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3652934253815508,
+          "downstream_frame_rotation_residual_degrees": 1.426973167826376,
+          "all_shared_heavy_atom_rmsd_A": 0.22673300088130482,
+          "sugar_rmsd_A": 0.22051739792435812,
+          "backbone_rmsd_A": 0.22914582330398636
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.299631205905506,
+          "downstream_frame_rotation_residual_degrees": 2.117302629805625,
+          "all_shared_heavy_atom_rmsd_A": 0.19032463052925852,
+          "sugar_rmsd_A": 0.1540295981151588,
+          "backbone_rmsd_A": 0.17449311265950676
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.45636033648201096,
+          "downstream_frame_rotation_residual_degrees": 2.4959927687997685,
+          "all_shared_heavy_atom_rmsd_A": 0.3163707853378694,
+          "sugar_rmsd_A": 0.27495806807263024,
+          "backbone_rmsd_A": 0.3545926572280157
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.39324149953349385,
+          "downstream_frame_rotation_residual_degrees": 1.2683497931780143,
+          "all_shared_heavy_atom_rmsd_A": 0.26164528021674305,
+          "sugar_rmsd_A": 0.26279766817730077,
+          "backbone_rmsd_A": 0.2685134120741015
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10491542507462824,
+          "downstream_frame_rotation_residual_degrees": 2.1891145922983135,
+          "all_shared_heavy_atom_rmsd_A": 0.6347732592553745,
+          "sugar_rmsd_A": 0.513890126104048,
+          "backbone_rmsd_A": 0.863609627694808
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3P",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3P:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.24450090415455566,
+          "downstream_frame_rotation_residual_degrees": 5.161457426513987,
+          "all_shared_heavy_atom_rmsd_A": 0.3687106555888519,
+          "sugar_rmsd_A": 0.4283895007474908,
+          "backbone_rmsd_A": 0.4597585999407778
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.20854110795834485,
+          "downstream_frame_rotation_residual_degrees": 4.03698894741961,
+          "all_shared_heavy_atom_rmsd_A": 0.42159247361137264,
+          "sugar_rmsd_A": 0.4656928434622254,
+          "backbone_rmsd_A": 0.5180457723616467
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7147329999590005,
+          "downstream_frame_rotation_residual_degrees": 5.56641721157732,
+          "all_shared_heavy_atom_rmsd_A": 0.42285726498564574,
+          "sugar_rmsd_A": 0.4410035227847967,
+          "backbone_rmsd_A": 0.4567594981911737
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4981688009356577,
+          "downstream_frame_rotation_residual_degrees": 2.932244429424153,
+          "all_shared_heavy_atom_rmsd_A": 0.3902602802125481,
+          "sugar_rmsd_A": 0.3930721004487027,
+          "backbone_rmsd_A": 0.4162979756879625
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5472825871107578,
+          "downstream_frame_rotation_residual_degrees": 6.412363905424637,
+          "all_shared_heavy_atom_rmsd_A": 0.3197146677914061,
+          "sugar_rmsd_A": 0.33837602934341054,
+          "backbone_rmsd_A": 0.35055556748251737
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2905237065433142,
+          "downstream_frame_rotation_residual_degrees": 5.012199749322625,
+          "all_shared_heavy_atom_rmsd_A": 0.45054456280033683,
+          "sugar_rmsd_A": 0.5271560120391459,
+          "backbone_rmsd_A": 0.550352759214336
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.27687246419384737,
+          "downstream_frame_rotation_residual_degrees": 1.945435111280127,
+          "all_shared_heavy_atom_rmsd_A": 0.14232729471761968,
+          "sugar_rmsd_A": 0.1502706608285172,
+          "backbone_rmsd_A": 0.1462091685158276
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6683678138464737,
+          "downstream_frame_rotation_residual_degrees": 9.732022157588919,
+          "all_shared_heavy_atom_rmsd_A": 0.33512921534042306,
+          "sugar_rmsd_A": 0.3606731735799391,
+          "backbone_rmsd_A": 0.3509247356477592
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.25023554358053035,
+          "downstream_frame_rotation_residual_degrees": 4.408042305034054,
+          "all_shared_heavy_atom_rmsd_A": 0.2874242757521641,
+          "sugar_rmsd_A": 0.3349396860271667,
+          "backbone_rmsd_A": 0.3486328805545649
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.46217997896122537,
+          "downstream_frame_rotation_residual_degrees": 7.743268410222993,
+          "all_shared_heavy_atom_rmsd_A": 0.3783864840472558,
+          "sugar_rmsd_A": 0.4339216099878988,
+          "backbone_rmsd_A": 0.44703000600266257
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3P",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3P:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.29820505133586517,
+          "downstream_frame_rotation_residual_degrees": 9.285091470057782,
+          "all_shared_heavy_atom_rmsd_A": 0.7211698770092176,
+          "sugar_rmsd_A": 0.5842842603827992,
+          "backbone_rmsd_A": 0.9500709483327051
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10023778441623653,
+          "downstream_frame_rotation_residual_degrees": 7.0065203250845585,
+          "all_shared_heavy_atom_rmsd_A": 0.38454404120938845,
+          "sugar_rmsd_A": 0.5115376109308435,
+          "backbone_rmsd_A": 0.5035145672399232
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.34255397824593464,
+          "downstream_frame_rotation_residual_degrees": 6.873920709152119,
+          "all_shared_heavy_atom_rmsd_A": 0.4888178379334929,
+          "sugar_rmsd_A": 0.4838000824977032,
+          "backbone_rmsd_A": 0.6213570843691735
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2657738361914153,
+          "downstream_frame_rotation_residual_degrees": 4.875454065736385,
+          "all_shared_heavy_atom_rmsd_A": 0.174642555511588,
+          "sugar_rmsd_A": 0.07668186297221029,
+          "backbone_rmsd_A": 0.15049919563801917
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5171885045241441,
+          "downstream_frame_rotation_residual_degrees": 6.026475370146841,
+          "all_shared_heavy_atom_rmsd_A": 0.7538914783537377,
+          "sugar_rmsd_A": 0.5623046282884071,
+          "backbone_rmsd_A": 0.9913765666224428
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5484839572890717,
+          "downstream_frame_rotation_residual_degrees": 6.04669436208613,
+          "all_shared_heavy_atom_rmsd_A": 0.2761961761538692,
+          "sugar_rmsd_A": 0.1883639061594127,
+          "backbone_rmsd_A": 0.214203087518485
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22450164528764535,
+          "downstream_frame_rotation_residual_degrees": 4.902613900712592,
+          "all_shared_heavy_atom_rmsd_A": 0.14965924040137485,
+          "sugar_rmsd_A": 0.12784837678333494,
+          "backbone_rmsd_A": 0.15218800982689923
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6706980054799236,
+          "downstream_frame_rotation_residual_degrees": 6.451543240791085,
+          "all_shared_heavy_atom_rmsd_A": 0.38437365640527527,
+          "sugar_rmsd_A": 0.25160438049306805,
+          "backbone_rmsd_A": 0.37225282504759694
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5500143906798383,
+          "downstream_frame_rotation_residual_degrees": 5.591776987959892,
+          "all_shared_heavy_atom_rmsd_A": 0.29223671039937027,
+          "sugar_rmsd_A": 0.22961503404371056,
+          "backbone_rmsd_A": 0.2545277340315494
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.331565489920968,
+          "downstream_frame_rotation_residual_degrees": 5.6854977611277855,
+          "all_shared_heavy_atom_rmsd_A": 0.6846579774755506,
+          "sugar_rmsd_A": 0.5209678784083859,
+          "backbone_rmsd_A": 0.9105667541976321
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3P",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3P:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3677737991731894,
+          "downstream_frame_rotation_residual_degrees": 5.977075766760442,
+          "all_shared_heavy_atom_rmsd_A": 0.20233087666769384,
+          "sugar_rmsd_A": 0.22887624849828092,
+          "backbone_rmsd_A": 0.22259831848780282
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.43994201157893476,
+          "downstream_frame_rotation_residual_degrees": 7.036586236109683,
+          "all_shared_heavy_atom_rmsd_A": 0.22963009841216306,
+          "sugar_rmsd_A": 0.22785594584582308,
+          "backbone_rmsd_A": 0.254153362186767
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.30630497109452637,
+          "downstream_frame_rotation_residual_degrees": 4.918941604530194,
+          "all_shared_heavy_atom_rmsd_A": 0.1875528208297209,
+          "sugar_rmsd_A": 0.22034846096234623,
+          "backbone_rmsd_A": 0.21946678185079496
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5351976515351322,
+          "downstream_frame_rotation_residual_degrees": 10.926000629511758,
+          "all_shared_heavy_atom_rmsd_A": 0.2527091534008614,
+          "sugar_rmsd_A": 0.2880023897498499,
+          "backbone_rmsd_A": 0.2751503659330379
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10305180491353952,
+          "downstream_frame_rotation_residual_degrees": 3.4444315556998344,
+          "all_shared_heavy_atom_rmsd_A": 0.20591132382528934,
+          "sugar_rmsd_A": 0.2588389838664907,
+          "backbone_rmsd_A": 0.25768589109347106
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4287573468020128,
+          "downstream_frame_rotation_residual_degrees": 6.355889896225207,
+          "all_shared_heavy_atom_rmsd_A": 0.21084020601198553,
+          "sugar_rmsd_A": 0.22508162179366908,
+          "backbone_rmsd_A": 0.21264263212339565
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.47513618108640304,
+          "downstream_frame_rotation_residual_degrees": 8.787587976592754,
+          "all_shared_heavy_atom_rmsd_A": 0.46982673950904374,
+          "sugar_rmsd_A": 0.5594852470605214,
+          "backbone_rmsd_A": 0.5733228801092292
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23019390953116206,
+          "downstream_frame_rotation_residual_degrees": 3.1416225265099693,
+          "all_shared_heavy_atom_rmsd_A": 0.240183265014655,
+          "sugar_rmsd_A": 0.2855837583402049,
+          "backbone_rmsd_A": 0.3032118878445253
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6129790439947629,
+          "downstream_frame_rotation_residual_degrees": 7.255345296901248,
+          "all_shared_heavy_atom_rmsd_A": 0.30782447970059246,
+          "sugar_rmsd_A": 0.32185338055629253,
+          "backbone_rmsd_A": 0.30863747623132276
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.26441539821977256,
+          "downstream_frame_rotation_residual_degrees": 2.0857602656442227,
+          "all_shared_heavy_atom_rmsd_A": 0.19515755236356416,
+          "sugar_rmsd_A": 0.2139618896140472,
+          "backbone_rmsd_A": 0.2141737621294212
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3P",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3P:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3855157906471836,
+          "downstream_frame_rotation_residual_degrees": 5.050014888789892,
+          "all_shared_heavy_atom_rmsd_A": 0.48604959484661453,
+          "sugar_rmsd_A": 0.47016612045863776,
+          "backbone_rmsd_A": 0.6171022889527493
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4313100701122954,
+          "downstream_frame_rotation_residual_degrees": 3.5073335646105237,
+          "all_shared_heavy_atom_rmsd_A": 0.3484170241529167,
+          "sugar_rmsd_A": 0.3297157564106001,
+          "backbone_rmsd_A": 0.4219081324670503
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3272275646855194,
+          "downstream_frame_rotation_residual_degrees": 2.726774082070457,
+          "all_shared_heavy_atom_rmsd_A": 0.33263060390352717,
+          "sugar_rmsd_A": 0.3788202349845439,
+          "backbone_rmsd_A": 0.39972843263641167
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.18084314042185745,
+          "downstream_frame_rotation_residual_degrees": 2.0295457878172507,
+          "all_shared_heavy_atom_rmsd_A": 0.40546131435283805,
+          "sugar_rmsd_A": 0.4355972832779884,
+          "backbone_rmsd_A": 0.5397237064783592
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.18372733448309717,
+          "downstream_frame_rotation_residual_degrees": 2.6575002459115913,
+          "all_shared_heavy_atom_rmsd_A": 0.5144918164188406,
+          "sugar_rmsd_A": 0.4741923815852681,
+          "backbone_rmsd_A": 0.686993279201019
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2866046984156204,
+          "downstream_frame_rotation_residual_degrees": 1.3254379540781214,
+          "all_shared_heavy_atom_rmsd_A": 0.41283291173125874,
+          "sugar_rmsd_A": 0.464769129917284,
+          "backbone_rmsd_A": 0.5395767399769332
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23327634652114634,
+          "downstream_frame_rotation_residual_degrees": 3.134750771628494,
+          "all_shared_heavy_atom_rmsd_A": 0.4065491906628671,
+          "sugar_rmsd_A": 0.4388087403973915,
+          "backbone_rmsd_A": 0.5413094153709846
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.36200901426237564,
+          "downstream_frame_rotation_residual_degrees": 2.2697881059291705,
+          "all_shared_heavy_atom_rmsd_A": 0.4049443396939836,
+          "sugar_rmsd_A": 0.4786542163207002,
+          "backbone_rmsd_A": 0.5055146529761284
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2684026567289297,
+          "downstream_frame_rotation_residual_degrees": 1.7629133170059608,
+          "all_shared_heavy_atom_rmsd_A": 0.41341237447573614,
+          "sugar_rmsd_A": 0.4776434420054128,
+          "backbone_rmsd_A": 0.5396829685622918
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1109491739725466,
+          "downstream_frame_rotation_residual_degrees": 2.565914524729063,
+          "all_shared_heavy_atom_rmsd_A": 0.44868768784913965,
+          "sugar_rmsd_A": 0.42351659707132344,
+          "backbone_rmsd_A": 0.6007563548910578
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3R",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3R:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.35788032017220517,
+          "downstream_frame_rotation_residual_degrees": 4.085135913284733,
+          "all_shared_heavy_atom_rmsd_A": 0.18872527822071872,
+          "sugar_rmsd_A": 0.1908518403817814,
+          "backbone_rmsd_A": 0.21880076267273477
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.41894740084247956,
+          "downstream_frame_rotation_residual_degrees": 5.4354587625681425,
+          "all_shared_heavy_atom_rmsd_A": 0.21920586505848735,
+          "sugar_rmsd_A": 0.18828769656178526,
+          "backbone_rmsd_A": 0.2688937283399838
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3638150731592227,
+          "downstream_frame_rotation_residual_degrees": 2.242393592720769,
+          "all_shared_heavy_atom_rmsd_A": 0.18596018124848887,
+          "sugar_rmsd_A": 0.19595180695222691,
+          "backbone_rmsd_A": 0.18853887266738006
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6057702025481627,
+          "downstream_frame_rotation_residual_degrees": 8.60290793280445,
+          "all_shared_heavy_atom_rmsd_A": 0.23170159139896135,
+          "sugar_rmsd_A": 0.20614598599253967,
+          "backbone_rmsd_A": 0.19733033677062226
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.547282587110757,
+          "downstream_frame_rotation_residual_degrees": 6.41236390542475,
+          "all_shared_heavy_atom_rmsd_A": 0.3197146677914056,
+          "sugar_rmsd_A": 0.33837602934340993,
+          "backbone_rmsd_A": 0.350555567482517
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10305180491353938,
+          "downstream_frame_rotation_residual_degrees": 3.4444315556998344,
+          "all_shared_heavy_atom_rmsd_A": 0.20591132382528982,
+          "sugar_rmsd_A": 0.2588389838664913,
+          "backbone_rmsd_A": 0.25768589109347173
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5283189824404962,
+          "downstream_frame_rotation_residual_degrees": 5.936417672739427,
+          "all_shared_heavy_atom_rmsd_A": 0.34296792515247987,
+          "sugar_rmsd_A": 0.38431481905020315,
+          "backbone_rmsd_A": 0.3930971402216899
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.32462867133982853,
+          "downstream_frame_rotation_residual_degrees": 4.175846161091679,
+          "all_shared_heavy_atom_rmsd_A": 0.20071915836672174,
+          "sugar_rmsd_A": 0.22055901154795018,
+          "backbone_rmsd_A": 0.21400114068403675
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5785193529735363,
+          "downstream_frame_rotation_residual_degrees": 5.635712626694773,
+          "all_shared_heavy_atom_rmsd_A": 0.17073965778634997,
+          "sugar_rmsd_A": 0.12013367806248806,
+          "backbone_rmsd_A": 0.11458695377217443
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1877384935476446,
+          "downstream_frame_rotation_residual_degrees": 2.2658404553050966,
+          "all_shared_heavy_atom_rmsd_A": 0.11191717563748654,
+          "sugar_rmsd_A": 0.13313147574463308,
+          "backbone_rmsd_A": 0.13036549674140926
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3R",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3R:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.49037312983792963,
+          "downstream_frame_rotation_residual_degrees": 6.6801002467705155,
+          "all_shared_heavy_atom_rmsd_A": 0.38044950895780294,
+          "sugar_rmsd_A": 0.4838443386269473,
+          "backbone_rmsd_A": 0.4403549658903363
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6083087604500701,
+          "downstream_frame_rotation_residual_degrees": 5.190821390756075,
+          "all_shared_heavy_atom_rmsd_A": 0.7677532834366859,
+          "sugar_rmsd_A": 0.7275251790455408,
+          "backbone_rmsd_A": 0.9920342328185099
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4021315853880926,
+          "downstream_frame_rotation_residual_degrees": 2.151847989875629,
+          "all_shared_heavy_atom_rmsd_A": 0.43749501953105574,
+          "sugar_rmsd_A": 0.37917405485982975,
+          "backbone_rmsd_A": 0.554082817865478
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3075359433336875,
+          "downstream_frame_rotation_residual_degrees": 2.5520161581013445,
+          "all_shared_heavy_atom_rmsd_A": 0.707428506459099,
+          "sugar_rmsd_A": 0.5645663866364995,
+          "backbone_rmsd_A": 0.9514984491116284
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5171885045241441,
+          "downstream_frame_rotation_residual_degrees": 6.0264753701469616,
+          "all_shared_heavy_atom_rmsd_A": 0.7538914783537379,
+          "sugar_rmsd_A": 0.5623046282884075,
+          "backbone_rmsd_A": 0.9913765666224431
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.18372733448309814,
+          "downstream_frame_rotation_residual_degrees": 2.6575002459115913,
+          "all_shared_heavy_atom_rmsd_A": 0.5144918164188409,
+          "sugar_rmsd_A": 0.47419238158526855,
+          "backbone_rmsd_A": 0.6869932792010197
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4003274945488731,
+          "downstream_frame_rotation_residual_degrees": 2.6293073676870553,
+          "all_shared_heavy_atom_rmsd_A": 0.6773078357057979,
+          "sugar_rmsd_A": 0.5313197832931466,
+          "backbone_rmsd_A": 0.8991156222470632
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2608457395539114,
+          "downstream_frame_rotation_residual_degrees": 2.3469972624910156,
+          "all_shared_heavy_atom_rmsd_A": 0.5162018071664135,
+          "sugar_rmsd_A": 0.44492196264515804,
+          "backbone_rmsd_A": 0.6934301035033472
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2574542947245456,
+          "downstream_frame_rotation_residual_degrees": 2.1426568305823976,
+          "all_shared_heavy_atom_rmsd_A": 0.6229946764924005,
+          "sugar_rmsd_A": 0.5118277645924564,
+          "backbone_rmsd_A": 0.8400533697176829
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.20883378980764625,
+          "downstream_frame_rotation_residual_degrees": 1.7569254351700425,
+          "all_shared_heavy_atom_rmsd_A": 0.1219372871870411,
+          "sugar_rmsd_A": 0.12169610078395586,
+          "backbone_rmsd_A": 0.13545565634972942
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3R",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U3R:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.24350911348244417,
+          "downstream_frame_rotation_residual_degrees": 2.3273663343014435,
+          "all_shared_heavy_atom_rmsd_A": 0.19637284957432818,
+          "sugar_rmsd_A": 0.21161545857527986,
+          "backbone_rmsd_A": 0.21867598623079124
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.08800012531143732,
+          "downstream_frame_rotation_residual_degrees": 1.2774096950682858,
+          "all_shared_heavy_atom_rmsd_A": 0.18985687421830588,
+          "sugar_rmsd_A": 0.1823712040145521,
+          "backbone_rmsd_A": 0.23407331161540654
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6119316803771372,
+          "downstream_frame_rotation_residual_degrees": 5.766524266418615,
+          "all_shared_heavy_atom_rmsd_A": 0.24327426493842066,
+          "sugar_rmsd_A": 0.23450516774213637,
+          "backbone_rmsd_A": 0.230875922619724
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.585265663870828,
+          "downstream_frame_rotation_residual_degrees": 5.818063200975419,
+          "all_shared_heavy_atom_rmsd_A": 0.3266430553406578,
+          "sugar_rmsd_A": 0.3470337121324652,
+          "backbone_rmsd_A": 0.3297900938954299
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2905237065433124,
+          "downstream_frame_rotation_residual_degrees": 5.012199749322771,
+          "all_shared_heavy_atom_rmsd_A": 0.4505445628003377,
+          "sugar_rmsd_A": 0.5271560120391467,
+          "backbone_rmsd_A": 0.5503527592143371
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.42875734680201155,
+          "downstream_frame_rotation_residual_degrees": 6.355889896225207,
+          "all_shared_heavy_atom_rmsd_A": 0.21084020601198655,
+          "sugar_rmsd_A": 0.22508162179367072,
+          "backbone_rmsd_A": 0.2126426321233973
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4245276287445936,
+          "downstream_frame_rotation_residual_degrees": 5.740483484651266,
+          "all_shared_heavy_atom_rmsd_A": 0.496387905142897,
+          "sugar_rmsd_A": 0.5885398657769033,
+          "backbone_rmsd_A": 0.6075687229118614
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6186586079567941,
+          "downstream_frame_rotation_residual_degrees": 8.240391448598299,
+          "all_shared_heavy_atom_rmsd_A": 0.352167116218913,
+          "sugar_rmsd_A": 0.38838869452984215,
+          "backbone_rmsd_A": 0.3963026813809925
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23350863494259208,
+          "downstream_frame_rotation_residual_degrees": 1.0313440295629304,
+          "all_shared_heavy_atom_rmsd_A": 0.1961493271265219,
+          "sugar_rmsd_A": 0.21922317738094196,
+          "backbone_rmsd_A": 0.22443486311197955
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.27258274907351077,
+          "downstream_frame_rotation_residual_degrees": 4.745514362626936,
+          "all_shared_heavy_atom_rmsd_A": 0.12306603522996792,
+          "sugar_rmsd_A": 0.12505701650637577,
+          "backbone_rmsd_A": 0.14012989933953024
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U3R",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U3R:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5871979967550028,
+          "downstream_frame_rotation_residual_degrees": 6.062049836637817,
+          "all_shared_heavy_atom_rmsd_A": 0.6867874043396807,
+          "sugar_rmsd_A": 0.648449537009533,
+          "backbone_rmsd_A": 0.8754835718874863
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6452858650577671,
+          "downstream_frame_rotation_residual_degrees": 4.117696281720568,
+          "all_shared_heavy_atom_rmsd_A": 0.4830751164617528,
+          "sugar_rmsd_A": 0.6004238885620256,
+          "backbone_rmsd_A": 0.5574857073927864
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.564505069174317,
+          "downstream_frame_rotation_residual_degrees": 3.52358492885211,
+          "all_shared_heavy_atom_rmsd_A": 0.4749440786077344,
+          "sugar_rmsd_A": 0.5457062243060744,
+          "backbone_rmsd_A": 0.5777768778553735
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3652934253815508,
+          "downstream_frame_rotation_residual_degrees": 1.4269731678268869,
+          "all_shared_heavy_atom_rmsd_A": 0.22673300088130333,
+          "sugar_rmsd_A": 0.22051739792435632,
+          "backbone_rmsd_A": 0.22914582330398378
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5484839572890705,
+          "downstream_frame_rotation_residual_degrees": 6.04669436208601,
+          "all_shared_heavy_atom_rmsd_A": 0.2761961761538692,
+          "sugar_rmsd_A": 0.1883639061594132,
+          "backbone_rmsd_A": 0.21420308751848494
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.28660469841562014,
+          "downstream_frame_rotation_residual_degrees": 1.3254379540781214,
+          "all_shared_heavy_atom_rmsd_A": 0.41283291173125874,
+          "sugar_rmsd_A": 0.46476912991728403,
+          "backbone_rmsd_A": 0.5395767399769332
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.46679780845398566,
+          "downstream_frame_rotation_residual_degrees": 3.2876124682618104,
+          "all_shared_heavy_atom_rmsd_A": 0.19908697911007653,
+          "sugar_rmsd_A": 0.13258235503980623,
+          "backbone_rmsd_A": 0.12649547962921215
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.15846066699914302,
+          "downstream_frame_rotation_residual_degrees": 1.5003166881882013,
+          "all_shared_heavy_atom_rmsd_A": 0.15314423791363518,
+          "sugar_rmsd_A": 0.10392956757057459,
+          "backbone_rmsd_A": 0.18996461760067132
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10387919586153534,
+          "downstream_frame_rotation_residual_degrees": 0.7476812292620659,
+          "all_shared_heavy_atom_rmsd_A": 0.0620793023974696,
+          "sugar_rmsd_A": 0.050308920583979726,
+          "backbone_rmsd_A": 0.05313974806130518
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3316741065132881,
+          "downstream_frame_rotation_residual_degrees": 2.9386295361002617,
+          "all_shared_heavy_atom_rmsd_A": 0.5903179256911779,
+          "sugar_rmsd_A": 0.5017669125064091,
+          "backbone_rmsd_A": 0.7899643533784988
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U47",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U47:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3857297814131561,
+          "downstream_frame_rotation_residual_degrees": 5.971859686909398,
+          "all_shared_heavy_atom_rmsd_A": 0.3933995549053865,
+          "sugar_rmsd_A": 0.45966991344786223,
+          "backbone_rmsd_A": 0.49458981820120157
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.348359743940879,
+          "downstream_frame_rotation_residual_degrees": 4.752907377971367,
+          "all_shared_heavy_atom_rmsd_A": 0.4507262572342767,
+          "sugar_rmsd_A": 0.49998205715195876,
+          "backbone_rmsd_A": 0.5577999611577177
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5452982179095335,
+          "downstream_frame_rotation_residual_degrees": 4.479240775494088,
+          "all_shared_heavy_atom_rmsd_A": 0.41866862679529787,
+          "sugar_rmsd_A": 0.4763862357932608,
+          "backbone_rmsd_A": 0.48861946612120505
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22632806855676407,
+          "downstream_frame_rotation_residual_degrees": 3.7386312448837526,
+          "all_shared_heavy_atom_rmsd_A": 0.34483550267012053,
+          "sugar_rmsd_A": 0.36817215346414556,
+          "backbone_rmsd_A": 0.39946031922405495
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2768724641938474,
+          "downstream_frame_rotation_residual_degrees": 1.945435111280127,
+          "all_shared_heavy_atom_rmsd_A": 0.14232729471761835,
+          "sugar_rmsd_A": 0.15027066082851473,
+          "backbone_rmsd_A": 0.1462091685158254
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4751361810864041,
+          "downstream_frame_rotation_residual_degrees": 8.787587976592754,
+          "all_shared_heavy_atom_rmsd_A": 0.4698267395090432,
+          "sugar_rmsd_A": 0.5594852470605209,
+          "backbone_rmsd_A": 0.5733228801092284
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5283189824404978,
+          "downstream_frame_rotation_residual_degrees": 5.936417672739427,
+          "all_shared_heavy_atom_rmsd_A": 0.3429679251524795,
+          "sugar_rmsd_A": 0.384314819050203,
+          "backbone_rmsd_A": 0.3930971402216893
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4245276287445941,
+          "downstream_frame_rotation_residual_degrees": 5.740483484651393,
+          "all_shared_heavy_atom_rmsd_A": 0.4963879051428953,
+          "sugar_rmsd_A": 0.5885398657769013,
+          "backbone_rmsd_A": 0.6075687229118591
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5050635430035948,
+          "downstream_frame_rotation_residual_degrees": 5.446097522854477,
+          "all_shared_heavy_atom_rmsd_A": 0.35961925533876726,
+          "sugar_rmsd_A": 0.40876186998372915,
+          "backbone_rmsd_A": 0.4169787249021658
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5403980009662029,
+          "downstream_frame_rotation_residual_degrees": 7.570235566815608,
+          "all_shared_heavy_atom_rmsd_A": 0.4226713391640237,
+          "sugar_rmsd_A": 0.49721247045545314,
+          "backbone_rmsd_A": 0.5036475135483278
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U47",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U47:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.427871334768881,
+          "downstream_frame_rotation_residual_degrees": 5.153679230983419,
+          "all_shared_heavy_atom_rmsd_A": 0.6726385102385478,
+          "sugar_rmsd_A": 0.5774271484283882,
+          "backbone_rmsd_A": 0.8694794329721518
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.27897892325092666,
+          "downstream_frame_rotation_residual_degrees": 3.4137129597241014,
+          "all_shared_heavy_atom_rmsd_A": 0.3863251123219683,
+          "sugar_rmsd_A": 0.5239379114339371,
+          "backbone_rmsd_A": 0.49202648999137727
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3926254324872546,
+          "downstream_frame_rotation_residual_degrees": 2.1340864561418886,
+          "all_shared_heavy_atom_rmsd_A": 0.4701127459517703,
+          "sugar_rmsd_A": 0.512773151539634,
+          "backbone_rmsd_A": 0.5826245556324922
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2996312059055082,
+          "downstream_frame_rotation_residual_degrees": 2.117302629805625,
+          "all_shared_heavy_atom_rmsd_A": 0.1903246305292574,
+          "sugar_rmsd_A": 0.15402959811515668,
+          "backbone_rmsd_A": 0.17449311265950432
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.22450164528764516,
+          "downstream_frame_rotation_residual_degrees": 4.902613900712592,
+          "all_shared_heavy_atom_rmsd_A": 0.14965924040137485,
+          "sugar_rmsd_A": 0.12784837678333483,
+          "backbone_rmsd_A": 0.15218800982689903
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23327634652114532,
+          "downstream_frame_rotation_residual_degrees": 3.134750771628494,
+          "all_shared_heavy_atom_rmsd_A": 0.4065491906628669,
+          "sugar_rmsd_A": 0.43880874039739126,
+          "backbone_rmsd_A": 0.5413094153709843
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4003274945488731,
+          "downstream_frame_rotation_residual_degrees": 2.6293073676867778,
+          "all_shared_heavy_atom_rmsd_A": 0.6773078357057978,
+          "sugar_rmsd_A": 0.5313197832931463,
+          "backbone_rmsd_A": 0.8991156222470632
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4667978084539857,
+          "downstream_frame_rotation_residual_degrees": 3.2876124682618104,
+          "all_shared_heavy_atom_rmsd_A": 0.1990869791100764,
+          "sugar_rmsd_A": 0.13258235503980598,
+          "backbone_rmsd_A": 0.12649547962921207
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.427689080838135,
+          "downstream_frame_rotation_residual_degrees": 3.0220052119335254,
+          "all_shared_heavy_atom_rmsd_A": 0.19454834938090437,
+          "sugar_rmsd_A": 0.1570190617618151,
+          "backbone_rmsd_A": 0.1492955827441541
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.29357024278327026,
+          "downstream_frame_rotation_residual_degrees": 1.0966431318167762,
+          "all_shared_heavy_atom_rmsd_A": 0.6196612526031027,
+          "sugar_rmsd_A": 0.5037975223163478,
+          "backbone_rmsd_A": 0.8252640178160425
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U47",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U47:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5478458307615133,
+          "downstream_frame_rotation_residual_degrees": 7.932353107067746,
+          "all_shared_heavy_atom_rmsd_A": 0.26359394675081255,
+          "sugar_rmsd_A": 0.2721877864446175,
+          "backbone_rmsd_A": 0.3030984252595136
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6098325193760016,
+          "downstream_frame_rotation_residual_degrees": 8.506576294728925,
+          "all_shared_heavy_atom_rmsd_A": 0.33480747951831796,
+          "sugar_rmsd_A": 0.32359292440608417,
+          "backbone_rmsd_A": 0.3837905749127978
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2085276287253741,
+          "downstream_frame_rotation_residual_degrees": 4.327009205906034,
+          "all_shared_heavy_atom_rmsd_A": 0.2244542351201749,
+          "sugar_rmsd_A": 0.2536337332101624,
+          "backbone_rmsd_A": 0.25718281516558894
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4813952503298695,
+          "downstream_frame_rotation_residual_degrees": 11.432974779650904,
+          "all_shared_heavy_atom_rmsd_A": 0.2064679172738979,
+          "sugar_rmsd_A": 0.19688292185117226,
+          "backbone_rmsd_A": 0.20909445414074052
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.668367813846474,
+          "downstream_frame_rotation_residual_degrees": 9.732022157588919,
+          "all_shared_heavy_atom_rmsd_A": 0.33512921534042284,
+          "sugar_rmsd_A": 0.3606731735799389,
+          "backbone_rmsd_A": 0.350924735647759
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23019390953116087,
+          "downstream_frame_rotation_residual_degrees": 3.1416225265099693,
+          "all_shared_heavy_atom_rmsd_A": 0.24018326501465534,
+          "sugar_rmsd_A": 0.2855837583402053,
+          "backbone_rmsd_A": 0.3032118878445257
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3246286713398289,
+          "downstream_frame_rotation_residual_degrees": 4.175846161091679,
+          "all_shared_heavy_atom_rmsd_A": 0.2007191583667222,
+          "sugar_rmsd_A": 0.22055901154795063,
+          "backbone_rmsd_A": 0.21400114068403708
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6186586079567948,
+          "downstream_frame_rotation_residual_degrees": 8.240391448598299,
+          "all_shared_heavy_atom_rmsd_A": 0.35216711621891217,
+          "sugar_rmsd_A": 0.388388694529841,
+          "backbone_rmsd_A": 0.3963026813809913
+        },
+        {
+          "candidate_suite_id": "4U78:B:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.8001105697827988,
+          "downstream_frame_rotation_residual_degrees": 9.02473879385655,
+          "all_shared_heavy_atom_rmsd_A": 0.32107525432634104,
+          "sugar_rmsd_A": 0.313199175210521,
+          "backbone_rmsd_A": 0.3005805158586968
+        },
+        {
+          "candidate_suite_id": "4U78:A:1-2",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4939440577430001,
+          "downstream_frame_rotation_residual_degrees": 4.515360935732,
+          "all_shared_heavy_atom_rmsd_A": 0.26872987588246444,
+          "sugar_rmsd_A": 0.29562508461269527,
+          "backbone_rmsd_A": 0.2916793883665688
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U47",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U47:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6647528693481116,
+          "downstream_frame_rotation_residual_degrees": 7.294438724802024,
+          "all_shared_heavy_atom_rmsd_A": 0.6179901996323354,
+          "sugar_rmsd_A": 0.6507791534366697,
+          "backbone_rmsd_A": 0.7653169788384219
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7685826207287891,
+          "downstream_frame_rotation_residual_degrees": 5.522529582086961,
+          "all_shared_heavy_atom_rmsd_A": 0.5523085552125552,
+          "sugar_rmsd_A": 0.6536345827854008,
+          "backbone_rmsd_A": 0.6318500346688252
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6167700473618648,
+          "downstream_frame_rotation_residual_degrees": 3.923965879479585,
+          "all_shared_heavy_atom_rmsd_A": 0.4281384370629712,
+          "sugar_rmsd_A": 0.5220846231927012,
+          "backbone_rmsd_A": 0.49489625385195585
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4563603364820104,
+          "downstream_frame_rotation_residual_degrees": 2.4959927687997685,
+          "all_shared_heavy_atom_rmsd_A": 0.3163707853378678,
+          "sugar_rmsd_A": 0.2749580680726281,
+          "backbone_rmsd_A": 0.35459265722801314
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6706980054799233,
+          "downstream_frame_rotation_residual_degrees": 6.451543240790972,
+          "all_shared_heavy_atom_rmsd_A": 0.3843736564052749,
+          "sugar_rmsd_A": 0.25160438049306755,
+          "backbone_rmsd_A": 0.3722528250475963
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3620090142623757,
+          "downstream_frame_rotation_residual_degrees": 2.2697881059291705,
+          "all_shared_heavy_atom_rmsd_A": 0.4049443396939831,
+          "sugar_rmsd_A": 0.4786542163206995,
+          "backbone_rmsd_A": 0.5055146529761277
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2608457395539102,
+          "downstream_frame_rotation_residual_degrees": 2.3469972624910156,
+          "all_shared_heavy_atom_rmsd_A": 0.5162018071664134,
+          "sugar_rmsd_A": 0.44492196264515793,
+          "backbone_rmsd_A": 0.6934301035033471
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1584606669991428,
+          "downstream_frame_rotation_residual_degrees": 1.5003166881882013,
+          "all_shared_heavy_atom_rmsd_A": 0.1531442379136348,
+          "sugar_rmsd_A": 0.10392956757057455,
+          "backbone_rmsd_A": 0.18996461760067074
+        },
+        {
+          "candidate_suite_id": "4U78:B:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.18117226012681587,
+          "downstream_frame_rotation_residual_degrees": 1.2285938953258853,
+          "all_shared_heavy_atom_rmsd_A": 0.1573246578840156,
+          "sugar_rmsd_A": 0.11234040958049911,
+          "backbone_rmsd_A": 0.1808333098023292
+        },
+        {
+          "candidate_suite_id": "4U78:A:7-8",
+          "candidate_source_entry": "4U78",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3961885961651728,
+          "downstream_frame_rotation_residual_degrees": 3.4613927985738933,
+          "all_shared_heavy_atom_rmsd_A": 0.4877069095952698,
+          "sugar_rmsd_A": 0.4534992187820252,
+          "backbone_rmsd_A": 0.6384941547990168
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U78",
+      "held_out_chain": "B",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U78:B:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.288941332567981,
+          "downstream_frame_rotation_residual_degrees": 2.4189698201623595,
+          "all_shared_heavy_atom_rmsd_A": 0.21548465585262125,
+          "sugar_rmsd_A": 0.22637960922071468,
+          "backbone_rmsd_A": 0.23552997278822874
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.21958418983911937,
+          "downstream_frame_rotation_residual_degrees": 1.1884655779013928,
+          "all_shared_heavy_atom_rmsd_A": 0.2244739814807815,
+          "sugar_rmsd_A": 0.19392906074641186,
+          "backbone_rmsd_A": 0.25528067093537093
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.8255498315484929,
+          "downstream_frame_rotation_residual_degrees": 6.159709810007896,
+          "all_shared_heavy_atom_rmsd_A": 0.3136473588069107,
+          "sugar_rmsd_A": 0.27393411393949463,
+          "backbone_rmsd_A": 0.2617531491404541
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.7097866765084695,
+          "downstream_frame_rotation_residual_degrees": 5.180669407707234,
+          "all_shared_heavy_atom_rmsd_A": 0.33784177571480284,
+          "sugar_rmsd_A": 0.2990110766257902,
+          "backbone_rmsd_A": 0.282593685749966
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2502355435805299,
+          "downstream_frame_rotation_residual_degrees": 4.408042305034054,
+          "all_shared_heavy_atom_rmsd_A": 0.2874242757521656,
+          "sugar_rmsd_A": 0.33493968602716834,
+          "backbone_rmsd_A": 0.34863288055456676
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6129790439947636,
+          "downstream_frame_rotation_residual_degrees": 7.255345296901248,
+          "all_shared_heavy_atom_rmsd_A": 0.30782447970059246,
+          "sugar_rmsd_A": 0.3218533805562929,
+          "backbone_rmsd_A": 0.3086374762313229
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5785193529735366,
+          "downstream_frame_rotation_residual_degrees": 5.635712626694773,
+          "all_shared_heavy_atom_rmsd_A": 0.17073965778635028,
+          "sugar_rmsd_A": 0.12013367806248869,
+          "backbone_rmsd_A": 0.11458695377217488
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.23350863494259383,
+          "downstream_frame_rotation_residual_degrees": 1.0313440295629304,
+          "all_shared_heavy_atom_rmsd_A": 0.19614932712652086,
+          "sugar_rmsd_A": 0.21922317738094105,
+          "backbone_rmsd_A": 0.22443486311197838
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5050635430035946,
+          "downstream_frame_rotation_residual_degrees": 5.446097522854477,
+          "all_shared_heavy_atom_rmsd_A": 0.3596192553387696,
+          "sugar_rmsd_A": 0.40876186998373226,
+          "backbone_rmsd_A": 0.41697872490216914
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.8001105697827995,
+          "downstream_frame_rotation_residual_degrees": 9.02473879385655,
+          "all_shared_heavy_atom_rmsd_A": 0.3210752543263418,
+          "sugar_rmsd_A": 0.3131991752105224,
+          "backbone_rmsd_A": 0.30058051585869827
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U78",
+      "held_out_chain": "B",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U78:B:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6197057690684269,
+          "downstream_frame_rotation_residual_degrees": 6.467272687000508,
+          "all_shared_heavy_atom_rmsd_A": 0.6935134696264561,
+          "sugar_rmsd_A": 0.672362109585282,
+          "backbone_rmsd_A": 0.8748265838692038
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6422808341265014,
+          "downstream_frame_rotation_residual_degrees": 4.495739017108941,
+          "all_shared_heavy_atom_rmsd_A": 0.489553698617635,
+          "sugar_rmsd_A": 0.6183635307690233,
+          "backbone_rmsd_A": 0.5703433120525393
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5798873027535054,
+          "downstream_frame_rotation_residual_degrees": 3.368657992835378,
+          "all_shared_heavy_atom_rmsd_A": 0.49526656244071565,
+          "sugar_rmsd_A": 0.5760262610070347,
+          "backbone_rmsd_A": 0.5940972763903002
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3932414995334936,
+          "downstream_frame_rotation_residual_degrees": 1.2683497931774397,
+          "all_shared_heavy_atom_rmsd_A": 0.26164528021674127,
+          "sugar_rmsd_A": 0.2627976681772982,
+          "backbone_rmsd_A": 0.2685134120740986
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5500143906798376,
+          "downstream_frame_rotation_residual_degrees": 5.591776987960023,
+          "all_shared_heavy_atom_rmsd_A": 0.29223671039936977,
+          "sugar_rmsd_A": 0.22961503404370945,
+          "backbone_rmsd_A": 0.2545277340315483
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2684026567289298,
+          "downstream_frame_rotation_residual_degrees": 1.7629133170059608,
+          "all_shared_heavy_atom_rmsd_A": 0.41341237447573587,
+          "sugar_rmsd_A": 0.47764344200541253,
+          "backbone_rmsd_A": 0.5396829685622916
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2574542947245452,
+          "downstream_frame_rotation_residual_degrees": 2.1426568305823976,
+          "all_shared_heavy_atom_rmsd_A": 0.6229946764924001,
+          "sugar_rmsd_A": 0.5118277645924565,
+          "backbone_rmsd_A": 0.8400533697176824
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10387919586153511,
+          "downstream_frame_rotation_residual_degrees": 0.7476812292630408,
+          "all_shared_heavy_atom_rmsd_A": 0.0620793023974688,
+          "sugar_rmsd_A": 0.05030892058397871,
+          "backbone_rmsd_A": 0.05313974806130392
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4276890808381355,
+          "downstream_frame_rotation_residual_degrees": 3.0220052119335254,
+          "all_shared_heavy_atom_rmsd_A": 0.1945483493809038,
+          "sugar_rmsd_A": 0.15701906176181388,
+          "backbone_rmsd_A": 0.14929558274415303
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.18117226012681648,
+          "downstream_frame_rotation_residual_degrees": 1.2285938953258853,
+          "all_shared_heavy_atom_rmsd_A": 0.15732465788401528,
+          "sugar_rmsd_A": 0.11234040958049848,
+          "backbone_rmsd_A": 0.18083330980232876
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U78",
+      "held_out_chain": "A",
+      "terminal_role": "five_prime",
+      "sequence": "UC",
+      "held_out_source_suite_id": "4U78:A:1-2",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2500427061733416,
+          "downstream_frame_rotation_residual_degrees": 3.956582068153809,
+          "all_shared_heavy_atom_rmsd_A": 0.20047148336786502,
+          "sugar_rmsd_A": 0.20061107895337632,
+          "backbone_rmsd_A": 0.22926714384308852
+        },
+        {
+          "candidate_suite_id": "4U3L:B:1-2",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.32156319023967755,
+          "downstream_frame_rotation_residual_degrees": 5.527291046439776,
+          "all_shared_heavy_atom_rmsd_A": 0.22486036059816447,
+          "sugar_rmsd_A": 0.19280968062755854,
+          "backbone_rmsd_A": 0.2766525734582015
+        },
+        {
+          "candidate_suite_id": "4U3O:A:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5334915594750002,
+          "downstream_frame_rotation_residual_degrees": 4.259711160620331,
+          "all_shared_heavy_atom_rmsd_A": 0.20967402582047587,
+          "sugar_rmsd_A": 0.18390727979384422,
+          "backbone_rmsd_A": 0.17118212738284205
+        },
+        {
+          "candidate_suite_id": "4U3O:B:1-2",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.6755748506466894,
+          "downstream_frame_rotation_residual_degrees": 9.556005861701857,
+          "all_shared_heavy_atom_rmsd_A": 0.3023587403802038,
+          "sugar_rmsd_A": 0.2956677022513908,
+          "backbone_rmsd_A": 0.276754350184023
+        },
+        {
+          "candidate_suite_id": "4U3P:A:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.46217997896122515,
+          "downstream_frame_rotation_residual_degrees": 7.743268410223087,
+          "all_shared_heavy_atom_rmsd_A": 0.37838648404725567,
+          "sugar_rmsd_A": 0.4339216099878985,
+          "backbone_rmsd_A": 0.44703000600266246
+        },
+        {
+          "candidate_suite_id": "4U3P:B:1-2",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2644153982197728,
+          "downstream_frame_rotation_residual_degrees": 2.0857602656442227,
+          "all_shared_heavy_atom_rmsd_A": 0.1951575523635644,
+          "sugar_rmsd_A": 0.21396188961404755,
+          "backbone_rmsd_A": 0.2141737621294215
+        },
+        {
+          "candidate_suite_id": "4U3R:A:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.1877384935476438,
+          "downstream_frame_rotation_residual_degrees": 2.2658404553050966,
+          "all_shared_heavy_atom_rmsd_A": 0.11191717563748625,
+          "sugar_rmsd_A": 0.1331314757446324,
+          "backbone_rmsd_A": 0.1303654967414087
+        },
+        {
+          "candidate_suite_id": "4U3R:B:1-2",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2725827490735109,
+          "downstream_frame_rotation_residual_degrees": 4.745514362627089,
+          "all_shared_heavy_atom_rmsd_A": 0.1230660352299678,
+          "sugar_rmsd_A": 0.12505701650637543,
+          "backbone_rmsd_A": 0.1401298993395301
+        },
+        {
+          "candidate_suite_id": "4U47:B:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.5403980009662023,
+          "downstream_frame_rotation_residual_degrees": 7.570235566815608,
+          "all_shared_heavy_atom_rmsd_A": 0.4226713391640242,
+          "sugar_rmsd_A": 0.49721247045545364,
+          "backbone_rmsd_A": 0.5036475135483285
+        },
+        {
+          "candidate_suite_id": "4U47:A:1-2",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 37,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4939440577429996,
+          "downstream_frame_rotation_residual_degrees": 4.515360935732161,
+          "all_shared_heavy_atom_rmsd_A": 0.2687298758824643,
+          "sugar_rmsd_A": 0.2956250846126952,
+          "backbone_rmsd_A": 0.2916793883665689
+        }
+      ]
+    },
+    {
+      "held_out_entry": "4U78",
+      "held_out_chain": "A",
+      "terminal_role": "three_prime",
+      "sequence": "GA",
+      "held_out_source_suite_id": "4U78:A:7-8",
+      "candidate_count": 10,
+      "candidate_selection": "none; all candidates reported without held-out atom-based ranking",
+      "candidates": [
+        {
+          "candidate_suite_id": "4U3L:A:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2933723747057698,
+          "downstream_frame_rotation_residual_degrees": 5.247057431929355,
+          "all_shared_heavy_atom_rmsd_A": 0.28804558987789297,
+          "sugar_rmsd_A": 0.3779705178179362,
+          "backbone_rmsd_A": 0.34065650586061436
+        },
+        {
+          "candidate_suite_id": "4U3L:B:7-8",
+          "candidate_source_entry": "4U3L",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.4251320244044552,
+          "downstream_frame_rotation_residual_degrees": 3.7736110499458664,
+          "all_shared_heavy_atom_rmsd_A": 0.6848101900734825,
+          "sugar_rmsd_A": 0.6531640497144188,
+          "backbone_rmsd_A": 0.8951806026251019
+        },
+        {
+          "candidate_suite_id": "4U3O:A:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.2371350606613498,
+          "downstream_frame_rotation_residual_degrees": 1.2089249624366998,
+          "all_shared_heavy_atom_rmsd_A": 0.33344895305643435,
+          "sugar_rmsd_A": 0.2699555383089533,
+          "backbone_rmsd_A": 0.4331176546599216
+        },
+        {
+          "candidate_suite_id": "4U3O:B:7-8",
+          "candidate_source_entry": "4U3O",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.10491542507463042,
+          "downstream_frame_rotation_residual_degrees": 2.1891145922983135,
+          "all_shared_heavy_atom_rmsd_A": 0.6347732592553739,
+          "sugar_rmsd_A": 0.5138901261040468,
+          "backbone_rmsd_A": 0.8636096276948069
+        },
+        {
+          "candidate_suite_id": "4U3P:A:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.331565489920968,
+          "downstream_frame_rotation_residual_degrees": 5.6854977611277855,
+          "all_shared_heavy_atom_rmsd_A": 0.6846579774755504,
+          "sugar_rmsd_A": 0.5209678784083854,
+          "backbone_rmsd_A": 0.9105667541976318
+        },
+        {
+          "candidate_suite_id": "4U3P:B:7-8",
+          "candidate_source_entry": "4U3P",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.11094917397254705,
+          "downstream_frame_rotation_residual_degrees": 2.565914524729063,
+          "all_shared_heavy_atom_rmsd_A": 0.44868768784913976,
+          "sugar_rmsd_A": 0.42351659707132333,
+          "backbone_rmsd_A": 0.600756354891058
+        },
+        {
+          "candidate_suite_id": "4U3R:A:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.20883378980764394,
+          "downstream_frame_rotation_residual_degrees": 1.7569254351696275,
+          "all_shared_heavy_atom_rmsd_A": 0.12193728718704099,
+          "sugar_rmsd_A": 0.12169610078395603,
+          "backbone_rmsd_A": 0.1354556563497294
+        },
+        {
+          "candidate_suite_id": "4U3R:B:7-8",
+          "candidate_source_entry": "4U3R",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.3316741065132882,
+          "downstream_frame_rotation_residual_degrees": 2.9386295361002617,
+          "all_shared_heavy_atom_rmsd_A": 0.5903179256911781,
+          "sugar_rmsd_A": 0.5017669125064093,
+          "backbone_rmsd_A": 0.7899643533784991
+        },
+        {
+          "candidate_suite_id": "4U47:B:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.29357024278326993,
+          "downstream_frame_rotation_residual_degrees": 1.0966431318167762,
+          "all_shared_heavy_atom_rmsd_A": 0.6196612526031029,
+          "sugar_rmsd_A": 0.503797522316348,
+          "backbone_rmsd_A": 0.8252640178160427
+        },
+        {
+          "candidate_suite_id": "4U47:A:7-8",
+          "candidate_source_entry": "4U47",
+          "shared_heavy_atom_count": 45,
+          "shared_atom_elements_match": true,
+          "downstream_frame_translation_residual_A": 0.39618859616517416,
+          "downstream_frame_rotation_residual_degrees": 3.4613927985738933,
+          "all_shared_heavy_atom_rmsd_A": 0.48770690959526997,
+          "sugar_rmsd_A": 0.45349921878202554,
+          "backbone_rmsd_A": 0.638494154799017
+        }
+      ]
+    }
+  ],
+  "interpretation_limit": "All inputs are the same 8-nt sequence and related duplex crystal structures. This tests frame-conditioned transfer within this structure set, not blind sequence generalization, natural RNA loops, a gap solver, or a full-chain builder."
+}

@@ -1,0 +1,159 @@
+{
+  "retrieved_utc_date": "2026-10-27",
+  "source_archive": "RCSB PDB",
+  "purpose": "Same-sequence octameric RNA duplex, six ion conditions; coordinates, wwPDB validation reports, 2Fo-Fc and Fo-Fc map coefficient CIFs",
+  "entries": [
+    "4U3L",
+    "4U3O",
+    "4U3P",
+    "4U3R",
+    "4U47",
+    "4U78"
+  ],
+  "files": [
+    {
+      "file": "4u3l_2fo-fc_map_coef.cif.gz",
+      "bytes": 110252,
+      "sha256": "de81817cf3dd2b630e18cecf9bd6b92586975312d1bbe7c6d4203758cd48c5d0",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3l/4u3l_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3l_fo-fc_map_coef.cif.gz",
+      "bytes": 109685,
+      "sha256": "82017360c203a0a4801c3a26a4670806787832836d024eb315aa9654ef1a55ac",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3l/4u3l_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3l_full_validation.pdf",
+      "bytes": 458808,
+      "sha256": "dcd2e5a6bdf0c3fc16014aee5da14efa139cfcc15b4f1e82754a61de8e6d87d4",
+      "source": "https://files.rcsb.org/validation/view/4u3l_full_validation.pdf"
+    },
+    {
+      "file": "4u3l.cif",
+      "bytes": 93662,
+      "sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c",
+      "source": "https://files.rcsb.org/download/4u3l.cif"
+    },
+    {
+      "file": "4u3o_2fo-fc_map_coef.cif.gz",
+      "bytes": 63718,
+      "sha256": "c1ec1dfb0e01f2cdcc469d3432d12a38d6540fcb7ff08c7eaf36edc64808ed63",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3o/4u3o_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3o_fo-fc_map_coef.cif.gz",
+      "bytes": 63760,
+      "sha256": "41d07a1700735e0fb0725090adb6c2d821431a33ae1f2e9e99272858ab3532a4",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3o/4u3o_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3o_full_validation.pdf",
+      "bytes": 456930,
+      "sha256": "4a8aa63648f1aab5c5e649210d47e07d19c6f60f955c31a759095839e67c005b",
+      "source": "https://files.rcsb.org/validation/view/4u3o_full_validation.pdf"
+    },
+    {
+      "file": "4u3o.cif",
+      "bytes": 100894,
+      "sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236",
+      "source": "https://files.rcsb.org/download/4u3o.cif"
+    },
+    {
+      "file": "4u3p_2fo-fc_map_coef.cif.gz",
+      "bytes": 62949,
+      "sha256": "88380945117744c963bdff3e2deb5bc793f93500284e8f50bb425575aaf43165",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3p/4u3p_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3p_fo-fc_map_coef.cif.gz",
+      "bytes": 62804,
+      "sha256": "b15d395e3297da45d988175d3b66b10f6467ed9fbcacb6a1141508714722a69e",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3p/4u3p_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3p_full_validation.pdf",
+      "bytes": 453562,
+      "sha256": "c8dc96809bf10fc463ff77cad53a49b78a50e0070f2855009132a7fd8b7615f3",
+      "source": "https://files.rcsb.org/validation/view/4u3p_full_validation.pdf"
+    },
+    {
+      "file": "4u3p.cif",
+      "bytes": 100992,
+      "sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0",
+      "source": "https://files.rcsb.org/download/4u3p.cif"
+    },
+    {
+      "file": "4u3r_2fo-fc_map_coef.cif.gz",
+      "bytes": 72125,
+      "sha256": "a59479f0813c32615b7a976e0c92f1d4e3f4b6010d7b6f7d5bcf4316b26d5ae3",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3r/4u3r_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3r_fo-fc_map_coef.cif.gz",
+      "bytes": 72267,
+      "sha256": "92faafe5914ea2c134c2a6016d0218ac06f3585f8299936b321b668345d47b2c",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u3/4u3r/4u3r_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u3r_full_validation.pdf",
+      "bytes": 430278,
+      "sha256": "37372fdc8fa8134289e0de6747f682672c6e97a3cd9e29ef89ae6a3ff8f1e1f9",
+      "source": "https://files.rcsb.org/validation/view/4u3r_full_validation.pdf"
+    },
+    {
+      "file": "4u3r.cif",
+      "bytes": 120007,
+      "sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c",
+      "source": "https://files.rcsb.org/download/4u3r.cif"
+    },
+    {
+      "file": "4u47_2fo-fc_map_coef.cif.gz",
+      "bytes": 50097,
+      "sha256": "3956a53793711a36a1a938080f0129704c9b01c357292ed463ad22640c633992",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u4/4u47/4u47_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u47_fo-fc_map_coef.cif.gz",
+      "bytes": 50197,
+      "sha256": "7f3ce1f09a648378bc2497896ec99a3d48428ae547e3c093d9012c9a940edea3",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u4/4u47/4u47_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u47_full_validation.pdf",
+      "bytes": 449808,
+      "sha256": "2a397baec361988fd1af7f23f6fc147777b712f2972213e518a6e947f92fd01c",
+      "source": "https://files.rcsb.org/validation/view/4u47_full_validation.pdf"
+    },
+    {
+      "file": "4u47.cif",
+      "bytes": 95869,
+      "sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3",
+      "source": "https://files.rcsb.org/download/4u47.cif"
+    },
+    {
+      "file": "4u78_2fo-fc_map_coef.cif.gz",
+      "bytes": 105601,
+      "sha256": "61aa1ea4339102c23426379e53b4416495be3e27c52dba938da917efd77af165",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u7/4u78/4u78_validation_2fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u78_fo-fc_map_coef.cif.gz",
+      "bytes": 105599,
+      "sha256": "5cb2fa88cd6eb1b09a1aaead30ae461750dc60389b23728bc29a48cb5d7d6da0",
+      "source": "https://files.rcsb.org/pub/pdb/validation_reports/u7/4u78/4u78_validation_fo-fc_map_coef.cif.gz"
+    },
+    {
+      "file": "4u78_full_validation.pdf",
+      "bytes": 430504,
+      "sha256": "16f36adc967e6ed34a521a555aa8db87c412fca8e8eafe32c59d2d77d62c32f6",
+      "source": "https://files.rcsb.org/validation/view/4u78_full_validation.pdf"
+    },
+    {
+      "file": "4u78.cif",
+      "bytes": 122861,
+      "sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035",
+      "source": "https://files.rcsb.org/download/4u78.cif"
+    }
+  ]
+}

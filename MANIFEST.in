@@ -4,9 +4,11 @@ recursive-include mdna *.py
 # Include any additional files or directories
 include README.md
 include LICENSE
-recursive-include data *
-
-include ./atomic
+recursive-include mdna/data *.json
+recursive-include mdna/atomic *.h5 *.pdb
+recursive-include mdna/simulate *.txt *.npy *.state *.seq *.pyx
+prune mdna/simulate/Evals/PyLk/build
+global-exclude *.so *.pyd *_cython.c *_cython.html
 
 prune examples/data/filament_dataset
 exclude examples/data/filament_dataset*.zip

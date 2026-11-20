@@ -1,0 +1,45 @@
+{
+  "source": "RCSB Protein Data Bank Chemical Component Dictionary",
+  "source_documentation": "https://www.wwpdb.org/data/ccd",
+  "retrieval_endpoint_template": "https://files.rcsb.org/ligands/download/{component_id}.cif",
+  "retrieval_date": "2026-10-27",
+  "components": {
+    "A": {
+      "file": "A.cif",
+      "bytes": 11501,
+      "sha256": "46db841d33a8147dcd5a3802123e362d708c875f9ba7db457525f094ab55179a",
+      "atom_count": 37,
+      "bond_count": 39
+    },
+    "C": {
+      "file": "C.cif",
+      "bytes": 8261,
+      "sha256": "4937647bc2142b3a67fedb3db7e4f24c0ecad844ca5330356f2e95a981e9544e",
+      "atom_count": 35,
+      "bond_count": 36
+    },
+    "G": {
+      "file": "G.cif",
+      "bytes": 9786,
+      "sha256": "4fbcf5b5222d7c7f0a761676cffa9bb997daa8f76d41fdb7657aa59e969b85fa",
+      "atom_count": 38,
+      "bond_count": 40
+    },
+    "U": {
+      "file": "U.cif",
+      "bytes": 8103,
+      "sha256": "de78a1e4a9860baaefc17c5e509fad96b0b25e0b62f90352976f9079cd4b051b",
+      "atom_count": 34,
+      "bond_count": 35
+    }
+  },
+  "preliminary_checks": {
+    "component_ids_match_filenames": true,
+    "all_components_are_rna_linking": true,
+    "ideal_coordinates_present_for_all_listed_atoms": true,
+    "internal_bonds_present_for_all_components": true,
+    "ribose_O2_prime_present_for_all_components": true,
+    "checks_run_with": "Gemmi 0.7.5 in local WSL dip2 Python 3.10.18"
+  },
+  "scope_limit": "These CCD records define component chemistry and idealized single-component coordinates. They do not define a validated RNA polymer conformation, sequence-dependent helical geometry, force-field parameters, or experimental model quality."
+}

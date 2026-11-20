@@ -1,0 +1,1011 @@
+{
+  "sequence": "AACAGATCCGCTGGTTA",
+  "screen_A": [
+    1.3,
+    2.0
+  ],
+  "models": {
+    "along_z": {
+      "by_step": {
+        "AA": {
+          "distances_A": [
+            0.9375439745371192,
+            0.9375401685900153
+          ],
+          "strand_distance_delta_A": 3.805947103918683e-06,
+          "both_outside_screen": true
+        },
+        "AC": {
+          "distances_A": [
+            1.3167586875979327,
+            1.31676034261399
+          ],
+          "strand_distance_delta_A": 1.6550160573114425e-06,
+          "both_outside_screen": false
+        },
+        "AG": {
+          "distances_A": [
+            0.3651968599300687,
+            0.36519702923076824
+          ],
+          "strand_distance_delta_A": 1.6930069957066252e-07,
+          "both_outside_screen": true
+        },
+        "AT": {
+          "distances_A": [
+            1.926412790526945,
+            1.9264129083356911
+          ],
+          "strand_distance_delta_A": 1.1780874609179648e-07,
+          "both_outside_screen": false
+        },
+        "CA": {
+          "distances_A": [
+            1.159317809465496,
+            1.159317682889942
+          ],
+          "strand_distance_delta_A": 1.265755538160107e-07,
+          "both_outside_screen": true
+        },
+        "CC": {
+          "distances_A": [
+            1.3235412560210962,
+            1.3235412654512007
+          ],
+          "strand_distance_delta_A": 9.430104475072199e-09,
+          "both_outside_screen": false
+        },
+        "CG": {
+          "distances_A": [
+            1.258717170307684,
+            1.2587168584566135
+          ],
+          "strand_distance_delta_A": 3.1185107052245087e-07,
+          "both_outside_screen": true
+        },
+        "CT": {
+          "distances_A": [
+            2.416356495307053,
+            2.41635689752702
+          ],
+          "strand_distance_delta_A": 4.0221996711053976e-07,
+          "both_outside_screen": true
+        },
+        "GA": {
+          "distances_A": [
+            1.376569539522474,
+            1.3765692371831009
+          ],
+          "strand_distance_delta_A": 3.023393730927637e-07,
+          "both_outside_screen": false
+        },
+        "GC": {
+          "distances_A": [
+            1.8237194573644195,
+            1.8237173533547286
+          ],
+          "strand_distance_delta_A": 2.1040096909175077e-06,
+          "both_outside_screen": false
+        },
+        "GG": {
+          "distances_A": [
+            0.5806189105364256,
+            0.5806171080204231
+          ],
+          "strand_distance_delta_A": 1.8025160024581766e-06,
+          "both_outside_screen": true
+        },
+        "GT": {
+          "distances_A": [
+            2.2384699190756865,
+            2.238470822460779
+          ],
+          "strand_distance_delta_A": 9.033850925099784e-07,
+          "both_outside_screen": true
+        },
+        "TA": {
+          "distances_A": [
+            0.9545526521964767,
+            0.9545526333854858
+          ],
+          "strand_distance_delta_A": 1.8810990876083622e-08,
+          "both_outside_screen": true
+        },
+        "TC": {
+          "distances_A": [
+            1.1589681413500568,
+            1.15896718667707
+          ],
+          "strand_distance_delta_A": 9.546729866638515e-07,
+          "both_outside_screen": true
+        },
+        "TG": {
+          "distances_A": [
+            0.6776694810900553,
+            0.6776697010785369
+          ],
+          "strand_distance_delta_A": 2.1998848154236583e-07,
+          "both_outside_screen": true
+        },
+        "TT": {
+          "distances_A": [
+            1.9335554022415993,
+            1.933554954242134
+          ],
+          "strand_distance_delta_A": 4.479994653028285e-07,
+          "both_outside_screen": false
+        }
+      },
+      "geometry": {
+        "links": [
+          {
+            "chain_index": 0,
+            "left_residue_index": 0,
+            "right_residue_index": 1,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9375439745371192,
+            "c3_o3_p_deg": 127.1894644853016,
+            "o3_p_o5_deg": 121.00367148590219
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 1,
+            "right_residue_index": 2,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3167586875979327,
+            "c3_o3_p_deg": 127.09469964929481,
+            "o3_p_o5_deg": 87.07764818048935
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 2,
+            "right_residue_index": 3,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DA",
+            "o3p_A": 1.159317809465496,
+            "c3_o3_p_deg": 137.27180840372336,
+            "o3_p_o5_deg": 152.57251896647728
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 3,
+            "right_residue_index": 4,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DG",
+            "o3p_A": 0.3651968599300687,
+            "c3_o3_p_deg": 139.45403214530512,
+            "o3_p_o5_deg": 155.97834445087094
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 4,
+            "right_residue_index": 5,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DA",
+            "o3p_A": 1.376569539522474,
+            "c3_o3_p_deg": 116.30159439211718,
+            "o3_p_o5_deg": 103.08235809648765
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 5,
+            "right_residue_index": 6,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DT",
+            "o3p_A": 1.926412790526945,
+            "c3_o3_p_deg": 165.68875585587475,
+            "o3_p_o5_deg": 84.19292983034633
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 6,
+            "right_residue_index": 7,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DC",
+            "o3p_A": 1.1589681413500568,
+            "c3_o3_p_deg": 145.6280862446261,
+            "o3_p_o5_deg": 102.00681341346133
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 7,
+            "right_residue_index": 8,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3235412560210962,
+            "c3_o3_p_deg": 161.234528743714,
+            "o3_p_o5_deg": 108.70641739036262
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 8,
+            "right_residue_index": 9,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DG",
+            "o3p_A": 1.258717170307684,
+            "c3_o3_p_deg": 105.91263981017786,
+            "o3_p_o5_deg": 133.50915716189675
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 9,
+            "right_residue_index": 10,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DC",
+            "o3p_A": 1.8237194573644195,
+            "c3_o3_p_deg": 112.05319263193851,
+            "o3_p_o5_deg": 77.98564942458229
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 10,
+            "right_residue_index": 11,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DT",
+            "o3p_A": 2.416356495307053,
+            "c3_o3_p_deg": 148.7777189851054,
+            "o3_p_o5_deg": 93.96894149064781
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 11,
+            "right_residue_index": 12,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DG",
+            "o3p_A": 0.6776694810900553,
+            "c3_o3_p_deg": 107.32038044089626,
+            "o3_p_o5_deg": 159.71384050478676
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 12,
+            "right_residue_index": 13,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DG",
+            "o3p_A": 0.5806189105364256,
+            "c3_o3_p_deg": 126.7323122550047,
+            "o3_p_o5_deg": 94.8365869911393
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 13,
+            "right_residue_index": 14,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DT",
+            "o3p_A": 2.2384699190756865,
+            "c3_o3_p_deg": 137.3443480680611,
+            "o3_p_o5_deg": 75.77228072569663
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 14,
+            "right_residue_index": 15,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9335554022415993,
+            "c3_o3_p_deg": 169.38234754716808,
+            "o3_p_o5_deg": 93.23630546090182
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 15,
+            "right_residue_index": 16,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9545526521964767,
+            "c3_o3_p_deg": 132.178862913848,
+            "o3_p_o5_deg": 143.16007336016662
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 17,
+            "right_residue_index": 18,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9545526333854858,
+            "c3_o3_p_deg": 132.17885595466586,
+            "o3_p_o5_deg": 143.16006782672866
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 18,
+            "right_residue_index": 19,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9375401685900153,
+            "c3_o3_p_deg": 127.18955704326176,
+            "o3_p_o5_deg": 121.00375786805952
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 19,
+            "right_residue_index": 20,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DC",
+            "o3p_A": 1.31676034261399,
+            "c3_o3_p_deg": 127.09470773455317,
+            "o3_p_o5_deg": 87.07768143041186
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 20,
+            "right_residue_index": 21,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3235412654512007,
+            "c3_o3_p_deg": 161.23450035950736,
+            "o3_p_o5_deg": 108.70647796933004
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 21,
+            "right_residue_index": 22,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DA",
+            "o3p_A": 1.159317682889942,
+            "c3_o3_p_deg": 137.27180290277013,
+            "o3_p_o5_deg": 152.57253716307343
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 22,
+            "right_residue_index": 23,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DG",
+            "o3p_A": 0.36519702923076824,
+            "c3_o3_p_deg": 139.45401976099603,
+            "o3_p_o5_deg": 155.97835489250798
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 23,
+            "right_residue_index": 24,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DC",
+            "o3p_A": 1.8237173533547286,
+            "c3_o3_p_deg": 112.05324368759162,
+            "o3_p_o5_deg": 77.98562437541631
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 24,
+            "right_residue_index": 25,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DG",
+            "o3p_A": 1.2587168584566135,
+            "c3_o3_p_deg": 105.91262661680238,
+            "o3_p_o5_deg": 133.50916735011378
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 25,
+            "right_residue_index": 26,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DG",
+            "o3p_A": 0.5806171080204231,
+            "c3_o3_p_deg": 126.73233456539405,
+            "o3_p_o5_deg": 94.8365273711687
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 26,
+            "right_residue_index": 27,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DA",
+            "o3p_A": 1.3765692371831009,
+            "c3_o3_p_deg": 116.30163617653045,
+            "o3_p_o5_deg": 103.08234161132268
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 27,
+            "right_residue_index": 28,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9264129083356911,
+            "c3_o3_p_deg": 165.68876086913056,
+            "o3_p_o5_deg": 84.19291811367872
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 28,
+            "right_residue_index": 29,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DC",
+            "o3p_A": 1.15896718667707,
+            "c3_o3_p_deg": 145.62811874493738,
+            "o3_p_o5_deg": 102.00680698095216
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 29,
+            "right_residue_index": 30,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DT",
+            "o3p_A": 2.41635689752702,
+            "c3_o3_p_deg": 148.7777777753539,
+            "o3_p_o5_deg": 93.96893679706595
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 30,
+            "right_residue_index": 31,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DG",
+            "o3p_A": 0.6776697010785369,
+            "c3_o3_p_deg": 107.32040435745553,
+            "o3_p_o5_deg": 159.71378163057966
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 31,
+            "right_residue_index": 32,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DT",
+            "o3p_A": 2.238470822460779,
+            "c3_o3_p_deg": 137.34438568535845,
+            "o3_p_o5_deg": 75.77228838584756
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 32,
+            "right_residue_index": 33,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DT",
+            "o3p_A": 1.933554954242134,
+            "c3_o3_p_deg": 169.38234974837684,
+            "o3_p_o5_deg": 93.23630259749916
+          }
+        ],
+        "missing_links": 0,
+        "contact_cutoff_A": 2.0,
+        "short_heavy_contacts": 0,
+        "min_short_heavy_distance_A": null,
+        "atoms_without_element": 0
+      },
+      "min_rise_nm": 0.339999999999991,
+      "max_rise_nm": 0.3454454454454403,
+      "uniform_twist_scan": {
+        "grid_step_deg": 0.25,
+        "observed_twist_range_deg": [
+          34.28571428571422,
+          34.28571428571442
+        ],
+        "measured_reconstruction_max_delta_A": 1.5543122344752192e-15,
+        "best_sampled_twist_deg": 39.0,
+        "best_sampled_outside_steps": 6,
+        "best_sampled_max_excess_A": 1.129703907372111
+      }
+    },
+    "oblique": {
+      "by_step": {
+        "AA": {
+          "distances_A": [
+            0.9375440264802314,
+            0.9375440424317824
+          ],
+          "strand_distance_delta_A": 1.595155096900669e-08,
+          "both_outside_screen": true
+        },
+        "AC": {
+          "distances_A": [
+            1.3167584653205906,
+            1.316758235346256
+          ],
+          "strand_distance_delta_A": 2.2997433468674444e-07,
+          "both_outside_screen": false
+        },
+        "AG": {
+          "distances_A": [
+            0.3651965207449838,
+            0.36519720167530234
+          ],
+          "strand_distance_delta_A": 6.809303185195681e-07,
+          "both_outside_screen": true
+        },
+        "AT": {
+          "distances_A": [
+            1.9264129517102428,
+            1.9264132855904834
+          ],
+          "strand_distance_delta_A": 3.338802405661312e-07,
+          "both_outside_screen": false
+        },
+        "CA": {
+          "distances_A": [
+            1.1593179587378861,
+            1.1593182500756987
+          ],
+          "strand_distance_delta_A": 2.9133781254131463e-07,
+          "both_outside_screen": true
+        },
+        "CC": {
+          "distances_A": [
+            1.3235405271508978,
+            1.3235422156068894
+          ],
+          "strand_distance_delta_A": 1.6884559916885422e-06,
+          "both_outside_screen": false
+        },
+        "CG": {
+          "distances_A": [
+            1.258717036273771,
+            1.258716314434123
+          ],
+          "strand_distance_delta_A": 7.218396480546119e-07,
+          "both_outside_screen": true
+        },
+        "CT": {
+          "distances_A": [
+            2.4163559424297096,
+            2.416357013283864
+          ],
+          "strand_distance_delta_A": 1.0708541542392425e-06,
+          "both_outside_screen": true
+        },
+        "GA": {
+          "distances_A": [
+            1.376569937368382,
+            1.376569167300458
+          ],
+          "strand_distance_delta_A": 7.700679238720198e-07,
+          "both_outside_screen": false
+        },
+        "GC": {
+          "distances_A": [
+            1.8237192406466065,
+            1.8237184293820925
+          ],
+          "strand_distance_delta_A": 8.112645140112562e-07,
+          "both_outside_screen": false
+        },
+        "GG": {
+          "distances_A": [
+            0.580616598054987,
+            0.5806177967953924
+          ],
+          "strand_distance_delta_A": 1.1987404053837025e-06,
+          "both_outside_screen": true
+        },
+        "GT": {
+          "distances_A": [
+            2.2384706238221064,
+            2.2384706521758293
+          ],
+          "strand_distance_delta_A": 2.835372292508964e-08,
+          "both_outside_screen": true
+        },
+        "TA": {
+          "distances_A": [
+            0.9545526747411001,
+            0.9545530110187495
+          ],
+          "strand_distance_delta_A": 3.362776493931463e-07,
+          "both_outside_screen": true
+        },
+        "TC": {
+          "distances_A": [
+            1.1589667886565933,
+            1.1589669013095674
+          ],
+          "strand_distance_delta_A": 1.1265297406026775e-07,
+          "both_outside_screen": true
+        },
+        "TG": {
+          "distances_A": [
+            0.6776670943746766,
+            0.6776694669115886
+          ],
+          "strand_distance_delta_A": 2.372536911932066e-06,
+          "both_outside_screen": true
+        },
+        "TT": {
+          "distances_A": [
+            1.9335557489087567,
+            1.9335548862678562
+          ],
+          "strand_distance_delta_A": 8.626409004897084e-07,
+          "both_outside_screen": false
+        }
+      },
+      "geometry": {
+        "links": [
+          {
+            "chain_index": 0,
+            "left_residue_index": 0,
+            "right_residue_index": 1,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9375440264802314,
+            "c3_o3_p_deg": 127.18946269583438,
+            "o3_p_o5_deg": 121.00369617070362
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 1,
+            "right_residue_index": 2,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3167584653205906,
+            "c3_o3_p_deg": 127.09470464814507,
+            "o3_p_o5_deg": 87.07765784345638
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 2,
+            "right_residue_index": 3,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DA",
+            "o3p_A": 1.1593179587378861,
+            "c3_o3_p_deg": 137.27178152640658,
+            "o3_p_o5_deg": 152.5725475584028
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 3,
+            "right_residue_index": 4,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DG",
+            "o3p_A": 0.3651965207449838,
+            "c3_o3_p_deg": 139.4540354022001,
+            "o3_p_o5_deg": 155.97835120592285
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 4,
+            "right_residue_index": 5,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DA",
+            "o3p_A": 1.376569937368382,
+            "c3_o3_p_deg": 116.3016177066731,
+            "o3_p_o5_deg": 103.08233807060637
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 5,
+            "right_residue_index": 6,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9264129517102428,
+            "c3_o3_p_deg": 165.6887603113163,
+            "o3_p_o5_deg": 84.19291079714208
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 6,
+            "right_residue_index": 7,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DC",
+            "o3p_A": 1.1589667886565933,
+            "c3_o3_p_deg": 145.62814288419926,
+            "o3_p_o5_deg": 102.00683485734216
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 7,
+            "right_residue_index": 8,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3235405271508978,
+            "c3_o3_p_deg": 161.23450614200448,
+            "o3_p_o5_deg": 108.70649986464217
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 8,
+            "right_residue_index": 9,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DG",
+            "o3p_A": 1.258717036273771,
+            "c3_o3_p_deg": 105.91260111082987,
+            "o3_p_o5_deg": 133.50918330664385
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 9,
+            "right_residue_index": 10,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DC",
+            "o3p_A": 1.8237192406466065,
+            "c3_o3_p_deg": 112.05327473732405,
+            "o3_p_o5_deg": 77.98560800364126
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 10,
+            "right_residue_index": 11,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DT",
+            "o3p_A": 2.4163559424297096,
+            "c3_o3_p_deg": 148.77783886017673,
+            "o3_p_o5_deg": 93.96893056611465
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 11,
+            "right_residue_index": 12,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DG",
+            "o3p_A": 0.6776670943746766,
+            "c3_o3_p_deg": 107.32046523014876,
+            "o3_p_o5_deg": 159.71384774237956
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 12,
+            "right_residue_index": 13,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DG",
+            "o3p_A": 0.580616598054987,
+            "c3_o3_p_deg": 126.73226433256247,
+            "o3_p_o5_deg": 94.8364732636796
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 13,
+            "right_residue_index": 14,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DT",
+            "o3p_A": 2.2384706238221064,
+            "c3_o3_p_deg": 137.34435696246695,
+            "o3_p_o5_deg": 75.7722779983806
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 14,
+            "right_residue_index": 15,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9335557489087567,
+            "c3_o3_p_deg": 169.38233590399804,
+            "o3_p_o5_deg": 93.23630857440995
+          },
+          {
+            "chain_index": 0,
+            "left_residue_index": 15,
+            "right_residue_index": 16,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9545526747411001,
+            "c3_o3_p_deg": 132.17879406851213,
+            "o3_p_o5_deg": 143.1600876800892
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 17,
+            "right_residue_index": 18,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9545530110187495,
+            "c3_o3_p_deg": 132.17883023659363,
+            "o3_p_o5_deg": 143.16006236361818
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 18,
+            "right_residue_index": 19,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DA",
+            "o3p_A": 0.9375440424317824,
+            "c3_o3_p_deg": 127.18947399690119,
+            "o3_p_o5_deg": 121.00364498134934
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 19,
+            "right_residue_index": 20,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DC",
+            "o3p_A": 1.316758235346256,
+            "c3_o3_p_deg": 127.0947768228471,
+            "o3_p_o5_deg": 87.07765267165124
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 20,
+            "right_residue_index": 21,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DC",
+            "o3p_A": 1.3235422156068894,
+            "c3_o3_p_deg": 161.2345077916377,
+            "o3_p_o5_deg": 108.70639041594568
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 21,
+            "right_residue_index": 22,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DA",
+            "o3p_A": 1.1593182500756987,
+            "c3_o3_p_deg": 137.27180866155763,
+            "o3_p_o5_deg": 152.57258084879308
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 22,
+            "right_residue_index": 23,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DG",
+            "o3p_A": 0.36519720167530234,
+            "c3_o3_p_deg": 139.45390453493727,
+            "o3_p_o5_deg": 155.97853721674016
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 23,
+            "right_residue_index": 24,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DC",
+            "o3p_A": 1.8237184293820925,
+            "c3_o3_p_deg": 112.05315851077707,
+            "o3_p_o5_deg": 77.98563739406187
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 24,
+            "right_residue_index": 25,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DG",
+            "o3p_A": 1.258716314434123,
+            "c3_o3_p_deg": 105.91268455531367,
+            "o3_p_o5_deg": 133.50915877223014
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 25,
+            "right_residue_index": 26,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DG",
+            "o3p_A": 0.5806177967953924,
+            "c3_o3_p_deg": 126.73233378063436,
+            "o3_p_o5_deg": 94.836463319529
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 26,
+            "right_residue_index": 27,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DA",
+            "o3p_A": 1.376569167300458,
+            "c3_o3_p_deg": 116.30161049044901,
+            "o3_p_o5_deg": 103.08241783679648
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 27,
+            "right_residue_index": 28,
+            "bond_present": true,
+            "left_residue_name": "DA",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9264132855904834,
+            "c3_o3_p_deg": 165.6887893099337,
+            "o3_p_o5_deg": 84.19292071498907
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 28,
+            "right_residue_index": 29,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DC",
+            "o3p_A": 1.1589669013095674,
+            "c3_o3_p_deg": 145.62816777031657,
+            "o3_p_o5_deg": 102.00680281946408
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 29,
+            "right_residue_index": 30,
+            "bond_present": true,
+            "left_residue_name": "DC",
+            "right_residue_name": "DT",
+            "o3p_A": 2.416357013283864,
+            "c3_o3_p_deg": 148.77777482840202,
+            "o3_p_o5_deg": 93.96892493129006
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 30,
+            "right_residue_index": 31,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DG",
+            "o3p_A": 0.6776694669115886,
+            "c3_o3_p_deg": 107.32035795725076,
+            "o3_p_o5_deg": 159.71378229107958
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 31,
+            "right_residue_index": 32,
+            "bond_present": true,
+            "left_residue_name": "DG",
+            "right_residue_name": "DT",
+            "o3p_A": 2.2384706521758293,
+            "c3_o3_p_deg": 137.34435418547974,
+            "o3_p_o5_deg": 75.7722944648563
+          },
+          {
+            "chain_index": 1,
+            "left_residue_index": 32,
+            "right_residue_index": 33,
+            "bond_present": true,
+            "left_residue_name": "DT",
+            "right_residue_name": "DT",
+            "o3p_A": 1.9335548862678562,
+            "c3_o3_p_deg": 169.38233585049272,
+            "o3_p_o5_deg": 93.23630634262082
+          }
+        ],
+        "missing_links": 0,
+        "contact_cutoff_A": 2.0,
+        "short_heavy_contacts": 0,
+        "min_short_heavy_distance_A": null,
+        "atoms_without_element": 0
+      },
+      "min_rise_nm": 0.33999999999999486,
+      "max_rise_nm": 0.3454454454454414
+    }
+  },
+  "max_orientation_distance_delta_A": 3.8738417670325376e-06
+}

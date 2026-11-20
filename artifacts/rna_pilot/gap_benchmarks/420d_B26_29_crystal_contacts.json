@@ -1,0 +1,17 @@
+{
+  "target": "420D",
+  "target_sha256": "1f65ac4e2affd5cc7753771d546f063a4ce6347598d5874c6c8a504e84df0448",
+  "fit_report_sha256": "7adc142797658767f791398a95982f30cf538b3f8fc93bf910ec8176b40f1048",
+  "chain": "B",
+  "residues": [
+    "26",
+    "27",
+    "28",
+    "29"
+  ],
+  "space_group": "R 3",
+  "cutoff_A": 2.0,
+  "window_heavy_atoms": 84,
+  "deposited_contacts": [],
+  "rebuilt_contacts": []
+}

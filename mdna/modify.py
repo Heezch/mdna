@@ -5,6 +5,12 @@ from .geometry import ReferenceBase
 import mdtraj as md
 import copy
 from mdtraj.core import element as elem
+from .chemistry import (
+    NUCLEOTIDE_COMPLEMENTS,
+    copy_template_bonds,
+    get_nucleotide_definition,
+    template_relative_path,
+)
 
 
 
@@ -233,7 +239,7 @@ class Hoogsteen:
         #sub_indices = subtraj.top.select(f'name {" ".join(base_atoms)}')
         sub_indices = [atom.index for atom in subtraj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
         # Return the indices of the atoms that belong to the nucleotide
-        return sub_indices + offset
+        return [index + offset for index in sub_indices]
     
     def apply_flips(self):
         # For each residue that needs to be mutated
@@ -307,9 +313,8 @@ class Mutate:
         
     def mutate(self):
 
-        # Define the base pair map and the complementary mutant map
-        #base_pair_map = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C','P':'T','D':'C'}
-        base_pair_map = {'A':'T','T':'A','G':'C','C':'G','U':'A','D':'G','E':'T','L':'M','M':'L','B':'S','S':'B','Z':'P','P':'Z'}
+        # Use the same registered complement map as the structure builder.
+        base_pair_map = dict(NUCLEOTIDE_COMPLEMENTS)
         if self.complementary:
             # Update dict with the complementary mutations
             self.mutations = self.make_complementary_mutations(self.traj, self.mutations, base_pair_map)
@@ -350,242 +355,182 @@ class Mutate:
         # Select the atoms that belong to the nucleotide
         sub_indices = [atom.index for atom in subtraj.top.atoms if '\'' not in atom.name and 'P' not in atom.name]
         # Return the indices of the atoms that belong to the nucleotide
-        return sub_indices + offset
+        return [index + offset for index in sub_indices]
 
 
     def make_complementary_mutations(self, traj, mutations, base_pair_map):
         
         # Get the basepair dictionary of the trajectory
         basepair_dict = get_base_pair_dict(traj)
+        mutations = {int(index): str(base).upper() for index, base in mutations.items()}
 
         # Iterate over a static list of dictionary items to avoid RuntimeError
         for idx, base in list(mutations.items()):
+            get_nucleotide_definition(base)
             
             # Get the complementary base
             comp_base = basepair_dict[traj.top._residues[idx]]
             comp_mutant = base_pair_map[base]
         
             # Update mutations with the complementary base's mutation
+            if comp_base.index in mutations and mutations[comp_base.index] != comp_mutant:
+                raise ValueError(
+                    f"Conflicting mutations for complementary residue {comp_base.index}: "
+                    f"{mutations[comp_base.index]!r} and {comp_mutant!r}."
+                )
             mutations[comp_base.index] = comp_mutant
             
         return mutations
     
-    def _find_bonds_to_delete(self, traj, target_indices):
-        pre_bonds = traj.top._bonds
-        atoms = np.array(traj.top._atoms)[target_indices]
-        bond_indices_to_delete = [] 
-        for atom in atoms:
-            for _,bond in enumerate(pre_bonds):
-                if atom in bond:
-                    bond_indices_to_delete.append(_)
-        #print('bond indices to delete', set(bond_indices_to_delete))
-        return list(set(bond_indices_to_delete))
-    
-    def _find_bonds_to_keep(self, traj, mutant_indices):
-        pre_bonds = list(traj.top.bonds)
-        bonds_to_keep= []
-        atoms = np.array(traj.top._atoms)[mutant_indices]
-        for atom in atoms:
-            for _,bond in enumerate(pre_bonds):
-                if atom in bond:
-                    bonds_to_keep.append(bond)
-        return bonds_to_keep
-
-
-    def update_mutant_topology(self, traj, target_indices, mutant_indices, base, resid, mutation_traj):
-
-        # Store pre-deletion atom names and indices for comparison
-        pre_atoms = [(atom.name, atom.index) for atom in traj.top._residues[resid]._atoms]
-
-        # Delete bonds that are no longer valid after the mutation
-        bonds_to_delete = self._find_bonds_to_delete(traj, target_indices)
-        for idx in bonds_to_delete:
-            traj.top._bonds.pop(idx)
-
-        print("Pre-deletion residue atoms :", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
-         
-        # Delete target atoms from the topology
-        self._delete_target_atoms(traj, target_indices)
-   
-        # Store post-deletion atom names and indices for offset calculation
-        post_atoms = [(atom.name, atom.index) for atom in traj.top._residues[resid]._atoms]
-
-        # Determine the insertion offset by comparing pre and post deletion atom names and indices
-        offset, insert_id = self._find_insertion_offset(pre_atoms, post_atoms)
-
-        print("Pre-insertion residue atoms:", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
-
-        # Insert new atoms into the topology at calculated positions
-        self._insert_new_atoms(traj, resid, mutant_indices, mutation_traj, offset, insert_id)
-
-        
-        print("Post-insertion residue atoms:", [(atom.index,atom.name) for atom in traj.top._residues[resid]._atoms])
-        
-        # Update the residue name to reflect the mutation
-        traj.top._residues[resid].name = f'D{base}'
-
-        return traj
-
-    def _delete_target_atoms(self, traj, target_indices):
-        """
-        Delete target atoms from the topology by sorting indices in reverse order
-        to maintain index integrity after each deletion.
-        """
-        #print('og',traj.top.residue(self.current_resid)._atoms)
-        #print('og',[at.index for at in traj.top.residue(self.current_resid)._atoms])
-
-        for index in sorted(target_indices, reverse=True):
-            traj.top.delete_atom_by_index(index)
-            #print('del',index,traj.top.residue(self.current_resid)._atoms)
-            #print('del',index,[at.index for at in traj.top.residue(self.current_resid)._atoms])
-
-    def _find_insertion_offset(self, pre_atoms, post_atoms):
-        """
-        Determine the correct offset for new atom insertion by comparing
-        pre- and post-deletion atom names and indices.
-        """
-        # Default to the last atom's index in the residue as the insertion point
-        offset = post_atoms[-1][1]
-        insert_id = len(post_atoms) - 1
-
-        # Check for the actual offset where the first discrepancy in atom names occurs
-        # loop over name,index pairs in pre_atoms and post_atoms
-        for pre, post in zip(pre_atoms, post_atoms):
-            if pre[0] != post[0]:
-                offset = pre[1]
-                insert_id = post_atoms.index(post)
-                break
-
-        return offset, insert_id
-    
-    def _insert_new_atoms(self, traj, resid, mutant_indices, mutation_traj, offset, insert_id):
-        """
-        Insert new atoms into the topology, accounting for edge cases when the insertion point
-        is at the end of the topology.
-        """
-
-        #print('empty',traj.top.residue(resid)._atoms)
-        #print('empty',[at.index for at in traj.top.residue(resid)._atoms])
-        for idx, mutant_index in enumerate(mutant_indices, 1):
-            if self.verbose:
-                print('Processing residue',resid, 'atom',idx, 'index',mutant_index)
-            atom = mutation_traj.top.atom(mutant_index)
-
-            #print('target',offset+idx,atom)
-            # Edge case: If the offset is the last atom in the topology, insert new atoms at the end
-            if offset + idx >= traj.top.n_atoms:
-                if self.verbose:
-                    print('Edgecase: inserting at or beyond the last atom in the topology', offset, traj.top.n_atoms)
-                traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
-                                    index=traj.top.n_atoms + idx, rindex=insert_id + idx)
-            else:
-                # Regular case: insert new atoms at the calculated offset
-                # rindex: the desired position for this atom within the residue
-                # index: the desired position for this atom within the topology, Existing atoms with indices >= index will be pushed back.
-                #print('idx, offset+idx, insert_id+idx')
-                #print(idx, offset+idx, insert_id+idx)
-                if self.verbose:
-                    print('Inserting atom at index', offset + idx, 'rindex', insert_id + idx)
-                traj.top.insert_atom(atom.name, atom.element, traj.top._residues[resid],
-                                    index=offset + idx, rindex=insert_id + idx)
-
-            #print('ins',idx+offset, traj.top.residue(resid)._atoms)
-            #print('ins',idx+offset,[at.index for at in traj.top.residue(resid)._atoms])
-
-
-    def get_base_transformation(self, mutant_reference,target_reference):
-
-        # Collect the reference information of the mutation
+    def get_base_transformation(self, mutant_reference, target_reference):
+        """Return per-frame rigid transforms from a template to the target base frame."""
         mutation_origin = mutant_reference.b_R[0]
-        D = mutant_reference.b_D[0]
-        L = mutant_reference.b_L[0]
-        N = mutant_reference.b_N[0]
-        mutation_basis = np.array([D,L,N])
-
-        # Collect the reference information of the target to mutate
+        mutation_basis = np.array([
+            mutant_reference.b_D[0],
+            mutant_reference.b_L[0],
+            mutant_reference.b_N[0],
+        ])
         target_ref = ReferenceBase(target_reference)
-        target_origin = target_ref.b_R[0]
-        target_basis = np.array([target_ref.b_D[0],target_ref.b_L[0],target_ref.b_N[0]])
-
-        # Calculate the transformation 
-        rot = np.linalg.solve(target_basis,mutation_basis)
-        trans = target_origin - mutation_origin
-        return rot, trans
-
+        rotations = []
+        translations = []
+        for frame in range(target_reference.n_frames):
+            target_basis = np.array([
+                target_ref.b_D[frame],
+                target_ref.b_L[frame],
+                target_ref.b_N[frame],
+            ])
+            rotation = np.linalg.solve(target_basis, mutation_basis)
+            translation = target_ref.b_R[frame] - mutation_origin @ rotation.T
+            rotations.append(rotation)
+            translations.append(translation)
+        return np.asarray(rotations), np.asarray(translations)
 
     def apply_mutations(self, traj, mutations, base_pair_map):
+        mutations = {int(index): str(base).upper() for index, base in mutations.items()}
+        invalid_residues = [
+            index for index in mutations
+            if index < 0 or index >= traj.topology.n_residues
+        ]
+        if invalid_residues:
+            raise IndexError(f"Mutation residue indices are out of range: {invalid_residues}.")
+        for base in mutations.values():
+            get_nucleotide_definition(base)
+        if not mutations:
+            return copy.deepcopy(traj)
 
-        # Make a copy of the original trajectory
-        traj = copy.deepcopy(traj)
-        
-        #reference_bases = {base: md.load_pdb(get_data_file_path(f'./atomic/NDB96_{base}.pdb')) for base in base_pair_map.keys()}
-        reference_bases = {base: md.load_hdf5(get_data_file_path(f'./atomic/bases/BDNA_{base}.h5')) for base in base_pair_map.keys()}
-        reference_frames = {letter: ReferenceBase(t) for letter,t in reference_bases.items()}
+        reference_bases = {
+            base: md.load_hdf5(get_data_file_path(template_relative_path(base)))
+            for base in set(mutations.values())
+        }
+        reference_frames = {
+            base: ReferenceBase(reference)
+            for base, reference in reference_bases.items()
+        }
 
-        # For each residue that needs to be mutated
-        for resid,base in mutations.items():
-            if self.verbose:
-                print('Processing residue',resid, 'which corresponds to nucleotide',traj.top._residues[resid],' to mutation',base)
-                
-            #print('resid',resid,base)
-            #print(traj.top, traj.top._residues)
-            self.current_resid = resid
-            # Get the mutant trajectory object
-            mutation_traj = reference_bases[base] 
-
-            # Get the indices of the atoms that need to be transformed
+        # Calculate replacements against untouched coordinates to avoid index drift.
+        aligned_base_coordinates = {}
+        for resid, base in mutations.items():
+            mutation_traj = reference_bases[base]
             mutant_indices = self.get_base_indices(mutation_traj, resid=0)
-            target_indices = self.get_base_indices(traj, resid=resid)
+            target_residue = traj.topology.residue(resid)
+            target_reference = traj.atom_slice([atom.index for atom in target_residue.atoms])
+            rotations, translations = self.get_base_transformation(
+                reference_frames[base], target_reference
+            )
+            source_coordinates = mutation_traj.xyz[0, mutant_indices, :]
+            aligned = np.stack([
+                source_coordinates @ rotations[frame].T + translations[frame]
+                for frame in range(traj.n_frames)
+            ])
+            aligned_base_coordinates[resid] = {
+                atom_index: aligned[:, position, :]
+                for position, atom_index in enumerate(mutant_indices)
+            }
 
-            #print('n_mutant',len(mutant_indices))
-            #print('n_target',len(target_indices))
-            #print('diff', len(mutant_indices) - len(target_indices))
-            #sub_m = mutation_traj.atom_slice(mutant_indices)
-            #sub_w = traj.atom_slice(target_indices)
+        new_topology = md.Topology()
+        chain_map = {}
+        old_atom_map = {}
+        template_atom_maps = {}
+        coordinate_columns = []
 
-            #print('m',sub_m.top._residues[0],sub_m.top._atoms)
-            #print('w',sub_w.top._residues[0],sub_w.top._atoms)
-            
-            # Get the transformation for the local reference frames from the mutant to the target
-            mutant_reference = reference_frames[base]
-            target_reference = traj.atom_slice(traj.top.select(f'resid {resid}'))
-            # print(resid, target_reference.top,  target_reference.top._residues)
-            rot, trans = self.get_base_transformation(mutant_reference, target_reference)
-           
-            # Transform the mutant atoms to the local reference frame of the target
-            mutant_xyz = mutation_traj.xyz[:,mutant_indices,:]
-            new_xyz = np.dot(mutant_xyz, rot.T) + trans    
+        def is_backbone_atom(atom):
+            return "'" in atom.name or "P" in atom.name
 
-            # Get the original xyz coordinates
-            xyz = traj.xyz 
-            #print('target_indices:',target_indices)
-            # Split the xyz in 2 pieces, one before the indices that need to be replaced, and the indices after the indices that need to be replaced
-            xyz1 = xyz[:,:target_indices[0],:] 
-            xyz2 = xyz[:,target_indices[-1]+1:,]
+        for residue in traj.topology.residues:
+            old_chain = residue.chain
+            if old_chain.index not in chain_map:
+                chain_map[old_chain.index] = new_topology.add_chain(old_chain.chain_id)
+            chain = chain_map[old_chain.index]
+            base = mutations.get(residue.index)
+            residue_name = (
+                get_nucleotide_definition(base).residue_name
+                if base is not None else residue.name
+            )
+            new_residue = new_topology.add_residue(
+                residue_name, chain, resSeq=residue.resSeq,
+                segment_id=residue.segment_id,
+            )
 
-            # Update the topology
-            traj = self.update_mutant_topology(traj, target_indices, mutant_indices, base, resid, mutation_traj)
+            retained_by_name = {}
+            for atom in residue.atoms:
+                if base is not None and not is_backbone_atom(atom):
+                    continue
+                new_atom = new_topology.add_atom(
+                    atom.name, atom.element, new_residue,
+                    serial=new_topology.n_atoms + 1,
+                    formal_charge=atom.formal_charge,
+                )
+                old_atom_map[atom] = new_atom
+                retained_by_name[atom.name] = new_atom
+                coordinate_columns.append(traj.xyz[:, atom.index, :])
 
-            print("Original trajectory shape:", traj.xyz.shape)
-            print("xyz1 shape:", xyz1.shape)
-            print("new_xyz shape:", new_xyz.shape)
-            print("xyz2 shape:", xyz2.shape)
-            print("Concatenated shape:", xyz1.shape[1] + new_xyz.shape[1] + xyz2.shape[1])
+            if base is None:
+                continue
 
+            mutation_traj = reference_bases[base]
+            template_atom_map = {}
+            for atom in mutation_traj.topology.residue(0).atoms:
+                if is_backbone_atom(atom):
+                    if atom.name in retained_by_name:
+                        template_atom_map[atom] = retained_by_name[atom.name]
+                    continue
+                new_atom = new_topology.add_atom(
+                    atom.name, atom.element, new_residue,
+                    serial=new_topology.n_atoms + 1,
+                    formal_charge=atom.formal_charge,
+                )
+                template_atom_map[atom] = new_atom
+                coordinate_columns.append(
+                    aligned_base_coordinates[residue.index][atom.index]
+                )
+            template_atom_maps[residue.index] = (mutation_traj, template_atom_map)
 
-            # Concatenate the new xyz with the original xyz
-            xyz = np.concatenate([xyz1, new_xyz, xyz2], axis=1)
-            traj.xyz = xyz
+        # Preserve inter-residue links and all unmutated internal bonds.
+        for bond in traj.topology.bonds:
+            same_residue = bond.atom1.residue.index == bond.atom2.residue.index
+            if same_residue and bond.atom1.residue.index in mutations:
+                continue
+            if bond.atom1 not in old_atom_map or bond.atom2 not in old_atom_map:
+                continue
+            new_topology.add_bond(
+                old_atom_map[bond.atom1], old_atom_map[bond.atom2],
+                type=getattr(bond, "type", None),
+                order=getattr(bond, "order", None),
+            )
 
-        # Check if the atom indices are monotonically increasing
-        #print('n_atoms',traj.top.n_atoms)
-        #print('xyz', traj.xyz.shape)
-        ats = [at.index for at in traj.top.atoms]
-        #print('atdiff', np.diff(ats))
+        for mutation_traj, atom_map in template_atom_maps.values():
+            copy_template_bonds(
+                new_topology, mutation_traj.topology, atom_map, require_all=False
+            )
 
-
-        # Return the mutated trajectory
-        return traj
+        coordinates = np.stack(coordinate_columns, axis=1)
+        return md.Trajectory(
+            coordinates,
+            new_topology,
+            time=traj.time,
+            unitcell_lengths=traj.unitcell_lengths,
+            unitcell_angles=traj.unitcell_angles,
+        )
 
     def get_traj(self):
         """Return the mutated trajectory."""

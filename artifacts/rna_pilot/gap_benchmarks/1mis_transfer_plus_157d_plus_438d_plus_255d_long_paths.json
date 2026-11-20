@@ -1,0 +1,3363 @@
+{
+  "target": "1MIS",
+  "target_sha256": "ca1fc72010de639c4bf79fddd84b12871d6e6be5b88d1ae7f83ae3553d50e6c9",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CG",
+    "CU",
+    "GA",
+    "GC",
+    "GG",
+    "GU",
+    "UA",
+    "UC",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "GCGGACGC",
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "GCGG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "CGGA",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "GGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "GACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 1,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "5",
+          "sequence": "ACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GCGGA",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 3,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "CGGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 3,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "GGACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "4",
+          "sequence": "GACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 1,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GCGGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 3,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 4,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              19,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "CGGACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 3,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              19,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "3",
+          "sequence": "GGACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2545832567875013,
+                  "rotation_deg": 11.923168379689361
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7329020899372337,
+                  "rotation_deg": 2.612869555501466
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.23485856230676452,
+                  "rotation_deg": 6.091533188176014
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        }
+      ]
+    },
+    "B": {
+      "sequence": "GCGGACGC",
+      "windows": [
+        {
+          "start": "9",
+          "sequence": "GCGG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "10",
+          "sequence": "CGGA",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "11",
+          "sequence": "GGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "12",
+          "sequence": "GACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 1,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "13",
+          "sequence": "ACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "9",
+          "sequence": "GCGGA",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 3,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "10",
+          "sequence": "CGGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 3,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "11",
+          "sequence": "GGACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "12",
+          "sequence": "GACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 1,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "9",
+          "sequence": "GCGGAC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 3,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 4,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              7,
+              15,
+              0,
+              0,
+              0
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "10",
+          "sequence": "CGGACG",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 2,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 3,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              15,
+              0,
+              0,
+              0,
+              8
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        },
+        {
+          "start": "11",
+          "sequence": "GGACGC",
+          "missing_contexts": [],
+          "probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null,
+            "frame_misses": [
+              {
+                "step": 0,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:B:11-12",
+                  "translation_A": 1.2431314879213329,
+                  "rotation_deg": 11.77262863145459
+                }
+              },
+              {
+                "step": 1,
+                "pair": "GA",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "157D:A:4-5",
+                  "translation_A": 0.7308440100896697,
+                  "rotation_deg": 2.515039481704968
+                }
+              },
+              {
+                "step": 2,
+                "pair": "AC",
+                "template_count": 13,
+                "closest": {
+                  "suite_id": "255D:A:3-4",
+                  "translation_A": 0.2381521615065314,
+                  "rotation_deg": 6.405027605058343
+                }
+              }
+            ],
+            "closest_rejected_overlap_by_step": []
+          },
+          "reverse_source_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_frame_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          },
+          "joint_boundary_probe": {
+            "frame_candidates": [
+              0,
+              0,
+              0,
+              8,
+              5
+            ],
+            "counts": {
+              "overlap": 0,
+              "displacement": 0,
+              "frame": 0,
+              "assembly": 0,
+              "contacts": 0,
+              "passed": 0,
+              "joint_fit_rejected": 0
+            },
+            "paths_evaluated": 0,
+            "search_truncated": false,
+            "assembly_failures": {},
+            "best": null
+          }
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": null,
+  "supplemental_internal_sources": [
+    {
+      "entry": "157D",
+      "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+      "added_suites": 18
+    },
+    {
+      "entry": "438D",
+      "sha256": "d5f34520caed139d1b931be000b39a36ef2d8bc4a6616532aabb3cb8c9f6ef4c",
+      "added_suites": 12
+    },
+    {
+      "entry": "255D",
+      "sha256": "345068e3afe32b3ba18fbb91ea2950a8bb0b523cd1756ad57d691e74712bd097",
+      "added_suites": 9
+    }
+  ],
+  "combined_internal_manifest_sha256": "d01947435352ca198e6f9f6eb6b3049b190a20766c7a763a6855721a67900906",
+  "sensitivity_scope": "Single-gate ablations; exploratory only, not acceptance.",
+  "rigid_gap_trial_reference": {
+    "entry": "4U3L",
+    "audit_sha256": "8525156dfa4e411da8a9064f3ef36a53db3feeed223ad39fe8a48e625cb110a4",
+    "fields": [
+      "o3p_A",
+      "c3_o3_p_deg",
+      "o3_p_o5_deg",
+      "p_o5_c5_deg"
+    ],
+    "medians": [
+      1.6032365659374577,
+      119.96477789067671,
+      104.1039073986887,
+      120.4564564167265
+    ],
+    "max_shift_A": 0.5,
+    "max_phosphate_turn_deg": 20.0,
+    "torsion_fields": [
+      "c4_c3_o3_p_deg",
+      "c3_o3_p_o5_deg",
+      "o3_p_o5_c5_deg",
+      "p_o5_c5_c4_deg"
+    ],
+    "selection_policy": "rigid_pass_then_phosphate_pass; torsions descriptive only"
+  },
+  "length_summary": {
+    "4": {
+      "total": 10,
+      "covered": 10,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 10,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 0,
+      "terminal_backbone_paths_evaluated": 0,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "5": {
+      "total": 8,
+      "covered": 8,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 8,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 0,
+      "terminal_backbone_paths_evaluated": 0,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    },
+    "6": {
+      "total": 6,
+      "covered": 6,
+      "missing_template_context": 0,
+      "missing_frame_candidate": 6,
+      "baseline_paths_evaluated": 0,
+      "joint_boundary_paths_evaluated": 0,
+      "terminal_backbone_attempted_windows": 0,
+      "terminal_backbone_paths_evaluated": 0,
+      "terminal_backbone_context_passed": 0,
+      "assembled": 0,
+      "context_passed": 0,
+      "joint_assembled": 0,
+      "joint_context_passed": 0,
+      "joint_frame_assembled": 0,
+      "joint_boundary_assembled": 0,
+      "joint_boundary_context_passed": 0,
+      "joint_frame_context_passed": 0,
+      "search_truncated": 0
+    }
+  }
+}

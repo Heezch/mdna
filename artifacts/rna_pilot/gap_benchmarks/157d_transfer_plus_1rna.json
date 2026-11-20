@@ -1,0 +1,240 @@
+{
+  "target": "157D",
+  "target_sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AC",
+    "AU",
+    "CG",
+    "GU",
+    "UA"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "CGCGAAUUAGCG",
+      "full_path": {
+        "status": "not_run_internal_only"
+      },
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "CGC",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "2",
+          "sequence": "GCG",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "3",
+          "sequence": "CGA",
+          "missing_contexts": [
+            "GA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "4",
+          "sequence": "GAA",
+          "missing_contexts": [
+            "AA",
+            "GA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "5",
+          "sequence": "AAU",
+          "missing_contexts": [
+            "AA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "6",
+          "sequence": "AUU",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "7",
+          "sequence": "UUA",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "8",
+          "sequence": "UAG",
+          "missing_contexts": [
+            "AG"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "9",
+          "sequence": "AGC",
+          "missing_contexts": [
+            "AG",
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "10",
+          "sequence": "GCG",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        }
+      ]
+    },
+    "B": {
+      "sequence": "CGCGAAUUAGCG",
+      "full_path": {
+        "status": "not_run_internal_only"
+      },
+      "windows": [
+        {
+          "start": "13",
+          "sequence": "CGC",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "14",
+          "sequence": "GCG",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "15",
+          "sequence": "CGA",
+          "missing_contexts": [
+            "GA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "16",
+          "sequence": "GAA",
+          "missing_contexts": [
+            "AA",
+            "GA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "17",
+          "sequence": "AAU",
+          "missing_contexts": [
+            "AA"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "18",
+          "sequence": "AUU",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "19",
+          "sequence": "UUA",
+          "missing_contexts": [
+            "UU"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "20",
+          "sequence": "UAG",
+          "missing_contexts": [
+            "AG"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "21",
+          "sequence": "AGC",
+          "missing_contexts": [
+            "AG",
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        },
+        {
+          "start": "22",
+          "sequence": "GCG",
+          "missing_contexts": [
+            "GC"
+          ],
+          "path": "unsupported_context",
+          "gap": "unsupported_context"
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": {
+    "entry": "1RNA",
+    "sha256": "2acdde575063cdd4d3257b68b8105a12d587ebf6deb9e37bf531cca037f3d60c",
+    "added_suites": 22,
+    "manifest_sha256": "783d19a5960879ded101f50585a1b14d91a8faf2284a4a73f7b9db1454fb98f4"
+  }
+}

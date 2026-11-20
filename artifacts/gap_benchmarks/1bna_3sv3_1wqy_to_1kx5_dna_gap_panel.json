@@ -1,0 +1,1754 @@
+{
+  "interpretation_limit": "This is cross-entry transfer from one 1BNA structure to two sequence-covered windows among nine fixed windows in one 1KX5 target entry. It reduces direct same-entry leakage but does not establish independent-family generalization, environment compatibility, or structural acceptance. Relaxed thresholds are diagnostic only.",
+  "masked_truth_used_for_candidate_generation": false,
+  "protocol": "cross-entry-multi-template-to-masked-1kx5-dna-gap-panel-v1",
+  "runs": [
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+        "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TCA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+        "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3193624061406546
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+        "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TCA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+        "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3193624061406546
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "TC",
+        "CA"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dd4d32f0d4246e16dafee0530cd0770267526a55ff433124568467196c4b61a2",
+        "end_frame_sha256": "3818e871833064f3769f301d4fe71c58066f15d188d6bfea59d2be283a4ef7a2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TCA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f14d21937444ab1489e9ad02d057349038bb4b0f07fd72386d114873ca9a67ac",
+        "start_frame_sha256": "53c0bbfcaf242ae86b362cc4ffa3c33b9866e1a4fd2ad9abdbef8a3e9dc70de9",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3193624061406546
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "-72",
+        "-71",
+        "-70"
+      ],
+      "target_sequence_including_anchors": "TCA",
+      "target_suite_ids": [
+        "1KX5:I:-72--71",
+        "1KX5:I:-71--70"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+        "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 6,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+        "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "endpoint_rotation_residual_degrees": 6,
+          "endpoint_translation_residual_A": 6,
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "endpoint_rotation_residual_degrees": 4.06703344503632,
+          "endpoint_translation_residual_A": 1.1980383524857765,
+          "start_anchor_max_displacement_A": 1.1414214974075896
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+        "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 12,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 12,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+        "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.1414214974075896
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "GA",
+        "AT"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "18a2ca9d7b7061d5a8dac4ea3178df853b984e5e37dd2285028f7711f7e96bff",
+        "end_frame_sha256": "3b0686df63ff7b3804eb69d194b083ae791939b532e30e31d982dd20f7f01658",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 12,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 12,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "ee362b1ce618d88227e324f271b4d7bebcf0e2b2e49d214b39e0ee86b3b846a5",
+        "start_frame_sha256": "ed2dfdcc8b935b0f4d2c74db37b6b43d4dec0ac52be0c096ce535d1561bc4e0f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.1414214974075896
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "-56",
+        "-55",
+        "-54"
+      ],
+      "target_sequence_including_anchors": "GAT",
+      "target_suite_ids": [
+        "1KX5:I:-56--55",
+        "1KX5:I:-55--54"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+        "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 12,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 12,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+        "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.9061421969386265
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+        "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 12,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 12,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+        "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.9061421969386265
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "TA",
+        "AT"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "3f558c0b2c8d8bd574d2d87803998cb68300748c7e92fb25099e2671b8c9915d",
+        "end_frame_sha256": "c9ed9fa321a7c0331aaad46d7cda8141d764a536c3f70f5697b5343486e9bf5e",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 12,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 12,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 12,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "TAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "0683c001154d06499b26c0256bf1904b3caf7addc36665f9f0dff64523cb3b04",
+        "start_frame_sha256": "2288a6c8fb3c9593989bae8f1173c8ea5b91db724fddd7b2e56fac1413db436f",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 12
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.9061421969386265
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "-40",
+        "-39",
+        "-38"
+      ],
+      "target_sequence_including_anchors": "TAT",
+      "target_suite_ids": [
+        "1KX5:I:-40--39",
+        "1KX5:I:-39--38"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+        "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 18,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 18,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 18,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+        "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 18
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3090000521447853
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+        "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 18,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 18,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 18,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+        "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 18
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3090000521447853
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "CA",
+        "AT"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "dca512bbc5667ca59cc5c4617891d8802235ce94ba34ec8382429b18d290f05d",
+        "end_frame_sha256": "6b516d84571f4460301c22f91deb9744bb4806181d82ba5fb58ac3dbd4cd6e53",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 18,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 18,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 18,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "CAT",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "71b2462e8e406b131f1d02ed317ae9c294aa097f392d18d82b6a3bbcc7320d88",
+        "start_frame_sha256": "f31b2ce028aa5e6863a3a4dea90cd13af2208408925456639105592f3920f83b",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 18
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.3090000521447853
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "-24",
+        "-23",
+        "-22"
+      ],
+      "target_sequence_including_anchors": "CAT",
+      "target_suite_ids": [
+        "1KX5:I:-24--23",
+        "1KX5:I:-23--22"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "interface_relaxed_diagnostic": null,
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "CA",
+        "AG"
+      ],
+      "scientific_acceptance": false,
+      "status": "unsupported_template_context",
+      "strict_defaults": null,
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "-8",
+        "-7",
+        "-6"
+      ],
+      "target_sequence_including_anchors": "CAG",
+      "target_suite_ids": [
+        "1KX5:I:-8--7",
+        "1KX5:I:-7--6"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": [
+        "AG"
+      ]
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+        "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 8,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 3,
+          "assembly": 0,
+          "end_anchor_displacement": 3,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 5,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 0,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+        "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "end_anchor_max_displacement_A": 3,
+          "endpoint_rotation_residual_degrees": 8,
+          "endpoint_translation_residual_A": 8,
+          "shared_residue_rmsd_A": 3,
+          "start_anchor_max_displacement_A": 8
+        },
+        "trial_metric_minima": {
+          "end_anchor_max_displacement_A": 2.047950663499409,
+          "endpoint_rotation_residual_degrees": 16.07274645489624,
+          "endpoint_translation_residual_A": 0.6613134485364046,
+          "shared_residue_rmsd_A": 8.620474204593959e-15,
+          "start_anchor_max_displacement_A": 0.6955289710394945
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+        "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 8,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 4,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 4,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 4,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+        "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "endpoint_rotation_residual_degrees": 4,
+          "endpoint_translation_residual_A": 4,
+          "start_anchor_max_displacement_A": 8
+        },
+        "trial_metric_minima": {
+          "endpoint_rotation_residual_degrees": 16.07274645489624,
+          "endpoint_translation_residual_A": 0.6613134485364046,
+          "start_anchor_max_displacement_A": 0.6955289710394945
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "GA",
+        "AA"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "7fecee7a13057b95a7c2f2c29c497590c351d872d2c322564903ac6a95ed0b11",
+        "end_frame_sha256": "7a4d3603159ecce2b32ec701b8b547523b52bdd5c93f936d7af78de2c4a2aea4",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 8,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "A",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 4,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 4,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 4,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GAA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "feb17f35a1a286ef224f2fdd11fdbfb05c759ad4f16dcf7c68f8dc4298ac803b",
+        "start_frame_sha256": "c686945463416a6c9d17424cab101c66601a05c850826600f9426c1f00f997b6",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "endpoint_rotation_residual_degrees": 4,
+          "endpoint_translation_residual_A": 4,
+          "start_anchor_max_displacement_A": 8
+        },
+        "trial_metric_minima": {
+          "endpoint_rotation_residual_degrees": 16.07274645489624,
+          "endpoint_translation_residual_A": 0.6613134485364046,
+          "start_anchor_max_displacement_A": 0.6955289710394945
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "8",
+        "9",
+        "10"
+      ],
+      "target_sequence_including_anchors": "GAA",
+      "target_suite_ids": [
+        "1KX5:I:8-9",
+        "1KX5:I:9-10"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+        "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 4,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "G",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 4,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 4,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GGA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+        "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 4
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 2.6597324372101947
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+        "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 4,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "G",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 4,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 4,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GGA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+        "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 4
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 2.6597324372101947
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "GG",
+        "GA"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "132a16eafc00386cb01cb3faff85b8cae957488f1dbcc8d3f13c3c8f8954d355",
+        "end_frame_sha256": "16acdb6c5ae901b63bb24725909d16d158c987b969c48de87980ed5f03c5b6c2",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 4,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "G",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 4,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 4,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "GGA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "f284fd6d2d175d560877df6f34b696fee661fb14bd78e9e3e61214230bba28fb",
+        "start_frame_sha256": "21fb83d82329a98c0aaed40d86b66ac405f3e77c2deb29965fdbe0569cb76bcd",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 4
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 2.6597324372101947
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "24",
+        "25",
+        "26"
+      ],
+      "target_sequence_including_anchors": "GGA",
+      "target_suite_ids": [
+        "1KX5:I:24-25",
+        "1KX5:I:25-26"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "early_gate_sensitivity": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+        "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "interpretation": "Exploratory sensitivity only: endpoint rotation and anchor-atom limits were relaxed to expose which later gates reject candidates. Not a valid closure threshold.",
+        "limits": {
+          "max_anchor_atom_displacement_A": 1.25,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 20.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "ACA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+        "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.5153264686252785
+        }
+      },
+      "interface_relaxed_diagnostic": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+        "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.3,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 2.0,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "ACA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+        "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.5153264686252785
+        }
+      },
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "AC",
+        "CA"
+      ],
+      "scientific_acceptance": false,
+      "status": "evaluated",
+      "strict_defaults": {
+        "algorithm": "dna-two-suite-anchor-enumeration-v1",
+        "assembly_rejection_reasons": {},
+        "best_candidate_rmsd_to_masked_truth_A": null,
+        "candidate_truth_metrics": [],
+        "candidates": [],
+        "candidates_truncated": false,
+        "end_anchor_atoms_sha256": "b1d895ce515b0b8d460df9217eca7b4b6fbc3fe0e6f6f133bcbdaef29acb5ed6",
+        "end_frame_sha256": "263d35b9b2589381415c7253d27da461b177763fdbf1c5fdb1d228b5a9b03f11",
+        "environment_screening": "not_evaluated",
+        "expanded_states": 6,
+        "limits": {
+          "max_anchor_atom_displacement_A": 0.8,
+          "max_anchor_connection_length_deviation_A": 0.25,
+          "max_bond_length_deviation_A": 0.25,
+          "max_returned_candidates": 30,
+          "max_rotation_residual_degrees": 12.0,
+          "max_search_states": 10000,
+          "max_shared_atom_displacement_A": 0.8,
+          "max_shared_residue_rmsd_A": 0.8,
+          "max_translation_residual_A": 0.75
+        },
+        "missing_residue_indices": [
+          1
+        ],
+        "missing_sequence": "C",
+        "rejections": {
+          "anchor_connection_geometry": 0,
+          "anchor_displacement": 6,
+          "assembly": 0,
+          "end_anchor_displacement": 0,
+          "end_anchor_inventory": 0,
+          "endpoint_frame": 0,
+          "pinned_anchor_bond_geometry": 0,
+          "shared_residue": 0,
+          "start_anchor_displacement": 6,
+          "start_anchor_inventory": 0
+        },
+        "returned_candidate_count": 0,
+        "schema_version": 1,
+        "scientific_acceptance": false,
+        "search_complete": true,
+        "sequence_including_anchors": "ACA",
+        "source_files": [
+          {
+            "file": "mdna/atomic/ddd/1bna.pdb",
+            "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+          },
+          {
+            "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+            "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+          },
+          {
+            "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+            "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+          }
+        ],
+        "start_anchor_atoms_sha256": "97198f5bf208b2a58ddfe9f2c1fdd6291527011e2dc724402003a7370493e0c0",
+        "start_frame_sha256": "f378b212f57f71cb2d4615849a3bd1093bb9c56578ce1a31e5a9e254c9d1e83a",
+        "status": "no_solution_found",
+        "total_compatible_closures": 0,
+        "trial_metric_evaluated_counts": {
+          "start_anchor_max_displacement_A": 6
+        },
+        "trial_metric_minima": {
+          "start_anchor_max_displacement_A": 1.5153264686252785
+        }
+      },
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "40",
+        "41",
+        "42"
+      ],
+      "target_sequence_including_anchors": "ACA",
+      "target_suite_ids": [
+        "1KX5:I:40-41",
+        "1KX5:I:41-42"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": []
+    },
+    {
+      "candidate_template_suite_count": 49,
+      "interface_relaxed_diagnostic": null,
+      "masked_truth_used_for_candidate_generation": false,
+      "required_dinucleotide_contexts": [
+        "CT",
+        "TG"
+      ],
+      "scientific_acceptance": false,
+      "status": "unsupported_template_context",
+      "strict_defaults": null,
+      "target_entry_absent_from_template_library": true,
+      "target_residue_numbers_5prime_to_3prime": [
+        "56",
+        "57",
+        "58"
+      ],
+      "target_sequence_including_anchors": "CTG",
+      "target_suite_ids": [
+        "1KX5:I:56-57",
+        "1KX5:I:57-58"
+      ],
+      "target_suite_ids_absent_from_template_library": true,
+      "unsupported_template_contexts": [
+        "CT"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "target_chain": "I",
+  "target_coordinate_file": "docs/notebooks/pdbs/1kx5.pdb",
+  "target_coordinate_sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450",
+  "target_entry": "1KX5",
+  "target_library_file": "artifacts/gap_benchmarks/1kx5_dna_suites.json",
+  "target_library_sha256": "a77ced79ad7c716a9a2ea03d3a5d7f7d043cadc66544c26c80204e3e721f0b62",
+  "target_windows": [
+    [
+      "1KX5:I:-72--71",
+      "1KX5:I:-71--70"
+    ],
+    [
+      "1KX5:I:-56--55",
+      "1KX5:I:-55--54"
+    ],
+    [
+      "1KX5:I:-40--39",
+      "1KX5:I:-39--38"
+    ],
+    [
+      "1KX5:I:-24--23",
+      "1KX5:I:-23--22"
+    ],
+    [
+      "1KX5:I:-8--7",
+      "1KX5:I:-7--6"
+    ],
+    [
+      "1KX5:I:8-9",
+      "1KX5:I:9-10"
+    ],
+    [
+      "1KX5:I:24-25",
+      "1KX5:I:25-26"
+    ],
+    [
+      "1KX5:I:40-41",
+      "1KX5:I:41-42"
+    ],
+    [
+      "1KX5:I:56-57",
+      "1KX5:I:57-58"
+    ]
+  ],
+  "template_entry_ids": [
+    "1BNA",
+    "1WQY",
+    "3SV3"
+  ],
+  "template_library_file_hashes": [
+    "ee4800c6f567f972db4f2cc5b1e294deb4a4a19248ea85abd05a15bb85626ea0",
+    "2bbe3c7674b6eccb88a18984e4102df3c4fec8ef6188ed79223009e48daf602a",
+    "b058d4481f6b5b2b7464b027f0309ca0ee96bf853468d30737994a0fb3b112ee"
+  ],
+  "template_library_files": [
+    "artifacts/gap_benchmarks/1bna_dna_suites.json",
+    "artifacts/gap_benchmarks/3sv3_dna_suites.json",
+    "artifacts/gap_benchmarks/1wqy_dna_suites.json"
+  ],
+  "template_source_files": [
+    {
+      "file": "mdna/atomic/ddd/1bna.pdb",
+      "sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d"
+    },
+    {
+      "file": "mdna/atomic/artificial_basepair/3sv3.pdb",
+      "sha256": "d1824193d6b7464dfb0f1448948691a72c19376167d8acdab87f277dcfb17ff7"
+    },
+    {
+      "file": "artifacts/gap_benchmarks/1wqy_source.pdb",
+      "sha256": "beb6100b7a1fb2e21989b73596c1f533aba8208b4e63ba6fbeb2640ded33a880"
+    }
+  ],
+  "template_suite_count": 49,
+  "window_count": 9
+}

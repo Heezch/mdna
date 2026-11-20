@@ -1,0 +1,916 @@
+{
+  "generated_utc": "2026-10-27T03:20:50.435457+00:00",
+  "input_directory": "artifacts/rna_pilot/reference/ion_series",
+  "interpretation_limit": "Summarizes deposited validation and verifies coefficient-to-map conversion. Does not validate an MDNA-generated model against density or establish universal RNA geometry.",
+  "manifest_audit": {
+    "manifest_file": "manifest.json",
+    "manifest_file_count": 24,
+    "all_manifest_files_match": true,
+    "files": [
+      {
+        "file": "4u3l_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "de81817cf3dd2b630e18cecf9bd6b92586975312d1bbe7c6d4203758cd48c5d0",
+        "actual_sha256": "de81817cf3dd2b630e18cecf9bd6b92586975312d1bbe7c6d4203758cd48c5d0",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3l_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "82017360c203a0a4801c3a26a4670806787832836d024eb315aa9654ef1a55ac",
+        "actual_sha256": "82017360c203a0a4801c3a26a4670806787832836d024eb315aa9654ef1a55ac",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3l_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "dcd2e5a6bdf0c3fc16014aee5da14efa139cfcc15b4f1e82754a61de8e6d87d4",
+        "actual_sha256": "dcd2e5a6bdf0c3fc16014aee5da14efa139cfcc15b4f1e82754a61de8e6d87d4",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3l.cif",
+        "exists": true,
+        "expected_sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c",
+        "actual_sha256": "3228106d3037447419062f2f19aaec95ba2e9664758cb2310da8655c0bec9e5c",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3o_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "c1ec1dfb0e01f2cdcc469d3432d12a38d6540fcb7ff08c7eaf36edc64808ed63",
+        "actual_sha256": "c1ec1dfb0e01f2cdcc469d3432d12a38d6540fcb7ff08c7eaf36edc64808ed63",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3o_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "41d07a1700735e0fb0725090adb6c2d821431a33ae1f2e9e99272858ab3532a4",
+        "actual_sha256": "41d07a1700735e0fb0725090adb6c2d821431a33ae1f2e9e99272858ab3532a4",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3o_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "4a8aa63648f1aab5c5e649210d47e07d19c6f60f955c31a759095839e67c005b",
+        "actual_sha256": "4a8aa63648f1aab5c5e649210d47e07d19c6f60f955c31a759095839e67c005b",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3o.cif",
+        "exists": true,
+        "expected_sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236",
+        "actual_sha256": "aa95d86ff7f08133862d7669953b55ea921644e6d1a56c63bac3ccc353bef236",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3p_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "88380945117744c963bdff3e2deb5bc793f93500284e8f50bb425575aaf43165",
+        "actual_sha256": "88380945117744c963bdff3e2deb5bc793f93500284e8f50bb425575aaf43165",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3p_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "b15d395e3297da45d988175d3b66b10f6467ed9fbcacb6a1141508714722a69e",
+        "actual_sha256": "b15d395e3297da45d988175d3b66b10f6467ed9fbcacb6a1141508714722a69e",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3p_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "c8dc96809bf10fc463ff77cad53a49b78a50e0070f2855009132a7fd8b7615f3",
+        "actual_sha256": "c8dc96809bf10fc463ff77cad53a49b78a50e0070f2855009132a7fd8b7615f3",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3p.cif",
+        "exists": true,
+        "expected_sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0",
+        "actual_sha256": "0696eabc8b45e937ad8a22b31daa2715519ea215c7a5fd0ec9038fe1e2f1a0b0",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3r_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "a59479f0813c32615b7a976e0c92f1d4e3f4b6010d7b6f7d5bcf4316b26d5ae3",
+        "actual_sha256": "a59479f0813c32615b7a976e0c92f1d4e3f4b6010d7b6f7d5bcf4316b26d5ae3",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3r_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "92faafe5914ea2c134c2a6016d0218ac06f3585f8299936b321b668345d47b2c",
+        "actual_sha256": "92faafe5914ea2c134c2a6016d0218ac06f3585f8299936b321b668345d47b2c",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3r_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "37372fdc8fa8134289e0de6747f682672c6e97a3cd9e29ef89ae6a3ff8f1e1f9",
+        "actual_sha256": "37372fdc8fa8134289e0de6747f682672c6e97a3cd9e29ef89ae6a3ff8f1e1f9",
+        "hash_matches": true
+      },
+      {
+        "file": "4u3r.cif",
+        "exists": true,
+        "expected_sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c",
+        "actual_sha256": "c28148f4a39367fedc4cd69436cd9dde8b0e6ab7057ad8fc11a372f124fca82c",
+        "hash_matches": true
+      },
+      {
+        "file": "4u47_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "3956a53793711a36a1a938080f0129704c9b01c357292ed463ad22640c633992",
+        "actual_sha256": "3956a53793711a36a1a938080f0129704c9b01c357292ed463ad22640c633992",
+        "hash_matches": true
+      },
+      {
+        "file": "4u47_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "7f3ce1f09a648378bc2497896ec99a3d48428ae547e3c093d9012c9a940edea3",
+        "actual_sha256": "7f3ce1f09a648378bc2497896ec99a3d48428ae547e3c093d9012c9a940edea3",
+        "hash_matches": true
+      },
+      {
+        "file": "4u47_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "2a397baec361988fd1af7f23f6fc147777b712f2972213e518a6e947f92fd01c",
+        "actual_sha256": "2a397baec361988fd1af7f23f6fc147777b712f2972213e518a6e947f92fd01c",
+        "hash_matches": true
+      },
+      {
+        "file": "4u47.cif",
+        "exists": true,
+        "expected_sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3",
+        "actual_sha256": "dfc065beeac61386d1b2a3f8d66b0620ac223f25add311677f57f66d63f8bef3",
+        "hash_matches": true
+      },
+      {
+        "file": "4u78_2fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "61aa1ea4339102c23426379e53b4416495be3e27c52dba938da917efd77af165",
+        "actual_sha256": "61aa1ea4339102c23426379e53b4416495be3e27c52dba938da917efd77af165",
+        "hash_matches": true
+      },
+      {
+        "file": "4u78_fo-fc_map_coef.cif.gz",
+        "exists": true,
+        "expected_sha256": "5cb2fa88cd6eb1b09a1aaead30ae461750dc60389b23728bc29a48cb5d7d6da0",
+        "actual_sha256": "5cb2fa88cd6eb1b09a1aaead30ae461750dc60389b23728bc29a48cb5d7d6da0",
+        "hash_matches": true
+      },
+      {
+        "file": "4u78_full_validation.pdf",
+        "exists": true,
+        "expected_sha256": "16f36adc967e6ed34a521a555aa8db87c412fca8e8eafe32c59d2d77d62c32f6",
+        "actual_sha256": "16f36adc967e6ed34a521a555aa8db87c412fca8e8eafe32c59d2d77d62c32f6",
+        "hash_matches": true
+      },
+      {
+        "file": "4u78.cif",
+        "exists": true,
+        "expected_sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035",
+        "actual_sha256": "ad4118f61b25f3deed2d26a5cefebecf5bd3a63b022e8a39b7794955fd1d0035",
+        "hash_matches": true
+      }
+    ]
+  },
+  "series_integrity": {
+    "all_entries_have_two_8nt_rna_chains": true,
+    "unique_chain_sequences": [
+      "UCGUACGA"
+    ],
+    "all_chains_share_the_same_sequence": true,
+    "all_rna_residues_have_O2_prime": true
+  },
+  "entries": [
+    {
+      "entry_id": "4U3L",
+      "coordinates": {
+        "entry_id": "4U3L",
+        "title": "octameric RNA duplex co-crystallized in calcium(II)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.482",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          47.671,
+          47.671,
+          51.885
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6056385022787667,
+              1.6078740622324863,
+              1.6050856674956646,
+              1.609996583847307,
+              1.6008510236745945,
+              1.5979317882813424,
+              1.6033533609282773
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.5979317882813424,
+              1.609996583847307
+            ]
+          },
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.5993680001800707,
+              1.6037923805779843,
+              1.6024621680401698,
+              1.6005955141758954,
+              1.6031197709466378,
+              1.6067859222684273,
+              1.600411822000825
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.5993680001800707,
+              1.6067859222684273
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u3l_full_validation.pdf",
+        "pages": 10,
+        "reported_resolution_A": 1.48,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": false,
+        "rna_backbone_outlier_count": 1,
+        "rna_backbone_outlier_details": "Mol\nChain\nRes\nType\n1\nB\n7\nG",
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n1 (14%)\n0\nAll\nAll\n14/16 (87%)\n1 (7%)\n0\nAll (1) RNA backbone outliers are listed below:\nMol\nChain\nRes\nType\n1\nB\n7\nG\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-0.40\n0\n100\n100\n17, 21, 22, 23\n0\n1\nB\n8/8 (100%)\n-0.08\n0\n100\n100\n19, 20, 22, 23\n0\nAll\nAll\n16/16 (100%)\n-0.24\n0\n100\n100\n17, 21, 23, 23\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 6,
+        "clashscore_zero": false
+      },
+      "two_fo_fc_map": {
+        "file": "4u3l_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 7304,
+        "finite_amplitude_phase_rows": 7110,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          90,
+          90,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.7914596199989319,
+        "density_max": 4.701988220214844,
+        "density_mean": 1.5698342625825035e-10,
+        "density_std": 0.37794241309165955
+      },
+      "fo_fc_map": {
+        "file": "4u3l_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 7304,
+        "finite_amplitude_phase_rows": 7110,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          90,
+          90,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.6576794385910034,
+        "density_max": 0.6453905701637268,
+        "density_mean": 1.1337691896429192e-10,
+        "density_std": 0.1327974945306778
+      }
+    },
+    {
+      "entry_id": "4U3O",
+      "coordinates": {
+        "entry_id": "4U3O",
+        "title": "Octameric RNA duplex soaked in manganese(II)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.800",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          46.328,
+          46.328,
+          58.075
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6043322598514327,
+              1.6018879486405992,
+              1.6076753403594888,
+              1.6019322707280719,
+              1.6035887876884147,
+              1.6072395589954842,
+              1.5945764327870922
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.5945764327870922,
+              1.6076753403594888
+            ]
+          },
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6099251535397545,
+              1.6076087832554313,
+              1.6047445279545278,
+              1.60586113970044,
+              1.6052267752563834,
+              1.6130765635889686,
+              1.6119364131379368
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.6047445279545278,
+              1.6130765635889686
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u3o_full_validation.pdf",
+        "pages": 10,
+        "reported_resolution_A": 1.8,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": true,
+        "rna_backbone_outlier_count": 0,
+        "rna_backbone_outlier_details": null,
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n0\n0\nAll\nAll\n14/16 (87%)\n0\n0\nThere are no RNA backbone outliers to report.\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-0.62\n0\n100\n100\n18, 21, 24, 24\n0\n1\nB\n8/8 (100%)\n-0.69\n0\n100\n100\n19, 20, 24, 25\n0\nAll\nAll\n16/16 (100%)\n-0.66\n0\n100\n100\n18, 21, 24, 25\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 4,
+        "clashscore_zero": false
+      },
+      "two_fo_fc_map": {
+        "file": "4u3o_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4323,
+        "finite_amplitude_phase_rows": 4139,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -1.0502400398254395,
+        "density_max": 3.84310245513916,
+        "density_mean": 2.1803253646979215e-10,
+        "density_std": 0.3843928575515747
+      },
+      "fo_fc_map": {
+        "file": "4u3o_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4323,
+        "finite_amplitude_phase_rows": 4139,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.5559630990028381,
+        "density_max": 0.8649301528930664,
+        "density_mean": 1.362703352936201e-11,
+        "density_std": 0.1279364973306656
+      }
+    },
+    {
+      "entry_id": "4U3P",
+      "coordinates": {
+        "entry_id": "4U3P",
+        "title": "Octameric RNA duplex co-crystallized with strontium(II)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.866",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          45.48,
+          45.48,
+          57.98
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6063330912360623,
+              1.6048239778866706,
+              1.5992207477393483,
+              1.602703341233181,
+              1.603798304027037,
+              1.6101409876156805,
+              1.605529507670288
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.5992207477393483,
+              1.6101409876156805
+            ]
+          },
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6100487570257003,
+              1.606621921921894,
+              1.6121867137524728,
+              1.614583537634395,
+              1.6056042476276648,
+              1.600094372216839,
+              1.598982801658605
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.598982801658605,
+              1.614583537634395
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u3p_full_validation.pdf",
+        "pages": 9,
+        "reported_resolution_A": 1.87,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": false,
+        "rna_backbone_outlier_count": 1,
+        "rna_backbone_outlier_details": "Mol\nChain\nRes\nType\n1\nB\n7\nG",
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n1 (14%)\n0\nAll\nAll\n14/16 (87%)\n1 (7%)\n0\nAll (1) RNA backbone outliers are listed below:\nMol\nChain\nRes\nType\n1\nB\n7\nG\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-1.41\n0\n100\n100\n29, 32, 37, 38\n0\n1\nB\n8/8 (100%)\n-1.42\n0\n100\n100\n30, 33, 37, 39\n0\nAll\nAll\n16/16 (100%)\n-1.42\n0\n100\n100\n29, 33, 38, 39\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 4,
+        "clashscore_zero": false
+      },
+      "two_fo_fc_map": {
+        "file": "4u3p_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4102,
+        "finite_amplitude_phase_rows": 3722,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.8868321180343628,
+        "density_max": 4.448001861572266,
+        "density_mean": 2.793541786783038e-10,
+        "density_std": 0.35850152373313904
+      },
+      "fo_fc_map": {
+        "file": "4u3p_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4102,
+        "finite_amplitude_phase_rows": 3722,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.25985389947891235,
+        "density_max": 0.6919645071029663,
+        "density_mean": 8.857571620612958e-11,
+        "density_std": 0.06400104612112045
+      }
+    },
+    {
+      "entry_id": "4U3R",
+      "coordinates": {
+        "entry_id": "4U3R",
+        "title": "Octameric RNA duplex co-crystallized with cobalt(II)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.701",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          46.977,
+          46.977,
+          53.3
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6064454550341882,
+              1.6067299088521378,
+              1.6079073356384674,
+              1.607764286206159,
+              1.607547199929134,
+              1.605993150670326,
+              1.6044382194400644
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.6044382194400644,
+              1.6079073356384674
+            ]
+          },
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6065543875014017,
+              1.6063667078223451,
+              1.6061077174336706,
+              1.6077179479000665,
+              1.608943442138349,
+              1.6089176486072865,
+              1.6076809384949493
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.6061077174336706,
+              1.608943442138349
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u3r_full_validation.pdf",
+        "pages": 10,
+        "reported_resolution_A": 1.7,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": true,
+        "rna_backbone_outlier_count": 0,
+        "rna_backbone_outlier_details": null,
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n0\n0\nAll\nAll\n14/16 (87%)\n0\n0\nThere are no RNA backbone outliers to report.\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-0.75\n0\n100\n100\n13, 16, 18, 18\n0\n1\nB\n8/8 (100%)\n-0.65\n0\n100\n100\n14, 16, 19, 19\n0\nAll\nAll\n16/16 (100%)\n-0.70\n0\n100\n100\n13, 16, 19, 19\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 0,
+        "clashscore_zero": true
+      },
+      "two_fo_fc_map": {
+        "file": "4u3r_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4826,
+        "finite_amplitude_phase_rows": 4672,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          96
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -1.0690433979034424,
+        "density_max": 4.789669036865234,
+        "density_mean": 4.599123859527765e-10,
+        "density_std": 0.45500022172927856
+      },
+      "fo_fc_map": {
+        "file": "4u3r_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 4826,
+        "finite_amplitude_phase_rows": 4672,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          96
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.6546818017959595,
+        "density_max": 1.6953041553497314,
+        "density_mean": 9.773137854551806e-11,
+        "density_std": 0.15155631303787231
+      }
+    },
+    {
+      "entry_id": "4U47",
+      "coordinates": {
+        "entry_id": "4U47",
+        "title": "Octameric RNA duplex soaked in terbium(III)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.952",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          46.506,
+          46.506,
+          56.627
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6076174918182506,
+              1.609375655339671,
+              1.602623162193783,
+              1.6061385369886378,
+              1.6054734504189099,
+              1.6067028350009223,
+              1.6044715640982856
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.602623162193783,
+              1.609375655339671
+            ]
+          },
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6093396161158775,
+              1.6091320641886424,
+              1.6113301958320032,
+              1.6097139497438664,
+              1.6034179118370862,
+              1.604016521111925,
+              1.612521627761936
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.6034179118370862,
+              1.612521627761936
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u47_full_validation.pdf",
+        "pages": 9,
+        "reported_resolution_A": 1.95,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": true,
+        "rna_backbone_outlier_count": 0,
+        "rna_backbone_outlier_details": null,
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n0\n0\nAll\nAll\n14/16 (87%)\n0\n0\nThere are no RNA backbone outliers to report.\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-0.33\n0\n100\n100\n37, 38, 40, 40\n0\n1\nB\n8/8 (100%)\n-0.41\n0\n100\n100\n38, 39, 40, 40\n0\nAll\nAll\n16/16 (100%)\n-0.37\n0\n100\n100\n37, 39, 40, 40\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 2,
+        "clashscore_zero": false
+      },
+      "two_fo_fc_map": {
+        "file": "4u47_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 3326,
+        "finite_amplitude_phase_rows": 3223,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          90
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.6255128383636475,
+        "density_max": 2.785694122314453,
+        "density_mean": 1.1446708164664088e-10,
+        "density_std": 0.2717137932777405
+      },
+      "fo_fc_map": {
+        "file": "4u47_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 3326,
+        "finite_amplitude_phase_rows": 3223,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          72,
+          72,
+          90
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.3783702850341797,
+        "density_max": 0.8689223527908325,
+        "density_mean": -5.927759672008648e-11,
+        "density_std": 0.09482153505086899
+      }
+    },
+    {
+      "entry_id": "4U78",
+      "coordinates": {
+        "entry_id": "4U78",
+        "title": "Octameric RNA duplex soaked in copper(II)chloride",
+        "method": "X-RAY DIFFRACTION",
+        "resolution_A": "1.501",
+        "space_group": "H 3",
+        "unit_cell_A": [
+          46.81,
+          46.81,
+          53.38
+        ],
+        "rna_chains": [
+          {
+            "chain_id": "B",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6062671010762806,
+              1.6069688858220004,
+              1.6057823638339037,
+              1.6063779131947753,
+              1.6080553473061794,
+              1.6084654177196345,
+              1.6073064424682688
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.6057823638339037,
+              1.6084654177196345
+            ]
+          },
+          {
+            "chain_id": "A",
+            "residues": 8,
+            "sequence": "UCGUACGA",
+            "missing_O2_prime": [],
+            "O3_prime_to_next_P_A": [
+              1.6070656489390844,
+              1.6084206539335413,
+              1.6079256823622168,
+              1.6084442794203349,
+              1.6069766644229773,
+              1.60290143177926,
+              1.6045052196861203
+            ],
+            "missing_phosphodiester_links": [],
+            "O3_prime_to_next_P_range_A": [
+              1.60290143177926,
+              1.6084442794203349
+            ]
+          }
+        ]
+      },
+      "validation": {
+        "report_file": "4u78_full_validation.pdf",
+        "pages": 10,
+        "reported_resolution_A": 1.5,
+        "rna_section_found": true,
+        "rna_backbone_no_outliers": true,
+        "rna_backbone_outlier_count": 0,
+        "rna_backbone_outlier_details": null,
+        "rna_pucker_no_outliers": true,
+        "rna_validation_excerpt": "5.3.3\nRNA\ni○\nMol\nChain\nAnalysed\nBackbone Outliers\nPucker Outliers\n1\nA\n7/8 (87%)\n0\n0\n1\nB\n7/8 (87%)\n0\n0\nAll\nAll\n14/16 (87%)\n0\n0\nThere are no RNA backbone outliers to report.\nThere are no RNA pucker outliers to report.",
+        "no_chain_breaks": true,
+        "no_RSRZ_outliers": true,
+        "density_fit_excerpt": "6.1\nProtein, DNA and RNA chains\ni○\nIn the following table, the column labelled ‘#RSRZ> 2’ contains the number (and percentage)\nof RSRZ outliers, followed by percent RSRZ outliers for the chain as percentile scores relative to\nall X-ray entries and entries of similar resolution. The OWAB column contains the minimum,\nmedian, 95th percentile and maximum values of the occupancy-weighted average B-factor per\nresidue. The column labelled ‘Q< 0.9’ lists the number of (and percentage) of residues with an\naverage occupancy less than 0.9.\nMol\nChain\nAnalysed\n<RSRZ>\n#RSRZ>2\nOWAB(Å2)\nQ<0.9\n1\nA\n8/8 (100%)\n-0.23\n0\n100\n100\n16, 20, 22, 24\n0\n1\nB\n8/8 (100%)\n-0.15\n0\n100\n100\n17, 19, 22, 23\n0\nAll\nAll\n16/16 (100%)\n-0.19\n0\n100\n100\n16, 20, 23, 24\n0\nThere are no RSRZ outliers to report.",
+        "bond_length_no_outliers": true,
+        "bond_angle_no_outliers": true,
+        "all_atom_clashscore": 0,
+        "clashscore_zero": true
+      },
+      "two_fo_fc_map": {
+        "file": "4u78_2fo-fc_map_coef.cif.gz",
+        "reflection_rows": 6973,
+        "finite_amplitude_phase_rows": 6861,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_FWT",
+          "pdbx_PHWT"
+        ],
+        "grid_shape": [
+          90,
+          90,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.851938009262085,
+        "density_max": 4.563512802124023,
+        "density_mean": -1.308195218818753e-10,
+        "density_std": 0.42719051241874695
+      },
+      "fo_fc_map": {
+        "file": "4u78_fo-fc_map_coef.cif.gz",
+        "reflection_rows": 6973,
+        "finite_amplitude_phase_rows": 6861,
+        "columns": [
+          "fom",
+          "index_h",
+          "index_k",
+          "index_l",
+          "pdbx_DELFWT",
+          "pdbx_DELPHWT"
+        ],
+        "grid_shape": [
+          90,
+          90,
+          108
+        ],
+        "grid_sample_rate": 3.0,
+        "density_min": -0.6610462665557861,
+        "density_max": 0.8998022079467773,
+        "density_mean": 1.3954082334066698e-10,
+        "density_std": 0.14531971514225006
+      }
+    }
+  ]
+}

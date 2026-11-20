@@ -1,0 +1,248 @@
+{
+  "candidate_paired_gap_windows": [
+    {
+      "chain_A_missing_index_0based": 4,
+      "chain_A_triplet": "GAA",
+      "chain_B_missing_index_0based": 7,
+      "chain_B_triplet": "TTC",
+      "flanking_expected_hbonds_within_3_5_A": true,
+      "four_contexts_present_in_1kx5": true,
+      "missing_base_pair": "AT",
+      "training_contexts": {
+        "chain_A": [
+          "GA",
+          "AA"
+        ],
+        "chain_B": [
+          "TT",
+          "TC"
+        ]
+      }
+    },
+    {
+      "chain_A_missing_index_0based": 5,
+      "chain_A_triplet": "AAT",
+      "chain_B_missing_index_0based": 6,
+      "chain_B_triplet": "ATT",
+      "flanking_expected_hbonds_within_3_5_A": true,
+      "four_contexts_present_in_1kx5": true,
+      "missing_base_pair": "AT",
+      "training_contexts": {
+        "chain_A": [
+          "AA",
+          "AT"
+        ],
+        "chain_B": [
+          "AT",
+          "TT"
+        ]
+      }
+    },
+    {
+      "chain_A_missing_index_0based": 6,
+      "chain_A_triplet": "ATT",
+      "chain_B_missing_index_0based": 5,
+      "chain_B_triplet": "AAT",
+      "flanking_expected_hbonds_within_3_5_A": true,
+      "four_contexts_present_in_1kx5": true,
+      "missing_base_pair": "TA",
+      "training_contexts": {
+        "chain_A": [
+          "AT",
+          "TT"
+        ],
+        "chain_B": [
+          "AA",
+          "AT"
+        ]
+      }
+    },
+    {
+      "chain_A_missing_index_0based": 7,
+      "chain_A_triplet": "TTC",
+      "chain_B_missing_index_0based": 4,
+      "chain_B_triplet": "GAA",
+      "flanking_expected_hbonds_within_3_5_A": true,
+      "four_contexts_present_in_1kx5": true,
+      "missing_base_pair": "TA",
+      "training_contexts": {
+        "chain_A": [
+          "TT",
+          "TC"
+        ],
+        "chain_B": [
+          "GA",
+          "AA"
+        ]
+      }
+    }
+  ],
+  "candidate_selection_policy": "Both strands must have both dinucleotide contexts in the 1KX5 library; immediate flanking base-pair expected contacts must all be within 3.5 A. This identifies candidates only; no coordinates were masked or solved.",
+  "chains": {
+    "A": {
+      "o3_prime_p_distance_range_A": [
+        1.5936480163448903,
+        1.6044594105180707
+      ],
+      "observed_adjacent_o3_prime_p_links": 11,
+      "sequence_5prime_to_3prime": "CGCGAATTCGCG",
+      "standard_dna_residue_count": 12
+    },
+    "B": {
+      "o3_prime_p_distance_range_A": [
+        1.5897883506932589,
+        1.6066315694645121
+      ],
+      "observed_adjacent_o3_prime_p_links": 11,
+      "sequence_5prime_to_3prime": "CGCGAATTCGCG",
+      "standard_dna_residue_count": 12
+    }
+  },
+  "coordinate_unit": "angstrom",
+  "pairing": {
+    "all_pairs_are_watson_crick": true,
+    "expected_hbond_screen_cutoff_A": 3.5,
+    "max_c1_prime_separation_A": 10.887686668893442,
+    "max_expected_hbond_distance_A": 3.249272072326353,
+    "pair_count": 12,
+    "pairs": [
+      {
+        "base_pair": "CG",
+        "c1_prime_separation_A": 10.712053117866805,
+        "chain_A_index_0based": 0,
+        "chain_B_index_0based": 11,
+        "expected_hbond_distances_A": [
+          2.65947852031183,
+          2.7968972094090248,
+          2.7762226135524513
+        ]
+      },
+      {
+        "base_pair": "GC",
+        "c1_prime_separation_A": 10.766466504847354,
+        "chain_A_index_0based": 1,
+        "chain_B_index_0based": 10,
+        "expected_hbond_distances_A": [
+          2.7091757048962335,
+          2.8268187066028845,
+          2.8165015533459212
+        ]
+      },
+      {
+        "base_pair": "CG",
+        "c1_prime_separation_A": 10.580175282101898,
+        "chain_A_index_0based": 2,
+        "chain_B_index_0based": 9,
+        "expected_hbond_distances_A": [
+          2.6888614690980273,
+          2.824503673214108,
+          2.7653392196980096
+        ]
+      },
+      {
+        "base_pair": "GC",
+        "c1_prime_separation_A": 10.353109194826452,
+        "chain_A_index_0based": 3,
+        "chain_B_index_0based": 8,
+        "expected_hbond_distances_A": [
+          2.6100561296646467,
+          2.719108309722142,
+          2.7360084064198342
+        ]
+      },
+      {
+        "base_pair": "AT",
+        "c1_prime_separation_A": 10.441569661693592,
+        "chain_A_index_0based": 4,
+        "chain_B_index_0based": 7,
+        "expected_hbond_distances_A": [
+          2.9117726559606254,
+          2.6952472984867284
+        ]
+      },
+      {
+        "base_pair": "AT",
+        "c1_prime_separation_A": 10.460553044653041,
+        "chain_A_index_0based": 5,
+        "chain_B_index_0based": 6,
+        "expected_hbond_distances_A": [
+          3.2320804445434215,
+          2.850329980896949
+        ]
+      },
+      {
+        "base_pair": "TA",
+        "c1_prime_separation_A": 10.232887226975581,
+        "chain_A_index_0based": 6,
+        "chain_B_index_0based": 5,
+        "expected_hbond_distances_A": [
+          3.249272072326353,
+          2.7955974316771735
+        ]
+      },
+      {
+        "base_pair": "TA",
+        "c1_prime_separation_A": 10.491181344348213,
+        "chain_A_index_0based": 7,
+        "chain_B_index_0based": 4,
+        "expected_hbond_distances_A": [
+          2.87482538600173,
+          2.7757919590632145
+        ]
+      },
+      {
+        "base_pair": "CG",
+        "c1_prime_separation_A": 10.591170898441778,
+        "chain_A_index_0based": 8,
+        "chain_B_index_0based": 3,
+        "expected_hbond_distances_A": [
+          2.7188105855318425,
+          2.8101539103757287,
+          2.825786439205907
+        ]
+      },
+      {
+        "base_pair": "GC",
+        "c1_prime_separation_A": 10.436194565070162,
+        "chain_A_index_0based": 9,
+        "chain_B_index_0based": 2,
+        "expected_hbond_distances_A": [
+          2.706430305771792,
+          2.786071068727429,
+          2.6904113068451077
+        ]
+      },
+      {
+        "base_pair": "CG",
+        "c1_prime_separation_A": 10.80515400167901,
+        "chain_A_index_0based": 10,
+        "chain_B_index_0based": 1,
+        "expected_hbond_distances_A": [
+          2.77613076060909,
+          2.8485656039487646,
+          2.903707457716771
+        ]
+      },
+      {
+        "base_pair": "GC",
+        "c1_prime_separation_A": 10.887686668893442,
+        "chain_A_index_0based": 11,
+        "chain_B_index_0based": 0,
+        "expected_hbond_distances_A": [
+          2.8756663575595818,
+          3.086445204438272,
+          3.0613123003052136
+        ]
+      }
+    ],
+    "registration": "chain_A[i] pairs with chain_B[n-1-i]",
+    "sequence_matches_antiparallel_reverse_complement": true
+  },
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "source_file": "mdna/atomic/ddd/1bna.pdb",
+  "source_sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d",
+  "sources_represent_independent_families": false,
+  "template_library_file": "artifacts/gap_benchmarks/1kx5_dna_suites.json",
+  "template_library_source_sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+}

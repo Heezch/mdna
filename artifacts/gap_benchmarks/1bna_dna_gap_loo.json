@@ -1,0 +1,646 @@
+{
+  "algorithm": "1kx5-source-two-strand-single-pair-gap-1bna-entry-holdout-v1",
+  "candidate_window_count": 4,
+  "environment_screening": "not_evaluated",
+  "interpretation_limit": "Single held-out PDB entry; candidate windows are not independent samples. Candidate generation uses only flank frames and complete heavy-atom coordinates of the two fixed anchor residues. Missing-pair coordinates are read after candidate generation for evaluation. Environment clashes, sequence-generalization, and external structural validation are not assessed.",
+  "limits": {
+    "max_anchor_atom_displacement_A": 0.8,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_bond_length_deviation_A": 0.25,
+    "max_returned_candidates": 30,
+    "max_rotation_residual_degrees": 12.0,
+    "max_search_states": 10000,
+    "max_shared_atom_displacement_A": 0.8,
+    "max_shared_residue_rmsd_A": 0.8,
+    "max_translation_residual_A": 0.75
+  },
+  "masked_truth_used_for_candidate_generation": false,
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "target_entry": "1BNA",
+  "target_entry_excluded_from_templates": true,
+  "target_source_file": "mdna/atomic/ddd/1bna.pdb",
+  "target_source_sha256": "4f74ccaff0a1ede01a2fb08184a0fc308bceeba42fbe636a044515fb754a4c7d",
+  "template_entries": [
+    "1KX5"
+  ],
+  "template_source_file": "docs/notebooks/pdbs/1kx5.pdb",
+  "template_source_sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450",
+  "window_selection_policy": "Both strands must have both dinucleotide contexts in the 1KX5 library; immediate flanking base-pair expected contacts must all be within 3.5 A. This identifies candidates only; no coordinates were masked or solved.",
+  "windows": [
+    {
+      "best_paired_candidate_rmsd_A": null,
+      "chain_A_missing_index_0based": 4,
+      "chain_A_triplet": "GAA",
+      "chain_B_missing_index_0based": 7,
+      "chain_B_triplet": "TTC",
+      "environment_screening": "not_evaluated",
+      "masked_truth_read_after_search": true,
+      "missing_base_pair": "AT",
+      "missing_base_pair_hbond_distances_A": null,
+      "paired_candidate_count": 0,
+      "paired_candidates": [],
+      "strands": {
+        "A": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "25f4392bfeb47b5b1cf547db09922629143bf9ef070522388fd221d5d7d7fec5",
+          "end_frame_sha256": "6c760d8ed9c376964abe06ef45b98e51838d3d7de9b9e1da73fc322ae8828b4e",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 400,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 400,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 400,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "GAA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "930973a0d7fd62df0288d7410017cc5f43fe5eb292086b565304a053c2823595",
+          "start_frame_sha256": "67b36b4fe6016181ceceb6ad18150c7304a8aa9b0d72b582b3397624e9048671",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 400
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 1.0446765287146378
+          }
+        },
+        "B": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "48cfac21289b34cebe522edf220572245cc73203c38c209ad2bac3a55249c9a8",
+          "end_frame_sha256": "50ac6a5bc303ba1b07941755bcf015ff417963fe039f16f609fb17040a732127",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 400,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 3,
+            "anchor_displacement": 344,
+            "assembly": 0,
+            "end_anchor_displacement": 8,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 53,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 336,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "TTC",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "86eb9699ed3f7c479b7076c5e2aa04b3a254f69ec674277b5e8c5092052fb958",
+          "start_frame_sha256": "0b1d54d3f020c8a059913378d6db2d2a76fb5a984e104d93a76db095617382cd",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 11,
+            "endpoint_rotation_residual_degrees": 64,
+            "endpoint_translation_residual_A": 64,
+            "max_anchor_connection_length_deviation_A": 3,
+            "shared_residue_rmsd_A": 11,
+            "start_anchor_max_displacement_A": 400
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 0.47180376766155724,
+            "endpoint_rotation_residual_degrees": 2.105485549090923,
+            "endpoint_translation_residual_A": 0.2677993498209712,
+            "max_anchor_connection_length_deviation_A": 0.290380525079575,
+            "shared_residue_rmsd_A": 0.1376242507071986,
+            "start_anchor_max_displacement_A": 0.4423561726605298
+          }
+        }
+      },
+      "training_contexts": {
+        "chain_A": [
+          "GA",
+          "AA"
+        ],
+        "chain_B": [
+          "TT",
+          "TC"
+        ]
+      }
+    },
+    {
+      "best_paired_candidate_rmsd_A": null,
+      "chain_A_missing_index_0based": 5,
+      "chain_A_triplet": "AAT",
+      "chain_B_missing_index_0based": 6,
+      "chain_B_triplet": "ATT",
+      "environment_screening": "not_evaluated",
+      "masked_truth_read_after_search": true,
+      "missing_base_pair": "AT",
+      "missing_base_pair_hbond_distances_A": null,
+      "paired_candidate_count": 0,
+      "paired_candidates": [],
+      "strands": {
+        "A": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "fa737d71256fe4859923c8144b1949a378382fe71dec9f8abc98be114a6bf28c",
+          "end_frame_sha256": "f223671303b45d1cbc05f59ec155f9f4cea35ffa4e931cb4d3c3e79ffd7bcd1d",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 650,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 575,
+            "assembly": 0,
+            "end_anchor_displacement": 3,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 71,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 4,
+            "start_anchor_displacement": 572,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "AAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "6c28d41d7a9b860879abeb26b150cac18aa9c3ccc7ce182e4e93b89137ff1245",
+          "start_frame_sha256": "d505829487ca119ad3aaf7945834a9738361ebdc211a4213df646d2f0a537bac",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 3,
+            "endpoint_rotation_residual_degrees": 78,
+            "endpoint_translation_residual_A": 78,
+            "shared_residue_rmsd_A": 7,
+            "start_anchor_max_displacement_A": 650
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 2.357600976887653,
+            "endpoint_rotation_residual_degrees": 1.8506828512129254,
+            "endpoint_translation_residual_A": 0.2566805670450849,
+            "shared_residue_rmsd_A": 0.6429957958252485,
+            "start_anchor_max_displacement_A": 0.5827628830798096
+          }
+        },
+        "B": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "7f265c783bf412621528dd9bfd74717ae0e2c5d063a52af07e1d09e6281fb870",
+          "end_frame_sha256": "219655dfaca81d81ca1b2c9c6face846deb91aaa4a02324d0eceb8ec26bdc1a5",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 650,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 564,
+            "assembly": 0,
+            "end_anchor_displacement": 14,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 82,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 4,
+            "start_anchor_displacement": 550,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "ATT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "ccbdf2b235246bfffa18a6595a2ee5275e5c7ccd5d349771ad057f5919a40248",
+          "start_frame_sha256": "cb25107fd11c549eae837ca310487315b80c34a7bb9bc122e014a3dd4d215a98",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 14,
+            "endpoint_rotation_residual_degrees": 100,
+            "endpoint_translation_residual_A": 100,
+            "shared_residue_rmsd_A": 18,
+            "start_anchor_max_displacement_A": 650
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 1.1854342487908098,
+            "endpoint_rotation_residual_degrees": 1.7643663207842935,
+            "endpoint_translation_residual_A": 0.16429289865322513,
+            "shared_residue_rmsd_A": 0.407456906462197,
+            "start_anchor_max_displacement_A": 0.41143032652557754
+          }
+        }
+      },
+      "training_contexts": {
+        "chain_A": [
+          "AA",
+          "AT"
+        ],
+        "chain_B": [
+          "AT",
+          "TT"
+        ]
+      }
+    },
+    {
+      "best_paired_candidate_rmsd_A": null,
+      "chain_A_missing_index_0based": 6,
+      "chain_A_triplet": "ATT",
+      "chain_B_missing_index_0based": 5,
+      "chain_B_triplet": "AAT",
+      "environment_screening": "not_evaluated",
+      "masked_truth_read_after_search": true,
+      "missing_base_pair": "TA",
+      "missing_base_pair_hbond_distances_A": null,
+      "paired_candidate_count": 0,
+      "paired_candidates": [],
+      "strands": {
+        "A": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "14d0bd91859701572d41b0631529efe75dfe412f98a80f488125d459af409e2e",
+          "end_frame_sha256": "e2418812d9946f49fddccb7ee06ec91b93ae01299b2526daf0c30b6590b449b0",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 650,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 1,
+            "anchor_displacement": 533,
+            "assembly": 0,
+            "end_anchor_displacement": 8,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 105,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 11,
+            "start_anchor_displacement": 525,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "ATT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "25f4392bfeb47b5b1cf547db09922629143bf9ef070522388fd221d5d7d7fec5",
+          "start_frame_sha256": "6c760d8ed9c376964abe06ef45b98e51838d3d7de9b9e1da73fc322ae8828b4e",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 9,
+            "endpoint_rotation_residual_degrees": 125,
+            "endpoint_translation_residual_A": 125,
+            "max_anchor_connection_length_deviation_A": 1,
+            "shared_residue_rmsd_A": 20,
+            "start_anchor_max_displacement_A": 650
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 0.7855291677951529,
+            "endpoint_rotation_residual_degrees": 2.9687956199429872,
+            "endpoint_translation_residual_A": 0.15135180621386876,
+            "max_anchor_connection_length_deviation_A": 0.28214242852761307,
+            "shared_residue_rmsd_A": 0.5286942729064293,
+            "start_anchor_max_displacement_A": 0.3954149778490936
+          }
+        },
+        "B": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "86eb9699ed3f7c479b7076c5e2aa04b3a254f69ec674277b5e8c5092052fb958",
+          "end_frame_sha256": "0b1d54d3f020c8a059913378d6db2d2a76fb5a984e104d93a76db095617382cd",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 650,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 650,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 0,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 0,
+            "start_anchor_displacement": 650,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "AAT",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "7e5e51da6d6fb8a2fd40327418231d97b4c050889770551961366414c9cccf0e",
+          "start_frame_sha256": "6695006097715639d251709d3ced5f9760f6c467e633c38537d6bc42ec15aa79",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "start_anchor_max_displacement_A": 650
+          },
+          "trial_metric_minima": {
+            "start_anchor_max_displacement_A": 0.9067892714273701
+          }
+        }
+      },
+      "training_contexts": {
+        "chain_A": [
+          "AT",
+          "TT"
+        ],
+        "chain_B": [
+          "AA",
+          "AT"
+        ]
+      }
+    },
+    {
+      "best_paired_candidate_rmsd_A": null,
+      "chain_A_missing_index_0based": 7,
+      "chain_A_triplet": "TTC",
+      "chain_B_missing_index_0based": 4,
+      "chain_B_triplet": "GAA",
+      "environment_screening": "not_evaluated",
+      "masked_truth_read_after_search": true,
+      "missing_base_pair": "TA",
+      "missing_base_pair_hbond_distances_A": null,
+      "paired_candidate_count": 0,
+      "paired_candidates": [],
+      "strands": {
+        "A": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "0729905cbb4bee1ad20a5c376f64783705b98766dee5163b4bebb86dfd1c2d34",
+          "end_frame_sha256": "b248a8eb4d42590f8ce7b309980206cc9cf0a0484e94ab88fc2ed250a642cde4",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 400,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "T",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 323,
+            "assembly": 0,
+            "end_anchor_displacement": 3,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 76,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 1,
+            "start_anchor_displacement": 320,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "TTC",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "fa737d71256fe4859923c8144b1949a378382fe71dec9f8abc98be114a6bf28c",
+          "start_frame_sha256": "f223671303b45d1cbc05f59ec155f9f4cea35ffa4e931cb4d3c3e79ffd7bcd1d",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "end_anchor_max_displacement_A": 3,
+            "endpoint_rotation_residual_degrees": 80,
+            "endpoint_translation_residual_A": 80,
+            "shared_residue_rmsd_A": 4,
+            "start_anchor_max_displacement_A": 400
+          },
+          "trial_metric_minima": {
+            "end_anchor_max_displacement_A": 1.3106845165791752,
+            "endpoint_rotation_residual_degrees": 6.85386544663831,
+            "endpoint_translation_residual_A": 0.22062609432934602,
+            "shared_residue_rmsd_A": 0.31587726216405554,
+            "start_anchor_max_displacement_A": 0.6031129353827982
+          }
+        },
+        "B": {
+          "algorithm": "dna-two-suite-anchor-enumeration-v1",
+          "assembly_rejection_reasons": {},
+          "candidates": [],
+          "candidates_truncated": false,
+          "end_anchor_atoms_sha256": "ccbdf2b235246bfffa18a6595a2ee5275e5c7ccd5d349771ad057f5919a40248",
+          "end_frame_sha256": "cb25107fd11c549eae837ca310487315b80c34a7bb9bc122e014a3dd4d215a98",
+          "environment_screening": "not_evaluated",
+          "expanded_states": 400,
+          "limits": {
+            "max_anchor_atom_displacement_A": 0.8,
+            "max_anchor_connection_length_deviation_A": 0.25,
+            "max_bond_length_deviation_A": 0.25,
+            "max_returned_candidates": 30,
+            "max_rotation_residual_degrees": 12.0,
+            "max_search_states": 10000,
+            "max_shared_atom_displacement_A": 0.8,
+            "max_shared_residue_rmsd_A": 0.8,
+            "max_translation_residual_A": 0.75
+          },
+          "missing_residue_indices": [
+            1
+          ],
+          "missing_sequence": "A",
+          "rejections": {
+            "anchor_connection_geometry": 0,
+            "anchor_displacement": 350,
+            "assembly": 0,
+            "end_anchor_displacement": 0,
+            "end_anchor_inventory": 0,
+            "endpoint_frame": 48,
+            "pinned_anchor_bond_geometry": 0,
+            "shared_residue": 2,
+            "start_anchor_displacement": 350,
+            "start_anchor_inventory": 0
+          },
+          "returned_candidate_count": 0,
+          "schema_version": 1,
+          "scientific_acceptance": false,
+          "search_complete": true,
+          "sequence_including_anchors": "GAA",
+          "source_files": [
+            {
+              "file": "docs/notebooks/pdbs/1kx5.pdb",
+              "sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+            }
+          ],
+          "start_anchor_atoms_sha256": "74ca95cb077529ab841f1acc09253f973156575c1df33dcbce9750cb036f9652",
+          "start_frame_sha256": "0881c748cabbe6f78a32a30c4ed108753ecb9e54514e2008a9ca21201a37d572",
+          "status": "no_solution_found",
+          "total_compatible_closures": 0,
+          "trial_metric_evaluated_counts": {
+            "endpoint_rotation_residual_degrees": 50,
+            "endpoint_translation_residual_A": 50,
+            "shared_residue_rmsd_A": 2,
+            "start_anchor_max_displacement_A": 400
+          },
+          "trial_metric_minima": {
+            "endpoint_rotation_residual_degrees": 7.385034953819869,
+            "endpoint_translation_residual_A": 0.33741439455087746,
+            "shared_residue_rmsd_A": 0.8021367966782313,
+            "start_anchor_max_displacement_A": 0.6955289710394982
+          }
+        }
+      },
+      "training_contexts": {
+        "chain_A": [
+          "TT",
+          "TC"
+        ],
+        "chain_B": [
+          "GA",
+          "AA"
+        ]
+      }
+    }
+  ]
+}

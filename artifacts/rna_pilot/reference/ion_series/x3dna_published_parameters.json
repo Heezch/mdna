@@ -1,0 +1,20 @@
+{
+  "source": {
+    "citation": "Schaffer MF et al. The X-ray Structures of Six Octameric RNA Duplexes in the Presence of Different Di- and Trivalent Cations. International Journal of Molecular Sciences. 2016;17(7):988.",
+    "doi": "10.3390/ijms17070988",
+    "url": "https://doi.org/10.3390/ijms17070988",
+    "table": 1,
+    "method": "X3DNA",
+    "statistics": "Mean of all local base-pair values with standard deviation as reported by X3DNA",
+    "retrieved_utc_date": "2026-10-27"
+  },
+  "interpretation_limit": "Published reference values, not measurements from the project's exploratory centroid/PCA script and not MDNA model validation.",
+  "parameters": [
+    {"pdb_id": "4U3L", "ion_condition": "Ca2+", "helical_rise_A_mean": 2.40, "helical_rise_A_sd": 0.57, "helical_twist_deg_mean": 36.0, "helical_twist_deg_sd": 2.7},
+    {"pdb_id": "4U3O", "ion_condition": "Mn2+", "helical_rise_A_mean": 2.59, "helical_rise_A_sd": 0.47, "helical_twist_deg_mean": 35.0, "helical_twist_deg_sd": 2.4},
+    {"pdb_id": "4U3P", "ion_condition": "Sr2+", "helical_rise_A_mean": 2.58, "helical_rise_A_sd": 0.36, "helical_twist_deg_mean": 35.3, "helical_twist_deg_sd": 1.8},
+    {"pdb_id": "4U3R", "ion_condition": "Co2+", "helical_rise_A_mean": 2.41, "helical_rise_A_sd": 0.55, "helical_twist_deg_mean": 35.6, "helical_twist_deg_sd": 2.9},
+    {"pdb_id": "4U47", "ion_condition": "Tb3+", "helical_rise_A_mean": 2.56, "helical_rise_A_sd": 0.42, "helical_twist_deg_mean": 35.7, "helical_twist_deg_sd": 1.7},
+    {"pdb_id": "4U78", "ion_condition": "Cu2+", "helical_rise_A_mean": 2.43, "helical_rise_A_sd": 0.54, "helical_twist_deg_mean": 35.8, "helical_twist_deg_sd": 3.1}
+  ]
+}

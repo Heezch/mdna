@@ -1,0 +1,81 @@
+{
+  "chains": [
+    {
+      "chain_id": "I",
+      "connected_dinucleotide_context_counts": {
+        "AA": 13,
+        "AC": 7,
+        "AG": 9,
+        "AT": 15,
+        "CA": 14,
+        "CC": 7,
+        "CG": 0,
+        "CT": 9,
+        "GA": 8,
+        "GC": 8,
+        "GG": 7,
+        "GT": 7,
+        "TA": 8,
+        "TC": 8,
+        "TG": 14,
+        "TT": 12
+      },
+      "missing_link_atom_pairs": [],
+      "nonconsecutive_dna_residue_pairs_in_chain": [],
+      "o3_prime_p_distance_summary_A": {
+        "count": 146,
+        "maximum": 1.6169477418890195,
+        "mean": 1.6013325937442284,
+        "minimum": 1.5811416761315156
+      },
+      "observed_connected_context_count": 146,
+      "sequence_5prime_to_3prime": "ATCAATATCCACCTGCAGATACTACCAAAAGTGTATTTGGAAACTGCTCCATCAAAAGGCATGTTCAGCTGGAATCCAGCTGAACATGCCTTTTGATGGAGCAGTTTCCAAATACACTTTTGGTAGTATCTGCAGGTGGATATTGAT",
+      "standard_dna_residue_count": 147
+    },
+    {
+      "chain_id": "J",
+      "connected_dinucleotide_context_counts": {
+        "AA": 12,
+        "AC": 7,
+        "AG": 9,
+        "AT": 15,
+        "CA": 14,
+        "CC": 7,
+        "CG": 0,
+        "CT": 9,
+        "GA": 8,
+        "GC": 8,
+        "GG": 7,
+        "GT": 7,
+        "TA": 8,
+        "TC": 8,
+        "TG": 14,
+        "TT": 13
+      },
+      "missing_link_atom_pairs": [],
+      "nonconsecutive_dna_residue_pairs_in_chain": [],
+      "o3_prime_p_distance_summary_A": {
+        "count": 146,
+        "maximum": 1.6155460377222315,
+        "mean": 1.600948584548728,
+        "minimum": 1.5734452643800465
+      },
+      "observed_connected_context_count": 146,
+      "sequence_5prime_to_3prime": "ATCAATATCCACCTGCAGATACTACCAAAAGTGTATTTGGAAACTGCTCCATCAAAAGGCATGTTCAGCTGGATTCCAGCTGAACATGCCTTTTGATGGAGCAGTTTCCAAATACACTTTTGGTAGTATCTGCAGGTGGATATTGAT",
+      "standard_dna_residue_count": 147
+    }
+  ],
+  "coordinate_unit": "angstrom",
+  "link_evidence": "Observed adjacent chain residues with O3' and P coordinates; no geometric cutoff applied.",
+  "model_index_zero_based": 0,
+  "residue_filter": {
+    "DA": "A",
+    "DC": "C",
+    "DG": "G",
+    "DT": "T"
+  },
+  "schema_version": 1,
+  "scientific_acceptance": false,
+  "source_file": "docs/notebooks/pdbs/1kx5.pdb",
+  "source_sha256": "f950cc46449654c6b3352d5aac6338d85db02e4c38049c6fd414cae2d5c4a450"
+}

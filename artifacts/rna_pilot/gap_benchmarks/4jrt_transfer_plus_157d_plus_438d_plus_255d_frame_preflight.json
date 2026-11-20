@@ -1,0 +1,521 @@
+{
+  "target": "4JRT",
+  "target_sha256": "ac527dfa5fd20f64526fc776347c74d0378252263a7a9a53e9cf25270f30f257",
+  "internal_sha256": "6f50e834817a2025baef53cd98e6e7575d29294f851a2cd799313658d90296a9",
+  "terminal_sha256": "8bf948c69e11adbdfd60f88e8d1843cf9f872610fa8832e06ba3db587c6d4fc9",
+  "library_contexts": [
+    "AA",
+    "AC",
+    "AG",
+    "AU",
+    "CG",
+    "CU",
+    "GA",
+    "GC",
+    "GG",
+    "GU",
+    "UA",
+    "UC",
+    "UU"
+  ],
+  "path_limits": {
+    "max_translation_residual_A": 0.5,
+    "max_rotation_residual_degrees": 6.0,
+    "max_shared_residue_rmsd_A": 0.5,
+    "max_shared_atom_displacement_A": 0.5,
+    "max_bond_length_deviation_A": 0.1
+  },
+  "gap_limits": {
+    "max_translation_residual_A": 1.0,
+    "max_rotation_residual_degrees": 20.0,
+    "max_shared_residue_rmsd_A": 1.5,
+    "max_shared_atom_displacement_A": 1.0,
+    "max_bond_length_deviation_A": 0.25,
+    "max_anchor_atom_displacement_A": 1.0,
+    "max_anchor_connection_length_deviation_A": 0.25,
+    "max_search_states": 100000,
+    "max_returned_candidates": 25,
+    "min_environment_distance_A": 1.5
+  },
+  "chains": {
+    "A": {
+      "sequence": "GGGUGGUGCGGG",
+      "windows": [
+        {
+          "start": "1",
+          "sequence": "GGGU",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              0,
+              7
+            ],
+            "frame_misses": [
+              {
+                "step": 1,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "255D:A:8-9",
+                  "translation_A": 0.6476738772991908,
+                  "rotation_deg": 9.734330288550744
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "2",
+          "sequence": "GGUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GUGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "4",
+          "sequence": "UGGU",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "5",
+          "sequence": "GGUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "6",
+          "sequence": "GUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "7",
+          "sequence": "UGCG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "8",
+          "sequence": "GCGG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              15,
+              1
+            ],
+            "frame_misses": [],
+            "combinations_before_overlap": 15,
+            "overlap_rmsd_paths": 1,
+            "overlap_displacement_bound_paths": 1
+          }
+        },
+        {
+          "start": "9",
+          "sequence": "CGGG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              15,
+              1,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 2,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:A:2-3",
+                  "translation_A": 0.5460400308172425,
+                  "rotation_deg": 6.522381769191798
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GGGUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "2",
+          "sequence": "GGUGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GUGGU",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "4",
+          "sequence": "UGGUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "5",
+          "sequence": "GGUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "6",
+          "sequence": "GUGCG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "7",
+          "sequence": "UGCGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "8",
+          "sequence": "GCGGG",
+          "missing_contexts": [],
+          "frame_preflight": {
+            "frame_candidates": [
+              1,
+              15,
+              1,
+              0
+            ],
+            "frame_misses": [
+              {
+                "step": 3,
+                "pair": "GG",
+                "template_count": 3,
+                "closest": {
+                  "suite_id": "438D:A:2-3",
+                  "translation_A": 0.5460400308172425,
+                  "rotation_deg": 6.522381769191798
+                }
+              }
+            ],
+            "combinations_before_overlap": 0,
+            "overlap_rmsd_paths": 0,
+            "overlap_displacement_bound_paths": 0
+          }
+        },
+        {
+          "start": "1",
+          "sequence": "GGGUGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "2",
+          "sequence": "GGUGGU",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "3",
+          "sequence": "GUGGUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "4",
+          "sequence": "UGGUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "5",
+          "sequence": "GGUGCG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "6",
+          "sequence": "GUGCGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "7",
+          "sequence": "UGCGGG",
+          "missing_contexts": [
+            "UG"
+          ]
+        }
+      ]
+    },
+    "B": {
+      "sequence": "CCUGCACUGCCC",
+      "windows": [
+        {
+          "start": "13",
+          "sequence": "CCUG",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "14",
+          "sequence": "CUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "15",
+          "sequence": "UGCA",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "16",
+          "sequence": "GCAC",
+          "missing_contexts": [
+            "CA"
+          ]
+        },
+        {
+          "start": "17",
+          "sequence": "CACU",
+          "missing_contexts": [
+            "CA"
+          ]
+        },
+        {
+          "start": "18",
+          "sequence": "ACUG",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "19",
+          "sequence": "CUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "20",
+          "sequence": "UGCC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "21",
+          "sequence": "GCCC",
+          "missing_contexts": [
+            "CC"
+          ]
+        },
+        {
+          "start": "13",
+          "sequence": "CCUGC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "14",
+          "sequence": "CUGCA",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "15",
+          "sequence": "UGCAC",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "16",
+          "sequence": "GCACU",
+          "missing_contexts": [
+            "CA"
+          ]
+        },
+        {
+          "start": "17",
+          "sequence": "CACUG",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "18",
+          "sequence": "ACUGC",
+          "missing_contexts": [
+            "UG"
+          ]
+        },
+        {
+          "start": "19",
+          "sequence": "CUGCC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "20",
+          "sequence": "UGCCC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "13",
+          "sequence": "CCUGCA",
+          "missing_contexts": [
+            "CA",
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "14",
+          "sequence": "CUGCAC",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "15",
+          "sequence": "UGCACU",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "16",
+          "sequence": "GCACUG",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "17",
+          "sequence": "CACUGC",
+          "missing_contexts": [
+            "CA",
+            "UG"
+          ]
+        },
+        {
+          "start": "18",
+          "sequence": "ACUGCC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        },
+        {
+          "start": "19",
+          "sequence": "CUGCCC",
+          "missing_contexts": [
+            "CC",
+            "UG"
+          ]
+        }
+      ]
+    }
+  },
+  "supplemental_internal_source": null,
+  "supplemental_internal_sources": [
+    {
+      "entry": "157D",
+      "sha256": "25b31bd3ff2ec08aded8314fde1d2b954ec1bac24088618b640cd5c891fc9f86",
+      "added_suites": 18
+    },
+    {
+      "entry": "438D",
+      "sha256": "d5f34520caed139d1b931be000b39a36ef2d8bc4a6616532aabb3cb8c9f6ef4c",
+      "added_suites": 12
+    },
+    {
+      "entry": "255D",
+      "sha256": "345068e3afe32b3ba18fbb91ea2950a8bb0b523cd1756ad57d691e74712bd097",
+      "added_suites": 9
+    }
+  ],
+  "combined_internal_manifest_sha256": "d01947435352ca198e6f9f6eb6b3049b190a20766c7a763a6855721a67900906",
+  "scope": "Template, frame, and pairwise overlap screening only; no fitting or assembly attempted.",
+  "length_summary": {
+    "4": {
+      "total": 18,
+      "covered": 3,
+      "all_steps_have_frame_candidates": 1,
+      "combinations_before_overlap": 15,
+      "overlap_rmsd_paths": 1,
+      "overlap_displacement_bound_paths": 1
+    },
+    "5": {
+      "total": 16,
+      "covered": 1,
+      "all_steps_have_frame_candidates": 0,
+      "combinations_before_overlap": 0,
+      "overlap_rmsd_paths": 0,
+      "overlap_displacement_bound_paths": 0
+    },
+    "6": {
+      "total": 14,
+      "covered": 0,
+      "all_steps_have_frame_candidates": 0,
+      "combinations_before_overlap": 0,
+      "overlap_rmsd_paths": 0,
+      "overlap_displacement_bound_paths": 0
+    }
+  }
+}
