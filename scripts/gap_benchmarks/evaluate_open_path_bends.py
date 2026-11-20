@@ -15,6 +15,9 @@ SEQUENCE = 'ACGT' * 12
 # Deliberately broad triage window, used only for this benchmark. In-range
 # links still require validation against chemistry/conformation-specific ideals.
 O3P_SCREEN_A = (1.30, 2.00)
+LINK_ANGLE_WINDOWS_DEG = {"c3_o3_p_deg": (100, 140), "o3_p_o5_deg": (90, 130),
+                          "p_o5_c5_deg": (95, 135)}
+LINK_TORSION_FIELDS = ("c4_c3_o3_p_deg", "c3_o3_p_o5_deg", "o3_p_o5_c5_deg", "p_o5_c5_c4_deg")
 
 
 def screen_atomic_geometry(metrics):

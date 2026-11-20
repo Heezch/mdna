@@ -8,6 +8,8 @@ import runpy
 import gemmi
 import numpy as np
 
+from evaluate_open_path_bends import LINK_ANGLE_WINDOWS_DEG as WINDOWS, LINK_TORSION_FIELDS as TORSIONS
+
 ROOT = Path(__file__).resolve().parents[2]
 MEASURE = runpy.run_path(str(ROOT / "mdna/structure_qc.py"))["measure_link_coordinates"]
 SOURCES = {
@@ -15,9 +17,7 @@ SOURCES = {
     "1WQY": ("DNA", "artifacts/gap_benchmarks/1wqy_source.pdb"),
     "4U3L": ("RNA", "artifacts/rna_pilot/reference/ion_series/4u3l.cif"),
 }
-WINDOWS = {"c3_o3_p_deg": (100, 140), "o3_p_o5_deg": (90, 130), "p_o5_c5_deg": (95, 135)}
 REQUIRED = {"C3'", "C4'", "C5'", "O3'", "O5'", "P"}
-TORSIONS = ("c4_c3_o3_p_deg", "c3_o3_p_o5_deg", "o3_p_o5_c5_deg", "p_o5_c5_c4_deg")
 
 
 def atom_map(residue):

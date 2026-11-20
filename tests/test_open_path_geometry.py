@@ -88,6 +88,12 @@ class TestOpenPath(unittest.TestCase):
         self.assertAlmostEqual(row['o3_p_o5_deg'], 90.)
         # A close pair exists, but the 1.6 Å covalent link is excluded.
         self.assertAlmostEqual(result['min_short_heavy_distance_A'], 1.2)
+        detailed = measure(traj, include_contact_pairs=True)
+        pairs = detailed.pop('short_heavy_contact_pairs')
+        self.assertEqual(detailed, result)
+        self.assertEqual(len(pairs), result['short_heavy_contacts'])
+        self.assertIn((2, 5), [(i, j) for i, j, _ in pairs])
+        self.assertNotIn((2, 3), [(i, j) for i, j, _ in pairs])
         topology.bonds = [bond for bond in topology.bonds if bond != (atoms[2], atoms[3])]
         broken = measure(traj)
         self.assertEqual(broken['missing_links'], 1)

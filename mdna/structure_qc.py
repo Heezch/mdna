@@ -48,12 +48,13 @@ def _distance(a, b):
     return float(np.linalg.norm(a - b))
 
 
-def measure_open_chain_geometry(trajectory, *, frame=0, contact_cutoff_A=2.0):
+def measure_open_chain_geometry(trajectory, *, frame=0, contact_cutoff_A=2.0, include_contact_pairs=False):
     """Measure a nucleic-acid MDTraj trajectory; input coordinates are nm.
 
     All topology chains must be open nucleic-acid polymers in 5' to 3' order.
     Contacts exclude atom pairs separated by up to three topology bonds. This
     is a fixed-distance screen and does not assign a MolProbity clashscore.
+    When requested, return contact pairs as two topology atom indices and a distance in Å.
     """
     xyz = np.asarray(trajectory.xyz[frame], dtype=float) * 10
     atoms = list(trajectory.topology.atoms)
@@ -98,7 +99,10 @@ def measure_open_chain_geometry(trajectory, *, frame=0, contact_cutoff_A=2.0):
         distance = float(np.linalg.norm(xyz[i] - xyz[j]))
         if distance < cutoff:
             near.append((i, j, distance))
-    return dict(links=links, missing_links=sum(not row['bond_present'] for row in links),
-                contact_cutoff_A=cutoff, short_heavy_contacts=len(near),
-                min_short_heavy_distance_A=min((row[2] for row in near), default=None),
-                atoms_without_element=sum(a.element is None for a in atoms))
+    result = dict(links=links, missing_links=sum(not row['bond_present'] for row in links),
+                  contact_cutoff_A=cutoff, short_heavy_contacts=len(near),
+                  min_short_heavy_distance_A=min((row[2] for row in near), default=None),
+                  atoms_without_element=sum(a.element is None for a in atoms))
+    if include_contact_pairs:
+        result['short_heavy_contact_pairs'] = sorted(near)
+    return result
